@@ -1,0 +1,30 @@
+{
+  "pipeline": [
+    "/home/sam/projects/amphitheatre/data/USGS_LPC_MI_13County_2015_C16_532749.laz",
+    "/home/sam/projects/amphitheatre/data/USGS_LPC_MI_13County_2015_C16_532751.laz",
+    {
+      "type": "filters.merge"
+    },
+    {
+      "type": "filters.range",
+      "limits": "Classification[2:2]"
+    },
+    {
+      "type": "filters.crop",
+      "bounds": "([19532592.7,19533452.7],[750355.65,751215.65])"
+    },
+    {
+      "type": "writers.gdal",
+      "filename": "/home/sam/projects/amphitheatre/dem/dem_design_1ft.tif",
+      "resolution": 1.0,
+      "output_type": "idw",
+      "window_size": 3,
+      "gdaldriver": "GTiff",
+      "data_type": "float32",
+      "nodata": -9999.0,
+      "bounds": "([19532622.7,19533422.7],[750385.65,751185.65])",
+      "gdalopts": "COMPRESS=DEFLATE,TILED=YES",
+      "override_srs": "EPSG:6494"
+    }
+  ]
+}
