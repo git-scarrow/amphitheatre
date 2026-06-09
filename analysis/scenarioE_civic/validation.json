@@ -1,0 +1,168 @@
+{
+  "sightline_summary": {
+    "pass_count": 18,
+    "fail_count": 0,
+    "all_pass": true,
+    "min_C_mm": 90,
+    "min_C_mm_all": 90,
+    "formal_stop_row": 18,
+    "max_fill_ft": 7.62,
+    "total_fill_cy": 1301.9
+  },
+  "formal_fail_rows": [],
+  "formal_seats_emitted": 1283,
+  "nominal_formal": 1452,
+  "displaced_by_cross_aisle": 169,
+  "cross_aisle": {
+    "geometry_source": "row_reclassification",
+    "seam_derived": false,
+    "operation": [
+      "union_source_rows",
+      "subtract_retained_seating",
+      "assign_role:cross_aisle"
+    ],
+    "source_geometry": [
+      "row_9",
+      "row_10"
+    ],
+    "consumes_rows": [
+      9,
+      10
+    ],
+    "nearest_row_ids": [
+      9,
+      10
+    ],
+    "nearest_row_variation": 1,
+    "is_cross_aisle": true,
+    "retained_overlap_sqft": 0.0,
+    "old_desire_line_variation": 6
+  },
+  "tread_max_fill_ft": 1.89,
+  "ada": [
+    {
+      "name": "accessible_route_A_floor",
+      "drop_ft": 6.0,
+      "flights": 3,
+      "rise_per_flight_ft": 2.0,
+      "total_run_ft": 82.0,
+      "running_slope_pct": 8.33,
+      "landings": 4,
+      "straight_slope_pct": 10.0
+    },
+    {
+      "name": "accessible_route_B_mid_row9",
+      "drop_ft": 8.2,
+      "flights": 4,
+      "rise_per_flight_ft": 2.05,
+      "total_run_ft": 113.4,
+      "running_slope_pct": 8.33,
+      "landings": 5,
+      "straight_slope_pct": 17.8
+    }
+  ],
+  "swales": [
+    {
+      "name": "east_flank_swale",
+      "falls_toward_pour_point": true,
+      "tread_conflict_cells": 0,
+      "valid": true,
+      "z_start": 632.95,
+      "z_end": 609.76
+    },
+    {
+      "name": "south_flank_swale",
+      "falls_toward_pour_point": true,
+      "tread_conflict_cells": 0,
+      "valid": true,
+      "z_start": 636.04,
+      "z_end": 609.84
+    }
+  ],
+  "component_cy": {
+    "formal_restored_treads": {
+      "cut_cy": 55.2,
+      "fill_cy": 116.4,
+      "gross_cy": 171.7
+    },
+    "cross_aisle": {
+      "cut_cy": 25.0,
+      "fill_cy": 23.0,
+      "gross_cy": 48.1
+    },
+    "accessible_route_A_floor": {
+      "cut_cy": 79.0,
+      "fill_cy": 0.1,
+      "gross_cy": 79.2
+    },
+    "accessible_route_B_mid_row9": {
+      "cut_cy": 2.1,
+      "fill_cy": 124.0,
+      "gross_cy": 126.0
+    },
+    "east_flank_swale": {
+      "cut_cy": 36.8,
+      "fill_cy": 0.0,
+      "gross_cy": 36.8
+    },
+    "south_flank_swale": {
+      "cut_cy": 37.6,
+      "fill_cy": 0.0,
+      "gross_cy": 37.6
+    },
+    "row_end_shoulders": {
+      "cut_cy": 0.0,
+      "fill_cy": 0.0,
+      "gross_cy": 0.0,
+      "topsoil_cy": 31.6
+    }
+  },
+  "total_earthwork": {
+    "cut_cy": 231.1,
+    "fill_cy": 258.1,
+    "net_cy": 27.0,
+    "gross_cy": 489.2,
+    "max_cut_ft": 6.2,
+    "max_fill_ft": 9.6,
+    "lod_sqft": 15339,
+    "lod_ac": 0.352,
+    "yield_balance": {
+      "conservative": {
+        "yield_factor": 0.85,
+        "available_fill_cy": 196.4,
+        "shortfall_cy": 61.7,
+        "surplus_cy": 0.0,
+        "balanced": false
+      },
+      "neutral": {
+        "yield_factor": 0.95,
+        "available_fill_cy": 219.5,
+        "shortfall_cy": 38.6,
+        "surplus_cy": 0.0,
+        "balanced": false
+      },
+      "optimistic": {
+        "yield_factor": 1.0,
+        "available_fill_cy": 231.1,
+        "shortfall_cy": 27.0,
+        "surplus_cy": 0.0,
+        "balanced": false
+      }
+    }
+  },
+  "shrink_swell": {
+    "shrink_factor_K": 0.95,
+    "cut_cy": 231.1,
+    "usable_compacted_fill_cy": 219.5,
+    "fill_demand_cy": 258.1,
+    "shortfall_cy": 38.6,
+    "surplus_cy": 0.0,
+    "balanced": false
+  },
+  "topsoil_cy": 284.1,
+  "criteria_pass": "10/10",
+  "engine_verdict": "ACCEPTED \u2014 inevitable",
+  "engine_accepted": true,
+  "hard_rejections": [],
+  "open_items": []
+}

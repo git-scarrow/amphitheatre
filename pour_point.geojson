@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "pour_point",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::6494" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "pour_point", "spill_elev_ft_navd88": 618.04, "outflow_bearing_deg_grid": 45.0, "outflow_compass_grid": "NE", "exit_neighbour_fill_ft": 618.04, "head_to_bay_ft": 36.64, "bay_navd88_ft": 581.4, "datum": "NAVD88 Geoid12A intl ft" }, "geometry": { "type": "Point", "coordinates": [ 19532967.2, 750904.150000000023283 ] } }
+]
+}

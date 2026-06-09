@@ -1,0 +1,27 @@
+{
+ "type": "FeatureCollection",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::6494"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "stage_front_focus",
+    "elev_navd88": 612.5,
+    "centerline_az_deg": 132.0,
+    "audience_face_az_deg": 312.0
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533116.0,
+     750755.71
+    ]
+   }
+  }
+ ]
+}

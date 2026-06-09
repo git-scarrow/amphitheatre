@@ -1,0 +1,47 @@
+proposal:
+  id: V_SE_CORNER
+  family: C
+  intent: >
+    Cut-to-fill SE corner expansion. The south arc (az=153-185°, beyond row 16)
+    has terrain 3-8 ft above the 33% row targets — it is borrow, not seating.
+    That material hauls east to fill the SE corner (az=115-148°) where terrain
+    sits 1-4 ft below the same row targets. Net result: rows 17-18 become
+    buildable in the southeast quadrant where the bowl currently dead-ends at
+    the natural rake. Haul is entirely internal (~40-60 ft). Row 17 also
+    extends across the eastern fan with a modest shelf fill.
+  bowl_axis_az: 330
+  borrow_only_ok: false
+
+  actions:
+    # ── primary borrow: cut the south arc overshoot ─────────────────────────
+    # South arc terrain is 3-8 ft above where rows 17-19 would sit on the
+    # seating axis. Cut it down toward the 33% grade target line.
+    - cut_bench:
+        polygon: south_borrow
+        target_cut_ft: 2.5
+        max_cut_ft: 4.0
+
+    # ── SE corner fill: build the missing shelf ──────────────────────────────
+    # SE corner terrain is 1-4 ft below row targets. Fill to create rows 17-18.
+    # max_fill_ft raised to 3.5 for this structural fill shelf — wall check
+    # will fire if fill face slope exceeds threshold; accepted as design input.
+    - fill_shelf:
+        polygon: se_corner_fill
+        target_fill_ft: 2.0
+        max_fill_ft: 3.5
+
+    # ── row 17 extension: thin shelf across eastern fan ─────────────────────
+    # R=130-136 ft across az=95-148° needs only 0-1.7 ft fill to extend row 17.
+    - fill_shelf:
+        polygon: se_row17_ext
+        target_fill_ft: 0.5
+        max_fill_ft: 2.0
+
+    # ── smooth the borrow cut to avoid abrupt faces ──────────────────────────
+    - smooth_patch:
+        polygon: south_borrow
+        sigma_ft: 6.0
+
+  preserve:
+    - treatment_cell_core
+    - bay_view_corridor

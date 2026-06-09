@@ -1,0 +1,90 @@
+proposal:
+  id: V_SLOPE_GRADE3
+  family: B
+  intent: >
+    Per-row slope regularization via grade_ceiling on 14 row-tread bands.
+    Cut-only: grades terrain down to target where above it. max_cut_ft=0.9
+    per band ensures that at any boundary pixel shared by two adjacent bands,
+    the cumulative cut (max 1.8 ft) stays under both the 3 ft depth trigger
+    and the 200% delta-face-slope trigger.
+    Front 24% / Mid 31% / Rear 33%. Balance to dry shelf.
+  bowl_axis_az: 330
+
+  actions:
+    - grade_ceiling:
+        polygon: row_band_02
+        target_elev: 614.26
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_04
+        target_elev: 615.7
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_05
+        target_elev: 616.42
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_06
+        target_elev: 617.35
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_07
+        target_elev: 618.28
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_08
+        target_elev: 619.21
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_09
+        target_elev: 620.14
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_10
+        target_elev: 621.07
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_11
+        target_elev: 622.0
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_12
+        target_elev: 622.99
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_13
+        target_elev: 623.98
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_14
+        target_elev: 624.97
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_15
+        target_elev: 625.96
+        max_cut_ft: 0.9
+    - grade_ceiling:
+        polygon: row_band_16
+        target_elev: 626.95
+        max_cut_ft: 0.9
+
+    # ── smooth zone transitions (mid and rear only) ───────────────────────────
+    # Gaussian blur softens the 0.9 ft step at each row_band boundary,
+    # reducing abrupt cut faces and improving ADA route terrain continuity.
+    # Front zone excluded: inner rows are sightline-critical and sensitive
+    # to small delta changes (row 2 marginally passes at 90 mm C-value).
+    - smooth_patch:
+        polygon: seating_mid_zone
+        sigma_ft: 4.0
+    - smooth_patch:
+        polygon: seating_rear_zone
+        sigma_ft: 5.0
+
+    - fill_shelf:
+        polygon: lower_basin_dry_shelf
+        target_fill_ft: auto_balance
+        max_fill_ft: 1.25
+
+  preserve:
+    - treatment_cell_core
+    - bay_view_corridor

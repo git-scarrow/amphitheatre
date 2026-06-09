@@ -1,0 +1,237 @@
+{
+  "scenario": "D \u2014 designed baseline (site-affordance composition)",
+  "stage": "concept",
+  "verdict": "ACCEPTED \u2014 inevitable (concept)",
+  "accepted": true,
+  "open_items": [],
+  "hard_rejections": [],
+  "ledgers": {
+    "performance": true,
+    "affordance": true,
+    "role": true,
+    "justification": true
+  },
+  "ledger_detail": {
+    "performance": {
+      "pass": true,
+      "gates": {
+        "no_formal_seat_on_clip": true,
+        "sightlines_validated": true,
+        "sensitivity_passes": true,
+        "ada_in_earthwork": true,
+        "drainage_resolved": true
+      }
+    },
+    "affordance": {
+      "pass": true,
+      "affordances_cited": [
+        "arc clipped by Petoskey & Mitchell streets",
+        "bay+sky on the NNW view axis",
+        "natural bowl curvature",
+        "slope still supports informal lawn terraces",
+        "stage sits at the bowl hinge",
+        "upper plateau edge",
+        "within core formal seating rake"
+      ]
+    },
+    "role": {
+      "pass": true,
+      "bands_scenarioD": {
+        "A": 1452.0,
+        "B": 114.0,
+        "C": 243.0,
+        "D": 86.0
+      }
+    },
+    "justification": {
+      "pass": true,
+      "unjustified_moves": []
+    }
+  },
+  "done_checklist": {
+    "all_done": true,
+    "questions": {
+      "1_formal_seats_pass_all_gates": true,
+      "2_nonformal_rows_have_role": true,
+      "3_earthwork_areas_named": true,
+      "4_routes_relate_to_terrain": true,
+      "5_edges_resolve": true,
+      "6_stage_strengthens_bowl_view_use": true,
+      "7_drainage_reinforces_landform": true,
+      "8_low_intervention_without_false_surfaces": true,
+      "9_no_removable_move_without_loss": true,
+      "10_move_by_move_justification": true
+    }
+  },
+  "scores": {
+    "terrain_fit": 1.0,
+    "civic_fit": 1.0,
+    "multi_duty": 4.5,
+    "gross_cy": 25.9,
+    "arbitrary_moves": 0,
+    "hidden_failures": 0,
+    "inevitability": 14.24
+  },
+  "moves": [
+    {
+      "move_id": "D1_restore_formal_treads",
+      "move_type": "restore_formal_tread",
+      "geometry": "rows 1-18 segments flagged clip_under_seat, C_ideal>=90",
+      "site_reasons": [
+        "natural bowl curvature",
+        "within core formal seating rake"
+      ],
+      "performance_reasons": [
+        "restores 2% cross-slope",
+        "removes clip_under_seat dishing",
+        "holds C>=90mm on the actual surface"
+      ],
+      "civic_reasons": [
+        "completes a continuous, legible lower bowl",
+        "a terrace must read as a terrace"
+      ],
+      "cost": {
+        "cut_cy": 0.0,
+        "fill_cy": 25.9,
+        "gross_cy": 25.9
+      },
+      "effects": {
+        "formal_seats": "+1235",
+        "visual_legibility": "increased",
+        "drainage_risk": "reduced"
+      },
+      "positive_criteria": [
+        "uses_existing_contour",
+        "clarifies_seating_bowl",
+        "improves_sightlines",
+        "improves_drainage"
+      ],
+      "rejection_if_removed": [
+        "formal seating discontinuity",
+        "clip dishing under seats",
+        "mid-tread ponding"
+      ],
+      "status": "accepted",
+      "cost_status": "placeholder",
+      "validation_status": "intent_only",
+      "may_satisfy": [],
+      "may_not_satisfy": [],
+      "provenance": {}
+    },
+    {
+      "move_id": "D2_dissolve_clipped_tips",
+      "move_type": "convert_clipped_tip_to_overlook",
+      "geometry": "rows 21-25 bend-only fragments (Band D)",
+      "site_reasons": [
+        "arc clipped by Petoskey & Mitchell streets",
+        "upper plateau edge"
+      ],
+      "performance_reasons": [
+        "removes false formal capacity from clipped geometry"
+      ],
+      "civic_reasons": [
+        "edge dissolves into landscape/overlook instead of broken seating"
+      ],
+      "cost": {
+        "cut_cy": 0.0,
+        "fill_cy": 0.0,
+        "gross_cy": 0.0
+      },
+      "effects": {
+        "formal_seats": "0",
+        "informal_capacity": "increase",
+        "visual_legibility": "increased"
+      },
+      "positive_criteria": [
+        "turns_fragment_into_landscape",
+        "preserves_bay_view",
+        "adds_daily_nonevent_value"
+      ],
+      "rejection_if_removed": [
+        "clipped fragments masquerade as formal seats"
+      ],
+      "status": "accepted",
+      "cost_status": "placeholder",
+      "validation_status": "intent_only",
+      "may_satisfy": [],
+      "may_not_satisfy": [],
+      "provenance": {}
+    },
+    {
+      "move_id": "D3_demote_outer_rows_to_terrace",
+      "move_type": "demote_weak_outer_capacity_to_picnic_terrace",
+      "geometry": "rows 19-20 (Band B/C, C 55-86mm)",
+      "site_reasons": [
+        "slope still supports informal lawn terraces"
+      ],
+      "performance_reasons": [
+        "honest banding: below 90mm formal threshold"
+      ],
+      "civic_reasons": [
+        "soft upper terrace for picnic/daily use, not advertised as formal"
+      ],
+      "cost": {
+        "cut_cy": 0.0,
+        "fill_cy": 0.0,
+        "gross_cy": 0.0
+      },
+      "effects": {
+        "informal_capacity": "increase",
+        "civic_formality": "decrease",
+        "visual_softness": "increased"
+      },
+      "positive_criteria": [
+        "clarifies_seating_bowl",
+        "adds_daily_nonevent_value",
+        "reduces_artificial_grading"
+      ],
+      "rejection_if_removed": [
+        "upper rows over-counted as formal",
+        "lost daily-use lawn"
+      ],
+      "status": "accepted",
+      "cost_status": "placeholder",
+      "validation_status": "intent_only",
+      "may_satisfy": [],
+      "may_not_satisfy": [],
+      "provenance": {}
+    },
+    {
+      "move_id": "D4_preserve_upstage_view",
+      "move_type": "preserve_open_upstage_view",
+      "geometry": "stage upstage, face_az 330 corridor to bay",
+      "site_reasons": [
+        "bay+sky on the NNW view axis",
+        "stage sits at the bowl hinge"
+      ],
+      "performance_reasons": [
+        "keeps the open-air character; no enclosure to drain/heat"
+      ],
+      "civic_reasons": [
+        "the view is the set; an open-air venue, not a fake room"
+      ],
+      "cost": {
+        "cut_cy": 0.0,
+        "fill_cy": 0.0,
+        "gross_cy": 0.0
+      },
+      "effects": {
+        "blocks_view": false,
+        "visual_legibility": "increased"
+      },
+      "positive_criteria": [
+        "preserves_bay_view",
+        "clarifies_seating_bowl"
+      ],
+      "rejection_if_removed": [
+        "upstage wall could creep in and kill the bay axis"
+      ],
+      "status": "accepted",
+      "cost_status": "placeholder",
+      "validation_status": "intent_only",
+      "may_satisfy": [],
+      "may_not_satisfy": [],
+      "provenance": {}
+    }
+  ]
+}

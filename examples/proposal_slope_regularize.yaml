@@ -1,0 +1,73 @@
+proposal:
+  id: V_SLOPE_REG
+  family: B
+  intent: >
+    Three-regime slope regularization — higher-design earthworked seating rake.
+    Natural terrain is irregular (24–44% inter-row slopes). Target:
+      Front zone (R=85–97 ft): regularize toward ~24%  (currently 23–34%, avg ~27%)
+      Mid zone   (R=97–115 ft): regularize toward ~31%  (currently 27–38%, avg ~31%)
+      Rear zone  (R=115–130 ft): regularize toward ~33%  (currently 34–44%, avg ~39%)
+    Strategy: taper cuts — deepest at outer (upslope) rows, lightest at inner rows —
+    then smooth each zone to distribute the grade correction naturally. Cut material
+    balances to lower basin dry shelf. Sightlines preserved (tread floats on
+    max(tread_req, terrain); cuts give treads headroom). ADA routes unaffected.
+  bowl_axis_az: 330
+
+  actions:
+    # ── front zone: minor regularization ─────────────────────────────────────
+    # Natural front-zone avg slope ~27%. Cut 0.15 ft across zone to relax
+    # the 34% spike at rows 4–5 and normalize the 24%/23% shallow rows.
+    - cut_bench:
+        polygon: seating_front_zone
+        target_cut_ft: 0.15
+        max_cut_ft: 0.25
+
+    # ── mid zone: moderate cut + spike suppression ────────────────────────────
+    # Natural mid-zone avg ~31% (on target) but has a 37.9% spike at row 8.
+    # Cut 0.25 ft overall. The spike row benefits most; neighbours smooth out.
+    - cut_bench:
+        polygon: seating_mid_zone
+        target_cut_ft: 0.25
+        max_cut_ft: 0.40
+
+    # ── rear zone: primary slope correction ───────────────────────────────────
+    # Natural rear avg ~39%. Cut 0.40 ft across full rear zone to move
+    # toward 33–34% average. Rows 12–13 with 43–39% get the most benefit.
+    - cut_bench:
+        polygon: seating_rear_zone
+        target_cut_ft: 0.40
+        max_cut_ft: 0.55
+
+    # ── rear upper: additional taper cut (rows 14–16) ────────────────────────
+    # Stack a second lower_patch on the outermost 10 ft (R=120–130).
+    # After smooth_patch below, this creates a taper: ~0.40 ft cut at
+    # R=120 grading to ~0.65 ft at R=130, shifting outer slopes toward 33%.
+    - lower_patch:
+        polygon: seating_rear_upper
+        amount_ft: 0.25
+        max_cut_ft: 0.35
+
+    # ── balance: fill lower basin dry shelf ───────────────────────────────────
+    # Accept cut material from seating fan into the S01 fill target.
+    # auto_balance scales to neutral-yield from computed cut volume.
+    - fill_shelf:
+        polygon: lower_basin_dry_shelf
+        target_fill_ft: auto_balance
+        max_fill_ft: 1.25
+
+    # ── smoothing: blend zone transitions ─────────────────────────────────────
+    # Each zone gets its own smooth pass to redistribute the uniform cut into
+    # a gradual slope gradient. sigma=6 ft ≈ 2 row spacings.
+    - smooth_patch:
+        polygon: seating_front_zone
+        sigma_ft: 6.0
+    - smooth_patch:
+        polygon: seating_mid_zone
+        sigma_ft: 6.0
+    - smooth_patch:
+        polygon: seating_rear_zone
+        sigma_ft: 7.0
+
+  preserve:
+    - treatment_cell_core
+    - bay_view_corridor

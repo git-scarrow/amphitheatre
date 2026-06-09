@@ -1,0 +1,589 @@
+{
+  "design": {
+    "scenario": "control_uncarved_aisle (aisle overlaps counted treads)",
+    "moves": [
+      {
+        "move_id": "E_restore_treads",
+        "move_type": "restore_formal_tread",
+        "geometry": "rows 1-18 ideal terrace planes (171.7 CY)",
+        "site_reasons": [
+          "rake rises 27.3%/ft",
+          "hinge R\u224868.0ft"
+        ],
+        "performance_reasons": [
+          "C>=90 on actual surface (fails: none)",
+          "no clip under seats (max tread fill 1.89 ft)"
+        ],
+        "civic_reasons": [
+          "completes a continuous legible formal bowl"
+        ],
+        "cost": {
+          "cut_cy": 55.2,
+          "fill_cy": 116.4,
+          "gross_cy": 171.7
+        },
+        "effects": {
+          "formal_seats": "1283",
+          "visual_legibility": "increased"
+        },
+        "positive_criteria": [],
+        "rejection_if_removed": [
+          "formal seating discontinuity",
+          "clip dishing"
+        ],
+        "status": "proposed",
+        "cost_status": "geometry_backed",
+        "validation_status": "not_validated",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "E_ada_ramps",
+        "move_type": "bend_access_route_with_contour",
+        "geometry": "switchback ramps A+B re-graded to 8.33% with landings",
+        "site_reasons": [
+          "hinge R\u224868.0ft",
+          "descends with the natural rake"
+        ],
+        "performance_reasons": [
+          "running slope 8.33% by design (was 10.0%/17.8% straight)",
+          "9 landings"
+        ],
+        "civic_reasons": [
+          "arrival reveals the bowl and bay progressively"
+        ],
+        "cost": {
+          "cut_cy": 81.1,
+          "fill_cy": 0.0,
+          "gross_cy": 205.2
+        },
+        "effects": {
+          "access_quality": "increased"
+        },
+        "positive_criteria": [
+          "improves_access",
+          "uses_existing_contour",
+          "creates_useful_edge_or_landing"
+        ],
+        "rejection_if_removed": [
+          "no accessible entry",
+          "compliance scar"
+        ],
+        "status": "proposed",
+        "cost_status": "geometry_backed",
+        "validation_status": "validated",
+        "may_satisfy": [
+          "ADA_pass",
+          "processional_clarity"
+        ],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "cross_aisle_row_9_10",
+        "move_type": "reclassify_row_band_to_circulation",
+        "geometry": "rows [9, 10] seating band reclassified as circulation (union(row9,row10).difference(retained)); 169 seats displaced",
+        "site_reasons": [
+          "natural mid-bowl contour band",
+          "row geometry already tracks terrain",
+          "access pause at mid-bowl"
+        ],
+        "performance_reasons": [
+          "creates cross-bowl circulation",
+          "enables wheelchair dispersion",
+          "removes displaced seats from capacity",
+          "avoids freeform-path conflict",
+          "0 sqft overlap with retained seats (\u22480 required)",
+          "nearest-row drift 1 (\u22641 = cross-aisle, not connector)"
+        ],
+        "civic_reasons": [
+          "mid-bowl pause where the bay reveals"
+        ],
+        "cost": {
+          "cut_cy": 25.0,
+          "fill_cy": 23.0,
+          "gross_cy": 48.1
+        },
+        "effects": {
+          "access_quality": "increased"
+        },
+        "positive_criteria": [
+          "improves_access",
+          "creates_useful_edge_or_landing",
+          "preserves_bay_view"
+        ],
+        "rejection_if_removed": [
+          "no mid-bowl access band",
+          "wheelchair dispersion unresolved",
+          "circulation returns to desire-line problem"
+        ],
+        "status": "proposed",
+        "cost_status": "geometry_backed",
+        "validation_status": "validated",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {
+          "geometry_source": "row_reclassification",
+          "seam_derived": false,
+          "source_geometry": [
+            "row_9",
+            "row_10"
+          ],
+          "operation": [
+            "union_source_rows",
+            "subtract_retained_seating",
+            "assign_role:cross_aisle"
+          ]
+        }
+      },
+      {
+        "move_id": "E_swales",
+        "move_type": "use_swale_as_planted_room_edge",
+        "geometry": "toe + east-edge swales falling to the NE pour point",
+        "site_reasons": [
+          "site drains NE to bay (pour point 618.04)",
+          "intercepts behind the toe"
+        ],
+        "performance_reasons": [
+          "both swales fall toward pour point: True",
+          "treads shed to swales, no mid-tread ponding"
+        ],
+        "civic_reasons": [
+          "drainage reads as a planted landscape edge"
+        ],
+        "cost": {
+          "cut_cy": 74.4,
+          "fill_cy": 0.0,
+          "gross_cy": 74.4
+        },
+        "effects": {
+          "drainage_risk": "reduced"
+        },
+        "positive_criteria": [
+          "improves_drainage",
+          "creates_useful_edge_or_landing"
+        ],
+        "rejection_if_removed": [
+          "lower rows pond",
+          "treatment cell reads as leftover ditch"
+        ],
+        "status": "proposed",
+        "cost_status": "geometry_backed",
+        "validation_status": "validated",
+        "may_satisfy": [
+          "drainage_pass"
+        ],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "E_shoulders",
+        "move_type": "convert_clipped_tip_to_overlook",
+        "geometry": "rows 21-25 clipped tips -> lawn/overlook (topsoil only)",
+        "site_reasons": [
+          "arc clipped by Petoskey/Mitchell streets",
+          "upper plateau edge"
+        ],
+        "performance_reasons": [
+          "removes false formal capacity from clipped geometry"
+        ],
+        "civic_reasons": [
+          "edge dissolves into overlook instead of broken seating"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "visual_legibility": "increased"
+        },
+        "positive_criteria": [
+          "turns_fragment_into_landscape",
+          "preserves_bay_view"
+        ],
+        "rejection_if_removed": [
+          "clipped fragments masquerade as formal seats"
+        ],
+        "status": "proposed",
+        "cost_status": "geometry_backed",
+        "validation_status": "validated",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "E_preserve_view",
+        "move_type": "preserve_open_upstage_view",
+        "geometry": "stage upstage open; lateral shoulders only",
+        "site_reasons": [
+          "bay+sky on the 330\u00b0 axis",
+          "stage at hinge R\u224868.0ft"
+        ],
+        "performance_reasons": [
+          "no upstage enclosure"
+        ],
+        "civic_reasons": [
+          "the view is the set; open-air venue"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "blocks_view": false
+        },
+        "positive_criteria": [
+          "preserves_bay_view"
+        ],
+        "rejection_if_removed": [
+          "an upstage wall could kill the bay axis"
+        ],
+        "status": "proposed",
+        "cost_status": "geometry_backed",
+        "validation_status": "validated",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      }
+    ],
+    "claims": {
+      "formal_seats_claimed": 1283
+    },
+    "surfaces_classified": true,
+    "omits_required_surfaces": [],
+    "stage": "cost_proxy"
+  },
+  "verdict": {
+    "scenario": "control_uncarved_aisle (aisle overlaps counted treads)",
+    "stage": "cost_proxy",
+    "verdict": "REJECTED \u2014 not inevitable",
+    "accepted": false,
+    "open_items": [],
+    "hard_rejections": [
+      "cost-proxy move E_restore_treads is geometry-backed but failed validation (restore_formal_tread)"
+    ],
+    "ledgers": {
+      "performance": true,
+      "affordance": true,
+      "role": true,
+      "justification": true
+    },
+    "ledger_detail": {
+      "performance": {
+        "pass": true,
+        "gates": {
+          "no_formal_seat_on_clip": true,
+          "sightlines_validated": true,
+          "sensitivity_passes": true,
+          "ada_in_earthwork": true,
+          "drainage_resolved": true
+        }
+      },
+      "affordance": {
+        "pass": true,
+        "affordances_cited": [
+          "access pause at mid-bowl",
+          "arc clipped by Petoskey/Mitchell streets",
+          "bay+sky on the 330\u00b0 axis",
+          "descends with the natural rake",
+          "hinge R\u224868.0ft",
+          "intercepts behind the toe",
+          "natural mid-bowl contour band",
+          "rake rises 27.3%/ft",
+          "row geometry already tracks terrain",
+          "site drains NE to bay (pour point 618.04)",
+          "stage at hinge R\u224868.0ft",
+          "upper plateau edge"
+        ]
+      },
+      "role": {
+        "pass": true,
+        "bands_scenarioD": {
+          "A": 1452.0,
+          "B": 114.0,
+          "C": 243.0,
+          "D": 86.0
+        }
+      },
+      "justification": {
+        "pass": true,
+        "unjustified_moves": []
+      }
+    },
+    "done_checklist": {
+      "all_done": false,
+      "questions": {
+        "1_formal_seats_pass_all_gates": true,
+        "2_nonformal_rows_have_role": true,
+        "3_earthwork_areas_named": true,
+        "4_routes_relate_to_terrain": true,
+        "5_edges_resolve": true,
+        "6_stage_strengthens_bowl_view_use": true,
+        "7_drainage_reinforces_landform": true,
+        "8_low_intervention_without_false_surfaces": false,
+        "9_no_removable_move_without_loss": true,
+        "10_move_by_move_justification": true
+      }
+    },
+    "scores": {
+      "terrain_fit": 1.0,
+      "civic_fit": 1.0,
+      "multi_duty": 5.5,
+      "gross_cy": 499.4,
+      "arbitrary_moves": 0,
+      "hidden_failures": 1,
+      "inevitability": 7.51
+    },
+    "moves": [
+      {
+        "move_id": "E_restore_treads",
+        "move_type": "restore_formal_tread",
+        "geometry": "rows 1-18 ideal terrace planes (171.7 CY)",
+        "site_reasons": [
+          "rake rises 27.3%/ft",
+          "hinge R\u224868.0ft"
+        ],
+        "performance_reasons": [
+          "C>=90 on actual surface (fails: none)",
+          "no clip under seats (max tread fill 1.89 ft)"
+        ],
+        "civic_reasons": [
+          "completes a continuous legible formal bowl"
+        ],
+        "cost": {
+          "cut_cy": 55.2,
+          "fill_cy": 116.4,
+          "gross_cy": 171.7
+        },
+        "effects": {
+          "formal_seats": "1283",
+          "visual_legibility": "increased"
+        },
+        "positive_criteria": [],
+        "rejection_if_removed": [
+          "formal seating discontinuity",
+          "clip dishing"
+        ],
+        "status": "proposed",
+        "cost_status": "geometry_backed",
+        "validation_status": "not_validated",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "E_ada_ramps",
+        "move_type": "bend_access_route_with_contour",
+        "geometry": "switchback ramps A+B re-graded to 8.33% with landings",
+        "site_reasons": [
+          "hinge R\u224868.0ft",
+          "descends with the natural rake"
+        ],
+        "performance_reasons": [
+          "running slope 8.33% by design (was 10.0%/17.8% straight)",
+          "9 landings"
+        ],
+        "civic_reasons": [
+          "arrival reveals the bowl and bay progressively"
+        ],
+        "cost": {
+          "cut_cy": 81.1,
+          "fill_cy": 0.0,
+          "gross_cy": 205.2
+        },
+        "effects": {
+          "access_quality": "increased"
+        },
+        "positive_criteria": [
+          "improves_access",
+          "uses_existing_contour",
+          "creates_useful_edge_or_landing"
+        ],
+        "rejection_if_removed": [
+          "no accessible entry",
+          "compliance scar"
+        ],
+        "status": "proposed",
+        "cost_status": "geometry_backed",
+        "validation_status": "validated",
+        "may_satisfy": [
+          "ADA_pass",
+          "processional_clarity"
+        ],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "cross_aisle_row_9_10",
+        "move_type": "reclassify_row_band_to_circulation",
+        "geometry": "rows [9, 10] seating band reclassified as circulation (union(row9,row10).difference(retained)); 169 seats displaced",
+        "site_reasons": [
+          "natural mid-bowl contour band",
+          "row geometry already tracks terrain",
+          "access pause at mid-bowl"
+        ],
+        "performance_reasons": [
+          "creates cross-bowl circulation",
+          "enables wheelchair dispersion",
+          "removes displaced seats from capacity",
+          "avoids freeform-path conflict",
+          "0 sqft overlap with retained seats (\u22480 required)",
+          "nearest-row drift 1 (\u22641 = cross-aisle, not connector)"
+        ],
+        "civic_reasons": [
+          "mid-bowl pause where the bay reveals"
+        ],
+        "cost": {
+          "cut_cy": 25.0,
+          "fill_cy": 23.0,
+          "gross_cy": 48.1
+        },
+        "effects": {
+          "access_quality": "increased"
+        },
+        "positive_criteria": [
+          "improves_access",
+          "creates_useful_edge_or_landing",
+          "preserves_bay_view"
+        ],
+        "rejection_if_removed": [
+          "no mid-bowl access band",
+          "wheelchair dispersion unresolved",
+          "circulation returns to desire-line problem"
+        ],
+        "status": "proposed",
+        "cost_status": "geometry_backed",
+        "validation_status": "validated",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {
+          "geometry_source": "row_reclassification",
+          "seam_derived": false,
+          "source_geometry": [
+            "row_9",
+            "row_10"
+          ],
+          "operation": [
+            "union_source_rows",
+            "subtract_retained_seating",
+            "assign_role:cross_aisle"
+          ]
+        }
+      },
+      {
+        "move_id": "E_swales",
+        "move_type": "use_swale_as_planted_room_edge",
+        "geometry": "toe + east-edge swales falling to the NE pour point",
+        "site_reasons": [
+          "site drains NE to bay (pour point 618.04)",
+          "intercepts behind the toe"
+        ],
+        "performance_reasons": [
+          "both swales fall toward pour point: True",
+          "treads shed to swales, no mid-tread ponding"
+        ],
+        "civic_reasons": [
+          "drainage reads as a planted landscape edge"
+        ],
+        "cost": {
+          "cut_cy": 74.4,
+          "fill_cy": 0.0,
+          "gross_cy": 74.4
+        },
+        "effects": {
+          "drainage_risk": "reduced"
+        },
+        "positive_criteria": [
+          "improves_drainage",
+          "creates_useful_edge_or_landing"
+        ],
+        "rejection_if_removed": [
+          "lower rows pond",
+          "treatment cell reads as leftover ditch"
+        ],
+        "status": "proposed",
+        "cost_status": "geometry_backed",
+        "validation_status": "validated",
+        "may_satisfy": [
+          "drainage_pass"
+        ],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "E_shoulders",
+        "move_type": "convert_clipped_tip_to_overlook",
+        "geometry": "rows 21-25 clipped tips -> lawn/overlook (topsoil only)",
+        "site_reasons": [
+          "arc clipped by Petoskey/Mitchell streets",
+          "upper plateau edge"
+        ],
+        "performance_reasons": [
+          "removes false formal capacity from clipped geometry"
+        ],
+        "civic_reasons": [
+          "edge dissolves into overlook instead of broken seating"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "visual_legibility": "increased"
+        },
+        "positive_criteria": [
+          "turns_fragment_into_landscape",
+          "preserves_bay_view"
+        ],
+        "rejection_if_removed": [
+          "clipped fragments masquerade as formal seats"
+        ],
+        "status": "proposed",
+        "cost_status": "geometry_backed",
+        "validation_status": "validated",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "E_preserve_view",
+        "move_type": "preserve_open_upstage_view",
+        "geometry": "stage upstage open; lateral shoulders only",
+        "site_reasons": [
+          "bay+sky on the 330\u00b0 axis",
+          "stage at hinge R\u224868.0ft"
+        ],
+        "performance_reasons": [
+          "no upstage enclosure"
+        ],
+        "civic_reasons": [
+          "the view is the set; open-air venue"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "blocks_view": false
+        },
+        "positive_criteria": [
+          "preserves_bay_view"
+        ],
+        "rejection_if_removed": [
+          "an upstage wall could kill the bay axis"
+        ],
+        "status": "proposed",
+        "cost_status": "geometry_backed",
+        "validation_status": "validated",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      }
+    ]
+  }
+}

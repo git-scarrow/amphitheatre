@@ -1,0 +1,22 @@
+proposal:
+  id: V0001
+  family: D
+  intent: "Cut shallow bench at upper S/SSE rim, balance to lower dry shelf — softens steep bank, adds usable civic ground"
+  bowl_axis_az: 330
+  borrow_only_ok: false
+  actions:
+    - cut_bench:
+        polygon: upper_sse_rim_bench
+        target_cut_ft: 0.8
+        max_cut_ft: 2.0
+    - fill_shelf:
+        polygon: lower_basin_dry_shelf
+        target_fill_ft: auto_balance
+        max_fill_ft: 1.25
+    - smooth_patch:
+        polygon: upper_sse_rim_bench
+        sigma_ft: 6.0
+  preserve:
+    - treatment_cell_core
+    - bay_view_corridor
+    - seating_rows_on_natural_grade

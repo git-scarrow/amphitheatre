@@ -1,0 +1,10 @@
+row,family,kind,elev,dist,C_mm,sees_bay,curv_cv,min_Rcurv,face_err90,grade_resid90,noncirc,cen_off,core_len,bay_len,lawn_len,core_seats,bay_seats,cut_cy,fill_cy
+1,forecourt,seating,611.0,35.0,,False,,,,,,,118.7,0.0,0.0,53,0,,
+2,forecourt,seating,611.56,38.0,98,False,,,,,,,122.9,0.0,0.0,55,0,,
+3,forecourt,seating,612.23,41.0,122,False,,,,,,,127.1,0.0,0.0,56,0,,
+4,forecourt,seating,613.23,44.0,208,False,,,,,,,131.2,0.0,0.0,58,0,,
+5,middle,seating,622.98,74.0,1190,True,0.574,38.0,15.7,1.72,4.2,-20.6,26.8,40.0,172.9,12,17,5.1,3.7
+6,upper,seating,623.93,77.0,107,True,0.584,40.0,15.1,1.72,4.4,-20.4,25.3,46.2,176.1,11,20,5.9,4.0
+7,upper,seating,624.88,80.0,103,True,0.609,42.0,12.6,1.91,17.4,6.1,22.7,119.1,65.9,10,53,12.2,9.5
+8,upper,seating,625.84,83.0,102,True,0.587,38.0,11.8,1.95,17.8,6.4,0.0,123.9,66.3,0,55,11.4,8.1
+9,upper,seating,627.04,86.0,169,True,0.563,46.0,11.2,2.02,18.3,6.4,0.0,129.4,68.1,0,57,11.9,9.0

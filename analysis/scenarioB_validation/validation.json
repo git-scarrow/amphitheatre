@@ -1,0 +1,90 @@
+{
+  "claims_tested": {
+    "clip_at_row_ends_only": "FALSE \u2014 395 segments clip UNDER seats vs 117 at tips",
+    "self_balancing_no_import": "GEOMETRIC ONLY \u2014 restoring formal seats (Scenario D) costs 26 CY of the fill the clip 'saved'; after K=0.95 shrink the tread strip still imports 6 CY; haul 11 ft",
+    "all_24_rows_are_seats": "FALSE \u2014 as-built formal seats=217; bands B=1349 C=243 D=86"
+  },
+  "segments": {
+    "total": 559,
+    "formal_asbuilt": 61,
+    "clip_under_seat": 395,
+    "clip_at_tip": 117,
+    "restorable_by_fill": 351
+  },
+  "bands_asbuilt": {
+    "A": 217.4,
+    "B": 1348.6,
+    "C": 243.0,
+    "D": 86.0
+  },
+  "bands_scenarioD": {
+    "A": 1452.0,
+    "B": 114.0,
+    "C": 243.0,
+    "D": 86.0
+  },
+  "C_formal_asbuilt": 928.1,
+  "scenarioD_repair_cy": 25.9,
+  "prior_claims": {
+    "raw_envelope": 1895,
+    "prior_formal": 1452,
+    "prior_C_formal": 1545
+  },
+  "envelope": {
+    "tread_gross_cy": 287.6,
+    "construction_gross_cy": 956.8,
+    "growth_x": 3.33,
+    "haul_ft": 11,
+    "usable_fill_cy": 137.3,
+    "fill_shortfall_after_shrink_cy": 5.8,
+    "total_unmet_fill_cy": 35.2
+  },
+  "sensitivity": {
+    "baseline_earnback_rows": 16,
+    "baseline_seatzone_clip": 395,
+    "runs": [
+      {
+        "seed": 0,
+        "earnback_formal_rows": 16,
+        "seatzone_clip_cells": 3161
+      },
+      {
+        "seed": 1,
+        "earnback_formal_rows": 15,
+        "seatzone_clip_cells": 2943
+      },
+      {
+        "seed": 2,
+        "earnback_formal_rows": 16,
+        "seatzone_clip_cells": 3404
+      },
+      {
+        "seed": 3,
+        "earnback_formal_rows": 16,
+        "seatzone_clip_cells": 2731
+      },
+      {
+        "seed": 4,
+        "earnback_formal_rows": 15,
+        "seatzone_clip_cells": 2908
+      }
+    ]
+  },
+  "objective_U": {
+    "asbuilt": 757.6,
+    "scenarioD": 1620.5,
+    "weights": {
+      "formal": 1.0,
+      "lawn": 0.3,
+      "sightline": 5.0,
+      "gross_per_cy": 0.05,
+      "import_per_cy": 0.5
+    }
+  },
+  "data_gated_NOT_validated": [
+    "accessible_route_required / wheelchair_space_required \u2014 no ADA/aisle layout",
+    "V5 field-survey reconciliation \u2014 no survey (G8 DEM-noise proxy only)",
+    "V6 soil suitability / topsoil-as-structural-fill",
+    "drainage runoff/swale sizing after clipping \u2014 slope direction only"
+  ]
+}

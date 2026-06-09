@@ -1,0 +1,62 @@
+proposal:
+  id: V_SLOPE_GRADE2
+  family: B
+  intent: >
+    Per-row slope regularization via grade_ceiling on 16 row-tread bands.
+    Cut-only: grades terrain down to target where above it, leaves low
+    spots untouched (sightlines float on max(tread_req, terrain)).
+    Front 24% / Mid 31% / Rear 33%. Balance to dry shelf.
+  bowl_axis_az: 330
+
+  actions:
+    - grade_ceiling:
+        polygon: row_band_02
+        target_elev: 614.26
+    - grade_ceiling:
+        polygon: row_band_04
+        target_elev: 615.7
+    - grade_ceiling:
+        polygon: row_band_05
+        target_elev: 616.42
+    - grade_ceiling:
+        polygon: row_band_06
+        target_elev: 617.35
+    - grade_ceiling:
+        polygon: row_band_07
+        target_elev: 618.28
+    - grade_ceiling:
+        polygon: row_band_08
+        target_elev: 619.21
+    - grade_ceiling:
+        polygon: row_band_09
+        target_elev: 620.14
+    - grade_ceiling:
+        polygon: row_band_10
+        target_elev: 621.07
+    - grade_ceiling:
+        polygon: row_band_11
+        target_elev: 622.0
+    - grade_ceiling:
+        polygon: row_band_12
+        target_elev: 622.99
+    - grade_ceiling:
+        polygon: row_band_13
+        target_elev: 623.98
+    - grade_ceiling:
+        polygon: row_band_14
+        target_elev: 624.97
+    - grade_ceiling:
+        polygon: row_band_15
+        target_elev: 625.96
+    - grade_ceiling:
+        polygon: row_band_16
+        target_elev: 626.95
+
+    - fill_shelf:
+        polygon: lower_basin_dry_shelf
+        target_fill_ft: auto_balance
+        max_fill_ft: 1.25
+
+  preserve:
+    - treatment_cell_core
+    - bay_view_corridor

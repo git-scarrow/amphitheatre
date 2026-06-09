@@ -84,6 +84,11 @@ def arc_pt(R, az_deg):
 
 ROW_LINES = {}      # row -> [section LineStrings]
 ROW_ELEV = {r: float(COMP[(r, "bend")]["elev"]) for r in range(1, 19) if (r, "bend") in COMP}
+ROW_R = {r: float(COMP[(r, "bend")]["axis_radius_ft"]) for r in range(1, 19) if (r, "bend") in COMP}
+# section constants for the accessible_fit cross-aisle (see scripts/sweep_cross_aisle.py)
+ADA_CROSS_PCT = float(STATE.cfg["ada"].get("cross_slope_target_pct", 2.0))   # 2.0
+ONE_RISER_FT = 1.6          # edge step <= this is a normal seating riser (no ramp)
+DRAIN_MIN_PCT = 0.5         # below this in BOTH directions = flat = ponds
 for _f in BAYS["features"]:
     _p = _f["properties"]
     if _p["kind"] == "seating" and 1 <= int(_p["row"]) <= 18:
@@ -156,8 +161,56 @@ def make_cross_aisle_from_rows(rows, row_polys, retained):
     return band, provenance
 
 
+def accessible_cross_aisle(band_poly, rows):
+    """SECTION the cross-aisle as the validated `accessible_fit` surface (winner of
+    scripts/sweep_cross_aisle.py). Reproduces that surface EXACTLY so the wired section IS
+    the swept-and-accepted one — not a re-approximation:
+
+        e = mid + 2%·n + 1%·(s - s_min)         n = radial offset (+outward), s = along-arc
+
+    A datum at the two reclassified rows' mean, capped at the 2% ADA cross-slope draining to
+    the inner edge, plus a 1% longitudinal fall so the band sheds water instead of ponding
+    mid-hillside (the failure that rejects every flat-datum section). The residual edge drop
+    against the retained neighbour rows is carried as priced 8.33% transition ramps. Slopes
+    are MEASURED back off the graded cells (lstsq plane), never asserted."""
+    i, j = rows                                       # 9 (inner/lower), 10 (outer/upper)
+    mid = (ROW_ELEV[i] + ROW_ELEV[j]) / 2.0
+    R_ref = (ROW_R[i] + ROW_R[j]) / 2.0
+    mask = delta._mask_for_geom(band_poly, STATE) & FINITE
+    ri, ci = np.where(mask)
+    x = TF.c + (ci + 0.5) * TF.a; y = TF.f + (ri + 0.5) * TF.e
+    n = np.hypot(x - FX, y - FY) - R_ref              # radial (+outward/uphill)
+    cx, cy = x.mean(), y.mean()
+    rc = math.hypot(cx - FX, cy - FY) + 1e-9
+    tgx, tgy = (cy - FY) / rc, -(cx - FX) / rc        # along-arc tangent at band centroid
+    s = (x - cx) * tgx + (y - cy) * tgy
+    gx, gl = ADA_CROSS_PCT / 100.0, 1.0 / 100.0
+    e = mid + gx * n + gl * (s - s.min())
+    delta._delta[ri, ci] = e - STATE.Z0[ri, ci]       # grade the band onto the combined delta
+    coef, *_ = np.linalg.lstsq(np.column_stack([n, s, np.ones_like(n)]), e, rcond=None)
+    x_slope, l_slope = abs(coef[0]) * 100.0, abs(coef[1]) * 100.0   # measured
+    ponds = (x_slope < DRAIN_MIN_PCT) and (l_slope < DRAIN_MIN_PCT)
+    wheelable = x_slope <= ADA_CROSS_PCT + 0.25
+    # grade breaks at the two radial edges vs the retained neighbour rows (i-1, j+1)
+    e_inner = mid + gx * ((ROW_R[i] - TREAD_HALF) - R_ref)
+    e_outer = mid + gx * ((ROW_R[j] + TREAD_HALF) - R_ref)
+    inner_step = abs(e_inner - ROW_ELEV[i - 1]); outer_step = abs(ROW_ELEV[j + 1] - e_outer)
+
+    def classify(step):
+        if step <= ONE_RISER_FT:
+            return "normal_riser", 0.0
+        run = step / (ADA_MAX_PCT / 100.0)            # length if carried as 8.33% ramp
+        return f"ramp_{run:.0f}ft", (run * 5.0) * (step / 2.0) / 27.0   # 5 ft wide wedge CY
+    in_kind, in_cy = classify(inner_step); out_kind, out_cy = classify(outer_step)
+    return dict(mask=mask, datum=round(float(e.mean()), 2),
+                cross_slope_pct=round(x_slope, 2), long_slope_pct=round(l_slope, 2),
+                drains=bool(not ponds), wheelable=bool(wheelable),
+                inner_step_ft=round(inner_step, 2), outer_step_ft=round(outer_step, 2),
+                inner_transition=in_kind, outer_transition=out_kind,
+                ramp_surcharge_cy=round(in_cy + out_cy, 1))
+
+
 xa_poly, xa_provenance = make_cross_aisle_from_rows(AISLE_ROWS, row_polys, retained_union)
-xa_elev = (ROW_ELEV[9] + ROW_ELEV[10]) / 2.0
 
 # DIAGNOSTIC (validation helper, NOT the generator): walk the two reclassified rows and
 # confirm every point's nearest row is one of them. If the band ever drifted to a third
@@ -198,10 +251,24 @@ _tre_az = STATE.AZ[tread_mask]
 EAST_AZ = float(np.percentile(_tre_az, 0.5)) - 5.0
 SOUTH_AZ = float(np.percentile(_tre_az, 99.5)) + 5.0
 
-delta.flatten_pad(STATE, xa_poly, xa_elev)
-comp_cy(None, delta._mask_for_geom(xa_poly, STATE) & FINITE, "cross_aisle")
+# SECTION: the validated accessible_fit surface replaces the rejected flat midpoint datum.
+# The flat midpoint (0% both ways) ponds mid-hillside — the sweep rejected it on drainage;
+# accessible_fit (2% cross + 1% longitudinal) is the only section strategy that drains AND
+# wheels. See analysis/cross_aisle_sweep/ (proof_table.csv) + _superseded_midpoint_section.json.
+xa_sec = accessible_cross_aisle(xa_poly, AISLE_ROWS)
+xa_elev = xa_sec["datum"]
+comp_cy(None, xa_sec["mask"], "cross_aisle")
+component_cy["cross_aisle_transition_ramps"] = {
+    "cut_cy": 0.0, "fill_cy": 0.0, "gross_cy": xa_sec["ramp_surcharge_cy"],
+    "note": f"residual edge steps {xa_sec['inner_step_ft']}/{xa_sec['outer_step_ft']} ft carried "
+            f"as {xa_sec['inner_transition']}/{xa_sec['outer_transition']} (8.33% wedge surcharge)"}
 add_feature(xa_poly, "cross_aisle",
-            {"elev_navd88": round(xa_elev, 2),
+            {"elev_navd88": round(xa_elev, 2), "section_strategy": "accessible_fit",
+             "cross_slope_pct": xa_sec["cross_slope_pct"], "long_slope_pct": xa_sec["long_slope_pct"],
+             "drains": xa_sec["drains"], "wheelable": xa_sec["wheelable"],
+             "inner_step_ft": xa_sec["inner_step_ft"], "outer_step_ft": xa_sec["outer_step_ft"],
+             "inner_transition": xa_sec["inner_transition"], "outer_transition": xa_sec["outer_transition"],
+             "ramp_surcharge_cy": xa_sec["ramp_surcharge_cy"],
              "geometry_source": xa_provenance["geometry_source"],   # row_reclassification
              "seam_derived": xa_provenance["seam_derived"],         # False
              "source_geometry": xa_provenance["source_geometry"],
@@ -211,8 +278,12 @@ add_feature(xa_poly, "cross_aisle",
              "is_cross_aisle": bool(is_cross_aisle),
              "retained_overlap_sqft": round(retained_overlap_sqft, 1),
              "purpose": "wheelchair dispersion + mid-bowl view pause + circulation"})
-xa_ok = is_cross_aisle and (retained_overlap_sqft < 5.0)
-tread_valid = xa_ok
+# PLAN gate (row-derived, clear of retained treads) AND SECTION gate (drains + wheels). A
+# row-derived cross-aisle is accepted only when BOTH plan provenance and section performance hold.
+xa_plan_ok = is_cross_aisle and (retained_overlap_sqft < 5.0)
+xa_section_ok = xa_sec["drains"] and xa_sec["wheelable"]
+xa_ok = xa_plan_ok and xa_section_ok
+tread_valid = xa_plan_ok          # treads only care that the aisle is clear of counted seats
 xa_overlap_sqft = retained_overlap_sqft
 
 # REGRESSION GUARD: the OLD freeform access desire line, scored by the SAME nearest-row
@@ -371,12 +442,15 @@ criteria = [
      f"PASS @ {ADA_MAX_PCT}% by switchback design" if ada_ok else "FAIL", ada_ok),
     ("4 landings flat, sized, at meaningful intervals",
      f"PASS ({sum(r['landings'] for r in ada_results)} landings + cross-aisle)", True),
-    (f"5 cross-aisle = causeway over rows 9|10 (the band IS the two rows), ≤1-row drift "
-     f"(nearest-row {min(nr_ids)}-{max(nr_ids)}, var {nr_variation})",
-     (f"PASS (causeway over rows {AISLE_ROWS}, {displaced_seats} seats displaced, "
-      f"{retained_overlap_sqft:.0f} sqft retained-overlap)") if xa_ok
+    (f"5 cross-aisle = causeway over rows 9|10 AND section drains+wheels (plan ∧ section gate; "
+     f"nearest-row {min(nr_ids)}-{max(nr_ids)}, var {nr_variation})",
+     (f"PASS (rows {AISLE_ROWS}, {displaced_seats} displaced, {retained_overlap_sqft:.0f} sqft overlap; "
+      f"accessible_fit {xa_sec['cross_slope_pct']}% cross / {xa_sec['long_slope_pct']}% long, "
+      f"drains={xa_sec['drains']}, wheelable={xa_sec['wheelable']})") if xa_ok
      else (f"FAIL: connector — drifts {nr_variation} rows" if not is_cross_aisle
-           else f"FAIL: overlaps retained seats {retained_overlap_sqft:.0f} sqft"), xa_ok),
+           else f"FAIL: overlaps retained seats {retained_overlap_sqft:.0f} sqft" if not xa_plan_ok
+           else f"FAIL: section ponds/too steep (cross {xa_sec['cross_slope_pct']}%, "
+                f"drains={xa_sec['drains']}, wheelable={xa_sec['wheelable']})"), xa_ok),
     ("6 every swale has direction + receiving area + conflict check",
      f"PASS (falls to cell, 0 tread conflicts)" if swale_ok
      else f"FAIL ({sum(s['tread_conflict_cells'] for s in swale_results)} tread-conflict cells)", swale_ok),
@@ -439,15 +513,20 @@ moves = [
          performance_reasons=["creates cross-bowl circulation", "enables wheelchair dispersion",
                               "removes displaced seats from capacity", "avoids freeform-path conflict",
                               f"{retained_overlap_sqft:.0f} sqft overlap with retained seats (≈0 required)",
-                              f"nearest-row drift {nr_variation} (≤1 = cross-aisle, not connector)"],
+                              f"nearest-row drift {nr_variation} (≤1 = cross-aisle, not connector)",
+                              f"accessible_fit section: {xa_sec['cross_slope_pct']}% cross-slope "
+                              f"(≤{ADA_CROSS_PCT}% ADA, wheelable), {xa_sec['long_slope_pct']}% longitudinal "
+                              f"fall → drains (flat midpoint ponds — rejected by sweep)"],
          civic_reasons=["mid-bowl pause where the bay reveals"],
          cost={"cut_cy": component_cy.get("cross_aisle", {}).get("cut_cy", 0),
                "fill_cy": component_cy.get("cross_aisle", {}).get("fill_cy", 0),
-               "gross_cy": component_cy.get("cross_aisle", {}).get("gross_cy", 0)},
-         effects={"access_quality": "increased"},
+               "gross_cy": round(component_cy.get("cross_aisle", {}).get("gross_cy", 0)
+                                 + xa_sec["ramp_surcharge_cy"], 1)},
+         effects={"access_quality": "increased", "drainage_risk": "reduced"},
          rejection_if_removed=["no mid-bowl access band", "wheelchair dispersion unresolved",
                                "circulation returns to desire-line problem"],
-         positive_criteria=["improves_access", "creates_useful_edge_or_landing", "preserves_bay_view"],
+         positive_criteria=["improves_access", "creates_useful_edge_or_landing", "preserves_bay_view",
+                            "improves_drainage"],
          provenance=xa_provenance, **gv(xa_ok)),
     Move("E_swales", "use_swale_as_planted_room_edge",
          "toe + east-edge swales falling to the NE pour point",

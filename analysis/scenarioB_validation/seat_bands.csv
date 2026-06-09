@@ -1,0 +1,5 @@
+band,meaning,asbuilt_seats,scenarioD_seats,weight
+A,formal fixed seat,217.4,1452.0,1.0
+B,informal terrace/lawn,1348.6,114.0,0.5
+C,overflow/lawn edge,243.0,243.0,0.15
+D,landscape/no-count,86.0,86.0,0.0

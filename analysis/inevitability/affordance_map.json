@@ -1,0 +1,90 @@
+{
+  "natural_rake": {
+    "provenance": "computed",
+    "pan_ac": 7.544,
+    "seatable_rake_ac": 4.699,
+    "steep_ac": 0.581,
+    "seatable_in_fan_ac": 0.15,
+    "rake_rises_outward_frac": 1.0,
+    "mean_radial_rise_pct": 27.3,
+    "natural_rise_over_fan_ft": 28.4,
+    "mean_seatable_slope_pct": 31.7,
+    "note": "rake_rises_outward_frac near 1.0 = arc-median ground rises away from the stage (rows step up the natural hill) = a latent bowl the design only intensifies"
+  },
+  "bowl_hinge": {
+    "provenance": "computed",
+    "hinge_radius_ft": 68.0,
+    "hinge_elev_navd88": 610.14,
+    "note": "the stage/forecourt belongs at or just inside the hinge \u2014 the natural seam between flat pan and rising bowl"
+  },
+  "view_axis": {
+    "provenance": "config",
+    "face_az_deg": 330.0,
+    "back_az_deg": 150.0,
+    "focal_xy": [
+      19533100.0,
+      750743.0
+    ],
+    "focal_elev_navd88": 612.5,
+    "bay_navd88_ft": 581.4,
+    "principle": "open upstage; the bay and sky are the backdrop. No tall element may block the face_az view corridor without a stated civic reason.",
+    "occluder_note": "foreground tree screen (densest az315-320) governs 330-vs-315 \u2014 see bay-view viewshed analysis; not re-evaluated here."
+  },
+  "edges": {
+    "provenance": "config+validation",
+    "streets": {
+      "lake_y_north": 750943,
+      "mitchell_y_south": 750594,
+      "petoskey_x_east": 19533271,
+      "west": "open to Bayfront Park"
+    },
+    "clipped_tip_rows": [
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "principle": "street edges are hard clips; arc-clipped row tips are NOT formal seating \u2014 they dissolve into overlook/lawn/landscape shoulder."
+  },
+  "drainage": {
+    "provenance": "config+computed",
+    "treatment_cell_bottom_navd88": 609.1,
+    "treatment_cell_pool_navd88": 611.3,
+    "pour_point": {
+      "name": "pour_point",
+      "spill_elev_ft_navd88": 618.04,
+      "outflow_bearing_deg_grid": 45.0,
+      "outflow_compass_grid": "NE",
+      "exit_neighbour_fill_ft": 618.04,
+      "head_to_bay_ft": 36.64,
+      "bay_navd88_ft": 581.4,
+      "datum": "NAVD88 Geoid12A intl ft"
+    },
+    "principle": "drainage is landscape structure, not an afterthought. Treads must shed to swales that reinforce the landform; clipped treads that dish and pond fail this."
+  },
+  "zones": {
+    "provenance": "validation",
+    "strong_zones": [
+      {
+        "role": "formal lower bowl (Band A)",
+        "seats": 1452.0
+      }
+    ],
+    "weak_zones": [
+      {
+        "role": "soft terrace (Band B)",
+        "seats": 114.0
+      },
+      {
+        "role": "overflow/lawn edge (Band C)",
+        "seats": 243.0
+      },
+      {
+        "role": "landscape/no-count clipped tips (Band D)",
+        "seats": 86.0
+      }
+    ],
+    "principle": "spend earthwork only on strong zones; demote weak zones to lawn/overlook/planting instead of pretending clipped fragments are formal."
+  }
+}

@@ -1,0 +1,579 @@
+{
+  "design": {
+    "scenario": "festival_bowl \u2014 Compact formal core + wide flexible lawn, with festival circulation.",
+    "moves": [
+      {
+        "move_id": "festival_bowl_restore_formal",
+        "move_type": "restore_formal_tread",
+        "geometry": "rows 1-10 (restorable, C_ideal>=90)",
+        "site_reasons": [
+          "natural rake rises 27.3%/ft over 100% of the fan (+28.4 ft)",
+          "bowl hinge at R\u224868.0 ft"
+        ],
+        "performance_reasons": [
+          "restores 2% cross-slope on dished treads",
+          "removes clip_under_seat",
+          "holds C>=90mm on the actual surface"
+        ],
+        "civic_reasons": [
+          "broad flexible lawn over a compact formal core",
+          "festival/movie crowds",
+          "completes a continuous legible lower bowl"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 8.8,
+          "gross_cy": 8.8
+        },
+        "effects": {
+          "formal_seats": "+652",
+          "visual_legibility": "increased",
+          "drainage_risk": "reduced"
+        },
+        "positive_criteria": [
+          "uses_existing_contour",
+          "clarifies_seating_bowl",
+          "improves_sightlines",
+          "improves_drainage"
+        ],
+        "rejection_if_removed": [
+          "formal seating discontinuity",
+          "clip dishing under seats"
+        ],
+        "status": "accepted",
+        "cost_status": "placeholder",
+        "validation_status": "intent_only",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "festival_bowl_dissolve_lawn",
+        "move_type": "dissolve_row_into_lawn",
+        "geometry": "rows 11-19 demoted to grass terrace",
+        "site_reasons": [
+          "natural rake rises 27.3%/ft over 100% of the fan (+28.4 ft)"
+        ],
+        "performance_reasons": [
+          "honest banding below the formal threshold or beyond the formal line"
+        ],
+        "civic_reasons": [
+          "broad flexible lawn over a compact formal core",
+          "festival/movie crowds",
+          "soft terrace for picnic/daily use, not advertised as formal"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "informal_capacity": "+914",
+          "visual_softness": "increased",
+          "civic_formality": "decrease"
+        },
+        "positive_criteria": [
+          "reduces_artificial_grading",
+          "adds_daily_nonevent_value",
+          "clarifies_seating_bowl"
+        ],
+        "rejection_if_removed": [
+          "upper rows over-counted as formal",
+          "lost daily-use lawn"
+        ],
+        "status": "accepted",
+        "cost_status": "placeholder",
+        "validation_status": "intent_only",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "festival_bowl_overflow_terrace",
+        "move_type": "demote_weak_outer_capacity_to_picnic_terrace",
+        "geometry": "rows 20-24 (Band C)",
+        "site_reasons": [
+          "natural rake rises 27.3%/ft over 100% of the fan (+28.4 ft)"
+        ],
+        "performance_reasons": [
+          "C 30-60mm: overflow/standing only, not fixed seating"
+        ],
+        "civic_reasons": [
+          "informal overflow edge for big events"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "informal_capacity": "+243"
+        },
+        "positive_criteria": [
+          "turns_fragment_into_landscape",
+          "adds_daily_nonevent_value"
+        ],
+        "rejection_if_removed": [
+          "weak rows masquerade as seating"
+        ],
+        "status": "accepted",
+        "cost_status": "placeholder",
+        "validation_status": "intent_only",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "festival_bowl_dissolve_tips",
+        "move_type": "convert_clipped_tip_to_overlook",
+        "geometry": "rows 23-25 clipped tips \u2192 overlook/landscape",
+        "site_reasons": [
+          "arc clipped by Petoskey/Mitchell streets (rows [21, 22, 23, 24, 25])",
+          "bay+sky on the 330.0\u00b0 NNW view axis"
+        ],
+        "performance_reasons": [
+          "removes false formal capacity from clipped single-section geometry"
+        ],
+        "civic_reasons": [
+          "edge dissolves into overlook instead of broken seating"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "visual_legibility": "increased",
+          "informal_capacity": "+86"
+        },
+        "positive_criteria": [
+          "turns_fragment_into_landscape",
+          "preserves_bay_view",
+          "creates_useful_edge_or_landing"
+        ],
+        "rejection_if_removed": [
+          "clipped fragments masquerade as formal seats"
+        ],
+        "status": "accepted",
+        "cost_status": "placeholder",
+        "validation_status": "intent_only",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "festival_bowl_preserve_view",
+        "move_type": "preserve_open_upstage_view",
+        "geometry": "stage upstage, view corridor to bay",
+        "site_reasons": [
+          "bay+sky on the 330.0\u00b0 NNW view axis",
+          "bowl hinge at R\u224868.0 ft"
+        ],
+        "performance_reasons": [
+          "keeps open-air character; no enclosure to drain/heat"
+        ],
+        "civic_reasons": [
+          "the view is the set; an open-air venue, not a fake room"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "blocks_view": false,
+          "visual_legibility": "increased"
+        },
+        "positive_criteria": [
+          "preserves_bay_view",
+          "clarifies_seating_bowl"
+        ],
+        "rejection_if_removed": [
+          "an upstage wall could creep in and kill the bay axis"
+        ],
+        "status": "accepted",
+        "cost_status": "placeholder",
+        "validation_status": "intent_only",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "festival_bowl_processional_access",
+        "move_type": "bend_access_route_with_contour",
+        "geometry": "switchback ramp + cross-aisle landings on contour",
+        "site_reasons": [
+          "natural rake rises 27.3%/ft over 100% of the fan (+28.4 ft)",
+          "bowl hinge at R\u224868.0 ft"
+        ],
+        "performance_reasons": [
+          "ADA running slope <=8.33%",
+          "wheelchair dispersion at landings"
+        ],
+        "civic_reasons": [
+          "broad flexible lawn over a compact formal core",
+          "festival/movie crowds",
+          "arrival reveals the bowl and bay progressively"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "access_quality": "increased",
+          "informal_capacity": "increase"
+        },
+        "positive_criteria": [
+          "improves_access",
+          "uses_existing_contour",
+          "creates_useful_edge_or_landing",
+          "adds_daily_nonevent_value"
+        ],
+        "rejection_if_removed": [
+          "access becomes a compliance scar",
+          "no wheelchair dispersion"
+        ],
+        "status": "accepted",
+        "cost_status": "placeholder",
+        "validation_status": "intent_only",
+        "may_satisfy": [
+          "processional_clarity"
+        ],
+        "may_not_satisfy": [
+          "ADA_pass",
+          "earthwork_cost_proxy"
+        ],
+        "provenance": {}
+      }
+    ],
+    "claims": {
+      "formal_seats_claimed": 652
+    },
+    "surfaces_classified": true,
+    "omits_required_surfaces": [
+      "drainage"
+    ],
+    "stage": "concept"
+  },
+  "verdict": {
+    "scenario": "festival_bowl \u2014 Compact formal core + wide flexible lawn, with festival circulation.",
+    "stage": "concept",
+    "verdict": "ACCEPTED \u2014 inevitable (concept)",
+    "accepted": true,
+    "open_items": [
+      "drainage deferred to Scenario E (cost-proxy stage)"
+    ],
+    "hard_rejections": [],
+    "ledgers": {
+      "performance": true,
+      "affordance": true,
+      "role": true,
+      "justification": true
+    },
+    "ledger_detail": {
+      "performance": {
+        "pass": true,
+        "gates": {
+          "no_formal_seat_on_clip": true,
+          "sightlines_validated": true,
+          "sensitivity_passes": true,
+          "ada_in_earthwork": true,
+          "drainage_resolved": true
+        }
+      },
+      "affordance": {
+        "pass": true,
+        "affordances_cited": [
+          "arc clipped by Petoskey/Mitchell streets (rows [21, 22, 23, 24, 25])",
+          "bay+sky on the 330.0\u00b0 NNW view axis",
+          "bowl hinge at R\u224868.0 ft",
+          "natural rake rises 27.3%/ft over 100% of the fan (+28.4 ft)"
+        ]
+      },
+      "role": {
+        "pass": true,
+        "bands_scenarioD": {
+          "A": 1452.0,
+          "B": 114.0,
+          "C": 243.0,
+          "D": 86.0
+        }
+      },
+      "justification": {
+        "pass": true,
+        "unjustified_moves": []
+      }
+    },
+    "done_checklist": {
+      "all_done": true,
+      "questions": {
+        "1_formal_seats_pass_all_gates": true,
+        "2_nonformal_rows_have_role": true,
+        "3_earthwork_areas_named": true,
+        "4_routes_relate_to_terrain": true,
+        "5_edges_resolve": true,
+        "6_stage_strengthens_bowl_view_use": true,
+        "7_drainage_reinforces_landform": true,
+        "8_low_intervention_without_false_surfaces": true,
+        "9_no_removable_move_without_loss": true,
+        "10_move_by_move_justification": true
+      }
+    },
+    "scores": {
+      "terrain_fit": 1.0,
+      "civic_fit": 1.0,
+      "multi_duty": 5.17,
+      "gross_cy": 8.8,
+      "arbitrary_moves": 0,
+      "hidden_failures": 0,
+      "inevitability": 15.08
+    },
+    "moves": [
+      {
+        "move_id": "festival_bowl_restore_formal",
+        "move_type": "restore_formal_tread",
+        "geometry": "rows 1-10 (restorable, C_ideal>=90)",
+        "site_reasons": [
+          "natural rake rises 27.3%/ft over 100% of the fan (+28.4 ft)",
+          "bowl hinge at R\u224868.0 ft"
+        ],
+        "performance_reasons": [
+          "restores 2% cross-slope on dished treads",
+          "removes clip_under_seat",
+          "holds C>=90mm on the actual surface"
+        ],
+        "civic_reasons": [
+          "broad flexible lawn over a compact formal core",
+          "festival/movie crowds",
+          "completes a continuous legible lower bowl"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 8.8,
+          "gross_cy": 8.8
+        },
+        "effects": {
+          "formal_seats": "+652",
+          "visual_legibility": "increased",
+          "drainage_risk": "reduced"
+        },
+        "positive_criteria": [
+          "uses_existing_contour",
+          "clarifies_seating_bowl",
+          "improves_sightlines",
+          "improves_drainage"
+        ],
+        "rejection_if_removed": [
+          "formal seating discontinuity",
+          "clip dishing under seats"
+        ],
+        "status": "accepted",
+        "cost_status": "placeholder",
+        "validation_status": "intent_only",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "festival_bowl_dissolve_lawn",
+        "move_type": "dissolve_row_into_lawn",
+        "geometry": "rows 11-19 demoted to grass terrace",
+        "site_reasons": [
+          "natural rake rises 27.3%/ft over 100% of the fan (+28.4 ft)"
+        ],
+        "performance_reasons": [
+          "honest banding below the formal threshold or beyond the formal line"
+        ],
+        "civic_reasons": [
+          "broad flexible lawn over a compact formal core",
+          "festival/movie crowds",
+          "soft terrace for picnic/daily use, not advertised as formal"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "informal_capacity": "+914",
+          "visual_softness": "increased",
+          "civic_formality": "decrease"
+        },
+        "positive_criteria": [
+          "reduces_artificial_grading",
+          "adds_daily_nonevent_value",
+          "clarifies_seating_bowl"
+        ],
+        "rejection_if_removed": [
+          "upper rows over-counted as formal",
+          "lost daily-use lawn"
+        ],
+        "status": "accepted",
+        "cost_status": "placeholder",
+        "validation_status": "intent_only",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "festival_bowl_overflow_terrace",
+        "move_type": "demote_weak_outer_capacity_to_picnic_terrace",
+        "geometry": "rows 20-24 (Band C)",
+        "site_reasons": [
+          "natural rake rises 27.3%/ft over 100% of the fan (+28.4 ft)"
+        ],
+        "performance_reasons": [
+          "C 30-60mm: overflow/standing only, not fixed seating"
+        ],
+        "civic_reasons": [
+          "informal overflow edge for big events"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "informal_capacity": "+243"
+        },
+        "positive_criteria": [
+          "turns_fragment_into_landscape",
+          "adds_daily_nonevent_value"
+        ],
+        "rejection_if_removed": [
+          "weak rows masquerade as seating"
+        ],
+        "status": "accepted",
+        "cost_status": "placeholder",
+        "validation_status": "intent_only",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "festival_bowl_dissolve_tips",
+        "move_type": "convert_clipped_tip_to_overlook",
+        "geometry": "rows 23-25 clipped tips \u2192 overlook/landscape",
+        "site_reasons": [
+          "arc clipped by Petoskey/Mitchell streets (rows [21, 22, 23, 24, 25])",
+          "bay+sky on the 330.0\u00b0 NNW view axis"
+        ],
+        "performance_reasons": [
+          "removes false formal capacity from clipped single-section geometry"
+        ],
+        "civic_reasons": [
+          "edge dissolves into overlook instead of broken seating"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "visual_legibility": "increased",
+          "informal_capacity": "+86"
+        },
+        "positive_criteria": [
+          "turns_fragment_into_landscape",
+          "preserves_bay_view",
+          "creates_useful_edge_or_landing"
+        ],
+        "rejection_if_removed": [
+          "clipped fragments masquerade as formal seats"
+        ],
+        "status": "accepted",
+        "cost_status": "placeholder",
+        "validation_status": "intent_only",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "festival_bowl_preserve_view",
+        "move_type": "preserve_open_upstage_view",
+        "geometry": "stage upstage, view corridor to bay",
+        "site_reasons": [
+          "bay+sky on the 330.0\u00b0 NNW view axis",
+          "bowl hinge at R\u224868.0 ft"
+        ],
+        "performance_reasons": [
+          "keeps open-air character; no enclosure to drain/heat"
+        ],
+        "civic_reasons": [
+          "the view is the set; an open-air venue, not a fake room"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "blocks_view": false,
+          "visual_legibility": "increased"
+        },
+        "positive_criteria": [
+          "preserves_bay_view",
+          "clarifies_seating_bowl"
+        ],
+        "rejection_if_removed": [
+          "an upstage wall could creep in and kill the bay axis"
+        ],
+        "status": "accepted",
+        "cost_status": "placeholder",
+        "validation_status": "intent_only",
+        "may_satisfy": [],
+        "may_not_satisfy": [],
+        "provenance": {}
+      },
+      {
+        "move_id": "festival_bowl_processional_access",
+        "move_type": "bend_access_route_with_contour",
+        "geometry": "switchback ramp + cross-aisle landings on contour",
+        "site_reasons": [
+          "natural rake rises 27.3%/ft over 100% of the fan (+28.4 ft)",
+          "bowl hinge at R\u224868.0 ft"
+        ],
+        "performance_reasons": [
+          "ADA running slope <=8.33%",
+          "wheelchair dispersion at landings"
+        ],
+        "civic_reasons": [
+          "broad flexible lawn over a compact formal core",
+          "festival/movie crowds",
+          "arrival reveals the bowl and bay progressively"
+        ],
+        "cost": {
+          "cut_cy": 0.0,
+          "fill_cy": 0.0,
+          "gross_cy": 0.0
+        },
+        "effects": {
+          "access_quality": "increased",
+          "informal_capacity": "increase"
+        },
+        "positive_criteria": [
+          "improves_access",
+          "uses_existing_contour",
+          "creates_useful_edge_or_landing",
+          "adds_daily_nonevent_value"
+        ],
+        "rejection_if_removed": [
+          "access becomes a compliance scar",
+          "no wheelchair dispersion"
+        ],
+        "status": "accepted",
+        "cost_status": "placeholder",
+        "validation_status": "intent_only",
+        "may_satisfy": [
+          "processional_clarity"
+        ],
+        "may_not_satisfy": [
+          "ADA_pass",
+          "earthwork_cost_proxy"
+        ],
+        "provenance": {}
+      }
+    ]
+  }
+}

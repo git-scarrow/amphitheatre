@@ -1,0 +1,9 @@
+family,stage,accepted,inevitability,done,formal_seats,informal_seats,restore_cy,civic_value,n_moves,open_items,blurb
+processional_bowl,concept,True,14.91,10,1452,443,25.9,1629.0,6,drainage deferred to Scenario E (cost-proxy stage),Civic bowl whose access route + landings are the composition.
+stormwater_garden_bowl,concept,True,14.91,10,1452,443,25.9,1629.0,6,ADA deferred to Scenario E (cost-proxy stage),Civic bowl where swales/treatment cell are a designed garden edge.
+civic_bowl,concept,True,14.54,10,1452,443,25.9,1629.0,5,ADA deferred to Scenario E (cost-proxy stage);drainage deferred to Scenario E (cost-proxy stage),Maximal formal lower bowl — the Scenario D baseline.
+ceremonial_bay_bowl,concept,True,14.41,10,1452,443,25.9,1629.0,6,ADA deferred to Scenario E (cost-proxy stage);drainage deferred to Scenario E (cost-proxy stage),Civic bowl with lateral stage framing that protects the bay axis.
+meadow_bowl,concept,True,14.68,10,831,1064,12.4,1257.0,5,ADA deferred to Scenario E (cost-proxy stage);drainage deferred to Scenario E (cost-proxy stage),"Formal lower rows, the rest dissolved to lawn terraces."
+neighborhood_daily_bowl,concept,True,15.34,10,652,1243,8.8,1149.0,7,,"Daily-use commons: smaller formal core, paths + drainage gardens."
+festival_bowl,concept,True,15.08,10,652,1243,8.8,1149.0,6,drainage deferred to Scenario E (cost-proxy stage),"Compact formal core + wide flexible lawn, with festival circulation."
+minimal_intervention_bowl,concept,True,14.75,10,483,1412,5.1,1048.0,5,ADA deferred to Scenario E (cost-proxy stage);drainage deferred to Scenario E (cost-proxy stage),Restore only the rows needed to read as a bowl; lawn above.

@@ -1,0 +1,111 @@
+{
+  "scenario": "B \u2014 minimum-fill (as a claimed design)",
+  "stage": "cost_proxy",
+  "verdict": "REJECTED \u2014 not inevitable",
+  "accepted": false,
+  "open_items": [],
+  "hard_rejections": [
+    "cost-proxy design has no geometry-backed + validated ADA/access move (intent move cannot satisfy a cost-proxy gate)",
+    "cost-proxy design has no geometry-backed + validated drainage move (intent move cannot satisfy a cost-proxy gate)",
+    "cost-proxy move B1_clip_all_fill reports placeholder CY (no emitted geometry)",
+    "claims 1452 formal seats but only 217 pass all gates as-built and no restore_formal_tread move is present (formal seats on clipped/dished tread)",
+    "cost-proxy design omits required surfaces from earthwork: ['ADA', 'drainage'] (false low-CY by omission)",
+    "move B1_clip_all_fill reduces legibility with no civic justification",
+    "move B1_clip_all_fill not allowed: no performance or civic reason \u2014 purpose unstated"
+  ],
+  "ledgers": {
+    "performance": false,
+    "affordance": false,
+    "role": false,
+    "justification": false
+  },
+  "ledger_detail": {
+    "performance": {
+      "pass": false,
+      "gates": {
+        "no_formal_seat_on_clip": false,
+        "sightlines_validated": true,
+        "sensitivity_passes": true,
+        "ada_in_earthwork": false,
+        "drainage_resolved": false
+      }
+    },
+    "affordance": {
+      "pass": false,
+      "affordances_cited": [
+        "terrain dips below tread plane at low spots"
+      ]
+    },
+    "role": {
+      "pass": false,
+      "bands_scenarioD": {
+        "A": 1452.0,
+        "B": 114.0,
+        "C": 243.0,
+        "D": 86.0
+      }
+    },
+    "justification": {
+      "pass": false,
+      "unjustified_moves": [
+        "B1_clip_all_fill"
+      ]
+    }
+  },
+  "done_checklist": {
+    "all_done": false,
+    "questions": {
+      "1_formal_seats_pass_all_gates": false,
+      "2_nonformal_rows_have_role": true,
+      "3_earthwork_areas_named": true,
+      "4_routes_relate_to_terrain": false,
+      "5_edges_resolve": true,
+      "6_stage_strengthens_bowl_view_use": true,
+      "7_drainage_reinforces_landform": false,
+      "8_low_intervention_without_false_surfaces": false,
+      "9_no_removable_move_without_loss": false,
+      "10_move_by_move_justification": false
+    }
+  },
+  "scores": {
+    "terrain_fit": 1.0,
+    "civic_fit": 0.0,
+    "multi_duty": 1.0,
+    "gross_cy": 275,
+    "arbitrary_moves": 1,
+    "hidden_failures": 7,
+    "inevitability": -19.75
+  },
+  "moves": [
+    {
+      "move_id": "B1_clip_all_fill",
+      "move_type": "borrow_from_high_side_to_complete_low_tread",
+      "geometry": "all 24 rows, fill capped at 0.5 ft",
+      "site_reasons": [
+        "terrain dips below tread plane at low spots"
+      ],
+      "performance_reasons": [],
+      "civic_reasons": [],
+      "cost": {
+        "cut_cy": 138,
+        "fill_cy": 137,
+        "gross_cy": 275
+      },
+      "effects": {
+        "formal_seats": "decrease",
+        "visual_legibility": "decreased",
+        "drainage_risk": "increased"
+      },
+      "positive_criteria": [
+        "reduces_artificial_grading"
+      ],
+      "rejection_if_removed": [],
+      "status": "proposed",
+      "cost_status": "placeholder",
+      "validation_status": "intent_only",
+      "may_satisfy": [],
+      "may_not_satisfy": [],
+      "provenance": {}
+    }
+  ]
+}
