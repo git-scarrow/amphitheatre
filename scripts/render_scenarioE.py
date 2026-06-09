@@ -70,7 +70,7 @@ _v = json.load(open(ROOT / "analysis/scenarioE_civic/validation.json"))
 _cy = _v.get("total_earthwork", {}).get("gross_cy", "?")
 _seats = _v.get("formal_seats_emitted", "?")
 ax.set_title("Scenario E — civic_bowl drawn & validated\n"
-             f"restored bowl + ADA switchbacks + seam cross-aisle + swales + dissolved tips · "
+             f"restored bowl + ADA switchbacks + row-9|10 cross-aisle + swales + dissolved tips · "
              f"{_seats} formal seats · {_cy} CY · cost-proxy ACCEPTED")
 ax.legend(handles=[Patch(facecolor=COLORS[k][0] if COLORS[k][0] != "none" else "white",
                          edgecolor="k", label=COLORS[k][1]) for k in order],
