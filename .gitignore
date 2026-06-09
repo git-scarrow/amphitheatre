@@ -1,0 +1,76 @@
+# ── virtualenvs ─────────────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+
+# ── raw LiDAR / point clouds ────────────────────────────────────────────────
+data/*.laz
+data/*.las
+petoskey_pit_lidar_analysis_archive/
+
+# ── GeoTIFF, raster, and large binary outputs ────────────────────────────────
+*.tif
+*.tiff
+*.tif.aux.xml
+*.gpkg
+*.db
+*.sqlite
+
+# ── intermediate pipeline stages ────────────────────────────────────────────
+# These are fully regenerable from source scripts + DEM/LiDAR inputs.
+stage2/
+stage3/
+stage4/
+stage5/
+stage6/
+stage7/
+
+# ── package export and variant grids ────────────────────────────────────────
+# Large assembled deliverable directory; variants are regenerable.
+package/
+variants/
+
+# ── local PDAL pipeline receipts (not design artefacts) ─────────────────────
+fargate_*.json
+process-*.json
+
+# ── large compressed data ───────────────────────────────────────────────────
+*.zip
+*.gz
+*.tar
+*.bz2
+
+# ── generated render PNGs in the project root ────────────────────────────────
+# Large plan/section renders; keep only the proof-record PNGs inside analysis/.
+confidence_design_overlay.png
+dem_validation.png
+eastern_flank_profile.png
+eastern_slope_annotated.png
+mitchell_view_sections.png
+oblique_sse_view.png
+oriented_plan_view.png
+three_axes_comparison.png
+s_se_profiles.png
+stage_storage_curve.png
+
+# ── generated PNGs inside design family directories (source GeoJSON is kept) ──
+design_*/plan.png
+design_*/plan_zoom.png
+design_*/plan_context.png
+design_*/plan_and_sections.png
+design_*/east_flank_proof.png
+design_*/cutfill.png
+design_*/section.png
+design_*/section_truescale.png
+design_*/sightline_profile.png
+design_open_low/_ctx.pkl
+
+# ── local Claude Code settings (paths, session permissions) ──────────────────
+.claude/settings.local.json
+
+# ── misc scratch ─────────────────────────────────────────────────────────────
+*.log
+.DS_Store

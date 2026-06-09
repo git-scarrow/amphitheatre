@@ -1,0 +1,166 @@
+project:
+  name: petoskey_pit_agentic_clay
+  root: .
+  crs: EPSG:6494
+  vertical_datum: NAVD88_Geoid12A_intl_ft
+  planning_grade: true
+
+terrain:
+  dem: dem/dem_design_1ft.tif
+  resolution_ft: 1.0
+  nodata: -9999.0
+
+site:
+  center_x: 19533067.7
+  center_y: 750799.2
+  lat: 45.373
+  lon: -84.953
+  utc_offset_hours: -4  # EDT (summer)
+
+focal:
+  # Confirmed stage focal (GPS 2026-06-06, EPSG:6494)
+  x: 19533100.0
+  y: 750743.0
+  elev_navd88: 612.5
+
+street_bounds:
+  # Confirmed block edges (GPS 2026-06-06, EPSG:6494)
+  # These are HARD CLIP limits — no seating beyond these.
+  lake_y:     750943  # E Lake Street (north)
+  mitchell_y: 750594  # E Mitchell Street (south)
+  petoskey_x: 19533271  # Petoskey Street (east)
+  # West: open to Bayfront Park
+
+capacity_bands:
+  # C-value thresholds for quality-banded capacity reporting
+  # U = C_formal + L_terrace + A + V - E - D
+  formal_c_min_mm:   90    # strict formal bowl
+  soft_c_min_mm:     60    # soft upper (weight alpha)
+  marginal_c_min_mm: 30    # marginal / terrace zone (weight beta)
+  alpha_soft:        0.5
+  beta_marginal:     0.15
+  # Reference numbers from design_extended_bays quality_bands.md (natural grade)
+  baseline_formal_seats: 1452
+  baseline_c_formal:     1545
+  formal_stop_row:       18    # last row with C >= 90mm on seating axis
+
+design:
+  baseline_ctx: design_open_low/_ctx.pkl
+  baseline_dir: design_open_low
+  seating_rows: design_open_low/seating_rows.geojson
+  stage_floor: design_open_low/stage_floor.geojson
+  ada_route: design_open_low/ada_route.geojson
+  basin: basin_footprint.geojson
+  # Authoritative row radii for the full street-bounded envelope (rows 1-25)
+  composition_table: design_extended_bays/composition_table.csv
+
+axes:
+  baseline_az: 330
+  candidates: [330, 325, 320, 315, 305]
+  ax_az: 150.0        # back-azimuth (stage looks at audience)
+  face_az: 330.0      # audience-facing azimuth
+
+seating:
+  fan_angle_deg: 110
+  fan_half_deg: 55
+  rows: 16
+  inner_radius_ft: 85.0
+  outer_radius_ft: 130.0
+  row_spacing_ft: 3.0
+  row_mode: circular
+
+stage:
+  elevation_navd88: 612.5
+  width_ft: 70.0
+  depth_ft: 34.0
+  stage_r_ft: 50.0     # stage front offset from arc centre
+  eye_height_ft: 3.94
+  c_target_ft: 0.295   # 90 mm
+
+treatment_cell:
+  bottom_navd88: 609.1
+  pool_navd88: 611.3
+  wsel_100yr: 611.3    # ~100-yr WSEL from Stage 3
+  event_floor_min_navd88: 612.5
+
+ada:
+  running_slope_pct: 8.33
+  cross_slope_target_pct: 2.0
+  landing_min_length_ft: 5.0
+
+earthwork:
+  yield_conservative: 0.85
+  yield_neutral: 0.95
+  yield_optimistic: 1.00
+  cell_area_sqft: 1.0
+  lod_tolerance_ft: 0.05
+  max_tieout_dist_ft: 30.0
+  preferred_landscape_slope_h: 4    # 4H:1V
+  acceptable_planted_slope_h: 3     # 3H:1V
+  caution_slope_h: 2                # 2H:1V
+
+solar:
+  sunset_envelope_az_min: 296
+  sunset_envelope_az_max: 306
+  solstice_az: 306
+  glare_high_deg: 8
+  glare_medium_deg: 15
+  sample_dates:
+    - {label: equinox, month: 3, day: 20}
+    - {label: mid_april, month: 4, day: 15}
+    - {label: early_may, month: 5, day: 5}
+    - {label: late_may, month: 5, day: 25}
+    - {label: solstice, month: 6, day: 21}
+    - {label: late_july, month: 7, day: 25}
+    - {label: late_aug, month: 8, day: 25}
+
+no_touch:
+  - treatment_cell_core
+  - bay_view_corridor
+  - seating_rows_on_natural_grade
+  - low_upstage_stage_side
+  - existing_utilities
+
+scoring:
+  weights:
+    sightlines: 1.5
+    ada: 1.5
+    drainage: 1.5
+    earthwork: 1.5
+    retaining_wall_avoidance: 1.5
+    landform_fit: 1.5
+    bay_view: 1.5
+    upper_sunset: 1.2
+    glare_avoidance: 1.2
+    capacity: 1.0
+    stage_presence: 1.0
+    symmetry: 0.3
+  penalties:
+    cut_fill_cy_per_1000: 0.1
+    haul_per_100k_cy_ft: 0.1
+    retaining_wall: 2.0
+    drainage_loss_per_10pct: 0.5
+    canopy_conflict: 0.3
+    overbuild: 0.5
+
+variant_families:
+  A:
+    name: 330_baseline_refinement
+    axis_az: 330
+    intent: "Add western promenade and sunset shoulder to baseline without rotating bowl"
+  B:
+    name: 320_325_compromise
+    axis_az: 322
+    intent: "Test modest bowl rotation toward terrain fall-line"
+  C:
+    name: 315_320_terrain_first
+    axis_az: 318
+    intent: "Terrain-first axis with upper rows flaring westward for sunset"
+  D:
+    name: earthwork_low_plane
+    axis_az: 330
+    intent: "Low-plane shaping only; seating fixed"
+  E:
+    name: ada_first_grading
+    axis_az: 330
+    intent: "ADA routes drive borrow/fill circuits"
