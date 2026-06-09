@@ -576,6 +576,39 @@ for m in buggy.moves:
 ctrl = ENG.evaluate(buggy)
 json.dump({"design": asdict(buggy), "verdict": ctrl}, open(OUT / "_control_uncarved_aisle.json", "w"), indent=2)
 
+# CONTROL #2: prove the SECTION drainage gate bites. The superseded flat-midpoint section
+# (0% cross, 0% longitudinal) has nowhere to shed water — it ponds mid-hillside. Its section
+# gate fails, so the cross-aisle move is not_validated and the engine must REJECT the design.
+# This is the incumbent the sweep overturned; here it is run as a falsifying control.
+flat_drains = not (0.0 < DRAIN_MIN_PCT and 0.0 < DRAIN_MIN_PCT)   # flat both ways → ponds → False
+flat_section_ok = xa_plan_ok and flat_drains                       # plan ok, section ponds → False
+buggy2 = copy.deepcopy(design)
+buggy2.scenario = "control_flat_midpoint_cross_aisle (0% section ponds mid-hillside)"
+for m in buggy2.moves:
+    if m.move_id == "cross_aisle_row_9_10":
+        m.validation_status = "validated" if flat_section_ok else "not_validated"
+ctrl_flat = ENG.evaluate(buggy2)
+json.dump({"design": asdict(buggy2), "verdict": ctrl_flat,
+           "section": {"strategy": "midpoint_datum", "cross_slope_pct": 0.0, "long_slope_pct": 0.0,
+                       "drains": bool(flat_drains), "ponds": True,
+                       "datum_navd88": round((ROW_ELEV[9] + ROW_ELEV[10]) / 2.0, 2)}},
+          open(OUT / "_control_flat_midpoint_ponds.json", "w"), indent=2)
+
+# Preserve the OLD flat-midpoint section as a SUPERSEDED diagnostic (not a live design surface).
+# Values are the sweep's incumbent row — see analysis/cross_aisle_sweep/proof_table.csv (9-10,
+# midpoint_datum): the cheapest-looking flat band, rejected because it ponds.
+SWEEP_OUT = ROOT / "analysis" / "cross_aisle_sweep"; SWEEP_OUT.mkdir(parents=True, exist_ok=True)
+json.dump({"status": "SUPERSEDED",
+           "superseded_by": "rows 9-10 · accessible_fit (2% cross + 1% longitudinal)",
+           "reason": "flat midpoint (0% both ways) ponds mid-hillside — fails the drainage gate",
+           "section": {"pair": [9, 10], "strategy": "midpoint_datum",
+                       "datum_navd88": round((ROW_ELEV[9] + ROW_ELEV[10]) / 2.0, 2),
+                       "cross_slope_pct": 0.0, "long_slope_pct": 0.0, "ponds": True, "drains": False,
+                       "gross_cy": 48.1, "ramp_surcharge_cy": 9.3, "total_section_cy": 57.4,
+                       "accept": False, "gate_failed": "drainage"},
+           "source": "analysis/cross_aisle_sweep/proof_table.csv"},
+          open(SWEEP_OUT / "_superseded_midpoint_section.json", "w"), indent=2)
+
 # ── write outputs ────────────────────────────────────────────────────────────────
 json.dump({"type": "FeatureCollection", "features": geo_features},
           open(OUT / "geometry.geojson", "w"))
