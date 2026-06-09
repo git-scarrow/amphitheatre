@@ -61,9 +61,21 @@ axes:
   face_az: 330.0      # audience-facing azimuth
 
 seating:
+  # Core fan (design_open_low reference, single-section baseline)
   fan_angle_deg: 110
   fan_half_deg: 55
   rows: 16
+  # Scenario E fan — wide three-section civic bowl (OPEN; see DESIGN_CANON Rule 9)
+  # East section centroid is -74.6° from SF axis; south is +40.1°; effective span ≈130°.
+  # These fields are DECLARED but the stage refit path has not yet been chosen.
+  # Update formal_fan_half_deg, formal_fan_angle_deg, and scenarioE_stage_path once
+  # Rule 9 resolution is adopted (Path A / B / C / wide-fan override).
+  scenarioE_fan_status: open          # open | resolved
+  scenarioE_fan_type: wide_three_section_civic_bowl
+  scenarioE_effective_span_deg: 130   # east(-75°) to south(+40°); section centroids
+  core_fan_half_deg: 55               # ±55° reference from design_open_low
+  formal_fan_half_deg: 75             # east section centroid at -74.6° → declare ≥75°
+  formal_fan_angle_deg: 150           # east(-75°) to south(+40°) = 115° → rounded up
   inner_radius_ft: 85.0
   outer_radius_ft: 130.0
   row_spacing_ft: 3.0

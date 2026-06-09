@@ -52,7 +52,7 @@ or the east section must be re-classified as a wide-fan overflow zone with expli
 - **Lateral shift candidates:** [-30.0, -20.0, -10.0, 0.0, 10.0] ft (positive = right = SW when facing axis)
 - **Total candidates:** 45
 
-Stage polygon: {STAGE_W}×{STAGE_D} ft core, focal point at R={STAGE_R} ft from arc centre.
+Stage polygon: 70×34 ft core, focal point at R=50 ft from arc centre.
 Feasibility gates: C_mm ≥ 90 on all bend rows 1-18, no ADA/swale conflict, bay view ray clear.
 
 **Feasible candidates (all gates passed):** 44

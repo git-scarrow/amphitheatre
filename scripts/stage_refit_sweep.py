@@ -455,7 +455,7 @@ lines += [
     f"- **Lateral shift candidates:** {LAT_OFFSETS} ft (positive = right = SW when facing axis)",
     f"- **Total candidates:** {len(candidates)}",
     "",
-    "Stage polygon: {STAGE_W}×{STAGE_D} ft core, focal point at R={STAGE_R} ft from arc centre.",
+    f"Stage polygon: {STAGE_W}×{STAGE_D} ft core, focal point at R={STAGE_R} ft from arc centre.",
     "Feasibility gates: C_mm ≥ 90 on all bend rows 1-18, no ADA/swale conflict, bay view ray clear.",
     "",
     f"**Feasible candidates (all gates passed):** {len(feasible)}",

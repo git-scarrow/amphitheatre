@@ -1,8 +1,10 @@
 # Scenario E — civic_bowl, drawn and validated on real geometry
 
-_`scripts/scenarioE_civic.py`. The first family made to DRAW. Stage: **cost_proxy**._
+_`scripts/scenarioE_civic.py`. The first family made to DRAW. Stage: **cost_proxy (inherited, refit open)**._
 
-**Engine verdict: ACCEPTED — inevitable**  ·  acceptance criteria **10/10**  ·  total earthwork **500.8 CY** (restored bowl + access + drainage).
+**Engine verdict: ACCEPTED — inevitable** (seating / ADA / drainage)  ·  acceptance criteria **10/10** (seating/ADA/drainage criteria only — see criterion 11 below)  ·  total earthwork **500.8 CY** (restored bowl + access + drainage).
+
+> **Stage refit OPEN.** The inherited stage (`design_open_low`, axis 150°) carries a +25.6° audience-axis mismatch and a −22.5 ft lateral offset relative to the Scenario E validated seating. The east section (365 seats) sits outside the declared ±55° fan. This is the same pattern of inherited-assumption-carried-forward that Rules 6-8 eliminate for the seating surface. Stage acceptance requires explicit adoption of one resolution path (see `DESIGN_CANON Rule 9` and `analysis/stage_refit/STAGE_REFIT_SWEEP.md`). Best feasible candidate: `az150_lat-20` (+3° mismatch, −2.5 ft lateral, 37.8 CY delta, preserves 330° bay view). Until resolved, the earthwork total of 500.8 CY **excludes** stage refit.
 
 ## Earthwork (geometry-backed, per component)
 
@@ -39,6 +41,7 @@ _`scripts/scenarioE_civic.py`. The first family made to DRAW. Stage: **cost_prox
 | 8 | cost-bearing moves geometry-backed CY | PASS (per-component CY; total 500.8 CY) | ✅ |
 | 9 | open items data-gated or resolved | DATA-GATED (cross-slope survey, soil suitability/geotech, swale hydrology sizing) | ✅ |
 | 10 | design can still reject its cheapest false version | PASS (control test holds) | ✅ |
+| 11 | stage geometry matches emitted seating fan (Rule 9) | **OPEN** — inherited az150 stage: +25.6° mismatch, −22.5 ft lateral offset, east section outside ±55° fan. Resolution path not yet declared. | ⚠️ |
 
 ## Engine verdict (cost_proxy)
 

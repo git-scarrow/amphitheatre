@@ -12,7 +12,7 @@ individual scenario memo.
 |---|---|---|
 | **Scenario B** — 0.5 ft fill-clip, "self-balancing" | **REJECTED** as formal seating baseline | `SCENARIO_B_VALIDATION.md` §§1–7; `INEVITABILITY.md` worked proof |
 | **Scenario D** — B + selective tread restoration (+26 CY) | **ACCEPTED** as designed baseline for formal terraced seating | `INEVITABILITY.md` worked proof; `score_inevitability.py` → 10/10 ACCEPTED |
-| **Scenario E** — D + aisles + ADA + drainage (500.8 CY total) | Cost-proxy **only** where ADA, drainage, aisle, and construction-envelope surfaces are real emitted geometry that has passed polygon-intersection validation | `SCENARIO_E_CIVIC.md`; `INEVITABILITY.md` §concept→cost-proxy |
+| **Scenario E** — D + aisles + ADA + drainage (500.8 CY total) | Seating / ADA / drainage cost-proxy **ACCEPTED** where geometry is emitted and validated · **Stage refit OPEN**: inherited az150 stage carries +25.6° audience-axis mismatch, −22.5 ft lateral offset; east section outside declared ±55° fan; fan declaration (110°/±55°) does not match emitted three-section geometry (~130° effective span). Status: **ACCEPTED (seating/ADA/drainage) · stage refit open** | `SCENARIO_E_CIVIC.md`; `analysis/stage_refit/STAGE_REFIT_SWEEP.md`; Rule 9; `INEVITABILITY.md` §concept→cost-proxy |
 
 ---
 
@@ -98,6 +98,43 @@ without a validated restoration move on file, is hard-rejected. This applies reg
 what the *ideal* plane would produce; the building inspector grades the actual ground, not
 the drawing.
 
+### Rule 9 — Stage geometry and fan declaration must match the emitted seating
+
+The Scenario E seating (rows 1-18, 1 283 Band-A seats across east / bend / south sections)
+produces a seat-weighted audience centroid at bearing **124.4°** from the current focal point,
+and an effective fan span of **≈130°** (east section centroid −74.6° from axis; south +40.1°).
+
+The inherited stage configuration (`design_open_low`, axis 150°) does not match:
+
+| Discrepancy | Value |
+|---|---|
+| Angular mismatch (stage axis vs audience centroid bearing) | **+25.6°** (stage 26° too far clockwise) |
+| Lateral audience offset from stage normal axis | **−22.5 ft** (audience mass left of axis) |
+| East section bearing from SF | −74.6° — outside declared ±55° fan gate (by 20°) |
+| Effective seating span | ≈130°, not 110° / ±55° as declared in `harness_config.yaml` |
+
+A stage configuration is accepted for Scenario E only when **one** of the following paths is
+explicitly declared and wired:
+
+1. **Audience-axis path** — stage axis corrected to ≈124° (audience faces ≈304°);
+   bay-view deviation (26° off 330°) acknowledged and justified.
+2. **Bay-axis path** — stage keeps 150° back-azimuth (audience faces 330°); focal point
+   shifted ≈22 ft toward bearing 60° to centre the axis on the audience centroid; east
+   section remains marginally outside ±55° and must be declared as wide-fan overflow.
+3. **Compromise path** — partial yaw (e.g. az135) + partial lateral shift; both residuals
+   declared and justified.
+4. **Wide-fan civic override** — Scenario E is explicitly declared a wide-fan three-section
+   civic bowl spanning ≈130°; `harness_config.yaml` updated with
+   `formal_fan_half_deg: 75`, `formal_fan_angle_deg: 150`, `scenarioE_fan_type: wide_three_section_civic_bowl`;
+   acoustic consequences of the wide-fan coverage noted.
+
+Until one path is adopted, Scenario E carries status:
+**"seating / ADA / drainage cost-proxy ACCEPTED · stage refit open"**
+
+The engine must not report 10/10 ACCEPTED while this item is unresolved.
+See `analysis/stage_refit/STAGE_REFIT_SWEEP.md` for the full sweep and top candidates
+(best feasible candidate: `az150_lat-20`, +3.0° mismatch, −2.5 ft lateral offset, 37.8 CY delta).
+
 ---
 
 ## Cross-references
@@ -111,6 +148,7 @@ the drawing.
 | Governing narrative | `INEVITABILITY.md` |
 | Constrained-optimisation substrate | `PROBLEM_DEFINITION.md` |
 | Scenario E geometry emitter | `scripts/scenarioE_civic.py` → `SCENARIO_E_CIVIC.md` |
+| Stage refit sweep | `scripts/stage_refit_sweep.py` → `analysis/stage_refit/STAGE_REFIT_SWEEP.md` |
 
 ---
 
@@ -124,3 +162,5 @@ the drawing.
 | Is the 26 CY restoration optional? | No — it is the minimum effective intervention that makes terraces read as terraces. |
 | Can I call a desire-line the cross-aisle? | No — the aisle is built from row-9/10 geometry. Any other generator must be named. |
 | Can Scenario E's ADA cost appear in a project budget? | Only if the ADA switchback geometry is emitted and validated. |
+| Is Scenario E's stage configuration accepted? | No — stage refit is open. Inherited az150 stage has +25.6° mismatch; east section outside ±55° fan. Must explicitly adopt Path A / B / C / wide-fan before stage is settled. |
+| Can I quote Scenario E as "10/10 ACCEPTED"? | Seating, ADA, and drainage: yes. Stage/fan: no — unresolved. Full 10/10 requires Rule 9 to be satisfied. |
