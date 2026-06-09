@@ -28,6 +28,7 @@ The event-floor elevation (and an east-garden cut-depth term) are swept to drive
 net cut/fill toward balance and minimise off-site haul.
 """
 import json, csv, math
+from pathlib import Path
 import numpy as np
 import rasterio
 from rasterio.features import rasterize
@@ -35,7 +36,7 @@ from scipy.ndimage import distance_transform_edt
 from shapely.geometry import shape, Point, LineString, Polygon
 from shapely.ops import unary_union
 
-ROOT = "/home/sam/projects/amphitheatre"
+ROOT = str(Path(__file__).parent.parent)
 DEM = f"{ROOT}/dem/dem_design_1ft.tif"
 
 # ---- design constants (all NAVD88 intl ft) ----

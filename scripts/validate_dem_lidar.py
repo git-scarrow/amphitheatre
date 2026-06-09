@@ -19,7 +19,7 @@ Outputs
 
 Usage
 -----
-  cd /home/sam/projects/amphitheatre
+  cd <project-root>
   source .venv/bin/activate
   python3 scripts/validate_dem_lidar.py
 """

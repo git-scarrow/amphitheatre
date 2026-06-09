@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Stage 5 verification + cut/fill plot + SE steep-wall geotech check."""
-import json, numpy as np, rasterio
+import json
+from pathlib import Path
+import numpy as np, rasterio
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import TwoSlopeNorm
 
-ROOT = "/home/sam/projects/amphitheatre"
+ROOT = str(Path(__file__).parent.parent)
 gp = rasterio.open(f"{ROOT}/stage5/grade_proposed.tif").read(1)
 cf = rasterio.open(f"{ROOT}/stage5/cut_fill_map.tif").read(1)
 exr = rasterio.open(f"{ROOT}/dem/dem_design_1ft.tif")
