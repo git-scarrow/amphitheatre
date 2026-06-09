@@ -12,7 +12,7 @@ individual scenario memo.
 |---|---|---|
 | **Scenario B** — 0.5 ft fill-clip, "self-balancing" | **REJECTED** as formal seating baseline | `SCENARIO_B_VALIDATION.md` §§1–7; `INEVITABILITY.md` worked proof |
 | **Scenario D** — B + selective tread restoration (+26 CY) | **ACCEPTED** as designed baseline for formal terraced seating | `INEVITABILITY.md` worked proof; `score_inevitability.py` → 10/10 ACCEPTED |
-| **Scenario E** — D + aisles + ADA + drainage (489 CY total) | Cost-proxy **only** where ADA, drainage, aisle, and construction-envelope surfaces are real emitted geometry that has passed polygon-intersection validation | `SCENARIO_E_CIVIC.md`; `INEVITABILITY.md` §concept→cost-proxy |
+| **Scenario E** — D + aisles + ADA + drainage (500.8 CY total) | Cost-proxy **only** where ADA, drainage, aisle, and construction-envelope surfaces are real emitted geometry that has passed polygon-intersection validation | `SCENARIO_E_CIVIC.md`; `INEVITABILITY.md` §concept→cost-proxy |
 
 ---
 

@@ -48,7 +48,7 @@ to 217 as-built.
 **The design of record is Scenario E (civic_bowl)**, which is Scenario D
 (B + selective 26 CY restoration to recover the full formal bowl) plus a
 row-9 cross-aisle, two switchback ADA ramps graded to 8.33%, and east/south
-drainage swales. Scenario E totals 489 CY and is the first number discussable
+drainage swales. Scenario E totals 500.8 CY and is the first number discussable
 as a project-cost proxy. See `SCENARIO_E_CIVIC.md`.
 
 ## What the arc clipping means
