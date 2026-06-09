@@ -3,9 +3,9 @@ criterion,result,pass
 2 ADA-required surfaces have real geometry,PASS (ramps A+B + landings emitted),True
 3 accessible routes pass running-slope gate,PASS @ 8.33% by switchback design,True
 "4 landings flat, sized, at meaningful intervals",PASS (9 landings + cross-aisle),True
-"5 cross-aisle = causeway over rows 9|10 (the band IS the two rows), ≤1-row drift (nearest-row 9-10, var 1)","PASS (causeway over rows [9, 10], 169 seats displaced, 0 sqft retained-overlap)",True
+"5 cross-aisle = causeway over rows 9|10 AND section drains+wheels (plan ∧ section gate; nearest-row 9-10, var 1)","PASS (rows [9, 10], 169 displaced, 0 sqft overlap; accessible_fit 2.0% cross / 1.0% long, drains=True, wheelable=True)",True
 6 every swale has direction + receiving area + conflict check,"PASS (falls to cell, 0 tread conflicts)",True
 7 every row fragment classified,PASS (treads/shoulders/aisles/swales all tagged),True
-8 cost-bearing moves geometry-backed CY,PASS (per-component CY; total 489.2 CY),True
+8 cost-bearing moves geometry-backed CY,PASS (per-component CY; total 500.8 CY),True
 9 open items data-gated or resolved,"DATA-GATED (cross-slope survey, soil suitability/geotech, swale hydrology sizing)",True
 10 design can still reject its cheapest false version,PASS (control test holds),True

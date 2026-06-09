@@ -1,9 +1,10 @@
 component,cut_cy,fill_cy,gross_cy,topsoil_cy
 formal_restored_treads,55.2,116.4,171.7,
-cross_aisle,25.0,23.0,48.1,
+cross_aisle,8.8,50.8,59.6,
+cross_aisle_transition_ramps,0.0,0.0,8.6,
 accessible_route_A_floor,79.0,0.1,79.2,
 accessible_route_B_mid_row9,2.1,124.0,126.0,
 east_flank_swale,36.8,0.0,36.8,
 south_flank_swale,37.6,0.0,37.6,
 row_end_shoulders,0.0,0.0,0.0,31.6
-TOTAL,231.1,258.1,489.2,284.1
+TOTAL,214.9,285.9,500.8,284.2

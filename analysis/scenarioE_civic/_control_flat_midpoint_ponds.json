@@ -1,6 +1,6 @@
 {
   "design": {
-    "scenario": "control_uncarved_aisle (aisle overlaps counted treads)",
+    "scenario": "control_flat_midpoint_cross_aisle (0% section ponds mid-hillside)",
     "moves": [
       {
         "move_id": "E_restore_treads",
@@ -33,7 +33,7 @@
         ],
         "status": "proposed",
         "cost_status": "geometry_backed",
-        "validation_status": "not_validated",
+        "validation_status": "validated",
         "may_satisfy": [],
         "may_not_satisfy": [],
         "provenance": {}
@@ -123,7 +123,7 @@
         ],
         "status": "proposed",
         "cost_status": "geometry_backed",
-        "validation_status": "validated",
+        "validation_status": "not_validated",
         "may_satisfy": [],
         "may_not_satisfy": [],
         "provenance": {
@@ -260,13 +260,13 @@
     "stage": "cost_proxy"
   },
   "verdict": {
-    "scenario": "control_uncarved_aisle (aisle overlaps counted treads)",
+    "scenario": "control_flat_midpoint_cross_aisle (0% section ponds mid-hillside)",
     "stage": "cost_proxy",
     "verdict": "REJECTED \u2014 not inevitable",
     "accepted": false,
     "open_items": [],
     "hard_rejections": [
-      "cost-proxy move E_restore_treads is geometry-backed but failed validation (restore_formal_tread)"
+      "cost-proxy move cross_aisle_row_9_10 is geometry-backed but failed validation (reclassify_row_band_to_circulation)"
     ],
     "ledgers": {
       "performance": true,
@@ -372,7 +372,7 @@
         ],
         "status": "proposed",
         "cost_status": "geometry_backed",
-        "validation_status": "not_validated",
+        "validation_status": "validated",
         "may_satisfy": [],
         "may_not_satisfy": [],
         "provenance": {}
@@ -462,7 +462,7 @@
         ],
         "status": "proposed",
         "cost_status": "geometry_backed",
-        "validation_status": "validated",
+        "validation_status": "not_validated",
         "may_satisfy": [],
         "may_not_satisfy": [],
         "provenance": {
@@ -591,5 +591,13 @@
         "provenance": {}
       }
     ]
+  },
+  "section": {
+    "strategy": "midpoint_datum",
+    "cross_slope_pct": 0.0,
+    "long_slope_pct": 0.0,
+    "drains": false,
+    "ponds": true,
+    "datum_navd88": 621.29
   }
 }

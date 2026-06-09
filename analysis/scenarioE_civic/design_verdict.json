@@ -12,7 +12,7 @@
         ],
         "performance_reasons": [
           "C>=90 on actual surface (fails: none)",
-          "no clip under seats (max tread fill 1.89 ft)"
+          "no clip under seats (max tread fill 2.83 ft)"
         ],
         "civic_reasons": [
           "completes a continuous legible formal bowl"
@@ -95,23 +95,26 @@
           "removes displaced seats from capacity",
           "avoids freeform-path conflict",
           "0 sqft overlap with retained seats (\u22480 required)",
-          "nearest-row drift 1 (\u22641 = cross-aisle, not connector)"
+          "nearest-row drift 1 (\u22641 = cross-aisle, not connector)",
+          "accessible_fit section: 2.0% cross-slope (\u22642.0% ADA, wheelable), 1.0% longitudinal fall \u2192 drains (flat midpoint ponds \u2014 rejected by sweep)"
         ],
         "civic_reasons": [
           "mid-bowl pause where the bay reveals"
         ],
         "cost": {
-          "cut_cy": 25.0,
-          "fill_cy": 23.0,
-          "gross_cy": 48.1
+          "cut_cy": 8.8,
+          "fill_cy": 50.8,
+          "gross_cy": 68.2
         },
         "effects": {
-          "access_quality": "increased"
+          "access_quality": "increased",
+          "drainage_risk": "reduced"
         },
         "positive_criteria": [
           "improves_access",
           "creates_useful_edge_or_landing",
-          "preserves_bay_view"
+          "preserves_bay_view",
+          "improves_drainage"
         ],
         "rejection_if_removed": [
           "no mid-bowl access band",
@@ -329,11 +332,11 @@
     "scores": {
       "terrain_fit": 1.0,
       "civic_fit": 1.0,
-      "multi_duty": 5.5,
-      "gross_cy": 499.4,
+      "multi_duty": 5.67,
+      "gross_cy": 519.5,
       "arbitrary_moves": 0,
       "hidden_failures": 0,
-      "inevitability": 10.51
+      "inevitability": 10.47
     },
     "moves": [
       {
@@ -346,7 +349,7 @@
         ],
         "performance_reasons": [
           "C>=90 on actual surface (fails: none)",
-          "no clip under seats (max tread fill 1.89 ft)"
+          "no clip under seats (max tread fill 2.83 ft)"
         ],
         "civic_reasons": [
           "completes a continuous legible formal bowl"
@@ -429,23 +432,26 @@
           "removes displaced seats from capacity",
           "avoids freeform-path conflict",
           "0 sqft overlap with retained seats (\u22480 required)",
-          "nearest-row drift 1 (\u22641 = cross-aisle, not connector)"
+          "nearest-row drift 1 (\u22641 = cross-aisle, not connector)",
+          "accessible_fit section: 2.0% cross-slope (\u22642.0% ADA, wheelable), 1.0% longitudinal fall \u2192 drains (flat midpoint ponds \u2014 rejected by sweep)"
         ],
         "civic_reasons": [
           "mid-bowl pause where the bay reveals"
         ],
         "cost": {
-          "cut_cy": 25.0,
-          "fill_cy": 23.0,
-          "gross_cy": 48.1
+          "cut_cy": 8.8,
+          "fill_cy": 50.8,
+          "gross_cy": 68.2
         },
         "effects": {
-          "access_quality": "increased"
+          "access_quality": "increased",
+          "drainage_risk": "reduced"
         },
         "positive_criteria": [
           "improves_access",
           "creates_useful_edge_or_landing",
-          "preserves_bay_view"
+          "preserves_bay_view",
+          "improves_drainage"
         ],
         "rejection_if_removed": [
           "no mid-bowl access band",

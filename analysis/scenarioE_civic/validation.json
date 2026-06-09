@@ -7,7 +7,7 @@
     "min_C_mm_all": 90,
     "formal_stop_row": 18,
     "max_fill_ft": 7.62,
-    "total_fill_cy": 1301.9
+    "total_fill_cy": 1340.5
   },
   "formal_fail_rows": [],
   "formal_seats_emitted": 1283,
@@ -38,7 +38,7 @@
     "retained_overlap_sqft": 0.0,
     "old_desire_line_variation": 6
   },
-  "tread_max_fill_ft": 1.89,
+  "tread_max_fill_ft": 2.83,
   "ada": [
     {
       "name": "accessible_route_A_floor",
@@ -86,9 +86,15 @@
       "gross_cy": 171.7
     },
     "cross_aisle": {
-      "cut_cy": 25.0,
-      "fill_cy": 23.0,
-      "gross_cy": 48.1
+      "cut_cy": 8.8,
+      "fill_cy": 50.8,
+      "gross_cy": 59.6
+    },
+    "cross_aisle_transition_ramps": {
+      "cut_cy": 0.0,
+      "fill_cy": 0.0,
+      "gross_cy": 8.6,
+      "note": "residual edge steps 1.9/2.03 ft carried as ramp_23ft/ramp_24ft (8.33% wedge surcharge)"
     },
     "accessible_route_A_floor": {
       "cut_cy": 79.0,
@@ -118,33 +124,33 @@
     }
   },
   "total_earthwork": {
-    "cut_cy": 231.1,
-    "fill_cy": 258.1,
-    "net_cy": 27.0,
-    "gross_cy": 489.2,
+    "cut_cy": 214.9,
+    "fill_cy": 285.9,
+    "net_cy": 71.0,
+    "gross_cy": 500.8,
     "max_cut_ft": 6.2,
     "max_fill_ft": 9.6,
-    "lod_sqft": 15339,
+    "lod_sqft": 15348,
     "lod_ac": 0.352,
     "yield_balance": {
       "conservative": {
         "yield_factor": 0.85,
-        "available_fill_cy": 196.4,
-        "shortfall_cy": 61.7,
+        "available_fill_cy": 182.7,
+        "shortfall_cy": 103.3,
         "surplus_cy": 0.0,
         "balanced": false
       },
       "neutral": {
         "yield_factor": 0.95,
-        "available_fill_cy": 219.5,
-        "shortfall_cy": 38.6,
+        "available_fill_cy": 204.1,
+        "shortfall_cy": 81.8,
         "surplus_cy": 0.0,
         "balanced": false
       },
       "optimistic": {
         "yield_factor": 1.0,
-        "available_fill_cy": 231.1,
-        "shortfall_cy": 27.0,
+        "available_fill_cy": 214.9,
+        "shortfall_cy": 71.0,
         "surplus_cy": 0.0,
         "balanced": false
       }
@@ -152,14 +158,14 @@
   },
   "shrink_swell": {
     "shrink_factor_K": 0.95,
-    "cut_cy": 231.1,
-    "usable_compacted_fill_cy": 219.5,
-    "fill_demand_cy": 258.1,
-    "shortfall_cy": 38.6,
+    "cut_cy": 214.9,
+    "usable_compacted_fill_cy": 204.2,
+    "fill_demand_cy": 285.9,
+    "shortfall_cy": 81.7,
     "surplus_cy": 0.0,
     "balanced": false
   },
-  "topsoil_cy": 284.1,
+  "topsoil_cy": 284.2,
   "criteria_pass": "10/10",
   "engine_verdict": "ACCEPTED \u2014 inevitable",
   "engine_accepted": true,

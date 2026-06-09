@@ -248,8 +248,8 @@ is hard-rejected. Composed families are therefore always `concept`; only the Sce
 emitter, which draws real surfaces, can reach `cost_proxy`.
 
 **Scenario E status (civic_bowl):** DRAWN and ACCEPTED as cost_proxy — 10/10 acceptance
-criteria, **489 CY** total (restored treads 172 · cross-aisle/causeway rows 9–10 48 · ADA switchbacks 205 ·
-flank swales 74 · +284 CY topsoil). **Formal capacity is 1,283 net seats — 1,452 nominal
+criteria, **500.8 CY** total (restored treads 172 · cross-aisle/causeway rows 9–10 **68** [section 60 + transition ramps 9] · ADA switchbacks 205 ·
+flank swales 74 · +topsoil). **Formal capacity is 1,283 net seats — 1,452 nominal
 minus 169 displaced by the accessible cross-aisle**, which consumes seating rows 9 and 10.
 Sightlines hold C≥90 on rows 1–18; the schematic ADA straight alignments (10%/18%, FAIL)
 were re-graded to 8.33% switchbacks with 9 landings; flank swales fall to the treatment
@@ -260,8 +260,9 @@ silently overlap counted seating. Three structural rules:
 1. Every surface that touches the seating fan runs a **full-polygon intersection** test
    against the tread polygons (not centerlines/IDs); non-trivial overlap → `not_validated`.
 2. **At cost-proxy, any geometry-backed move that failed its own validation hard-rejects the
-   design** — proven by controls (`_control_uncarved_aisle.json`: REJECTED). The engine
-   rejected two swale alignments and three cross-aisle attempts before clean geometry passed.
+   design** — proven by two controls: `_control_uncarved_aisle.json` (REJECTED — seats left on
+   un-restored tread) and `_control_flat_midpoint_ponds.json` (REJECTED — flat 0% section ponds).
+   The engine rejected two swale alignments and three cross-aisle attempts before clean geometry passed.
 3. **The aisle IS the row object — it's a causeway over rows 9–10, not a desire line.** Said
    plainly: recolor two middle rows as one band and join them. Built from the *actual* row-9/10
    tread geometry (`union(row9,row10).difference(retained)`), not a freeform access path and not
@@ -274,6 +275,31 @@ silently overlap counted seating. Three structural rules:
    a regression guard proving why the causeway is the right object. *Lesson: when a "derivation"
    collapses to a trivial reclassification, say so — don't build proof apparatus around an object
    you've already stopped drawing.*
+
+**Plan honesty is not section honesty — the cross-aisle had to pass both.** Resolving *which rows*
+(the plan question) left *how the band's surface grades* (the section question) open. A sweep of
+**7 adjacent row-pairs × 5 section strategies = 35 candidates** settled it on the actual leftover
+footprint, not on centerline assumptions (`scripts/sweep_cross_aisle.py`,
+`analysis/cross_aisle_sweep/RECOMMENDATION.md`). Four findings are now canon:
+
+- **Rows 9|10 is confirmed by the sweep, not assumed.** It wins balance-first among the 7 accepted
+  candidates (8 rows below / 8 above, balance 1.0) at minimum effective section intervention for that
+  split — the incumbent pair survived re-validation rather than being inherited.
+- **Flat-midpoint cross-aisle sections are rejected because they pond.** A dead-flat datum (0% cross,
+  0% longitudinal) mid-hillside fails the drainage gate. The incumbent `midpoint_datum` (621.29,
+  57.4 CY) is **OVERTURNED** on drainage and kept only as a superseded diagnostic
+  (`analysis/cross_aisle_sweep/_superseded_midpoint_section.json`).
+- **`accessible_fit` is the only accepted section strategy in the sweep.** Every flat-datum strategy
+  was eliminated on drainage; `cascade` (raw ground, 0 CY) measures a 5.97% cross-slope — flush and dry
+  but ~3× the 2% ADA limit, not wheelable. Only `accessible_fit` carries **2% cross-slope + 1%
+  longitudinal fall** (wheels *and* drains) and prices the residual edge drop as transition ramps.
+  The wired section: datum **622.01**, 2.0% cross / 1.0% long, drains + wheelable, edge steps 1.9/2.03 ft
+  carried as `ramp_23ft`/`ramp_24ft`, **68.2 CY** (60 raster + 8.6 ramp surcharge).
+- **A row-derived cross-aisle is accepted only when both plan provenance AND section performance pass.**
+  Criterion 5 is now a **plan ∧ section** gate: the band must be a row-reclassification clear of retained
+  treads (plan) *and* its surface must drain and wheel (section). The engine enforces it — feeding a
+  ponding section sets the move `not_validated`, which hard-rejects the design at cost_proxy
+  (`_control_flat_midpoint_ponds.json`: REJECTED on drainage).
 
 **Provenance must match geometry (Generate / Validate / Narrate).** The seam-aisle story was a
 *provenance* failure, not a geometry failure: the code **generated** the band by row reassignment
@@ -302,6 +328,7 @@ unless its provenance matches its geometry — the agent must state what operati
 design object.**
 
 `validation_status` on every move is set from its **actual** check result. Data-gated
-remainders: survey cross-slope, geotech soil suitability, swale hydrology sizing. Cross-aisle
-and ramp-B CY are first-pass (dead-flat flatten + nearest-node grading) and can be reduced by
-grade refinement.
+remainders: survey cross-slope, geotech soil suitability, swale hydrology sizing. The cross-aisle
+CY is **no longer first-pass** — it is the swept `accessible_fit` section (2% cross / 1% long, CY
+measured on the realized surface via lstsq plane fit, ramps priced). Ramp-B CY remains first-pass
+(nearest-node grading) and can be reduced by grade refinement.

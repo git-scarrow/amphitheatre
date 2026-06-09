@@ -1,0 +1,23 @@
+{
+  "status": "SUPERSEDED",
+  "superseded_by": "rows 9-10 \u00b7 accessible_fit (2% cross + 1% longitudinal)",
+  "reason": "flat midpoint (0% both ways) ponds mid-hillside \u2014 fails the drainage gate",
+  "section": {
+    "pair": [
+      9,
+      10
+    ],
+    "strategy": "midpoint_datum",
+    "datum_navd88": 621.29,
+    "cross_slope_pct": 0.0,
+    "long_slope_pct": 0.0,
+    "ponds": true,
+    "drains": false,
+    "gross_cy": 48.1,
+    "ramp_surcharge_cy": 9.3,
+    "total_section_cy": 57.4,
+    "accept": false,
+    "gate_failed": "drainage"
+  },
+  "source": "analysis/cross_aisle_sweep/proof_table.csv"
+}
