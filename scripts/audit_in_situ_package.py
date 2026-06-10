@@ -268,6 +268,29 @@ def check_design_intent():
     if named_bad:
         fail("forbidden structures named in layers: " + ", ".join(named_bad))
 
+    # DESIGN_CANON Rules 6/7: circulation bands must name their generator and
+    # never claim seam discovery. Rule 3: schematic corridors stay concept-tier.
+    circ = [f for f in load_vec("bowl_zones.geojson")["features"]
+            if f["properties"]["zone"] in ("cross_aisle", "ada_route")]
+    prov_bad = []
+    for f in circ:
+        p = f["properties"]
+        if p.get("seam_derived") is not False or not p.get("geometry_source"):
+            prov_bad.append(f"{p['zone']}({p.get('source_route')}): provenance fields")
+        if p.get("cost_status") != "concept":
+            prov_bad.append(f"{p['zone']}({p.get('source_route')}): must be concept-tier")
+    man_path = os.path.join(REPO, "dem", "in_situ_grading_manifest.json")
+    if os.path.exists(man_path):
+        man = json.load(open(man_path))
+        for z, v in man.get("zones", {}).items():
+            if ("route" in z or "cell" in z) and v.get("cost_status") != "concept":
+                prov_bad.append(f"manifest zone {z}: schematic move not concept-tier")
+    if prov_bad:
+        fail("canon Rules 3/6/7 violations: " + "; ".join(prov_bad))
+    else:
+        ok("circulation provenance honest (named generator, seam_derived=false, "
+           "concept-tier costs)")
+
     ctx = load_vec("site_context.geojson")["features"]
     corr = [f for f in ctx if f["properties"]["kind"] == "bay_view_corridor"]
     if not corr or abs(corr[0]["properties"].get("center_az_deg", 0) - C.FACE_AZ) > 1:

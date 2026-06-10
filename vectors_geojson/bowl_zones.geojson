@@ -804,6 +804,9 @@
     "source_route": "accessible_route_A_floor",
     "corridor_width_ft": 6.0,
     "overlay": false,
+    "geometry_source": "design_route_buffer (design_open_low ada_route.geojson)",
+    "seam_derived": false,
+    "cost_status": "concept",
     "note": "accessible_route_A_floor corridor, schematic 6 ft width about the route line"
    },
    "geometry": {
@@ -842,6 +845,9 @@
     "source_route": "accessible_route_B_mid_row9",
     "corridor_width_ft": 6.0,
     "overlay": false,
+    "geometry_source": "design_route_buffer (design_open_low ada_route.geojson)",
+    "seam_derived": false,
+    "cost_status": "concept",
     "note": "accessible_route_B_mid_row9 corridor, schematic 6 ft width about the route line"
    },
    "geometry": {
@@ -880,6 +886,9 @@
     "source_route": "mid_cross_aisle",
     "corridor_width_ft": 3.0,
     "overlay": true,
+    "geometry_source": "design_route_buffer (design_open_low ada_route.geojson)",
+    "seam_derived": false,
+    "cost_status": "concept",
     "note": "level cross-aisle / wheelchair dispersion band (overlay on its row tread)"
    },
    "geometry": {

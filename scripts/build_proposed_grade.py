@@ -201,12 +201,18 @@ def main():
         "fill' claim relies on on-site borrow — candidate borrow zones are mapped "
         "in earthwork_scenarios.geojson (S01-S03)"
     )
+    # DESIGN_CANON Rule 3: only geometry-backed, validated moves may carry
+    # cost-proxy status; schematic stand-ins stay at concept tier and must
+    # not appear in a project cost table.
+    tiers = {"terrace_treads": "geometry_backed",
+             "stage_and_floor": "geometry_backed"}
     for zone, m in zone_burns:
         d = cut_fill[m]
         manifest["zones"][zone] = {
             "area_sf": round(float(m.sum()) * cell_ft3, 0),
             "fill_cy": round(float(d[d > 0].sum()) * cell_ft3 / 27.0, 1),
             "cut_cy": round(float(-d[d < 0].sum()) * cell_ft3 / 27.0, 1),
+            "cost_status": tiers.get(zone, "concept"),
         }
     with open(os.path.join(C.REPO, "dem", "in_situ_grading_manifest.json"), "w") as fh:
         json.dump(manifest, fh, indent=1)

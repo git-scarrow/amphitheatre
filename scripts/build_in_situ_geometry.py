@@ -152,6 +152,11 @@ def main():
             source_route=p["name"],
             corridor_width_ft=width,
             overlay=is_aisle,  # the aisle band rides on the row tread it follows
+            # DESIGN_CANON Rules 6/7: name the actual generator; never claim a
+            # seam discovery. This band is a buffer of the design route line.
+            geometry_source="design_route_buffer (design_open_low ada_route.geojson)",
+            seam_derived=False,
+            cost_status="concept",  # Rule 3: schematic corridor, not cost-proxy
             note=(
                 "level cross-aisle / wheelchair dispersion band (overlay on its row tread)"
                 if is_aisle
