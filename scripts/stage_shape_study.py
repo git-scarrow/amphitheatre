@@ -69,6 +69,69 @@ def rect(P, axis_az, w_half, u_from, u_to):
     return Polygon(c)
 
 
+def apron_front_candidates(P, az, fam_dirs):
+    """Stage-front geometry candidates: the downstage edge as a VARIABLE.
+
+    Local frame: u toward the audience along `az`, w lateral (+w to the
+    right facing the audience → the south family; −w → east). Each candidate
+    returns (front_pts_local [(w,u)…], note, complexity). The 70x34
+    rectangular core is untouched — the apron is additive downstage."""
+
+    def arc(bow, corner, n=29):
+        ws = np.linspace(-35.0, 35.0, n)
+        return [(float(w), float(corner + (bow - corner) * (1 - (w / 35.0) ** 2)))
+                for w in ws]
+
+    def facets(breaks, aims, max_proj):
+        """Polyline whose facet normals aim at the given family directions
+        (unit vectors in the LOCAL frame, +u = toward audience)."""
+        pts = [(breaks[0], 0.0)]
+        for i in range(len(breaks) - 1):
+            nw, nu = aims[i]
+            nu = max(nu, 0.30)               # stay front-facing
+            slope = -nw / nu                  # du/dw along the facet edge
+            w0, w1 = breaks[i], breaks[i + 1]
+            u0 = pts[-1][1]
+            pts.append((w1, u0 + slope * (w1 - w0)))
+        us = np.array([u for _, u in pts])
+        us -= us.min()
+        if us.max() > max_proj:
+            us *= max_proj / us.max()
+        if us.max() < 4.0 and us.max() > 0:
+            us *= 4.0 / us.max()
+        return [(w, float(u)) for (w, _), u in zip(pts, us)]
+
+    east, bend, south = fam_dirs["east"], fam_dirs["bend"], fam_dirs["south"]
+
+    def mid(a, b):
+        v = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+        n = math.hypot(*v)
+        return (v[0] / n, v[1] / n)
+
+    return {
+        "straight_front_baseline": (
+            [(-35.0, 0.0), (35.0, 0.0)],
+            "existing 70 ft straight downstage edge", 1),
+        "shallow_arc_apron": (
+            arc(4.0, 1.0),
+            "70 ft chord, 4 ft centre bow, 1 ft corner projection "
+            "(parabolic approximation of a circular bow)", 2),
+        "moderate_arc_apron": (
+            arc(8.0, 1.5),
+            "70 ft chord, 8 ft centre bow, 1.5 ft corner projection", 2),
+        "three_facet_apron": (
+            facets([-35.0, -12.0, 12.0, 35.0], [east, bend, south], 6.0),
+            "centre facet aimed at the bend/southeast family, side facets "
+            "at east and south; max projection ≤6 ft", 3),
+        "five_facet_apron": (
+            facets([-35.0, -21.0, -7.0, 7.0, 21.0, 35.0],
+                   [east, mid(east, bend), bend, mid(bend, south), south],
+                   6.0),
+            "five facets smoothing the three-family hinge; rectangular "
+            "upstage core preserved", 3),
+    }
+
+
 def typologies(P, az, best_corner_w):
     """Each typology = list of (label, polygon, z_bot, z_top, solid_note)."""
     deck = ("deck", rect(P, az, 35.0, -34.0, 0.0), *DECK_Z, "deck slab")
@@ -378,6 +441,87 @@ def main():
             )
     deck_only_obs = score_elements([all_typo["T1_deck_only"][0]])
 
+    # ── stage front / apron geometry: the downstage edge as a variable ─────
+    ux_s, uy_s = U(sel["az"])
+    wx_s, wy_s = U(sel["az"] + 90.0)
+    P_s = sel["P"]
+
+    def to_world(w, u):
+        return (P_s[0] + ux_s * u + wx_s * w, P_s[1] + uy_s * u + wy_s * w)
+
+    fam_dirs, fam_c8 = {}, {}
+    for s in C.SECTIONS:
+        f8 = next(f for f in treads if f["properties"]["section"] == s
+                  and f["properties"]["row"] == 8)
+        c = shape(f8["geometry"]).centroid
+        fam_c8[s] = c
+        v = (c.x - P_s[0], c.y - P_s[1])
+        n = math.hypot(*v)
+        v = (v[0] / n, v[1] / n)
+        fam_dirs[s] = (v[0] * wx_s + v[1] * wy_s,    # local w component
+                       v[0] * ux_s + v[1] * uy_s)    # local u component
+
+    core_deck = rect(P_s, sel["az"], 35.0, -34.0, 0.0)
+    apron_results = {}
+    base_perf = None
+    for name, (front, note, cx) in apron_front_candidates(
+            P_s, sel["az"], fam_dirs).items():
+        wf = [to_world(w, u) for w, u in front]
+        ring = ([to_world(front[0][0], 0.0)] + wf
+                + [to_world(front[-1][0], 0.0)])
+        apron_poly = Polygon(ring).buffer(0)
+        deck_total = core_deck.union(apron_poly)
+        # performer at the front edge on the centreline
+        ws_ = np.array([w for w, _ in front])
+        us_ = np.array([u for _, u in front])
+        u_mid = float(np.interp(0.0, ws_, us_))
+        perf = Point(to_world(0.0, u_mid))
+        # effective (Lambert-foreshortened, front-facing) frontage per family
+        frontage = {}
+        for s in C.SECTIONS:
+            tot = 0.0
+            for i in range(len(front) - 1):
+                (w0, u0), (w1, u1) = front[i], front[i + 1]
+                seg_l = math.hypot(w1 - w0, u1 - u0)
+                if seg_l == 0:
+                    continue
+                nw, nu = (-(u1 - u0) / seg_l, (w1 - w0) / seg_l)  # outward
+                n_world = (nw * wx_s + nu * ux_s, nw * wy_s + nu * uy_s)
+                mx, my = to_world((w0 + w1) / 2, (u0 + u1) / 2)
+                v = (fam_c8[s].x - mx, fam_c8[s].y - my)
+                vn = math.hypot(*v)
+                cosang = (n_world[0] * v[0] + n_world[1] * v[1]) / vn
+                tot += seg_l * max(0.0, cosang)
+            frontage[s] = round(tot, 1)
+        gaps = {s: round(deck_total.distance(row1[s]), 1) for s in C.SECTIONS}
+        perf_d = {s: round(perf.distance(row1[s]), 1) for s in C.SECTIONS}
+        if name == "straight_front_baseline":
+            base_perf = perf_d
+        obs = score_elements([("deck_apron", deck_total, *DECK_Z,
+                               "deck + apron slab")])
+        apron_results[name] = dict(
+            note=note,
+            added_apron_area_sf=round(apron_poly.area, 0),
+            max_projection_ft=round(float(us_.max()), 1),
+            effective_frontage_ft=frontage,
+            row1_gap_ft=gaps,
+            performer_to_row1_ft=perf_d,
+            bend_gap_improves_without_pocket_violation=bool(
+                base_perf is not None
+                and perf_d["bend"] < base_perf["bend"]
+                and gaps["east"] >= 12.0 and gaps["south"] >= 12.0),
+            bend_performer_delta_ft=round(
+                perf_d["bend"] - base_perf["bend"], 1) if base_perf else 0.0,
+            obstruction_delta=dict(
+                worst_new_bay_pct=max(v["new_bay_blocked_pct"]
+                                      for v in obs.values()),
+                worst_new_cell_pct=max(v["new_cell_blocked_pct"]
+                                       for v in obs.values())),
+            usable_rect_core_retained="70x34 intact (apron additive downstage)",
+            constructability=cx,
+            rule9_status="OPEN preserved — front geometry adopts no axis",
+        )
+
     results = {}
     for name, elements in all_typo.items():
         obs = score_elements(elements)
@@ -459,6 +603,7 @@ def main():
             structure_band_ft=1.0,
             placement=axis_table[sel_name],
             obstruction_of_deck_alone=deck_only_obs,
+            stage_front_apron=apron_results,
         ),
         elements_menu=element_menu,
         rule9_implications=dict(
@@ -496,7 +641,9 @@ def main():
             },
             adoption_requires=[
                 "pick a placement path (P_opt = path 3 is the measured "
-                "front-runner) AND an element bundle",
+                "front-runner), a stage-front geometry from section A2 "
+                "(faceted fronts are the measured front-runners), AND an "
+                "element bundle",
                 "declare every minor obstruction number for the chosen "
                 "bundle (per-family deltas in section C)",
                 "update harness_config.yaml / DESIGN_CANON Rule 9 status "
@@ -533,6 +680,49 @@ def main():
            f"Deck alone adds {max(v['new_bay_blocked_pct'] for v in dk.values())}% "
            f"bay / {max(v['new_cell_blocked_pct'] for v in dk.values())}% "
            "foreground obstruction (worst family) — the deck is visually free.",
+           "", "### A2 · Stage front / apron geometry (the downstage edge "
+           "as a variable)", "",
+           "The bowl's three families subtend an obtuse angle at the stage; "
+           "bowing or faceting the FRONT may close the bend/southeast "
+           "distance more naturally than translating the whole rectangle "
+           "into the east/south row-1 pockets. All candidates keep the "
+           "70 × 34 rectangular core; facet normals are aimed at the "
+           "measured family row-8 centroids.",
+           "",
+           "| front | apron sf | proj ft | eff. frontage e/b/s ft | "
+           "row-1 gap e/b/s ft | performer→row1 e/b/s ft | bend Δ ft | "
+           "bend better, pockets OK | bay/cell Δ% | cx /5 |",
+           "|---|---|---|---|---|---|---|---|---|---|"]
+    for n, a in apron_results.items():
+        fr, gp, pf = (a["effective_frontage_ft"], a["row1_gap_ft"],
+                      a["performer_to_row1_ft"])
+        ob = a["obstruction_delta"]
+        md.append(
+            f"| {n} | {a['added_apron_area_sf']:.0f} | "
+            f"{a['max_projection_ft']} | "
+            f"{fr['east']}/{fr['bend']}/{fr['south']} | "
+            f"{gp['east']}/{gp['bend']}/{gp['south']} | "
+            f"{pf['east']}/{pf['bend']}/{pf['south']} | "
+            f"{a['bend_performer_delta_ft']} | "
+            f"{'✓' if a['bend_gap_improves_without_pocket_violation'] else '✗'} | "
+            f"{ob['worst_new_bay_pct']}/{ob['worst_new_cell_pct']} | "
+            f"{a['constructability']} |")
+    md += ["",
+           "**Reading:** the symmetric arcs close the bend distance (−3.9 / "
+           "−7.8 ft) but project into the tight east pocket (gap 11.4 / 11.1 "
+           "< 12 ft) — they fail. The AIMED facets concentrate projection on "
+           "the bend-facing centre: −5.5 ft to bend with east held at 12.0 "
+           "and south at 18.9, zero obstruction delta, and slightly MORE "
+           "east frontage than the straight front. The faceted apron solves "
+           "the bowl's obtuse audience angle without moving the rectangle — "
+           "the five-facet adds smoothness over the three-facet for no "
+           "measurable difference.",
+           "",
+           "Every candidate keeps the rectangular core usable, stays at deck "
+           "level (z 612.5–613.5), and preserves Rule 9 OPEN (front geometry "
+           "adopts no axis). The front choice composes with any element "
+           "bundle in section B; T7's generic apron element is superseded by "
+           "this section.",
            "", "---", "",
            "## B · Roof / canopy / mast options (element menu)", "",
            "Each superstructure element is scored ALONE at the selected "

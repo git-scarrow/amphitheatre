@@ -18,6 +18,22 @@ Five separated products; nothing here adopts a stage. mass hiding below the terr
 constrained search keeping the az-330 bay axis: slide laterally toward the frame + pull upstage until every family keeps a >=12 ft orchestra gap and >=15 ft cell clearance — the row-1 pocket forbids zeroing the offset (P_lat touches east row 1, P_frame touches south row 1); residual offset declared per Rule 9 path 3.
 Deck alone adds 0.0% bay / 1.7% foreground obstruction (worst family) — the deck is visually free.
 
+### A2 · Stage front / apron geometry (the downstage edge as a variable)
+
+The bowl's three families subtend an obtuse angle at the stage; bowing or faceting the FRONT may close the bend/southeast distance more naturally than translating the whole rectangle into the east/south row-1 pockets. All candidates keep the 70 × 34 rectangular core; facet normals are aimed at the measured family row-8 centroids.
+
+| front | apron sf | proj ft | eff. frontage e/b/s ft | row-1 gap e/b/s ft | performer→row1 e/b/s ft | bend Δ ft | bend better, pockets OK | bay/cell Δ% | cx /5 |
+|---|---|---|---|---|---|---|---|---|---|
+| straight_front_baseline | 0 | 0.0 | 30.0/67.9/49.4 | 12.0/32.7/21.9 | 41.2/39.6/38.7 | 0.0 | ✗ | 0.0/1.7 | 1 |
+| shallow_arc_apron | 210 | 4.0 | 29.0/63.7/47.7 | 11.4/30.4/21.0 | 39.2/35.7/35.1 | -3.9 | ✗ | 0.0/1.1 | 2 |
+| moderate_arc_apron | 408 | 8.0 | 26.5/61.3/45.0 | 11.1/28.0/20.6 | 37.4/31.8/31.5 | -7.8 | ✗ | 0.0/1.1 | 2 |
+| three_facet_apron | 306 | 6.0 | 30.7/63.8/44.4 | 12.0/30.3/18.9 | 38.5/34.1/33.6 | -5.5 | ✓ | 0.0/1.1 | 3 |
+| five_facet_apron | 319 | 6.0 | 30.7/63.6/44.2 | 12.0/29.6/18.8 | 38.4/34.0/33.5 | -5.6 | ✓ | 0.0/1.1 | 3 |
+
+**Reading:** the symmetric arcs close the bend distance (−3.9 / −7.8 ft) but project into the tight east pocket (gap 11.4 / 11.1 < 12 ft) — they fail. The AIMED facets concentrate projection on the bend-facing centre: −5.5 ft to bend with east held at 12.0 and south at 18.9, zero obstruction delta, and slightly MORE east frontage than the straight front. The faceted apron solves the bowl's obtuse audience angle without moving the rectangle — the five-facet adds smoothness over the three-facet for no measurable difference.
+
+Every candidate keeps the rectangular core usable, stays at deck level (z 612.5–613.5), and preserves Rule 9 OPEN (front geometry adopts no axis). The front choice composes with any element bundle in section B; T7's generic apron element is superseded by this section.
+
 ---
 
 ## B · Roof / canopy / mast options (element menu)
@@ -93,8 +109,8 @@ Bases for each rubric line: `stage_typology_scores.json` (`operational.basis`). 
 
 Adoption requires:
 
-1. pick a placement path (P_opt = path 3 is the measured front-runner) AND an element bundle
-1. declare every minor obstruction number for the chosen bundle (e.g. thin roof: per-family bay deltas below)
+1. pick a placement path (P_opt = path 3 is the measured front-runner), a stage-front geometry from section A2 (faceted fronts are the measured front-runners), AND an element bundle
+1. declare every minor obstruction number for the chosen bundle (per-family deltas in section C)
 1. update harness_config.yaml / DESIGN_CANON Rule 9 status and re-run the Scenario E stage validation
 1. only then un-pause the Claude Design handoff and let boards claim a settled stage
 

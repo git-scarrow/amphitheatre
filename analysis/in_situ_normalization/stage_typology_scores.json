@@ -113,6 +113,153 @@
     "new_cell_blocked_pct": 1.1,
     "new_sky_blocked_deg_mean": 0.0
    }
+  },
+  "stage_front_apron": {
+   "straight_front_baseline": {
+    "note": "existing 70 ft straight downstage edge",
+    "added_apron_area_sf": 0.0,
+    "max_projection_ft": 0.0,
+    "effective_frontage_ft": {
+     "east": 30.0,
+     "bend": 67.9,
+     "south": 49.4
+    },
+    "row1_gap_ft": {
+     "east": 12.0,
+     "bend": 32.7,
+     "south": 21.9
+    },
+    "performer_to_row1_ft": {
+     "east": 41.2,
+     "bend": 39.6,
+     "south": 38.7
+    },
+    "bend_gap_improves_without_pocket_violation": false,
+    "bend_performer_delta_ft": 0.0,
+    "obstruction_delta": {
+     "worst_new_bay_pct": 0.0,
+     "worst_new_cell_pct": 1.7
+    },
+    "usable_rect_core_retained": "70x34 intact (apron additive downstage)",
+    "constructability": 1,
+    "rule9_status": "OPEN preserved \u2014 front geometry adopts no axis"
+   },
+   "shallow_arc_apron": {
+    "note": "70 ft chord, 4 ft centre bow, 1 ft corner projection (parabolic approximation of a circular bow)",
+    "added_apron_area_sf": 210.0,
+    "max_projection_ft": 4.0,
+    "effective_frontage_ft": {
+     "east": 29.0,
+     "bend": 63.7,
+     "south": 47.7
+    },
+    "row1_gap_ft": {
+     "east": 11.4,
+     "bend": 30.4,
+     "south": 21.0
+    },
+    "performer_to_row1_ft": {
+     "east": 39.2,
+     "bend": 35.7,
+     "south": 35.1
+    },
+    "bend_gap_improves_without_pocket_violation": false,
+    "bend_performer_delta_ft": -3.9,
+    "obstruction_delta": {
+     "worst_new_bay_pct": 0.0,
+     "worst_new_cell_pct": 1.1
+    },
+    "usable_rect_core_retained": "70x34 intact (apron additive downstage)",
+    "constructability": 2,
+    "rule9_status": "OPEN preserved \u2014 front geometry adopts no axis"
+   },
+   "moderate_arc_apron": {
+    "note": "70 ft chord, 8 ft centre bow, 1.5 ft corner projection",
+    "added_apron_area_sf": 408.0,
+    "max_projection_ft": 8.0,
+    "effective_frontage_ft": {
+     "east": 26.5,
+     "bend": 61.3,
+     "south": 45.0
+    },
+    "row1_gap_ft": {
+     "east": 11.1,
+     "bend": 28.0,
+     "south": 20.6
+    },
+    "performer_to_row1_ft": {
+     "east": 37.4,
+     "bend": 31.8,
+     "south": 31.5
+    },
+    "bend_gap_improves_without_pocket_violation": false,
+    "bend_performer_delta_ft": -7.8,
+    "obstruction_delta": {
+     "worst_new_bay_pct": 0.0,
+     "worst_new_cell_pct": 1.1
+    },
+    "usable_rect_core_retained": "70x34 intact (apron additive downstage)",
+    "constructability": 2,
+    "rule9_status": "OPEN preserved \u2014 front geometry adopts no axis"
+   },
+   "three_facet_apron": {
+    "note": "centre facet aimed at the bend/southeast family, side facets at east and south; max projection \u22646 ft",
+    "added_apron_area_sf": 306.0,
+    "max_projection_ft": 6.0,
+    "effective_frontage_ft": {
+     "east": 30.7,
+     "bend": 63.8,
+     "south": 44.4
+    },
+    "row1_gap_ft": {
+     "east": 12.0,
+     "bend": 30.3,
+     "south": 18.9
+    },
+    "performer_to_row1_ft": {
+     "east": 38.5,
+     "bend": 34.1,
+     "south": 33.6
+    },
+    "bend_gap_improves_without_pocket_violation": true,
+    "bend_performer_delta_ft": -5.5,
+    "obstruction_delta": {
+     "worst_new_bay_pct": 0.0,
+     "worst_new_cell_pct": 1.1
+    },
+    "usable_rect_core_retained": "70x34 intact (apron additive downstage)",
+    "constructability": 3,
+    "rule9_status": "OPEN preserved \u2014 front geometry adopts no axis"
+   },
+   "five_facet_apron": {
+    "note": "five facets smoothing the three-family hinge; rectangular upstage core preserved",
+    "added_apron_area_sf": 319.0,
+    "max_projection_ft": 6.0,
+    "effective_frontage_ft": {
+     "east": 30.7,
+     "bend": 63.6,
+     "south": 44.2
+    },
+    "row1_gap_ft": {
+     "east": 12.0,
+     "bend": 29.6,
+     "south": 18.8
+    },
+    "performer_to_row1_ft": {
+     "east": 38.4,
+     "bend": 34.0,
+     "south": 33.5
+    },
+    "bend_gap_improves_without_pocket_violation": true,
+    "bend_performer_delta_ft": -5.6,
+    "obstruction_delta": {
+     "worst_new_bay_pct": 0.0,
+     "worst_new_cell_pct": 1.1
+    },
+    "usable_rect_core_retained": "70x34 intact (apron additive downstage)",
+    "constructability": 3,
+    "rule9_status": "OPEN preserved \u2014 front geometry adopts no axis"
+   }
   }
  },
  "elements_menu": {
@@ -469,8 +616,8 @@
    }
   },
   "adoption_requires": [
-   "pick a placement path (P_opt = path 3 is the measured front-runner) AND an element bundle",
-   "declare every minor obstruction number for the chosen bundle (e.g. thin roof: per-family bay deltas below)",
+   "pick a placement path (P_opt = path 3 is the measured front-runner), a stage-front geometry from section A2 (faceted fronts are the measured front-runners), AND an element bundle",
+   "declare every minor obstruction number for the chosen bundle (per-family deltas in section C)",
    "update harness_config.yaml / DESIGN_CANON Rule 9 status and re-run the Scenario E stage validation",
    "only then un-pause the Claude Design handoff and let boards claim a settled stage"
   ]
