@@ -108,14 +108,17 @@ def hillshade_base(ax, D):
 
 
 def plan_geometry(ax, mats, treads, zones, ctx, vps=None, lw_scale=1.0,
-                  section_colors=True):
+                  section_colors=True, show_stage=True):
     """Standard plan: material base, then the three families coloured
-    separately, hinge rays, stage, circulation."""
+    separately, hinge rays, stage, circulation. show_stage=False suppresses
+    the inherited stage (board 01 shows only the provisional footprint)."""
     colors = {f["properties"]["zone"]: f["properties"].get("color_hint", MAT_FALLBACK)
               for f in mats}
     base_order = ["existing_slope_grass", "event_floor", "bioretention_planting",
                   "vegetated_swales", "accessible_paths", "hardscape_stage",
                   "existing_vegetation"]
+    if not show_stage:
+        base_order.remove("hardscape_stage")
     alphas = {"existing_slope_grass": 0.25, "existing_vegetation": 0.35}
     for z in base_order:
         f = next((m for m in mats if m["properties"]["zone"] == z), None)
@@ -132,9 +135,10 @@ def plan_geometry(ax, mats, treads, zones, ctx, vps=None, lw_scale=1.0,
         zmap.setdefault(f["properties"]["zone"], []).append(f)
     draw_layer(ax, zmap.get("hinge_ray", []), color="#7b241c", lw=1.0 * lw_scale,
                ls=(0, (4, 3)), zorder=6)
-    for z in ("stage_core", "stage_shoulder_left", "stage_shoulder_right"):
-        draw_layer(ax, zmap.get(z, []), facecolor="none", edgecolor="#5a4632",
-                   lw=1.0 * lw_scale, zorder=4)
+    if show_stage:
+        for z in ("stage_core", "stage_shoulder_left", "stage_shoulder_right"):
+            draw_layer(ax, zmap.get(z, []), facecolor="none",
+                       edgecolor="#5a4632", lw=1.0 * lw_scale, zorder=4)
     draw_layer(ax, zmap.get("cross_aisle", []), facecolor="#d9cfa3",
                edgecolor="#8a7d54", lw=0.5, alpha=0.95, zorder=4)
     rim = [f for f in ctx if f["properties"]["kind"] == "rim_arrival_edge"]
@@ -290,12 +294,14 @@ def stage_refit_overlay(ax):
     corners = [(P[0] + ux * u + wx * w, P[1] + uy * u + wy * w)
                for u, w in ((0, -35), (0, 35), (-34, 35), (-34, -35), (0, -35))]
     xs, ys = zip(*corners)
+    ax.fill(xs, ys, facecolor="#b9a48a", alpha=0.8, zorder=8)
     ax.plot(xs, ys, color="#7b241c", lw=1.6, ls=(0, (5, 3)), zorder=9)
     ex, ey = C.polar(55, az, P[0], P[1])
     ax.annotate("", xy=(ex, ey), xytext=(P[0], P[1]),
                 arrowprops=dict(arrowstyle="-|>", color="#7b241c", lw=1.4))
-    ax.annotate("stage refit CANDIDATE\n(P_opt — Rule 9 pending)",
-                (P[0], P[1]), textcoords="offset points", xytext=(10, -26),
+    ax.annotate("PROVISIONAL stage footprint\n(P_opt — Rule 9 pending;\n"
+                "see STAGE_SHAPE_STUDY.md)",
+                (P[0], P[1]), textcoords="offset points", xytext=(12, -30),
                 fontsize=7, color="#7b241c", fontweight="bold", zorder=10)
     return st
 
@@ -306,18 +312,24 @@ def board_01(mats, treads, zones, ctx, vps, D):
                  fontsize=15, fontweight="bold")
     ax = fig.add_axes([0.03, 0.07, 0.55, 0.84])
     hillshade_base(ax, D)
-    plan_geometry(ax, mats, treads, zones, ctx, vps)
+    study = None
+    show_inherited = not os.path.exists(
+        os.path.join(C.REPO, "analysis", "in_situ_normalization",
+                     "stage_typology_scores.json"))
+    plan_geometry(ax, mats, treads, zones, ctx, vps,
+                  show_stage=show_inherited)
     rim = [f for f in ctx if f["properties"]["kind"] == "rim_arrival_edge"]
     streets = [f for f in ctx if f["properties"]["kind"] == "street_edge"]
     draw_layer(ax, streets, color="#555555", lw=1.0, ls="-.", zorder=3)
-    study = stage_refit_overlay(ax)
+    if not show_inherited:
+        study = stage_refit_overlay(ax)
     fmt_axes(ax, all_bounds([streets or rim]), pad=20)
     north_arrow(ax)
     section_legend(ax)
     ax.set_title("plan — east / bend (SE) / south families (normalized extents "
-                 "= N0, asymmetry terrain-justified); inherited stage solid, "
-                 "refit candidate dashed — SCHEMATIC, stage decision pending",
-                 fontsize=8.5)
+                 "= N0, asymmetry terrain-justified); ONLY the provisional "
+                 "P_opt stage footprint shown — SCHEMATIC, Rule 9 decision "
+                 "pending", fontsize=8.5)
 
     axc = fig.add_axes([0.61, 0.47, 0.36, 0.42])
     man_path = os.path.join(C.REPO, "dem", "in_situ_grading_manifest.json")
@@ -349,9 +361,9 @@ def board_01(mats, treads, zones, ctx, vps, D):
         "· NO single fan declared — sections have separate local curvature",
         "· normalized extents = N0: east/south arc ratio 0.74, asymmetry",
         "  justified by seat-splay + street stops (NORMALIZATION.md)",
-        "· stage: Rule 9 OPEN — dashed P_opt candidate (lat −6.7 ft, −6.3°",
-        "  residual, row-1 gaps ≥12 ft); typology shortlist: covered civic",
-        "  roof 8.6% bay (minor) · masts 3.6% · deck 0% (STAGE_SHAPE_STUDY)",
+        "· stage: Rule 9 OPEN — plan shows ONLY the provisional P_opt",
+        "  footprint (residual −6.7 ft / −6.3°, row-1 gaps ≥12 ft); element",
+        "  menu + deltas + Rule 9 paths: STAGE_SHAPE_STUDY.md (A–E)",
         "· Scenario E validated earthwork: 500.8 CY gross (excl. stage)",
         "· NOT Claude-Design-ready until the stage decision lands",
     ]

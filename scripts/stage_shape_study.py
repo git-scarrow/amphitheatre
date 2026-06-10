@@ -352,8 +352,34 @@ def main():
                                for v in sc.values())
     best_corner = min(corner_scores, key=corner_scores.get)
 
+    # ── element menu: every overhead/vertical option scored ALONE so the
+    # deltas compose — deck geometry and superstructure stay separable ──────
+    all_typo = typologies(sel["P"], sel["az"], best_corner)
+    element_menu = {}
+    seen = set()
+    for tname, elements in all_typo.items():
+        for el in elements:
+            label = el[0]
+            if label in ("deck",) or label in seen:
+                continue
+            seen.add(label)
+            sc = score_elements([el])
+            element_menu[label] = dict(
+                from_typology=tname,
+                z_bottom=el[2], z_top=el[3],
+                height_ft=round(el[3] - C.FOCUS_ELEV, 1),
+                plan_area_sf=round(el[1].area, 0),
+                note=el[4],
+                obstruction_delta=sc,
+                worst_new_bay_pct=max(v["new_bay_blocked_pct"]
+                                      for v in sc.values()),
+                worst_new_cell_pct=max(v["new_cell_blocked_pct"]
+                                       for v in sc.values()),
+            )
+    deck_only_obs = score_elements([all_typo["T1_deck_only"][0]])
+
     results = {}
-    for name, elements in typologies(sel["P"], sel["az"], best_corner).items():
+    for name, elements in all_typo.items():
         obs = score_elements(elements)
         worst_bay = max(v["new_bay_blocked_pct"] for v in obs.values())
         worst_cell = max(v["new_cell_blocked_pct"] for v in obs.values())
@@ -426,40 +452,139 @@ def main():
         boh_corner=("west/left" if best_corner < 0 else "east/right"),
         rule9_status="open — this study produces the tested candidate set "
                      "for the Rule 9 decision; it does not adopt one",
+        deck_geometry=dict(
+            footprint="70 x 34 ft core, downstage edge at the selected front "
+                      "centre, low shoulders excluded from this study",
+            deck_elev_navd88=C.FOCUS_ELEV,
+            structure_band_ft=1.0,
+            placement=axis_table[sel_name],
+            obstruction_of_deck_alone=deck_only_obs,
+        ),
+        elements_menu=element_menu,
+        rule9_implications=dict(
+            status="OPEN — nothing here adopts a path",
+            paths={
+                "path1_audience_axis": dict(
+                    placement="P_frame",
+                    metrics=axis_table["P_frame"],
+                    consequence="axis turns to the audience centroid "
+                                "(124.6); audience faces ~305 — a 25 deg "
+                                "bay-axis deviation must be acknowledged and "
+                                "justified; touches south row 1 as searched "
+                                "(needs its own gap search before adoption)"),
+                "path2_bay_axis_lateral": dict(
+                    placement="P_lat",
+                    metrics=axis_table["P_lat"],
+                    consequence="keeps az 150/330; the FULL lateral shift "
+                                "zeroes the offset but touches east row 1 — "
+                                "infeasible as-is; partial shift collapses "
+                                "into path 3"),
+                "path3_compromise": dict(
+                    placement="P_opt (this study's tested candidate)",
+                    metrics=axis_table.get("P_opt"),
+                    consequence="keeps the bay axis, slides −15.5 ft lateral "
+                                "+ pulls upstage; residuals −6.7 ft / −6.3 "
+                                "deg DECLARED; all row-1 gaps ≥ 12 ft, cell "
+                                "clearance 32 ft"),
+                "path4_wide_fan_declaration": dict(
+                    placement="any",
+                    metrics=None,
+                    consequence="config/canon change only "
+                                "(harness_config fan fields); orthogonal to "
+                                "placement; acoustic consequences must be "
+                                "noted per Rule 9 text"),
+            },
+            adoption_requires=[
+                "pick a placement path (P_opt = path 3 is the measured "
+                "front-runner) AND an element bundle",
+                "declare every minor obstruction number for the chosen "
+                "bundle (per-family deltas in section C)",
+                "update harness_config.yaml / DESIGN_CANON Rule 9 status "
+                "and re-run the Scenario E stage validation",
+                "only then un-pause the Claude Design handoff and let "
+                "boards claim a settled stage",
+            ],
+        ),
         typologies=results,
     )
     with open(os.path.join(OUT, "stage_typology_scores.json"), "w") as fh:
         json.dump(payload, fh, indent=1)
 
-    md = ["# Stage shape study — utilitarian typologies under the "
-          "visual-envelope rule", "",
-          payload["visual_envelope_rule"], "",
-          "## Placement (frame fit; deck-only)", "",
+    md = ["# Stage Shape Study — deck, superstructure options, obstruction, "
+          "operations, Rule 9", "",
+          "Five separated products; nothing here adopts a stage. "
+          + payload["visual_envelope_rule"], "",
+          "---", "", "## A · Deck geometry (placement + footprint)", "",
+          "70 × 34 ft performance core at the event-floor grade "
+          f"({C.FOCUS_ELEV} ft, ~1 ft structure band). Placement search "
+          "against the audience frame and the row-1 pocket:",
+          "",
           "| placement | axis | mismatch° | lateral ft | front→row1 e/b/s ft | cell gap ft |",
           "|---|---|---|---|---|---|"]
     for n, m in axis_table.items():
         fr = m["front_to_row1_ft"]
-        md.append(f"| {n} | {placements[n]['az']:.1f} | "
+        md.append(f"| {n}{' **(selected)**' if n == sel_name else ''} | "
+                  f"{placements[n]['az']:.1f} | "
                   f"{m['axis_mismatch_deg']} | {m['lateral_offset_ft']} | "
                   f"{fr['east']}/{fr['bend']}/{fr['south']} | "
                   f"{m['cell_clearance_ft']} |")
-    md += ["", f"Selected: **{sel_name}** — "
-           + payload["selected_placement"]["reason"], "",
-           "## Typologies at the selected placement", "",
-           "| typology | max elem ft | worst new bay % | worst new cell % | "
-           "op total /40 | constructability | verdict |",
-           "|---|---|---|---|---|---|---|"]
+    dk = deck_only_obs
+    md += ["", payload["selected_placement"]["reason"] + ".",
+           f"Deck alone adds {max(v['new_bay_blocked_pct'] for v in dk.values())}% "
+           f"bay / {max(v['new_cell_blocked_pct'] for v in dk.values())}% "
+           "foreground obstruction (worst family) — the deck is visually free.",
+           "", "---", "",
+           "## B · Roof / canopy / mast options (element menu)", "",
+           "Each superstructure element is scored ALONE at the selected "
+           "placement so options compose; bundles in section C cross-check.",
+           "",
+           "| element | plan sf | top ft above deck | role |",
+           "|---|---|---|---|"]
+    for label, e in element_menu.items():
+        md.append(f"| {label} | {e['plan_area_sf']:.0f} | {e['height_ft']} | "
+                  f"{e['note']} |")
+    md += ["", "---", "", "## C · Obstruction deltas (by family)", "",
+           "Per-element, area-weighted share of the EXISTING visible band "
+           "newly blocked (bay %), foreground meadow blocked (cell %), and "
+           "mean new skyline cut (sky °):",
+           "",
+           "| element | east bay/cell | bend bay/cell | south bay/cell | worst sky ° |",
+           "|---|---|---|---|---|"]
+    for label, e in element_menu.items():
+        ob = e["obstruction_delta"]
+        sky = max(v["new_sky_blocked_deg_mean"] for v in ob.values())
+        cells = " | ".join(
+            f"{ob[s]['new_bay_blocked_pct']}/{ob[s]['new_cell_blocked_pct']}"
+            for s in C.SECTIONS)
+        md.append(f"| {label} | {cells} | {sky} |")
+    md += ["", "Bundled typologies (measured as combinations, not sums):", "",
+           "| bundle | elements | worst new bay % | worst new cell % | verdict |",
+           "|---|---|---|---|---|"]
     for n, r in results.items():
-        hmax = max(e["height_ft"] for e in r["elements"])
-        md.append(f"| {n} | {hmax:.0f} | {r['worst_new_bay_pct']} | "
-                  f"{r['worst_new_cell_pct']} | {r['operational_total']} | "
-                  f"{r['operational']['constructability']}/5 | "
-                  f"{r['verdict'].split(' — ')[0]} |")
-    md += ["", "Per-family bay/cell/sky increments, element lists, and "
-           "operational bases: `stage_typology_scores.json`. The screen in "
-           "T5 is night-only; masts are removable and scored standing.",
-           "", "Rule 9 remains OPEN: this is the tested candidate set, "
-           "not an adoption.", ""]
+        els = "+".join(e["label"] for e in r["elements"] if e["label"] != "deck") or "—"
+        md.append(f"| {n} | {els} | {r['worst_new_bay_pct']} | "
+                  f"{r['worst_new_cell_pct']} | {r['verdict'].split(' — ')[0]} |")
+    md += ["", "---", "", "## D · Operational scores", "",
+           "| bundle | wings | ceremony | concert | movie | rigging | weather "
+           "| storage | acoustic | total /40 | constructability /5 |",
+           "|---|---|---|---|---|---|---|---|---|---|---|"]
+    for n, r in results.items():
+        o = r["operational"]
+        md.append(f"| {n} | {o['wings']} | {o['ceremony']} | {o['concert']} | "
+                  f"{o['movie']} | {o['rigging']} | {o['weather']} | "
+                  f"{o['storage']} | {o['acoustic']} | "
+                  f"{r['operational_total']} | {o['constructability']} |")
+    md += ["", "Bases for each rubric line: `stage_typology_scores.json` "
+           "(`operational.basis`). The T5 screen is night-only; masts are "
+           "removable and scored standing.",
+           "", "---", "", "## E · Rule 9 implications", ""]
+    for pname, p in payload["rule9_implications"]["paths"].items():
+        md.append(f"- **{pname}** ({p['placement']}): {p['consequence']}")
+    md += ["", "Adoption requires:",
+           ""] + [f"1. {s}" for s in
+                  payload["rule9_implications"]["adoption_requires"]] + [
+           "", "**Rule 9 remains OPEN.** Board 01 shows only the selected "
+           "PROVISIONAL footprint (P_opt) pending this decision.", ""]
     with open(os.path.join(OUT, "STAGE_SHAPE_STUDY.md"), "w") as fh:
         fh.write("\n".join(md))
     print("  wrote analysis/in_situ_normalization/stage_typology_scores.json, "

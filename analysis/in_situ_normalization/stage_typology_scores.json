@@ -76,6 +76,405 @@
  },
  "boh_corner": "west/left",
  "rule9_status": "open \u2014 this study produces the tested candidate set for the Rule 9 decision; it does not adopt one",
+ "deck_geometry": {
+  "footprint": "70 x 34 ft core, downstage edge at the selected front centre, low shoulders excluded from this study",
+  "deck_elev_navd88": 612.5,
+  "structure_band_ft": 1.0,
+  "placement": {
+   "axis_mismatch_deg": -6.3,
+   "lateral_offset_ft": -6.7,
+   "front_to_row1_ft": {
+    "east": 12.0,
+    "bend": 32.7,
+    "south": 21.9
+   },
+   "cell_clearance_ft": 32.0,
+   "deck_overlaps_cell": false
+  },
+  "obstruction_of_deck_alone": {
+   "east": {
+    "rays_total": 315,
+    "rays_crossing": 144,
+    "new_bay_blocked_pct": 0.0,
+    "new_cell_blocked_pct": 0.9,
+    "new_sky_blocked_deg_mean": 0.0
+   },
+   "bend": {
+    "rays_total": 315,
+    "rays_crossing": 160,
+    "new_bay_blocked_pct": 0.0,
+    "new_cell_blocked_pct": 1.7,
+    "new_sky_blocked_deg_mean": 0.0
+   },
+   "south": {
+    "rays_total": 315,
+    "rays_crossing": 60,
+    "new_bay_blocked_pct": 0.0,
+    "new_cell_blocked_pct": 1.1,
+    "new_sky_blocked_deg_mean": 0.0
+   }
+  }
+ },
+ "elements_menu": {
+  "roof": {
+   "from_typology": "T2_covered_civic",
+   "z_bottom": 632.5,
+   "z_top": 634.5,
+   "height_ft": 22.0,
+   "plan_area_sf": 2812.0,
+   "note": "thin roof slab on slender posts (posts <0.5 deg, not modelled)",
+   "obstruction_delta": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 154,
+     "new_bay_blocked_pct": 8.6,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 1.025
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 172,
+     "new_bay_blocked_pct": 7.7,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.884
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 65,
+     "new_bay_blocked_pct": 3.8,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.426
+    }
+   },
+   "worst_new_bay_pct": 8.6,
+   "worst_new_cell_pct": 0.0
+  },
+  "canopy": {
+   "from_typology": "T3_acoustic_canopy",
+   "z_bottom": 626.5,
+   "z_top": 630.5,
+   "height_ft": 18.0,
+   "plan_area_sf": 1440.0,
+   "note": "curved acoustic canopy over the upstage half; open below; NO back wall",
+   "obstruction_delta": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 131,
+     "new_bay_blocked_pct": 2.8,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 1.315
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 139,
+     "new_bay_blocked_pct": 16.1,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 1.029
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 63,
+     "new_bay_blocked_pct": 2.7,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.587
+    }
+   },
+   "worst_new_bay_pct": 16.1,
+   "worst_new_cell_pct": 0.0
+  },
+  "boh": {
+   "from_typology": "T4_asymmetric_utility",
+   "z_bottom": 612.5,
+   "z_top": 624.5,
+   "height_ft": 12.0,
+   "plan_area_sf": 384.0,
+   "note": "24x16x12 back-of-house block tucked into the most-hidden upstage corner",
+   "obstruction_delta": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 60,
+     "new_bay_blocked_pct": 7.3,
+     "new_cell_blocked_pct": 57.9,
+     "new_sky_blocked_deg_mean": 0.723
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 41,
+     "new_bay_blocked_pct": 1.2,
+     "new_cell_blocked_pct": 23.0,
+     "new_sky_blocked_deg_mean": 0.249
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 0,
+     "new_bay_blocked_pct": 0.0,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.0
+    }
+   },
+   "worst_new_bay_pct": 7.3,
+   "worst_new_cell_pct": 57.9
+  },
+  "mast_l": {
+   "from_typology": "T5_movie_capable",
+   "z_bottom": 612.5,
+   "z_top": 638.5,
+   "height_ft": 26.0,
+   "plan_area_sf": 4.0,
+   "note": "removable screen mast (seasonal; screen itself is night-only and not a permanent element)",
+   "obstruction_delta": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 6,
+     "new_bay_blocked_pct": 3.2,
+     "new_cell_blocked_pct": 6.3,
+     "new_sky_blocked_deg_mean": 0.242
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 4,
+     "new_bay_blocked_pct": 1.2,
+     "new_cell_blocked_pct": 1.1,
+     "new_sky_blocked_deg_mean": 0.101
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 0,
+     "new_bay_blocked_pct": 0.0,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.0
+    }
+   },
+   "worst_new_bay_pct": 3.2,
+   "worst_new_cell_pct": 6.3
+  },
+  "mast_r": {
+   "from_typology": "T5_movie_capable",
+   "z_bottom": 612.5,
+   "z_top": 638.5,
+   "height_ft": 26.0,
+   "plan_area_sf": 4.0,
+   "note": "removable screen mast (seasonal; screen itself is night-only and not a permanent element)",
+   "obstruction_delta": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 5,
+     "new_bay_blocked_pct": 0.4,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.13
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 4,
+     "new_bay_blocked_pct": 1.7,
+     "new_cell_blocked_pct": 1.5,
+     "new_sky_blocked_deg_mean": 0.115
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 5,
+     "new_bay_blocked_pct": 1.7,
+     "new_cell_blocked_pct": 4.9,
+     "new_sky_blocked_deg_mean": 0.194
+    }
+   },
+   "worst_new_bay_pct": 1.7,
+   "worst_new_cell_pct": 4.9
+  },
+  "wing_l": {
+   "from_typology": "T6_side_framed_acoustic",
+   "z_bottom": 612.5,
+   "z_top": 624.5,
+   "height_ft": 12.0,
+   "plan_area_sf": 40.0,
+   "note": "solid side wing, lateral only",
+   "obstruction_delta": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 30,
+     "new_bay_blocked_pct": 4.3,
+     "new_cell_blocked_pct": 30.4,
+     "new_sky_blocked_deg_mean": 0.484
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 11,
+     "new_bay_blocked_pct": 0.0,
+     "new_cell_blocked_pct": 0.3,
+     "new_sky_blocked_deg_mean": 0.087
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 0,
+     "new_bay_blocked_pct": 0.0,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.0
+    }
+   },
+   "worst_new_bay_pct": 4.3,
+   "worst_new_cell_pct": 30.4
+  },
+  "wing_r": {
+   "from_typology": "T6_side_framed_acoustic",
+   "z_bottom": 612.5,
+   "z_top": 624.5,
+   "height_ft": 12.0,
+   "plan_area_sf": 40.0,
+   "note": "solid side wing, lateral only",
+   "obstruction_delta": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 27,
+     "new_bay_blocked_pct": 0.0,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.132
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 21,
+     "new_bay_blocked_pct": 2.2,
+     "new_cell_blocked_pct": 3.4,
+     "new_sky_blocked_deg_mean": 0.159
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 13,
+     "new_bay_blocked_pct": 1.6,
+     "new_cell_blocked_pct": 14.8,
+     "new_sky_blocked_deg_mean": 0.139
+    }
+   },
+   "worst_new_bay_pct": 2.2,
+   "worst_new_cell_pct": 14.8
+  },
+  "apron": {
+   "from_typology": "T7_hybrid",
+   "z_bottom": 612.5,
+   "z_top": 613.5,
+   "height_ft": 1.0,
+   "plan_area_sf": 624.0,
+   "note": "faceted forecourt apron at deck level",
+   "obstruction_delta": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 66,
+     "new_bay_blocked_pct": 0.0,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.0
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 148,
+     "new_bay_blocked_pct": 0.0,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.0
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 12,
+     "new_bay_blocked_pct": 0.0,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.0
+    }
+   },
+   "worst_new_bay_pct": 0.0,
+   "worst_new_cell_pct": 0.0
+  },
+  "service_canopy": {
+   "from_typology": "T7_hybrid",
+   "z_bottom": 630.5,
+   "z_top": 633.5,
+   "height_ft": 21.0,
+   "plan_area_sf": 1056.0,
+   "note": "overhead service/lighting canopy",
+   "obstruction_delta": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 97,
+     "new_bay_blocked_pct": 12.9,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.719
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 96,
+     "new_bay_blocked_pct": 18.6,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.601
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 34,
+     "new_bay_blocked_pct": 7.8,
+     "new_cell_blocked_pct": 0.0,
+     "new_sky_blocked_deg_mean": 0.224
+    }
+   },
+   "worst_new_bay_pct": 18.6,
+   "worst_new_cell_pct": 0.0
+  }
+ },
+ "rule9_implications": {
+  "status": "OPEN \u2014 nothing here adopts a path",
+  "paths": {
+   "path1_audience_axis": {
+    "placement": "P_frame",
+    "metrics": {
+     "axis_mismatch_deg": 12.1,
+     "lateral_offset_ft": 10.1,
+     "front_to_row1_ft": {
+      "east": 18.9,
+      "bend": 20.3,
+      "south": 0.0
+     },
+     "cell_clearance_ft": 41.8,
+     "deck_overlaps_cell": false
+    },
+    "consequence": "axis turns to the audience centroid (124.6); audience faces ~305 \u2014 a 25 deg bay-axis deviation must be acknowledged and justified; touches south row 1 as searched (needs its own gap search before adoption)"
+   },
+   "path2_bay_axis_lateral": {
+    "placement": "P_lat",
+    "metrics": {
+     "axis_mismatch_deg": -0.0,
+     "lateral_offset_ft": -0.0,
+     "front_to_row1_ft": {
+      "east": 0.0,
+      "bend": 18.7,
+      "south": 13.1
+     },
+     "cell_clearance_ft": 46.0,
+     "deck_overlaps_cell": false
+    },
+    "consequence": "keeps az 150/330; the FULL lateral shift zeroes the offset but touches east row 1 \u2014 infeasible as-is; partial shift collapses into path 3"
+   },
+   "path3_compromise": {
+    "placement": "P_opt (this study's tested candidate)",
+    "metrics": {
+     "axis_mismatch_deg": -6.3,
+     "lateral_offset_ft": -6.7,
+     "front_to_row1_ft": {
+      "east": 12.0,
+      "bend": 32.7,
+      "south": 21.9
+     },
+     "cell_clearance_ft": 32.0,
+     "deck_overlaps_cell": false
+    },
+    "consequence": "keeps the bay axis, slides \u221215.5 ft lateral + pulls upstage; residuals \u22126.7 ft / \u22126.3 deg DECLARED; all row-1 gaps \u2265 12 ft, cell clearance 32 ft"
+   },
+   "path4_wide_fan_declaration": {
+    "placement": "any",
+    "metrics": null,
+    "consequence": "config/canon change only (harness_config fan fields); orthogonal to placement; acoustic consequences must be noted per Rule 9 text"
+   }
+  },
+  "adoption_requires": [
+   "pick a placement path (P_opt = path 3 is the measured front-runner) AND an element bundle",
+   "declare every minor obstruction number for the chosen bundle (e.g. thin roof: per-family bay deltas below)",
+   "update harness_config.yaml / DESIGN_CANON Rule 9 status and re-run the Scenario E stage validation",
+   "only then un-pause the Claude Design handoff and let boards claim a settled stage"
+  ]
+ },
  "typologies": {
   "T1_deck_only": {
    "elements": [
