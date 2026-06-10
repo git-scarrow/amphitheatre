@@ -648,6 +648,14 @@ def main():
                 "bundle (per-family deltas in section C)",
                 "update harness_config.yaml / DESIGN_CANON Rule 9 status "
                 "and re-run the Scenario E stage validation",
+                "re-emit every stage-derived artifact from the ADOPTED "
+                "footprint: the orchestra and untouched-slope zones in "
+                "bowl_zones/material_zones, the six viewpoint stations "
+                "(cameras/targets currently reference the inherited stage "
+                "centroid), the event-mode movie-screen line, and the "
+                "grading rasters — then drop Board 01's presentation "
+                "patches (provisional floor override + backdrop hole fill), "
+                "which become redundant",
                 "only then un-pause the Claude Design handoff and let "
                 "boards claim a settled stage",
             ],

@@ -135,6 +135,29 @@ The engine must not report 10/10 ACCEPTED while this item is unresolved.
 See `analysis/stage_refit/STAGE_REFIT_SWEEP.md` for the full sweep and top candidates
 (best feasible candidate: `az150_lat-20`, +3.0° mismatch, −2.5 ft lateral offset, 37.8 CY delta).
 
+**Update 2026-06-10 — the in-situ studies supersede the sweep's candidate set.**
+The sweep scored section-level alignment only; the in-situ pass adds row-1
+pocket clearances, an independent (non-circular) stage-zone re-derivation, a
+ray-traced visual-obstruction envelope, and the stage front as a geometry
+variable:
+
+- `analysis/in_situ_normalization/STAGE_SHAPE_STUDY.md` — constrained
+  placement **P_opt** (az 150 kept, −15.5 ft lateral + upstage pullback;
+  residuals −6.7 ft / −6.3° declared per path 3; all row-1 gaps ≥ 12 ft);
+  §A2 stage-front study (family-aimed **faceted aprons** close the bend
+  distance ~5.5 ft without violating the east/south pockets — symmetric arcs
+  fail); §B–D superstructure element menu with per-family obstruction deltas
+  and operational scores under the visual-envelope rule (height is never a
+  rejection reason).
+- `analysis/stage_seating_decoupling/CIRCULARITY_AUDIT.md` — seating may not
+  justify stage placement (the march's focal point descends from the stage
+  lineage); the southern pan-toe zone band is independently re-derived.
+
+Adopting a path now means: placement + stage-front geometry + element bundle,
+then re-emitting every stage-derived artifact from the adopted footprint
+(see `rule9_implications.adoption_requires` in
+`analysis/in_situ_normalization/stage_typology_scores.json`).
+
 ---
 
 ## Cross-references
@@ -149,6 +172,9 @@ See `analysis/stage_refit/STAGE_REFIT_SWEEP.md` for the full sweep and top candi
 | Constrained-optimisation substrate | `PROBLEM_DEFINITION.md` |
 | Scenario E geometry emitter | `scripts/scenarioE_civic.py` → `SCENARIO_E_CIVIC.md` |
 | Stage refit sweep | `scripts/stage_refit_sweep.py` → `analysis/stage_refit/STAGE_REFIT_SWEEP.md` |
+| Stage shape / front / obstruction study (2026-06-10) | `scripts/stage_shape_study.py` + `scripts/obstruction_envelope.py` → `analysis/in_situ_normalization/STAGE_SHAPE_STUDY.md` |
+| Stage↔seating circularity break | `scripts/stage_seating_decoupling.py` → `analysis/stage_seating_decoupling/CIRCULARITY_AUDIT.md` |
+| In-situ package audit gate | `scripts/audit_in_situ_package.py` |
 
 ---
 

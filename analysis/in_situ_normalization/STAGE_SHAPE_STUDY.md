@@ -112,6 +112,7 @@ Adoption requires:
 1. pick a placement path (P_opt = path 3 is the measured front-runner), a stage-front geometry from section A2 (faceted fronts are the measured front-runners), AND an element bundle
 1. declare every minor obstruction number for the chosen bundle (per-family deltas in section C)
 1. update harness_config.yaml / DESIGN_CANON Rule 9 status and re-run the Scenario E stage validation
+1. re-emit every stage-derived artifact from the ADOPTED footprint: the orchestra and untouched-slope zones in bowl_zones/material_zones, the six viewpoint stations (cameras/targets currently reference the inherited stage centroid), the event-mode movie-screen line, and the grading rasters — then drop Board 01's presentation patches (provisional floor override + backdrop hole fill), which become redundant
 1. only then un-pause the Claude Design handoff and let boards claim a settled stage
 
 **Rule 9 remains OPEN.** Board 01 shows only the selected PROVISIONAL footprint (P_opt) pending this decision.

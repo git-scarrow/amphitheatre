@@ -157,7 +157,12 @@ geometry), all enforced by the audit gate:
   scored: deck 0% bay · covered civic roof 8.6% (minor; strongest operations
   27/40) · movie masts 3.6% · side-framed 4.3% bay / 30% foreground ·
   asymmetric BOH bay-clear / 58% foreground (caveat) · acoustic canopy 16.1%
-  and hybrid 18.6% bay FLAGGED pending redesign.
+  and hybrid 18.6% bay FLAGGED pending redesign. **Section A2 tests the
+  stage FRONT as a geometry variable**: symmetric arc aprons close the
+  bend distance but break the 12 ft east row-1 pocket (11.4/11.1 ft —
+  fail); the family-aimed three/five-facet fronts close bend by ~5.5 ft
+  with east held at 12.0 and south at 18.9, zero obstruction — the faceted
+  apron solves the obtuse three-family angle without translating the deck.
 - **Status: Claude Design handoff PAUSED** (`docs/claude_design_handoff.md`
   banner) until a Rule 9 path + typology are adopted; boards carry
   `claude_design_ready: false` and label the dashed P_opt as CANDIDATE.
