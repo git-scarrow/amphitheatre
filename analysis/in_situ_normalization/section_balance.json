@@ -1,0 +1,297 @@
+{
+ "generated_by": "scripts/normalize_sections.py",
+ "governing_scheme": "scenarioE_three_section_civic_bowl",
+ "sections": {
+  "east": {
+   "rows": 15,
+   "row_ids": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+   ],
+   "arc_length_ft": 834.7,
+   "band_a_seats": 365,
+   "radial_depth_ft": 71.8,
+   "measured_depth_to_stage_ft": [
+    3.9,
+    72.6
+   ],
+   "azimuth_span_deg": [
+    86.8,
+    116.2
+   ],
+   "row1_endpoints": [
+    [
+     19533151.8,
+     750792.2
+    ],
+    [
+     19533150.0,
+     750755.1
+    ]
+   ],
+   "row18_endpoints": [
+    [
+     19533223.9,
+     750796.1
+    ],
+    [
+     19533211.1,
+     750725.2
+    ]
+   ],
+   "row1_dist_to_stage_front_ft": 17.3,
+   "centroid": [
+    19533190.4,
+    750766.2
+   ],
+   "centroid_dist_to_stage_centroid_ft": 98.7
+  },
+  "bend": {
+   "rows": 15,
+   "row_ids": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+   ],
+   "arc_length_ft": 952.0,
+   "band_a_seats": 419,
+   "radial_depth_ft": 71.8,
+   "measured_depth_to_stage_ft": [
+    19.6,
+    84.6
+   ],
+   "azimuth_span_deg": [
+    119.7,
+    150.6
+   ],
+   "row1_endpoints": [
+    [
+     19533149.1,
+     750748.1
+    ],
+    [
+     19533117.9,
+     750723.1
+    ]
+   ],
+   "row18_endpoints": [
+    [
+     19533208.7,
+     750713.7
+    ],
+    [
+     19533152.1,
+     750663.1
+    ]
+   ],
+   "row1_dist_to_stage_front_ft": 20.6,
+   "centroid": [
+    19533165.1,
+    750702.9
+   ],
+   "centroid_dist_to_stage_centroid_ft": 90.7
+  },
+  "south": {
+   "rows": 15,
+   "row_ids": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+   ],
+   "arc_length_ft": 1128.7,
+   "band_a_seats": 499,
+   "radial_depth_ft": 71.8,
+   "measured_depth_to_stage_ft": [
+    0.0,
+    61.8
+   ],
+   "azimuth_span_deg": [
+    153.5,
+    195.4
+   ],
+   "row1_endpoints": [
+    [
+     19533111.2,
+     750722.5
+    ],
+    [
+     19533061.2,
+     750720.8
+    ]
+   ],
+   "row18_endpoints": [
+    [
+     19533141.2,
+     750660.6
+    ],
+    [
+     19533043.2,
+     750653.9
+    ]
+   ],
+   "row1_dist_to_stage_front_ft": 2.2,
+   "centroid": [
+    19533089.5,
+    750683.7
+   ],
+   "centroid_dist_to_stage_centroid_ft": 73.2
+  }
+ },
+ "audience_frame": {
+  "audience_centroid_seatweighted": [
+   19533142.9,
+   750713.4
+  ],
+  "audience_centroid_lengthweighted": [
+   19533143.0,
+   750713.7
+  ],
+  "dominant_facing_bearing_deg": 323.4,
+  "dominant_axis_from_stage_deg": 143.4,
+  "stage_front_centre": [
+   19533100.2,
+   750742.9
+  ],
+  "stage_axis_deg_inherited": 150.0,
+  "centroid_bearing_from_stage_front_deg": 124.6,
+  "stage_axis_mismatch_deg": -25.4,
+  "stage_lateral_offset_ft": -22.2,
+  "note": "mismatch>0 means the stage axis points clockwise of the audience centroid; facing is the seat-weighted circular mean of band normals toward the stage"
+ },
+ "street_terrain_stops": {
+  "row_end_gap_ft": {
+   "east": {
+    "1": 119.0,
+    "8": 87.6,
+    "14": 63.3,
+    "18": 46.9
+   },
+   "south": {
+    "1": 127.2,
+    "8": 98.3,
+    "14": 76.3,
+    "18": 60.3
+   }
+  },
+  "declared_march_caps": {
+   "east_cap_az": 85.0,
+   "bend_breaks_az": [
+    118.0,
+    152.0
+   ],
+   "south_cap_az": 197.0
+  },
+  "east_extension_test": {
+   "available": true,
+   "per_row": {
+    "6": {
+     "extension_ft": 6.0,
+     "stop": "seat splay gate (46\u00b0 off facing the stage)",
+     "est_added_seats": 2
+    },
+    "7": {
+     "extension_ft": 9.0,
+     "stop": "seat splay gate (47\u00b0 off facing the stage)",
+     "est_added_seats": 4
+    },
+    "8": {
+     "extension_ft": 21.0,
+     "stop": "seat splay gate (45\u00b0 off facing the stage)",
+     "est_added_seats": 9
+    },
+    "11": {
+     "extension_ft": 27.0,
+     "stop": "seat splay gate (46\u00b0 off facing the stage)",
+     "est_added_seats": 12
+    },
+    "12": {
+     "extension_ft": 30.0,
+     "stop": "seat splay gate (45\u00b0 off facing the stage)",
+     "est_added_seats": 13
+    },
+    "13": {
+     "extension_ft": 33.0,
+     "stop": "seat splay gate (45\u00b0 off facing the stage)",
+     "est_added_seats": 14
+    },
+    "14": {
+     "extension_ft": 36.0,
+     "stop": "seat splay gate (46\u00b0 off facing the stage)",
+     "est_added_seats": 16
+    },
+    "15": {
+     "extension_ft": 48.0,
+     "stop": "seat splay gate (46\u00b0 off facing the stage)",
+     "est_added_seats": 21
+    },
+    "16": {
+     "extension_ft": 45.0,
+     "stop": "seat splay gate (47\u00b0 off facing the stage)",
+     "est_added_seats": 20
+    },
+    "17": {
+     "extension_ft": 45.0,
+     "stop": "seat splay gate (47\u00b0 off facing the stage)",
+     "est_added_seats": 20
+    },
+    "18": {
+     "extension_ft": 42.0,
+     "stop": "seat splay gate (46\u00b0 off facing the stage)",
+     "est_added_seats": 18
+    }
+   },
+   "total_extension_ft": 342.0,
+   "total_est_added_seats": 149,
+   "method": "level-contour walk on 3-ft-smoothed DEM beyond the east az-85 cap; stops at street setback, wall flatten, or contour loss"
+  }
+ },
+ "imbalance": {
+  "arc_length_ft": {
+   "east": 834.7,
+   "bend": 952.0,
+   "south": 1128.7
+  },
+  "min_max_ratio": 0.74,
+  "declared_threshold": 0.75,
+  "within_threshold": false,
+  "asymmetry_justification": "east/south arc ratio 0.74 < declared 0.75. Measured causes: (1) the extended-bays march caps the east section at az 85 vs south at az 197 (asymmetric by design of the contour families); (2) row-18 east terminates 46.9 ft from Petoskey St vs south 60.3 ft from E Mitchell St; (3) the contour-walk test finds ~342 ft of additional on-contour east arc across rows 6-18 before the seat-facing splay gate (45\u00b0 off the stage) stops every row \u2014 the closed basin wraps north past the east cap, so further seats would face across the bowl, not at the stage. The east flank is bounded by audience-facing geometry (and ultimately the street corner), not arbitrarily trimmed."
+ },
+ "selected_candidate": "N0_status_quo"
+}

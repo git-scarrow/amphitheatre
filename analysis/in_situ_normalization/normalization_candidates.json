@@ -1,0 +1,73 @@
+{
+ "candidates": [
+  {
+   "name": "N0_status_quo",
+   "description": "keep Scenario E rows 1-18 in all three families; asymmetry justified by the measured street/terrain stops",
+   "seats_delta": 0,
+   "seats_total": 1283,
+   "arc_length_ft": {
+    "east": 835.0,
+    "bend": 952.0,
+    "south": 1129.0
+   },
+   "balance_ratio": 0.74,
+   "cut_fill_proxy_cy": 0.0,
+   "row_continuity": "intact (validated)",
+   "verdict": "SELECTED",
+   "verdict_reason": "every seat is Scenario-E-validated; the east deficit is street-and-terrain-bounded (see asymmetry_justification); no validated seat is sacrificed for visual symmetry",
+   "tier": "geometry_backed"
+  },
+  {
+   "name": "N1_east_contour_extension",
+   "description": "widen the east azimuth cap (az 85 \u2192 terrain/street stop) and re-march the east bays on their own contours",
+   "seats_delta": 149,
+   "seats_total": 1432,
+   "arc_length_ft": {
+    "east": 1177.0,
+    "bend": 952.0,
+    "south": 1129.0
+   },
+   "balance_ratio": 0.809,
+   "cut_fill_proxy_cy": 11.4,
+   "row_continuity": "intact within east; needs re-march",
+   "verdict": "CANDIDATE (analysis-tier)",
+   "verdict_reason": "contour walk finds ~342 ft of on-contour east arc before the 45\u00b0 splay gate (a generous cap \u2014 the civic_bowl composition gate was 28\u00b0, so treat this as an upper bound); improves balance ratio to 0.96; requires re-running design_extended_bays with E_CAP widened, then Scenario E re-validation (Rules 3/5: not seats until emitted + validated)",
+   "tier": "concept"
+  },
+  {
+   "name": "N2_add_row19_all",
+   "description": "extend all three families to row 19 (per-seat C10 93 mm, 95% pass \u2014 formal under the civic_core per-seat band)",
+   "seats_delta": 114,
+   "seats_total": 1397,
+   "arc_length_ft": {
+    "east": 909.0,
+    "bend": 1036.0,
+    "south": 1229.0
+   },
+   "balance_ratio": 0.74,
+   "cut_fill_proxy_cy": 6.2,
+   "row_continuity": "intact; adds one row above the cross-aisle",
+   "verdict": "CANDIDATE (analysis-tier)",
+   "verdict_reason": "row 19 is per-seat formal (design_civic_core/perseat_bands.csv: C10 93 mm, 95% pass) but centreline-soft (86 mm); does not change the balance ratio; requires Scenario E re-validation",
+   "tier": "concept"
+  },
+  {
+   "name": "N3_trim_south_to_balance",
+   "description": "drop south rows 17-18 to close the arc-length gap",
+   "seats_delta": -86,
+   "seats_total": 1197,
+   "arc_length_ft": {
+    "east": 835.0,
+    "bend": 952.0,
+    "south": 935.0
+   },
+   "balance_ratio": 0.877,
+   "cut_fill_proxy_cy": 0.0,
+   "row_continuity": "south truncated at row 16",
+   "verdict": "REJECTED",
+   "verdict_reason": "removes ~88 validated Band-A seats purely for plan symmetry; no terrain, street, sightline, or cost driver supports it \u2014 symmetry is not a site constraint here",
+   "tier": "n/a"
+  }
+ ],
+ "selected": "N0_status_quo"
+}
