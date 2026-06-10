@@ -1,0 +1,265 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis projectname="Petoskey Pit — Open Civic Bowl in-situ package" version="3.34.0" saveUser="in_situ_pipeline">
+  <homePath path=""/>
+  <title>Petoskey Pit — Open Civic Bowl in-situ package</title>
+  <transaction mode="Disabled"/>
+  <projectFlags set=""/>
+  <projectCrs>
+    <spatialrefsys nativeFormat="Wkt">
+      <authid>EPSG:6494</authid>
+      <srsid>0</srsid>
+      <description>NAD83(2011) / Michigan Central (ft)</description>
+      <projectionacronym>lcc</projectionacronym>
+      <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+      <geographicflag>false</geographicflag>
+    </spatialrefsys>
+  </projectCrs>
+  <layer-tree-group>
+    <layer-tree-layer id="in_situ_viewpoints" name="render viewpoints" source="../vectors_geojson/in_situ_viewpoints.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="event_modes" name="event modes (schematic, nonbinding)" source="../vectors_geojson/event_modes.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="ada_route" name="ADA routes + cross-aisle" source="../vectors_geojson/ada_route.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="seating_rows" name="seating row arcs (design of record)" source="../vectors_geojson/seating_rows.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="stage_floor" name="stage + floor + treatment cell" source="../vectors_geojson/stage_floor.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="terrace_edges" name="low seat edges" source="../vectors_geojson/terrace_edges.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="terrace_treads" name="terrace treads (16 rows)" source="../vectors_geojson/terrace_treads.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="bowl_zones" name="bowl zones" source="../vectors_geojson/bowl_zones.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="material_zones" name="material zones" source="../vectors_geojson/material_zones.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="site_context" name="site context" source="../vectors_geojson/site_context.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="cut_fill" name="cut/fill 1ft (+fill/−cut)" source="../dem/cut_fill_1ft.tif" providerKey="gdal" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="proposed_grade" name="proposed grade 1ft" source="../dem/proposed_grade_1ft.tif" providerKey="gdal" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="dem_design" name="existing ground DEM 1ft" source="../dem/dem_design_1ft.tif" providerKey="gdal" checked="Qt::Checked" expanded="0"/>
+  </layer-tree-group>
+  <projectlayers>
+    <maplayer type="raster" autoRefreshEnabled="0">
+      <id>dem_design</id>
+      <datasource>../dem/dem_design_1ft.tif</datasource>
+      <layername>existing ground DEM 1ft</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">gdal</provider>
+    </maplayer>
+    <maplayer type="raster" autoRefreshEnabled="0">
+      <id>proposed_grade</id>
+      <datasource>../dem/proposed_grade_1ft.tif</datasource>
+      <layername>proposed grade 1ft</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">gdal</provider>
+    </maplayer>
+    <maplayer type="raster" autoRefreshEnabled="0">
+      <id>cut_fill</id>
+      <datasource>../dem/cut_fill_1ft.tif</datasource>
+      <layername>cut/fill 1ft (+fill/−cut)</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">gdal</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="Unknown" autoRefreshEnabled="0">
+      <id>site_context</id>
+      <datasource>../vectors_geojson/site_context.geojson</datasource>
+      <layername>site context</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="Polygon" autoRefreshEnabled="0">
+      <id>material_zones</id>
+      <datasource>../vectors_geojson/material_zones.geojson</datasource>
+      <layername>material zones</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="Polygon" autoRefreshEnabled="0">
+      <id>bowl_zones</id>
+      <datasource>../vectors_geojson/bowl_zones.geojson</datasource>
+      <layername>bowl zones</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="Polygon" autoRefreshEnabled="0">
+      <id>terrace_treads</id>
+      <datasource>../vectors_geojson/terrace_treads.geojson</datasource>
+      <layername>terrace treads (16 rows)</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="Line" autoRefreshEnabled="0">
+      <id>terrace_edges</id>
+      <datasource>../vectors_geojson/terrace_edges.geojson</datasource>
+      <layername>low seat edges</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="Unknown" autoRefreshEnabled="0">
+      <id>stage_floor</id>
+      <datasource>../vectors_geojson/stage_floor.geojson</datasource>
+      <layername>stage + floor + treatment cell</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="Line" autoRefreshEnabled="0">
+      <id>seating_rows</id>
+      <datasource>../vectors_geojson/seating_rows.geojson</datasource>
+      <layername>seating row arcs (design of record)</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="Line" autoRefreshEnabled="0">
+      <id>ada_route</id>
+      <datasource>../vectors_geojson/ada_route.geojson</datasource>
+      <layername>ADA routes + cross-aisle</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="Unknown" autoRefreshEnabled="0">
+      <id>event_modes</id>
+      <datasource>../vectors_geojson/event_modes.geojson</datasource>
+      <layername>event modes (schematic, nonbinding)</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="Point" autoRefreshEnabled="0">
+      <id>in_situ_viewpoints</id>
+      <datasource>../vectors_geojson/in_situ_viewpoints.geojson</datasource>
+      <layername>render viewpoints</layername>
+      <srs>
+      <spatialrefsys nativeFormat="Wkt">
+        <authid>EPSG:6494</authid>
+        <srsid>0</srsid>
+        <description>NAD83(2011) / Michigan Central (ft)</description>
+        <projectionacronym>lcc</projectionacronym>
+        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+      </srs>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+  </projectlayers>
+  <layerorder>
+      <item>in_situ_viewpoints</item>
+      <item>event_modes</item>
+      <item>ada_route</item>
+      <item>seating_rows</item>
+      <item>stage_floor</item>
+      <item>terrace_edges</item>
+      <item>terrace_treads</item>
+      <item>bowl_zones</item>
+      <item>material_zones</item>
+      <item>site_context</item>
+      <item>cut_fill</item>
+      <item>proposed_grade</item>
+      <item>dem_design</item>
+  </layerorder>
+  <properties>
+    <Paths>
+      <Absolute type="bool">false</Absolute>
+    </Paths>
+    <Measure>
+      <Ellipsoid type="QString">EPSG:7019</Ellipsoid>
+    </Measure>
+  </properties>
+</qgis>
