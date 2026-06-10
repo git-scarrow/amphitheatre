@@ -19,6 +19,7 @@ The core principle: every cost-bearing design move must emit real geometry and p
 ## Key documents
 
 - `docs/DESIGN_CANON.md` — governing invariant rules (all scenarios)
+- `docs/in_situ_design_brief.md` — Open Civic Bowl in-situ package: three boards, layer inventory, assumptions, audit gate
 - `INEVITABILITY.md` — narrative rationale and the "inevitable" design standard
 - `SCENARIO_E_CIVIC.md` — Scenario E geometry, validation, and acceptance criteria
 - `analysis/stage_refit/STAGE_REFIT_SWEEP.md` — stage alignment audit and refit candidates
@@ -36,6 +37,7 @@ The core principle: every cost-bearing design move must emit real geometry and p
 All scripts require the project virtual environment. From the repo root:
 
 ```sh
+bash scripts/build_in_situ_package.sh      # build + audit the in-situ package (boards, vectors, rasters)
 python scripts/scenarioE_civic.py          # re-emit Scenario E geometry + validation
 python scripts/stage_refit_sweep.py        # re-run stage alignment audit
 python scripts/score_inevitability.py      # B-rejected / D-accepted proof

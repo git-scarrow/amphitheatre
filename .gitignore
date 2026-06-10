@@ -68,6 +68,9 @@ design_*/section_truescale.png
 design_*/sightline_profile.png
 design_open_low/_ctx.pkl
 
+# ── transient in-situ package diagnostics (regenerated each build) ───────────
+dem/MISSING_DATA.md
+
 # ── local Claude Code settings (paths, session permissions) ──────────────────
 .claude/settings.local.json
 
