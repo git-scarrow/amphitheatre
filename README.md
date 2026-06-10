@@ -19,7 +19,7 @@ The core principle: every cost-bearing design move must emit real geometry and p
 ## Key documents
 
 - `docs/DESIGN_CANON.md` — governing invariant rules (all scenarios)
-- `docs/in_situ_design_brief.md` — Open Civic Bowl in-situ package: three boards, layer inventory, assumptions, audit gate
+- `docs/in_situ_design_brief.md` — three-section civic bowl in-situ package: three boards, layer inventory, assumptions, audit gate
 - `INEVITABILITY.md` — narrative rationale and the "inevitable" design standard
 - `SCENARIO_E_CIVIC.md` — Scenario E geometry, validation, and acceptance criteria
 - `analysis/stage_refit/STAGE_REFIT_SWEEP.md` — stage alignment audit and refit candidates
