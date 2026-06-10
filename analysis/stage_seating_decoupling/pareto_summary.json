@@ -1,0 +1,33 @@
+{
+ "generated_by": "scripts/stage_seating_decoupling.py",
+ "independent_products": [
+  "audience_envelopes.geojson",
+  "stage_opportunity_zones.geojson",
+  "pairwise_stage_audience_scores.csv"
+ ],
+ "n_envelopes": 4,
+ "n_stage_zones": 3,
+ "n_pairs": 12,
+ "ranked_shortlist": [
+  "A_NWN+S_SW",
+  "A_NWN+S_SE",
+  "A_NWN+S_NE",
+  "A_WSW+S_NE",
+  "A_WSW+S_SE"
+ ],
+ "pareto_front": [
+  "A_NWN+S_SE",
+  "A_NWN+S_NE"
+ ],
+ "winner": "A_NWN+S_SW",
+ "co_leaders_within_0p02": [
+  "A_NWN+S_SW",
+  "A_NWN+S_SE",
+  "A_NWN+S_NE"
+ ],
+ "winner_contains_inherited_stage": false,
+ "inherited_stage_in_co_leader_band": true,
+ "why_winner_beats_runner_up": "A_NWN+S_SW beats A_NWN+S_SE (viable) on weighted score: 0.841 vs 0.838; capacity: 1283 vs 1283; axis skew deg: 19.0 vs 23.7; backdrop allowance ft: 15.7 vs 17.1; pad CY: 236.2 vs 238.8; loading ft: 170.4 vs 193.8; stage\u2192toe ft: 12.3 vs 11.2",
+ "stage_zones_derived_from_seating": false,
+ "circularity_status": "loop broken: the stage zone is re-derived from floor/access/backdrop criteria and only then paired with terrain-first audience envelopes"
+}

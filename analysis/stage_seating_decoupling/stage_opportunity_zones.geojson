@@ -1,0 +1,215 @@
+{
+ "type": "FeatureCollection",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::6494"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "zone_id": "S_NE",
+    "area_sf": 3032.0,
+    "floor_elev_mean": 609.84,
+    "pad_cy_70x34": 234.6,
+    "loading_dist_to_pour_ft": 167.2,
+    "cell_clearance_ft": 9.5,
+    "dist_to_primary_envelope_ft": 49.8,
+    "backdrop_allowable_top_elev": 628.3,
+    "backdrop_allowable_height_ft": 15.8,
+    "storage_room_sf": 652.0,
+    "acoustic_up_slope": true,
+    "contains_inherited_stage": false,
+    "derived_from": [
+     "pan floor feasibility (slope<5%, 608-614)",
+     "treatment-cell clearance >=10 ft",
+     "street setbacks",
+     "loading distance to pour point",
+     "backdrop allowance from the obstruction envelope"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       19533104.7,
+       750849.65
+      ],
+      [
+       19533074.7,
+       750814.65
+      ],
+      [
+       19533074.7,
+       750793.65
+      ],
+      [
+       19533143.7,
+       750793.65
+      ],
+      [
+       19533143.7,
+       750822.65
+      ],
+      [
+       19533139.7,
+       750832.65
+      ],
+      [
+       19533127.7,
+       750843.65
+      ],
+      [
+       19533104.7,
+       750849.65
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "zone_id": "S_SE",
+    "area_sf": 4050.0,
+    "floor_elev_mean": 609.79,
+    "pad_cy_70x34": 238.8,
+    "loading_dist_to_pour_ft": 193.8,
+    "cell_clearance_ft": 23.5,
+    "dist_to_primary_envelope_ft": 11.2,
+    "backdrop_allowable_top_elev": 629.6,
+    "backdrop_allowable_height_ft": 17.1,
+    "storage_room_sf": 1670.0,
+    "acoustic_up_slope": true,
+    "contains_inherited_stage": true,
+    "derived_from": [
+     "pan floor feasibility (slope<5%, 608-614)",
+     "treatment-cell clearance >=10 ft",
+     "street setbacks",
+     "loading distance to pour point",
+     "backdrop allowance from the obstruction envelope"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       19533074.7,
+       750793.65
+      ],
+      [
+       19533074.7,
+       750728.65
+      ],
+      [
+       19533100.7,
+       750728.65
+      ],
+      [
+       19533113.7,
+       750734.65
+      ],
+      [
+       19533126.7,
+       750734.65
+      ],
+      [
+       19533133.7,
+       750739.65
+      ],
+      [
+       19533139.7,
+       750748.65
+      ],
+      [
+       19533143.7,
+       750793.65
+      ],
+      [
+       19533074.7,
+       750793.65
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "zone_id": "S_SW",
+    "area_sf": 3947.0,
+    "floor_elev_mean": 609.82,
+    "pad_cy_70x34": 236.2,
+    "loading_dist_to_pour_ft": 170.4,
+    "cell_clearance_ft": 9.8,
+    "dist_to_primary_envelope_ft": 12.3,
+    "backdrop_allowable_top_elev": 628.2,
+    "backdrop_allowable_height_ft": 15.7,
+    "storage_room_sf": 1567.0,
+    "acoustic_up_slope": true,
+    "contains_inherited_stage": false,
+    "derived_from": [
+     "pan floor feasibility (slope<5%, 608-614)",
+     "treatment-cell clearance >=10 ft",
+     "street setbacks",
+     "loading distance to pour point",
+     "backdrop allowance from the obstruction envelope"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       19533074.7,
+       750793.65
+      ],
+      [
+       19533005.7,
+       750792.65
+      ],
+      [
+       19533007.7,
+       750771.65
+      ],
+      [
+       19533023.7,
+       750733.65
+      ],
+      [
+       19533032.7,
+       750727.65
+      ],
+      [
+       19533039.7,
+       750727.65
+      ],
+      [
+       19533041.7,
+       750731.65
+      ],
+      [
+       19533074.7,
+       750728.65
+      ],
+      [
+       19533074.7,
+       750793.65
+      ]
+     ]
+    ]
+   }
+  }
+ ],
+ "rejected_zones": [
+  {
+   "zone_id": "S_NW",
+   "area_sf": 385.0,
+   "reason": "insufficient feasible floor for a 70x34 pad \u2014 the treatment cell + clearance occupies this pan sector"
+  }
+ ]
+}
