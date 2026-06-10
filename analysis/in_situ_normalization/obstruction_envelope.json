@@ -1,0 +1,201 @@
+{
+ "generated_by": "scripts/obstruction_envelope.py",
+ "governing_scheme": "scenarioE_three_section_civic_bowl",
+ "method": "DEM ray trace, az 280-360 step 2, corridor 318-342, seated eye +3.94 ft, bay plane 579.45, earth-curvature horizon dip applied",
+ "caveats": [
+  "bare-earth DEM baseline \u2014 foreground tree band (densest az 315-320) is a separate lever, NOT included",
+  "terrain beyond the DEM margin assumed below the in-DEM silhouette",
+  "cell surface taken at 609.6 (meadow nominal)"
+ ],
+ "stations": [
+  {
+   "section": "east",
+   "band": "front",
+   "row": 2,
+   "eye_elev_navd88": 615.8,
+   "station": [
+    19533155.6,
+    750773.2
+   ],
+   "silhouette_deg_mean": 2.2,
+   "silhouette_deg_range": [
+    0.55,
+    4.75
+   ],
+   "bay_corridor_rays": 13,
+   "bay_visible_rays": 0,
+   "bay_already_blocked_pct": 100.0,
+   "bay_band_mean_deg": 0.0,
+   "cell_rays": 24,
+   "cell_band_mean_deg": 0.95
+  },
+  {
+   "section": "east",
+   "band": "mid",
+   "row": 8,
+   "eye_elev_navd88": 623.25,
+   "station": [
+    19533179.3,
+    750768.6
+   ],
+   "silhouette_deg_mean": 0.2,
+   "silhouette_deg_range": [
+    -0.88,
+    2.09
+   ],
+   "bay_corridor_rays": 13,
+   "bay_visible_rays": 2,
+   "bay_already_blocked_pct": 84.6,
+   "bay_band_mean_deg": 0.15,
+   "cell_rays": 20,
+   "cell_band_mean_deg": 1.71
+  },
+  {
+   "section": "east",
+   "band": "upper",
+   "row": 15,
+   "eye_elev_navd88": 633.32,
+   "station": [
+    19533206.0,
+    750762.7
+   ],
+   "silhouette_deg_mean": -2.05,
+   "silhouette_deg_range": [
+    -2.43,
+    -1.14
+   ],
+   "bay_corridor_rays": 13,
+   "bay_visible_rays": 13,
+   "bay_already_blocked_pct": 0.0,
+   "bay_band_mean_deg": 2.09,
+   "cell_rays": 17,
+   "cell_band_mean_deg": 2.23
+  },
+  {
+   "section": "bend",
+   "band": "front",
+   "row": 2,
+   "eye_elev_navd88": 615.8,
+   "station": [
+    19533139.7,
+    750727.9
+   ],
+   "silhouette_deg_mean": 1.56,
+   "silhouette_deg_range": [
+    0.52,
+    3.36
+   ],
+   "bay_corridor_rays": 13,
+   "bay_visible_rays": 0,
+   "bay_already_blocked_pct": 100.0,
+   "bay_band_mean_deg": 0.0,
+   "cell_rays": 23,
+   "cell_band_mean_deg": 0.65
+  },
+  {
+   "section": "bend",
+   "band": "mid",
+   "row": 8,
+   "eye_elev_navd88": 623.25,
+   "station": [
+    19533156.4,
+    750711.3
+   ],
+   "silhouette_deg_mean": -0.13,
+   "silhouette_deg_range": [
+    -0.83,
+    1.16
+   ],
+   "bay_corridor_rays": 13,
+   "bay_visible_rays": 9,
+   "bay_already_blocked_pct": 30.8,
+   "bay_band_mean_deg": 0.42,
+   "cell_rays": 20,
+   "cell_band_mean_deg": 1.18
+  },
+  {
+   "section": "bend",
+   "band": "upper",
+   "row": 15,
+   "eye_elev_navd88": 633.28,
+   "station": [
+    19533177.5,
+    750691.3
+   ],
+   "silhouette_deg_mean": -1.79,
+   "silhouette_deg_range": [
+    -2.32,
+    -0.76
+   ],
+   "bay_corridor_rays": 13,
+   "bay_visible_rays": 13,
+   "bay_already_blocked_pct": 0.0,
+   "bay_band_mean_deg": 1.89,
+   "cell_rays": 18,
+   "cell_band_mean_deg": 1.44
+  },
+  {
+   "section": "south",
+   "band": "front",
+   "row": 2,
+   "eye_elev_navd88": 615.81,
+   "station": [
+    19533086.7,
+    750717.1
+   ],
+   "silhouette_deg_mean": 1.48,
+   "silhouette_deg_range": [
+    0.59,
+    2.78
+   ],
+   "bay_corridor_rays": 13,
+   "bay_visible_rays": 0,
+   "bay_already_blocked_pct": 100.0,
+   "bay_band_mean_deg": 0.0,
+   "cell_rays": 24,
+   "cell_band_mean_deg": 0.95
+  },
+  {
+   "section": "south",
+   "band": "mid",
+   "row": 8,
+   "eye_elev_navd88": 623.24,
+   "station": [
+    19533088.2,
+    750694.5
+   ],
+   "silhouette_deg_mean": -0.35,
+   "silhouette_deg_range": [
+    -0.94,
+    0.71
+   ],
+   "bay_corridor_rays": 13,
+   "bay_visible_rays": 13,
+   "bay_already_blocked_pct": 0.0,
+   "bay_band_mean_deg": 0.7,
+   "cell_rays": 21,
+   "cell_band_mean_deg": 1.6
+  },
+  {
+   "section": "south",
+   "band": "upper",
+   "row": 15,
+   "eye_elev_navd88": 633.28,
+   "station": [
+    19533091.2,
+    750668.6
+   ],
+   "silhouette_deg_mean": -1.91,
+   "silhouette_deg_range": [
+    -2.65,
+    -0.69
+   ],
+   "bay_corridor_rays": 13,
+   "bay_visible_rays": 13,
+   "bay_already_blocked_pct": 0.0,
+   "bay_band_mean_deg": 2.26,
+   "cell_rays": 19,
+   "cell_band_mean_deg": 1.97
+  }
+ ]
+}

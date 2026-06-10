@@ -1,0 +1,550 @@
+{
+ "generated_by": "scripts/stage_shape_study.py",
+ "governing_scheme": "scenarioE_three_section_civic_bowl",
+ "visual_envelope_rule": "mass hiding below the terrain silhouette behind it adds no obstruction; new bay/cell/sky blockage is measured per family; bay \u22642.0% none / \u226410.0% minor / above = flagged-not-height-rejected",
+ "frame_source": {
+  "file": "analysis/in_situ_normalization/section_balance.json",
+  "audience_centroid": [
+   19533142.9,
+   750713.4
+  ]
+ },
+ "independent_zone_test": {
+  "file": "analysis/stage_seating_decoupling/pareto_summary.json",
+  "co_leader_band": [
+   "A_NWN+S_SW",
+   "A_NWN+S_SE",
+   "A_NWN+S_NE"
+  ],
+  "inherited_in_band": true,
+  "note": "placements lie inside the independently-derived southern pan-toe zone band"
+ },
+ "placement_axis_comparison": {
+  "P_inherited": {
+   "axis_mismatch_deg": -25.4,
+   "lateral_offset_ft": -22.2,
+   "front_to_row1_ft": {
+    "east": 17.3,
+    "bend": 20.6,
+    "south": 2.2
+   },
+   "cell_clearance_ft": 46.0,
+   "deck_overlaps_cell": false
+  },
+  "P_lat": {
+   "axis_mismatch_deg": -0.0,
+   "lateral_offset_ft": -0.0,
+   "front_to_row1_ft": {
+    "east": 0.0,
+    "bend": 18.7,
+    "south": 13.1
+   },
+   "cell_clearance_ft": 46.0,
+   "deck_overlaps_cell": false
+  },
+  "P_frame": {
+   "axis_mismatch_deg": 12.1,
+   "lateral_offset_ft": 10.1,
+   "front_to_row1_ft": {
+    "east": 18.9,
+    "bend": 20.3,
+    "south": 0.0
+   },
+   "cell_clearance_ft": 41.8,
+   "deck_overlaps_cell": false
+  },
+  "P_opt": {
+   "axis_mismatch_deg": -6.3,
+   "lateral_offset_ft": -6.7,
+   "front_to_row1_ft": {
+    "east": 12.0,
+    "bend": 32.7,
+    "south": 21.9
+   },
+   "cell_clearance_ft": 32.0,
+   "deck_overlaps_cell": false
+  }
+ },
+ "selected_placement": {
+  "name": "P_opt",
+  "front_centre": [
+   19533106.6,
+   750762.8
+  ],
+  "axis_az": 150.0,
+  "reason": "constrained search keeping the az-330 bay axis: slide laterally toward the frame + pull upstage until every family keeps a >=12 ft orchestra gap and >=15 ft cell clearance \u2014 the row-1 pocket forbids zeroing the offset (P_lat touches east row 1, P_frame touches south row 1); residual offset declared per Rule 9 path 3"
+ },
+ "boh_corner": "west/left",
+ "rule9_status": "open \u2014 this study produces the tested candidate set for the Rule 9 decision; it does not adopt one",
+ "typologies": {
+  "T1_deck_only": {
+   "elements": [
+    {
+     "label": "deck",
+     "z_bottom": 612.5,
+     "z_top": 613.5,
+     "height_ft": 1.0,
+     "note": "deck slab"
+    }
+   ],
+   "incremental_obstruction": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 144,
+     "new_bay_blocked_pct": 0.0,
+     "new_cell_blocked_pct": 0.9,
+     "new_sky_blocked_deg_mean": 0.0
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 160,
+     "new_bay_blocked_pct": 0.0,
+     "new_cell_blocked_pct": 1.7,
+     "new_sky_blocked_deg_mean": 0.0
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 60,
+     "new_bay_blocked_pct": 0.0,
+     "new_cell_blocked_pct": 1.1,
+     "new_sky_blocked_deg_mean": 0.0
+    }
+   },
+   "worst_new_bay_pct": 0.0,
+   "worst_new_cell_pct": 1.7,
+   "opaque_wall_in_bay_corridor": false,
+   "operational": {
+    "wings": 1,
+    "ceremony": 4,
+    "concert": 2,
+    "movie": 2,
+    "rigging": 0,
+    "weather": 0,
+    "storage": 0,
+    "acoustic": 1,
+    "constructability": 1,
+    "basis": "bare 70x34 deck; PA/lighting fully temporary every event; no cover, no rig points, gear trucked per event"
+   },
+   "operational_total": 10,
+   "verdict": "ACCEPTABLE \u2014 no meaningful new bay obstruction",
+   "non_negotiables": {
+    "full_enclosure": false,
+    "permanent_fly_tower": false,
+    "permanent_water": false,
+    "acoustic_claim": "qualitative plausibility only \u2014 no shell performance claim"
+   }
+  },
+  "T2_covered_civic": {
+   "elements": [
+    {
+     "label": "deck",
+     "z_bottom": 612.5,
+     "z_top": 613.5,
+     "height_ft": 1.0,
+     "note": "deck slab"
+    },
+    {
+     "label": "roof",
+     "z_bottom": 632.5,
+     "z_top": 634.5,
+     "height_ft": 22.0,
+     "note": "thin roof slab on slender posts (posts <0.5 deg, not modelled)"
+    }
+   ],
+   "incremental_obstruction": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 154,
+     "new_bay_blocked_pct": 8.6,
+     "new_cell_blocked_pct": 0.9,
+     "new_sky_blocked_deg_mean": 1.025
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 172,
+     "new_bay_blocked_pct": 7.7,
+     "new_cell_blocked_pct": 1.7,
+     "new_sky_blocked_deg_mean": 0.884
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 65,
+     "new_bay_blocked_pct": 3.8,
+     "new_cell_blocked_pct": 1.1,
+     "new_sky_blocked_deg_mean": 0.426
+    }
+   },
+   "worst_new_bay_pct": 8.6,
+   "worst_new_cell_pct": 1.7,
+   "opaque_wall_in_bay_corridor": false,
+   "operational": {
+    "wings": 2,
+    "ceremony": 5,
+    "concert": 4,
+    "movie": 4,
+    "rigging": 4,
+    "weather": 4,
+    "storage": 1,
+    "acoustic": 3,
+    "constructability": 3,
+    "basis": "thin roof = rain-safe civic programming + permanent rig points; open all sides"
+   },
+   "operational_total": 27,
+   "verdict": "ACCEPTABLE (minor) \u2014 new bay obstruction quantified at \u22648.6% of the visible band",
+   "non_negotiables": {
+    "full_enclosure": false,
+    "permanent_fly_tower": false,
+    "permanent_water": false,
+    "acoustic_claim": "qualitative plausibility only \u2014 no shell performance claim"
+   }
+  },
+  "T3_acoustic_canopy": {
+   "elements": [
+    {
+     "label": "deck",
+     "z_bottom": 612.5,
+     "z_top": 613.5,
+     "height_ft": 1.0,
+     "note": "deck slab"
+    },
+    {
+     "label": "canopy",
+     "z_bottom": 626.5,
+     "z_top": 630.5,
+     "height_ft": 18.0,
+     "note": "curved acoustic canopy over the upstage half; open below; NO back wall"
+    }
+   ],
+   "incremental_obstruction": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 147,
+     "new_bay_blocked_pct": 2.8,
+     "new_cell_blocked_pct": 0.9,
+     "new_sky_blocked_deg_mean": 1.315
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 160,
+     "new_bay_blocked_pct": 16.1,
+     "new_cell_blocked_pct": 1.7,
+     "new_sky_blocked_deg_mean": 1.029
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 63,
+     "new_bay_blocked_pct": 2.7,
+     "new_cell_blocked_pct": 1.1,
+     "new_sky_blocked_deg_mean": 0.587
+    }
+   },
+   "worst_new_bay_pct": 16.1,
+   "worst_new_cell_pct": 1.7,
+   "opaque_wall_in_bay_corridor": false,
+   "operational": {
+    "wings": 2,
+    "ceremony": 4,
+    "concert": 4,
+    "movie": 3,
+    "rigging": 3,
+    "weather": 2,
+    "storage": 1,
+    "acoustic": 4,
+    "basis": "upstage canopy projects sound up the bowl without a back wall; partial rain cover",
+    "constructability": 3
+   },
+   "operational_total": 23,
+   "verdict": "FLAGGED \u2014 16.1% of a family's visible bay band newly blocked; redesign the offending mass or justify explicitly (NOT a height rejection)",
+   "non_negotiables": {
+    "full_enclosure": false,
+    "permanent_fly_tower": false,
+    "permanent_water": false,
+    "acoustic_claim": "qualitative plausibility only \u2014 no shell performance claim"
+   }
+  },
+  "T4_asymmetric_utility": {
+   "elements": [
+    {
+     "label": "deck",
+     "z_bottom": 612.5,
+     "z_top": 613.5,
+     "height_ft": 1.0,
+     "note": "deck slab"
+    },
+    {
+     "label": "boh",
+     "z_bottom": 612.5,
+     "z_top": 624.5,
+     "height_ft": 12.0,
+     "note": "24x16x12 back-of-house block tucked into the most-hidden upstage corner"
+    }
+   ],
+   "incremental_obstruction": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 157,
+     "new_bay_blocked_pct": 7.3,
+     "new_cell_blocked_pct": 57.9,
+     "new_sky_blocked_deg_mean": 0.723
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 160,
+     "new_bay_blocked_pct": 1.2,
+     "new_cell_blocked_pct": 24.7,
+     "new_sky_blocked_deg_mean": 0.249
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 60,
+     "new_bay_blocked_pct": 0.0,
+     "new_cell_blocked_pct": 1.1,
+     "new_sky_blocked_deg_mean": 0.0
+    }
+   },
+   "worst_new_bay_pct": 7.3,
+   "worst_new_cell_pct": 57.9,
+   "opaque_wall_in_bay_corridor": false,
+   "operational": {
+    "wings": 3,
+    "ceremony": 4,
+    "concert": 3,
+    "movie": 3,
+    "rigging": 1,
+    "weather": 1,
+    "storage": 4,
+    "acoustic": 2,
+    "basis": "on-site storage/green room transforms operations; deck otherwise bare",
+    "constructability": 2
+   },
+   "operational_total": 21,
+   "verdict": "ACCEPTABLE w/ CAVEAT \u2014 bay clear (\u22647.3%) but 57.9% of a family's treatment-cell foreground newly blocked; relocate the mass or accept the meadow loss for that family explicitly",
+   "non_negotiables": {
+    "full_enclosure": false,
+    "permanent_fly_tower": false,
+    "permanent_water": false,
+    "acoustic_claim": "qualitative plausibility only \u2014 no shell performance claim"
+   }
+  },
+  "T5_movie_capable": {
+   "elements": [
+    {
+     "label": "deck",
+     "z_bottom": 612.5,
+     "z_top": 613.5,
+     "height_ft": 1.0,
+     "note": "deck slab"
+    },
+    {
+     "label": "mast_l",
+     "z_bottom": 612.5,
+     "z_top": 638.5,
+     "height_ft": 26.0,
+     "note": "removable screen mast (seasonal; screen itself is night-only and not a permanent element)"
+    },
+    {
+     "label": "mast_r",
+     "z_bottom": 612.5,
+     "z_top": 638.5,
+     "height_ft": 26.0,
+     "note": "removable screen mast (seasonal; screen itself is night-only and not a permanent element)"
+    }
+   ],
+   "incremental_obstruction": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 144,
+     "new_bay_blocked_pct": 3.6,
+     "new_cell_blocked_pct": 6.8,
+     "new_sky_blocked_deg_mean": 0.371
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 160,
+     "new_bay_blocked_pct": 2.9,
+     "new_cell_blocked_pct": 4.3,
+     "new_sky_blocked_deg_mean": 0.216
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 60,
+     "new_bay_blocked_pct": 1.7,
+     "new_cell_blocked_pct": 5.4,
+     "new_sky_blocked_deg_mean": 0.194
+    }
+   },
+   "worst_new_bay_pct": 3.6,
+   "worst_new_cell_pct": 6.8,
+   "opaque_wall_in_bay_corridor": false,
+   "operational": {
+    "wings": 1,
+    "ceremony": 4,
+    "concert": 3,
+    "movie": 5,
+    "rigging": 2,
+    "weather": 0,
+    "storage": 0,
+    "acoustic": 1,
+    "basis": "dedicated removable masts make movie night one-crew; masts double as PA points",
+    "constructability": 2
+   },
+   "operational_total": 16,
+   "verdict": "ACCEPTABLE (minor) \u2014 new bay obstruction quantified at \u22643.6% of the visible band",
+   "non_negotiables": {
+    "full_enclosure": false,
+    "permanent_fly_tower": false,
+    "permanent_water": false,
+    "acoustic_claim": "qualitative plausibility only \u2014 no shell performance claim"
+   }
+  },
+  "T6_side_framed_acoustic": {
+   "elements": [
+    {
+     "label": "deck",
+     "z_bottom": 612.5,
+     "z_top": 613.5,
+     "height_ft": 1.0,
+     "note": "deck slab"
+    },
+    {
+     "label": "wing_l",
+     "z_bottom": 612.5,
+     "z_top": 624.5,
+     "height_ft": 12.0,
+     "note": "solid side wing, lateral only"
+    },
+    {
+     "label": "wing_r",
+     "z_bottom": 612.5,
+     "z_top": 624.5,
+     "height_ft": 12.0,
+     "note": "solid side wing, lateral only"
+    }
+   ],
+   "incremental_obstruction": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 149,
+     "new_bay_blocked_pct": 4.3,
+     "new_cell_blocked_pct": 30.4,
+     "new_sky_blocked_deg_mean": 0.617
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 160,
+     "new_bay_blocked_pct": 2.2,
+     "new_cell_blocked_pct": 5.4,
+     "new_sky_blocked_deg_mean": 0.246
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 65,
+     "new_bay_blocked_pct": 1.6,
+     "new_cell_blocked_pct": 14.9,
+     "new_sky_blocked_deg_mean": 0.139
+    }
+   },
+   "worst_new_bay_pct": 4.3,
+   "worst_new_cell_pct": 30.4,
+   "opaque_wall_in_bay_corridor": false,
+   "operational": {
+    "wings": 4,
+    "ceremony": 4,
+    "concert": 4,
+    "movie": 3,
+    "rigging": 2,
+    "weather": 1,
+    "storage": 2,
+    "acoustic": 4,
+    "basis": "side wings give lateral reflection + true wing space; upstage slot stays open to the bay",
+    "constructability": 2
+   },
+   "operational_total": 24,
+   "verdict": "ACCEPTABLE (minor) \u2014 new bay obstruction quantified at \u22644.3% of the visible band",
+   "non_negotiables": {
+    "full_enclosure": false,
+    "permanent_fly_tower": false,
+    "permanent_water": false,
+    "acoustic_claim": "qualitative plausibility only \u2014 no shell performance claim"
+   }
+  },
+  "T7_hybrid": {
+   "elements": [
+    {
+     "label": "deck",
+     "z_bottom": 612.5,
+     "z_top": 613.5,
+     "height_ft": 1.0,
+     "note": "deck slab"
+    },
+    {
+     "label": "apron",
+     "z_bottom": 612.5,
+     "z_top": 613.5,
+     "height_ft": 1.0,
+     "note": "faceted forecourt apron at deck level"
+    },
+    {
+     "label": "service_canopy",
+     "z_bottom": 630.5,
+     "z_top": 633.5,
+     "height_ft": 21.0,
+     "note": "overhead service/lighting canopy"
+    },
+    {
+     "label": "boh",
+     "z_bottom": 612.5,
+     "z_top": 622.5,
+     "height_ft": 10.0,
+     "note": "16x12x10 corner BOH"
+    }
+   ],
+   "incremental_obstruction": {
+    "east": {
+     "rays_total": 315,
+     "rays_crossing": 161,
+     "new_bay_blocked_pct": 15.1,
+     "new_cell_blocked_pct": 41.6,
+     "new_sky_blocked_deg_mean": 1.068
+    },
+    "bend": {
+     "rays_total": 315,
+     "rays_crossing": 162,
+     "new_bay_blocked_pct": 18.6,
+     "new_cell_blocked_pct": 14.1,
+     "new_sky_blocked_deg_mean": 0.636
+    },
+    "south": {
+     "rays_total": 315,
+     "rays_crossing": 60,
+     "new_bay_blocked_pct": 7.8,
+     "new_cell_blocked_pct": 1.1,
+     "new_sky_blocked_deg_mean": 0.224
+    }
+   },
+   "worst_new_bay_pct": 18.6,
+   "worst_new_cell_pct": 41.6,
+   "opaque_wall_in_bay_corridor": false,
+   "operational": {
+    "wings": 3,
+    "ceremony": 5,
+    "concert": 5,
+    "movie": 4,
+    "rigging": 4,
+    "weather": 3,
+    "storage": 3,
+    "acoustic": 4,
+    "basis": "performance core + apron for ceremonies + service canopy rig + corner BOH: the full utilitarian kit",
+    "constructability": 4
+   },
+   "operational_total": 31,
+   "verdict": "FLAGGED \u2014 18.6% of a family's visible bay band newly blocked; redesign the offending mass or justify explicitly (NOT a height rejection)",
+   "non_negotiables": {
+    "full_enclosure": false,
+    "permanent_fly_tower": false,
+    "permanent_water": false,
+    "acoustic_claim": "qualitative plausibility only \u2014 no shell performance claim"
+   }
+  }
+ }
+}
