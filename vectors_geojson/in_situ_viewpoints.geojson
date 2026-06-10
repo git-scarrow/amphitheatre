@@ -1,0 +1,179 @@
+{
+ "type": "FeatureCollection",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::6494"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "upper_rim_down_to_stage",
+    "description": "standing above the last row on the centreline, the whole 110-degree fan and low stage below, bay beyond",
+    "camera_elev_navd88": 641.09,
+    "camera_ground_elev_navd88": 635.89,
+    "camera_elev_source": "dem_design_1ft.tif",
+    "eye_height_ft": 5.2,
+    "look_target_x": 19533091.7,
+    "look_target_y": 750757.63,
+    "look_target_elev_navd88": 614.5,
+    "look_azimuth_deg": 330.0,
+    "look_distance_ft": 117.0,
+    "fov_deg_suggested": 60,
+    "render_file": "renders/upper_rim_down_to_stage.png",
+    "required": true,
+    "note": "camera 17 ft behind the top tread on existing slope",
+    "datum": "NAVD88 Geoid12A intl ft"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533150.2,
+     750656.31
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "mid_row_audience_to_bay",
+    "description": "seated at row 8 centre: performer at 71 ft, dry treatment cell as scenic foreground, Little Traverse Bay + sky as the backdrop",
+    "camera_elev_navd88": 623.75,
+    "camera_ground_elev_navd88": 619.81,
+    "camera_elev_source": "tread_elev (design surface)",
+    "eye_height_ft": 3.94,
+    "look_target_x": 19532770.2,
+    "look_target_y": 751314.49,
+    "look_target_elev_navd88": 579.45,
+    "look_azimuth_deg": 330.0,
+    "look_distance_ft": 717.0,
+    "fov_deg_suggested": 60,
+    "render_file": "renders/mid_row_audience_to_bay.png",
+    "required": true,
+    "note": "the governing view \u2014 stage must stay low/open; no upstage shell",
+    "datum": "NAVD88 Geoid12A intl ft"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533128.7,
+     750693.54
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "stage_looking_back_to_audience",
+    "description": "performer's view: 16 turf terraces rising ~15 ft on the natural rake, framed by the lateral shoulders",
+    "camera_elev_navd88": 617.7,
+    "camera_ground_elev_navd88": 612.5,
+    "camera_elev_source": "stage deck (design surface)",
+    "eye_height_ft": 5.2,
+    "look_target_x": 19533128.2,
+    "look_target_y": 750694.41,
+    "look_target_elev_navd88": 623.75,
+    "look_azimuth_deg": 150.0,
+    "look_distance_ft": 73.0,
+    "fov_deg_suggested": 60,
+    "render_file": "renders/stage_looking_back_to_audience.png",
+    "required": false,
+    "note": "",
+    "datum": "NAVD88 Geoid12A intl ft"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533091.7,
+     750757.63
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "ada_arrival_to_cross_aisle",
+    "description": "arriving on accessible Route B: the level cross-aisle and wheelchair dispersion band at row 9, bowl opening beyond",
+    "camera_elev_navd88": 640.06,
+    "camera_ground_elev_navd88": 634.86,
+    "camera_elev_source": "dem_design_1ft.tif",
+    "eye_height_ft": 5.2,
+    "look_target_x": 19533079.95,
+    "look_target_y": 750677.31,
+    "look_target_elev_navd88": 622.73,
+    "look_azimuth_deg": 65.8,
+    "look_distance_ft": 77.0,
+    "fov_deg_suggested": 60,
+    "render_file": "renders/ada_arrival_to_cross_aisle.png",
+    "required": false,
+    "note": "",
+    "datum": "NAVD88 Geoid12A intl ft"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533009.69,
+     750645.73
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "outside_bowl_from_park_edge",
+    "description": "from the NE rim / park edge: the bowl reads as landscape, terraces almost invisible until the rim line",
+    "camera_elev_navd88": 623.17,
+    "camera_ground_elev_navd88": 617.97,
+    "camera_elev_source": "dem_design_1ft.tif",
+    "eye_height_ft": 5.2,
+    "look_target_x": 19533091.7,
+    "look_target_y": 750757.63,
+    "look_target_elev_navd88": 614.5,
+    "look_azimuth_deg": 139.6,
+    "look_distance_ft": 192.3,
+    "fov_deg_suggested": 60,
+    "render_file": "renders/outside_bowl_from_park_edge.png",
+    "required": false,
+    "note": "",
+    "datum": "NAVD88 Geoid12A intl ft"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532967.2,
+     750904.15
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "event_floor_to_treatment_cell",
+    "description": "standing on the forecourt: past the stage shoulder to the dry bioretention meadow \u2014 ephemeral water only, never a pool",
+    "camera_elev_navd88": 617.7,
+    "camera_ground_elev_navd88": 612.5,
+    "camera_elev_source": "event floor (design surface)",
+    "eye_height_ft": 5.2,
+    "look_target_x": 19533042.26,
+    "look_target_y": 750843.27,
+    "look_target_elev_navd88": 610.1,
+    "look_azimuth_deg": 330.0,
+    "look_distance_ft": 132.9,
+    "fov_deg_suggested": 60,
+    "render_file": "renders/event_floor_to_treatment_cell.png",
+    "required": false,
+    "note": "",
+    "datum": "NAVD88 Geoid12A intl ft"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533108.7,
+     750728.19
+    ]
+   }
+  }
+ ]
+}
