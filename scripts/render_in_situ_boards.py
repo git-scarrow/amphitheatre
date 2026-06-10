@@ -108,10 +108,16 @@ def hillshade_base(ax, D):
 
 
 def plan_geometry(ax, mats, treads, zones, ctx, vps=None, lw_scale=1.0,
-                  section_colors=True, show_stage=True):
+                  section_colors=True, show_stage=True, floor_override=None):
     """Standard plan: material base, then the three families coloured
-    separately, hinge rays, stage, circulation. show_stage=False suppresses
-    the inherited stage (board 01 shows only the provisional footprint)."""
+    separately, hinge rays, stage, circulation.
+
+    show_stage=False suppresses the inherited stage. The stored zones were
+    DERIVED from it, so two presentation patches remove its silhouette:
+    floor_override replaces the orchestra polygon (whose hull traced the old
+    stage corners), and the slope-grass backdrop is unioned with the old
+    footprint (whose hole otherwise shows bare hillshade in the old stage's
+    exact shape)."""
     colors = {f["properties"]["zone"]: f["properties"].get("color_hint", MAT_FALLBACK)
               for f in mats}
     base_order = ["existing_slope_grass", "event_floor", "bioretention_planting",
@@ -123,6 +129,16 @@ def plan_geometry(ax, mats, treads, zones, ctx, vps=None, lw_scale=1.0,
     for z in base_order:
         f = next((m for m in mats if m["properties"]["zone"] == z), None)
         if f:
+            if z == "event_floor" and floor_override is not None:
+                f = {"geometry": floor_override, "properties": f["properties"]}
+            elif z == "existing_slope_grass" and not show_stage:
+                from shapely.geometry import shape as _shape, mapping as _mapping
+                from shapely.ops import unary_union as _uu
+
+                old_stage = [_shape(g["geometry"]) for g in zones
+                             if g["properties"]["zone"].startswith("stage")]
+                f = {"geometry": _mapping(_uu([_shape(f["geometry"])] + old_stage)),
+                     "properties": f["properties"]}
             draw_layer(ax, [f], facecolor=colors.get(z, MAT_FALLBACK),
                        edgecolor="none", alpha=alphas.get(z, 0.8), zorder=2)
     for f in treads:
@@ -280,12 +296,12 @@ def axis_profile(ax, treads, comp, D):
     ax.grid(alpha=0.2)
 
 
-def stage_refit_overlay(ax):
-    """Dashed P_opt candidate footprint + axis arrow, if the study exists."""
+def provisional_corners():
+    """Corner ring of the P_opt provisional footprint, or None."""
     path = os.path.join(C.REPO, "analysis", "in_situ_normalization",
                         "stage_typology_scores.json")
     if not os.path.exists(path):
-        return None
+        return None, None
     st = json.load(open(path))
     sel = st["selected_placement"]
     P, az = sel["front_centre"], sel["axis_az"]
@@ -293,6 +309,35 @@ def stage_refit_overlay(ax):
     wx, wy = C.U(az + 90.0)
     corners = [(P[0] + ux * u + wx * w, P[1] + uy * u + wy * w)
                for u, w in ((0, -35), (0, 35), (-34, 35), (-34, -35), (0, -35))]
+    return st, corners
+
+
+def provisional_floor(treads):
+    """Schematic orchestra polygon derived from the PROVISIONAL footprint:
+    hull(P_opt deck, row-1 bands) minus deck minus all treads — replaces the
+    stored zone whose boundary traces the inherited stage."""
+    from shapely.geometry import shape, Polygon, mapping
+    from shapely.ops import unary_union
+
+    st, corners = provisional_corners()
+    if st is None:
+        return None
+    deck = Polygon(corners)
+    row1 = [shape(f["geometry"]) for f in treads if f["properties"]["row"] == 1]
+    allt = unary_union([shape(f["geometry"]) for f in treads])
+    floor = (unary_union([deck] + row1).convex_hull
+             .difference(deck.buffer(0.1))
+             .difference(allt.buffer(0.1)).simplify(0.25))
+    return mapping(floor)
+
+
+def stage_refit_overlay(ax):
+    """Provisional P_opt footprint + axis arrow, if the study exists."""
+    st, corners = provisional_corners()
+    if st is None:
+        return None
+    sel = st["selected_placement"]
+    P, az = sel["front_centre"], sel["axis_az"]
     xs, ys = zip(*corners)
     ax.fill(xs, ys, facecolor="#b9a48a", alpha=0.8, zorder=8)
     ax.plot(xs, ys, color="#7b241c", lw=1.6, ls=(0, (5, 3)), zorder=9)
@@ -317,7 +362,9 @@ def board_01(mats, treads, zones, ctx, vps, D):
         os.path.join(C.REPO, "analysis", "in_situ_normalization",
                      "stage_typology_scores.json"))
     plan_geometry(ax, mats, treads, zones, ctx, vps,
-                  show_stage=show_inherited)
+                  show_stage=show_inherited,
+                  floor_override=None if show_inherited
+                  else provisional_floor(treads))
     rim = [f for f in ctx if f["properties"]["kind"] == "rim_arrival_edge"]
     streets = [f for f in ctx if f["properties"]["kind"] == "street_edge"]
     draw_layer(ax, streets, color="#555555", lw=1.0, ls="-.", zorder=3)
