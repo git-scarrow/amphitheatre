@@ -276,6 +276,30 @@ def axis_profile(ax, treads, comp, D):
     ax.grid(alpha=0.2)
 
 
+def stage_refit_overlay(ax):
+    """Dashed P_opt candidate footprint + axis arrow, if the study exists."""
+    path = os.path.join(C.REPO, "analysis", "in_situ_normalization",
+                        "stage_typology_scores.json")
+    if not os.path.exists(path):
+        return None
+    st = json.load(open(path))
+    sel = st["selected_placement"]
+    P, az = sel["front_centre"], sel["axis_az"]
+    ux, uy = C.U(az)
+    wx, wy = C.U(az + 90.0)
+    corners = [(P[0] + ux * u + wx * w, P[1] + uy * u + wy * w)
+               for u, w in ((0, -35), (0, 35), (-34, 35), (-34, -35), (0, -35))]
+    xs, ys = zip(*corners)
+    ax.plot(xs, ys, color="#7b241c", lw=1.6, ls=(0, (5, 3)), zorder=9)
+    ex, ey = C.polar(55, az, P[0], P[1])
+    ax.annotate("", xy=(ex, ey), xytext=(P[0], P[1]),
+                arrowprops=dict(arrowstyle="-|>", color="#7b241c", lw=1.4))
+    ax.annotate("stage refit CANDIDATE\n(P_opt — Rule 9 pending)",
+                (P[0], P[1]), textcoords="offset points", xytext=(10, -26),
+                fontsize=7, color="#7b241c", fontweight="bold", zorder=10)
+    return st
+
+
 def board_01(mats, treads, zones, ctx, vps, D):
     fig = plt.figure(figsize=(16, 10), dpi=150)
     fig.suptitle("Board 01 — SITE FIT · three-section civic bowl in the Petoskey Pit",
@@ -286,11 +310,14 @@ def board_01(mats, treads, zones, ctx, vps, D):
     rim = [f for f in ctx if f["properties"]["kind"] == "rim_arrival_edge"]
     streets = [f for f in ctx if f["properties"]["kind"] == "street_edge"]
     draw_layer(ax, streets, color="#555555", lw=1.0, ls="-.", zorder=3)
+    study = stage_refit_overlay(ax)
     fmt_axes(ax, all_bounds([streets or rim]), pad=20)
     north_arrow(ax)
     section_legend(ax)
-    ax.set_title("plan — east / bend (SE) / south families, each fitted to its "
-                 "own terrain (street boundaries dash-dot)", fontsize=9)
+    ax.set_title("plan — east / bend (SE) / south families (normalized extents "
+                 "= N0, asymmetry terrain-justified); inherited stage solid, "
+                 "refit candidate dashed — SCHEMATIC, stage decision pending",
+                 fontsize=8.5)
 
     axc = fig.add_axes([0.61, 0.47, 0.36, 0.42])
     man_path = os.path.join(C.REPO, "dem", "in_situ_grading_manifest.json")
@@ -320,8 +347,13 @@ def board_01(mats, treads, zones, ctx, vps, D):
         f"· {seats:,} Band-A seats (validated on the restored surface)",
         "· no retaining walls · low seat edges ≤1.5 ft · swales to NE pour point",
         "· NO single fan declared — sections have separate local curvature",
-        "· stage inherited, refit OPEN (DESIGN_CANON Rule 9)",
+        "· normalized extents = N0: east/south arc ratio 0.74, asymmetry",
+        "  justified by seat-splay + street stops (NORMALIZATION.md)",
+        "· stage: Rule 9 OPEN — dashed P_opt candidate (lat −6.7 ft, −6.3°",
+        "  residual, row-1 gaps ≥12 ft); typology shortlist: covered civic",
+        "  roof 8.6% bay (minor) · masts 3.6% · deck 0% (STAGE_SHAPE_STUDY)",
         "· Scenario E validated earthwork: 500.8 CY gross (excl. stage)",
+        "· NOT Claude-Design-ready until the stage decision lands",
     ]
     if man:
         lines.append(f"· raster model: fill {man['fill_cy_total']:.0f} CY · "
@@ -469,6 +501,12 @@ def main():
             "sections": list(C.SECTIONS),
             "single_fan_declared": False,
             "stage_rule9_status": C.STAGE_RULE9_STATUS,
+            "claude_design_ready": False,
+            "stage_refit_candidate": "P_opt (analysis/in_situ_normalization/"
+                                     "stage_typology_scores.json) — candidate "
+                                     "only, decision pending",
+            "normalization": "N0 selected (analysis/in_situ_normalization/"
+                             "section_balance.json)",
             "superseded_sources_excluded": list(C.SUPERSEDED_SCHEMES),
             "boards": ["01_site_fit_board.png", "02_experience_board.png",
                        "03_landscape_character_board.png"],

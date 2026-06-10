@@ -127,6 +127,46 @@ relative path, plus the extended-bays centrelines.
   status on every stage feature and board and declares no fan. Resolving
   Rule 9 (paths 1–4) is the first manual review step below.
 
+## Normalization, circularity, and the stage-shape study (2026-06-10)
+
+Pre-handoff corrective passes, all measured (DEM ray tracing + tracked
+geometry), all enforced by the audit gate:
+
+- **Section balance / audience frame** (`analysis/in_situ_normalization/
+  NORMALIZATION.md`): east/bend/south = 835/952/1129 ft of arc (ratio 0.74 vs
+  declared 0.75) — asymmetry **justified**: a contour walk shows the east
+  flank is bounded by the 45° seat-splay gate (the basin wraps north), with
+  the street corner behind it. N0 (status quo) selected; east re-march and
+  +row 19 remain analysis-tier candidates; south trim rejected. Frame:
+  centroid bearing 124.6° vs inherited axis 150° (−25.4°, −22.2 ft lateral).
+- **Circularity broken** (`analysis/stage_seating_decoupling/
+  CIRCULARITY_AUDIT.md`): the focal point that anchored the seating march
+  descends from the stage lineage, so seating could not be allowed to justify
+  the stage. Terrain-first audience envelopes (4, by facing class) ×
+  independent stage zones (3, + the NW pan sector rejected: treatment cell)
+  were paired and ranked; the top three pairs tie within proxy noise and the
+  inherited stage centroid sits inside the co-leading southern pan-toe band —
+  the *general* location is re-derived, the exact footprint is not inherited.
+- **Stage-shape study** (`analysis/in_situ_normalization/
+  STAGE_SHAPE_STUDY.md`): "low stage only" is replaced by the
+  **visual-envelope rule** — mass hiding below the terrain silhouette behind
+  it adds no obstruction; new bay/foreground/sky blockage is measured per
+  family; height is never a rejection reason. Placement P_opt (az 150 kept,
+  lateral + upstage search; residual −6.7 ft / −6.3°, row-1 gaps ≥ 12 ft) —
+  the row-1 pocket forbids zeroing the offset. Seven utilitarian typologies
+  scored: deck 0% bay · covered civic roof 8.6% (minor; strongest operations
+  27/40) · movie masts 3.6% · side-framed 4.3% bay / 30% foreground ·
+  asymmetric BOH bay-clear / 58% foreground (caveat) · acoustic canopy 16.1%
+  and hybrid 18.6% bay FLAGGED pending redesign.
+- **Status: Claude Design handoff PAUSED** (`docs/claude_design_handoff.md`
+  banner) until a Rule 9 path + typology are adopted; boards carry
+  `claude_design_ready: false` and label the dashed P_opt as CANDIDATE.
+
+Refresh sequence (needs the DEM): `python scripts/normalize_sections.py &&
+python scripts/obstruction_envelope.py && python scripts/
+stage_seating_decoupling.py && python scripts/stage_shape_study.py`, then
+re-run the board/audit pipeline.
+
 ## Missing inputs
 
 - `dem/dem_design_1ft.tif` on fresh checkouts — restore per

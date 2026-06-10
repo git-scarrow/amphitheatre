@@ -1,5 +1,15 @@
 # Claude Design handoff — three-section civic bowl, Petoskey Pit
 
+> ## ⏸ HANDOFF PAUSED (2026-06-10)
+> The stage decision is unresolved. The seating balance is quantified and the
+> stage is now derived from the audience frame + independent zone analysis
+> (`analysis/in_situ_normalization/STAGE_SHAPE_STUDY.md`,
+> `analysis/stage_seating_decoupling/STAGE_SEATING_PARETO.md`), but a Rule 9
+> path and a stage typology have not been adopted. Do **not** start visual
+> work from this document until this banner is removed; the "low stage only"
+> framing below is superseded by the visual-envelope rule (taller utilitarian
+> mass is acceptable where the obstruction study clears it).
+
 **Purpose:** visual / prototype brief for Claude Design. Everything here
 packages **audited repo outputs** (`scripts/audit_in_situ_package.py` green
 as of this handoff). **Do not invent geometry** — consume the layers listed

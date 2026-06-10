@@ -8,6 +8,9 @@
  ],
  "single_fan_declared": false,
  "stage_rule9_status": "open",
+ "claude_design_ready": false,
+ "stage_refit_candidate": "P_opt (analysis/in_situ_normalization/stage_typology_scores.json) \u2014 candidate only, decision pending",
+ "normalization": "N0 selected (analysis/in_situ_normalization/section_balance.json)",
  "superseded_sources_excluded": [
   "design_open_low"
  ],

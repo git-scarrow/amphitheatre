@@ -313,13 +313,18 @@ def check_design_intent():
     bad_stage = []
     for f in stage_zones:
         p = f["properties"]
-        if (p.get("enclosure") != "none" or p.get("upstage_shell") is not False
-                or p.get("back_wall") is not False
-                or p.get("fly_tower") is not False
+        if (p.get("enclosure") == "full" or p.get("upstage_shell") is True
+                or p.get("back_wall") is True
                 or p.get("blocks_bay_view") is not False):
-            bad_stage.append(f"{p['zone']}: enclosure/bay-view flags wrong")
-        if p.get("max_structure_height_ft", 0) > 8.0:
-            bad_stage.append(f"{p['zone']}: height {p['max_structure_height_ft']} > 8 ft")
+            bad_stage.append(f"{p['zone']}: full-enclosure/bay-view flags wrong")
+        # NOTE: "open" means no unacceptable enclosure or new view blockage —
+        # NOT "tiny". Taller mass is fine when obstruction-tested; untested
+        # tall mass is the failure.
+        if (p.get("max_structure_height_ft", 0) > 8.0
+                and not p.get("obstruction_tested")):
+            bad_stage.append(
+                f"{p['zone']}: {p['max_structure_height_ft']} ft mass with no "
+                "incremental-obstruction test reference")
         if p.get("rule9_status") != "open":
             bad_stage.append(f"{p['zone']}: Rule 9 OPEN status not surfaced")
         if any("declared_fan" in k for k in p):
@@ -327,8 +332,8 @@ def check_design_intent():
     if bad_stage:
         fail("stage intent violations: " + "; ".join(bad_stage))
     elif stage_zones:
-        ok(f"{len(stage_zones)} stage zones open + low (no shell/back wall/"
-           "fly tower), Rule 9 OPEN surfaced, no fan declared")
+        ok(f"{len(stage_zones)} stage zones honest (no untested mass, no full "
+           "enclosure), Rule 9 OPEN surfaced, no fan declared")
     else:
         fail("no stage zones found in bowl_zones.geojson")
 
@@ -339,10 +344,11 @@ def check_design_intent():
             hay = " ".join(str(v) for k, v in f["properties"].items()
                            if k in ("name", "zone", "kind", "material", "use"))
             m = FORBIDDEN_STRUCTURES.search(hay)
-            if m:
+            if m and not f["properties"].get("obstruction_tested"):
                 named_bad.append(f"{layer}:{f['properties'].get('name')} ({m.group(0)})")
     if named_bad:
-        fail("forbidden structures named in layers: " + ", ".join(named_bad))
+        fail("enclosing structures named in layers without an "
+             "incremental-obstruction test: " + ", ".join(named_bad))
 
     aisle = zones.get("cross_aisle", [None])[0]
     if aisle is None:
@@ -400,6 +406,143 @@ def check_design_intent():
         ok("six event modes, all schematic + nonbinding; screen is night-only")
 
 
+def check_normalization_and_stage_study():
+    """Gates added 2026-06-10: section balance + audience frame, the
+    visual-envelope stage study, and the circularity decoupling."""
+    norm_dir = os.path.join(REPO, "analysis", "in_situ_normalization")
+    dec_dir = os.path.join(REPO, "analysis", "stage_seating_decoupling")
+    need = {
+        "normalization": [os.path.join(norm_dir, n) for n in (
+            "section_balance.json", "normalization_candidates.json",
+            "NORMALIZATION.md", "obstruction_envelope.json",
+            "stage_typology_scores.json", "STAGE_SHAPE_STUDY.md")],
+        "decoupling": [os.path.join(dec_dir, n) for n in (
+            "CIRCULARITY_AUDIT.md", "audience_envelopes.geojson",
+            "stage_opportunity_zones.geojson",
+            "pairwise_stage_audience_scores.csv",
+            "STAGE_SEATING_PARETO.md", "pareto_summary.json")],
+    }
+    missing = [os.path.relpath(p, REPO) for ps in need.values() for p in ps
+               if not os.path.exists(p)]
+    if missing:
+        fail("normalization / stage-study / circularity artifacts missing — "
+             "seating geometry may not justify the stage without them: "
+             + ", ".join(missing))
+        return
+    ok("normalization, obstruction-envelope, stage-shape, and circularity "
+       "artifacts all present")
+
+    bal = json.load(open(os.path.join(norm_dir, "section_balance.json")))
+    # frame freshness vs the live tread layer
+    treads = load_vec("terrace_treads.geojson")["features"]
+    import numpy as np
+    from shapely.geometry import shape as _shape
+
+    w = np.array([f["properties"]["seats_kept"] for f in treads], float)
+    cx = np.array([_shape(f["geometry"]).centroid.x for f in treads])
+    cy = np.array([_shape(f["geometry"]).centroid.y for f in treads])
+    live = ((cx * w).sum() / w.sum(), (cy * w).sum() / w.sum())
+    rec = bal["audience_frame"]["audience_centroid_seatweighted"]
+    drift = ((live[0] - rec[0]) ** 2 + (live[1] - rec[1]) ** 2) ** 0.5
+    if drift > 5.0:
+        fail(f"audience frame stale: recorded centroid {drift:.1f} ft from "
+             "the live tread layer — re-run scripts/normalize_sections.py")
+    else:
+        ok(f"audience frame fresh (centroid drift {drift:.1f} ft ≤ 5)")
+
+    imb = bal["imbalance"]
+    if (imb["min_max_ratio"] < imb["declared_threshold"]
+            and not imb.get("asymmetry_justification", "").strip()):
+        fail(f"section imbalance {imb['min_max_ratio']} below declared "
+             f"threshold {imb['declared_threshold']} with NO justification")
+    else:
+        ok(f"section imbalance {imb['min_max_ratio']} vs threshold "
+           f"{imb['declared_threshold']} — "
+           + ("within threshold" if imb["within_threshold"]
+              else "justified by measured street/terrain/splay stops"))
+
+    st = json.load(open(os.path.join(norm_dir, "stage_typology_scores.json")))
+    sf = st.get("frame_source", {}).get("audience_centroid", [0, 0])
+    if ((sf[0] - rec[0]) ** 2 + (sf[1] - rec[1]) ** 2) ** 0.5 > 1.0:
+        fail("stage study not tested against the CURRENT audience frame")
+    if "P_inherited" not in st.get("placement_axis_comparison", {}):
+        fail("inherited stage placement was not explicitly tested against "
+             "the audience frame (fixed-by-inheritance)")
+    izt = st.get("independent_zone_test", {})
+    if not izt.get("co_leader_band"):
+        fail("stage study does not cite the independent stage-opportunity "
+             "zone analysis — seating alone may not justify the stage")
+    tall_tested = False
+    bad_verdicts = []
+    for name, r in st.get("typologies", {}).items():
+        hmax = max(e["height_ft"] for e in r["elements"])
+        if hmax >= 15.0:
+            tall_tested = True
+        v = r.get("verdict", "")
+        if v.startswith("FLAGGED") and "%" not in v:
+            bad_verdicts.append(f"{name}: flagged without a measured share")
+        vl = v.lower()
+        if "too tall" in vl or ("height" in vl
+                                and "not a height" not in vl):
+            bad_verdicts.append(f"{name}: rejected merely for height")
+        if not v.startswith("FLAGGED") and hmax > 8.0 \
+                and "incremental_obstruction" not in r:
+            bad_verdicts.append(f"{name}: tall candidate accepted without "
+                                "incremental obstruction analysis")
+    if not tall_tested:
+        fail("no stage candidate ≥15 ft was tested — 'open' is being "
+             "interpreted as 'tiny'; taller utilitarian typologies must be "
+             "measured, not excluded a priori")
+    if bad_verdicts:
+        fail("stage typology verdict violations: " + "; ".join(bad_verdicts))
+    if tall_tested and not bad_verdicts:
+        ok(f"{len(st.get('typologies', {}))} typologies incl. tall mass "
+           "tested under the visual-envelope rule; no height-only rejections")
+
+    par = json.load(open(os.path.join(dec_dir, "pareto_summary.json")))
+    probs = []
+    if par.get("n_envelopes", 0) < 2 or par.get("n_stage_zones", 0) < 2:
+        probs.append("fewer than 2 envelopes or 2 stage zones — no real "
+                     "independent comparison")
+    if len(par.get("ranked_shortlist", [])) < 3:
+        probs.append("no ranked/Pareto shortlist (single-design output)")
+    if not par.get("why_winner_beats_runner_up", "").strip():
+        probs.append("winner lacks an explanation vs nearby alternatives")
+    if par.get("stage_zones_derived_from_seating") is not False:
+        probs.append("stage zones not declared independent of seating")
+    import csv as _csv
+    with open(os.path.join(dec_dir, "pairwise_stage_audience_scores.csv")) as fh:
+        rows = list(_csv.DictReader(fh))
+    inh = {r["contains_inherited_stage"] for r in rows}
+    if not ({"True", "False"} <= inh):
+        probs.append("pairwise table never compares inherited vs "
+                     "non-inherited stage zones (fixed-by-inheritance)")
+    if probs:
+        fail("circularity gates: " + "; ".join(probs))
+    else:
+        ok(f"circularity broken: {par['n_envelopes']} envelopes x "
+           f"{par['n_stage_zones']} zones, shortlist of "
+           f"{len(par['ranked_shortlist'])}, inherited location compared "
+           "(not assumed), winner explained")
+
+    man_path = os.path.join(REPO, "boards", "board_sources.json")
+    if os.path.exists(man_path):
+        man = json.load(open(man_path))
+        if man.get("claude_design_ready") is not False:
+            fail("boards claim Claude-Design readiness while Rule 9 is OPEN "
+                 "and the stage decision is pending")
+        else:
+            ok("boards explicitly not Claude-Design-ready (Rule 9 open)")
+    hand = os.path.join(REPO, "docs", "claude_design_handoff.md")
+    if os.path.exists(hand):
+        head = open(hand).read(400)
+        if "PAUSED" not in head:
+            fail("docs/claude_design_handoff.md not marked PAUSED while the "
+                 "stage decision is unresolved")
+        else:
+            ok("Claude Design handoff marked PAUSED")
+
+
 def check_rasters(rasters_present):
     if not rasters_present:
         return
@@ -448,6 +591,7 @@ def main():
     check_board_manifest()
     check_viewpoints()
     check_design_intent()
+    check_normalization_and_stage_study()
     check_rasters(rasters_present)
 
     print("\n── in-situ package audit (three-section civic bowl) ──")
