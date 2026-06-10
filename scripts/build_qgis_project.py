@@ -35,12 +35,11 @@ LAYERS = [
     ("cut_fill", "cut/fill 1ft (+fill/−cut)", "../dem/cut_fill_1ft.tif", "raster", None),
     ("site_context", "site context", "../vectors_geojson/site_context.geojson", "vector", "Unknown"),
     ("material_zones", "material zones", "../vectors_geojson/material_zones.geojson", "vector", "Polygon"),
-    ("bowl_zones", "bowl zones", "../vectors_geojson/bowl_zones.geojson", "vector", "Polygon"),
-    ("terrace_treads", "terrace treads (16 rows)", "../vectors_geojson/terrace_treads.geojson", "vector", "Polygon"),
+    ("bowl_zones", "bowl zones (stage Rule 9 OPEN, aisle, ADA, swales, hinges)", "../vectors_geojson/bowl_zones.geojson", "vector", "Unknown"),
+    ("terrace_treads", "terrace treads (3 sections x 15 rows)", "../vectors_geojson/terrace_treads.geojson", "vector", "Polygon"),
     ("terrace_edges", "low seat edges", "../vectors_geojson/terrace_edges.geojson", "vector", "Line"),
-    ("stage_floor", "stage + floor + treatment cell", "../vectors_geojson/stage_floor.geojson", "vector", "Unknown"),
-    ("seating_rows", "seating row arcs (design of record)", "../vectors_geojson/seating_rows.geojson", "vector", "Line"),
-    ("ada_route", "ADA routes + cross-aisle", "../vectors_geojson/ada_route.geojson", "vector", "Line"),
+    ("scenarioE_geometry", "Scenario E emitted geometry (governing source)", "../vectors_geojson/scenarioE_geometry.geojson", "vector", "Unknown"),
+    ("seating_bays", "extended-bays centrelines (incl. row-5 promenade)", "../design_extended_bays/seating_bays.geojson", "vector", "Line"),
     ("event_modes", "event modes (schematic, nonbinding)", "../vectors_geojson/event_modes.geojson", "vector", "Unknown"),
     ("in_situ_viewpoints", "render viewpoints", "../vectors_geojson/in_situ_viewpoints.geojson", "vector", "Point"),
 ]
@@ -71,9 +70,9 @@ def main():
     layers = "\n".join(maplayer(*l) for l in LAYERS)
     order = "\n".join(f'      <item>{lid}</item>' for lid, *_ in reversed(LAYERS))
     xml = f"""<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="Petoskey Pit — Open Civic Bowl in-situ package" version="3.34.0" saveUser="in_situ_pipeline">
+<qgis projectname="Petoskey Pit — three-section civic bowl in-situ package" version="3.34.0" saveUser="in_situ_pipeline">
   <homePath path=""/>
-  <title>Petoskey Pit — Open Civic Bowl in-situ package</title>
+  <title>Petoskey Pit — three-section civic bowl in-situ package</title>
   <transaction mode="Disabled"/>
   <projectFlags set=""/>
   <projectCrs>

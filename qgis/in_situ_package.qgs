@@ -1,7 +1,7 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="Petoskey Pit — Open Civic Bowl in-situ package" version="3.34.0" saveUser="in_situ_pipeline">
+<qgis projectname="Petoskey Pit — three-section civic bowl in-situ package" version="3.34.0" saveUser="in_situ_pipeline">
   <homePath path=""/>
-  <title>Petoskey Pit — Open Civic Bowl in-situ package</title>
+  <title>Petoskey Pit — three-section civic bowl in-situ package</title>
   <transaction mode="Disabled"/>
   <projectFlags set=""/>
   <projectCrs>
@@ -17,12 +17,11 @@
   <layer-tree-group>
     <layer-tree-layer id="in_situ_viewpoints" name="render viewpoints" source="../vectors_geojson/in_situ_viewpoints.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
     <layer-tree-layer id="event_modes" name="event modes (schematic, nonbinding)" source="../vectors_geojson/event_modes.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
-    <layer-tree-layer id="ada_route" name="ADA routes + cross-aisle" source="../vectors_geojson/ada_route.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
-    <layer-tree-layer id="seating_rows" name="seating row arcs (design of record)" source="../vectors_geojson/seating_rows.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
-    <layer-tree-layer id="stage_floor" name="stage + floor + treatment cell" source="../vectors_geojson/stage_floor.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="seating_bays" name="extended-bays centrelines (incl. row-5 promenade)" source="../design_extended_bays/seating_bays.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="scenarioE_geometry" name="Scenario E emitted geometry (governing source)" source="../vectors_geojson/scenarioE_geometry.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
     <layer-tree-layer id="terrace_edges" name="low seat edges" source="../vectors_geojson/terrace_edges.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
-    <layer-tree-layer id="terrace_treads" name="terrace treads (16 rows)" source="../vectors_geojson/terrace_treads.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
-    <layer-tree-layer id="bowl_zones" name="bowl zones" source="../vectors_geojson/bowl_zones.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="terrace_treads" name="terrace treads (3 sections x 15 rows)" source="../vectors_geojson/terrace_treads.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
+    <layer-tree-layer id="bowl_zones" name="bowl zones (stage Rule 9 OPEN, aisle, ADA, swales, hinges)" source="../vectors_geojson/bowl_zones.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
     <layer-tree-layer id="material_zones" name="material zones" source="../vectors_geojson/material_zones.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
     <layer-tree-layer id="site_context" name="site context" source="../vectors_geojson/site_context.geojson" providerKey="ogr" checked="Qt::Checked" expanded="0"/>
     <layer-tree-layer id="cut_fill" name="cut/fill 1ft (+fill/−cut)" source="../dem/cut_fill_1ft.tif" providerKey="gdal" checked="Qt::Checked" expanded="0"/>
@@ -110,10 +109,10 @@
       </srs>
       <provider encoding="UTF-8">ogr</provider>
     </maplayer>
-    <maplayer type="vector" geometry="Polygon" autoRefreshEnabled="0">
+    <maplayer type="vector" geometry="Unknown" autoRefreshEnabled="0">
       <id>bowl_zones</id>
       <datasource>../vectors_geojson/bowl_zones.geojson</datasource>
-      <layername>bowl zones</layername>
+      <layername>bowl zones (stage Rule 9 OPEN, aisle, ADA, swales, hinges)</layername>
       <srs>
       <spatialrefsys nativeFormat="Wkt">
         <authid>EPSG:6494</authid>
@@ -129,7 +128,7 @@
     <maplayer type="vector" geometry="Polygon" autoRefreshEnabled="0">
       <id>terrace_treads</id>
       <datasource>../vectors_geojson/terrace_treads.geojson</datasource>
-      <layername>terrace treads (16 rows)</layername>
+      <layername>terrace treads (3 sections x 15 rows)</layername>
       <srs>
       <spatialrefsys nativeFormat="Wkt">
         <authid>EPSG:6494</authid>
@@ -159,9 +158,9 @@
       <provider encoding="UTF-8">ogr</provider>
     </maplayer>
     <maplayer type="vector" geometry="Unknown" autoRefreshEnabled="0">
-      <id>stage_floor</id>
-      <datasource>../vectors_geojson/stage_floor.geojson</datasource>
-      <layername>stage + floor + treatment cell</layername>
+      <id>scenarioE_geometry</id>
+      <datasource>../vectors_geojson/scenarioE_geometry.geojson</datasource>
+      <layername>Scenario E emitted geometry (governing source)</layername>
       <srs>
       <spatialrefsys nativeFormat="Wkt">
         <authid>EPSG:6494</authid>
@@ -175,25 +174,9 @@
       <provider encoding="UTF-8">ogr</provider>
     </maplayer>
     <maplayer type="vector" geometry="Line" autoRefreshEnabled="0">
-      <id>seating_rows</id>
-      <datasource>../vectors_geojson/seating_rows.geojson</datasource>
-      <layername>seating row arcs (design of record)</layername>
-      <srs>
-      <spatialrefsys nativeFormat="Wkt">
-        <authid>EPSG:6494</authid>
-        <srsid>0</srsid>
-        <description>NAD83(2011) / Michigan Central (ft)</description>
-        <projectionacronym>lcc</projectionacronym>
-        <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
-        <geographicflag>false</geographicflag>
-      </spatialrefsys>
-      </srs>
-      <provider encoding="UTF-8">ogr</provider>
-    </maplayer>
-    <maplayer type="vector" geometry="Line" autoRefreshEnabled="0">
-      <id>ada_route</id>
-      <datasource>../vectors_geojson/ada_route.geojson</datasource>
-      <layername>ADA routes + cross-aisle</layername>
+      <id>seating_bays</id>
+      <datasource>../design_extended_bays/seating_bays.geojson</datasource>
+      <layername>extended-bays centrelines (incl. row-5 promenade)</layername>
       <srs>
       <spatialrefsys nativeFormat="Wkt">
         <authid>EPSG:6494</authid>
@@ -242,9 +225,8 @@
   <layerorder>
       <item>in_situ_viewpoints</item>
       <item>event_modes</item>
-      <item>ada_route</item>
-      <item>seating_rows</item>
-      <item>stage_floor</item>
+      <item>seating_bays</item>
+      <item>scenarioE_geometry</item>
       <item>terrace_edges</item>
       <item>terrace_treads</item>
       <item>bowl_zones</item>

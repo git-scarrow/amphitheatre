@@ -1,56 +1,53 @@
 {
  "crs": "EPSG:6494",
  "datum": "NAVD88 Geoid12A intl ft",
+ "governing_scheme": "scenarioE_three_section_civic_bowl",
  "source_dem": "dem/dem_design_1ft.tif",
  "outputs": [
   "dem/proposed_grade_1ft.tif",
   "dem/cut_fill_1ft.tif"
  ],
- "fill_cy_total": 768.8,
- "cut_cy_total": 157.5,
+ "fill_cy_total": 103.1,
+ "cut_cy_total": 232.8,
  "zones": {
-  "terrace_treads": {
-   "area_sf": 4057.0,
-   "fill_cy": 238.7,
-   "cut_cy": 0.3,
+  "terrace_treads_restored": {
+   "area_sf": 10480.0,
+   "fill_cy": 64.0,
+   "cut_cy": 64.2,
    "cost_status": "geometry_backed"
   },
-  "stage_and_floor": {
-   "area_sf": 6500.0,
-   "fill_cy": 512.8,
-   "cut_cy": 50.7,
+  "cross_aisle": {
+   "area_sf": 1354.0,
+   "fill_cy": 39.1,
+   "cut_cy": 4.4,
+   "cost_status": "geometry_backed"
+  },
+  "east_flank_swale": {
+   "area_sf": 513.0,
+   "fill_cy": 0.0,
+   "cut_cy": 28.5,
+   "cost_status": "geometry_backed"
+  },
+  "south_flank_swale": {
+   "area_sf": 510.0,
+   "fill_cy": 0.0,
+   "cut_cy": 28.3,
    "cost_status": "geometry_backed"
   },
   "treatment_cell_schematic": {
    "area_sf": 5985.0,
-   "fill_cy": 6.8,
-   "cut_cy": 102.8,
-   "cost_status": "concept"
-  },
-  "accessible_route_A_floor": {
-   "area_sf": 360.0,
-   "fill_cy": 16.9,
-   "cut_cy": -0.0,
-   "cost_status": "concept"
-  },
-  "accessible_route_B_mid_row9": {
-   "area_sf": 275.0,
-   "fill_cy": 0.4,
-   "cut_cy": 4.0,
+   "fill_cy": 0.0,
+   "cut_cy": 107.4,
    "cost_status": "concept"
   }
  },
  "flags": {
-  "tread_fill_model": "fill-only to the design tread plane (rows sit on the natural rake); gross fill exceeds the 9 CY centreline estimate because arc ends dip below the row-median terrain \u2014 cf. SCENARIO_B_VALIDATION",
-  "tread_residual_above_plane": {
-   "area_sf": 5987.0,
-   "volume_above_plane_cy": 699.2,
-   "max_above_plane_ft": 6.71
-  },
-  "treatment_cell_grading": "schematic 4:1 shaping toward 609.1 \u2014 stand-in for Stage-5 cell design, down-only",
-  "ada_ramp_grading": "linear 6 ft corridors between arrival ground and design landings; switchback geometry not modelled; Route A clips the treatment-cell edge (boardwalk candidate) \u2014 overlap shows as fill in the cell zone row",
+  "tread_model": "restored to composition elevation (Scenario D restoration \u2014 cut AND fill; z-residual gate 0.25 ft)",
+  "ada_ramps": "not burned in this raster; geometry-backed volumes in analysis/scenarioE_civic/earthwork.csv (route A 79.2, route B 126.0 gross CY)",
+  "stage": "low deck STRUCTURE, not grading; refit OPEN per DESIGN_CANON Rule 9 \u2014 excluded here as in Scenario E's 500.8 CY total",
+  "orchestra_event_floor": "left on existing grade (schematic zone, concept tier)",
+  "treatment_cell_grading": "schematic 4:1 shaping toward 609.1 \u2014 down-only, never impounds water",
   "permanent_water": false,
-  "cut_balance": "on-footprint fill exceeds on-footprint cut; the design's 'never imports fill' claim relies on on-site borrow \u2014 candidate borrow zones are mapped in earthwork_scenarios.geojson (S01-S03)"
- },
- "site_balance_cy": 611.3
+  "reference_earthwork": "analysis/scenarioE_civic/earthwork.csv (validated component volumes, 500.8 CY gross)"
+ }
 }

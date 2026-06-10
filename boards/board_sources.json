@@ -1,0 +1,19 @@
+{
+ "governing_scheme": "scenarioE_three_section_civic_bowl",
+ "seating_source": "vectors_geojson/terrace_treads.geojson (scenarioE formal_restored_tread)",
+ "sections": [
+  "east",
+  "bend",
+  "south"
+ ],
+ "single_fan_declared": false,
+ "stage_rule9_status": "open",
+ "superseded_sources_excluded": [
+  "design_open_low"
+ ],
+ "boards": [
+  "01_site_fit_board.png",
+  "02_experience_board.png",
+  "03_landscape_character_board.png"
+ ]
+}

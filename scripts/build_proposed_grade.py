@@ -1,31 +1,31 @@
 #!/usr/bin/env python3
-"""Proposed-grade + cut/fill rasters for the in-situ package.
+"""Proposed-grade + cut/fill rasters for the three-section civic bowl.
 
 Inputs   dem/dem_design_1ft.tif (existing ground)
-         vectors_geojson/terrace_treads.geojson   (tread elevations)
-         vectors_geojson/stage_floor.geojson      (stage, shoulders, forecourt, cell)
-         vectors_geojson/ada_route.geojson        (ramp corridors)
+         vectors_geojson/terrace_treads.geojson   (restored tread planes)
+         vectors_geojson/bowl_zones.geojson       (aisle, swales, cell)
 Outputs  dem/proposed_grade_1ft.tif
          dem/cut_fill_1ft.tif        (proposed − existing; + = fill, − = cut)
-         dem/in_situ_grading_manifest.json  (volumes per zone, flags)
+         dem/in_situ_grading_manifest.json  (volumes per zone, tiers, flags)
 
-Grading model (planning-grade, matches design_open_low intent):
-  · tread polygons take their design tread elevation (≈9 CY fill, front rows)
-  · stage core, lateral shoulders, forecourt take the 612.5 event floor
-  · ADA ramps cut 6 ft corridors with linear grade from existing arrival
-    ground to their design landing
-  · the treatment cell is shaped DOWN ONLY toward bottom 609.1 at 4:1 from
-    a 612.5 edge grade — SCHEMATIC stand-in for the Stage-5 cell grading,
-    flagged in the manifest; never raises grade, never impounds permanent water
+Grading model (planning-grade, mirrors the validated Scenario E earthwork):
+  · tread bands restored to their composition elevation (cut AND fill —
+    the Scenario D restoration; z-residuals are gated ≤0.25 ft so moves
+    are small)
+  · cross-aisle benched level at 622.01 (rows 9/10 reclassification)
+  · drainage swales cut down by their design depth (down-only)
+  · treatment cell shaped DOWN ONLY toward 609.1 at 4:1 — SCHEMATIC
+    stand-in, flagged; never impounds permanent water
+  · ADA switchbacks are NOT re-burned here — their geometry-backed volumes
+    live in analysis/scenarioE_civic/earthwork.csv and are referenced
+  · the stage deck is a STRUCTURE (refit OPEN per Rule 9), not grading
 
-Missing-data path: when dem/dem_design_1ft.tif is absent (rasters and source
-LiDAR are gitignored — a fresh checkout has neither) this writes a precise
-diagnostic to dem/MISSING_DATA.md and exits 0 so the vector/board pipeline
-can still complete. EPSG:6494, NAVD88 intl ft.
+Missing-data path: when dem/dem_design_1ft.tif is absent (fresh checkout)
+this writes dem/MISSING_DATA.md and exits 0 so the vector/board pipeline
+completes. EPSG:6494, NAVD88 intl ft.
 """
 import json
 import os
-import sys
 
 import in_situ_common as C
 
@@ -38,13 +38,16 @@ DIAGNOSTIC = """\
 (existing-ground DEM, 1 ft, EPSG:6494, NAVD88 intl ft).
 
 ## What was skipped
-- `dem/proposed_grade_1ft.tif` (existing ground + tread/stage/ADA/cell grading)
-- `dem/cut_fill_1ft.tif` and `dem/in_situ_grading_manifest.json` (volumes)
+- `dem/proposed_grade_1ft.tif` (existing ground + tread/aisle/swale/cell grading)
+- `dem/cut_fill_1ft.tif` and the regenerated grading manifest
 - hillshade base on the boards (boards fall back to vector-only rendering)
 
 ## What still completed
 All vector layers in `vectors_geojson/`, the QGIS project, viewpoint stations
 (with documented fallback elevations), event overlays, and the three boards.
+The committed `dem/in_situ_grading_manifest.json` (if present) records the
+volumes from the last DEM-backed build; Scenario E's validated component
+volumes remain in `analysis/scenarioE_civic/earthwork.csv`.
 
 ## How to restore the DEM
 1. Fetch the two USGS LiDAR tiles into `data/` (gitignored):
@@ -59,13 +62,13 @@ This file is deleted automatically once the build succeeds with a DEM.
 
 
 def main():
-    layers = C.verify_against_design()
+    C.verify_against_design()
     if not os.path.exists(C.DEM_DESIGN):
         os.makedirs(os.path.dirname(MISSING), exist_ok=True)
         with open(MISSING, "w") as fh:
             fh.write(DIAGNOSTIC)
-        print(f"DEM missing -> wrote {os.path.relpath(MISSING, C.REPO)} (vector "
-              "pipeline continues; rasters skipped)")
+        print(f"DEM missing -> wrote {os.path.relpath(MISSING, C.REPO)} "
+              "(vector pipeline continues; rasters skipped)")
         return
 
     import numpy as np
@@ -81,44 +84,35 @@ def main():
     T = ds.transform
     H, W = existing.shape
     proposed = existing.copy()
-    zone_burns = []  # (zone, mask) for the manifest
+    zone_burns = []
 
-    def burn(geom_elev_pairs, zone, fill_only=False):
+    def burn(geom_elev_pairs, zone):
         surf = rasterize(geom_elev_pairs, out_shape=(H, W), transform=T,
                          fill=np.nan, dtype="float64", all_touched=False)
         m = np.isfinite(surf) & valid
-        if fill_only:
-            # terrain-following fill to the design plane; never cut high spots
-            m = m & (surf > proposed)
         proposed[m] = surf[m]
         zone_burns.append((zone, m))
-        return m
 
-    # Treads are FILL-ONLY: the design seats rows on the natural rake, so the
-    # tread plane is reached by fill where terrain dips below it and the
-    # terrain is left alone where it rides above (residual cross-fall is
-    # reported, not graded away). A level-bench burn would claim ~700 CY of
-    # cut the design never proposes — the SCENARIO_B_VALIDATION lesson.
     treads = json.load(open(os.path.join(C.VEC_DIR, "terrace_treads.geojson")))["features"]
-    tread_pairs = [(f["geometry"], f["properties"]["tread_elev_navd88"]) for f in treads]
-    tread_fill_m = burn(tread_pairs, "terrace_treads", fill_only=True)
-    tread_surf = rasterize(tread_pairs, out_shape=(H, W), transform=T,
-                           fill=np.nan, dtype="float64", all_touched=False)
-    tread_all = np.isfinite(tread_surf) & valid
-    high = tread_all & (existing > tread_surf)
-    residual_high = {
-        "area_sf": round(float(high.sum()), 0),
-        "volume_above_plane_cy": round(float((existing[high] - tread_surf[high]).sum()) / 27.0, 1),
-        "max_above_plane_ft": round(float((existing[high] - tread_surf[high]).max()), 2) if high.any() else 0.0,
-    }
+    burn([(f["geometry"], f["properties"]["tread_elev_navd88"]) for f in treads],
+         "terrace_treads_restored")
 
-    floor = {f["properties"]["name"]: f for f in layers["floor"]}
-    burn([(floor[n]["geometry"], C.FOCUS_ELEV)
-          for n in ("stage", "stage_shoulder_left", "stage_shoulder_right",
-                    "event_floor_forecourt")], "stage_and_floor")
+    zfeats = json.load(open(os.path.join(C.VEC_DIR, "bowl_zones.geojson")))["features"]
+    zones = {}
+    for f in zfeats:
+        zones.setdefault(f["properties"]["zone"], []).append(f)
+
+    burn([(zones["cross_aisle"][0]["geometry"], C.AISLE_ELEV)], "cross_aisle")
+
+    for f in zones.get("drainage_swale", []):
+        depth = float(f["properties"].get("depth_ft") or 0.5)
+        m = ~geometry_mask([f["geometry"]], out_shape=(H, W), transform=T,
+                           invert=False) & valid
+        proposed[m] = np.minimum(proposed[m], existing[m] - depth)
+        zone_burns.append((f["properties"].get("name", "drainage_swale"), m))
 
     # treatment cell — schematic down-only shaping toward 609.1 at 4:1
-    cell = shape(floor["treatment_wet_cell"]["geometry"])
+    cell = shape(zones["treatment_cell_landscape"][0]["geometry"])
     cmask = ~geometry_mask([cell.__geo_interface__], out_shape=(H, W),
                            transform=T, invert=False) & valid
     rr, cc = np.nonzero(cmask)
@@ -127,85 +121,55 @@ def main():
         pts = shapely.points(np.asarray(xs), np.asarray(ys))
         dist = shapely.distance(pts, cell.exterior)
         target = np.maximum(C.TREATMENT_BOTTOM, C.FOCUS_ELEV - dist / 4.0)
-        vals = np.minimum(existing[rr, cc], target)   # never raise grade
-        proposed[rr, cc] = vals
+        proposed[rr, cc] = np.minimum(existing[rr, cc], target)
         zone_burns.append(("treatment_cell_schematic", cmask))
-
-    # ADA ramps — 6 ft corridors, linear grade from existing arrival to landing
-    ada = C.load_design("ada_route.geojson")["features"]
-    mid_row = next(f for f in ada if f["properties"]["name"] == "mid_cross_aisle")
-    aisle_elev = mid_row["properties"]["elev_navd88"]
-    for f in ada:
-        p = f["properties"]
-        if p["type"] != "switchback_ramp":
-            continue
-        line = shape(f["geometry"])
-        (x0, y0) = line.coords[0]
-        r0, c0 = rasterio.transform.rowcol(T, x0, y0)
-        start = existing[r0, c0] if (0 <= r0 < H and 0 <= c0 < W and
-                                     valid[r0, c0]) else C.FOCUS_ELEV
-        end = C.FOCUS_ELEV if p["name"].endswith("A_floor") else aisle_elev
-        corr = line.buffer(3.0, cap_style="flat")
-        m = ~geometry_mask([corr.__geo_interface__], out_shape=(H, W),
-                           transform=T, invert=False) & valid
-        rr, cc = np.nonzero(m)
-        if not rr.size:
-            continue
-        xs, ys = rasterio.transform.xy(T, rr, cc)
-        t = shapely.line_locate_point(line, shapely.points(np.asarray(xs),
-                                                           np.asarray(ys)))
-        proposed[rr, cc] = start + (end - start) * np.clip(t / line.length, 0, 1)
-        zone_burns.append((p["name"], m))
 
     cut_fill = np.where(valid, proposed - existing, 0.0)
 
     prof = ds.profile.copy()
     prof.update(dtype="float32", nodata=nodata, count=1, compress="deflate")
-    out_grade = os.path.join(C.REPO, "dem", "proposed_grade_1ft.tif")
-    out_cf = os.path.join(C.REPO, "dem", "cut_fill_1ft.tif")
-    with rasterio.open(out_grade, "w", **prof) as o:
+    with rasterio.open(os.path.join(C.REPO, "dem", "proposed_grade_1ft.tif"),
+                       "w", **prof) as o:
         o.write(np.where(valid, proposed, nodata).astype("float32"), 1)
     cf_prof = prof.copy()
     cf_prof.update(nodata=-9999.0)
-    with rasterio.open(out_cf, "w", **cf_prof) as o:
+    with rasterio.open(os.path.join(C.REPO, "dem", "cut_fill_1ft.tif"),
+                       "w", **cf_prof) as o:
         o.write(np.where(valid, cut_fill, -9999.0).astype("float32"), 1)
 
-    cell_ft3 = abs(T.a * T.e)  # 1 ft cells
+    cell_ft3 = abs(T.a * T.e)
+    tiers = {"terrace_treads_restored": "geometry_backed",
+             "cross_aisle": "geometry_backed",
+             "east_flank_swale": "geometry_backed",
+             "south_flank_swale": "geometry_backed",
+             "treatment_cell_schematic": "concept"}
     manifest = {
         "crs": "EPSG:6494",
         "datum": "NAVD88 Geoid12A intl ft",
+        "governing_scheme": C.GOVERNING_SCHEME,
         "source_dem": "dem/dem_design_1ft.tif",
         "outputs": ["dem/proposed_grade_1ft.tif", "dem/cut_fill_1ft.tif"],
         "fill_cy_total": round(float(cut_fill[cut_fill > 0].sum()) * cell_ft3 / 27.0, 1),
         "cut_cy_total": round(float(-cut_fill[cut_fill < 0].sum()) * cell_ft3 / 27.0, 1),
         "zones": {},
         "flags": {
-            "tread_fill_model": "fill-only to the design tread plane (rows sit on "
-                                "the natural rake); gross fill exceeds the 9 CY "
-                                "centreline estimate because arc ends dip below "
-                                "the row-median terrain — cf. SCENARIO_B_VALIDATION",
-            "tread_residual_above_plane": residual_high,
+            "tread_model": "restored to composition elevation (Scenario D "
+                           "restoration — cut AND fill; z-residual gate 0.25 ft)",
+            "ada_ramps": "not burned in this raster; geometry-backed volumes in "
+                         "analysis/scenarioE_civic/earthwork.csv (route A 79.2, "
+                         "route B 126.0 gross CY)",
+            "stage": "low deck STRUCTURE, not grading; refit OPEN per "
+                     "DESIGN_CANON Rule 9 — excluded here as in Scenario E's "
+                     "500.8 CY total",
+            "orchestra_event_floor": "left on existing grade (schematic zone, "
+                                     "concept tier)",
             "treatment_cell_grading": "schematic 4:1 shaping toward 609.1 — "
-                                      "stand-in for Stage-5 cell design, down-only",
-            "ada_ramp_grading": "linear 6 ft corridors between arrival ground "
-                                "and design landings; switchback geometry not "
-                                "modelled; Route A clips the treatment-cell edge "
-                                "(boardwalk candidate) — overlap shows as fill in "
-                                "the cell zone row",
+                                      "down-only, never impounds water",
             "permanent_water": False,
+            "reference_earthwork": "analysis/scenarioE_civic/earthwork.csv "
+                                   "(validated component volumes, 500.8 CY gross)",
         },
     }
-    manifest["site_balance_cy"] = round(manifest["fill_cy_total"] - manifest["cut_cy_total"], 1)
-    manifest["flags"]["cut_balance"] = (
-        "on-footprint fill exceeds on-footprint cut; the design's 'never imports "
-        "fill' claim relies on on-site borrow — candidate borrow zones are mapped "
-        "in earthwork_scenarios.geojson (S01-S03)"
-    )
-    # DESIGN_CANON Rule 3: only geometry-backed, validated moves may carry
-    # cost-proxy status; schematic stand-ins stay at concept tier and must
-    # not appear in a project cost table.
-    tiers = {"terrace_treads": "geometry_backed",
-             "stage_and_floor": "geometry_backed"}
     for zone, m in zone_burns:
         d = cut_fill[m]
         manifest["zones"][zone] = {
@@ -217,10 +181,10 @@ def main():
     with open(os.path.join(C.REPO, "dem", "in_situ_grading_manifest.json"), "w") as fh:
         json.dump(manifest, fh, indent=1)
     if os.path.exists(MISSING):
-        os.remove(MISSING)  # stale diagnostic from a DEM-less run
-    print(f"  wrote dem/proposed_grade_1ft.tif, dem/cut_fill_1ft.tif")
-    print(f"  totals: fill {manifest['fill_cy_total']} CY · cut {manifest['cut_cy_total']} CY"
-          f" (manifest: dem/in_situ_grading_manifest.json)")
+        os.remove(MISSING)
+    print("  wrote dem/proposed_grade_1ft.tif, dem/cut_fill_1ft.tif")
+    print(f"  totals: fill {manifest['fill_cy_total']} CY · cut "
+          f"{manifest['cut_cy_total']} CY (manifest: dem/in_situ_grading_manifest.json)")
 
 
 if __name__ == "__main__":

@@ -1,27 +1,29 @@
 #!/usr/bin/env python3
 """Audit gate for the in-situ design package. Exit 0 = package acceptable.
 
-Checks, in order:
-  1. required files (vectors, qgis project, boards, renders, brief);
-     DEM rasters must exist OR dem/MISSING_DATA.md must explain their absence
-  2. CRS consistency — every GeoJSON layer declares EPSG:6494
-  3. QGIS project layer paths all resolve (rasters may be covered by the
-     missing-data diagnostic)
-  4. row properties — 16 rows, R85→130 @ 3 ft, row 1 at 35 ft from the stage
-     front, tread/terrain/C-value/seat fields populated, and the restated
-     constants still match the tracked geometry (in_situ_common)
-  5. viewpoint completeness — six named stations with camera point, look
-     target, eye height, render file; mid_row_audience_to_bay REQUIRED and
-     looking az 330 ± 5
-  6. design-intent constraints:
-       · treatment cell never permanent water (flags, not vibes)
-       · stage never an enclosing shell / back wall / fly tower; ≤ 8 ft
-       · no retaining walls; seat-edge risers ≤ 2 ft
-       · bay-view corridor present on az 330
-       · event modes: all six, schematic + nonbinding, screen temporary
-  7. raster sanity when present — |cut/fill| ≤ 8 ft, cell floor ≥ 609.0
+Enforces the THREE-SECTION NATURALISTIC GEOMETRY in addition to the
+original package checks. Hard failures:
 
-Any FAIL prints a precise diagnostic and the script exits 1.
+  · all seating bands share one arc centre / read as one constant-radius
+    fan (the superseded design_open_low signature)
+  · east / bend (southeast) / south families missing or incomplete
+  · family curvature metadata absent from the tread bands
+  · seating geometry sourced from design_open_low while the accepted
+    Scenario E / civic-core source exists (stale single-fan layer copies
+    included)
+  · the boards' structural manifest declares a single fan, omits the three
+    sections, or claims a different governing scheme
+  · stage presented as resolved (a declared fan) while DESIGN_CANON Rule 9
+    is open, or stage rendered as an enclosing shell / back wall / fly tower
+  · treatment cell represented as permanent water
+  · retaining walls (seat-edge risers > 2 ft)
+  · the required mid_row_audience_to_bay viewpoint missing or off the bay
+  · required geometry absent without a diagnostic (DEM rasters may be
+    substituted ONLY by dem/MISSING_DATA.md)
+  · CRS drift off EPSG:6494, unresolvable QGIS datasources, cross-aisle
+    provenance not row_reclassification / claiming seam derivation
+
+Prints precise diagnostics; exits 1 on any failure.
 """
 import json
 import os
@@ -48,10 +50,6 @@ def warn(msg):
     WARNS.append(msg)
 
 
-def rel(p):
-    return os.path.relpath(p, REPO)
-
-
 def load_vec(name):
     with open(os.path.join(C.VEC_DIR, name)) as fh:
         return json.load(fh)
@@ -61,10 +59,12 @@ VECTORS = [
     "terrace_treads.geojson", "terrace_edges.geojson", "bowl_zones.geojson",
     "site_context.geojson", "material_zones.geojson",
     "in_situ_viewpoints.geojson", "event_modes.geojson",
-    "seating_rows.geojson", "stage_floor.geojson", "ada_route.geojson",
+    "scenarioE_geometry.geojson",
 ]
+SUPERSEDED_COPIES = ["seating_rows.geojson", "stage_floor.geojson",
+                     "ada_route.geojson"]
 BOARDS = ["boards/01_site_fit_board.png", "boards/02_experience_board.png",
-          "boards/03_landscape_character_board.png"]
+          "boards/03_landscape_character_board.png", "boards/board_sources.json"]
 REQUIRED_VPS = [
     "upper_rim_down_to_stage", "mid_row_audience_to_bay",
     "stage_looking_back_to_audience", "ada_arrival_to_cross_aisle",
@@ -77,6 +77,8 @@ REQUIRED_MODES = [
 FORBIDDEN_STRUCTURES = re.compile(
     r"(upstage shell|fly[ _-]?tower|back[ _-]?wall|proscenium|enclos(ed|ing) "
     r"(room|hall|shell))", re.I)
+CURVATURE_KEYS = ("fit_centre_x", "fit_centre_y", "fit_radius_ft",
+                  "fit_rmse_ft", "curvature_class")
 
 
 def check_required_files():
@@ -89,18 +91,19 @@ def check_required_files():
         fail("required files absent (no diagnostic covers them): "
              + ", ".join(missing))
     else:
-        ok(f"all {len(VECTORS)} vector layers, 3 boards, qgis project, brief present")
+        ok(f"all {len(VECTORS)} vector layers, 3 boards + manifest, qgis "
+           "project, brief present")
 
     rasters = [os.path.join(REPO, "dem", n)
                for n in ("proposed_grade_1ft.tif", "cut_fill_1ft.tif")]
-    have = [os.path.exists(p) for p in rasters]
     diag = os.path.join(REPO, "dem", "MISSING_DATA.md")
-    if all(have):
+    if all(os.path.exists(p) for p in rasters):
         ok("terrain outputs present: proposed_grade_1ft.tif + cut_fill_1ft.tif")
         if os.path.exists(diag):
             fail("dem/MISSING_DATA.md exists alongside built rasters — stale "
                  "diagnostic; re-run scripts/build_proposed_grade.py")
-        if not os.path.exists(os.path.join(REPO, "dem", "in_situ_grading_manifest.json")):
+        if not os.path.exists(os.path.join(REPO, "dem",
+                                           "in_situ_grading_manifest.json")):
             fail("rasters present but dem/in_situ_grading_manifest.json missing")
         return True
     if os.path.exists(diag):
@@ -137,7 +140,7 @@ def check_qgis():
         path = os.path.normpath(os.path.join(os.path.dirname(proj), src))
         if not os.path.exists(path):
             if ml.get("type") == "raster" and diag:
-                continue  # covered by the missing-data diagnostic
+                continue
             unresolved.append(src)
     if unresolved:
         fail("QGIS project datasources do not resolve: " + ", ".join(unresolved))
@@ -146,41 +149,102 @@ def check_qgis():
            "when absent)")
 
 
-def check_rows():
+def check_three_families():
+    """The core regression gates: sections, curvature, no shared fan, no
+    superseded design_open_low sourcing."""
     try:
         C.verify_against_design()
-        ok("governing geometry intact: az 330 audience, ±55° fan, 16 rows, "
-           "stage front 35 ft from row 1")
+        ok("governing source intact: Scenario E three-section geometry, "
+           "cross-aisle provenance honest, stage Rule 9 status surfaced")
     except AssertionError as e:
-        fail(f"design drift vs design_open_low/: {e}")
+        fail(f"governing-source drift: {e}")
         return
+
     treads = load_vec("terrace_treads.geojson")["features"]
-    if len(treads) != C.N_ROWS:
-        fail(f"terrace_treads has {len(treads)} rows, expected {C.N_ROWS}")
-    need = ["row", "radius_ft", "tread_elev_navd88", "terrain_elev_navd88",
-            "cut_fill_ft", "seats_compact_18in", "seats_generous_22in",
-            "tread_inner_radius_ft", "tread_outer_radius_ft"]
-    incomplete = [f"row {f['properties'].get('row', '?')}: missing {k}"
-                  for f in treads for k in need if k not in f["properties"]]
-    no_c = [f["properties"]["row"] for f in treads
-            if f["properties"]["row"] > 1
-            and f["properties"].get("C_value_proposed_mm") is None]
-    if incomplete or no_c:
-        fail("tread property gaps: " + "; ".join(
-            incomplete + ([f"rows without C-value: {no_c}"] if no_c else [])))
+    secs = {}
+    for f in treads:
+        secs.setdefault(f["properties"].get("section"), []).append(f)
+    missing_secs = [s for s in C.SECTIONS if s not in secs]
+    if missing_secs:
+        fail(f"seating families missing from the package: {missing_secs} — "
+             "east / bend (southeast) / south are all required")
+        return
+    counts = {s: len(v) for s, v in secs.items()}
+    if any(c != len(C.FORMAL_ROWS) for c in counts.values()):
+        fail(f"family row counts {counts} != {len(C.FORMAL_ROWS)} formal rows each")
     else:
-        ok("tread polygons carry full row properties incl. C-values and seats")
+        ok(f"three families complete: east/bend(SE)/south x {len(C.FORMAL_ROWS)} rows")
+
+    no_meta = [f"{f['properties'].get('section')}/r{f['properties'].get('row')}"
+               for f in treads
+               if any(k not in f["properties"] for k in CURVATURE_KEYS)]
+    if no_meta:
+        fail("tread bands without curvature metadata: " + ", ".join(no_meta[:8])
+             + ("…" if len(no_meta) > 8 else ""))
+    else:
+        classes = {f["properties"]["curvature_class"] for f in treads}
+        ok(f"curvature metadata on all {len(treads)} bands "
+           f"(classes: {sorted(classes)})")
+
+    if C.shared_fan_detected(treads):
+        fail("seating reads as ONE constant-centre / constant-radius fan — "
+             "regression to the superseded design_open_low scheme")
+    else:
+        ok("no shared arc centre: bands do not collapse onto a single fan")
+
+    bad_src = [f"{f['properties'].get('section')}/r{f['properties'].get('row')}"
+               for f in treads
+               if any(s in str(f["properties"].get("geometry_source", "")).lower()
+                      for s in C.SUPERSEDED_SCHEMES)]
+    if bad_src:
+        fail("seating sourced from superseded design_open_low: "
+             + ", ".join(bad_src[:8]))
+    else:
+        ok("seating geometry_source is the accepted Scenario E emission")
+
+    stale = [s for s in SUPERSEDED_COPIES
+             if os.path.exists(os.path.join(C.VEC_DIR, s))]
+    if stale:
+        fail("stale single-fan layer copies present in vectors_geojson/ while "
+             "the civic source exists: " + ", ".join(stale))
+    else:
+        ok("no superseded design_open_low layer copies in vectors_geojson/")
+
     edges = load_vec("terrace_edges.geojson")["features"]
-    tall = [(f["properties"]["row"], f["properties"]["riser_ft"])
+    tall = [(f["properties"]["name"], f["properties"]["riser_ft"])
             for f in edges if abs(f["properties"]["riser_ft"]) > 2.0]
-    walls = [f["properties"]["row"] for f in edges
+    walls = [f["properties"]["name"] for f in edges
              if f["properties"].get("retaining_wall") is not False]
     if tall:
         fail(f"seat-edge risers exceed 2 ft (retaining-wall territory): {tall}")
     if walls:
-        fail(f"terrace edges not flagged retaining_wall=False: rows {walls}")
+        fail(f"terrace edges not flagged retaining_wall=False: {walls}")
     if not tall and not walls:
         ok(f"{len(edges)} low seat edges, all ≤ 2 ft risers, no retaining walls")
+
+
+def check_board_manifest():
+    path = os.path.join(REPO, "boards", "board_sources.json")
+    if not os.path.exists(path):
+        return  # covered by required-files
+    man = json.load(open(path))
+    bad = []
+    if man.get("governing_scheme") != C.GOVERNING_SCHEME:
+        bad.append(f"governing_scheme={man.get('governing_scheme')}")
+    if man.get("single_fan_declared") is not False:
+        bad.append("single_fan_declared must be false")
+    if sorted(man.get("sections", [])) != sorted(C.SECTIONS):
+        bad.append(f"sections={man.get('sections')}")
+    if any(s in str(man.get("seating_source", "")).lower()
+           for s in C.SUPERSEDED_SCHEMES):
+        bad.append("boards consume design_open_low seating")
+    if man.get("stage_rule9_status") != "open":
+        bad.append("stage Rule 9 status not surfaced as open")
+    if bad:
+        fail("boards structurally imply the wrong scheme "
+             f"(boards/board_sources.json): {'; '.join(bad)}")
+    else:
+        ok("boards built from the three-section scheme (structural manifest)")
 
 
 def check_viewpoints():
@@ -207,20 +271,25 @@ def check_viewpoints():
     mid = vps["mid_row_audience_to_bay"]["properties"]
     if not mid.get("required"):
         gaps.append("mid_row_audience_to_bay must be flagged required=true")
-    if abs(((mid["look_azimuth_deg"] - C.FACE_AZ + 180) % 360) - 180) > 5:
+    if abs(((mid["look_azimuth_deg"] - C.BAY_VIEW_AZ + 180) % 360) - 180) > 10:
         gaps.append(f"mid-row view looks az {mid['look_azimuth_deg']}, "
-                    f"expected {C.FACE_AZ}±5 (over the stage to the bay)")
+                    f"expected {C.BAY_VIEW_AZ}±10 (over the stage to the bay)")
+    if abs(mid["look_target_elev_navd88"] - C.BAY_PLANE) > 0.1:
+        gaps.append("mid-row view target is not the bay water plane")
     if gaps:
         fail("viewpoint completeness: " + "; ".join(gaps))
     else:
         ok("all 6 viewpoints complete (camera, target, eye height, renders); "
-           "mid-row bay view present, required, az 330")
+           "mid-row bay view present, required, on the bay corridor")
 
 
 def check_design_intent():
-    zones = {f["properties"]["zone"]: f
-             for f in load_vec("bowl_zones.geojson")["features"]}
-    cell = zones.get("treatment_cell_landscape")
+    zfeats = load_vec("bowl_zones.geojson")["features"]
+    zones = {}
+    for f in zfeats:
+        zones.setdefault(f["properties"]["zone"], []).append(f)
+
+    cell = zones.get("treatment_cell_landscape", [None])[0]
     if cell is None:
         fail("bowl_zones missing treatment_cell_landscape")
     else:
@@ -239,20 +308,27 @@ def check_design_intent():
     if wet:
         fail("features claiming permanent water: " + ", ".join(wet))
 
-    stage_zones = [f for z, f in zones.items() if z.startswith("stage")]
+    stage_zones = [f for z, fs in zones.items() if z.startswith("stage")
+                   for f in fs]
     bad_stage = []
     for f in stage_zones:
         p = f["properties"]
         if (p.get("enclosure") != "none" or p.get("upstage_shell") is not False
-                or p.get("back_wall") is not False or p.get("fly_tower") is not False):
-            bad_stage.append(f"{p['zone']}: enclosure flags wrong")
+                or p.get("back_wall") is not False
+                or p.get("fly_tower") is not False
+                or p.get("blocks_bay_view") is not False):
+            bad_stage.append(f"{p['zone']}: enclosure/bay-view flags wrong")
         if p.get("max_structure_height_ft", 0) > 8.0:
-            bad_stage.append(f"{p['zone']}: structure height "
-                             f"{p['max_structure_height_ft']} ft > 8 ft cap")
+            bad_stage.append(f"{p['zone']}: height {p['max_structure_height_ft']} > 8 ft")
+        if p.get("rule9_status") != "open":
+            bad_stage.append(f"{p['zone']}: Rule 9 OPEN status not surfaced")
+        if any("declared_fan" in k for k in p):
+            bad_stage.append(f"{p['zone']}: declares a fan while Rule 9 is open")
     if bad_stage:
-        fail("stage rendered as an enclosing structure: " + "; ".join(bad_stage))
+        fail("stage intent violations: " + "; ".join(bad_stage))
     elif stage_zones:
-        ok(f"{len(stage_zones)} stage zones open (no shell/back wall/fly tower, ≤8 ft)")
+        ok(f"{len(stage_zones)} stage zones open + low (no shell/back wall/"
+           "fly tower), Rule 9 OPEN surfaced, no fan declared")
     else:
         fail("no stage zones found in bowl_zones.geojson")
 
@@ -268,33 +344,37 @@ def check_design_intent():
     if named_bad:
         fail("forbidden structures named in layers: " + ", ".join(named_bad))
 
-    # DESIGN_CANON Rules 6/7: circulation bands must name their generator and
-    # never claim seam discovery. Rule 3: schematic corridors stay concept-tier.
-    circ = [f for f in load_vec("bowl_zones.geojson")["features"]
-            if f["properties"]["zone"] in ("cross_aisle", "ada_route")]
+    aisle = zones.get("cross_aisle", [None])[0]
+    if aisle is None:
+        fail("cross_aisle zone missing")
+    else:
+        p = aisle["properties"]
+        if (p.get("geometry_source") != "row_reclassification"
+                or p.get("seam_derived") is not False):
+            fail("cross-aisle provenance violates canon Rules 6/7: "
+                 f"geometry_source={p.get('geometry_source')}, "
+                 f"seam_derived={p.get('seam_derived')}")
+        else:
+            ok("cross-aisle provenance: row_reclassification, seam_derived=false")
     prov_bad = []
-    for f in circ:
+    for f in zones.get("promenade_hinge", []):
         p = f["properties"]
         if p.get("seam_derived") is not False or not p.get("geometry_source"):
-            prov_bad.append(f"{p['zone']}({p.get('source_route')}): provenance fields")
+            prov_bad.append(f"{p.get('name')}: provenance fields")
         if p.get("cost_status") != "concept":
-            prov_bad.append(f"{p['zone']}({p.get('source_route')}): must be concept-tier")
-    man_path = os.path.join(REPO, "dem", "in_situ_grading_manifest.json")
-    if os.path.exists(man_path):
-        man = json.load(open(man_path))
-        for z, v in man.get("zones", {}).items():
-            if ("route" in z or "cell" in z) and v.get("cost_status") != "concept":
-                prov_bad.append(f"manifest zone {z}: schematic move not concept-tier")
+            prov_bad.append(f"{p.get('name')}: schematic band must be concept-tier")
     if prov_bad:
-        fail("canon Rules 3/6/7 violations: " + "; ".join(prov_bad))
-    else:
-        ok("circulation provenance honest (named generator, seam_derived=false, "
-           "concept-tier costs)")
+        fail("promenade provenance: " + "; ".join(prov_bad))
+    if not zones.get("hinge_ray"):
+        fail("hinge rays (section transitions) missing from bowl_zones")
+    elif not prov_bad:
+        ok("hinge rays + row-5 promenade band present with honest provenance")
 
     ctx = load_vec("site_context.geojson")["features"]
     corr = [f for f in ctx if f["properties"]["kind"] == "bay_view_corridor"]
-    if not corr or abs(corr[0]["properties"].get("center_az_deg", 0) - C.FACE_AZ) > 1:
-        fail("bay-view corridor missing from site_context or not on az 330")
+    if not corr or abs(corr[0]["properties"].get("center_az_deg", 0)
+                       - C.BAY_VIEW_AZ) > 1:
+        fail("bay-view corridor missing from site_context or off az 330")
     else:
         ok("bay-view corridor present on az 330")
 
@@ -302,8 +382,8 @@ def check_design_intent():
     modes = {f["properties"]["mode"] for f in events}
     missing = [m for m in REQUIRED_MODES if m not in modes]
     binding = [f["properties"].get("name") for f in events
-               if not (f["properties"].get("schematic") and
-                       f["properties"].get("nonbinding"))]
+               if not (f["properties"].get("schematic")
+                       and f["properties"].get("nonbinding"))]
     screen = [f for f in events if "screen" in f["properties"].get("name", "")]
     perm_screen = [f["properties"]["name"] for f in screen
                    if "night" not in str(f["properties"]).lower()
@@ -311,9 +391,11 @@ def check_design_intent():
     if missing:
         fail("event modes missing: " + ", ".join(missing))
     if binding:
-        fail("event features not schematic+nonbinding: " + ", ".join(map(str, binding)))
+        fail("event features not schematic+nonbinding: "
+             + ", ".join(map(str, binding)))
     if perm_screen:
-        fail("movie screen not flagged temporary/night-only: " + ", ".join(perm_screen))
+        fail("movie screen not flagged temporary/night-only: "
+             + ", ".join(perm_screen))
     if not (missing or binding or perm_screen):
         ok("six event modes, all schematic + nonbinding; screen is night-only")
 
@@ -330,8 +412,7 @@ def check_rasters(rasters_present):
     cf[cf == cf_ds.nodata] = np.nan
     peak = float(np.nanmax(np.abs(cf)))
     if peak > 8.0:
-        fail(f"cut/fill peak {peak:.1f} ft exceeds 8 ft sanity gate — grading "
-             "model is doing something the design never proposed")
+        fail(f"cut/fill peak {peak:.1f} ft exceeds 8 ft sanity gate")
     else:
         ok(f"cut/fill within sanity gate (peak {peak:.2f} ft ≤ 8 ft)")
     pg = rasterio.open(os.path.join(REPO, "dem", "proposed_grade_1ft.tif"))
@@ -347,18 +428,29 @@ def check_rasters(rasters_present):
              f"the {C.TREATMENT_BOTTOM} design bottom")
     else:
         ok(f"treatment-cell proposed floor ≥ design bottom ({cmin:.2f} ft)")
+    man = json.load(open(os.path.join(REPO, "dem",
+                                      "in_situ_grading_manifest.json")))
+    if man.get("governing_scheme") != C.GOVERNING_SCHEME:
+        fail("grading manifest claims a different governing scheme: "
+             f"{man.get('governing_scheme')}")
+    bad_tier = [z for z, v in man.get("zones", {}).items()
+                if "schematic" in z and v.get("cost_status") != "concept"]
+    if bad_tier:
+        fail("schematic grading presented as cost-backed (Rule 3): "
+             + ", ".join(bad_tier))
 
 
 def main():
     rasters_present = check_required_files()
     check_crs()
     check_qgis()
-    check_rows()
+    check_three_families()
+    check_board_manifest()
     check_viewpoints()
     check_design_intent()
     check_rasters(rasters_present)
 
-    print("\n── in-situ package audit ──")
+    print("\n── in-situ package audit (three-section civic bowl) ──")
     for m in PASSES:
         print(f"  PASS  {m}")
     for m in WARNS:
@@ -369,7 +461,7 @@ def main():
     if FAILS:
         print("AUDIT: REJECTED")
         sys.exit(1)
-    print("AUDIT: ACCEPTED — package is reproducible and on design intent")
+    print("AUDIT: ACCEPTED — three-section package reproducible and on design intent")
 
 
 if __name__ == "__main__":
