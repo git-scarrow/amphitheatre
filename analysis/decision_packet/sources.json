@@ -1,0 +1,44 @@
+{
+ "controlling_memo": "docs/POST_EMISSION_DECISION_MEMO.md",
+ "emission_validation": "analysis/tier_emission/TIER_EMISSION_VALIDATION.md (commit f6b1d96)",
+ "geometry_inputs": [
+  "analysis/tier_emission/Scenario_E_baseline_reemit/geometry.geojson",
+  "analysis/tier_emission/modest_normalization/geometry.geojson",
+  "analysis/tier_emission/ambitious_shaped_bowl_seating/geometry.geojson"
+ ],
+ "validation_inputs": [
+  "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+  "analysis/tier_emission/modest_normalization/validation.json",
+  "analysis/tier_emission/ambitious_shaped_bowl_seating/validation.json",
+  "analysis/tier_emission/_baseline_reconciliation.json"
+ ],
+ "context_inputs": [
+  "vectors_geojson/bowl_zones.geojson",
+  "design_extended_bays/composition_table.csv",
+  "dem/dem_design_1ft.tif"
+ ],
+ "headline_numbers_asserted": {
+  "base_a": 1243,
+  "base_nom": 1283,
+  "mod_a": 1357,
+  "mod_nom": 1397,
+  "mod_d": 114,
+  "amb_a": 1505,
+  "amb_nom": 1516,
+  "amb_d": 262,
+  "mod_cy": 25.3,
+  "amb_cy": 47.3,
+  "base_gross_cy": 500.8,
+  "base_drift": 0.0
+ },
+ "stage_rule9_status": "open \u2014 stage drawn PROVISIONAL in all visuals",
+ "n1_east_extension": "REJECTED on emission (0 of +149) \u2014 never drawn",
+ "claim_1665": "not live \u2014 ambitious quoted 1,505 validated / +262",
+ "outputs": [
+  "docs/HUMAN_DECISION_BRIEF.md",
+  "boards/04_seating_options_comparison.png",
+  "boards/05_seating_options_section.png",
+  "analysis/decision_packet/decision_table.csv"
+ ],
+ "script": "scripts/render_decision_packet.py"
+}
