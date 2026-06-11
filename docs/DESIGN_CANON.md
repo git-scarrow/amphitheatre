@@ -98,6 +98,13 @@ without a validated restoration move on file, is hard-rejected. This applies reg
 what the *ideal* plane would produce; the building inspector grades the actual ground, not
 the drawing.
 
+> **Accounting note (2026-06-11, tier emission validation).** ADA ramp B's switchback
+> corridor crosses south row 6 and displaces ~4 seats that Scenario E's capacity never
+> netted out — the same displacement class as the rows-9/10 cross-aisle, much smaller.
+> Quote Scenario E strict-segment Band-A as 1,243 of 1,283 nominal (south r18 station-C
+> sits 2–7 mm under the 90 mm bar, within DEM noise; bend r1 rides the 2.5 % cross-slope
+> ceiling). Source: `analysis/tier_emission/TIER_EMISSION_VALIDATION.md` F4.
+
 ### Rule 9 — Stage geometry and fan declaration must match the emitted seating
 
 The Scenario E seating (rows 1-18, 1 283 Band-A seats across east / bend / south sections)

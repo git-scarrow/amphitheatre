@@ -1,0 +1,657 @@
+{
+ "c_rows": {
+  "east r1": null,
+  "east r2": 181.5,
+  "east r3": 210.7,
+  "east r4": 218.8,
+  "east r6": 431.5,
+  "east r7": 212.6,
+  "east r8": 192.2,
+  "east r11": 494.2,
+  "east r12": 166.8,
+  "east r13": 215.0,
+  "east r14": 153.1,
+  "east r15": 136.2,
+  "east r16": 145.3,
+  "east r17": 109.1,
+  "east r18": 100.1,
+  "bend r1": null,
+  "bend r2": 196.2,
+  "bend r3": 211.8,
+  "bend r4": 214.2,
+  "bend r6": 421.5,
+  "bend r7": 215.2,
+  "bend r8": 193.9,
+  "bend r11": 501.2,
+  "bend r12": 178.1,
+  "bend r13": 192.9,
+  "bend r14": 139.2,
+  "bend r15": 149.6,
+  "bend r16": 143.5,
+  "bend r17": 109.2,
+  "bend r18": 112.7,
+  "south r1": null,
+  "south r2": 205.2,
+  "south r3": 204.2,
+  "south r4": 217.2,
+  "south r6": 418.6,
+  "south r7": 236.6,
+  "south r8": 181.2,
+  "south r11": 507.7,
+  "south r12": 169.2,
+  "south r13": 187.6,
+  "south r14": 169.8,
+  "south r15": 127.4,
+  "south r16": 148.3,
+  "south r17": 130.6,
+  "south r18": 87.8,
+  "bend r19": 110.3,
+  "east r19": 98.6,
+  "south r19": 93.5
+ },
+ "banded": {
+  "A": 1357.1005642207256,
+  "other": 39.89943577927449
+ },
+ "per_band": [
+  {
+   "band": "bend r1",
+   "seats": 19,
+   "band_a": 16.0,
+   "pass_frac": 0.843,
+   "status": "formal",
+   "fail_reasons": [
+    "slope_x2.5/s0.7/d0.00"
+   ]
+  },
+  {
+   "band": "east r1",
+   "seats": 16,
+   "band_a": 16.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r1",
+   "seats": 22,
+   "band_a": 22.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r2",
+   "seats": 21,
+   "band_a": 21.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r2",
+   "seats": 18,
+   "band_a": 18.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r2",
+   "seats": 23,
+   "band_a": 23.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r3",
+   "seats": 22,
+   "band_a": 22.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r3",
+   "seats": 18,
+   "band_a": 18.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r3",
+   "seats": 25,
+   "band_a": 25.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r4",
+   "seats": 23,
+   "band_a": 23.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r4",
+   "seats": 19,
+   "band_a": 19.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r4",
+   "seats": 26,
+   "band_a": 26.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r6",
+   "seats": 24,
+   "band_a": 24.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r6",
+   "seats": 21,
+   "band_a": 21.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r6",
+   "seats": 29,
+   "band_a": 24.8,
+   "pass_frac": 0.856,
+   "status": "formal",
+   "fail_reasons": [
+    "slope_x49.5/s12.3/d0.17"
+   ]
+  },
+  {
+   "band": "bend r7",
+   "seats": 25,
+   "band_a": 25.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r7",
+   "seats": 22,
+   "band_a": 22.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r7",
+   "seats": 30,
+   "band_a": 30.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r8",
+   "seats": 26,
+   "band_a": 26.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r8",
+   "seats": 23,
+   "band_a": 23.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r8",
+   "seats": 31,
+   "band_a": 31.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r11",
+   "seats": 29,
+   "band_a": 29.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r11",
+   "seats": 25,
+   "band_a": 25.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r11",
+   "seats": 34,
+   "band_a": 34.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r12",
+   "seats": 29,
+   "band_a": 29.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r12",
+   "seats": 26,
+   "band_a": 26.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r12",
+   "seats": 36,
+   "band_a": 36.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r13",
+   "seats": 31,
+   "band_a": 31.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r13",
+   "seats": 27,
+   "band_a": 27.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r13",
+   "seats": 37,
+   "band_a": 37.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r14",
+   "seats": 32,
+   "band_a": 32.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r14",
+   "seats": 28,
+   "band_a": 28.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r14",
+   "seats": 39,
+   "band_a": 39.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r15",
+   "seats": 33,
+   "band_a": 33.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r15",
+   "seats": 29,
+   "band_a": 29.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r15",
+   "seats": 40,
+   "band_a": 40.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r16",
+   "seats": 34,
+   "band_a": 34.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r16",
+   "seats": 30,
+   "band_a": 30.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r16",
+   "seats": 41,
+   "band_a": 41.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r17",
+   "seats": 35,
+   "band_a": 35.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r17",
+   "seats": 31,
+   "band_a": 31.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r17",
+   "seats": 42,
+   "band_a": 42.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r18",
+   "seats": 36,
+   "band_a": 36.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r18",
+   "seats": 32,
+   "band_a": 32.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r18",
+   "seats": 44,
+   "band_a": 11.3,
+   "pass_frac": 0.256,
+   "status": "formal",
+   "fail_reasons": [
+    "C_82.8mm",
+    "C_83.7mm",
+    "C_84.6mm",
+    "C_84.7mm",
+    "C_86.2mm",
+    "C_87.6mm",
+    "C_88.0mm",
+    "C_88.6mm"
+   ]
+  },
+  {
+   "band": "bend r19",
+   "seats": 37,
+   "band_a": 37.0,
+   "pass_frac": 1.0,
+   "status": "promoted",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r19",
+   "seats": 33,
+   "band_a": 33.0,
+   "pass_frac": 1.0,
+   "status": "promoted",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r19",
+   "seats": 44,
+   "band_a": 44.0,
+   "pass_frac": 1.0,
+   "status": "promoted",
+   "fail_reasons": []
+  }
+ ],
+ "cap_issues": [],
+ "walls": [],
+ "volumes": {
+  "cut_cy": 216.9,
+  "fill_cy": 297.9,
+  "net_cy": 81.0,
+  "gross_cy": 514.7,
+  "max_cut_ft": 6.2,
+  "max_fill_ft": 9.6,
+  "lod_sqft": 16316,
+  "lod_ac": 0.375,
+  "yield_balance": {
+   "conservative": {
+    "yield_factor": 0.85,
+    "available_fill_cy": 184.3,
+    "shortfall_cy": 113.5,
+    "surplus_cy": 0.0,
+    "balanced": false
+   },
+   "neutral": {
+    "yield_factor": 0.95,
+    "available_fill_cy": 206.0,
+    "shortfall_cy": 91.8,
+    "surplus_cy": 0.0,
+    "balanced": false
+   },
+   "optimistic": {
+    "yield_factor": 1.0,
+    "available_fill_cy": 216.9,
+    "shortfall_cy": 81.0,
+    "surplus_cy": 0.0,
+    "balanced": false
+   }
+  }
+ },
+ "incremental": {
+  "incr_cut_cy": 7.6,
+  "incr_fill_cy": 17.6,
+  "incr_gross_cy": 25.3,
+  "per_component": {
+   "n1_extension": {
+    "cut_cy": 0.0,
+    "fill_cy": 0.0
+   },
+   "promoted_rows": {
+    "cut_cy": 7.0,
+    "fill_cy": 16.8
+   },
+   "regraded_rows_11_18": {
+    "cut_cy": 0.0,
+    "fill_cy": 0.0
+   },
+   "treads_rows_1_18": {
+    "cut_cy": 0.0,
+    "fill_cy": 0.0
+   },
+   "other_(swales/ada/aisle)": {
+    "cut_cy": 0.7,
+    "fill_cy": 0.8
+   }
+  }
+ },
+ "hard": {
+  "sightlines_formal_ok": false,
+  "ada_ok": true,
+  "drainage_ok": true,
+  "cross_aisle_ok": true,
+  "bay_view_ok": true,
+  "treatment_cell_preserved": true,
+  "no_wall_trigger": true,
+  "caps_ok": true
+ },
+ "changes": {
+  "bend r19": 635.18,
+  "south r19": 635.11,
+  "east r19": 635.09
+ },
+ "regrade_log": [
+  {
+   "band": "bend r19",
+   "from_ref": 635.09,
+   "to": 635.18,
+   "dz_ft": 0.09,
+   "kind": "promotion"
+  },
+  {
+   "band": "east r19",
+   "from_ref": 635.09,
+   "to": 635.09,
+   "dz_ft": 0.0,
+   "kind": "promotion"
+  },
+  {
+   "band": "south r19",
+   "from_ref": 635.08,
+   "to": 635.09,
+   "dz_ft": 0.01,
+   "kind": "promotion"
+  }
+ ],
+ "iteration_log": [
+  {
+   "band": "south r19",
+   "iteration": 1,
+   "station_c_p05": 85.5,
+   "target_c_mm": 90.0,
+   "lift_ft": 0.02,
+   "to": 635.11
+  }
+ ],
+ "measured_rows_1_18": {
+  "east r1": 610.87,
+  "east r2": 611.86,
+  "east r3": 612.99,
+  "east r4": 614.19,
+  "east r6": 616.75,
+  "east r7": 618.05,
+  "east r8": 619.35,
+  "east r11": 623.36,
+  "east r12": 624.74,
+  "east r13": 626.33,
+  "east r14": 627.85,
+  "east r15": 629.36,
+  "east r16": 630.77,
+  "east r17": 632.26,
+  "east r18": 633.66,
+  "bend r1": 610.87,
+  "bend r2": 611.92,
+  "bend r3": 613.06,
+  "bend r4": 614.25,
+  "bend r6": 616.78,
+  "bend r7": 618.08,
+  "bend r8": 619.39,
+  "bend r11": 623.44,
+  "bend r12": 624.86,
+  "bend r13": 626.38,
+  "bend r14": 627.88,
+  "bend r15": 629.43,
+  "bend r16": 630.83,
+  "bend r17": 632.32,
+  "bend r18": 633.76,
+  "south r1": 610.84,
+  "south r2": 611.92,
+  "south r3": 613.02,
+  "south r4": 614.23,
+  "south r6": 616.71,
+  "south r7": 618.08,
+  "south r8": 619.34,
+  "south r11": 623.39,
+  "south r12": 624.79,
+  "south r13": 626.29,
+  "south r14": 627.88,
+  "south r15": 629.34,
+  "south r16": 630.75,
+  "south r17": 632.32,
+  "south r18": 633.68
+ },
+ "ext_records": [],
+ "cross_aisle": {
+  "datum": 622.01,
+  "cross_slope_pct": 2.0,
+  "long_slope_pct": 1.0,
+  "drains": true,
+  "wheelable": true
+ },
+ "ada": [
+  {
+   "name": "accessible_route_A_floor",
+   "flights": 3,
+   "running_slope_pct": 8.33,
+   "landings": 4,
+   "running_ok": true
+  },
+  {
+   "name": "accessible_route_B_mid_row9",
+   "flights": 4,
+   "running_slope_pct": 8.33,
+   "landings": 5,
+   "running_ok": true
+  }
+ ],
+ "swales": [
+  {
+   "name": "east_flank_swale",
+   "az_deg": 81.1,
+   "falls_toward_cell": true,
+   "tread_conflict_cells": 0,
+   "valid": true
+  },
+  {
+   "name": "south_flank_swale",
+   "az_deg": 198.1,
+   "falls_toward_cell": true,
+   "tread_conflict_cells": 0,
+   "valid": true
+  }
+ ],
+ "swale_az": {
+  "east": 81.1,
+  "south": 198.1
+ },
+ "n_segments": 396
+}

@@ -1,0 +1,929 @@
+{
+ "c_rows": {
+  "east r1": null,
+  "east r2": 181.5,
+  "east r3": 210.7,
+  "east r4": 218.8,
+  "east r6": 431.5,
+  "east r7": 212.6,
+  "east r8": 192.2,
+  "east r11": 494.2,
+  "east r12": 166.8,
+  "east r13": 215.0,
+  "east r14": 153.1,
+  "east r15": 136.2,
+  "east r16": 145.3,
+  "east r17": 109.1,
+  "east r18": 112.5,
+  "bend r1": null,
+  "bend r2": 196.2,
+  "bend r3": 211.8,
+  "bend r4": 214.2,
+  "bend r6": 421.5,
+  "bend r7": 215.2,
+  "bend r8": 193.9,
+  "bend r11": 501.2,
+  "bend r12": 178.1,
+  "bend r13": 192.9,
+  "bend r14": 139.2,
+  "bend r15": 149.6,
+  "bend r16": 143.5,
+  "bend r17": 109.2,
+  "bend r18": 112.7,
+  "south r1": null,
+  "south r2": 205.2,
+  "south r3": 204.2,
+  "south r4": 217.2,
+  "south r6": 418.6,
+  "south r7": 236.6,
+  "south r8": 181.2,
+  "south r11": 507.7,
+  "south r12": 169.2,
+  "south r13": 187.6,
+  "south r14": 169.8,
+  "south r15": 127.4,
+  "south r16": 148.3,
+  "south r17": 130.6,
+  "south r18": 108.2,
+  "bend r19": 110.3,
+  "east r19": 97.4,
+  "south r19": 95.5,
+  "bend r20": 97.7,
+  "east r20": 97.6,
+  "south r20": 97.7
+ },
+ "banded": {
+  "A": 1505.3765421964526,
+  "other": 10.623457803547314
+ },
+ "per_band": [
+  {
+   "band": "bend r1",
+   "seats": 19,
+   "band_a": 16.0,
+   "pass_frac": 0.843,
+   "status": "formal",
+   "fail_reasons": [
+    "slope_x2.5/s0.7/d0.00"
+   ]
+  },
+  {
+   "band": "east r1",
+   "seats": 16,
+   "band_a": 16.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r1",
+   "seats": 22,
+   "band_a": 22.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r2",
+   "seats": 21,
+   "band_a": 21.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r2",
+   "seats": 18,
+   "band_a": 18.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r2",
+   "seats": 23,
+   "band_a": 23.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r3",
+   "seats": 22,
+   "band_a": 22.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r3",
+   "seats": 18,
+   "band_a": 18.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r3",
+   "seats": 25,
+   "band_a": 25.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r4",
+   "seats": 23,
+   "band_a": 23.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r4",
+   "seats": 19,
+   "band_a": 19.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r4",
+   "seats": 26,
+   "band_a": 26.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r6",
+   "seats": 24,
+   "band_a": 24.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r6",
+   "seats": 21,
+   "band_a": 21.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r6",
+   "seats": 29,
+   "band_a": 24.8,
+   "pass_frac": 0.856,
+   "status": "formal",
+   "fail_reasons": [
+    "slope_x49.5/s12.3/d0.17"
+   ]
+  },
+  {
+   "band": "bend r7",
+   "seats": 25,
+   "band_a": 25.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r7",
+   "seats": 22,
+   "band_a": 22.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r7",
+   "seats": 30,
+   "band_a": 30.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r8",
+   "seats": 26,
+   "band_a": 26.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r8",
+   "seats": 23,
+   "band_a": 23.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r8",
+   "seats": 31,
+   "band_a": 31.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r11",
+   "seats": 29,
+   "band_a": 29.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r11",
+   "seats": 25,
+   "band_a": 25.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r11",
+   "seats": 34,
+   "band_a": 34.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r12",
+   "seats": 29,
+   "band_a": 29.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r12",
+   "seats": 26,
+   "band_a": 26.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r12",
+   "seats": 36,
+   "band_a": 36.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r13",
+   "seats": 31,
+   "band_a": 31.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r13",
+   "seats": 27,
+   "band_a": 27.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r13",
+   "seats": 37,
+   "band_a": 37.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r14",
+   "seats": 32,
+   "band_a": 32.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r14",
+   "seats": 28,
+   "band_a": 28.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r14",
+   "seats": 39,
+   "band_a": 39.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r15",
+   "seats": 33,
+   "band_a": 33.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r15",
+   "seats": 29,
+   "band_a": 29.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r15",
+   "seats": 40,
+   "band_a": 40.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r16",
+   "seats": 34,
+   "band_a": 34.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r16",
+   "seats": 30,
+   "band_a": 30.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r16",
+   "seats": 41,
+   "band_a": 41.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r17",
+   "seats": 35,
+   "band_a": 35.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r17",
+   "seats": 31,
+   "band_a": 31.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r17",
+   "seats": 42,
+   "band_a": 42.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r18",
+   "seats": 36,
+   "band_a": 36.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r18",
+   "seats": 32,
+   "band_a": 32.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r18",
+   "seats": 44,
+   "band_a": 44.0,
+   "pass_frac": 1.0,
+   "status": "formal",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r19",
+   "seats": 37,
+   "band_a": 37.0,
+   "pass_frac": 1.0,
+   "status": "promoted",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r19",
+   "seats": 33,
+   "band_a": 33.0,
+   "pass_frac": 1.0,
+   "status": "promoted",
+   "fail_reasons": []
+  },
+  {
+   "band": "south r19",
+   "seats": 44,
+   "band_a": 44.0,
+   "pass_frac": 1.0,
+   "status": "promoted",
+   "fail_reasons": []
+  },
+  {
+   "band": "bend r20",
+   "seats": 39,
+   "band_a": 39.0,
+   "pass_frac": 1.0,
+   "status": "promoted",
+   "fail_reasons": []
+  },
+  {
+   "band": "east r20",
+   "seats": 34,
+   "band_a": 30.5,
+   "pass_frac": 0.898,
+   "status": "promoted",
+   "fail_reasons": [
+    "C_89.5mm"
+   ]
+  },
+  {
+   "band": "south r20",
+   "seats": 46,
+   "band_a": 46.0,
+   "pass_frac": 1.0,
+   "status": "promoted",
+   "fail_reasons": []
+  }
+ ],
+ "cap_issues": [],
+ "walls": [],
+ "volumes": {
+  "cut_cy": 216.7,
+  "fill_cy": 318.1,
+  "net_cy": 101.5,
+  "gross_cy": 534.8,
+  "max_cut_ft": 6.2,
+  "max_fill_ft": 9.6,
+  "lod_sqft": 17361,
+  "lod_ac": 0.399,
+  "yield_balance": {
+   "conservative": {
+    "yield_factor": 0.85,
+    "available_fill_cy": 184.2,
+    "shortfall_cy": 134.0,
+    "surplus_cy": 0.0,
+    "balanced": false
+   },
+   "neutral": {
+    "yield_factor": 0.95,
+    "available_fill_cy": 205.8,
+    "shortfall_cy": 112.3,
+    "surplus_cy": 0.0,
+    "balanced": false
+   },
+   "optimistic": {
+    "yield_factor": 1.0,
+    "available_fill_cy": 216.7,
+    "shortfall_cy": 101.5,
+    "surplus_cy": 0.0,
+    "balanced": false
+   }
+  }
+ },
+ "incremental": {
+  "incr_cut_cy": 8.5,
+  "incr_fill_cy": 38.9,
+  "incr_gross_cy": 47.3,
+  "per_component": {
+   "n1_extension": {
+    "cut_cy": 0.0,
+    "fill_cy": 0.0
+   },
+   "promoted_rows": {
+    "cut_cy": 7.0,
+    "fill_cy": 36.2
+   },
+   "regraded_rows_11_18": {
+    "cut_cy": 0.0,
+    "fill_cy": 0.0
+   },
+   "treads_rows_1_18": {
+    "cut_cy": 0.0,
+    "fill_cy": 1.4
+   },
+   "other_(swales/ada/aisle)": {
+    "cut_cy": 1.4,
+    "fill_cy": 1.2
+   }
+  }
+ },
+ "hard": {
+  "sightlines_formal_ok": true,
+  "ada_ok": true,
+  "drainage_ok": true,
+  "cross_aisle_ok": true,
+  "bay_view_ok": true,
+  "treatment_cell_preserved": true,
+  "no_wall_trigger": true,
+  "caps_ok": true
+ },
+ "changes": {
+  "south r18": 633.74,
+  "east r19": 635.13,
+  "east r20": 636.68,
+  "bend r19": 635.18,
+  "bend r20": 636.74,
+  "south r19": 635.19,
+  "south r20": 636.75,
+  "east r18": 633.69
+ },
+ "regrade_log": [
+  {
+   "band": "south r18",
+   "from_ref": 633.68,
+   "to": 633.71,
+   "dz_ft": 0.03,
+   "kind": "regrade"
+  },
+  {
+   "band": "bend r19",
+   "from_ref": 635.09,
+   "to": 635.18,
+   "dz_ft": 0.09,
+   "kind": "promotion"
+  },
+  {
+   "band": "east r19",
+   "from_ref": 635.09,
+   "to": 635.08,
+   "dz_ft": -0.01,
+   "kind": "promotion"
+  },
+  {
+   "band": "south r19",
+   "from_ref": 635.08,
+   "to": 635.13,
+   "dz_ft": 0.05,
+   "kind": "promotion"
+  },
+  {
+   "band": "bend r20",
+   "from_ref": 636.47,
+   "to": 636.71,
+   "dz_ft": 0.24,
+   "kind": "promotion"
+  },
+  {
+   "band": "east r20",
+   "from_ref": 636.47,
+   "to": 636.61,
+   "dz_ft": 0.14,
+   "kind": "promotion"
+  },
+  {
+   "band": "south r20",
+   "from_ref": 636.48,
+   "to": 636.66,
+   "dz_ft": 0.18,
+   "kind": "promotion"
+  }
+ ],
+ "iteration_log": [
+  {
+   "band": "east r18",
+   "iteration": 1,
+   "station_c_p05": 94.9,
+   "target_c_mm": 100.0,
+   "lift_ft": 0.03,
+   "to": 633.69
+  },
+  {
+   "band": "south r18",
+   "iteration": 1,
+   "station_c_p05": 95.0,
+   "target_c_mm": 100.0,
+   "lift_ft": 0.03,
+   "to": 633.74
+  },
+  {
+   "band": "east r19",
+   "iteration": 1,
+   "station_c_p05": 78.1,
+   "target_c_mm": 90.0,
+   "lift_ft": 0.05,
+   "to": 635.13
+  },
+  {
+   "band": "south r19",
+   "iteration": 1,
+   "station_c_p05": 75.9,
+   "target_c_mm": 90.0,
+   "lift_ft": 0.06,
+   "to": 635.19
+  },
+  {
+   "band": "bend r20",
+   "iteration": 1,
+   "station_c_p05": 84.6,
+   "target_c_mm": 90.0,
+   "lift_ft": 0.03,
+   "to": 636.74
+  },
+  {
+   "band": "east r20",
+   "iteration": 1,
+   "station_c_p05": 71.7,
+   "target_c_mm": 90.0,
+   "lift_ft": 0.07,
+   "to": 636.68
+  },
+  {
+   "band": "south r20",
+   "iteration": 1,
+   "station_c_p05": 67.5,
+   "target_c_mm": 90.0,
+   "lift_ft": 0.09,
+   "to": 636.75
+  }
+ ],
+ "measured_rows_1_18": {
+  "east r1": 610.87,
+  "east r2": 611.86,
+  "east r3": 612.99,
+  "east r4": 614.19,
+  "east r6": 616.75,
+  "east r7": 618.05,
+  "east r8": 619.35,
+  "east r11": 623.36,
+  "east r12": 624.74,
+  "east r13": 626.33,
+  "east r14": 627.85,
+  "east r15": 629.36,
+  "east r16": 630.77,
+  "east r17": 632.26,
+  "east r18": 633.66,
+  "bend r1": 610.87,
+  "bend r2": 611.92,
+  "bend r3": 613.06,
+  "bend r4": 614.25,
+  "bend r6": 616.78,
+  "bend r7": 618.08,
+  "bend r8": 619.39,
+  "bend r11": 623.44,
+  "bend r12": 624.86,
+  "bend r13": 626.38,
+  "bend r14": 627.88,
+  "bend r15": 629.43,
+  "bend r16": 630.83,
+  "bend r17": 632.32,
+  "bend r18": 633.76,
+  "south r1": 610.84,
+  "south r2": 611.92,
+  "south r3": 613.02,
+  "south r4": 614.23,
+  "south r6": 616.71,
+  "south r7": 618.08,
+  "south r8": 619.34,
+  "south r11": 623.39,
+  "south r12": 624.79,
+  "south r13": 626.29,
+  "south r14": 627.88,
+  "south r15": 629.34,
+  "south r16": 630.75,
+  "south r17": 632.32,
+  "south r18": 633.68
+ },
+ "ext_records": [
+  {
+   "row": 6,
+   "walk_ft": 6.0,
+   "stop": "seat splay gate (46\u00b0)",
+   "design_elev": 616.752374378091,
+   "emitted": false,
+   "reason": "walk shorter than 9 ft",
+   "seats_45": 0,
+   "seats_28": 0
+  },
+  {
+   "row": 7,
+   "walk_ft": 9.0,
+   "stop": "seat splay gate (47\u00b0)",
+   "design_elev": 618.04939154539,
+   "emitted": false,
+   "z_resid_p90": 0.19,
+   "cross_ang_p90": 4.5,
+   "gate_resid_ok": true,
+   "gate_cross_ok": true,
+   "gate_min_len_ok": false,
+   "len_45_ft": 9.0,
+   "len_28_ft": 0.0,
+   "seats_45": 0,
+   "seats_28": 0
+  },
+  {
+   "row": 8,
+   "walk_ft": 21.0,
+   "stop": "seat splay gate (45\u00b0)",
+   "design_elev": 619.3491968795911,
+   "emitted": false,
+   "z_resid_p90": 0.31,
+   "cross_ang_p90": 9.7,
+   "gate_resid_ok": false,
+   "gate_cross_ok": true,
+   "gate_min_len_ok": false,
+   "len_45_ft": 21.0,
+   "len_28_ft": 0.0,
+   "seats_45": 0,
+   "seats_28": 0
+  },
+  {
+   "row": 11,
+   "walk_ft": 27.0,
+   "stop": "seat splay gate (46\u00b0)",
+   "design_elev": 623.3564519827862,
+   "emitted": false,
+   "z_resid_p90": 0.36,
+   "cross_ang_p90": 12.7,
+   "gate_resid_ok": false,
+   "gate_cross_ok": false,
+   "gate_min_len_ok": true,
+   "len_45_ft": 27.0,
+   "len_28_ft": 0.0,
+   "seats_45": 0,
+   "seats_28": 0
+  },
+  {
+   "row": 12,
+   "walk_ft": 30.0,
+   "stop": "seat splay gate (45\u00b0)",
+   "design_elev": 624.735880463706,
+   "emitted": false,
+   "z_resid_p90": 0.32,
+   "cross_ang_p90": 8.0,
+   "gate_resid_ok": false,
+   "gate_cross_ok": true,
+   "gate_min_len_ok": true,
+   "len_45_ft": 30.0,
+   "len_28_ft": 0.0,
+   "seats_45": 0,
+   "seats_28": 0
+  },
+  {
+   "row": 13,
+   "walk_ft": 33.0,
+   "stop": "seat splay gate (45\u00b0)",
+   "design_elev": 626.3301001044008,
+   "emitted": false,
+   "z_resid_p90": 0.39,
+   "cross_ang_p90": 14.3,
+   "gate_resid_ok": false,
+   "gate_cross_ok": false,
+   "gate_min_len_ok": true,
+   "len_45_ft": 33.0,
+   "len_28_ft": 0.0,
+   "seats_45": 0,
+   "seats_28": 0
+  },
+  {
+   "row": 14,
+   "walk_ft": 36.0,
+   "stop": "seat splay gate (46\u00b0)",
+   "design_elev": 627.8539641014986,
+   "emitted": false,
+   "z_resid_p90": 0.29,
+   "cross_ang_p90": 12.1,
+   "gate_resid_ok": false,
+   "gate_cross_ok": false,
+   "gate_min_len_ok": true,
+   "len_45_ft": 36.0,
+   "len_28_ft": 0.0,
+   "seats_45": 0,
+   "seats_28": 0
+  },
+  {
+   "row": 15,
+   "walk_ft": 48.0,
+   "stop": "seat splay gate (46\u00b0)",
+   "design_elev": 629.3606834150248,
+   "emitted": false,
+   "z_resid_p90": 0.32,
+   "cross_ang_p90": 12.0,
+   "gate_resid_ok": false,
+   "gate_cross_ok": false,
+   "gate_min_len_ok": true,
+   "len_45_ft": 48.0,
+   "len_28_ft": 0.0,
+   "seats_45": 0,
+   "seats_28": 0
+  },
+  {
+   "row": 16,
+   "walk_ft": 45.0,
+   "stop": "seat splay gate (47\u00b0)",
+   "design_elev": 630.7717128580715,
+   "emitted": false,
+   "z_resid_p90": 0.48,
+   "cross_ang_p90": 9.4,
+   "gate_resid_ok": false,
+   "gate_cross_ok": true,
+   "gate_min_len_ok": true,
+   "len_45_ft": 45.0,
+   "len_28_ft": 0.0,
+   "seats_45": 0,
+   "seats_28": 0
+  },
+  {
+   "row": 17,
+   "walk_ft": 45.0,
+   "stop": "seat splay gate (47\u00b0)",
+   "design_elev": 632.2611431168157,
+   "emitted": false,
+   "z_resid_p90": 0.44,
+   "cross_ang_p90": 10.8,
+   "gate_resid_ok": false,
+   "gate_cross_ok": false,
+   "gate_min_len_ok": true,
+   "len_45_ft": 45.0,
+   "len_28_ft": 0.0,
+   "seats_45": 0,
+   "seats_28": 0
+  },
+  {
+   "row": 18,
+   "walk_ft": 42.0,
+   "stop": "seat splay gate (46\u00b0)",
+   "design_elev": 633.69,
+   "emitted": false,
+   "z_resid_p90": 0.31,
+   "cross_ang_p90": 11.3,
+   "gate_resid_ok": false,
+   "gate_cross_ok": false,
+   "gate_min_len_ok": true,
+   "len_45_ft": 42.0,
+   "len_28_ft": 0.0,
+   "seats_45": 0,
+   "seats_28": 0
+  }
+ ],
+ "cross_aisle": {
+  "datum": 622.01,
+  "cross_slope_pct": 2.0,
+  "long_slope_pct": 1.0,
+  "drains": true,
+  "wheelable": true
+ },
+ "ada": [
+  {
+   "name": "accessible_route_A_floor",
+   "flights": 3,
+   "running_slope_pct": 8.33,
+   "landings": 4,
+   "running_ok": true
+  },
+  {
+   "name": "accessible_route_B_mid_row9",
+   "flights": 4,
+   "running_slope_pct": 8.33,
+   "landings": 5,
+   "running_ok": true
+  }
+ ],
+ "swales": [
+  {
+   "name": "east_flank_swale",
+   "az_deg": 81.1,
+   "falls_toward_cell": true,
+   "tread_conflict_cells": 0,
+   "valid": true
+  },
+  {
+   "name": "south_flank_swale",
+   "az_deg": 198.1,
+   "falls_toward_cell": true,
+   "tread_conflict_cells": 0,
+   "valid": true
+  }
+ ],
+ "swale_az": {
+  "east": 81.1,
+  "south": 198.1
+ },
+ "n_segments": 430
+}
