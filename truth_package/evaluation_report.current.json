@@ -1,0 +1,390 @@
+{
+ "schema": "truthful-terrain/evaluation-report/0.1",
+ "generated": "2026-06-11T17:49:33-04:00",
+ "generator": "scripts/build_truth_package.py",
+ "design_state_ref": "truth_package/design_state.current.json",
+ "summary": {
+  "seats_nominal": 1283,
+  "seats_band_a_validated": 1243,
+  "tread_status_counts": {
+   "pass": 42,
+   "warn": 2,
+   "fail": 1,
+   "unknown": 0
+  },
+  "earthwork_gross_cy_component_proxy": 500.8,
+  "stage": "Rule 9 OPEN (provisional)",
+  "decision_1": "PENDING (viewer shows option A)"
+ },
+ "checks": [
+  {
+   "id": "seats_nominal",
+   "name": "Nominal seats (45 treads)",
+   "status": "pass",
+   "value": 1283,
+   "source": "vectors_geojson/terrace_treads.geojson",
+   "note": "sum of per-tread seats_kept"
+  },
+  {
+   "id": "seats_band_a",
+   "name": "Strict Band-A seats (4-gate validated)",
+   "status": "pass",
+   "value": 1243,
+   "source": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+   "note": "Rule 4 gates (C\u226590 mm, cross \u22642.5%, long \u22641.0%, surface) on the emitted surface"
+  },
+  {
+   "id": "sightlines",
+   "name": "Sightlines (per-row C, formal bowl)",
+   "status": "fail",
+   "value": "42 pass / 2 warn / 1 fail of 45 treads",
+   "source": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+   "note": "failed bands: south r18 \u2014 station C 2\u20137 mm under the 90 mm bar (canon Rule 8 note: within DEM noise); marginal bands: bend r1, south r6 \u2014 at gate ceilings"
+  },
+  {
+   "id": "ada_running",
+   "name": "ADA routes A/B running slope (planning)",
+   "status": "pass",
+   "value": "accessible_route_A_floor: 8.33%, 3 flights, 4 landings; accessible_route_B_mid_row9: 8.33%, 4 flights, 5 landings",
+   "source": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+   "note": "geometry-backed running slope only \u2014 NOT a full ADA compliance review"
+  },
+  {
+   "id": "cross_aisle",
+   "name": "Cross-aisle (rows 9/10 reclassification)",
+   "status": "pass",
+   "value": "datum 622.01 ft, cross 2.0%, long 1.0%",
+   "source": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+   "note": "level, wheelable, drains"
+  },
+  {
+   "id": "drainage",
+   "name": "Flank swales fall toward treatment cell",
+   "status": "pass",
+   "value": "east_flank_swale az 81.1\u00b0; south_flank_swale az 198.1\u00b0",
+   "source": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+   "note": "0 tread-conflict cells"
+  },
+  {
+   "id": "bay_view",
+   "name": "Bay view (mid/upper rows)",
+   "status": "pass",
+   "value": "water plane 579.45 ft NAVD88",
+   "source": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+   "note": "measured EPT: flat rim never blocks the bay for mid/upper rows; front/floor rows lose it inherently; foreground TREES govern \u2014 tree survey outstanding"
+  },
+  {
+   "id": "earthwork",
+   "name": "Earthwork (validated component proxy)",
+   "status": "warn",
+   "value": "gross 500.8 CY (cut 214.9 / fill 285.9), LOD 0.352 ac",
+   "source": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+   "note": "component-sum proxy; mobilization-level quantities are KNOWN to be understated vs raster truth \u2014 see analysis/tier_emission/TIER_EMISSION_VALIDATION.md"
+  },
+  {
+   "id": "stage_rule9",
+   "name": "Stage geometry / fan declaration (Rule 9)",
+   "status": "fail",
+   "value": "OPEN \u2014 inherited az-150 stage carried PROVISIONAL",
+   "source": "docs/DESIGN_CANON.md",
+   "note": "no adoption path (A/B/C/wide-fan) declared; stage shown for massing only; every stage-derived artifact re-emits on adoption"
+  },
+  {
+   "id": "treatment_cell",
+   "name": "Treatment cell preserved (dry bioretention)",
+   "status": "pass",
+   "value": "never impounds permanent water",
+   "source": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+   "note": "cell SHAPING is concept-tier (schematic 4:1) \u2014 not geometry-backed"
+  },
+  {
+   "id": "seating_scope",
+   "name": "Seating scope decision (Decision 1)",
+   "status": "warn",
+   "value": "PENDING \u2014 A: Scenario E baseline (1243 Band-A) | B: modest_normalization (seating) (1357 Band-A) | C: ambitious_shaped_bowl (seating scope) (1505 Band-A)",
+   "source": "analysis/decision_packet/decision_table.csv",
+   "note": "viewer shows option A (Scenario E baseline); B/C are emitted+validated alternatives awaiting the human decision"
+  },
+  {
+   "id": "groundwater",
+   "name": "Seasonal high groundwater",
+   "status": "unknown",
+   "value": null,
+   "source": "truth_package/data_inventory.md \u00a77",
+   "note": "not derivable from current repo data"
+  },
+  {
+   "id": "geotech",
+   "name": "Geotechnical / bearing",
+   "status": "unknown",
+   "value": null,
+   "source": "truth_package/data_inventory.md \u00a77",
+   "note": "not derivable from current repo data"
+  },
+  {
+   "id": "datum_delta",
+   "name": "IGLD85\u2194NAVD88 \u0394 confirmation (working +0.40 ft assumed)",
+   "status": "unknown",
+   "value": null,
+   "source": "truth_package/data_inventory.md \u00a77",
+   "note": "not derivable from current repo data"
+  },
+  {
+   "id": "ada_full",
+   "name": "Full ADA/code compliance (built cross-slopes, handrails, clearances)",
+   "status": "unknown",
+   "value": null,
+   "source": "truth_package/data_inventory.md \u00a77",
+   "note": "not derivable from current repo data"
+  },
+  {
+   "id": "egress",
+   "name": "Egress / life-safety capacity",
+   "status": "unknown",
+   "value": null,
+   "source": "truth_package/data_inventory.md \u00a77",
+   "note": "not derivable from current repo data"
+  },
+  {
+   "id": "acoustics",
+   "name": "Stage acoustics (blocked on Rule 9)",
+   "status": "unknown",
+   "value": null,
+   "source": "truth_package/data_inventory.md \u00a77",
+   "note": "not derivable from current repo data"
+  },
+  {
+   "id": "permits",
+   "name": "Permitting / zoning",
+   "status": "unknown",
+   "value": null,
+   "source": "truth_package/data_inventory.md \u00a77",
+   "note": "not derivable from current repo data"
+  },
+  {
+   "id": "utilities",
+   "name": "Utility conflicts",
+   "status": "unknown",
+   "value": null,
+   "source": "truth_package/data_inventory.md \u00a77",
+   "note": "not derivable from current repo data"
+  },
+  {
+   "id": "survey",
+   "name": "Survey-grade boundary + topo",
+   "status": "unknown",
+   "value": null,
+   "source": "truth_package/data_inventory.md \u00a77",
+   "note": "not derivable from current repo data"
+  },
+  {
+   "id": "cost",
+   "name": "Construction cost estimate",
+   "status": "unknown",
+   "value": null,
+   "source": "truth_package/data_inventory.md \u00a77",
+   "note": "not derivable from current repo data"
+  },
+  {
+   "id": "trees",
+   "name": "Tree survey (governs bay-view tuning)",
+   "status": "unknown",
+   "value": null,
+   "source": "truth_package/data_inventory.md \u00a77",
+   "note": "not derivable from current repo data"
+  }
+ ],
+ "per_row_c_mm": {
+  "east r1": null,
+  "east r2": 181.5,
+  "east r3": 210.7,
+  "east r4": 218.8,
+  "east r6": 431.5,
+  "east r7": 212.6,
+  "east r8": 192.2,
+  "east r11": 494.2,
+  "east r12": 166.8,
+  "east r13": 215.0,
+  "east r14": 153.1,
+  "east r15": 136.2,
+  "east r16": 145.3,
+  "east r17": 109.1,
+  "east r18": 100.1,
+  "bend r1": null,
+  "bend r2": 196.2,
+  "bend r3": 211.8,
+  "bend r4": 214.2,
+  "bend r6": 421.5,
+  "bend r7": 215.2,
+  "bend r8": 193.9,
+  "bend r11": 501.2,
+  "bend r12": 178.1,
+  "bend r13": 192.9,
+  "bend r14": 139.2,
+  "bend r15": 149.6,
+  "bend r16": 143.5,
+  "bend r17": 109.2,
+  "bend r18": 112.7,
+  "south r1": null,
+  "south r2": 205.2,
+  "south r3": 204.2,
+  "south r4": 217.2,
+  "south r6": 418.6,
+  "south r7": 236.6,
+  "south r8": 181.2,
+  "south r11": 507.7,
+  "south r12": 169.2,
+  "south r13": 187.6,
+  "south r14": 169.8,
+  "south r15": 127.4,
+  "south r16": 148.3,
+  "south r17": 130.6,
+  "south r18": 87.8
+ },
+ "volumes": {
+  "cut_cy": 214.9,
+  "fill_cy": 285.9,
+  "net_cy": 71.0,
+  "gross_cy": 500.8,
+  "max_cut_ft": 6.2,
+  "max_fill_ft": 9.6,
+  "lod_sqft": 15348,
+  "lod_ac": 0.352,
+  "yield_balance": {
+   "conservative": {
+    "yield_factor": 0.85,
+    "available_fill_cy": 182.7,
+    "shortfall_cy": 103.3,
+    "surplus_cy": 0.0,
+    "balanced": false
+   },
+   "neutral": {
+    "yield_factor": 0.95,
+    "available_fill_cy": 204.1,
+    "shortfall_cy": 81.8,
+    "surplus_cy": 0.0,
+    "balanced": false
+   },
+   "optimistic": {
+    "yield_factor": 1.0,
+    "available_fill_cy": 214.9,
+    "shortfall_cy": 71.0,
+    "surplus_cy": 0.0,
+    "balanced": false
+   }
+  }
+ },
+ "warnings": [
+  "PLANNING-GRADE ONLY \u2014 derived from 2015 USGS LiDAR + supplement; not a stamped engineering design and not a field survey.",
+  "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is OPEN (inherited az-150 stage; +25.6\u00b0 audience-axis mismatch on record).",
+  "Coordinates are EPSG:6494 INTERNATIONAL feet \u2014 misreading as US survey feet shifts absolute easting ~39 ft (docs/datum_note.md).",
+  "Component CY totals are validated proxies that understate mobilization-level earthwork (analysis/tier_emission/TIER_EMISSION_VALIDATION.md).",
+  "Seating scope Decision 1 is pending; this package shows the Scenario E baseline (option A).",
+  "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed."
+ ],
+ "unknowns": [
+  "Seasonal high groundwater",
+  "Geotechnical / bearing",
+  "IGLD85\u2194NAVD88 \u0394 confirmation (working +0.40 ft assumed)",
+  "Full ADA/code compliance (built cross-slopes, handrails, clearances)",
+  "Egress / life-safety capacity",
+  "Stage acoustics (blocked on Rule 9)",
+  "Permitting / zoning",
+  "Utility conflicts",
+  "Survey-grade boundary + topo",
+  "Construction cost estimate",
+  "Tree survey (governs bay-view tuning)"
+ ],
+ "sources": {
+  "canon": {
+   "path": "docs/DESIGN_CANON.md",
+   "sha256_12": "60328eb434c7",
+   "present": true
+  },
+  "datum_note": {
+   "path": "docs/datum_note.md",
+   "sha256_12": "a10e5941db52",
+   "present": true
+  },
+  "decision_brief": {
+   "path": "docs/HUMAN_DECISION_BRIEF.md",
+   "sha256_12": "e269d86adcfd",
+   "present": true
+  },
+  "decision_table": {
+   "path": "analysis/decision_packet/decision_table.csv",
+   "sha256_12": "bbbc6a826b30",
+   "present": true
+  },
+  "dem_context": {
+   "path": "dem/dem_context_2p5ft.tif",
+   "sha256_12": "dcdb1a05464d",
+   "present": true
+  },
+  "dem_cutfill": {
+   "path": "dem/cut_fill_1ft.tif",
+   "sha256_12": "566badb423e6",
+   "present": true
+  },
+  "dem_existing": {
+   "path": "dem/dem_design_1ft.tif",
+   "sha256_12": "035eb77372e0",
+   "present": true
+  },
+  "dem_proposed": {
+   "path": "dem/proposed_grade_1ft.tif",
+   "sha256_12": "86de4d4e99a7",
+   "present": true
+  },
+  "earthwork_csv": {
+   "path": "analysis/scenarioE_civic/earthwork.csv",
+   "sha256_12": "c10559504559",
+   "present": true
+  },
+  "grading_manifest": {
+   "path": "dem/in_situ_grading_manifest.json",
+   "sha256_12": "8fb51c9398aa",
+   "present": true
+  },
+  "material_zones": {
+   "path": "vectors_geojson/material_zones.geojson",
+   "sha256_12": "808c25f46137",
+   "present": true
+  },
+  "site_context": {
+   "path": "vectors_geojson/site_context.geojson",
+   "sha256_12": "d2cb717b7fa2",
+   "present": true
+  },
+  "stage_lineage": {
+   "path": "design_open_low/stage_floor.geojson",
+   "sha256_12": "59a32670aab6",
+   "present": true
+  },
+  "tier_validation_memo": {
+   "path": "analysis/tier_emission/TIER_EMISSION_VALIDATION.md",
+   "sha256_12": "b7f190e5b194",
+   "present": true
+  },
+  "treads": {
+   "path": "vectors_geojson/terrace_treads.geojson",
+   "sha256_12": "e74d78853e2d",
+   "present": true
+  },
+  "validation": {
+   "path": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+   "sha256_12": "e08f0e8d2055",
+   "present": true
+  },
+  "viewpoints": {
+   "path": "vectors_geojson/in_situ_viewpoints.geojson",
+   "sha256_12": "e439c4ab9bc9",
+   "present": true
+  },
+  "zones": {
+   "path": "vectors_geojson/bowl_zones.geojson",
+   "sha256_12": "ef32696e94c1",
+   "present": true
+  }
+ }
+}

@@ -1,0 +1,98 @@
+{
+ "schema": "truthful-terrain/export-manifest/0.1",
+ "generated": "2026-06-11T17:49:33-04:00",
+ "note": "Contract for FUTURE handoffs. Only targets marked implemented exist today. Every export must carry the design_state warnings block \u2014 exports that strip the planning-grade caveats are non-conforming.",
+ "targets": [
+  {
+   "id": "web_viewer",
+   "format": "static HTML + Three.js",
+   "status": "implemented",
+   "path": "web_viewer/index.html",
+   "consumers": [
+    "public presentation",
+    "GitHub Pages"
+   ]
+  },
+  {
+   "id": "truth_json",
+   "format": "design_state + evaluation_report JSON",
+   "status": "implemented",
+   "path": "truth_package/",
+   "consumers": [
+    "audit",
+    "downstream agents"
+   ]
+  },
+  {
+   "id": "geojson_gis",
+   "format": "GeoJSON (EPSG:6494) per layer",
+   "status": "exists_in_repo",
+   "path": "vectors_geojson/",
+   "consumers": [
+    "QGIS (qgis/in_situ_package.qgs)",
+    "GIS review"
+   ]
+  },
+  {
+   "id": "geopackage",
+   "format": "GeoPackage (single-file GIS handoff)",
+   "status": "planned",
+   "inputs": [
+    "vectors_geojson/*.geojson"
+   ],
+   "note": "ogr2ogr one-liner per layer; carry CRS + datum metadata"
+  },
+  {
+   "id": "gltf",
+   "format": "glTF/GLB (terrain mesh + design layers)",
+   "status": "planned",
+   "inputs": [
+    "dem/*.tif",
+    "vectors_geojson/*.geojson"
+   ],
+   "consumers": [
+    "Cesium",
+    "Twinmotion",
+    "Unreal",
+    "Blender"
+   ],
+   "note": "reuse the viewer's mesh builder; bake truth-tier into material/extras so provisional layers stay marked"
+  },
+  {
+   "id": "landxml",
+   "format": "LandXML surfaces (existing + proposed)",
+   "status": "planned_if_feasible",
+   "inputs": [
+    "dem/dem_design_1ft.tif",
+    "dem/proposed_grade_1ft.tif"
+   ],
+   "consumers": [
+    "Civil 3D",
+    "OpenSite"
+   ],
+   "note": "TIN from grid; planning-grade flag in project metadata"
+  },
+  {
+   "id": "audit_csv",
+   "format": "CSV/JSON audit reports",
+   "status": "exists_in_repo",
+   "path": "analysis/tier_emission/Scenario_E_baseline_reemit/",
+   "consumers": [
+    "engineering review"
+   ]
+  },
+  {
+   "id": "pdf_exhibits",
+   "format": "PDF boards/exhibits",
+   "status": "planned",
+   "inputs": [
+    "boards/*.png",
+    "truth_package/*.json"
+   ],
+   "consumers": [
+    "council packet",
+    "public meeting"
+   ]
+  }
+ ]
+}

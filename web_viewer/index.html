@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Petoskey Pit — Open Civic Bowl · planning viewer</title>
+<style>
+  :root {
+    --ink: #2b2b28;
+    --ink-soft: #5c5a52;
+    --paper: #faf8f3;
+    --paper-2: #f1ede4;
+    --line: #ddd6c8;
+    --accent: #3e5c76;
+    --pass: #4a7c59;
+    --warn: #b58a3a;
+    --fail: #a94a3f;
+    --unknown: #8a877e;
+    --provisional: #7d6ca3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    font: 14px/1.45 -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    color: var(--ink); background: var(--paper);
+    display: flex;
+  }
+
+  /* ── side panel ─────────────────────────────────────────────── */
+  #panel {
+    width: 372px; min-width: 372px; height: 100%;
+    background: var(--paper); border-right: 1px solid var(--line);
+    overflow-y: auto; z-index: 5;
+  }
+  #panel header { padding: 18px 20px 12px; border-bottom: 1px solid var(--line); }
+  #panel h1 { font-size: 19px; font-weight: 650; letter-spacing: .01em; }
+  #panel .sub { color: var(--ink-soft); font-size: 12px; margin-top: 4px; }
+  .grade-banner {
+    margin: 12px 20px 0; padding: 8px 12px; border-radius: 4px;
+    background: #f6e8c8; border: 1px solid #e2c986; color: #6b5219;
+    font-size: 12px; font-weight: 600;
+  }
+  .grade-banner .more { font-weight: 400; display: block; margin-top: 3px; }
+
+  details.sec { border-bottom: 1px solid var(--line); }
+  details.sec > summary {
+    list-style: none; cursor: pointer; padding: 11px 20px;
+    font-weight: 650; font-size: 13px; letter-spacing: .03em;
+    text-transform: uppercase; color: var(--ink-soft);
+    display: flex; align-items: center; gap: 8px;
+  }
+  details.sec > summary::after { content: "+"; margin-left: auto; color: #b9b2a2; }
+  details.sec[open] > summary::after { content: "–"; }
+  details.sec > .body { padding: 2px 20px 16px; }
+
+  /* presets */
+  .preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .preset-grid button {
+    padding: 7px 9px; font-size: 12.5px; text-align: left;
+    background: var(--paper-2); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 4px; cursor: pointer;
+  }
+  .preset-grid button:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-grid button .k { color: #a39d8e; font-size: 10.5px; float: right; }
+  #resetBtn { grid-column: 1 / -1; text-align: center; font-weight: 600; }
+
+  /* layers */
+  .lgroup { margin: 10px 0 2px; font-size: 11px; font-weight: 700;
+            letter-spacing: .06em; text-transform: uppercase; color: #9a937f; }
+  .lnote { font-size: 11px; color: #8c8674; line-height: 1.45; margin: 0 0 4px; }
+  label.lyr { display: flex; align-items: center; gap: 8px; padding: 3.5px 0;
+              cursor: pointer; font-size: 13px; }
+  label.lyr input { accent-color: var(--accent); }
+  .tier {
+    margin-left: auto; font-size: 9.5px; font-weight: 700; letter-spacing: .04em;
+    padding: 1.5px 6px; border-radius: 8px; text-transform: uppercase; white-space: nowrap;
+  }
+  .tier.sot   { background: #e2ead9; color: #3e5c40; }
+  .tier.prov  { background: #e6dff0; color: #5b4a86; }
+  .tier.conc  { background: #efe7d3; color: #8a6d2f; }
+  .tier.illus { background: #eceae3; color: #7c776a; }
+  .tier.mixed { background: #e8e4ec; color: #6e687c; }
+  .swatch { width: 11px; height: 11px; border-radius: 2px; flex: none;
+            border: 1px solid rgba(0,0,0,.18); }
+
+  /* checks */
+  .check { display: flex; gap: 9px; padding: 6px 0; border-top: 1px dotted #e8e2d4;
+           font-size: 12.5px; }
+  .check:first-child { border-top: 0; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; margin-top: 4px; }
+  .dot.pass { background: var(--pass); } .dot.warn { background: var(--warn); }
+  .dot.fail { background: var(--fail); } .dot.unknown { background: var(--unknown); }
+  .check .nm { font-weight: 600; }
+  .check .val { color: var(--ink-soft); }
+  .check .note { color: #8e887a; font-size: 11.5px; margin-top: 1px; }
+  .check-legend { display: flex; gap: 13px; padding: 6px 0 10px; font-size: 11.5px;
+                  color: var(--ink-soft); }
+  .check-legend span { display: flex; align-items: center; gap: 5px; }
+
+  /* truth & sources */
+  table.truth { width: 100%; border-collapse: collapse; font-size: 12px; }
+  table.truth td { padding: 5px 4px 5px 0; border-top: 1px dotted #e8e2d4;
+                   vertical-align: top; }
+  .src { font-size: 11px; color: var(--ink-soft); padding: 3px 0;
+         border-top: 1px dotted #e8e2d4; display: flex; gap: 8px; }
+  .src code { font-family: ui-monospace, monospace; font-size: 10px; color: #9a937f;
+              margin-left: auto; white-space: nowrap; }
+  ul.missing { padding-left: 18px; font-size: 12.5px; color: var(--ink-soft); }
+  ul.missing li { margin: 3px 0; }
+
+  .pending { font-size: 12.5px; }
+  .pending table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  .pending th, .pending td { text-align: left; padding: 4px 6px 4px 0; font-size: 12px;
+                             border-top: 1px dotted #e8e2d4; }
+  .pending th { font-size: 10.5px; text-transform: uppercase; letter-spacing: .04em;
+                color: #9a937f; border-top: 0; }
+  .pending .shown { background: #eef2ea; }
+
+  .foot { padding: 14px 20px 26px; font-size: 11px; color: #8e887a; }
+
+  /* ── viewport ───────────────────────────────────────────────── */
+  #view { position: relative; flex: 1; height: 100%; min-width: 0;
+          background: linear-gradient(#cfdde6 0%, #e7ebe3 58%, #d9d4c4 100%); }
+  #view canvas { display: block; }
+
+  #topBanner {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    padding: 5px 14px; border-radius: 14px; font-size: 11.5px; font-weight: 600;
+    background: rgba(43,43,40,.78); color: #f3efe2; white-space: nowrap;
+    pointer-events: none; z-index: 4;
+  }
+  #stageFlag {
+    position: absolute; top: 44px; left: 50%; transform: translateX(-50%);
+    padding: 3px 12px; border-radius: 12px; font-size: 11px; font-weight: 600;
+    background: rgba(125,108,163,.88); color: #fff; pointer-events: none; z-index: 4;
+  }
+  #compass {
+    position: absolute; right: 16px; top: 14px; width: 46px; height: 46px;
+    border-radius: 50%; background: rgba(250,248,243,.85);
+    border: 1px solid var(--line); z-index: 4; pointer-events: none;
+  }
+  #compass .needle { position: absolute; left: 50%; top: 50%; width: 2px; height: 17px;
+    background: var(--fail); transform-origin: 50% 100%;
+    transform: translate(-50%,-100%); }
+  #compass .n { position: absolute; left: 50%; top: 3px; transform: translateX(-50%);
+    font-size: 9px; font-weight: 700; color: var(--ink-soft); }
+
+  #infoCard {
+    position: absolute; bottom: 16px; left: 16px; max-width: 330px;
+    background: rgba(250,248,243,.96); border: 1px solid var(--line);
+    border-radius: 6px; padding: 12px 14px; font-size: 12.5px; z-index: 4;
+    display: none; box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  }
+  #infoCard h3 { font-size: 13.5px; margin-bottom: 4px; display: flex; gap: 8px;
+                 align-items: center; }
+  #infoCard .row { display: flex; justify-content: space-between; gap: 14px;
+                   padding: 1.5px 0; color: var(--ink-soft); }
+  #infoCard .row b { color: var(--ink); font-weight: 600; }
+  #infoCard .fr { margin-top: 5px; font-size: 11px; color: #8e887a; }
+  #infoCard .close { position: absolute; right: 8px; top: 6px; cursor: pointer;
+                     color: #a39d8e; font-size: 14px; }
+  #hint {
+    position: absolute; bottom: 14px; right: 16px; font-size: 11px;
+    color: rgba(43,43,40,.55); pointer-events: none; z-index: 4; text-align: right;
+  }
+</style>
+</head>
+<body>
+
+<aside id="panel">
+  <header>
+    <h1 id="title">Petoskey Pit — Open Civic Bowl</h1>
+    <div class="sub" id="subtitle"></div>
+  </header>
+  <div class="grade-banner">PLANNING-GRADE VISUALIZATION
+    <span class="more">Derived from 2015 USGS LiDAR + repo design files. Not a field
+    survey. Not stamped engineering. Stage geometry is provisional (Rule 9 open).</span>
+  </div>
+
+  <details class="sec" open>
+    <summary>Camera</summary>
+    <div class="body"><div class="preset-grid" id="presets"></div></div>
+  </details>
+
+  <details class="sec" open>
+    <summary>Layers</summary>
+    <div class="body" id="layers"></div>
+  </details>
+
+  <details class="sec" open>
+    <summary>Audit — checks</summary>
+    <div class="body">
+      <div class="check-legend">
+        <span><i class="dot pass"></i>pass</span>
+        <span><i class="dot warn"></i>warn</span>
+        <span><i class="dot fail"></i>fail</span>
+        <span><i class="dot unknown"></i>unknown</span>
+      </div>
+      <div id="checks"></div>
+    </div>
+  </details>
+
+  <details class="sec">
+    <summary>Truth tiers &amp; sources</summary>
+    <div class="body">
+      <table class="truth" id="truthTable"></table>
+      <div class="lgroup" style="margin-top:14px">Source files (sha-256 / 12)</div>
+      <div id="sources"></div>
+    </div>
+  </details>
+
+  <details class="sec">
+    <summary>Missing data / unknowns</summary>
+    <div class="body"><ul class="missing" id="missing"></ul></div>
+  </details>
+
+  <details class="sec">
+    <summary>Pending decision</summary>
+    <div class="body pending" id="pending"></div>
+  </details>
+
+  <div class="foot" id="disclaimer"></div>
+</aside>
+
+<main id="view">
+  <div id="topBanner">PLANNING-GRADE — 2015 LiDAR · EPSG:6494 intl ft · NAVD88</div>
+  <div id="stageFlag">STAGE PROVISIONAL — Rule 9 open, no adoption path declared</div>
+  <div id="compass"><div class="needle" id="needle"></div><div class="n">N</div></div>
+  <div id="infoCard"><span class="close" onclick="this.parentElement.style.display='none'">×</span><div id="infoBody"></div></div>
+  <div id="hint">drag orbit · right-drag pan · wheel zoom · keys 1–7 presets, 0 reset<br>click a tread for its audit record</div>
+</main>
+
+<div id="errOverlay" style="display:none;position:absolute;top:80px;left:50%;transform:translateX(-50%);
+  max-width:680px;background:#fbeae7;border:1px solid #d8a39a;color:#7c2d22;padding:10px 16px;
+  border-radius:6px;font:12px ui-monospace,monospace;z-index:30;white-space:pre-wrap"></div>
+<script>
+addEventListener("error", e => {
+  const d = document.getElementById("errOverlay");
+  d.style.display = "block";
+  d.textContent += `${e.message}  (${(e.filename||"").split("/").pop()}:${e.lineno})\n`;
+});
+</script>
+<script src="vendor/three.min.js"></script>
+<script src="vendor/OrbitControls.js"></script>
+<script src="data/site_data.js"></script>
+<script>
+"use strict";
+const D = window.SITE_DATA;
+if (!D) { document.body.innerHTML = "<p style='padding:2em'>data/site_data.js missing — run scripts/build_truth_package.py</p>"; throw new Error("no data"); }
+
+/* ════════════════════════════════════════════════════════════════
+   Local frame: x = ft east of origin, y = ft north, z = NAVD88 ft.
+   three.js world: X = x, Y = z (up), Z = −y  (so north = −Z).
+   ════════════════════════════════════════════════════════════════ */
+const W = (x, y, z) => new THREE.Vector3(x, z, -y);
+
+/* ── grid decoding ─────────────────────────────────────────────── */
+function decodeGrid(g) {
+  const raw = atob(g.b64), n = g.nx * g.ny, out = new Float32Array(n);
+  if (g.fmt === "u16") {
+    for (let i = 0; i < n; i++) {
+      const v = raw.charCodeAt(2 * i) | (raw.charCodeAt(2 * i + 1) << 8);
+      out[i] = v === 65535 ? NaN : g.zmin + v * g.scale;
+    }
+  } else { // i8
+    for (let i = 0; i < n; i++) {
+      let v = raw.charCodeAt(i); if (v > 127) v -= 256;
+      out[i] = v * g.scale;
+    }
+  }
+  return out;
+}
+const G = {};            // decoded grids
+for (const k of ["existing", "proposed", "cutfill", "context"])
+  if (D.terrain[k]) G[k] = decodeGrid(D.terrain[k]);
+
+function makeSampler(g, vals) {
+  return (x, y) => {
+    const fx = (x - g.x0) / g.res, fy = (g.y0 - y) / g.res;
+    if (fx < 0 || fy < 0 || fx > g.nx - 1 || fy > g.ny - 1) return NaN;
+    const j0 = Math.min(Math.floor(fx), g.nx - 2), i0 = Math.min(Math.floor(fy), g.ny - 2);
+    const tx = fx - j0, ty = fy - i0;
+    const z00 = vals[i0 * g.nx + j0],       z01 = vals[i0 * g.nx + j0 + 1],
+          z10 = vals[(i0 + 1) * g.nx + j0], z11 = vals[(i0 + 1) * g.nx + j0 + 1];
+    if (isNaN(z00) || isNaN(z01) || isNaN(z10) || isNaN(z11))
+      return [z00, z01, z10, z11].find(v => !isNaN(v)) ?? NaN;
+    return z00 * (1 - tx) * (1 - ty) + z01 * tx * (1 - ty) +
+           z10 * (1 - tx) * ty + z11 * tx * ty;
+  };
+}
+const zProposed = D.terrain.proposed ? makeSampler(D.terrain.proposed, G.proposed) : () => NaN;
+const zContext  = D.terrain.context  ? makeSampler(D.terrain.context,  G.context)  : () => NaN;
+const demZ = (x, y) => { const z = zProposed(x, y); return isNaN(z) ? zContext(x, y) : z; };
+
+/* ── audit panel (no WebGL required — populated before 3D init) ── */
+const TIER_BADGE = {
+  source_of_truth: ["sot", "source"], provisional: ["prov", "provisional"],
+  concept: ["conc", "concept"], illustrative: ["illus", "illustr."],
+  mixed: ["mixed", "mixed"], placeholder: ["illus", "placeholder"],
+};
+{
+  const H = document.getElementById("checks");
+  const known = D.audit.checks.filter(c => c.status !== "unknown");
+  const unknown = D.audit.checks.filter(c => c.status === "unknown");
+  const render = (c) => {
+    const d = document.createElement("div"); d.className = "check";
+    d.innerHTML = `<span class="dot ${c.status}"></span><div>
+      <div class="nm">${c.name}</div>
+      ${c.value != null ? `<div class="val">${c.value}</div>` : ""}
+      ${c.note ? `<div class="note">${c.note}</div>` : ""}
+      <div class="note" style="font-size:10px">src: ${c.source ?? "—"}</div></div>`;
+    H.appendChild(d);
+  };
+  known.forEach(render);
+  H.insertAdjacentHTML("beforeend", `<div class="lgroup" style="margin-top:12px">Unknown — required before construction decisions</div>`);
+  unknown.forEach(render);
+
+  const T = document.getElementById("truthTable");
+  for (const r of D.audit.layer_truth) {
+    const [cls, txt] = TIER_BADGE[r.tier] ?? TIER_BADGE.mixed;
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${r.layer}<div style="font-size:10.5px;color:#9a937f">${r.source}</div></td>
+                    <td style="text-align:right"><span class="tier ${cls}">${txt}</span></td>`;
+    T.appendChild(tr);
+  }
+  const S = document.getElementById("sources");
+  for (const v of Object.values(D.audit.sources)) {
+    const d = document.createElement("div"); d.className = "src";
+    d.innerHTML = `<span>${v.path}${v.present ? "" : " <b style='color:var(--fail)'>MISSING</b>"}</span><code>${v.sha256_12 ?? ""}</code>`;
+    S.appendChild(d);
+  }
+  const M = document.getElementById("missing");
+  for (const m of D.audit.missing) {
+    const li = document.createElement("li"); li.textContent = m; M.appendChild(li);
+  }
+  const P = document.getElementById("pending"), pd = D.audit.pending;
+  if (pd) {
+    P.innerHTML = `<b>Decision 1 — seating scope</b> (human decision, not yet made).
+      Viewer shows <b>${pd.shown_in_viewer}</b>.
+      <table><tr><th></th><th>option</th><th>Band-A</th><th>Δ seats</th><th>+CY</th></tr>
+      ${pd.options.map(o => `<tr class="${pd.shown_in_viewer.startsWith("option " + o.option) ? "shown" : ""}">
+        <td><b>${o.option}</b></td><td>${o.label}</td>
+        <td>${o.band_a_validated_seats}</td><td>${o.delta_seats_vs_baseline >= 0 ? "+" : ""}${o.delta_seats_vs_baseline}</td>
+        <td>${o.incremental_earthwork_cy}</td></tr>`).join("")}
+      </table>
+      <div style="margin-top:6px;color:#8e887a;font-size:11.5px">Earthwork CY are component-sum proxies — known understated ~2–2.6× vs raster truth. Sources: ${pd.source.join(" · ")}</div>`;
+  }
+  document.getElementById("subtitle").textContent =
+    `${D.meta.crs} · generated ${D.meta.generated.slice(0, 10)} by scripts/build_truth_package.py`;
+  document.getElementById("disclaimer").textContent = D.meta.disclaimer;
+}
+
+/* ── 3D init (everything below needs WebGL) ───────────────────── */
+try {
+
+/* ── scene ─────────────────────────────────────────────────────── */
+const view = document.getElementById("view");
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0xdfe4dc, 1600, 4200);
+const camera = new THREE.PerspectiveCamera(46, 1, 1, 12000);
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+view.appendChild(renderer.domElement);
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.08;
+controls.maxPolarAngle = Math.PI * 0.495;
+controls.screenSpacePanning = false;
+
+scene.add(new THREE.HemisphereLight(0xf2f4ee, 0x9b9484, 0.62));
+const sun = new THREE.DirectionalLight(0xfff3df, 0.48);
+sun.position.set(-600, 900, 500);   // afternoon sun from WSW-ish
+scene.add(sun);
+
+/* ── terrain meshes ────────────────────────────────────────────── */
+function elevColor(z, lo, hi) { // restrained earth ramp
+  const t = Math.min(1, Math.max(0, (z - lo) / (hi - lo)));
+  const c0 = [0.62, 0.66, 0.54], c1 = [0.80, 0.76, 0.64]; // sage → warm tan
+  return [c0[0] + (c1[0] - c0[0]) * t, c0[1] + (c1[1] - c0[1]) * t, c0[2] + (c1[2] - c0[2]) * t];
+}
+function cutfillColor(v) {      // cut = terracotta, fill = slate blue
+  if (!isFinite(v) || Math.abs(v) < 0.05) return [0.78, 0.77, 0.71];
+  const t = Math.min(1, Math.abs(v) / 2.0);
+  return v > 0 ? [0.78 - 0.42 * t, 0.77 - 0.34 * t, 0.71 + 0.05 * t]   // fill → blue
+               : [0.78 + 0.10 * t, 0.77 - 0.44 * t, 0.71 - 0.45 * t];  // cut → red
+}
+function decodeVoidMask(g) {  // bit-packed LiDAR-void mask (cells interpolated, not measured)
+  if (!g.void_b64) return null;
+  const raw = atob(g.void_b64), bits = new Uint8Array(g.nx * g.ny);
+  for (let k = 0; k < bits.length; k++)
+    bits[k] = (raw.charCodeAt(k >> 3) >> (7 - (k & 7))) & 1;
+  return bits;
+}
+function buildTerrain(g, vals, { cf = null, yOffset = 0 } = {}) {
+  const { nx, ny, res, x0, y0 } = g;
+  const voids = decodeVoidMask(g);
+  const pos = new Float32Array(nx * ny * 3);
+  const colElev = new Float32Array(nx * ny * 3);
+  const colCF = cf ? new Float32Array(nx * ny * 3) : null;
+  let lo = Infinity, hi = -Infinity;
+  for (const v of vals) if (!isNaN(v)) { if (v < lo) lo = v; if (v > hi) hi = v; }
+  for (let i = 0; i < ny; i++) for (let j = 0; j < nx; j++) {
+    const k = i * nx + j, z = vals[k];
+    pos[3 * k] = x0 + j * res;
+    pos[3 * k + 1] = (isNaN(z) ? lo : z) + yOffset;
+    pos[3 * k + 2] = -(y0 - i * res);
+    const ce = elevColor(isNaN(z) ? lo : z, lo, hi);
+    if (voids && voids[k]) {            // interpolated cell: flatten toward grey
+      const m = (ce[0] + ce[1] + ce[2]) / 3;
+      ce[0] = ce[0] * 0.45 + m * 0.55; ce[1] = ce[1] * 0.45 + m * 0.55; ce[2] = ce[2] * 0.45 + m * 0.55;
+    }
+    colElev.set(ce, 3 * k);
+    if (colCF) colCF.set(voids && voids[k] ? [0.78, 0.77, 0.71] : cutfillColor(cf[k]), 3 * k);
+  }
+  const idx = [];
+  for (let i = 0; i < ny - 1; i++) for (let j = 0; j < nx - 1; j++) {
+    const a = i * nx + j, b = a + 1, c = a + nx, d = c + 1;
+    if ([a, b, c, d].some(k => isNaN(vals[k]))) continue;
+    idx.push(a, c, b, b, c, d);
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute("color", new THREE.BufferAttribute(colElev, 3));
+  geo.setIndex(idx);
+  geo.computeVertexNormals();
+  const mesh = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ vertexColors: true }));
+  mesh.userData.colElev = colElev;
+  mesh.userData.colCF = colCF;
+  return mesh;
+}
+
+const terrainProposed = buildTerrain(D.terrain.proposed, G.proposed, { cf: G.cutfill });
+const terrainExisting = buildTerrain(D.terrain.existing, G.existing);
+terrainExisting.visible = false;
+const terrainContext = buildTerrain(D.terrain.context, G.context, { yOffset: -0.35 });
+terrainContext.material = new THREE.MeshLambertMaterial({ vertexColors: true, transparent: true, opacity: 0.55 });
+scene.add(terrainProposed, terrainExisting, terrainContext);
+
+/* large annotation sprites hide when the camera gets close (they are
+   world-sized and would otherwise fill an eye-level view) */
+const fadeSprites = [];
+
+/* bay water plane — ILLUSTRATIVE position, truthful elevation (579.45 NAVD88) */
+const bayGroup = new THREE.Group();
+{
+  const azr = (D.meta.bay_view_az ?? 330) * Math.PI / 180;
+  const bx = Math.sin(azr) * 2300, by = Math.cos(azr) * 2300;
+  const water = new THREE.Mesh(
+    new THREE.CircleGeometry(1500, 48),
+    new THREE.MeshLambertMaterial({ color: 0xa9c6d4, transparent: true, opacity: 0.85 }));
+  water.rotation.x = -Math.PI / 2;
+  water.position.copy(W(bx, by, D.meta.bay_plane_navd88 ?? 579.45));
+  bayGroup.add(water);
+  const baySpr = textSprite("Little Traverse Bay  ·  579.45 NAVD88 (plane measured · position illustrative)",
+    { x: bx * 0.55, y: by * 0.55, z: 585, scl: 40, fg: "#41616f" });
+  bayGroup.add(baySpr);
+  fadeSprites.push({ spr: baySpr, min: 1400 });
+}
+scene.add(bayGroup);
+
+/* ── helpers: polygons / lines / labels ───────────────────────── */
+function shapeFromPoly(poly) {     // poly = [outerRing, hole, …], ring = [[x,y]…]
+  const s = new THREE.Shape(poly[0].map(p => new THREE.Vector2(p[0], p[1])));
+  for (let h = 1; h < poly.length; h++)
+    s.holes.push(new THREE.Path(poly[h].map(p => new THREE.Vector2(p[0], p[1]))));
+  return s;
+}
+function flatPolyMesh(polys, elev, mat) {
+  const geos = polys.map(poly => {
+    const g = new THREE.ShapeGeometry(shapeFromPoly(poly));
+    g.rotateX(-Math.PI / 2);       // (x,y,0) → (x, 0, −y)
+    g.translate(0, elev, 0);
+    return g;
+  });
+  const group = new THREE.Group();
+  geos.forEach(g => group.add(new THREE.Mesh(g, mat)));
+  return group;
+}
+function ringLine(ring, elev, mat, dashed = false) {
+  const pts = ring.map(p => W(p[0], p[1], elev));
+  if (pts.length && !pts[0].equals(pts[pts.length - 1])) pts.push(pts[0].clone());
+  const geo = new THREE.BufferGeometry().setFromPoints(pts);
+  const line = new THREE.Line(geo, mat);
+  if (dashed) line.computeLineDistances();
+  return line;
+}
+function drapedLine(coords, mat, { lift = 0.6, dashed = false, step = 10 } = {}) {
+  const pts = [];
+  for (let i = 0; i < coords.length - 1; i++) {
+    const [x1, y1] = coords[i], [x2, y2] = coords[i + 1];
+    const n = Math.max(1, Math.ceil(Math.hypot(x2 - x1, y2 - y1) / step));
+    for (let s = 0; s < n; s++) {
+      const t = s / n, x = x1 + (x2 - x1) * t, y = y1 + (y2 - y1) * t;
+      const z = demZ(x, y); if (!isNaN(z)) pts.push(W(x, y, z + lift));
+    }
+  }
+  const [xl, yl] = coords[coords.length - 1];
+  const zl = demZ(xl, yl); if (!isNaN(zl)) pts.push(W(xl, yl, zl + lift));
+  if (pts.length < 2) return new THREE.Group();
+  const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), mat);
+  if (dashed) line.computeLineDistances();
+  return line;
+}
+function textSprite(text, { x = 0, y = 0, z = 0, scl = 18, fg = "#2b2b28", bg = "rgba(250,248,243,.82)", pad = 8 } = {}) {
+  const c = document.createElement("canvas"), ctx = c.getContext("2d");
+  const fs = 30; ctx.font = `600 ${fs}px -apple-system, 'Segoe UI', sans-serif`;
+  const w = Math.ceil(ctx.measureText(text).width) + pad * 2;
+  c.width = w; c.height = fs + pad * 2;
+  const ctx2 = c.getContext("2d");
+  ctx2.fillStyle = bg;
+  ctx2.beginPath(); ctx2.roundRect(0, 0, c.width, c.height, 8); ctx2.fill();
+  ctx2.font = `600 ${fs}px -apple-system, 'Segoe UI', sans-serif`;
+  ctx2.fillStyle = fg; ctx2.textBaseline = "middle";
+  ctx2.fillText(text, pad, c.height / 2);
+  const tex = new THREE.CanvasTexture(c); tex.encoding = THREE.sRGBEncoding;
+  const spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: true }));
+  spr.position.copy(W(x, y, z));
+  spr.scale.set(scl * c.width / c.height, scl, 1);
+  return spr;
+}
+
+/* ── treads (status-coloured, pickable) ───────────────────────── */
+const STATUS_FILL = { pass: 0xa3b18a, warn: 0xd8b365, fail: 0xc0705e, unknown: 0xb9b2a2 };
+const treadGroup = new THREE.Group();
+const labelGroup = new THREE.Group();
+const pickables = [];
+for (const t of D.layers.treads) {
+  const mat = new THREE.MeshLambertMaterial({
+    color: STATUS_FILL[t.status] ?? 0xb9b2a2,
+    transparent: true, opacity: 0.92, polygonOffset: true,
+    polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
+  const grp = flatPolyMesh(t.polys, t.elev + 0.25, mat);
+  grp.children.forEach(m => { m.userData.tread = t; pickables.push(m); });
+  const edge = new THREE.LineBasicMaterial({ color: 0x4f5747, transparent: true, opacity: 0.5 });
+  for (const poly of t.polys) grp.add(ringLine(poly[0], t.elev + 0.32, edge));
+  treadGroup.add(grp);
+  const tag = `${t.section[0].toUpperCase()}${t.row}`;
+  labelGroup.add(textSprite(tag, { x: t.label_xy[0], y: t.label_xy[1], z: t.elev + 3.2, scl: 6.5, bg: "rgba(250,248,243,.65)" }));
+}
+scene.add(treadGroup, labelGroup);
+labelGroup.visible = false;
+
+/* ── zones by group ───────────────────────────────────────────── */
+const ZSTYLE = {
+  stage:          { color: 0x8d7da6, op: 0.55, dash: true  },
+  ada:            { color: 0x4d7ea8, op: 0.78, dash: false },
+  circulation:    { color: 0x9a8f7f, op: 0.65, dash: false },
+  drainage:       { color: 0x6da3a3, op: 0.45, dash: false },
+  treatment_cell: { color: 0x7ca98c, op: 0.35, dash: true  },
+  event_floor:    { color: 0xc9c0ae, op: 0.35, dash: true  },
+};
+const zoneGroups = {};
+for (const z of D.layers.zones) {
+  const st = ZSTYLE[z.group]; if (!st) continue;
+  const grp = (zoneGroups[z.group] ??= new THREE.Group());
+  let elev = z.elev;
+  if (elev == null) {           // drape (ADA landings carry no single elevation)
+    const ring = z.polys[0][0];
+    const zs = ring.map(p => demZ(p[0], p[1])).filter(v => !isNaN(v));
+    elev = zs.length ? zs.reduce((a, b) => a + b) / zs.length : 615;
+  }
+  const mat = new THREE.MeshLambertMaterial({
+    color: st.color, transparent: true, opacity: st.op,
+    polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3,
+    side: THREE.DoubleSide });
+  grp.add(flatPolyMesh(z.polys, elev + 0.4, mat));
+  const lmat = st.dash
+    ? new THREE.LineDashedMaterial({ color: st.color, dashSize: 5, gapSize: 4 })
+    : new THREE.LineBasicMaterial({ color: st.color });
+  for (const poly of z.polys) grp.add(ringLine(poly[0], elev + 0.5, lmat, st.dash));
+}
+for (const g of Object.values(zoneGroups)) scene.add(g);
+/* provisional stage marker */
+if (zoneGroups.stage) {
+  const f = D.layers.focal;
+  const stageSpr = textSprite("STAGE — PROVISIONAL (Rule 9 open)", {
+    x: f.xy[0], y: f.xy[1], z: (f.elev ?? 612.5) + 9, scl: 11, fg: "#5b4a86" });
+  zoneGroups.stage.add(stageSpr);
+  fadeSprites.push({ spr: stageSpr, min: 300 });  // top banner carries the flag up close
+}
+
+/* ── bay-view axis ────────────────────────────────────────────── */
+const axisGroup = new THREE.Group();
+{
+  const a = D.layers.bay_axis, f = D.layers.focal;
+  const [p0, p1] = a.line;
+  const az = a.az_deg * Math.PI / 180;
+  const far = [f.xy[0] + Math.sin(az) * 700, f.xy[1] + Math.cos(az) * 700];
+  const mat = new THREE.LineDashedMaterial({ color: 0x3e5c76, dashSize: 9, gapSize: 6, linewidth: 2 });
+  axisGroup.add(drapedLine([p0, [f.xy[0], f.xy[1]], far], mat, { lift: 1.2, dashed: true, step: 14 }));
+  const zf = demZ(far[0], far[1]);
+  const axisSpr = textSprite(`bay-view axis · az ${a.az_deg.toFixed(0)}°`, {
+    x: far[0], y: far[1], z: (isNaN(zf) ? 600 : zf) + 14, scl: 10, fg: "#3e5c76" });
+  axisGroup.add(axisSpr);
+  fadeSprites.push({ spr: axisSpr, min: 220 });
+  const fz = (f.elev ?? 612.5) + 0.6;
+  const fm = new THREE.Mesh(new THREE.SphereGeometry(1.6, 16, 12),
+    new THREE.MeshLambertMaterial({ color: 0x3e5c76 }));
+  fm.position.copy(W(f.xy[0], f.xy[1], fz));
+  axisGroup.add(fm);
+}
+scene.add(axisGroup);
+
+/* ── site context ─────────────────────────────────────────────── */
+const ctxGroup = new THREE.Group();
+const CTX_LINE = {
+  rim_arrival_edge: { color: 0x6b6b6b, dashed: false },
+  street_edge:      { color: 0x8a8a8a, dashed: false },
+  park_path:        { color: 0x9a9384, dashed: true  },
+  service_access:   { color: 0x9a9384, dashed: true  },
+};
+const CTX_POLY = {
+  bay_view_corridor: { color: 0x7fa7bd, dashed: true  },
+  tree_mass:         { color: 0x5d7a52, dashed: true  },
+  preserved_area:    { color: 0x8aa07e, dashed: false },
+  open_lawn:         { color: 0xa8a06a, dashed: true  },
+};
+for (const f of D.layers.site_context) {
+  const ls = CTX_LINE[f.kind], ps = CTX_POLY[f.kind];
+  if (ls && f.lines) {
+    const mat = ls.dashed
+      ? new THREE.LineDashedMaterial({ color: ls.color, dashSize: 6, gapSize: 5 })
+      : new THREE.LineBasicMaterial({ color: ls.color });
+    for (const ln of f.lines) ctxGroup.add(drapedLine(ln, mat, { dashed: ls.dashed }));
+  } else if (ps && f.polys) {
+    const mat = ps.dashed
+      ? new THREE.LineDashedMaterial({ color: ps.color, dashSize: 6, gapSize: 5 })
+      : new THREE.LineBasicMaterial({ color: ps.color, transparent: true, opacity: 0.7 });
+    for (const poly of f.polys) {
+      const ring = poly[0] ?? poly;          // polys may be [poly[rings]] or [ring]
+      const coords = Array.isArray(ring[0][0]) ? ring[0] : ring;
+      ctxGroup.add(drapedLine(coords.concat([coords[0]]), mat, { dashed: ps.dashed }));
+    }
+  }
+  if (f.kind === "tree_mass" && f.polys) {
+    const ring = Array.isArray(f.polys[0][0][0][0]) ? f.polys[0][0][0] : f.polys[0][0];
+    const cx = ring.reduce((s, p) => s + p[0], 0) / ring.length;
+    const cy = ring.reduce((s, p) => s + p[1], 0) / ring.length;
+    const zc = demZ(cx, cy);
+    const treeSpr = textSprite("tree screen (schematic — governs bay view, unsurveyed)", {
+      x: cx, y: cy, z: (isNaN(zc) ? 612 : zc) + 16, scl: 9, fg: "#4c6343" });
+    ctxGroup.add(treeSpr);
+    fadeSprites.push({ spr: treeSpr, min: 200 });
+  }
+}
+scene.add(ctxGroup);
+
+/* ── camera presets & fly-to ──────────────────────────────────── */
+let fly = null;
+function flyTo(eye, target, ms = 1600) {
+  fly = {
+    t0: performance.now(), ms,
+    e0: camera.position.clone(), e1: W(eye[0], eye[1], eye[2]),
+    c0: controls.target.clone(), c1: W(target[0], target[1], target[2]),
+  };
+}
+const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+function applyPreset(p) { flyTo(p.eye, p.target); }
+const presetByKey = {};
+{
+  const holder = document.getElementById("presets");
+  D.presets.forEach((p, i) => {
+    const b = document.createElement("button");
+    b.innerHTML = `${p.name}<span class="k">${i + 1}</span>`;
+    b.title = `${p.desc}\nsource: ${p.source}`;
+    b.onclick = () => applyPreset(p);
+    holder.appendChild(b);
+    presetByKey[String(i + 1)] = p;
+  });
+  const r = document.createElement("button");
+  r.id = "resetBtn"; r.textContent = "Reset view (0)";
+  r.onclick = () => applyPreset(D.presets[0]);
+  holder.appendChild(r);
+}
+addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT") return;
+  if (presetByKey[e.key]) applyPreset(presetByKey[e.key]);
+  if (e.key === "0" || e.key.toLowerCase() === "r") applyPreset(D.presets[0]);
+});
+/* start at site overview (no animation) */
+{
+  const p = D.presets.find(q => q.id === "site_overview") ?? D.presets[0];
+  camera.position.copy(W(...p.eye));
+  controls.target.copy(W(...p.target));
+}
+
+/* ── layer panel ──────────────────────────────────────────────── */
+function layerRow(holder, label, objs, tier, swatchColor, on = true) {
+  const lab = document.createElement("label"); lab.className = "lyr";
+  const cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = on;
+  cb.onchange = () => objs.forEach(o => o.visible = cb.checked);
+  objs.forEach(o => o.visible = on);
+  const sw = document.createElement("span"); sw.className = "swatch";
+  sw.style.background = swatchColor;
+  const tx = document.createElement("span"); tx.textContent = label;
+  lab.append(cb, sw, tx);
+  if (tier) {
+    const [cls, txt] = TIER_BADGE[tier];
+    const badge = document.createElement("span");
+    badge.className = "tier " + cls; badge.textContent = txt;
+    lab.appendChild(badge);
+  }
+  holder.appendChild(lab);
+  return cb;
+}
+{
+  const L = document.getElementById("layers");
+  const g1 = document.createElement("div");
+  const voidPct = D.terrain.proposed?.void_frac ? Math.round(D.terrain.proposed.void_frac * 100) : 0;
+  g1.innerHTML = `<div class="lgroup">Terrain — ${D.terrain.placeholder ? "PLACEHOLDER (no engineering value)" : "LiDAR-derived, planning grade"}</div>` +
+    (voidPct ? `<div class="lnote">LiDAR voids (~${voidPct}%, mostly east flank) interpolated for display — shown grey-tinted, not measured ground.</div>` : "");
+  L.appendChild(g1);
+  /* proposed/existing radio pair */
+  const radios = document.createElement("div");
+  for (const [key, mesh, lbl] of [["proposed", terrainProposed, "Proposed grade"], ["existing", terrainExisting, "Existing ground"]]) {
+    const lab = document.createElement("label"); lab.className = "lyr";
+    const rb = document.createElement("input"); rb.type = "radio"; rb.name = "terr";
+    rb.checked = key === "proposed";
+    rb.onchange = () => { terrainProposed.visible = key === "proposed"; terrainExisting.visible = key === "existing"; syncCF(); };
+    const sw = document.createElement("span"); sw.className = "swatch"; sw.style.background = "#b3b89e";
+    const tx = document.createElement("span"); tx.textContent = lbl;
+    lab.append(rb, sw, tx);
+    const [cls, txt] = TIER_BADGE[D.terrain.placeholder ? "placeholder" : "source_of_truth"];
+    const badge = document.createElement("span"); badge.className = "tier " + cls; badge.textContent = txt;
+    lab.appendChild(badge);
+    radios.appendChild(lab);
+  }
+  L.appendChild(radios);
+  let cfOn = false;
+  const cfBox = layerRow(L, "Cut / fill overlay (red cut · blue fill)", [], "source_of_truth", "linear-gradient(90deg,#a94a3f,#c5c2b5,#3d6fb4)", false);
+  cfBox.onchange = () => { cfOn = cfBox.checked; syncCF(); };
+  function syncCF() {
+    const attr = terrainProposed.geometry.getAttribute("color");
+    attr.array.set(cfOn && terrainProposed.visible ? terrainProposed.userData.colCF : terrainProposed.userData.colElev);
+    attr.needsUpdate = true;
+  }
+  layerRow(L, "Context terrain (1,600 ft square)", [terrainContext], "source_of_truth", "#cfcaba");
+
+  L.insertAdjacentHTML("beforeend", `<div class="lgroup">Design</div>`);
+  layerRow(L, `Seating treads (${D.layers.treads.length}) — status colours`, [treadGroup], "source_of_truth", "#a3b18a");
+  layerRow(L, "Row labels", [labelGroup], "illustrative", "#efe9da", false);
+  if (zoneGroups.stage) layerRow(L, "Stage deck (inherited az-150)", [zoneGroups.stage, document.getElementById("stageFlag")].map(o => o.style ? { set visible(v) { o.style.display = v ? "" : "none"; } } : o), "provisional", "#8d7da6");
+  if (zoneGroups.ada) layerRow(L, "ADA routes A/B + 5 landings", [zoneGroups.ada], "source_of_truth", "#4d7ea8");
+  if (zoneGroups.circulation) layerRow(L, "Cross-aisle + row-5 promenades", [zoneGroups.circulation], "source_of_truth", "#9a8f7f");
+  if (zoneGroups.drainage) layerRow(L, "Drainage swales", [zoneGroups.drainage], "source_of_truth", "#6da3a3");
+  if (zoneGroups.treatment_cell) layerRow(L, "Treatment cell (landscape)", [zoneGroups.treatment_cell], "concept", "#7ca98c");
+  if (zoneGroups.event_floor) layerRow(L, "Orchestra / event floor", [zoneGroups.event_floor], "concept", "#c9c0ae");
+  layerRow(L, "Bay-view axis (az 330°) + focal point", [axisGroup], "source_of_truth", "#3e5c76");
+
+  L.insertAdjacentHTML("beforeend", `<div class="lgroup">Context</div>`);
+  layerRow(L, "Site context (streets, rim, paths, trees)", [ctxGroup], "mixed", "#8a8a8a");
+  layerRow(L, "Bay water plane (position illustrative)", [bayGroup], "illustrative", "#a9c6d4");
+}
+
+/* ── picking: click a tread → audit record ────────────────────── */
+const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
+renderer.domElement.addEventListener("pointerdown", e => { mouse._down = [e.clientX, e.clientY]; });
+renderer.domElement.addEventListener("pointerup", e => {
+  if (!mouse._down || Math.hypot(e.clientX - mouse._down[0], e.clientY - mouse._down[1]) > 4) return;
+  const r = renderer.domElement.getBoundingClientRect();
+  mouse.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+  ray.setFromCamera(mouse, camera);
+  const hit = ray.intersectObjects(pickables, false)[0];
+  const card = document.getElementById("infoCard");
+  if (!hit) { card.style.display = "none"; return; }
+  const t = hit.object.userData.tread;
+  document.getElementById("infoBody").innerHTML = `
+    <h3>${t.section} · row ${t.row} <span class="tier ${ {pass:"sot",warn:"conc",fail:"illus"}[t.status] ?? "mixed" }"
+        style="background:${ {pass:"#e2ead9",warn:"#f3e3c0",fail:"#eed4cd"}[t.status] };color:${ {pass:"#3e5c40",warn:"#8a6d2f",fail:"#86392f"}[t.status] }">${t.status}</span></h3>
+    <div class="row"><span>tread elevation</span><b>${t.elev.toFixed(2)} ft NAVD88</b></div>
+    <div class="row"><span>nominal seats</span><b>${t.seats}</b></div>
+    <div class="row"><span>Band-A validated</span><b>${t.band_a == null ? "—" : t.band_a}</b></div>
+    <div class="row"><span>sightline C</span><b>${t.c_mm == null ? "n/a (row 1)" : t.c_mm + " mm"}</b></div>
+    <div class="row"><span>sees bay (measured)</span><b>${t.sees_bay == null ? "—" : t.sees_bay ? "yes" : "no"}</b></div>
+    ${t.fail_reasons?.length ? `<div class="fr">flags: ${t.fail_reasons.join(", ")}</div>` : ""}
+    <div class="fr">source: vectors_geojson/terrace_treads.geojson + validation.json</div>`;
+  card.style.display = "block";
+});
+
+/* ── render loop ──────────────────────────────────────────────── */
+function resize() {
+  const w = view.clientWidth, h = view.clientHeight;
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+}
+addEventListener("resize", resize); resize();
+
+const needle = document.getElementById("needle");
+(function loop(now) {
+  requestAnimationFrame(loop);
+  if (fly) {
+    const t = Math.min(1, (now - fly.t0) / fly.ms), k = ease(t);
+    camera.position.lerpVectors(fly.e0, fly.e1, k);
+    controls.target.lerpVectors(fly.c0, fly.c1, k);
+    if (t >= 1) fly = null;
+  }
+  controls.update();
+  for (const f of fadeSprites)
+    f.spr.visible = camera.position.distanceTo(f.spr.position) > f.min;
+  const dir = new THREE.Vector3(); camera.getWorldDirection(dir);
+  needle.style.transform = `translate(-50%,-100%) rotate(${Math.atan2(dir.x, -dir.z) * 180 / Math.PI}deg)`;
+  renderer.render(scene, camera);
+})(performance.now());
+
+} catch (err) {
+  const d = document.getElementById("errOverlay");
+  d.style.display = "block";
+  d.textContent += "3D view disabled — " + err.message +
+    "\nThe audit panel at left is still authoritative (it reads the same " +
+    "truth package). Open this file in a WebGL-capable browser for the 3D scene.\n";
+  const hint = document.getElementById("hint");
+  if (hint) hint.style.display = "none";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+{
+ "schema": "truthful-terrain/design-state/0.1",
+ "generated": "2026-06-11T17:49:33-04:00",
+ "generator": "scripts/build_truth_package.py",
+ "project": "Petoskey Pit amphitheatre \u2014 Open Civic Bowl (in-situ package)",
+ "design_of_record": {
+  "scenario": "Scenario E three-section civic bowl (east/bend/south) on the Scenario D restored baseline",
+  "status": "seating / ADA / drainage cost-proxy ACCEPTED \u00b7 stage refit OPEN (Rule 9)",
+  "authority": [
+   "docs/DESIGN_CANON.md",
+   "INEVITABILITY.md",
+   "SCENARIO_E_CIVIC.md"
+  ],
+  "constants_source": "scripts/in_situ_common.py"
+ },
+ "crs": {
+  "horizontal": "EPSG:6494 NAD83(2011) / Michigan Central, INTERNATIONAL feet",
+  "vertical": "NAVD88 (Geoid12A), international feet",
+  "local_origin_epsg6494_ft": [
+   19533067.7,
+   750799.2
+  ],
+  "igld85_delta_ft": {
+   "value": 0.4,
+   "status": "ASSUMED \u2014 unconfirmed",
+   "source": "docs/datum_note.md"
+  }
+ },
+ "elements": {
+  "seating": {
+   "kind": "terraced treads, three terrain-fitted sections",
+   "sections": {
+    "bend": {
+     "treads": 15,
+     "seats_nominal": 419,
+     "rows": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+     ]
+    },
+    "east": {
+     "treads": 15,
+     "seats_nominal": 365,
+     "rows": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+     ]
+    },
+    "south": {
+     "treads": 15,
+     "seats_nominal": 499,
+     "rows": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+     ]
+    }
+   },
+   "treads_total": 45,
+   "seats_nominal": 1283,
+   "seats_band_a_validated": 1243,
+   "rows_absent": [
+    5,
+    9,
+    10
+   ],
+   "rows_absent_reason": "row 5 = promenades; rows 9/10 reclassified as the accessible cross-aisle",
+   "source": [
+    "vectors_geojson/terrace_treads.geojson",
+    "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json"
+   ],
+   "truth_tier": "source_of_truth"
+  },
+  "stage": {
+   "kind": "low hardscape deck + shoulders (open to bay side, no upstage wall \u2014 landscape venue)",
+   "elev_navd88": 612.5,
+   "geometry_source": "scenarioE stage_surface (inherited from design_open_low, az 150)",
+   "status": "PROVISIONAL \u2014 Rule 9 OPEN; no adoption path declared",
+   "source": [
+    "vectors_geojson/bowl_zones.geojson",
+    "design_open_low/stage_floor.geojson",
+    "docs/DESIGN_CANON.md"
+   ],
+   "truth_tier": "provisional"
+  },
+  "ada_route": {
+   "kind": "two switchback routes (A: rim\u2192floor; B: rim\u2192cross-aisle) + 5 landings",
+   "validation": [
+    {
+     "name": "accessible_route_A_floor",
+     "flights": 3,
+     "running_slope_pct": 8.33,
+     "landings": 4,
+     "running_ok": true
+    },
+    {
+     "name": "accessible_route_B_mid_row9",
+     "flights": 4,
+     "running_slope_pct": 8.33,
+     "landings": 5,
+     "running_ok": true
+    }
+   ],
+   "source": [
+    "vectors_geojson/bowl_zones.geojson",
+    "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json"
+   ],
+   "truth_tier": "source_of_truth"
+  },
+  "cross_aisle": {
+   "kind": "rows 9/10 reclassified as level accessible cross-aisle",
+   "validation": {
+    "datum": 622.01,
+    "cross_slope_pct": 2.0,
+    "long_slope_pct": 1.0,
+    "drains": true,
+    "wheelable": true
+   },
+   "source": [
+    "vectors_geojson/bowl_zones.geojson",
+    "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json"
+   ],
+   "truth_tier": "source_of_truth"
+  },
+  "drainage": {
+   "kind": "east + south flank swales falling to the treatment cell",
+   "validation": [
+    {
+     "name": "east_flank_swale",
+     "az_deg": 81.1,
+     "falls_toward_cell": true,
+     "tread_conflict_cells": 0,
+     "valid": true
+    },
+    {
+     "name": "south_flank_swale",
+     "az_deg": 198.1,
+     "falls_toward_cell": true,
+     "tread_conflict_cells": 0,
+     "valid": true
+    }
+   ],
+   "source": [
+    "vectors_geojson/bowl_zones.geojson",
+    "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json"
+   ],
+   "truth_tier": "source_of_truth"
+  },
+  "treatment_cell": {
+   "kind": "dry ephemeral bioretention landscape (natural bowl bottom)",
+   "bottom_navd88": 609.1,
+   "shaping": "concept tier \u2014 schematic 4:1, down-only, never impounds permanent water",
+   "source": [
+    "vectors_geojson/bowl_zones.geojson",
+    "package/07_stormwater/treatment_train.geojson"
+   ],
+   "truth_tier": "concept"
+  },
+  "bay_view_axis": {
+   "az_deg": 330.0,
+   "water_plane_navd88": 579.45,
+   "source": [
+    "design_open_low/stage_floor.geojson"
+   ],
+   "truth_tier": "source_of_truth",
+   "note": "NNW toward Little Traverse Bay / evening sun"
+  },
+  "event_floor": {
+   "kind": "orchestra/event floor between stage and row 1",
+   "truth_tier": "concept",
+   "source": [
+    "vectors_geojson/bowl_zones.geojson"
+   ]
+  }
+ },
+ "pending_decisions": [
+  {
+   "id": "decision_1_seating_scope",
+   "options": [
+    {
+     "option": "A",
+     "label": "Scenario E baseline",
+     "band_a_validated_seats": "1243",
+     "nominal_seats": "1283",
+     "delta_seats_vs_baseline": "0",
+     "incremental_earthwork_cy": "0.0",
+     "validation_status": "ACCEPTED control (seating/ADA/drainage); re-emits at 500.8 CY, drift +0.0 vs locked earthwork.csv",
+     "stage_status": "Rule 9 OPEN \u2014 inherited az-150 stage carried PROVISIONAL; P_opt/apron/typologies are candidates only, none adopted",
+     "recommended_posture": "Fallback regardless of the decision; choose if no further earthwork is wanted"
+    },
+    {
+     "option": "B",
+     "label": "modest_normalization (seating)",
+     "band_a_validated_seats": "1357",
+     "nominal_seats": "1397",
+     "delta_seats_vs_baseline": "114",
+     "incremental_earthwork_cy": "25.3",
+     "validation_status": "EMITTED + VALIDATED 2026-06-11, all hard gates pass (recipe cut cap 1.25 ft with provenance); +114 claim validated in full",
+     "stage_status": "Rule 9 OPEN \u2014 inherited az-150 stage carried PROVISIONAL; P_opt/apron/typologies are candidates only, none adopted",
+     "recommended_posture": "Cheapest validated step if any expansion is funded"
+    },
+    {
+     "option": "C",
+     "label": "ambitious_shaped_bowl (seating scope)",
+     "band_a_validated_seats": "1505",
+     "nominal_seats": "1516",
+     "delta_seats_vs_baseline": "262",
+     "incremental_earthwork_cy": "47.3",
+     "validation_status": "EMITTED + VALIDATED 2026-06-11, all hard gates pass; quote +262/1,505 (NOT 1,665 \u2014 N1 east extension REJECTED on emission, 0 of +149 survive)",
+     "stage_status": "Rule 9 OPEN \u2014 inherited az-150 stage carried PROVISIONAL; P_opt/apron/typologies are candidates only, none adopted",
+     "recommended_posture": "Validated Pareto knee \u2014 recommended scope if budget allows; Pareto ordering unchanged by the CY restatement"
+    }
+   ],
+   "source": [
+    "analysis/decision_packet/decision_table.csv",
+    "docs/HUMAN_DECISION_BRIEF.md"
+   ],
+   "shown_in_viewer": "option A (Scenario E baseline)"
+  }
+ ],
+ "warnings": [
+  "PLANNING-GRADE ONLY \u2014 derived from 2015 USGS LiDAR + supplement; not a stamped engineering design and not a field survey.",
+  "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is OPEN (inherited az-150 stage; +25.6\u00b0 audience-axis mismatch on record).",
+  "Coordinates are EPSG:6494 INTERNATIONAL feet \u2014 misreading as US survey feet shifts absolute easting ~39 ft (docs/datum_note.md).",
+  "Component CY totals are validated proxies that understate mobilization-level earthwork (analysis/tier_emission/TIER_EMISSION_VALIDATION.md).",
+  "Seating scope Decision 1 is pending; this package shows the Scenario E baseline (option A).",
+  "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed."
+ ],
+ "missing_data": [
+  "Seasonal high groundwater",
+  "Geotechnical / bearing",
+  "IGLD85\u2194NAVD88 \u0394 confirmation (working +0.40 ft assumed)",
+  "Full ADA/code compliance (built cross-slopes, handrails, clearances)",
+  "Egress / life-safety capacity",
+  "Stage acoustics (blocked on Rule 9)",
+  "Permitting / zoning",
+  "Utility conflicts",
+  "Survey-grade boundary + topo",
+  "Construction cost estimate",
+  "Tree survey (governs bay-view tuning)"
+ ],
+ "sources": {
+  "canon": {
+   "path": "docs/DESIGN_CANON.md",
+   "sha256_12": "60328eb434c7",
+   "present": true
+  },
+  "datum_note": {
+   "path": "docs/datum_note.md",
+   "sha256_12": "a10e5941db52",
+   "present": true
+  },
+  "decision_brief": {
+   "path": "docs/HUMAN_DECISION_BRIEF.md",
+   "sha256_12": "e269d86adcfd",
+   "present": true
+  },
+  "decision_table": {
+   "path": "analysis/decision_packet/decision_table.csv",
+   "sha256_12": "bbbc6a826b30",
+   "present": true
+  },
+  "dem_context": {
+   "path": "dem/dem_context_2p5ft.tif",
+   "sha256_12": "dcdb1a05464d",
+   "present": true
+  },
+  "dem_cutfill": {
+   "path": "dem/cut_fill_1ft.tif",
+   "sha256_12": "566badb423e6",
+   "present": true
+  },
+  "dem_existing": {
+   "path": "dem/dem_design_1ft.tif",
+   "sha256_12": "035eb77372e0",
+   "present": true
+  },
+  "dem_proposed": {
+   "path": "dem/proposed_grade_1ft.tif",
+   "sha256_12": "86de4d4e99a7",
+   "present": true
+  },
+  "earthwork_csv": {
+   "path": "analysis/scenarioE_civic/earthwork.csv",
+   "sha256_12": "c10559504559",
+   "present": true
+  },
+  "grading_manifest": {
+   "path": "dem/in_situ_grading_manifest.json",
+   "sha256_12": "8fb51c9398aa",
+   "present": true
+  },
+  "material_zones": {
+   "path": "vectors_geojson/material_zones.geojson",
+   "sha256_12": "808c25f46137",
+   "present": true
+  },
+  "site_context": {
+   "path": "vectors_geojson/site_context.geojson",
+   "sha256_12": "d2cb717b7fa2",
+   "present": true
+  },
+  "stage_lineage": {
+   "path": "design_open_low/stage_floor.geojson",
+   "sha256_12": "59a32670aab6",
+   "present": true
+  },
+  "tier_validation_memo": {
+   "path": "analysis/tier_emission/TIER_EMISSION_VALIDATION.md",
+   "sha256_12": "b7f190e5b194",
+   "present": true
+  },
+  "treads": {
+   "path": "vectors_geojson/terrace_treads.geojson",
+   "sha256_12": "e74d78853e2d",
+   "present": true
+  },
+  "validation": {
+   "path": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+   "sha256_12": "e08f0e8d2055",
+   "present": true
+  },
+  "viewpoints": {
+   "path": "vectors_geojson/in_situ_viewpoints.geojson",
+   "sha256_12": "e439c4ab9bc9",
+   "present": true
+  },
+  "zones": {
+   "path": "vectors_geojson/bowl_zones.geojson",
+   "sha256_12": "ef32696e94c1",
+   "present": true
+  }
+ }
+}
