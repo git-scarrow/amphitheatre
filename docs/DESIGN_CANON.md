@@ -107,6 +107,11 @@ the drawing.
 
 ### Rule 9 — Stage geometry and fan declaration must match the emitted seating
 
+> **Closure path:** fill in `analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md`.
+> Status 2026-06-11: OPEN. P_opt / faceted aprons / typology shortlist are tested
+> candidates, none adopted; the emission-validated seating tiers all carry the
+> inherited az-150 stage. See `docs/POST_EMISSION_DECISION_MEMO.md`.
+
 The Scenario E seating (rows 1-18, 1 283 Band-A seats across east / bend / south sections)
 produces a seat-weighted audience centroid at bearing **124.4°** from the current focal point,
 and an effective fan span of **≈130°** (east section centroid −74.6° from axis; south +40.1°).

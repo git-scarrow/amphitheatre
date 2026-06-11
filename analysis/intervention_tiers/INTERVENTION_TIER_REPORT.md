@@ -170,7 +170,8 @@ The validation warning at the top of this report is now partially RESOLVED:
 | refit_stage P_opt / faceted_apron | unchanged: Rule 9 candidates, analysis-tier | — | — |
 
 Pareto consequence: the frontier ordering is unchanged (modest remains the best marginal
-step; ambitious remains the knee), but the knee's height drops from 1,665 to ~1,535
+step; ambitious remains the knee), but the knee's height drops from 1,665 to 1,516
 nominal / 1,505 strict-segment seats, and the modest→ambitious gap is carried entirely by
-rows 19–20 + regrades, not the east extension.
+rows 19–20 + regrades, not the east extension. Decision authority for project state:
+`docs/POST_EMISSION_DECISION_MEMO.md` (this report is pre-emission analysis).
 

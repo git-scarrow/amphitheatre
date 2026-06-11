@@ -13,11 +13,17 @@ The core principle: every cost-bearing design move must emit real geometry and p
 | Item | Status |
 |---|---|
 | Scenario D — formal seating baseline (1 452 seats, +26 CY restoration) | ACCEPTED |
-| Scenario E — seating + aisles + ADA + drainage (500.8 CY) | ACCEPTED (seating/ADA/drainage) |
-| Scenario E — stage configuration | **OPEN** — stage refit required (see `DESIGN_CANON Rule 9`) |
+| Scenario E — seating + aisles + ADA + drainage (500.8 CY) | ACCEPTED (seating/ADA/drainage) — **remains the validated control** |
+| Intervention tiers — emission validation (2026-06-11) | **VALIDATED**: modest +114 seats / 25.3 CY; ambitious seating scope +262 / 47.3 CY; **N1 east extension REJECTED (0 of +149 seats survive emission)**. Adoption decision **OPEN** — see `docs/POST_EMISSION_DECISION_MEMO.md` |
+| Scenario E — stage configuration | **OPEN** — Rule 9 unresolved; P_opt/apron/typologies are candidates only. Closure path: `analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md`. Claude Design handoff PAUSED |
+
+**The two live decisions** (controlling doc: `docs/POST_EMISSION_DECISION_MEMO.md`):
+(1) advance Scenario E baseline, validated modest_normalization (+114), or validated
+ambitious seating scope (+262); (2) close Rule 9 for the stage.
 
 ## Key documents
 
+- `docs/POST_EMISSION_DECISION_MEMO.md` — **controlling statement of project state + the two live decisions**
 - `docs/DESIGN_CANON.md` — governing invariant rules (all scenarios)
 - `docs/in_situ_design_brief.md` — three-section civic bowl in-situ package: three boards, layer inventory, assumptions, audit gate
 - `INEVITABILITY.md` — narrative rationale and the "inevitable" design standard

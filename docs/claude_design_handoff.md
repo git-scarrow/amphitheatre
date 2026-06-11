@@ -9,6 +9,14 @@
 > work from this document until this banner is removed; the "low stage only"
 > framing below is superseded by the visual-envelope rule (taller utilitarian
 > mass is acceptable where the obstruction study clears it).
+>
+> **2026-06-11 update:** still paused. The seating tiers are now
+> emission-validated (modest +114 / ambitious seating +262; N1 rejected) but
+> **not adopted** — the 1,283-seat frame below remains the baseline until
+> Decision 1 in `docs/POST_EMISSION_DECISION_MEMO.md` is made. Rule 9 closure
+> path: `analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md`. Resuming
+> visual work requires Rule 9 closed **or** the stage explicitly carried as
+> provisional here.
 
 **Purpose:** visual / prototype brief for Claude Design. Everything here
 packages **audited repo outputs** (`scripts/audit_in_situ_package.py` green
