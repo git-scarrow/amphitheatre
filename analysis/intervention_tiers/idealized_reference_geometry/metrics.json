@@ -1,0 +1,1378 @@
+{
+  "scenario": "idealized_reference_geometry",
+  "tier_class": "idealized",
+  "intent": "Upper bound / reference: the geometrically ideal three-section bowl. Uniform 114 mm C on every seated row, full envelope to row 20, optimal stage placement and apron. Shows what unconstrained earthwork buys so the cheaper tiers can be judged against a real ceiling.",
+  "validation_status": {
+    "status": "reference-only",
+    "reasons": [
+      "dominated reference case \u2014 not a live design path; exists to anchor the top of the Pareto chart"
+    ]
+  },
+  "evaluator": {
+    "version": "tiers-1.0",
+    "fingerprint": "7c937532001f7e86"
+  },
+  "geometry_provenance": {
+    "treads": "/home/sam/projects/amphitheatre/analysis/scenarioE_civic/geometry.geojson",
+    "composition": "/home/sam/projects/amphitheatre/design_extended_bays/composition_table.csv",
+    "bays": "/home/sam/projects/amphitheatre/design_extended_bays/seating_bays.geojson",
+    "earthwork": "/home/sam/projects/amphitheatre/analysis/scenarioE_civic/earthwork.csv"
+  },
+  "capacity": {
+    "seats_by_band": {
+      "formal": 1665,
+      "soft": 0,
+      "marginal": 0,
+      "sub_marginal": 0
+    },
+    "per_section": {
+      "east": {
+        "formal": 581,
+        "soft": 0,
+        "marginal": 0,
+        "sub_marginal": 0
+      },
+      "bend": {
+        "formal": 495,
+        "soft": 0,
+        "marginal": 0,
+        "sub_marginal": 0
+      },
+      "south": {
+        "formal": 589,
+        "soft": 0,
+        "marginal": 0,
+        "sub_marginal": 0
+      }
+    },
+    "terrace_informal_seats": 210,
+    "quality_adjusted_seats": 1665.0,
+    "formal_band_a_seats": 1665,
+    "sightline_distribution_mm": {
+      "min": 114.0,
+      "p25": 114.0,
+      "median": 115.0,
+      "p75": 116.0,
+      "max": 117.0
+    },
+    "baseline_formal_rows_below_90mm": [],
+    "promoted_rows_below_90mm": [],
+    "sightlines_formal_ok": true,
+    "fully_formal": true,
+    "c_model": "per-section radial solver (stage_r 50, eye 3.94, focus 612.5)",
+    "c_model_vs_composition_mean_abs_mm": 120.6
+  },
+  "section_balance": {
+    "east": {
+      "formal_rows": 17,
+      "formal_seats": 581,
+      "arc_ft": 1328.0
+    },
+    "bend": {
+      "formal_rows": 17,
+      "formal_seats": 495,
+      "arc_ft": 1124.0
+    },
+    "south": {
+      "formal_rows": 17,
+      "formal_seats": 589,
+      "arc_ft": 1334.0
+    },
+    "balance_ratio_seats": 0.84,
+    "balance_ratio_arc": 0.84
+  },
+  "stage": {
+    "audience_centroid": [
+      19533150.6,
+      750714.9
+    ],
+    "centroid_bearing_deg": 143.7,
+    "stage_axis_deg": 150.0,
+    "axis_mismatch_deg": 6.3,
+    "lateral_offset_ft": -6.7,
+    "sf_to_centroid_ft": 61.1,
+    "rule9_status": "open_candidate",
+    "stage_name": "P_opt",
+    "mismatch_centroid_frame_deg": 6.3,
+    "lateral_offset_centroid_frame_ft": -6.7,
+    "frame_note": "computed = centroid frame, sweep sign; declared = STAGE_SHAPE_STUDY residuals, study sign (= -computed)",
+    "declared_axis_mismatch_deg": -6.3,
+    "declared_lateral_offset_ft": -6.7,
+    "declared_frame": "STAGE_SHAPE_STUDY (centroid frame, study sign: negative = stage axis clockwise of audience bearing)",
+    "row1_gap_ft": {
+      "east": 12.0,
+      "bend": 29.6,
+      "south": 18.8
+    },
+    "row1_gap_min_ft": 12.0,
+    "cell_gap_ft": 32.0,
+    "apron": {
+      "front": "five_facet_apron",
+      "apron_sf": 319.0,
+      "projection_ft": 6.0,
+      "row1_gap_ft": {
+        "east": 12.0,
+        "bend": 29.6,
+        "south": 18.8
+      },
+      "performer_to_row1_ft": {
+        "east": 38.4,
+        "bend": 34.0,
+        "south": 33.5
+      },
+      "bend_delta_ft": -5.6,
+      "bay_obstruction_pct": 0.0,
+      "foreground_obstruction_pct": 1.1
+    },
+    "stage_earthwork_cy": 37.8,
+    "provenance": ""
+  },
+  "performer_to_seat_ft": {
+    "min_ft": 37.3,
+    "p25_ft": 67.5,
+    "median_ft": 87.7,
+    "p90_ft": 111.4,
+    "max_ft": 118.1,
+    "seat_frac_within_100ft": 0.692,
+    "seat_frac_within_150ft": 1.0,
+    "seat_frac_within_200ft": 1.0
+  },
+  "acoustic": {
+    "score": 0.908,
+    "formula": "1.0*(<=100ft)+0.7*(100-150)+0.4*(150-200)+0.2*(>200), seat-weighted"
+  },
+  "ada": {
+    "routes": [
+      {
+        "name": "accessible_route_A_floor",
+        "running_slope_pct": 8.33,
+        "running_ok": true,
+        "landings": 4
+      },
+      {
+        "name": "accessible_route_B_mid_row9",
+        "running_slope_pct": 8.33,
+        "running_ok": true,
+        "landings": 5
+      }
+    ],
+    "routes_assessed": 2,
+    "all_running_ok": true,
+    "cross_aisle": {
+      "rows": [
+        9,
+        10
+      ],
+      "cross_slope_pct": 2.0,
+      "long_slope_pct": 1.0,
+      "drains": true,
+      "wheelable": true,
+      "displaced_seats": 169,
+      "resolved_by_op": "solve_cross_aisle_plane"
+    },
+    "cross_aisle_ok": true,
+    "ada_ok": true,
+    "note": "designed switchback surfaces (Scenario E validated); cross-slope remains survey-gated"
+  },
+  "earthwork": {
+    "baseline_components": {
+      "formal_restored_treads": {
+        "cut_cy": 55.2,
+        "fill_cy": 116.4,
+        "gross_cy": 171.7,
+        "topsoil_cy": 0.0
+      },
+      "cross_aisle": {
+        "cut_cy": 8.8,
+        "fill_cy": 50.8,
+        "gross_cy": 59.6,
+        "topsoil_cy": 0.0
+      },
+      "cross_aisle_transition_ramps": {
+        "cut_cy": 0.0,
+        "fill_cy": 0.0,
+        "gross_cy": 8.6,
+        "topsoil_cy": 0.0
+      },
+      "accessible_route_A_floor": {
+        "cut_cy": 79.0,
+        "fill_cy": 0.1,
+        "gross_cy": 79.2,
+        "topsoil_cy": 0.0
+      },
+      "accessible_route_B_mid_row9": {
+        "cut_cy": 2.1,
+        "fill_cy": 124.0,
+        "gross_cy": 126.0,
+        "topsoil_cy": 0.0
+      },
+      "east_flank_swale": {
+        "cut_cy": 36.8,
+        "fill_cy": 0.0,
+        "gross_cy": 36.8,
+        "topsoil_cy": 0.0
+      },
+      "south_flank_swale": {
+        "cut_cy": 37.6,
+        "fill_cy": 0.0,
+        "gross_cy": 37.6,
+        "topsoil_cy": 0.0
+      },
+      "row_end_shoulders": {
+        "cut_cy": 0.0,
+        "fill_cy": 0.0,
+        "gross_cy": 0.0,
+        "topsoil_cy": 31.6
+      },
+      "TOTAL": {
+        "cut_cy": 214.9,
+        "fill_cy": 285.9,
+        "gross_cy": 500.8,
+        "topsoil_cy": 284.2
+      }
+    },
+    "baseline_cut_cy": 214.9,
+    "baseline_fill_cy": 285.9,
+    "baseline_gross_cy": 500.8,
+    "baseline_topsoil_cy": 284.2,
+    "incremental_cut_cy": 3018.9,
+    "incremental_fill_cy": 37.2,
+    "incremental_gross_cy": 3056.1,
+    "incremental_topsoil_cy": 12.0,
+    "total_cut_cy": 3233.8,
+    "total_fill_cy": 323.1,
+    "total_gross_cy": 3556.9,
+    "total_net_cy": -2910.7,
+    "max_incremental_cut_ft": 9.6,
+    "max_incremental_fill_ft": 1.0,
+    "max_overall_fill_ft": 2.83,
+    "max_overall_cut_ft": 9.6,
+    "baseline_max_tread_fill_ft": 2.83
+  },
+  "disturbed_area": {
+    "baseline_envelope_sqft": 20511.0,
+    "new_disturbance_sqft": 2910.0,
+    "total_sqft": 23421.0,
+    "total_ac": 0.538
+  },
+  "drainage": {
+    "cell_present": true,
+    "event_floor_freeboard_ft": 1.2,
+    "freeboard_ok": true,
+    "swales": 2,
+    "swales_fall_to_pour_point": true,
+    "conflicts": [],
+    "drainage_ok": true
+  },
+  "obstruction": {
+    "bay_obstruction_pct": 0.0,
+    "cell_obstruction_pct": 0.0,
+    "foreground_sky_obstruction_pct": 1.7,
+    "grade": "none",
+    "bay_view_ok": true,
+    "rule": "stage judged by incremental obstruction vs NW rim silhouette, never height (visual-envelope rule); <=2% none / <=10% minor / above flagged"
+  },
+  "operations": {
+    "checks": {
+      "cross_aisle_wheelable": true,
+      "two_ada_routes_pass": true,
+      "promenade_present": true,
+      "shoulders_treated": true,
+      "row1_gaps_gte_12ft": true,
+      "borrow_declared_if_needed": true
+    },
+    "score": 1.0
+  },
+  "walls": {
+    "wall_trigger": true,
+    "wall_count": 35,
+    "walls": [
+      {
+        "band": "east r8",
+        "max_cut_ft": 3.41,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 52.0,
+        "kind": "low_seat_wall"
+      },
+      {
+        "band": "east r11",
+        "max_cut_ft": 5.61,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 58.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "east r12",
+        "max_cut_ft": 6.15,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 60.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "east r13",
+        "max_cut_ft": 6.72,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 62.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "east r14",
+        "max_cut_ft": 7.26,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 64.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "east r15",
+        "max_cut_ft": 7.73,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 66.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "east r16",
+        "max_cut_ft": 8.13,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 69.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "east r17",
+        "max_cut_ft": 8.54,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 70.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "east r18",
+        "max_cut_ft": 8.88,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 72.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "east r19",
+        "max_cut_ft": 9.19,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 74.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "east r20",
+        "max_cut_ft": 9.38,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 77.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "bend r7",
+        "max_cut_ft": 3.02,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 57.0,
+        "kind": "low_seat_wall"
+      },
+      {
+        "band": "bend r8",
+        "max_cut_ft": 3.48,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 59.0,
+        "kind": "low_seat_wall"
+      },
+      {
+        "band": "bend r11",
+        "max_cut_ft": 5.72,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 65.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "bend r12",
+        "max_cut_ft": 6.21,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 67.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "bend r13",
+        "max_cut_ft": 6.8,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 70.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "bend r14",
+        "max_cut_ft": 7.29,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 72.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "bend r15",
+        "max_cut_ft": 7.8,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 75.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "bend r16",
+        "max_cut_ft": 8.24,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 76.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "bend r17",
+        "max_cut_ft": 8.63,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 79.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "bend r18",
+        "max_cut_ft": 8.99,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 82.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "bend r19",
+        "max_cut_ft": 9.32,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 84.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "bend r20",
+        "max_cut_ft": 9.52,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 88.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "south r7",
+        "max_cut_ft": 3.08,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 67.0,
+        "kind": "low_seat_wall"
+      },
+      {
+        "band": "south r8",
+        "max_cut_ft": 3.5,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 70.0,
+        "kind": "low_seat_wall"
+      },
+      {
+        "band": "south r11",
+        "max_cut_ft": 5.74,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 78.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "south r12",
+        "max_cut_ft": 6.27,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 81.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "south r13",
+        "max_cut_ft": 6.85,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 84.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "south r14",
+        "max_cut_ft": 7.38,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 87.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "south r15",
+        "max_cut_ft": 7.85,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 90.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "south r16",
+        "max_cut_ft": 8.3,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 92.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "south r17",
+        "max_cut_ft": 8.75,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 95.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "south r18",
+        "max_cut_ft": 9.07,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 98.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "south r19",
+        "max_cut_ft": 9.38,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 100.0,
+        "kind": "retaining_wall"
+      },
+      {
+        "band": "south r20",
+        "max_cut_ft": 9.6,
+        "max_fill_ft": 0.0,
+        "est_wall_length_ft": 105.0,
+        "kind": "retaining_wall"
+      }
+    ],
+    "est_total_wall_length_ft": 2645.0,
+    "cap_violations": [],
+    "thresholds": {
+      "cut_ft": 3.0,
+      "fill_ft": 3.0
+    },
+    "doctrine": "walls are an emergent OUTPUT of depth, never an input zone"
+  },
+  "op_records": [
+    {
+      "op": "add_row",
+      "promoted": [
+        "east r19",
+        "bend r19",
+        "south r19"
+      ],
+      "cut_cy": 2.5,
+      "fill_cy": 3.0,
+      "max_cut_ft": 0.37,
+      "max_fill_ft": 0.39,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "provenance": ""
+    },
+    {
+      "op": "add_row",
+      "promoted": [
+        "east r20",
+        "bend r20",
+        "south r20"
+      ],
+      "cut_cy": 3.1,
+      "fill_cy": 4.2,
+      "max_cut_ft": 0.57,
+      "max_fill_ft": 0.52,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "provenance": ""
+    },
+    {
+      "op": "regrade_rows",
+      "target_c_mm": 114.0,
+      "bands_changed": 48,
+      "changes": [
+        {
+          "band": "east r2",
+          "from": 611.86,
+          "to": 611.6,
+          "dz_ft": -0.26
+        },
+        {
+          "band": "east r3",
+          "from": 613.03,
+          "to": 612.35,
+          "dz_ft": -0.68
+        },
+        {
+          "band": "east r4",
+          "from": 614.19,
+          "to": 613.12,
+          "dz_ft": -1.07
+        },
+        {
+          "band": "east r6",
+          "from": 616.74,
+          "to": 614.29,
+          "dz_ft": -2.45
+        },
+        {
+          "band": "east r7",
+          "from": 618.04,
+          "to": 615.07,
+          "dz_ft": -2.97
+        },
+        {
+          "band": "east r8",
+          "from": 619.31,
+          "to": 615.9,
+          "dz_ft": -3.41
+        },
+        {
+          "band": "east r11",
+          "from": 623.37,
+          "to": 617.76,
+          "dz_ft": -5.61
+        },
+        {
+          "band": "east r12",
+          "from": 624.81,
+          "to": 618.66,
+          "dz_ft": -6.15
+        },
+        {
+          "band": "east r13",
+          "from": 626.31,
+          "to": 619.59,
+          "dz_ft": -6.72
+        },
+        {
+          "band": "east r14",
+          "from": 627.87,
+          "to": 620.61,
+          "dz_ft": -7.26
+        },
+        {
+          "band": "east r15",
+          "from": 629.38,
+          "to": 621.65,
+          "dz_ft": -7.73
+        },
+        {
+          "band": "east r16",
+          "from": 630.75,
+          "to": 622.62,
+          "dz_ft": -8.13
+        },
+        {
+          "band": "east r17",
+          "from": 632.27,
+          "to": 623.73,
+          "dz_ft": -8.54
+        },
+        {
+          "band": "east r18",
+          "from": 633.67,
+          "to": 624.79,
+          "dz_ft": -8.88
+        },
+        {
+          "band": "east r19",
+          "from": 635.09,
+          "to": 625.9,
+          "dz_ft": -9.19
+        },
+        {
+          "band": "east r20",
+          "from": 636.47,
+          "to": 627.09,
+          "dz_ft": -9.38
+        },
+        {
+          "band": "bend r2",
+          "from": 611.86,
+          "to": 611.56,
+          "dz_ft": -0.3
+        },
+        {
+          "band": "bend r3",
+          "from": 613.03,
+          "to": 612.3,
+          "dz_ft": -0.73
+        },
+        {
+          "band": "bend r4",
+          "from": 614.17,
+          "to": 613.06,
+          "dz_ft": -1.11
+        },
+        {
+          "band": "bend r6",
+          "from": 616.72,
+          "to": 614.22,
+          "dz_ft": -2.5
+        },
+        {
+          "band": "bend r7",
+          "from": 618.02,
+          "to": 615.0,
+          "dz_ft": -3.02
+        },
+        {
+          "band": "bend r8",
+          "from": 619.31,
+          "to": 615.83,
+          "dz_ft": -3.48
+        },
+        {
+          "band": "bend r11",
+          "from": 623.4,
+          "to": 617.68,
+          "dz_ft": -5.72
+        },
+        {
+          "band": "bend r12",
+          "from": 624.78,
+          "to": 618.57,
+          "dz_ft": -6.21
+        },
+        {
+          "band": "bend r13",
+          "from": 626.3,
+          "to": 619.5,
+          "dz_ft": -6.8
+        },
+        {
+          "band": "bend r14",
+          "from": 627.8,
+          "to": 620.51,
+          "dz_ft": -7.29
+        },
+        {
+          "band": "bend r15",
+          "from": 629.34,
+          "to": 621.54,
+          "dz_ft": -7.8
+        },
+        {
+          "band": "bend r16",
+          "from": 630.75,
+          "to": 622.51,
+          "dz_ft": -8.24
+        },
+        {
+          "band": "bend r17",
+          "from": 632.24,
+          "to": 623.61,
+          "dz_ft": -8.63
+        },
+        {
+          "band": "bend r18",
+          "from": 633.66,
+          "to": 624.67,
+          "dz_ft": -8.99
+        },
+        {
+          "band": "bend r19",
+          "from": 635.09,
+          "to": 625.77,
+          "dz_ft": -9.32
+        },
+        {
+          "band": "bend r20",
+          "from": 636.47,
+          "to": 626.95,
+          "dz_ft": -9.52
+        },
+        {
+          "band": "south r2",
+          "from": 611.87,
+          "to": 611.54,
+          "dz_ft": -0.33
+        },
+        {
+          "band": "south r3",
+          "from": 613.03,
+          "to": 612.28,
+          "dz_ft": -0.75
+        },
+        {
+          "band": "south r4",
+          "from": 614.19,
+          "to": 613.04,
+          "dz_ft": -1.15
+        },
+        {
+          "band": "south r6",
+          "from": 616.73,
+          "to": 614.2,
+          "dz_ft": -2.53
+        },
+        {
+          "band": "south r7",
+          "from": 618.06,
+          "to": 614.98,
+          "dz_ft": -3.08
+        },
+        {
+          "band": "south r8",
+          "from": 619.3,
+          "to": 615.8,
+          "dz_ft": -3.5
+        },
+        {
+          "band": "south r11",
+          "from": 623.38,
+          "to": 617.64,
+          "dz_ft": -5.74
+        },
+        {
+          "band": "south r12",
+          "from": 624.8,
+          "to": 618.53,
+          "dz_ft": -6.27
+        },
+        {
+          "band": "south r13",
+          "from": 626.3,
+          "to": 619.45,
+          "dz_ft": -6.85
+        },
+        {
+          "band": "south r14",
+          "from": 627.84,
+          "to": 620.46,
+          "dz_ft": -7.38
+        },
+        {
+          "band": "south r15",
+          "from": 629.34,
+          "to": 621.49,
+          "dz_ft": -7.85
+        },
+        {
+          "band": "south r16",
+          "from": 630.75,
+          "to": 622.45,
+          "dz_ft": -8.3
+        },
+        {
+          "band": "south r17",
+          "from": 632.3,
+          "to": 623.55,
+          "dz_ft": -8.75
+        },
+        {
+          "band": "south r18",
+          "from": 633.67,
+          "to": 624.6,
+          "dz_ft": -9.07
+        },
+        {
+          "band": "south r19",
+          "from": 635.08,
+          "to": 625.7,
+          "dz_ft": -9.38
+        },
+        {
+          "band": "south r20",
+          "from": 636.48,
+          "to": 626.88,
+          "dz_ft": -9.6
+        }
+      ],
+      "cut_cy": 2981.2,
+      "fill_cy": 0.0,
+      "max_cut_ft": 9.6,
+      "max_fill_ft": 0.0,
+      "cap_issues": [],
+      "wall_exposure": [
+        {
+          "band": "east r8",
+          "max_cut_ft": 3.41,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 52.0,
+          "kind": "low_seat_wall"
+        },
+        {
+          "band": "east r11",
+          "max_cut_ft": 5.61,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 58.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "east r12",
+          "max_cut_ft": 6.15,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 60.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "east r13",
+          "max_cut_ft": 6.72,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 62.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "east r14",
+          "max_cut_ft": 7.26,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 64.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "east r15",
+          "max_cut_ft": 7.73,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 66.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "east r16",
+          "max_cut_ft": 8.13,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 69.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "east r17",
+          "max_cut_ft": 8.54,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 70.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "east r18",
+          "max_cut_ft": 8.88,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 72.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "east r19",
+          "max_cut_ft": 9.19,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 74.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "east r20",
+          "max_cut_ft": 9.38,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 77.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "bend r7",
+          "max_cut_ft": 3.02,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 57.0,
+          "kind": "low_seat_wall"
+        },
+        {
+          "band": "bend r8",
+          "max_cut_ft": 3.48,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 59.0,
+          "kind": "low_seat_wall"
+        },
+        {
+          "band": "bend r11",
+          "max_cut_ft": 5.72,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 65.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "bend r12",
+          "max_cut_ft": 6.21,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 67.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "bend r13",
+          "max_cut_ft": 6.8,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 70.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "bend r14",
+          "max_cut_ft": 7.29,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 72.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "bend r15",
+          "max_cut_ft": 7.8,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 75.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "bend r16",
+          "max_cut_ft": 8.24,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 76.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "bend r17",
+          "max_cut_ft": 8.63,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 79.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "bend r18",
+          "max_cut_ft": 8.99,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 82.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "bend r19",
+          "max_cut_ft": 9.32,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 84.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "bend r20",
+          "max_cut_ft": 9.52,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 88.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "south r7",
+          "max_cut_ft": 3.08,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 67.0,
+          "kind": "low_seat_wall"
+        },
+        {
+          "band": "south r8",
+          "max_cut_ft": 3.5,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 70.0,
+          "kind": "low_seat_wall"
+        },
+        {
+          "band": "south r11",
+          "max_cut_ft": 5.74,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 78.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "south r12",
+          "max_cut_ft": 6.27,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 81.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "south r13",
+          "max_cut_ft": 6.85,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 84.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "south r14",
+          "max_cut_ft": 7.38,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 87.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "south r15",
+          "max_cut_ft": 7.85,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 90.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "south r16",
+          "max_cut_ft": 8.3,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 92.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "south r17",
+          "max_cut_ft": 8.75,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 95.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "south r18",
+          "max_cut_ft": 9.07,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 98.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "south r19",
+          "max_cut_ft": 9.38,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 100.0,
+          "kind": "retaining_wall"
+        },
+        {
+          "band": "south r20",
+          "max_cut_ft": 9.6,
+          "max_fill_ft": 0.0,
+          "est_wall_length_ft": 105.0,
+          "kind": "retaining_wall"
+        }
+      ],
+      "note": "uniform ideal profile \u2014 the reference riser sequence"
+    },
+    {
+      "op": "extend_section_arc",
+      "section": "east",
+      "seats_added": 149,
+      "arc_ft": 342.0,
+      "cut_cy": 5.7,
+      "fill_cy": 5.7,
+      "max_cut_ft": 0.5,
+      "max_fill_ft": 0.5,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "analysis_tier": true,
+      "provenance": "contour-walk extension; requires re-emission + re-validation (canon Rules 3/5) before seats are claimed"
+    },
+    {
+      "op": "refit_stage",
+      "candidate": "P_opt",
+      "axis_az": 150.0,
+      "sf_moved_to": [
+        19533114.4,
+        750764.1
+      ],
+      "placement_mode": "solve_from_residuals",
+      "cut_cy": 18.9,
+      "fill_cy": 18.9,
+      "max_cut_ft": 1.0,
+      "max_fill_ft": 1.0,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "rule9_status": "open_candidate",
+      "provenance": ""
+    },
+    {
+      "op": "faceted_apron",
+      "front": "five_facet_apron",
+      "apron_sf": 319.0,
+      "cut_cy": 5.9,
+      "fill_cy": 3.0,
+      "max_cut_ft": 0.5,
+      "max_fill_ft": 0.5,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "provenance": ""
+    },
+    {
+      "op": "smooth_row_end_shoulders",
+      "shoulders": 5,
+      "treatment": "topsoil_only",
+      "topsoil_cy": 12.0,
+      "cut_cy": 0.0,
+      "fill_cy": 0.0,
+      "max_cut_ft": 0.0,
+      "max_fill_ft": 0.3,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "note": ""
+    },
+    {
+      "op": "solve_cross_aisle_plane",
+      "cross_slope_pct": 2.0,
+      "long_slope_pct": 1.0,
+      "accessible_fit": true,
+      "cut_cy": 1.6,
+      "fill_cy": 2.4,
+      "max_cut_ft": 0.3,
+      "max_fill_ft": 0.3,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "note": ""
+    },
+    {
+      "op": "select_borrow_zone",
+      "zone": "upper_plateau_borrow",
+      "cut_cy": 0.0,
+      "fill_cy": 0.0,
+      "max_cut_ft": 0.0,
+      "max_fill_ft": 0.0,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "note": ""
+    }
+  ],
+  "hard_checks": {
+    "sightlines_formal_ok": true,
+    "ada_ok": true,
+    "drainage_ok": true,
+    "bay_view_ok": true,
+    "no_wall_trigger": false
+  },
+  "score": {
+    "total": 78.0,
+    "components": {
+      "capacity": 1.298,
+      "sightlines": 1.0,
+      "section_balance": 0.84,
+      "stage_fit": 0.783,
+      "ada": 1.0,
+      "drainage": 1.0,
+      "bay_view": 1.0,
+      "acoustic": 0.908,
+      "operations": 1.0,
+      "earthwork_economy": 0.0,
+      "wall_avoidance": 0.0
+    },
+    "weights": {
+      "capacity": 1.0,
+      "sightlines": 1.5,
+      "section_balance": 0.6,
+      "stage_fit": 1.0,
+      "ada": 1.5,
+      "drainage": 1.5,
+      "bay_view": 1.5,
+      "acoustic": 0.8,
+      "operations": 0.6,
+      "earthwork_economy": 1.2,
+      "wall_avoidance": 1.5
+    }
+  },
+  "op_trace": [
+    {
+      "label": "add_row r19",
+      "op": "add_row",
+      "delta_band_a_seats": 70,
+      "delta_qa_seats": 92.0,
+      "cut_cy": 2.5,
+      "fill_cy": 3.0,
+      "gross_cy": 5.5,
+      "cum_incremental_cy": 5.5,
+      "max_cut_ft": 0.37,
+      "max_fill_ft": 0.39,
+      "cost_midpoint_direct": 80.0,
+      "hard_check_effect": "+1 promoted band(s) <90mm (banded soft)",
+      "analysis_tier": false
+    },
+    {
+      "label": "add_row r20",
+      "op": "add_row",
+      "delta_band_a_seats": 0,
+      "delta_qa_seats": 17.8,
+      "cut_cy": 3.1,
+      "fill_cy": 4.2,
+      "gross_cy": 7.3,
+      "cum_incremental_cy": 12.8,
+      "max_cut_ft": 0.57,
+      "max_fill_ft": 0.52,
+      "cost_midpoint_direct": 108.0,
+      "hard_check_effect": "+3 promoted band(s) <90mm (banded soft)",
+      "analysis_tier": false
+    },
+    {
+      "label": "regrade_rows r2\u201320 \u2192114mm",
+      "op": "regrade_rows",
+      "delta_band_a_seats": 163,
+      "delta_qa_seats": 123.2,
+      "cut_cy": 2981.2,
+      "fill_cy": 0.0,
+      "gross_cy": 2981.2,
+      "cum_incremental_cy": 2994.0,
+      "max_cut_ft": 9.6,
+      "max_fill_ft": 0.0,
+      "cost_midpoint_direct": 1030631.0,
+      "hard_check_effect": "lifts 4 promoted band(s) to \u226590mm; +35 wall exposure(s)",
+      "analysis_tier": false
+    },
+    {
+      "label": "extend_section_arc east",
+      "op": "extend_section_arc",
+      "delta_band_a_seats": 149,
+      "delta_qa_seats": 149.0,
+      "cut_cy": 5.7,
+      "fill_cy": 5.7,
+      "gross_cy": 11.4,
+      "cum_incremental_cy": 3005.4,
+      "max_cut_ft": 0.5,
+      "max_fill_ft": 0.5,
+      "cost_midpoint_direct": 165.0,
+      "hard_check_effect": "\u2014",
+      "analysis_tier": true
+    },
+    {
+      "label": "refit_stage P_opt",
+      "op": "refit_stage",
+      "delta_band_a_seats": 0,
+      "delta_qa_seats": 0.0,
+      "cut_cy": 18.9,
+      "fill_cy": 18.9,
+      "gross_cy": 37.8,
+      "cum_incremental_cy": 3043.2,
+      "max_cut_ft": 1.0,
+      "max_fill_ft": 1.0,
+      "cost_midpoint_direct": 14548.0,
+      "hard_check_effect": "\u2014",
+      "analysis_tier": false
+    },
+    {
+      "label": "faceted_apron five_facet_apron",
+      "op": "faceted_apron",
+      "delta_band_a_seats": 0,
+      "delta_qa_seats": 0.0,
+      "cut_cy": 5.9,
+      "fill_cy": 3.0,
+      "gross_cy": 8.9,
+      "cum_incremental_cy": 3052.1,
+      "max_cut_ft": 0.5,
+      "max_fill_ft": 0.5,
+      "cost_midpoint_direct": 20860.0,
+      "hard_check_effect": "\u2014",
+      "analysis_tier": false
+    },
+    {
+      "label": "smooth_row_end_shoulders",
+      "op": "smooth_row_end_shoulders",
+      "delta_band_a_seats": 0,
+      "delta_qa_seats": 0.0,
+      "cut_cy": 0.0,
+      "fill_cy": 0.0,
+      "gross_cy": 0.0,
+      "cum_incremental_cy": 3052.1,
+      "max_cut_ft": 0.0,
+      "max_fill_ft": 0.3,
+      "cost_midpoint_direct": 120.0,
+      "hard_check_effect": "\u2014",
+      "analysis_tier": false
+    },
+    {
+      "label": "solve_cross_aisle_plane",
+      "op": "solve_cross_aisle_plane",
+      "delta_band_a_seats": 0,
+      "delta_qa_seats": 0.0,
+      "cut_cy": 1.6,
+      "fill_cy": 2.4,
+      "gross_cy": 4.0,
+      "cum_incremental_cy": 3056.1,
+      "max_cut_ft": 0.3,
+      "max_fill_ft": 0.3,
+      "cost_midpoint_direct": 59.0,
+      "hard_check_effect": "\u2014",
+      "analysis_tier": false
+    },
+    {
+      "label": "select_borrow_zone upper_plateau_borrow",
+      "op": "select_borrow_zone",
+      "delta_band_a_seats": 0,
+      "delta_qa_seats": 0.0,
+      "cut_cy": 0.0,
+      "fill_cy": 0.0,
+      "gross_cy": 0.0,
+      "cum_incremental_cy": 3056.1,
+      "max_cut_ft": 0.0,
+      "max_fill_ft": 0.0,
+      "cost_midpoint_direct": 0.0,
+      "hard_check_effect": "\u2014",
+      "analysis_tier": false
+    }
+  ]
+}

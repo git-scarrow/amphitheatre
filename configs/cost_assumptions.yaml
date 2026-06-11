@@ -1,0 +1,29 @@
+# Planning-grade cost assumptions for the intervention-tier comparison.
+#
+# ALL VALUES ARE RANGES (low / high), 2026 USD, small-quantity municipal
+# landscape work in northern lower Michigan. These are comparison-grade
+# placeholders for ranking tiers against each other — NOT a bid basis.
+# Replace with priced quantities before any budget conversation.
+cost_assumptions:
+  currency: USD
+  basis_year: 2026
+  confidence: planning_range_only
+  unit_costs:
+    cut_per_cy:            {low: 8,   high: 18,  unit: CY,  note: "mass excavation, on-site"}
+    fill_per_cy:           {low: 10,  high: 22,  unit: CY,  note: "placement + compaction"}
+    topsoil_per_cy:        {low: 6,   high: 14,  unit: CY,  note: "strip / respread / fine rake"}
+    fine_grading_per_sf:   {low: 0.8, high: 2.0, unit: SF,  note: "seating tread finish grading"}
+    lawn_restore_per_sf:   {low: 0.5, high: 1.5, unit: SF,  note: "seed/sod disturbed areas"}
+    ada_ramp_per_sf:       {low: 25,  high: 45,  unit: SF,  note: "concrete switchback + base"}
+    cross_aisle_per_sf:    {low: 12,  high: 25,  unit: SF,  note: "stabilized aggregate causeway"}
+    apron_structure_per_sf: {low: 40, high: 90,  unit: SF,  note: "deck-level faceted apron"}
+    low_wall_per_lf:       {low: 250, high: 500, unit: LF,  note: "low seat wall, only if triggered"}
+    stage_refit_lump:      {low: 8000, high: 20000, unit: LS, note: "pad regrade + re-set, P_opt scale"}
+  factors:
+    mobilization_pct:      {low: 8,  high: 12}
+    planning_contingency_pct: {low: 20, high: 30}
+  scope_notes: >
+    Earthwork rates apply to both baseline Scenario E components and tier
+    increments so totals are comparable. Survey, geotech, swale hydrology
+    sizing, permitting, and stage superstructure are excluded (data-gated
+    or out of scope for the seating-bowl comparison).

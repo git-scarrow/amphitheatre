@@ -1,0 +1,6 @@
+scenario,quality_adjusted_seats,cost_midpoint,incr_cy_vs_baseline,composite_score,on_frontier,dominated_by,marginal_cy_vs_prev_tier,marginal_cost_mid_vs_prev_tier,marginal_qa_per_1k_usd,marginal_qa_per_cy
+Scenario_E_baseline,1283.0,171600,0,91.3,True,,,,,
+modest_normalization,1397.0,173950,9.7,91.9,True,,9.7,2350,48.51,11.75
+optimized_civic_bowl,1546.0,223350,67.4,98.2,True,,57.7,49400,3.02,2.58
+ambitious_shaped_bowl,1665.0,227300,83.5,98.9,True,,16.1,3950,30.13,7.39
+idealized_reference_geometry,1665.0,1672900,3056.1,78.0,False,ambitious_shaped_bowl,2972.6,1445600,0.0,0.0

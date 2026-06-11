@@ -1,0 +1,84 @@
+# Optimized tier — every measured, study-backed improvement that does not
+# reshape the bowl: modest moves + east contour extension (N1) + the selected
+# stage placement candidate (P_opt) + the aimed three-facet apron (A2).
+recipe:
+  name: optimized_civic_bowl
+  tier_class: optimized
+  intent: >
+    Adopt every tested candidate from the normalization and stage-shape
+    studies: row 19, east on-contour extension (N1), stage refit to the
+    P_opt placement, three-facet apron aimed at the family centroids,
+    shoulder finishing, cross-aisle re-solve. Bowl rake untouched.
+  base_geometry:
+    scheme: scenarioE_three_section_civic_bowl
+    treads: analysis/scenarioE_civic/geometry.geojson
+    composition: design_extended_bays/composition_table.csv
+    bays: design_extended_bays/seating_bays.geojson
+    earthwork: analysis/scenarioE_civic/earthwork.csv
+  allowed_operations:
+    - add_row
+    - regrade_rows
+    - extend_section_arc
+    - smooth_row_end_shoulders
+    - solve_cross_aisle_plane
+    - refit_stage
+    - faceted_apron
+    - select_borrow_zone
+  operations:
+    - op: add_row
+      sections: [east, bend, south]
+      row: 19
+      provenance: "NORMALIZATION.md N2 (+114 seats, 6.2 CY proxy)"
+    - op: regrade_rows
+      sections: [east, bend, south]
+      rows: [19]
+      target_c_mm: 90
+      only_if_below: true
+      note: "lift promoted row 19 to the formal profile where below (N2 per-seat formal)"
+    - op: extend_section_arc
+      section: east
+      arc_ft: 342.0
+      seats: 149
+      cy_proxy: 11.4
+      rows: [6, 18]
+      provenance: "NORMALIZATION.md N1_east_contour_extension — on-contour arc to the 45-degree seat-splay gate; analysis-tier, requires re-emission per canon Rules 3/5"
+    - op: refit_stage
+      candidate: P_opt
+      axis_az: 150.0
+      solve_from_residuals: true
+      study_mismatch_deg: -6.3   # STAGE_SHAPE_STUDY sign (= +6.3 in sweep/evaluator sign)
+      study_lateral_ft: -6.7     # residual lateral, same sign in all frames
+      row1_gap_ft: {east: 12.0, bend: 32.7, south: 21.9}
+      cell_gap_ft: 32.0
+      bay_obstruction_pct: 0.0
+      foreground_obstruction_pct: 1.7
+      earthwork_cy: 37.8
+      rule9_status: open_candidate
+      provenance: "STAGE_SHAPE_STUDY.md section A (P_opt, selected); earthwork CY from stage_refit_sweep az150_lat-20; Rule 9 remains OPEN — this is a tested candidate, not an adoption"
+    - op: faceted_apron
+      front: three_facet_apron
+      apron_sf: 306
+      projection_ft: 6.0
+      row1_gap_ft: {east: 12.0, bend: 30.3, south: 18.9}
+      performer_to_row1_ft: {east: 38.5, bend: 34.1, south: 33.6}
+      bend_delta_ft: -5.5
+      bay_obstruction_pct: 0.0
+      foreground_obstruction_pct: 1.1
+      provenance: "STAGE_SHAPE_STUDY.md section A2 — aimed facets, pockets held >= 12 ft"
+    - op: smooth_row_end_shoulders
+      treatment: topsoil_only
+      extra_topsoil_cy: 8.0
+    - op: solve_cross_aisle_plane
+      cross_slope_pct: 2.0
+      long_slope_pct: 1.0
+      cy_delta: 4.0
+    - op: select_borrow_zone
+      zone: east_flank_swale_borrow
+      note: "swale cut spoil (74.4 CY available) reused as tread fill before import"
+  constraints:
+    max_cut_ft: 2.0
+    max_fill_ft: 2.0
+    wall_trigger_cut_ft: 3.0
+    wall_trigger_fill_ft: 3.0
+    preserve: [treatment_cell, bay_view_corridor, drainage_swales]
+  scoring_weights: {}

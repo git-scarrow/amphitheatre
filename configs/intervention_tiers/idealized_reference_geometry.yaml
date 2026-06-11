@@ -1,0 +1,87 @@
+# Idealized tier — the reference geometry, not a buildable proposal.
+# Every seated row in every section is regraded to an ideal 114 mm C profile
+# (the "every head fully clear" textbook bowl), rows through 20 promoted,
+# stage at P_opt + five-facet apron. Caps are wide open so the TRUE cost of
+# the ideal shape is visible; wall triggers and depths are reported, and the
+# tier exists to show where returns flatten — not to be built.
+recipe:
+  name: idealized_reference_geometry
+  tier_class: idealized
+  intent: >
+    Upper bound / reference: the geometrically ideal three-section bowl.
+    Uniform 114 mm C on every seated row, full envelope to row 20, optimal
+    stage placement and apron. Shows what unconstrained earthwork buys so
+    the cheaper tiers can be judged against a real ceiling.
+  base_geometry:
+    scheme: scenarioE_three_section_civic_bowl
+    treads: analysis/scenarioE_civic/geometry.geojson
+    composition: design_extended_bays/composition_table.csv
+    bays: design_extended_bays/seating_bays.geojson
+    earthwork: analysis/scenarioE_civic/earthwork.csv
+  allowed_operations:
+    - add_row
+    - regrade_rows
+    - extend_section_arc
+    - smooth_row_end_shoulders
+    - solve_cross_aisle_plane
+    - refit_stage
+    - faceted_apron
+    - select_borrow_zone
+  operations:
+    - op: add_row
+      sections: [east, bend, south]
+      row: 19
+    - op: add_row
+      sections: [east, bend, south]
+      row: 20
+    - op: regrade_rows
+      sections: [east, bend, south]
+      rows: [2, 3, 4, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+      target_c_mm: 114
+      note: "uniform ideal profile — the reference riser sequence"
+    - op: extend_section_arc
+      section: east
+      arc_ft: 342.0
+      seats: 149
+      cy_proxy: 11.4
+      rows: [6, 18]
+    - op: refit_stage
+      candidate: P_opt
+      axis_az: 150.0
+      solve_from_residuals: true
+      study_mismatch_deg: -6.3   # STAGE_SHAPE_STUDY sign (= +6.3 in sweep/evaluator sign)
+      study_lateral_ft: -6.7     # residual lateral, same sign in all frames
+      row1_gap_ft: {east: 12.0, bend: 32.7, south: 21.9}
+      cell_gap_ft: 32.0
+      bay_obstruction_pct: 0.0
+      foreground_obstruction_pct: 1.7
+      earthwork_cy: 37.8
+      rule9_status: open_candidate
+    - op: faceted_apron
+      front: five_facet_apron
+      apron_sf: 319
+      projection_ft: 6.0
+      row1_gap_ft: {east: 12.0, bend: 29.6, south: 18.8}
+      performer_to_row1_ft: {east: 38.4, bend: 34.0, south: 33.5}
+      bend_delta_ft: -5.6
+      bay_obstruction_pct: 0.0
+      foreground_obstruction_pct: 1.1
+    - op: smooth_row_end_shoulders
+      treatment: topsoil_only
+      extra_topsoil_cy: 12.0
+    - op: solve_cross_aisle_plane
+      cross_slope_pct: 2.0
+      long_slope_pct: 1.0
+      cy_delta: 4.0
+    - op: select_borrow_zone
+      zone: upper_plateau_borrow
+  constraints:
+    max_cut_ft: 12.0
+    max_fill_ft: 12.0
+    wall_trigger_cut_ft: 3.0
+    wall_trigger_fill_ft: 3.0
+    preserve: [treatment_cell, bay_view_corridor, drainage_swales]
+  scoring_weights: {}
+  notes: >
+    Reference geometry. Not buildable as-is; exists to anchor the top of the
+    Pareto chart and expose where additional earthwork stops buying seats.

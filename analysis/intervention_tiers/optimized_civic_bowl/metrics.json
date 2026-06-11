@@ -1,0 +1,576 @@
+{
+  "scenario": "optimized_civic_bowl",
+  "tier_class": "optimized",
+  "intent": "Adopt every tested candidate from the normalization and stage-shape studies: row 19, east on-contour extension (N1), stage refit to the P_opt placement, three-facet apron aimed at the family centroids, shoulder finishing, cross-aisle re-solve. Bowl rake untouched.",
+  "validation_status": {
+    "status": "analysis-tier",
+    "reasons": [
+      "N1/N2 seat additions require re-emission + Scenario E re-validation (canon Rules 3/5)",
+      "P_opt / apron are tested candidates only \u2014 Rule 9 remains OPEN",
+      "regraded treads need re-emission on the real surface before seats are claimed"
+    ]
+  },
+  "evaluator": {
+    "version": "tiers-1.0",
+    "fingerprint": "7c937532001f7e86"
+  },
+  "geometry_provenance": {
+    "treads": "/home/sam/projects/amphitheatre/analysis/scenarioE_civic/geometry.geojson",
+    "composition": "/home/sam/projects/amphitheatre/design_extended_bays/composition_table.csv",
+    "bays": "/home/sam/projects/amphitheatre/design_extended_bays/seating_bays.geojson",
+    "earthwork": "/home/sam/projects/amphitheatre/analysis/scenarioE_civic/earthwork.csv"
+  },
+  "capacity": {
+    "seats_by_band": {
+      "formal": 1546,
+      "soft": 0,
+      "marginal": 0,
+      "sub_marginal": 0
+    },
+    "per_section": {
+      "east": {
+        "formal": 547,
+        "soft": 0,
+        "marginal": 0,
+        "sub_marginal": 0
+      },
+      "bend": {
+        "formal": 456,
+        "soft": 0,
+        "marginal": 0,
+        "sub_marginal": 0
+      },
+      "south": {
+        "formal": 543,
+        "soft": 0,
+        "marginal": 0,
+        "sub_marginal": 0
+      }
+    },
+    "terrace_informal_seats": 329,
+    "quality_adjusted_seats": 1546.0,
+    "formal_band_a_seats": 1546,
+    "sightline_distribution_mm": {
+      "min": 92.0,
+      "p25": 133.0,
+      "median": 166.0,
+      "p75": 207.0,
+      "max": 517.0
+    },
+    "baseline_formal_rows_below_90mm": [],
+    "promoted_rows_below_90mm": [],
+    "sightlines_formal_ok": true,
+    "fully_formal": true,
+    "c_model": "per-section radial solver (stage_r 50, eye 3.94, focus 612.5)",
+    "c_model_vs_composition_mean_abs_mm": 24.4
+  },
+  "section_balance": {
+    "east": {
+      "formal_rows": 16,
+      "formal_seats": 547,
+      "arc_ft": 1251.0
+    },
+    "bend": {
+      "formal_rows": 16,
+      "formal_seats": 456,
+      "arc_ft": 1036.0
+    },
+    "south": {
+      "formal_rows": 16,
+      "formal_seats": 543,
+      "arc_ft": 1229.0
+    },
+    "balance_ratio_seats": 0.83,
+    "balance_ratio_arc": 0.83
+  },
+  "stage": {
+    "audience_centroid": [
+      19533149.6,
+      750716.8
+    ],
+    "centroid_bearing_deg": 143.7,
+    "stage_axis_deg": 150.0,
+    "axis_mismatch_deg": 6.3,
+    "lateral_offset_ft": -6.7,
+    "sf_to_centroid_ft": 61.1,
+    "rule9_status": "open_candidate",
+    "stage_name": "P_opt",
+    "mismatch_centroid_frame_deg": 6.3,
+    "lateral_offset_centroid_frame_ft": -6.7,
+    "frame_note": "computed = centroid frame, sweep sign; declared = STAGE_SHAPE_STUDY residuals, study sign (= -computed)",
+    "declared_axis_mismatch_deg": -6.3,
+    "declared_lateral_offset_ft": -6.7,
+    "declared_frame": "STAGE_SHAPE_STUDY (centroid frame, study sign: negative = stage axis clockwise of audience bearing)",
+    "row1_gap_ft": {
+      "east": 12.0,
+      "bend": 30.3,
+      "south": 18.9
+    },
+    "row1_gap_min_ft": 12.0,
+    "cell_gap_ft": 32.0,
+    "apron": {
+      "front": "three_facet_apron",
+      "apron_sf": 306.0,
+      "projection_ft": 6.0,
+      "row1_gap_ft": {
+        "east": 12.0,
+        "bend": 30.3,
+        "south": 18.9
+      },
+      "performer_to_row1_ft": {
+        "east": 38.5,
+        "bend": 34.1,
+        "south": 33.6
+      },
+      "bend_delta_ft": -5.5,
+      "bay_obstruction_pct": 0.0,
+      "foreground_obstruction_pct": 1.1
+    },
+    "stage_earthwork_cy": 37.8,
+    "provenance": "STAGE_SHAPE_STUDY.md section A (P_opt, selected); earthwork CY from stage_refit_sweep az150_lat-20; Rule 9 remains OPEN \u2014 this is a tested candidate, not an adoption"
+  },
+  "performer_to_seat_ft": {
+    "min_ft": 37.8,
+    "p25_ft": 65.9,
+    "median_ft": 89.1,
+    "p90_ft": 110.7,
+    "max_ft": 115.6,
+    "seat_frac_within_100ft": 0.715,
+    "seat_frac_within_150ft": 1.0,
+    "seat_frac_within_200ft": 1.0
+  },
+  "acoustic": {
+    "score": 0.914,
+    "formula": "1.0*(<=100ft)+0.7*(100-150)+0.4*(150-200)+0.2*(>200), seat-weighted"
+  },
+  "ada": {
+    "routes": [
+      {
+        "name": "accessible_route_A_floor",
+        "running_slope_pct": 8.33,
+        "running_ok": true,
+        "landings": 4
+      },
+      {
+        "name": "accessible_route_B_mid_row9",
+        "running_slope_pct": 8.33,
+        "running_ok": true,
+        "landings": 5
+      }
+    ],
+    "routes_assessed": 2,
+    "all_running_ok": true,
+    "cross_aisle": {
+      "rows": [
+        9,
+        10
+      ],
+      "cross_slope_pct": 2.0,
+      "long_slope_pct": 1.0,
+      "drains": true,
+      "wheelable": true,
+      "displaced_seats": 169,
+      "resolved_by_op": "solve_cross_aisle_plane"
+    },
+    "cross_aisle_ok": true,
+    "ada_ok": true,
+    "note": "designed switchback surfaces (Scenario E validated); cross-slope remains survey-gated"
+  },
+  "earthwork": {
+    "baseline_components": {
+      "formal_restored_treads": {
+        "cut_cy": 55.2,
+        "fill_cy": 116.4,
+        "gross_cy": 171.7,
+        "topsoil_cy": 0.0
+      },
+      "cross_aisle": {
+        "cut_cy": 8.8,
+        "fill_cy": 50.8,
+        "gross_cy": 59.6,
+        "topsoil_cy": 0.0
+      },
+      "cross_aisle_transition_ramps": {
+        "cut_cy": 0.0,
+        "fill_cy": 0.0,
+        "gross_cy": 8.6,
+        "topsoil_cy": 0.0
+      },
+      "accessible_route_A_floor": {
+        "cut_cy": 79.0,
+        "fill_cy": 0.1,
+        "gross_cy": 79.2,
+        "topsoil_cy": 0.0
+      },
+      "accessible_route_B_mid_row9": {
+        "cut_cy": 2.1,
+        "fill_cy": 124.0,
+        "gross_cy": 126.0,
+        "topsoil_cy": 0.0
+      },
+      "east_flank_swale": {
+        "cut_cy": 36.8,
+        "fill_cy": 0.0,
+        "gross_cy": 36.8,
+        "topsoil_cy": 0.0
+      },
+      "south_flank_swale": {
+        "cut_cy": 37.6,
+        "fill_cy": 0.0,
+        "gross_cy": 37.6,
+        "topsoil_cy": 0.0
+      },
+      "row_end_shoulders": {
+        "cut_cy": 0.0,
+        "fill_cy": 0.0,
+        "gross_cy": 0.0,
+        "topsoil_cy": 31.6
+      },
+      "TOTAL": {
+        "cut_cy": 214.9,
+        "fill_cy": 285.9,
+        "gross_cy": 500.8,
+        "topsoil_cy": 284.2
+      }
+    },
+    "baseline_cut_cy": 214.9,
+    "baseline_fill_cy": 285.9,
+    "baseline_gross_cy": 500.8,
+    "baseline_topsoil_cy": 284.2,
+    "incremental_cut_cy": 34.4,
+    "incremental_fill_cy": 33.0,
+    "incremental_gross_cy": 67.4,
+    "incremental_topsoil_cy": 8.0,
+    "total_cut_cy": 249.3,
+    "total_fill_cy": 318.9,
+    "total_gross_cy": 568.2,
+    "total_net_cy": 69.6,
+    "max_incremental_cut_ft": 1.0,
+    "max_incremental_fill_ft": 1.0,
+    "max_overall_fill_ft": 2.83,
+    "max_overall_cut_ft": 1.0,
+    "baseline_max_tread_fill_ft": 2.83
+  },
+  "disturbed_area": {
+    "baseline_envelope_sqft": 20511.0,
+    "new_disturbance_sqft": 1523.0,
+    "total_sqft": 22034.0,
+    "total_ac": 0.506
+  },
+  "drainage": {
+    "cell_present": true,
+    "event_floor_freeboard_ft": 1.2,
+    "freeboard_ok": true,
+    "swales": 2,
+    "swales_fall_to_pour_point": true,
+    "conflicts": [],
+    "drainage_ok": true
+  },
+  "obstruction": {
+    "bay_obstruction_pct": 0.0,
+    "cell_obstruction_pct": 0.0,
+    "foreground_sky_obstruction_pct": 1.7,
+    "grade": "none",
+    "bay_view_ok": true,
+    "rule": "stage judged by incremental obstruction vs NW rim silhouette, never height (visual-envelope rule); <=2% none / <=10% minor / above flagged"
+  },
+  "operations": {
+    "checks": {
+      "cross_aisle_wheelable": true,
+      "two_ada_routes_pass": true,
+      "promenade_present": true,
+      "shoulders_treated": true,
+      "row1_gaps_gte_12ft": true,
+      "borrow_declared_if_needed": true
+    },
+    "score": 1.0
+  },
+  "walls": {
+    "wall_trigger": false,
+    "wall_count": 0,
+    "walls": [],
+    "est_total_wall_length_ft": 0,
+    "cap_violations": [],
+    "thresholds": {
+      "cut_ft": 3.0,
+      "fill_ft": 3.0
+    },
+    "doctrine": "walls are an emergent OUTPUT of depth, never an input zone"
+  },
+  "op_records": [
+    {
+      "op": "add_row",
+      "promoted": [
+        "east r19",
+        "bend r19",
+        "south r19"
+      ],
+      "cut_cy": 2.5,
+      "fill_cy": 3.0,
+      "max_cut_ft": 0.37,
+      "max_fill_ft": 0.39,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "provenance": "NORMALIZATION.md N2 (+114 seats, 6.2 CY proxy)"
+    },
+    {
+      "op": "regrade_rows",
+      "target_c_mm": 90.0,
+      "bands_changed": 1,
+      "changes": [
+        {
+          "band": "south r19",
+          "from": 635.08,
+          "to": 635.09,
+          "dz_ft": 0.01
+        }
+      ],
+      "cut_cy": 0.0,
+      "fill_cy": 0.2,
+      "max_cut_ft": 0.0,
+      "max_fill_ft": 0.01,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "note": "lift promoted row 19 to the formal profile where below (N2 per-seat formal)"
+    },
+    {
+      "op": "extend_section_arc",
+      "section": "east",
+      "seats_added": 149,
+      "arc_ft": 342.0,
+      "cut_cy": 5.7,
+      "fill_cy": 5.7,
+      "max_cut_ft": 0.5,
+      "max_fill_ft": 0.5,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "analysis_tier": true,
+      "provenance": "NORMALIZATION.md N1_east_contour_extension \u2014 on-contour arc to the 45-degree seat-splay gate; analysis-tier, requires re-emission per canon Rules 3/5"
+    },
+    {
+      "op": "refit_stage",
+      "candidate": "P_opt",
+      "axis_az": 150.0,
+      "sf_moved_to": [
+        19533113.4,
+        750766.0
+      ],
+      "placement_mode": "solve_from_residuals",
+      "cut_cy": 18.9,
+      "fill_cy": 18.9,
+      "max_cut_ft": 1.0,
+      "max_fill_ft": 1.0,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "rule9_status": "open_candidate",
+      "provenance": "STAGE_SHAPE_STUDY.md section A (P_opt, selected); earthwork CY from stage_refit_sweep az150_lat-20; Rule 9 remains OPEN \u2014 this is a tested candidate, not an adoption"
+    },
+    {
+      "op": "faceted_apron",
+      "front": "three_facet_apron",
+      "apron_sf": 306.0,
+      "cut_cy": 5.7,
+      "fill_cy": 2.8,
+      "max_cut_ft": 0.5,
+      "max_fill_ft": 0.5,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "provenance": "STAGE_SHAPE_STUDY.md section A2 \u2014 aimed facets, pockets held >= 12 ft"
+    },
+    {
+      "op": "smooth_row_end_shoulders",
+      "shoulders": 5,
+      "treatment": "topsoil_only",
+      "topsoil_cy": 8.0,
+      "cut_cy": 0.0,
+      "fill_cy": 0.0,
+      "max_cut_ft": 0.0,
+      "max_fill_ft": 0.3,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "note": ""
+    },
+    {
+      "op": "solve_cross_aisle_plane",
+      "cross_slope_pct": 2.0,
+      "long_slope_pct": 1.0,
+      "accessible_fit": true,
+      "cut_cy": 1.6,
+      "fill_cy": 2.4,
+      "max_cut_ft": 0.3,
+      "max_fill_ft": 0.3,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "note": ""
+    },
+    {
+      "op": "select_borrow_zone",
+      "zone": "east_flank_swale_borrow",
+      "cut_cy": 0.0,
+      "fill_cy": 0.0,
+      "max_cut_ft": 0.0,
+      "max_fill_ft": 0.0,
+      "cap_issues": [],
+      "wall_exposure": [],
+      "note": "swale cut spoil (74.4 CY available) reused as tread fill before import"
+    }
+  ],
+  "hard_checks": {
+    "sightlines_formal_ok": true,
+    "ada_ok": true,
+    "drainage_ok": true,
+    "bay_view_ok": true,
+    "no_wall_trigger": true
+  },
+  "score": {
+    "total": 98.2,
+    "components": {
+      "capacity": 1.205,
+      "sightlines": 1.0,
+      "section_balance": 0.83,
+      "stage_fit": 0.783,
+      "ada": 1.0,
+      "drainage": 1.0,
+      "bay_view": 1.0,
+      "acoustic": 0.914,
+      "operations": 1.0,
+      "earthwork_economy": 0.966,
+      "wall_avoidance": 1.0
+    },
+    "weights": {
+      "capacity": 1.0,
+      "sightlines": 1.5,
+      "section_balance": 0.6,
+      "stage_fit": 1.0,
+      "ada": 1.5,
+      "drainage": 1.5,
+      "bay_view": 1.5,
+      "acoustic": 0.8,
+      "operations": 0.6,
+      "earthwork_economy": 1.2,
+      "wall_avoidance": 1.5
+    }
+  },
+  "op_trace": [
+    {
+      "label": "add_row r19",
+      "op": "add_row",
+      "delta_band_a_seats": 70,
+      "delta_qa_seats": 92.0,
+      "cut_cy": 2.5,
+      "fill_cy": 3.0,
+      "gross_cy": 5.5,
+      "cum_incremental_cy": 5.5,
+      "max_cut_ft": 0.37,
+      "max_fill_ft": 0.39,
+      "cost_midpoint_direct": 80.0,
+      "hard_check_effect": "+1 promoted band(s) <90mm (banded soft)",
+      "analysis_tier": false
+    },
+    {
+      "label": "regrade_rows r19 \u219290mm(if<)",
+      "op": "regrade_rows",
+      "delta_band_a_seats": 44,
+      "delta_qa_seats": 22.0,
+      "cut_cy": 0.0,
+      "fill_cy": 0.2,
+      "gross_cy": 0.2,
+      "cum_incremental_cy": 5.7,
+      "max_cut_ft": 0.0,
+      "max_fill_ft": 0.01,
+      "cost_midpoint_direct": 3.0,
+      "hard_check_effect": "lifts 1 promoted band(s) to \u226590mm",
+      "analysis_tier": false
+    },
+    {
+      "label": "extend_section_arc east",
+      "op": "extend_section_arc",
+      "delta_band_a_seats": 149,
+      "delta_qa_seats": 149.0,
+      "cut_cy": 5.7,
+      "fill_cy": 5.7,
+      "gross_cy": 11.4,
+      "cum_incremental_cy": 17.1,
+      "max_cut_ft": 0.5,
+      "max_fill_ft": 0.5,
+      "cost_midpoint_direct": 165.0,
+      "hard_check_effect": "\u2014",
+      "analysis_tier": true
+    },
+    {
+      "label": "refit_stage P_opt",
+      "op": "refit_stage",
+      "delta_band_a_seats": 0,
+      "delta_qa_seats": 0.0,
+      "cut_cy": 18.9,
+      "fill_cy": 18.9,
+      "gross_cy": 37.8,
+      "cum_incremental_cy": 54.9,
+      "max_cut_ft": 1.0,
+      "max_fill_ft": 1.0,
+      "cost_midpoint_direct": 14548.0,
+      "hard_check_effect": "\u2014",
+      "analysis_tier": false
+    },
+    {
+      "label": "faceted_apron three_facet_apron",
+      "op": "faceted_apron",
+      "delta_band_a_seats": 0,
+      "delta_qa_seats": 0.0,
+      "cut_cy": 5.7,
+      "fill_cy": 2.8,
+      "gross_cy": 8.5,
+      "cum_incremental_cy": 63.4,
+      "max_cut_ft": 0.5,
+      "max_fill_ft": 0.5,
+      "cost_midpoint_direct": 20009.0,
+      "hard_check_effect": "\u2014",
+      "analysis_tier": false
+    },
+    {
+      "label": "smooth_row_end_shoulders",
+      "op": "smooth_row_end_shoulders",
+      "delta_band_a_seats": 0,
+      "delta_qa_seats": 0.0,
+      "cut_cy": 0.0,
+      "fill_cy": 0.0,
+      "gross_cy": 0.0,
+      "cum_incremental_cy": 63.4,
+      "max_cut_ft": 0.0,
+      "max_fill_ft": 0.3,
+      "cost_midpoint_direct": 80.0,
+      "hard_check_effect": "\u2014",
+      "analysis_tier": false
+    },
+    {
+      "label": "solve_cross_aisle_plane",
+      "op": "solve_cross_aisle_plane",
+      "delta_band_a_seats": 0,
+      "delta_qa_seats": 0.0,
+      "cut_cy": 1.6,
+      "fill_cy": 2.4,
+      "gross_cy": 4.0,
+      "cum_incremental_cy": 67.4,
+      "max_cut_ft": 0.3,
+      "max_fill_ft": 0.3,
+      "cost_midpoint_direct": 59.0,
+      "hard_check_effect": "\u2014",
+      "analysis_tier": false
+    },
+    {
+      "label": "select_borrow_zone east_flank_swale_borrow",
+      "op": "select_borrow_zone",
+      "delta_band_a_seats": 0,
+      "delta_qa_seats": 0.0,
+      "cut_cy": 0.0,
+      "fill_cy": 0.0,
+      "gross_cy": 0.0,
+      "cum_incremental_cy": 67.4,
+      "max_cut_ft": 0.0,
+      "max_fill_ft": 0.0,
+      "cost_midpoint_direct": 0.0,
+      "hard_check_effect": "\u2014",
+      "analysis_tier": false
+    }
+  ]
+}

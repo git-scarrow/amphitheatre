@@ -1,0 +1,54 @@
+# Modest tier — normalization moves already measured by the flank
+# normalization study (analysis/in_situ_normalization/NORMALIZATION.md).
+# No stage change (Rule 9 untouched), no section reshaping, tiny earthwork.
+recipe:
+  name: modest_normalization
+  tier_class: modest
+  intent: >
+    Smallest defensible improvement set: promote row 19 in all three sections
+    (candidate N2, +114 seats, ~6 CY), finish the row-end shoulders, and
+    re-solve the cross-aisle plane at the accessible-fit slopes. Stage stays
+    inherited; Rule 9 stays open.
+  base_geometry:
+    scheme: scenarioE_three_section_civic_bowl
+    treads: analysis/scenarioE_civic/geometry.geojson
+    composition: design_extended_bays/composition_table.csv
+    bays: design_extended_bays/seating_bays.geojson
+    earthwork: analysis/scenarioE_civic/earthwork.csv
+  allowed_operations:
+    - add_row
+    - regrade_rows
+    - smooth_row_end_shoulders
+    - solve_cross_aisle_plane
+  operations:
+    - op: add_row
+      sections: [east, bend, south]
+      row: 19
+      provenance: "NORMALIZATION.md candidate N2_add_row19_all (+114 seats, 6.2 CY proxy); analysis-tier, requires re-emission + Scenario E re-validation before seats are claimed (canon Rules 3/5)"
+    - op: regrade_rows
+      sections: [east, bend, south]
+      rows: [19]
+      target_c_mm: 90
+      only_if_below: true
+      note: "N2 is 'per-seat formal' — lift row 19 where its natural grade sits below the 90 mm profile so the promoted seats are genuinely Band-A (without this the scenario is not fully formal)"
+    - op: smooth_row_end_shoulders
+      treatment: topsoil_only
+      extra_topsoil_cy: 8.0
+      note: "feather the five clipped row-end shoulders into the lawn"
+    - op: solve_cross_aisle_plane
+      cross_slope_pct: 2.0
+      long_slope_pct: 1.0
+      cy_delta: 4.0
+      note: "re-solve the rows-9/10 causeway plane at accessible-fit slopes"
+  constraints:
+    # max_cut_ft raised 1.0 -> 1.25 (2026-06-11 emission validation,
+    # analysis/tier_emission/TIER_EMISSION_VALIDATION.md F3/F6): a 3.6-ft
+    # tread on the ~30% rake cuts up to ~1.2 ft at the uphill band edge even
+    # where the centreline matches terrain; 1.0 was a centreline-sample cap,
+    # unrealistic for any emitted tread here.
+    max_cut_ft: 1.25
+    max_fill_ft: 1.5
+    wall_trigger_cut_ft: 3.0
+    wall_trigger_fill_ft: 3.0
+    preserve: [treatment_cell, bay_view_corridor, drainage_swales]
+  scoring_weights: {}

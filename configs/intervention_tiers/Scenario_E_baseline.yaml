@@ -1,0 +1,30 @@
+# Scenario E — locked baseline / control. NO operations.
+# This recipe exists so the baseline runs through the SAME evaluator as every
+# intervention tier. Its inputs are hash-locked by _baseline_lock.json; any
+# drift fails the audit gates.
+recipe:
+  name: Scenario_E_baseline
+  tier_class: baseline
+  intent: >
+    The validated Scenario E civic bowl exactly as accepted (seating/ADA/
+    drainage canon-ACCEPTED, 500.8 CY, stage Rule 9 OPEN). Control for all
+    intervention tiers.
+  base_geometry:
+    scheme: scenarioE_three_section_civic_bowl
+    treads: analysis/scenarioE_civic/geometry.geojson
+    composition: design_extended_bays/composition_table.csv
+    bays: design_extended_bays/seating_bays.geojson
+    earthwork: analysis/scenarioE_civic/earthwork.csv
+  allowed_operations: []
+  operations: []
+  constraints:
+    max_cut_ft: 0.0
+    max_fill_ft: 0.0
+    wall_trigger_cut_ft: 3.0
+    wall_trigger_fill_ft: 3.0
+    preserve: [treatment_cell, bay_view_corridor, drainage_swales]
+  scoring_weights: {}
+  notes: >
+    Baseline earthwork (500.8 CY) and seat counts come verbatim from the
+    locked earthwork.csv / geometry.geojson. The inherited stage (axis 150,
+    +25.6 deg mismatch, -22.5 ft lateral) is reported, not resolved.

@@ -1,0 +1,98 @@
+{
+  "cost": {
+    "assumptions": "/home/sam/projects/amphitheatre/configs/cost_assumptions.yaml",
+    "confidence": "planning_range_only",
+    "lines": {
+      "cut": {
+        "qty": 3233.8,
+        "unit": "CY",
+        "low": 25870.0,
+        "high": 58208.0
+      },
+      "fill": {
+        "qty": 323.1,
+        "unit": "CY",
+        "low": 3231.0,
+        "high": 7108.0
+      },
+      "topsoil": {
+        "qty": 296.2,
+        "unit": "CY",
+        "low": 1777.0,
+        "high": 4147.0
+      },
+      "fine_grading": {
+        "qty": 11710.5,
+        "unit": "SF",
+        "low": 9368.0,
+        "high": 23421.0
+      },
+      "lawn_restore": {
+        "qty": 11710.5,
+        "unit": "SF",
+        "low": 5855.0,
+        "high": 17566.0
+      },
+      "ada_ramps": {
+        "qty": 1440.0,
+        "unit": "SF",
+        "low": 36000.0,
+        "high": 64800.0
+      },
+      "cross_aisle": {
+        "qty": 2000.0,
+        "unit": "SF",
+        "low": 24000.0,
+        "high": 50000.0
+      },
+      "apron_structure": {
+        "qty": 319.0,
+        "unit": "SF",
+        "low": 12760.0,
+        "high": 28710.0
+      },
+      "stage_refit": {
+        "qty": 1,
+        "unit": "LS",
+        "low": 8000,
+        "high": 20000
+      },
+      "low_walls": {
+        "qty": 2645.0,
+        "unit": "LF",
+        "low": 661250.0,
+        "high": 1322500.0
+      }
+    },
+    "subtotal": {
+      "low": 788100,
+      "high": 1596500
+    },
+    "total_range": {
+      "low": 1021400,
+      "high": 2324400
+    },
+    "note": "planning ranges only \u2014 comparison-grade, not a bid basis"
+  },
+  "effectiveness": {
+    "incremental_cost_range": {
+      "low": 918200,
+      "high": 2084400
+    },
+    "delta_band_a_seats": 382,
+    "delta_quality_adjusted_seats": 382.0,
+    "delta_score": -13.3,
+    "cost_per_band_a_seat": {
+      "low": 2404.0,
+      "high": 5457.0
+    },
+    "cost_per_quality_adjusted_seat": {
+      "low": 2404.0,
+      "high": 5457.0
+    },
+    "cost_per_score_point": {
+      "low": -156722.0,
+      "high": -69038.0
+    }
+  }
+}

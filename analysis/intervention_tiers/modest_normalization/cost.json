@@ -1,0 +1,80 @@
+{
+  "cost": {
+    "assumptions": "/home/sam/projects/amphitheatre/configs/cost_assumptions.yaml",
+    "confidence": "planning_range_only",
+    "lines": {
+      "cut": {
+        "qty": 219.0,
+        "unit": "CY",
+        "low": 1752.0,
+        "high": 3942.0
+      },
+      "fill": {
+        "qty": 291.5,
+        "unit": "CY",
+        "low": 2915.0,
+        "high": 6413.0
+      },
+      "topsoil": {
+        "qty": 292.2,
+        "unit": "CY",
+        "low": 1753.0,
+        "high": 4091.0
+      },
+      "fine_grading": {
+        "qty": 10864.0,
+        "unit": "SF",
+        "low": 8691.0,
+        "high": 21728.0
+      },
+      "lawn_restore": {
+        "qty": 10864.0,
+        "unit": "SF",
+        "low": 5432.0,
+        "high": 16296.0
+      },
+      "ada_ramps": {
+        "qty": 1440.0,
+        "unit": "SF",
+        "low": 36000.0,
+        "high": 64800.0
+      },
+      "cross_aisle": {
+        "qty": 2000.0,
+        "unit": "SF",
+        "low": 24000.0,
+        "high": 50000.0
+      }
+    },
+    "subtotal": {
+      "low": 80500,
+      "high": 167300
+    },
+    "total_range": {
+      "low": 104400,
+      "high": 243500
+    },
+    "note": "planning ranges only \u2014 comparison-grade, not a bid basis"
+  },
+  "effectiveness": {
+    "incremental_cost_range": {
+      "low": 1200,
+      "high": 3500
+    },
+    "delta_band_a_seats": 114,
+    "delta_quality_adjusted_seats": 114.0,
+    "delta_score": 0.6,
+    "cost_per_band_a_seat": {
+      "low": 11.0,
+      "high": 31.0
+    },
+    "cost_per_quality_adjusted_seat": {
+      "low": 11.0,
+      "high": 31.0
+    },
+    "cost_per_score_point": {
+      "low": 2000.0,
+      "high": 5833.0
+    }
+  }
+}
