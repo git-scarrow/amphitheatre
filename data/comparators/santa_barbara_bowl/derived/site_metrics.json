@@ -12,7 +12,14 @@
  "capacity": {
   "value": 4562,
   "basis": "published",
-  "source": "https://en.wikipedia.org/wiki/Santa_Barbara_Bowl"
+  "source": "https://en.wikipedia.org/wiki/Santa_Barbara_Bowl",
+  "capacity_basis": "published ticketing capacity, configuration-dependent: 4,562 standard reserved (Wikipedia infobox); venue seating page lists 4,500 reserved-floor / 5,000 GA-floor totals"
+ },
+ "dem_type": {
+  "value": "bare-earth DTM (USGS 3DEP 1 m standard product)",
+  "basis": "published",
+  "note": "VERIFIED \u2014 hillshade resolves concentric terrace banding matching aerial imagery (diagnostic_dem.png vs diagnostic_imagery.png); graded bench terraces survive bare-earth filtering as ground",
+  "known_voids": "stage house filtered to ground beneath deck; individual ~1 ft risers below 1 m resolution"
  },
  "audience_facing_az_deg": {
   "value": 95.8,
@@ -23,6 +30,24 @@
   "value": 92,
   "basis": "inferred_imagery",
   "note": "inferred: deck west-edge span read from hillshade/imagery; OSM house long dim 125 ft is the upper bound incl. wings",
+  "range": [
+   85,
+   100
+  ]
+ },
+ "stage_core_width_ft": {
+  "value": 92,
+  "basis": "inferred_imagery",
+  "note": "single deck; no core/shoulder distinction",
+  "range": [
+   85,
+   100
+  ]
+ },
+ "stage_effective_frontage_ft": {
+  "value": 92,
+  "basis": "inferred_imagery",
+  "note": "single deck; no core/shoulder distinction",
   "range": [
    85,
    100
@@ -101,13 +126,35 @@
   "note": "frontage is the inferred quantity"
  },
  "row_count_est": {
-  "value": "~30-40 bench rows in 3 banks (A-C / D-I / J-O)",
-  "basis": "inferred_imagery",
-  "note": "inferred: imagery terrace texture + published section bands; 1 m DEM cannot resolve individual ~1 ft risers"
+  "value": "40 lettered terrace rows in 4 banks + 14 floor rows (T/U/V)",
+  "basis": "published",
+  "note": "published 2007 venue seating chart (archived PDF); supersedes earlier ~30-40 imagery estimate"
  },
  "ada": {
   "value": "main cross-aisle visible ~ring 30 m + concourse at top of bowl; ADA platform added 2003 (published); switchback access roads N and S of bowl",
   "basis": "inferred_imagery"
+ },
+ "ada_detail": {
+  "route_concept": {
+   "value": "vehicular/walk approach to a single accessible level immediately behind the floor; designated HANDICAPPED sections P (house L) and S (house R) flanking Founders Row",
+   "basis": "published (2007 chart) + inferred_imagery (routes)"
+  },
+  "vertical_drop_ft": {
+   "value": "bowl rises 68.8 ft floor->top; accessible seating avoids it by staying at the near-floor level",
+   "basis": "measured_dem + published"
+  },
+  "dispersion": {
+   "value": "single elevation, two lateral positions (P+S); no upper-bowl accessible seating evident",
+   "basis": "published (2007 chart)"
+  },
+  "redundancy": {
+   "value": "two flank approaches (N and S service paths) to the accessible level",
+   "basis": "inferred_imagery"
+  },
+  "sightline_preservation": {
+   "value": "front-of-bank positions look over the floor sections; plausibly preserved but UNVERIFIED (no C-value data)",
+   "basis": "inferred_imagery"
+  }
  },
  "backdrop": {
   "value": "audience faces ~E into canyon hillside (oak woodland) behind stage house; enclosed canyon venue with tall stage house + roof",

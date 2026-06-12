@@ -91,13 +91,26 @@ def comparator_metrics(slug):
         "dem": V(f"{dem['title']} ({dem['resolution_m']} m)", "published",
                  url=dem["url"], acquisition=dem["lidar_acquisition"]),
         "capacity": V(site["facts_published"]["capacity"], "published",
-                      source=site["facts_published"]["capacity_source"]),
+                      source=site["facts_published"]["capacity_source"],
+                      capacity_basis=cfg["capacity_basis"]),
+        "dem_type": V(cfg["dem_verification"]["dem_type"], "published",
+                      cfg["dem_verification"]["terrace_preservation"],
+                      known_voids=cfg["dem_verification"]["known_voids"]),
         "audience_facing_az_deg": V(cfg["audience_facing_azimuth_deg"],
                                     "inferred_imagery",
                                     "from OSM stage rectangle orientation + "
                                     "seating side; consistent w/ DEM fall line"),
         "stage_frontage_ft": V(frontage["value"], "inferred_imagery",
                                frontage["_basis"], range=frontage["range"]),
+        # comparators have a single deck — core and effective coincide
+        "stage_core_width_ft": V(frontage["value"], "inferred_imagery",
+                                 "single deck; no core/shoulder distinction",
+                                 range=frontage["range"]),
+        "stage_effective_frontage_ft": V(frontage["value"],
+                                         "inferred_imagery",
+                                         "single deck; no core/shoulder "
+                                         "distinction",
+                                         range=frontage["range"]),
         "stage_depth_ft": V(cfg["stage_depth_ft"]["value"], "inferred_imagery",
                             cfg["stage_depth_ft"]["_basis"],
                             range=cfg["stage_depth_ft"]["range"]),
@@ -132,9 +145,12 @@ def comparator_metrics(slug):
                                   "inferred_imagery",
                                   "frontage is the inferred quantity"),
         "row_count_est": V(cfg["row_count_inferred"]["value"],
+                           "published" if "published" in
+                           cfg["row_count_inferred"]["_basis"] else
                            "inferred_imagery",
                            cfg["row_count_inferred"]["_basis"]),
         "ada": V(cfg["ada_circulation_note"], "inferred_imagery"),
+        "ada_detail": cfg["ada_detail"],
         "backdrop": V(cfg["backdrop_note"], "inferred_imagery"),
     }
     out = os.path.join(sd, "derived", "site_metrics.json")
@@ -171,8 +187,13 @@ def petoskey_metrics():
 
     STAGE_FRONT_TO_ROW1 = 35.0   # canon (goal/DESIGN_CANON; event floor)
     STAGE_W, STAGE_D = 70.0, 34.0
+    # measured from bowl_zones.geojson stage polygons (union of core +
+    # both 17 ft shoulders, extent perpendicular to the az-150 stage axis)
+    STAGE_EFF_W = 104.0
     FAN = 110.0
-    row1_arc = math.radians(FAN) * r1_rad
+    row1_arc = math.radians(FAN) * r1_rad          # geometric arc at r=85
+    row1_len_phys = 131.6                          # sum of row-1 tread length_ft
+    row1_chord = 2.0 * r1_rad * math.sin(math.radians(FAN / 2.0))
 
     m = {
         "site": "Petoskey Pit civic bowl (Scenario E, in-situ package)",
@@ -182,13 +203,44 @@ def petoskey_metrics():
         "dem": V("2015 USGS LiDAR (MI 13County C16) + 2026 supplement, "
                  "design rasters at 1 ft", "canon"),
         "capacity": V(1283, "canon", "nominal Scenario E baseline; 1,243 "
-                      "Band-A validated; options to 1,505 validated"),
+                      "Band-A validated; options to 1,505 validated",
+                      capacity_basis="geometric seat count from validated "
+                      "tread lengths (NOT ticketing or code occupant load); "
+                      "compare with care against SB ticketing capacity and "
+                      "Meijer lawn capacity"),
+        "dem_type": V("design surface: proposed_grade_1ft.tif (1 ft) built "
+                      "on bare-earth 2015 USGS LiDAR + 2026 supplement",
+                      "canon",
+                      "treads are designed geometry, not survey returns"),
         "audience_facing_az_deg": V(312.0, "canon",
                                     "seating axis az 132 -> nominal facing "
                                     "312; bay-view corridor az 330"),
-        "stage_frontage_ft": V(STAGE_W, "canon",
-                               "70x34 ft low stage core + lateral shoulders; "
-                               "PROVISIONAL (Rule 9 OPEN)"),
+        # four distinct frontage quantities — never collapse to one number
+        "stage_core_width_ft": V(STAGE_W, "canon",
+                                 "70 ft core deck; PROVISIONAL (Rule 9 OPEN)"),
+        "stage_effective_frontage_ft": V(STAGE_EFF_W, "measured_dem",
+                                         "union of stage_core + 2x17 ft "
+                                         "shoulders (bowl_zones.geojson), "
+                                         "extent perpendicular to the az-150 "
+                                         "stage axis; counts as frontage only "
+                                         "if shoulders are programmed as "
+                                         "performance surface (Rule 9 OPEN)"),
+        "row1_chord_ft": V(round(row1_chord, 1), "measured_dem",
+                           "2 x 85 ft x sin(55 deg) chord across the fan"),
+        "row1_length_physical_ft": V(row1_len_phys, "measured_dem",
+                                     "sum of row-1 tread length_ft "
+                                     "(terrace_treads.geojson)"),
+        "frontage_coverage": V({
+            "core_over_chord": round(STAGE_W / row1_chord, 2),
+            "shouldered_over_chord": round(STAGE_EFF_W / row1_chord, 2),
+            "core_over_arc_geometric": round(STAGE_W / row1_arc, 2),
+            "shouldered_over_arc_geometric": round(STAGE_EFF_W / row1_arc, 2),
+            "core_over_row1_physical": round(STAGE_W / row1_len_phys, 2),
+            "shouldered_over_row1_physical": round(STAGE_EFF_W / row1_len_phys, 2),
+        }, "measured_dem",
+            "chord = straight-line width across the fan at row 1; "
+            "arc_geometric = 110 deg x 85 ft; row1_physical = built tread "
+            "length (gaps at hinges excluded)"),
         "stage_depth_ft": V(STAGE_D, "canon", "Rule 9 OPEN"),
         "stage_front_to_row1_ft": V(STAGE_FRONT_TO_ROW1, "canon",
                                     "event floor between stage and row 1"),
@@ -213,8 +265,12 @@ def petoskey_metrics():
                                    "measured_dem",
                                    "stage front -> row 18: 35 ft floor + "
                                    "seating depth (rN - r1 radii)"),
-        "row1_arc_length_ft": V(round(row1_arc, 1), "canon"),
-        "frontage_to_row1_arc": V(round(STAGE_W / row1_arc, 2), "canon"),
+        "row1_arc_length_ft": V(round(row1_arc, 1), "canon",
+                                "geometric 110 deg x 85 ft; physical row-1 "
+                                "treads total 131.6 ft"),
+        "frontage_to_row1_arc": V(round(STAGE_W / row1_arc, 2), "canon",
+                                  "CORE width over geometric arc — see "
+                                  "frontage_coverage for the full matrix"),
         "row_count_est": V(len(row_ids), "canon",
                            "formal rows 1-18 minus promenade 5 + aisle 9/10 "
                            "= 15 treads x 3 sections",
@@ -223,6 +279,31 @@ def petoskey_metrics():
                                                1)),
         "ada": V("two 8.33% switchback routes + level cross-aisle "
                  "(rows 9/10) at 622.01; validated", "canon"),
+        "ada_detail": {
+            "route_concept": {"value": "two dedicated 8.33% switchback "
+                              "ramps (A: rim->event floor, B: rim->cross-"
+                              "aisle) + rows 9/10 reclassified as a level "
+                              "accessible cross-aisle at 622.01",
+                              "basis": "canon"},
+            "vertical_drop_ft": {"value": "~21 ft rim->floor (row-18 "
+                                 "633.7 -> floor 612.5), taken in 3-4 "
+                                 "flights with 4-5 landings, validated "
+                                 "running slope 8.33%",
+                                 "basis": "canon"},
+            "dispersion": {"value": "two elevations: event floor (612.5) "
+                           "and mid-bowl cross-aisle (622.01) — both with "
+                           "wheelchair + companion positions in the "
+                           "human-scale reference layer",
+                           "basis": "canon"},
+            "redundancy": {"value": "two independent validated routes "
+                           "(A and B) from the rim", "basis": "canon"},
+            "sightline_preservation": {"value": "wheelchair eye 3.90 ft "
+                                       "refs placed at cross-aisle and ADA "
+                                       "landings carry blocks_bay_view "
+                                       "flags in human_scale_refs.geojson "
+                                       "(rim-grazing bay-view rule applied)",
+                                       "basis": "canon"},
+        },
         "backdrop": V("open to Little Traverse Bay az 330; no upstage wall "
                       "(landscape venue)", "canon"),
     }

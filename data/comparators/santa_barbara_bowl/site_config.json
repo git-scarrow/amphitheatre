@@ -50,9 +50,51 @@
  },
  "row_count_note": "estimated from DEM riser detection below",
  "row_count_inferred": {
-  "value": "~30-40 bench rows in 3 banks (A-C / D-I / J-O)",
-  "_basis": "inferred: imagery terrace texture + published section bands; 1 m DEM cannot resolve individual ~1 ft risers"
+  "value": "40 lettered terrace rows in 4 banks + 14 floor rows (T/U/V)",
+  "_basis": "published 2007 venue seating chart (archived PDF); supersedes earlier ~30-40 imagery estimate"
  },
  "ada_circulation_note": "main cross-aisle visible ~ring 30 m + concourse at top of bowl; ADA platform added 2003 (published); switchback access roads N and S of bowl",
- "backdrop_note": "audience faces ~E into canyon hillside (oak woodland) behind stage house; enclosed canyon venue with tall stage house + roof"
+ "backdrop_note": "audience faces ~E into canyon hillside (oak woodland) behind stage house; enclosed canyon venue with tall stage house + roof",
+ "capacity_basis": "published ticketing capacity, configuration-dependent: 4,562 standard reserved (Wikipedia infobox); venue seating page lists 4,500 reserved-floor / 5,000 GA-floor totals",
+ "row_structure_published": {
+  "source": "official 2007 reserved-seating chart PDF (sbbowl.com via Wayback 2014 capture)",
+  "wayback_url": "https://web.archive.org/web/20140207220308/http://sbbowl.com:80/images/_pages/_global/SBB-Reserved_seating.pdf",
+  "local_copy": "data/comparators/santa_barbara_bowl/SBB_Reserved_seating_2007_wayback.pdf",
+  "floor": "sections T/U/V rows 1-14 (reserved config)",
+  "banks": [
+   "J-O rows 1-9 (9)",
+   "G-I rows A-N (13)",
+   "D-F rows O-Z (11)",
+   "A-C rows AA-GG (7)"
+  ],
+  "terraced_rows_total": 40,
+  "extras": "P/S handicapped sections + R Founders Row at one level between floor and J-O bank; mixer mid-bowl in L"
+ },
+ "dem_verification": {
+  "dem_type": "bare-earth DTM (USGS 3DEP 1 m standard product)",
+  "terrace_preservation": "VERIFIED \u2014 hillshade resolves concentric terrace banding matching aerial imagery (diagnostic_dem.png vs diagnostic_imagery.png); graded bench terraces survive bare-earth filtering as ground",
+  "known_voids": "stage house filtered to ground beneath deck; individual ~1 ft risers below 1 m resolution"
+ },
+ "ada_detail": {
+  "route_concept": {
+   "value": "vehicular/walk approach to a single accessible level immediately behind the floor; designated HANDICAPPED sections P (house L) and S (house R) flanking Founders Row",
+   "basis": "published (2007 chart) + inferred_imagery (routes)"
+  },
+  "vertical_drop_ft": {
+   "value": "bowl rises 68.8 ft floor->top; accessible seating avoids it by staying at the near-floor level",
+   "basis": "measured_dem + published"
+  },
+  "dispersion": {
+   "value": "single elevation, two lateral positions (P+S); no upper-bowl accessible seating evident",
+   "basis": "published (2007 chart)"
+  },
+  "redundancy": {
+   "value": "two flank approaches (N and S service paths) to the accessible level",
+   "basis": "inferred_imagery"
+  },
+  "sightline_preservation": {
+   "value": "front-of-bank positions look over the floor sections; plausibly preserved but UNVERIFIED (no C-value data)",
+   "basis": "inferred_imagery"
+  }
+ }
 }

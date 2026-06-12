@@ -10,17 +10,50 @@
  "capacity": {
   "value": 1283,
   "basis": "canon",
-  "note": "nominal Scenario E baseline; 1,243 Band-A validated; options to 1,505 validated"
+  "note": "nominal Scenario E baseline; 1,243 Band-A validated; options to 1,505 validated",
+  "capacity_basis": "geometric seat count from validated tread lengths (NOT ticketing or code occupant load); compare with care against SB ticketing capacity and Meijer lawn capacity"
+ },
+ "dem_type": {
+  "value": "design surface: proposed_grade_1ft.tif (1 ft) built on bare-earth 2015 USGS LiDAR + 2026 supplement",
+  "basis": "canon",
+  "note": "treads are designed geometry, not survey returns"
  },
  "audience_facing_az_deg": {
   "value": 312.0,
   "basis": "canon",
   "note": "seating axis az 132 -> nominal facing 312; bay-view corridor az 330"
  },
- "stage_frontage_ft": {
+ "stage_core_width_ft": {
   "value": 70.0,
   "basis": "canon",
-  "note": "70x34 ft low stage core + lateral shoulders; PROVISIONAL (Rule 9 OPEN)"
+  "note": "70 ft core deck; PROVISIONAL (Rule 9 OPEN)"
+ },
+ "stage_effective_frontage_ft": {
+  "value": 104.0,
+  "basis": "measured_dem",
+  "note": "union of stage_core + 2x17 ft shoulders (bowl_zones.geojson), extent perpendicular to the az-150 stage axis; counts as frontage only if shoulders are programmed as performance surface (Rule 9 OPEN)"
+ },
+ "row1_chord_ft": {
+  "value": 139.3,
+  "basis": "measured_dem",
+  "note": "2 x 85 ft x sin(55 deg) chord across the fan"
+ },
+ "row1_length_physical_ft": {
+  "value": 131.6,
+  "basis": "measured_dem",
+  "note": "sum of row-1 tread length_ft (terrace_treads.geojson)"
+ },
+ "frontage_coverage": {
+  "value": {
+   "core_over_chord": 0.5,
+   "shouldered_over_chord": 0.75,
+   "core_over_arc_geometric": 0.43,
+   "shouldered_over_arc_geometric": 0.64,
+   "core_over_row1_physical": 0.53,
+   "shouldered_over_row1_physical": 0.79
+  },
+  "basis": "measured_dem",
+  "note": "chord = straight-line width across the fan at row 1; arc_geometric = 110 deg x 85 ft; row1_physical = built tread length (gaps at hinges excluded)"
  },
  "stage_depth_ft": {
   "value": 34.0,
@@ -86,11 +119,13 @@
  },
  "row1_arc_length_ft": {
   "value": 163.2,
-  "basis": "canon"
+  "basis": "canon",
+  "note": "geometric 110 deg x 85 ft; physical row-1 treads total 131.6 ft"
  },
  "frontage_to_row1_arc": {
   "value": 0.43,
-  "basis": "canon"
+  "basis": "canon",
+  "note": "CORE width over geometric arc \u2014 see frontage_coverage for the full matrix"
  },
  "row_count_est": {
   "value": 15,
@@ -101,6 +136,28 @@
  "ada": {
   "value": "two 8.33% switchback routes + level cross-aisle (rows 9/10) at 622.01; validated",
   "basis": "canon"
+ },
+ "ada_detail": {
+  "route_concept": {
+   "value": "two dedicated 8.33% switchback ramps (A: rim->event floor, B: rim->cross-aisle) + rows 9/10 reclassified as a level accessible cross-aisle at 622.01",
+   "basis": "canon"
+  },
+  "vertical_drop_ft": {
+   "value": "~21 ft rim->floor (row-18 633.7 -> floor 612.5), taken in 3-4 flights with 4-5 landings, validated running slope 8.33%",
+   "basis": "canon"
+  },
+  "dispersion": {
+   "value": "two elevations: event floor (612.5) and mid-bowl cross-aisle (622.01) \u2014 both with wheelchair + companion positions in the human-scale reference layer",
+   "basis": "canon"
+  },
+  "redundancy": {
+   "value": "two independent validated routes (A and B) from the rim",
+   "basis": "canon"
+  },
+  "sightline_preservation": {
+   "value": "wheelchair eye 3.90 ft refs placed at cross-aisle and ADA landings carry blocks_bay_view flags in human_scale_refs.geojson (rim-grazing bay-view rule applied)",
+   "basis": "canon"
+  }
  },
  "backdrop": {
   "value": "open to Little Traverse Bay az 330; no upstage wall (landscape venue)",

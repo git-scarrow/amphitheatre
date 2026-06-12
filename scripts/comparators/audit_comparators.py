@@ -86,6 +86,25 @@ def main():
         check(v.get("basis") != "measured_dem",
               f"{slug}: row count must not claim measured_dem at 1 m "
               "resolution")
+        # capacity must carry an explicit basis class (ticketing / lawn /
+        # fixed-seat / geometric / occupant-load) — unlike capacities must
+        # not be compared silently
+        check(bool(m.get("capacity", {}).get("capacity_basis")),
+              f"{slug}: capacity lacks capacity_basis classification")
+        # DEM type must be stated and bare-earth, with a terrace-preservation
+        # verification note (hillshade vs imagery)
+        dt = m.get("dem_type", {})
+        check("bare-earth" in str(dt.get("value", "")).lower(),
+              f"{slug}: dem_type missing or not declared bare-earth")
+        check("verified" in str(dt.get("note", "")).lower(),
+              f"{slug}: dem_type lacks terrace-preservation verification "
+              "note")
+        # ADA comparison must be structured, not just 'cross-aisle exists'
+        ad = m.get("ada_detail", {})
+        for k in ("route_concept", "vertical_drop_ft", "dispersion",
+                  "redundancy", "sightline_preservation"):
+            check(k in ad and bool(ad[k].get("basis")),
+                  f"{slug}: ada_detail missing/unlabeled field {k}")
 
         sec = os.path.join(sd, "derived", "centerline_section.csv")
         check(os.path.exists(sec), f"{slug}: missing centerline_section.csv")
@@ -111,8 +130,27 @@ def main():
     # canon drift
     pz = comp["petoskey"]
     check(pz["fan_angle_deg"]["value"] == 110.0, "petoskey fan != 110")
-    check(pz["stage_frontage_ft"]["value"] == 70.0, "petoskey stage W != 70")
+    # frontage must be the four-way split, never a single collapsed number
+    check("stage_frontage_ft" not in pz,
+          "petoskey must not carry a bare stage_frontage_ft — use the "
+          "core/effective/chord/arc split")
+    check(pz.get("stage_core_width_ft", {}).get("value") == 70.0,
+          "petoskey stage core W != 70")
+    check(pz.get("stage_effective_frontage_ft", {}).get("value") == 104.0,
+          "petoskey shouldered effective frontage != 104")
+    fc = pz.get("frontage_coverage", {}).get("value", {})
+    for k in ("core_over_chord", "shouldered_over_chord",
+              "core_over_arc_geometric", "shouldered_over_arc_geometric"):
+        check(k in fc, f"petoskey frontage_coverage missing {k}")
+    check("row1_chord_ft" in pz and "row1_length_physical_ft" in pz,
+          "petoskey row-1 chord/physical-length fields missing")
     check(pz["stage_depth_ft"]["value"] == 34.0, "petoskey stage D != 34")
+    check(bool(pz.get("capacity", {}).get("capacity_basis")),
+          "petoskey capacity lacks capacity_basis")
+    for k in ("route_concept", "vertical_drop_ft", "dispersion",
+              "redundancy", "sightline_preservation"):
+        check(k in pz.get("ada_detail", {}),
+              f"petoskey ada_detail missing {k}")
     check(pz["stage_front_to_row1_ft"]["value"] == 35.0,
           "petoskey stage->row1 != 35")
     check(C.AX_AZ == 132.0 and C.STAGE_RULE9_STATUS == "open",
@@ -124,6 +162,20 @@ def main():
               "data/comparators/comparison.json",
               "data/comparators/petoskey_metrics.json"):
         check(os.path.exists(os.path.join(ROOT, p)), f"missing deliverable {p}")
+
+    # memo discipline: Rule 9 azimuth must stay open; failed spec searches
+    # must be logged per comparator
+    memo_p = os.path.join(ROOT, "docs", "AMPHITHEATRE_COMPARATORS.md")
+    if os.path.exists(memo_p):
+        memo = open(memo_p).read().lower()
+        check("cannot choose" in memo and "azimuth" in memo,
+              "memo must state comparators cannot choose Petoskey's azimuth "
+              "(Rule 9 stays open)")
+    for slug in SITES:
+        sp = os.path.join(comp_dir, slug, "SOURCES.md")
+        if os.path.exists(sp):
+            check("failed search" in open(sp).read().lower(),
+                  f"{slug}: SOURCES.md must log failed spec searches")
 
     # acquisition-vs-construction sanity (geometry currency)
     check("2018" in SITES["santa_barbara_bowl"]["dem_product"]

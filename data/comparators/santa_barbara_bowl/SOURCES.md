@@ -55,3 +55,34 @@ Benchmark role: larger terraced-bowl comparator (4,562 seats, canyon site).
 - Bare-earth filtering under the stage house returns ground, not deck.
 - Fan/radii are measured about the stage-front anchor (anchor itself
   inferred from the OSM footprint).
+
+## Patch 1 additions (2026-06-12, tightening pass)
+
+### New sources found
+- **Official 2007 reserved-seating chart PDF** (Wayback capture of
+  sbbowl.com, 2014): row-by-row layout. Local copy:
+  `SBB_Reserved_seating_2007_wayback.pdf`; source:
+  https://web.archive.org/web/20140207220308/http://sbbowl.com:80/images/_pages/_global/SBB-Reserved_seating.pdf
+  Gives PUBLISHED row structure: floor T/U/V rows 1–14; terraced banks
+  J–O rows 1–9, G–I rows A–N (13), D–F rows O–Z (11), A–C rows AA–GG (7)
+  ≈ 40 lettered rows; HANDICAPPED sections P + S flanking Founders Row (R)
+  at one level behind the floor; mixer mid-bowl in L.
+- **2002-era architectural drawings** (Wayback, sbbowl.com/images/arch/):
+  ground_floor_plan.jpg (basement/backstage level, column grid reads
+  16+20+22(+22)+22+20+24 ≈ 146 ft overall), east/north/west elevations,
+  stage perspectives. Corroborates nesting: deck (~92 ft, inferred) <
+  OSM roof footprint (125 ft) < podium grid (~146 ft). Not precise enough
+  to upgrade the deck W×D off inferred basis.
+
+### Failed searches (logged per audit requirement)
+- sbbowl.com/production → video tours only, no written specs.
+- sbbowl.com/rentals/ → 404. sitemap.xml / wp-sitemap.xml → empty.
+- Wayback CDX scan of sbbowl.com for tech/production/rider/spec PDFs →
+  no technical packet ever archived (only seating charts, forms, lists).
+- sbbowl.com/venue/projects/ → "COMING SOON" placeholder.
+- City/County planning packets and Master Plan EIR: not findable without
+  an interactive search engine (WebSearch tool incompatible in this
+  session; Exa 401; DuckDuckGo robots-blocked). NOT searched: county
+  parcel GIS (interactive JS viewer, not scriptable here).
+- Conclusion: stage deck W×D remains **inferred** (92 ft, range 85–100),
+  bounded by OSM roof 125 ft and corroborated by the 2002 plan grid.

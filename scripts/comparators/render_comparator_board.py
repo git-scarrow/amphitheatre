@@ -259,8 +259,9 @@ def section_panel(ax, s, z, title, anno, datum=None):
 def build_table(ax, comp):
     ax.axis("off")
     rows = [
-        ("capacity (seats)", "capacity"),
-        ("stage frontage (ft)", "stage_frontage_ft"),
+        ("capacity (unlike bases — see memo)", "capacity"),
+        ("stage core width (ft)", "stage_core_width_ft"),
+        ("effective frontage w/ shoulders (ft)", "stage_effective_frontage_ft"),
         ("stage depth (ft)", "stage_depth_ft"),
         ("stage front → row 1 (ft)", "stage_front_to_row1_ft"),
         ("fan angle (deg)", "fan_angle_deg"),
@@ -299,7 +300,12 @@ def build_table(ax, comp):
             cell.set_text_props(color="white", fontweight="bold")
     ax.set_title("[M] measured from DEM/repo geometry · [I] inferred from "
                  "imagery/OSM (not survey-grade) · [P] published · "
-                 "[C] Petoskey canon", fontsize=8, pad=4)
+                 "[C] Petoskey canon.  Capacity bases differ: Petoskey = "
+                 "geometric seat count, Meijer = lawn/event capacity (weak "
+                 "cite), SB = ticketing capacity.  Petoskey 104 ft effective "
+                 "frontage counts shoulders as performance surface — a "
+                 "Rule 9 question the comparators cannot decide.",
+                 fontsize=8, pad=4)
 
 
 def main():

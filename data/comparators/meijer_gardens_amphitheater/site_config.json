@@ -54,5 +54,33 @@
   "_basis": "inferred: hillshade/imagery arc count ring 8-38 m; 1 m DEM cannot resolve individual seat walls"
  },
  "ada_circulation_note": "level entry plaza at stage sides; flanking paths both sides of lawn; cross path mid-bowl ~ring 35 m (imagery)",
- "backdrop_note": "audience faces ~NNE across stage to pond + sculpture-park woodland; low covered stage, open landscape backdrop"
+ "backdrop_note": "audience faces ~NNE across stage to pond + sculpture-park woodland; low covered stage, open landscape backdrop",
+ "capacity_basis": "published lawn/event capacity (~1,900 on tiered lawn) \u2014 press-circulated figure; venue's own pages publish NO capacity; Wikipedia passage citation-needed. NOT a fixed-seat count",
+ "dem_verification": {
+  "dem_type": "bare-earth DTM (USGS 3DEP 1 m standard product)",
+  "terrace_preservation": "VERIFIED \u2014 hillshade resolves lawn-terrace/seat-wall arcs matching aerial imagery (diagnostic_dem.png vs diagnostic_imagery.png)",
+  "known_voids": "pond N of stage is a flattened water return at 809.5 ft; ~18 in seat walls below 1 m resolution"
+ },
+ "ada_detail": {
+  "route_concept": {
+   "value": "level garden-path entries at the bottom plaza (stage level) and along the rim promenade of a low bowl",
+   "basis": "inferred_imagery"
+  },
+  "vertical_drop_ft": {
+   "value": "12.9 ft total bowl rise; both top and bottom reachable on garden paths without dedicated ramp structures",
+   "basis": "measured_dem + inferred_imagery"
+  },
+  "dispersion": {
+   "value": "likely bottom plaza + top-of-lawn positions (two elevations); not formally marked in any public source found",
+   "basis": "inferred_imagery"
+  },
+  "redundancy": {
+   "value": "paths flank both sides of the lawn",
+   "basis": "inferred_imagery"
+  },
+  "sightline_preservation": {
+   "value": "unverified; lawn venue with shallow rake",
+   "basis": "inferred_imagery"
+  }
+ }
 }

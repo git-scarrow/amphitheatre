@@ -45,3 +45,25 @@ Same command sequence as the SB Bowl SOURCES.md.
   count is imagery-inferred (~8–10 + lawn), not DEM-counted.
 - Pond north of stage reads as flat 809.5 ft plane (water return).
 - Fan/radii measured about the inferred stage-front anchor.
+
+## Patch 1 additions (2026-06-12, tightening pass)
+
+### Searches performed beyond the venue website
+- Wayback CDX scan of meijergardens.org for PDFs / "amphitheat" /
+  tech / rider / production URLs → no PDFs archived; no spec pages.
+- Archived attraction pages 2014 + 2025 read in full: "terraced lawn
+  seating", "ivy growing on the stage" — NO capacity number and NO stage
+  dimensions have ever been published on the venue's own site.
+- meijergardens.org/calendar/concerts/ → 403 to autonomous fetchers.
+
+### Failed searches (logged per audit requirement)
+- Technical rider / production packet: none archived, none on site.
+- mlive / Grand Rapids Press 2003 construction articles: not reachable
+  without an interactive search engine (WebSearch tool incompatible this
+  session; Exa 401; DuckDuckGo robots-blocked).
+- Kent County / Grand Rapids Twp parcel GIS + planning-board packets:
+  interactive JS viewers, not scriptable here.
+- Conclusion: capacity ~1,900 stays **published (weak)** — press-
+  circulated lawn/event capacity, not a venue figure, not a fixed-seat
+  count. Stage dims remain **inferred** from the OSM canopy footprint
+  (110 × 54 ft lens) and imagery.
