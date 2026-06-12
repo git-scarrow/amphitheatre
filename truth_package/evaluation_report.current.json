@@ -1,6 +1,6 @@
 {
  "schema": "truthful-terrain/evaluation-report/0.1",
- "generated": "2026-06-11T17:49:33-04:00",
+ "generated": "2026-06-12T13:06:15-04:00",
  "generator": "scripts/build_truth_package.py",
  "design_state_ref": "truth_package/design_state.current.json",
  "summary": {
@@ -96,6 +96,14 @@
    "value": "never impounds permanent water",
    "source": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
    "note": "cell SHAPING is concept-tier (schematic 4:1) \u2014 not geometry-backed"
+  },
+  {
+   "id": "human_scale",
+   "name": "Human-scale references (calibrated schematic)",
+   "status": "pass",
+   "value": "15 figures (2 wheelchair) + 4 dimensions in the viewer",
+   "source": "vectors_geojson/human_scale_refs.geojson",
+   "note": "heights exact in data units (standing 5.0/5.75/6.25 ft; seated eye 3.94 ft = the C-value standard; wheelchair eye 3.90 ft); figure shapes schematic; placements anchored to governing layers"
   },
   {
    "id": "seating_scope",
@@ -344,6 +352,11 @@
   "grading_manifest": {
    "path": "dem/in_situ_grading_manifest.json",
    "sha256_12": "8fb51c9398aa",
+   "present": true
+  },
+  "human_refs": {
+   "path": "vectors_geojson/human_scale_refs.geojson",
+   "sha256_12": "21d4236fcdfe",
    "present": true
   },
   "material_zones": {

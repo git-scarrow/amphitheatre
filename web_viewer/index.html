@@ -646,6 +646,73 @@ for (const f of D.layers.site_context) {
 }
 scene.add(ctxGroup);
 
+/* ── human-scale refs (calibrated schematic figures) ──────────────
+   Every figure is generated from data/site_data.js, which mirrors
+   vectors_geojson/human_scale_refs.geojson — heights are EXACT in feet
+   (head apex = ground + height_ft); the silhouette is schematic. */
+const humanGroup = new THREE.Group();
+const dimGroup = new THREE.Group();
+const nearLabels = [];          // sprites shown only when the camera is close
+{
+  const HR = D.layers.human_refs ?? { humans: [], dims: [] };
+  const FIG_MAT = {
+    standing:   new THREE.MeshLambertMaterial({ color: 0x9c5b33 }),
+    seated:     new THREE.MeshLambertMaterial({ color: 0x6d597a }),
+    wheelchair: new THREE.MeshLambertMaterial({ color: 0x355070 }),
+  };
+  const eyeMat = new THREE.MeshBasicMaterial({ color: 0xc0392b });
+  for (const h of HR.humans) {
+    const [x, y] = h.xy, z0 = h.z, ht = h.h;
+    const m = FIG_MAT[h.posture] ?? FIG_MAT.standing;
+    const headR = Math.min(0.42, ht * 0.095);
+    const bodyH = ht - 2 * headR;          // head apex lands exactly at z0+ht
+    const body = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.30, 0.42, bodyH, 10), m);
+    body.position.copy(W(x, y, z0 + bodyH / 2));
+    const head = new THREE.Mesh(new THREE.SphereGeometry(headR, 12, 10), m);
+    head.position.copy(W(x, y, z0 + ht - headR));
+    const g = new THREE.Group();
+    g.add(body, head);
+    if (h.posture === "wheelchair") {
+      const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.95, 0.07, 8, 24), m);
+      wheel.position.copy(W(x + 0.55, y, z0 + 0.95));
+      const wheel2 = wheel.clone();
+      wheel2.position.copy(W(x - 0.55, y, z0 + 0.95));
+      g.add(wheel, wheel2);
+    }
+    if (h.eye != null) {                    // documented eye-height ring
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.05, 6, 20), eyeMat);
+      ring.rotation.x = Math.PI / 2;
+      ring.position.copy(W(x, y, z0 + h.eye));
+      g.add(ring);
+    }
+    if (h.label) {
+      const spr = textSprite(h.label, { x, y, z: z0 + ht + 2.2, scl: 3.4,
+                                        fg: "#4a3526" });
+      g.add(spr);
+      nearLabels.push({ spr, max: 520 });
+    }
+    g.children.forEach(o => { o.userData.human = h; });
+    humanGroup.add(g);
+  }
+  const dimMat = new THREE.LineBasicMaterial({ color: 0xb3541e });
+  for (const d of HR.dims) {
+    const [p0, p1] = d.line, z = d.z + 0.7;
+    const pts = [W(p0[0], p0[1], z), W(p1[0], p1[1], z)];
+    dimGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), dimMat));
+    for (const p of [p0, p1]) {             // end ticks
+      const t = [W(p[0], p[1], z - 0.6), W(p[0], p[1], z + 0.6)];
+      dimGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(t), dimMat));
+    }
+    const spr = textSprite(d.label, {
+      x: (p0[0] + p1[0]) / 2, y: (p0[1] + p1[1]) / 2, z: z + 2.6,
+      scl: 4.2, fg: "#7c3a12" });
+    dimGroup.add(spr);
+    nearLabels.push({ spr, max: 900 });
+  }
+}
+scene.add(humanGroup, dimGroup);
+
 /* ── camera presets & fly-to ──────────────────────────────────── */
 let fly = null;
 function flyTo(eye, target, ms = 1600) {
@@ -747,6 +814,14 @@ function layerRow(holder, label, objs, tier, swatchColor, on = true) {
   if (zoneGroups.treatment_cell) layerRow(L, "Treatment cell (landscape)", [zoneGroups.treatment_cell], "concept", "#7ca98c");
   if (zoneGroups.event_floor) layerRow(L, "Orchestra / event floor", [zoneGroups.event_floor], "concept", "#c9c0ae");
   layerRow(L, "Bay-view axis (az 330°) + focal point", [axisGroup], "source_of_truth", "#3e5c76");
+  const HRn = D.layers.human_refs ?? { humans: [], dims: [] };
+  L.insertAdjacentHTML("beforeend",
+    `<div class="lgroup">Human scale</div>` +
+    `<div class="lnote">Calibrated schematic figures from vectors_geojson/human_scale_refs.geojson —
+     heights exact (5.0 / 5.75 / 6.25 ft standing; seated eye 3.94 ft = the sightline C-value
+     standard, red ring; wheelchair eye 3.90 ft). Shapes schematic, never decorative.</div>`);
+  layerRow(L, `Human refs (${HRn.humans.length} figures, ${HRn.humans.filter(h => h.posture === "wheelchair").length} wheelchair)`, [humanGroup], "source_of_truth", "#9c5b33");
+  layerRow(L, `Scale dimensions (${HRn.dims.map(d => d.label.split(" ")[0] + " ft").join(" · ")})`, [dimGroup], "source_of_truth", "#b3541e");
 
   L.insertAdjacentHTML("beforeend", `<div class="lgroup">Context</div>`);
   layerRow(L, "Site context (streets, rim, paths, trees)", [ctxGroup], "mixed", "#8a8a8a");
@@ -798,6 +873,8 @@ const needle = document.getElementById("needle");
   controls.update();
   for (const f of fadeSprites)
     f.spr.visible = camera.position.distanceTo(f.spr.position) > f.min;
+  for (const f of nearLabels)
+    f.spr.visible = camera.position.distanceTo(f.spr.position) < f.max;
   const dir = new THREE.Vector3(); camera.getWorldDirection(dir);
   needle.style.transform = `translate(-50%,-100%) rotate(${Math.atan2(dir.x, -dir.z) * 180 / Math.PI}deg)`;
   renderer.render(scene, camera);

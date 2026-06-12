@@ -55,6 +55,7 @@ SRC = {
     "viewpoints": "vectors_geojson/in_situ_viewpoints.geojson",
     "material_zones": "vectors_geojson/material_zones.geojson",
     "stage_lineage": "design_open_low/stage_floor.geojson",
+    "human_refs": "vectors_geojson/human_scale_refs.geojson",
     "validation": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
     "grading_manifest": "dem/in_situ_grading_manifest.json",
     "decision_table": "analysis/decision_packet/decision_table.csv",
@@ -226,6 +227,31 @@ for f in zones_fc["features"]:
         "note": pr.get("note"),
         "polys": rings_of(f["geometry"]),
     })
+
+# human-scale references (calibrated schematic scale; heights exact in ft)
+human_refs = {"humans": [], "dims": []}
+if os.path.exists(p(SRC["human_refs"])):
+    for f in jload(SRC["human_refs"])["features"]:
+        pr = f["properties"]
+        if "viewer" not in pr.get("view_context", ["viewer"]) \
+                and pr["type"] == "human":
+            continue                      # e.g. ambitious-option ref: boards only
+        if pr["type"] == "human":
+            x, y = f["geometry"]["coordinates"]
+            human_refs["humans"].append({
+                "id": pr["ref_id"], "posture": pr["posture"],
+                "role": pr["role"], "h": pr["height_ft"],
+                "eye": pr.get("eye_height_ft"),
+                "xy": rxy(x, y), "z": pr["ground_elev_navd88"],
+                "label": pr.get("label"),
+                "note": pr.get("note"),
+            })
+        else:
+            human_refs["dims"].append({
+                "id": pr["ref_id"], "len": pr["length_ft"],
+                "label": pr["label"], "z": pr["ground_elev_navd88"],
+                "line": [rxy(x, y) for x, y in f["geometry"]["coordinates"]],
+            })
 
 # bay-view axis + focal point (lineage file also sources the inherited stage)
 bay_axis = focal = None
@@ -491,6 +517,15 @@ checks = [
      "value": "never impounds permanent water",
      "source": SRC["validation"],
      "note": "cell SHAPING is concept-tier (schematic 4:1) — not geometry-backed"},
+    {"id": "human_scale", "name": "Human-scale references (calibrated schematic)",
+     "status": "pass" if human_refs["humans"] else "fail",
+     "value": f"{len(human_refs['humans'])} figures "
+              f"({sum(1 for h in human_refs['humans'] if h['posture'] == 'wheelchair')} wheelchair) "
+              f"+ {len(human_refs['dims'])} dimensions in the viewer",
+     "source": SRC["human_refs"],
+     "note": "heights exact in data units (standing 5.0/5.75/6.25 ft; seated "
+             "eye 3.94 ft = the C-value standard; wheelchair eye 3.90 ft); "
+             "figure shapes schematic; placements anchored to governing layers"},
     {"id": "seating_scope", "name": "Seating scope decision (Decision 1)",
      "status": "warn",
      "value": "PENDING — " + " | ".join(
@@ -748,6 +783,7 @@ site_data = {
         "bay_axis": bay_axis,
         "focal": focal,
         "site_context": site_ctx,
+        "human_refs": human_refs,
     },
     "presets": presets,
     "audit": {
@@ -771,6 +807,10 @@ site_data = {
              "source": SRC["site_context"] + " (per-feature schematic flag)"},
             {"layer": "Row labels / annotations", "tier": "illustrative",
              "source": "generated from tread centroids"},
+            {"layer": "Human-scale refs (figures + dimensions)",
+             "tier": "source_of_truth",
+             "source": SRC["human_refs"] + " (heights/positions data-backed; "
+                       "figure shapes schematic)"},
         ],
         "missing": [c["name"] for c in checks if c["status"] == "unknown"],
         "pending": design_state["pending_decisions"][0],
