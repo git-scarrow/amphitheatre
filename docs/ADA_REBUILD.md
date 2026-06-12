@@ -117,3 +117,19 @@ preservation from wheelchair positions (refs carry flags only), ADAAG
 .venv/bin/python scripts/build_truth_package.py
 .venv/bin/python scripts/audit_in_situ_package.py
 ```
+
+---
+
+## Stage 2 (2026-06-12, later): designed alignments
+
+The stage-1 solver polylines were correctly criticized as pathfinding
+artifacts (55–79 jagged turns/route). Stage 2
+(`scripts/design_ada_routes.py`) converts the corridors into a designed
+civic plan: LOS-rationalized runs, filleted corners, consolidated swale
+crossings, sloped-walk vs ramp profiles, route hierarchy
+(primary/secondary/distribution/service), three packaged alternatives with
+detour-ratio honesty, and corridor polygons with benching/railing flags.
+Stage-1 outputs moved to `analysis/ada_rebuild/solver_paths.geojson` +
+`solver_validation.json` (feasibility evidence only). The governing
+route artifact is now the DESIGNED `vectors_geojson/ada_route.geojson`;
+full story + preferred concept C in **docs/ADA_ROUTE_ALTERNATIVES.md**.

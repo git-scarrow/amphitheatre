@@ -289,7 +289,9 @@ for f in site_fc["features"]:
     site_ctx.append(item)
 
 # ── ADA rebuild layers: nodes + concept routes + REJECTED legacy ──────────
-ada_rebuild = {"label": "ADA route network — REBUILT 2026-06-12",
+ada_rebuild = {"label": "ADA route network — designed alignments "
+                        "(stage 2, preferred concept C: east street "
+                        "arrival + west park-edge low arrival)",
                "status": "ADA-compliant route concept pending civil/code "
                          "detailing",
                "routes": [], "landings": [], "nodes": [], "legacy": []}
@@ -299,6 +301,10 @@ if os.path.exists(p(SRC["ada_route"])):
         if pr.get("role") == "ada_route_concept":
             ada_rebuild["routes"].append({
                 "name": pr["name"], "class": pr["class"],
+                "preferred": bool(pr.get("preferred")),
+                "alternatives": pr.get("alternatives", []),
+                "grade_pct": pr.get("design_grade_pct"),
+                "profile": pr.get("profile"),
                 "length_ft": pr["length_ft"],
                 "line": [rxy(x, y) for x, y in f["geometry"]["coordinates"]]})
         elif pr.get("role") == "landing":

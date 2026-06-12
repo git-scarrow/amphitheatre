@@ -1,6 +1,6 @@
 {
  "schema": "truthful-terrain/design-state/0.1",
- "generated": "2026-06-12T16:24:46-04:00",
+ "generated": "2026-06-12T17:27:48-04:00",
  "generator": "scripts/build_truth_package.py",
  "project": "Petoskey Pit amphitheatre \u2014 Open Civic Bowl (in-situ package)",
  "design_of_record": {
@@ -129,6 +129,7 @@
     "topology_ok": true,
     "conflicts_ok": true,
     "slopes_ok": true,
+    "smoothness_ok": true,
     "network_ok": true
    },
    "source": [
@@ -278,17 +279,17 @@
   },
   "ada_nodes": {
    "path": "vectors_geojson/ada_nodes.geojson",
-   "sha256_12": "9821a79eada2",
+   "sha256_12": "35e8e118c953",
    "present": true
   },
   "ada_route": {
    "path": "vectors_geojson/ada_route.geojson",
-   "sha256_12": "840494e411e6",
+   "sha256_12": "1b591af7b9a7",
    "present": true
   },
   "ada_validation": {
    "path": "analysis/ada_rebuild/ada_validation.json",
-   "sha256_12": "64311f0e6335",
+   "sha256_12": "435936fbfcfc",
    "present": true
   },
   "canon": {
@@ -343,7 +344,7 @@
   },
   "human_refs": {
    "path": "vectors_geojson/human_scale_refs.geojson",
-   "sha256_12": "1c4c4b8f307b",
+   "sha256_12": "a4dd4301f3aa",
    "present": true
   },
   "material_zones": {
@@ -378,7 +379,7 @@
   },
   "viewpoints": {
    "path": "vectors_geojson/in_situ_viewpoints.geojson",
-   "sha256_12": "dc8e2246f4c2",
+   "sha256_12": "82c0bfb6babf",
    "present": true
   },
   "zones": {

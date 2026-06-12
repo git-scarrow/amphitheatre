@@ -936,6 +936,48 @@ def check_ada_rebuild():
         fail(f"ADA: fragment routes with non-node endpoints: {frag}")
     else:
         ok(f"ADA: all {len(routes)} routes are node-to-node (no fragments)")
+    # stage-2 design gates: smoothness, detour honesty, corridors,
+    # hierarchy separation
+    if not hard.get("smoothness_ok"):
+        fail("ADA smoothness gate FAILED — routes read as pathfinding "
+             "artifacts, not designed paths")
+    else:
+        worst = max(s["after"]["turn_count_gt20deg"]
+                    for s in av.get("smoothness", {}).get("per_route",
+                                                          {}).values())
+        ok(f"ADA smoothness: designed alignments (max {worst} deliberate "
+           "turns/route; min tangent runs gated at 1.5 path widths)")
+    det = av.get("detour_ratios", {}).get("per_alternative", {})
+    if not det:
+        fail("ADA: detour ratios vs desire lines missing")
+    else:
+        flagged = sum(1 for alt in det.values() for r in alt.values()
+                      if r.get("flag_socially_inferior"))
+        ok(f"ADA detour ratios reported per alternative ({flagged} "
+           "flagged socially-inferior pairs — honesty preserved, see "
+           "recommendation)")
+    if not os.path.exists(os.path.join(C.VEC_DIR,
+                                       "route_corridors.geojson")):
+        fail("ADA: route_corridors.geojson missing")
+    else:
+        cor = av.get("corridors", {}).get("per_route", {})
+        if not cor or any("terrain_cross_slope_pct" not in c
+                          for c in cor.values()):
+            fail("ADA: corridor cross-slope/benching estimates missing "
+                 "from validation")
+        else:
+            ok(f"ADA corridors: {len(cor)} routes widened with cross-slope/"
+               "benching/railing flags")
+    hier = av.get("hierarchy_separation", {})
+    if hier.get("service_segments_in_public_topology") is not False:
+        fail("ADA: service/public separation not asserted")
+    else:
+        ok("ADA hierarchy: service route excluded from public topology; "
+           "south perimeter classified " +
+           str(hier.get("south_perimeter_status", ""))[:40])
+    if not av.get("recommendation", {}).get("preferred"):
+        fail("ADA: no preferred concept recommended")
+
     # legacy layer must be quarantined OUT of bowl_zones
     zones = load_vec("bowl_zones.geojson")
     leftovers = [f["properties"].get("name") for f in zones["features"]

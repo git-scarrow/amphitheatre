@@ -96,15 +96,15 @@
    "properties": {
     "name": "ada_arrival_to_cross_aisle",
     "description": "arriving on the rebuilt accessible route (concept, pending civil detailing): the rows-9/10 cross-aisle \u2014 level, wheelable, with the mid-bowl view pause \u2014 opens below",
-    "camera_elev_navd88": 627.6,
-    "camera_ground_elev_navd88": 622.4,
+    "camera_elev_navd88": 626.82,
+    "camera_ground_elev_navd88": 621.62,
     "camera_elev_source": "dem_design_1ft.tif",
     "eye_height_ft": 5.2,
     "look_target_x": 19533140.41,
     "look_target_y": 750717.71,
     "look_target_elev_navd88": 624.01,
-    "look_azimuth_deg": 238.4,
-    "look_distance_ft": 51.4,
+    "look_azimuth_deg": 236.0,
+    "look_distance_ft": 50.5,
     "fov_deg_suggested": 60,
     "render_file": "renders/ada_arrival_to_cross_aisle.png",
     "required": false,
@@ -114,8 +114,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533184.2,
-     750744.61
+     19533182.28,
+     750745.95
     ]
    }
   },

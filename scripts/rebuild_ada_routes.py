@@ -45,7 +45,8 @@ import in_situ_common as C
 
 REPO = C.REPO
 VEC = C.VEC_DIR
-OUT_VALID = os.path.join(REPO, "analysis", "ada_rebuild", "ada_validation.json")
+OUT_VALID = os.path.join(REPO, "analysis", "ada_rebuild", "solver_validation.json")
+OUT_PATHS = os.path.join(REPO, "analysis", "ada_rebuild", "solver_paths.geojson")
 
 MAX_RUN_SLOPE = 0.0833          # ADA ramp running slope
 SLOPE_TOL = 0.003               # planning-grade tolerance band (flagged)
@@ -114,10 +115,16 @@ def quarantine(fc, by_zone, rejection_metrics):
         else:
             keep.append(ft)
     fc["features"] = keep
-    C.dump(C.fc(legacy and legacy or []),
-           os.path.join(VEC, "legacy_ada_rejected.geojson"))
-    with open(os.path.join(VEC, "bowl_zones.geojson"), "w") as f:
-        json.dump(fc, f, indent=1)
+    legacy_path = os.path.join(VEC, "legacy_ada_rejected.geojson")
+    if legacy:
+        C.dump(C.fc(legacy), legacy_path)
+        with open(os.path.join(VEC, "bowl_zones.geojson"), "w") as f:
+            json.dump(fc, f, indent=1)
+    elif not os.path.exists(legacy_path):
+        raise SystemExit("bowl_zones has no ada features AND no quarantine "
+                         "file exists — legacy record lost?")
+    # else: already quarantined on a previous run — never overwrite the
+    # quarantine record with an empty collection
     return len(legacy)
 
 
@@ -151,13 +158,38 @@ def build_nodes(zg, dem, tf):
     svc_pt = stage_sh_r.boundary.interpolate(
         stage_sh_r.boundary.project(floor_.centroid))
 
+    # REAL arrival conditions (corrected after a first anchoring attempt
+    # projected onto rim_arrival_edge and landed INSIDE the bowl):
+    # site_context's rim_arrival_edge is the NW bay-side PARK arrival at
+    # ~618.5 ft, not the street edge. The east/south street boundaries
+    # (Petoskey St ~51 ft east, E Mitchell St ~54 ft south of the crest
+    # hinge points, grade ~640-642) are the STREET-side conditions; the
+    # crest nodes stay at the hinge rays with the street connection noted.
+    # A THIRD public arrival is added ON the NW rim edge nearest the event
+    # floor: 618.5 -> 612.5 is only ~6 ft — the floor's natural low-side
+    # accessible approach (and the basis of hybrid alternative C).
+    with open(os.path.join(VEC, "site_context.geojson")) as fh:
+        ctx = json.load(fh)
+    rim_edge = next(shape(f["geometry"]) for f in ctx["features"]
+                    if f["properties"].get("kind") == "rim_arrival_edge")
+    park_pt = rim_edge.interpolate(rim_edge.project(floor_.centroid))
+
     nodes = [
         ("public_arrival_rim", axis_pt(118, 160), "public",
-         "rim / public-way entry above row 18 at the east|bend hinge; "
-         "connection onward to street/parking is outside this package"),
+         "bowl crest at the east|bend hinge; Petoskey Street east boundary "
+         "~51 ft further east across the upper plateau (street grade "
+         "~640-642, near-level connection) — real public arrival"),
         ("egress_rim_south", axis_pt(152, 160), "public",
-         "second rim connection above row 18 at the bend|south hinge — "
-         "egress redundancy"),
+         "bowl crest at the bend|south hinge; E Mitchell Street south "
+         "boundary ~54 ft further south (near-level connection) — real "
+         "secondary/egress condition"),
+        ("park_arrival_west", (park_pt.x, park_pt.y), "public",
+         "ON the rim_arrival_edge (site_context, non-schematic, ~618.6 ft) "
+         "at its southwest end — the WEST park-edge low arrival. The floor "
+         "sits ~6 ft below, approached through the gap between the "
+         "stage-left shoulder and the south row-ends (the floor's only "
+         "open low-side edge; the NW is correctly blocked by the "
+         "treatment cell)."),
         ("cross_aisle_mid", axis_pt(132, 121), "public",
          "mid-bowl accessible cross-aisle (rows 9/10 band, datum 622.01)"),
         ("wc_cluster_cross_aisle", axis_pt(125, 121), "public",
@@ -172,6 +204,9 @@ def build_nodes(zg, dem, tf):
          "OPTIONAL performer/service access at the stage right shoulder "
          "edge — classified service, NOT part of the public network"),
     ]
+    DESIGN_ELEV = {"floor_arrival": 612.5, "wc_cluster_floor": 612.5,
+                   "service_stage_access": 612.5,   # canonical floor/stage datum
+                   "cross_aisle_mid": 622.01, "wc_cluster_cross_aisle": 622.01}
     feats = []
     for name, (x, y), klass, note in nodes:
         z = zat(x, y)
@@ -181,8 +216,15 @@ def build_nodes(zg, dem, tf):
                       "properties": {
                           "name": name, "class": klass, "note": note,
                           "ground_elev_navd88_proposed": round(z, 2) if z else None,
+                          "design_elev_navd88": DESIGN_ELEV.get(
+                              name, round(z, 2) if z else None),
+                          "design_elev_source": ("canonical event-floor/"
+                                                 "cross-aisle datum"
+                                                 if name in DESIGN_ELEV else
+                                                 "proposed grade raster"),
                           "source": "scripts/rebuild_ada_routes.py — anchored "
-                                    "to canonical zones/axis (read-only)",
+                                    "to canonical zones / site_context "
+                                    "rim_arrival_edge (read-only)",
                       }})
     C.dump(C.fc(feats), os.path.join(VEC, "ada_nodes.geojson"))
     return {f["properties"]["name"]:
@@ -250,7 +292,7 @@ def build_masks(zg, dem, tf, shp):
     yy, xx = np.mgrid[0:shp[0], 0:shp[1]]
     gx = tf.c + (xx + 0.5) * tf.a
     gy = tf.f + (yy + 0.5) * tf.e
-    m_radius = np.hypot(gx - C.FX, gy - C.FY) <= 200.0
+    m_radius = np.hypot(gx - C.FX, gy - C.FY) <= 230.0
     allowed_pub = m_radius & (m_tc == 0) & (m_stage == 0) & \
                   ((m_wedge == 0) | (m_corridor == 1))
     allowed_svc = m_radius & (m_tc == 0) & \
@@ -400,6 +442,8 @@ def main():
          "egress_rim_south", "public"),
         ("route_service_to_stage", "floor_arrival",
          "service_stage_access", "service"),
+        ("route_park_to_floor", "park_arrival_west",
+         "floor_arrival", "public"),
     ]
     feats, landings, route_info = [], [], {}
     for name, a, b, klass in ROUTES:
@@ -507,7 +551,7 @@ def main():
               f"{max_slope*100:.1f}%, {len(lnd)} landings"
               + (f", swale crossing {cross_len:.1f} ft" if crossing else ""))
 
-    C.dump(C.fc(feats + landings), os.path.join(VEC, "ada_route.geojson"))
+    C.dump(C.fc(feats + landings), OUT_PATHS)
 
     # ── validation, gates in ORDER: topology -> conflicts -> slopes ──────
     ok_routes = {n for n, ri in route_info.items() if ri["status"] == "OK"}
@@ -543,6 +587,7 @@ def main():
         and connected("wc_cluster_floor", "egress_rim_south"),
         "service->stage (classified service)":
             route_info.get("route_service_to_stage", {}).get("status") == "OK",
+        "park_arrival->floor": connected("park_arrival_west", "floor_arrival"),
     }
     topology_ok = all(topo_pairs.values())
 

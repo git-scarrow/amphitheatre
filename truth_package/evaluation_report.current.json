@@ -1,6 +1,6 @@
 {
  "schema": "truthful-terrain/evaluation-report/0.1",
- "generated": "2026-06-12T16:24:46-04:00",
+ "generated": "2026-06-12T17:27:48-04:00",
  "generator": "scripts/build_truth_package.py",
  "design_state_ref": "truth_package/design_state.current.json",
  "summary": {
@@ -45,7 +45,7 @@
    "id": "ada_network",
    "name": "ADA route network (REBUILT: topology \u2192 conflicts \u2192 slopes)",
    "status": "pass",
-   "value": "7 routes / 7 nodes; topology True, conflicts True, slopes True",
+   "value": "8 routes / 8 nodes; topology True, conflicts True, slopes True",
    "source": "analysis/ada_rebuild/ada_validation.json",
    "note": "concept pending civil/code detailing \u2014 legacy slope-only ADA fragments REJECTED 2026-06-12 (quarantined in vectors_geojson/legacy_ada_rejected.geojson); never described as ADA compliant"
   },
@@ -311,17 +311,17 @@
   },
   "ada_nodes": {
    "path": "vectors_geojson/ada_nodes.geojson",
-   "sha256_12": "9821a79eada2",
+   "sha256_12": "35e8e118c953",
    "present": true
   },
   "ada_route": {
    "path": "vectors_geojson/ada_route.geojson",
-   "sha256_12": "840494e411e6",
+   "sha256_12": "1b591af7b9a7",
    "present": true
   },
   "ada_validation": {
    "path": "analysis/ada_rebuild/ada_validation.json",
-   "sha256_12": "64311f0e6335",
+   "sha256_12": "435936fbfcfc",
    "present": true
   },
   "canon": {
@@ -376,7 +376,7 @@
   },
   "human_refs": {
    "path": "vectors_geojson/human_scale_refs.geojson",
-   "sha256_12": "1c4c4b8f307b",
+   "sha256_12": "a4dd4301f3aa",
    "present": true
   },
   "material_zones": {
@@ -411,7 +411,7 @@
   },
   "viewpoints": {
    "path": "vectors_geojson/in_situ_viewpoints.geojson",
-   "sha256_12": "dc8e2246f4c2",
+   "sha256_12": "82c0bfb6babf",
    "present": true
   },
   "zones": {
