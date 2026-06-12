@@ -99,7 +99,7 @@ def figure_outline(posture, height_ft):
         pts = [(knee_x, 0.0), (knee_x - 0.05 * h, seat_z),
                (-0.10 * h, seat_z + 0.02 * h),
                (-0.12 * h, h - 2.0 * r)]
-        pts += _head_arc(-0.02 * h, h - r, r, math.pi * 0.95, -math.pi * 0.05)
+        pts += _head_arc(-0.02 * h, h - r, r, math.pi, 0.0)  # apex exactly at h
         pts += [(back_x, h - 2.2 * r), (back_x, seat_z), (knee_x + 0.16 * h, 0.0)]
         return pts
     raise ValueError(f"unknown posture {posture!r}")
@@ -115,3 +115,60 @@ def wheel_outline(n=24):
 def outline_extent_ft(pts):
     zs = [p[1] for p in pts]
     return max(zs) - min(zs)
+
+
+# section-figure colours shared by every board renderer
+FIG_FILL = {"standing": "#9c5b33", "seated": "#6d597a", "wheelchair": "#355070"}
+PLAN_MARK = {"standing": ("o", "#9c5b33"), "seated": ("s", "#6d597a"),
+             "wheelchair": ("D", "#355070")}
+
+# refs snapped to their band's bend-axis station in section drawings
+# (ref_id -> (bend row, along-axis stagger ft)); the cross-aisle pair sits
+# where the level 622.01 band crosses the axis (rows 9/10, 117.1-121.4)
+_SECTION_SNAP = {
+    "row1_center_seated": (1, -1.2), "row1_center_standing": (1, 1.6),
+    "row5_promenade": (5, 0.0),
+    "row18_upper_seated": (18, -1.2), "row18_upper_standing": (18, 1.6),
+}
+_AISLE_STATION = {"cross_aisle_wheelchair": 118.6, "cross_aisle_companion": 120.6}
+
+
+def section_station(ref_id, xy, comp):
+    """Bend-axis station (ft from the axis origin) where a ref is drawn in
+    a true-scale section, or None if the ref is plan-only (too far off the
+    cut plane). Band-anchored refs snap to their band's axis radius; the
+    cross-aisle pair sits on the level 622.01 band; near-axis refs project."""
+    if ref_id in _SECTION_SNAP:
+        row, off = _SECTION_SNAP[ref_id]
+        return float(comp[(row, "bend")]["axis_radius_ft"]) + off
+    if ref_id in _AISLE_STATION:
+        return _AISLE_STATION[ref_id]
+    if ref_id.startswith("ada_landing"):
+        return None                       # plan-only (lateral switchbacks)
+    ux, uy = C.U(C.AX_AZ)
+    s = (xy[0] - C.FX) * ux + (xy[1] - C.FY) * uy
+    lat = (xy[0] - C.FX) * uy - (xy[1] - C.FY) * ux
+    return s if abs(lat) <= 25.0 else None
+
+
+def draw_section_figure(ax, props, station, board, zorder=9):
+    """Draw one to-scale figure on an equal-aspect section axes and return
+    the audit record (drawn extent measured from the actual vertices)."""
+    h, g = props["height_ft"], props["ground_elev_navd88"]
+    pts = [(station + dx, g + dz)
+           for dx, dz in figure_outline(props["posture"], h)]
+    xs, zs = zip(*pts)
+    ax.fill(xs, zs, color=FIG_FILL[props["posture"]], lw=0.4,
+            ec="#2b2b28", alpha=0.95, zorder=zorder)
+    if props["posture"] == "wheelchair":
+        wx, wz = zip(*[(station + dx, g + dz) for dx, dz in wheel_outline()])
+        ax.plot(wx, wz, color=FIG_FILL["wheelchair"], lw=0.7, zorder=zorder)
+    if props.get("eye_height_ft") is not None:
+        ax.plot([station - 1.3, station + 1.3],
+                [g + props["eye_height_ft"]] * 2,
+                color="#c0392b", lw=0.6, zorder=zorder + 1)
+    return {"board": board, "ref_id": props["ref_id"],
+            "posture": props["posture"], "height_ft": h,
+            "drawn_height_ft": round(max(zs) - min(zs), 3),
+            "station_ft": round(station, 1),
+            "ground_elev_navd88": g}

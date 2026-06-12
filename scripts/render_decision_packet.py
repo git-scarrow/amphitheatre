@@ -36,6 +36,7 @@ import numpy as np
 from matplotlib.colors import LightSource
 from matplotlib.lines import Line2D
 
+import human_scale_common as HS
 import in_situ_common as C
 
 BOARDS = os.path.join(C.REPO, "boards")
@@ -304,6 +305,19 @@ def board_04(tiers, H, zones, D):
 
 # ── board 05: true-scale bend-axis section ───────────────────────────────────
 
+def load_human_section_refs():
+    """Human-scale refs flagged for the board-05 section, from the source
+    layer (vectors_geojson/human_scale_refs.geojson) — never hand-placed."""
+    path = os.path.join(C.REPO, HS.REFS_PATH)
+    if not os.path.exists(path):
+        return []
+    with open(path) as fh:
+        feats = json.load(fh)["features"]
+    return [f for f in feats
+            if f["properties"]["type"] == "human"
+            and "board05_section" in f["properties"].get("view_context", [])]
+
+
 def board_05(tiers, H, D):
     comp = C.load_composition()
     bend18 = [(float(comp[(r, "bend")]["axis_radius_ft"]),
@@ -352,6 +366,21 @@ def board_05(tiers, H, D):
             label="inherited stage deck 612.5 — PROVISIONAL (Rule 9 OPEN)")
     ax.axhline(618.5, color="#1f77b4", lw=0.7, ls="--", alpha=0.7,
                label="flat NW rim silhouette 618.5 (bay-view check datum)")
+    # human-scale figures from the source layer, drawn 1:1 (audited)
+    hs_records = []
+    for f in load_human_section_refs():
+        p = dict(f["properties"])
+        st = HS.section_station(p["ref_id"], f["geometry"]["coordinates"], comp)
+        if st is None:
+            continue
+        if p["ref_id"] == "ambitious_row20_seated":
+            st = R20 - 1.2          # snap to the promoted row-20 station
+            p["ground_elev_navd88"] = e20
+        hs_records.append(HS.draw_section_figure(ax, p, st, "05_section"))
+    ax.plot([], [], marker="s", ls="", color=HS.FIG_FILL["standing"],
+            label="human-scale refs, 1:1 (human_scale_refs.geojson — incl. "
+                  "wheelchair on the cross-aisle, seated on row 20)")
+
     eye = e20 + C.EYE_SEATED_FT
     ax.annotate("", xy=(-65, 618.5), xytext=(R20, eye),
                 arrowprops=dict(arrowstyle="->", color="#1f77b4", lw=1.1, alpha=0.85))
@@ -412,6 +441,7 @@ def board_05(tiers, H, D):
     fig.savefig(out, facecolor="white")
     plt.close(fig)
     print(f"  wrote {os.path.relpath(out, C.REPO)}")
+    return hs_records
 
 
 # ── decision table + provenance ──────────────────────────────────────────────
@@ -453,10 +483,18 @@ def decision_table(H):
     print(f"  wrote {os.path.relpath(out, C.REPO)}")
 
 
-def provenance(H):
+def provenance(H, hs_records=None):
     out = os.path.join(PACKET, "sources.json")
     with open(out, "w") as fh:
         json.dump({
+            "human_scale": {
+                "source": "vectors_geojson/human_scale_refs.geojson",
+                "policy": "board-05 figures drawn 1:1 from the source layer "
+                          "(vertical extent = height_ft); none hand-drawn",
+                "figures": hs_records or [],
+                "wheelchair_figures": [r["ref_id"] for r in hs_records or []
+                                       if r["posture"] == "wheelchair"],
+            },
             "controlling_memo": "docs/POST_EMISSION_DECISION_MEMO.md",
             "emission_validation": "analysis/tier_emission/TIER_EMISSION_VALIDATION.md"
                                    " (commit f6b1d96)",
@@ -489,9 +527,9 @@ def main():
     D = dem()
     os.makedirs(BOARDS, exist_ok=True)
     board_04(tiers, H, zones, D)
-    board_05(tiers, H, D)
+    hs_records = board_05(tiers, H, D)
     decision_table(H)
-    provenance(H)
+    provenance(H, hs_records)
 
 
 if __name__ == "__main__":

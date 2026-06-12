@@ -1,4 +1,49 @@
 {
+ "human_scale": {
+  "source": "vectors_geojson/human_scale_refs.geojson",
+  "policy": "board-05 figures drawn 1:1 from the source layer (vertical extent = height_ft); none hand-drawn",
+  "figures": [
+   {
+    "board": "05_section",
+    "ref_id": "stage_front_performer",
+    "posture": "standing",
+    "height_ft": 6.25,
+    "drawn_height_ft": 6.25,
+    "station_ft": 46.8,
+    "ground_elev_navd88": 612.5
+   },
+   {
+    "board": "05_section",
+    "ref_id": "row1_center_seated",
+    "posture": "seated",
+    "height_ft": 4.27,
+    "drawn_height_ft": 4.27,
+    "station_ft": 83.8,
+    "ground_elev_navd88": 610.83
+   },
+   {
+    "board": "05_section",
+    "ref_id": "cross_aisle_wheelchair",
+    "posture": "wheelchair",
+    "height_ft": 4.23,
+    "drawn_height_ft": 4.23,
+    "station_ft": 118.6,
+    "ground_elev_navd88": 622.01
+   },
+   {
+    "board": "05_section",
+    "ref_id": "ambitious_row20_seated",
+    "posture": "seated",
+    "height_ft": 4.27,
+    "drawn_height_ft": 4.27,
+    "station_ft": 165.4,
+    "ground_elev_navd88": 636.74
+   }
+  ],
+  "wheelchair_figures": [
+   "cross_aisle_wheelchair"
+  ]
+ },
  "controlling_memo": "docs/POST_EMISSION_DECISION_MEMO.md",
  "emission_validation": "analysis/tier_emission/TIER_EMISSION_VALIDATION.md (commit f6b1d96)",
  "geometry_inputs": [

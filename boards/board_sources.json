@@ -17,6 +17,157 @@
  "boards": [
   "01_site_fit_board.png",
   "02_experience_board.png",
-  "03_landscape_character_board.png"
- ]
+  "03_landscape_character_board.png",
+  "06_human_scale_board.png"
+ ],
+ "human_scale": {
+  "source": "vectors_geojson/human_scale_refs.geojson",
+  "policy": "every visible human figure/marker generated from the source layer \u2014 none hand-drawn; section figures drawn 1:1 (vertical extent = height_ft)",
+  "plan_marker_boards": [
+   "01_site_fit_board.png",
+   "02_experience_board.png",
+   "06_human_scale_board.png"
+  ],
+  "figures": [
+   {
+    "board": "06_lineup",
+    "ref_id": "row1_center_seated",
+    "posture": "seated",
+    "height_ft": 4.27,
+    "drawn_height_ft": 4.27,
+    "station_ft": 0.0,
+    "ground_elev_navd88": 610.83
+   },
+   {
+    "board": "06_lineup",
+    "ref_id": "row1_east_pocket",
+    "posture": "standing",
+    "height_ft": 5.0,
+    "drawn_height_ft": 5.0,
+    "station_ft": 9.0,
+    "ground_elev_navd88": 610.86
+   },
+   {
+    "board": "06_lineup",
+    "ref_id": "center_stage",
+    "posture": "standing",
+    "height_ft": 5.75,
+    "drawn_height_ft": 5.75,
+    "station_ft": 18.0,
+    "ground_elev_navd88": 612.5
+   },
+   {
+    "board": "06_lineup",
+    "ref_id": "stage_front_performer",
+    "posture": "standing",
+    "height_ft": 6.25,
+    "drawn_height_ft": 6.25,
+    "station_ft": 27.0,
+    "ground_elev_navd88": 612.5
+   },
+   {
+    "board": "06_lineup",
+    "ref_id": "cross_aisle_wheelchair",
+    "posture": "wheelchair",
+    "height_ft": 4.23,
+    "drawn_height_ft": 4.23,
+    "station_ft": 36.0,
+    "ground_elev_navd88": 622.01
+   },
+   {
+    "board": "06_section",
+    "ref_id": "stage_front_performer",
+    "posture": "standing",
+    "height_ft": 6.25,
+    "drawn_height_ft": 6.25,
+    "station_ft": 46.8,
+    "ground_elev_navd88": 612.5
+   },
+   {
+    "board": "06_section",
+    "ref_id": "center_stage",
+    "posture": "standing",
+    "height_ft": 5.75,
+    "drawn_height_ft": 5.75,
+    "station_ft": 30.7,
+    "ground_elev_navd88": 612.5
+   },
+   {
+    "board": "06_section",
+    "ref_id": "row1_center_seated",
+    "posture": "seated",
+    "height_ft": 4.27,
+    "drawn_height_ft": 4.27,
+    "station_ft": 83.8,
+    "ground_elev_navd88": 610.83
+   },
+   {
+    "board": "06_section",
+    "ref_id": "row1_center_standing",
+    "posture": "standing",
+    "height_ft": 5.75,
+    "drawn_height_ft": 5.75,
+    "station_ft": 86.6,
+    "ground_elev_navd88": 610.83
+   },
+   {
+    "board": "06_section",
+    "ref_id": "row5_promenade",
+    "posture": "standing",
+    "height_ft": 5.75,
+    "drawn_height_ft": 5.75,
+    "station_ft": 101.8,
+    "ground_elev_navd88": 615.41
+   },
+   {
+    "board": "06_section",
+    "ref_id": "cross_aisle_wheelchair",
+    "posture": "wheelchair",
+    "height_ft": 4.23,
+    "drawn_height_ft": 4.23,
+    "station_ft": 118.6,
+    "ground_elev_navd88": 622.01
+   },
+   {
+    "board": "06_section",
+    "ref_id": "cross_aisle_companion",
+    "posture": "standing",
+    "height_ft": 5.75,
+    "drawn_height_ft": 5.75,
+    "station_ft": 120.6,
+    "ground_elev_navd88": 622.01
+   },
+   {
+    "board": "06_section",
+    "ref_id": "row18_upper_seated",
+    "posture": "seated",
+    "height_ft": 4.27,
+    "drawn_height_ft": 4.27,
+    "station_ft": 155.6,
+    "ground_elev_navd88": 633.66
+   },
+   {
+    "board": "06_section",
+    "ref_id": "row18_upper_standing",
+    "posture": "standing",
+    "height_ft": 6.25,
+    "drawn_height_ft": 6.25,
+    "station_ft": 158.4,
+    "ground_elev_navd88": 633.66
+   },
+   {
+    "board": "06_section",
+    "ref_id": "treatment_cell_edge",
+    "posture": "standing",
+    "height_ft": 5.75,
+    "drawn_height_ft": 5.75,
+    "station_ft": -29.3,
+    "ground_elev_navd88": 609.92
+   }
+  ],
+  "wheelchair_figures": [
+   "cross_aisle_wheelchair",
+   "cross_aisle_wheelchair"
+  ]
+ }
 }

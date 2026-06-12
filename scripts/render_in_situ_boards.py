@@ -30,6 +30,7 @@ from matplotlib.lines import Line2D
 from matplotlib.patches import PathPatch
 from matplotlib.path import Path
 
+import human_scale_common as HS
 import in_situ_common as C
 
 RENDERS = os.path.join(C.REPO, "renders")
@@ -296,6 +297,165 @@ def axis_profile(ax, treads, comp, D):
     ax.grid(alpha=0.2)
 
 
+def load_human_refs():
+    feats = load("human_scale_refs.geojson")
+    humans = [f for f in feats if f["properties"]["type"] == "human"]
+    dims = [f for f in feats if f["properties"]["type"] == "dimension"]
+    return humans, dims
+
+
+def human_plan_markers(ax, humans, dims=None, ms=4.0, label_dims=False):
+    """Plan markers for the human-scale refs — every marker comes from the
+    source layer (never hand-placed). Baseline scope only in plans."""
+    for f in humans:
+        p = f["properties"]
+        if p["scope"] != "baseline":
+            continue
+        mk, col = HS.PLAN_MARK[p["posture"]]
+        x, y = f["geometry"]["coordinates"]
+        ax.plot(x, y, mk, ms=ms, mfc=col, mec="white", mew=0.5, zorder=11)
+    for f in dims or []:
+        p = f["properties"]
+        (x0, y0), (x1, y1) = f["geometry"]["coordinates"]
+        ax.plot([x0, x1], [y0, y1], color="#b3541e", lw=0.9, zorder=10)
+        ax.plot([x0, x1], [y0, y1], "|", ms=5, color="#b3541e", zorder=10)
+        if label_dims:
+            ax.annotate(p["label"], ((x0 + x1) / 2, (y0 + y1) / 2),
+                        textcoords="offset points", xytext=(4, 4),
+                        fontsize=6, color="#7c3a12", zorder=12)
+
+
+def human_marker_legend(ax, loc="upper left"):
+    handles = [Line2D([], [], marker=m, ls="", ms=6, mfc=c, mec="white",
+                      label=f"{p} ref (to scale)")
+               for p, (m, c) in HS.PLAN_MARK.items()]
+    handles.append(Line2D([], [], color="#b3541e", lw=1.2,
+                          label="measured dimension"))
+    ax.legend(handles=handles, fontsize=6, loc=loc, framealpha=0.85)
+
+
+def board_06(mats, treads, zones, ctx, comp, D, humans, dims):
+    """Human-scale board: plan with every ref + measured dimensions, a
+    figure lineup legend, and a TRUE-SCALE (1:1) bend-axis section with
+    the figures standing/seated on their actual design surfaces."""
+    fig = plt.figure(figsize=(16, 10), dpi=150)
+    fig.suptitle("Board 06 — HUMAN SCALE · calibrated schematic references "
+                 "(every figure generated from human_scale_refs.geojson)",
+                 fontsize=15, fontweight="bold")
+    records = []
+
+    # plan with all refs + dimensions
+    ax = fig.add_axes([0.03, 0.42, 0.56, 0.48])
+    hillshade_base(ax, D)
+    plan_geometry(ax, mats, treads, zones, ctx)
+    human_plan_markers(ax, humans, dims, ms=5, label_dims=True)
+    rim = [f for f in ctx if f["properties"]["kind"] == "rim_arrival_edge"]
+    pts = [f["geometry"]["coordinates"] for f in humans]
+    xs, ys = zip(*pts)
+    fmt_axes(ax, (min(min(xs), all_bounds([rim])[0]),
+                  min(min(ys), all_bounds([rim])[1]),
+                  max(max(xs), all_bounds([rim])[2]),
+                  max(max(ys), all_bounds([rim])[3])), pad=40)
+    north_arrow(ax)
+    human_marker_legend(ax)
+    ax.set_title("plan — stage front + centre stage, row-1 centre & pocket "
+                 "pinches, row-5 promenade, cross-aisle (wheelchair), row 18, "
+                 "ADA landings, cell edge, lawn edge; dimensions measured off "
+                 "the geometry", fontsize=8.5)
+
+    # figure lineup (legend of the actual height set, drawn 1:1)
+    axl = fig.add_axes([0.63, 0.46, 0.34, 0.40])
+    seen, lineup = set(), []
+    for f in sorted(humans, key=lambda f: (f["properties"]["posture"],
+                                           f["properties"]["height_ft"])):
+        p = f["properties"]
+        key = (p["posture"], p["height_ft"])
+        if key in seen or p["scope"] != "baseline":
+            continue
+        seen.add(key)
+        lineup.append(p)
+    for i, p in enumerate(lineup):
+        st = i * 9.0
+        rec = HS.draw_section_figure(
+            axl, {**p, "ground_elev_navd88": 0.0}, st, "06_lineup")
+        rec["ground_elev_navd88"] = p["ground_elev_navd88"]
+        records.append(rec)
+        axl.plot([st - 2.6, st + 2.6], [p["height_ft"]] * 2,
+                 color="#888888", lw=0.5, ls=":")
+        lab = f"{p['height_ft']} ft {p['posture']}"
+        if p.get("eye_height_ft"):
+            lab += f"\neye {p['eye_height_ft']} ft"
+        axl.text(st, -1.1, lab, ha="center", va="top", fontsize=6.5)
+    axl.axhline(0, color="#555555", lw=0.8)
+    axl.set_aspect("equal")
+    axl.set_xlim(-5, len(lineup) * 9.0 - 2)
+    axl.set_ylim(-3.4, 8.2)
+    axl.set_xticks([])
+    axl.set_yticks(range(0, 8, 2))
+    axl.tick_params(labelsize=6.5)
+    axl.set_ylabel("ft", fontsize=7)
+    axl.set_title("reference set, 1:1 — standing 5.0/5.75/6.25 ft; seated eye "
+                  "3.94 ft (= the sightline C-value standard, red bar); "
+                  "wheelchair eye 3.90 ft", fontsize=7.5)
+
+    # true-scale bend-axis section with the placed figures
+    axs = fig.add_axes([0.03, 0.045, 0.94, 0.30])
+    if D is not None:
+        import rasterio
+
+        s = np.linspace(-60, 215, 560)
+        sx = C.FX + np.sin(math.radians(C.AX_AZ)) * s
+        sy = C.FY + np.cos(math.radians(C.AX_AZ)) * s
+        rr, cc = rasterio.transform.rowcol(D["transform"], sx, sy)
+        rr = np.clip(rr, 0, D["dem"].shape[0] - 1)
+        cc = np.clip(cc, 0, D["dem"].shape[1] - 1)
+        axs.plot(s, D["dem"][rr, cc], color="#7a6a55", lw=0.9)
+    bend = sorted((f["properties"] for f in treads
+                   if f["properties"]["section"] == "bend"),
+                  key=lambda p: p["row"])
+    for p in bend:
+        R = p["axis_radius_ft"]
+        axs.plot([R - 1.8, R + 1.8], [p["tread_elev_navd88"]] * 2,
+                 color=SECTION_COLORS["bend"], lw=2.2)
+    axs.plot([117.1, 121.4], [C.AISLE_ELEV] * 2, color="#8a7d54", lw=3.0)
+    axs.plot([16, 50], [C.FOCUS_ELEV] * 2, color="#5a4632", lw=2.4,
+             ls=(0, (5, 3)))
+    axs.text(33, 611.0, "stage deck 612.5 — PROVISIONAL (Rule 9 OPEN)",
+             ha="center", fontsize=6.5, color="#7b241c")
+    for f in humans:
+        p = f["properties"]
+        if p["scope"] != "baseline":
+            continue
+        st = HS.section_station(p["ref_id"], f["geometry"]["coordinates"], comp)
+        if st is None:
+            continue
+        records.append(HS.draw_section_figure(axs, p, st, "06_section"))
+    # 50-ft bar restated in section for the same scale claim
+    axs.plot([60, 110], [607.5] * 2, color="#b3541e", lw=1.4)
+    axs.plot([60, 110], [607.5] * 2, "|", ms=7, color="#b3541e")
+    axs.text(85, 605.8, "50 ft", ha="center", fontsize=7, color="#7c3a12")
+    axs.set_aspect("equal")
+    axs.set_xlim(-60, 215)
+    axs.set_ylim(604, 642)
+    axs.set_xlabel("ft along bend-section axis from origin (− = NNW toward "
+                   "the bay)", fontsize=7.5)
+    axs.set_ylabel("ft NAVD88", fontsize=7.5)
+    axs.tick_params(labelsize=7)
+    axs.grid(alpha=0.2)
+    axs.set_title("bend-axis section, TRUE SCALE 1:1 — performer on the "
+                  "provisional deck · row-1 seated/standing · row-5 promenade "
+                  "· wheelchair + companion on the level cross-aisle (622.01) "
+                  "· row-18 top formal row · cell-edge walker; vertical "
+                  "extents are exact height_ft", fontsize=8)
+
+    fig.text(0.5, 0.005, FOOT, ha="center", fontsize=7, color="#555555")
+    out = os.path.join(BOARDS, "06_human_scale_board.png")
+    fig.savefig(out, facecolor="white")
+    plt.close(fig)
+    print(f"  wrote {os.path.relpath(out, C.REPO)}")
+    return records
+
+
 def provisional_corners():
     """Corner ring of the P_opt provisional footprint, or None."""
     path = os.path.join(C.REPO, "analysis", "in_situ_normalization",
@@ -351,7 +511,7 @@ def stage_refit_overlay(ax):
     return st
 
 
-def board_01(mats, treads, zones, ctx, vps, D):
+def board_01(mats, treads, zones, ctx, vps, D, humans=None):
     fig = plt.figure(figsize=(16, 10), dpi=150)
     fig.suptitle("Board 01 — SITE FIT · three-section civic bowl in the Petoskey Pit",
                  fontsize=15, fontweight="bold")
@@ -370,6 +530,8 @@ def board_01(mats, treads, zones, ctx, vps, D):
     draw_layer(ax, streets, color="#555555", lw=1.0, ls="-.", zorder=3)
     if not show_inherited:
         study = stage_refit_overlay(ax)
+    if humans:
+        human_plan_markers(ax, humans, ms=3.5)
     fmt_axes(ax, all_bounds([streets or rim]), pad=20)
     north_arrow(ax)
     section_legend(ax)
@@ -427,7 +589,7 @@ def board_01(mats, treads, zones, ctx, vps, D):
     print(f"  wrote {os.path.relpath(out, C.REPO)}")
 
 
-def board_02(mats, treads, zones, ctx, vps, comp, D):
+def board_02(mats, treads, zones, ctx, vps, comp, D, humans=None, dims=None):
     fig = plt.figure(figsize=(16, 10), dpi=150)
     fig.suptitle("Board 02 — HUMAN EXPERIENCE · six stations through the bowl",
                  fontsize=15, fontweight="bold")
@@ -440,10 +602,13 @@ def board_02(mats, treads, zones, ctx, vps, comp, D):
         axm.plot(x, y, "^", ms=8, color="#c0392b", mec="white", zorder=9)
         axm.annotate(str(i), (x, y), textcoords="offset points", xytext=(6, 5),
                      fontsize=8, fontweight="bold", color="#7b241c", zorder=10)
+    if humans:
+        human_plan_markers(axm, humans, dims, ms=3.5)
     rim = [f for f in ctx if f["properties"]["kind"] == "rim_arrival_edge"]
     fmt_axes(axm, all_bounds([rim]), pad=70)
     north_arrow(axm)
-    axm.set_title("viewpoint stations (numbered)", fontsize=9)
+    axm.set_title("viewpoint stations (numbered) + human-scale refs "
+                  "(see board 06)", fontsize=9)
 
     pos = [(0.36, 0.55, 0.20, 0.34), (0.575, 0.55, 0.20, 0.34), (0.79, 0.55, 0.20, 0.34),
            (0.36, 0.10, 0.20, 0.34), (0.575, 0.10, 0.20, 0.34), (0.79, 0.10, 0.20, 0.34)]
@@ -547,11 +712,13 @@ def main():
     ctx = load("site_context.geojson")
     vps = load("in_situ_viewpoints.geojson")
     events = load("event_modes.geojson")
+    humans, dims = load_human_refs()
     D = dem_arrays()
     render_viewpoints(vps, mats, treads, zones, ctx, D)
-    board_01(mats, treads, zones, ctx, vps, D)
-    board_02(mats, treads, zones, ctx, vps, comp, D)
+    board_01(mats, treads, zones, ctx, vps, D, humans)
+    board_02(mats, treads, zones, ctx, vps, comp, D, humans, dims)
     board_03(mats, treads, zones, ctx, events, D)
+    hs_records = board_06(mats, treads, zones, ctx, comp, D, humans, dims)
     with open(os.path.join(BOARDS, "board_sources.json"), "w") as fh:
         json.dump({
             "governing_scheme": C.GOVERNING_SCHEME,
@@ -568,7 +735,20 @@ def main():
                              "section_balance.json)",
             "superseded_sources_excluded": list(C.SUPERSEDED_SCHEMES),
             "boards": ["01_site_fit_board.png", "02_experience_board.png",
-                       "03_landscape_character_board.png"],
+                       "03_landscape_character_board.png",
+                       "06_human_scale_board.png"],
+            "human_scale": {
+                "source": "vectors_geojson/human_scale_refs.geojson",
+                "policy": "every visible human figure/marker generated from "
+                          "the source layer — none hand-drawn; section "
+                          "figures drawn 1:1 (vertical extent = height_ft)",
+                "plan_marker_boards": ["01_site_fit_board.png",
+                                       "02_experience_board.png",
+                                       "06_human_scale_board.png"],
+                "figures": hs_records,
+                "wheelchair_figures": [r["ref_id"] for r in hs_records
+                                       if r["posture"] == "wheelchair"],
+            },
         }, fh, indent=1)
     print("  wrote boards/board_sources.json")
 
