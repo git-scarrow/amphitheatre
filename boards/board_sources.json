@@ -163,6 +163,15 @@
     "drawn_height_ft": 5.75,
     "station_ft": -29.3,
     "ground_elev_navd88": 609.92
+   },
+   {
+    "board": "06_section",
+    "ref_id": "lawn_overflow_edge",
+    "posture": "standing",
+    "height_ft": 5.0,
+    "drawn_height_ft": 5.0,
+    "station_ft": -169.5,
+    "ground_elev_navd88": 618.2
    }
   ],
   "wheelchair_figures": [

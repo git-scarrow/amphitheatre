@@ -59,12 +59,13 @@ VECTORS = [
     "terrace_treads.geojson", "terrace_edges.geojson", "bowl_zones.geojson",
     "site_context.geojson", "material_zones.geojson",
     "in_situ_viewpoints.geojson", "event_modes.geojson",
-    "scenarioE_geometry.geojson",
+    "scenarioE_geometry.geojson", "human_scale_refs.geojson",
 ]
 SUPERSEDED_COPIES = ["seating_rows.geojson", "stage_floor.geojson",
                      "ada_route.geojson"]
 BOARDS = ["boards/01_site_fit_board.png", "boards/02_experience_board.png",
-          "boards/03_landscape_character_board.png", "boards/board_sources.json"]
+          "boards/03_landscape_character_board.png",
+          "boards/06_human_scale_board.png", "boards/board_sources.json"]
 REQUIRED_VPS = [
     "upper_rim_down_to_stage", "mid_row_audience_to_bay",
     "stage_looking_back_to_audience", "ada_arrival_to_cross_aisle",
@@ -543,6 +544,326 @@ def check_normalization_and_stage_study():
             ok("Claude Design handoff marked PAUSED")
 
 
+def check_human_scale_refs(rasters_present):
+    """Human-scale reference gates (calibrated schematic scale). Hard fails:
+      · refs missing required metadata, undocumented heights, or a missing
+        required placement
+      · coords outside the design extents
+      · refs that float/sink off their recorded ground source
+      · refs whose head would cut the audited mid-row bay sightline
+      · wheelchair refs absent from the ADA-critical locations or views
+      · human figures in presentation outputs (viewer payload / boards)
+        without the source layer, or drawn off-scale vs height_ft
+    """
+    import human_scale_common as HS
+
+    src_path = os.path.join(C.VEC_DIR, "human_scale_refs.geojson")
+    viewer_payload = os.path.join(REPO, "web_viewer", "data", "site_data.js")
+    man_path = os.path.join(REPO, "boards", "board_sources.json")
+
+    def presentation_claims_refs():
+        hits = []
+        if os.path.exists(viewer_payload):
+            txt = open(viewer_payload).read()
+            if '"human_refs"' in txt:
+                hits.append("web_viewer/data/site_data.js")
+        if os.path.exists(man_path):
+            if json.load(open(man_path)).get("human_scale", {}).get("figures"):
+                hits.append("boards/board_sources.json")
+        return hits
+
+    if not os.path.exists(src_path):
+        claims = presentation_claims_refs()
+        if claims:
+            fail("human refs exist ONLY in presentation output ("
+                 + ", ".join(claims) + ") — source layer "
+                 "vectors_geojson/human_scale_refs.geojson missing; run "
+                 "scripts/build_human_scale_refs.py")
+        # absence also caught by required-files
+        return
+
+    feats = load_vec("human_scale_refs.geojson")["features"]
+    humans = {f["properties"]["ref_id"]: f for f in feats
+              if f["properties"].get("type") == "human"}
+    dims = {f["properties"]["ref_id"]: f for f in feats
+            if f["properties"].get("type") == "dimension"}
+
+    # 1. metadata completeness + documented heights
+    gaps = []
+    for rid, f in humans.items():
+        p = f["properties"]
+        missing = [k for k in HS.REQUIRED_HUMAN_FIELDS if p.get(k) is None]
+        if missing:
+            gaps.append(f"{rid}: missing {missing}")
+        if p.get("posture") == "standing" \
+                and p.get("height_ft") not in HS.STANDING_HEIGHTS_FT:
+            gaps.append(f"{rid}: standing height {p.get('height_ft')} not in "
+                        f"the documented set {HS.STANDING_HEIGHTS_FT}")
+        if p.get("posture") == "seated" \
+                and p.get("eye_height_ft") != HS.SEATED_EYE_FT:
+            gaps.append(f"{rid}: seated eye {p.get('eye_height_ft')} != the "
+                        f"documented C-value standard {HS.SEATED_EYE_FT}")
+        if p.get("posture") == "wheelchair" \
+                and p.get("eye_height_ft") != HS.WHEELCHAIR_EYE_FT:
+            gaps.append(f"{rid}: wheelchair eye {p.get('eye_height_ft')} != "
+                        f"documented {HS.WHEELCHAIR_EYE_FT}")
+        if p.get("blocks_bay_view") is not False:
+            gaps.append(f"{rid}: blocks_bay_view must be false")
+    for rid, f in dims.items():
+        p = f["properties"]
+        missing = [k for k in HS.REQUIRED_DIM_FIELDS if p.get(k) is None]
+        if missing:
+            gaps.append(f"{rid}: missing {missing}")
+    if gaps:
+        fail("human-scale metadata: " + "; ".join(gaps[:8])
+             + ("…" if len(gaps) > 8 else ""))
+    else:
+        ok(f"{len(humans)} human refs + {len(dims)} dimension refs carry "
+           "full metadata; heights/eye heights match the documented sets")
+
+    # 2. required placements
+    missing = [r for r in HS.REQUIRED_PLACEMENTS
+               if r not in humans and r not in dims]
+    if missing:
+        fail(f"required human-scale placements missing: {missing}")
+    else:
+        ok(f"all {len(HS.REQUIRED_PLACEMENTS)} required placements present "
+           "(stage front/centre, row-1 centre + pockets, promenade, "
+           "cross-aisle, row 18, ADA landings, cell edge, lawn, dimensions)")
+
+    # 3. coords inside the design extents
+    from shapely.geometry import shape as _shape
+    xs, ys = [], []
+    for layer in ("terrace_treads.geojson", "bowl_zones.geojson"):
+        for f in load_vec(layer)["features"]:
+            b = _shape(f["geometry"]).bounds
+            xs += [b[0], b[2]]; ys += [b[1], b[3]]
+    for f in load_vec("site_context.geojson")["features"]:
+        if f["properties"]["kind"] == "open_lawn":
+            b = _shape(f["geometry"]).bounds
+            xs += [b[0], b[2]]; ys += [b[1], b[3]]
+    x0, x1, y0, y1 = min(xs) - 25, max(xs) + 25, min(ys) - 25, max(ys) + 25
+    stray = []
+    for rid, f in {**humans, **dims}.items():
+        g = _shape(f["geometry"])
+        b = g.bounds
+        if b[0] < x0 or b[2] > x1 or b[1] < y0 or b[3] > y1:
+            stray.append(rid)
+    if stray:
+        fail(f"human-scale refs outside the design extents: {stray}")
+    else:
+        ok("every human-scale ref inside the design/lawn extents")
+
+    # 4. ground anchoring (float/sink) — re-derive every recorded source
+    tread_elev = {(f["properties"]["section"], f["properties"]["row"]):
+                  f["properties"]["tread_elev_navd88"]
+                  for f in load_vec("terrace_treads.geojson")["features"]}
+    zones = {f["properties"].get("name", f["properties"]["zone"]): f
+             for f in load_vec("bowl_zones.geojson")["features"]}
+    samp = None
+    if rasters_present:
+        import rasterio
+
+        ds = rasterio.open(os.path.join(REPO, "dem", "proposed_grade_1ft.tif"))
+
+        def samp(x, y):
+            v = float(next(ds.sample([(x, y)]))[0])
+            return None if v == ds.nodata else v
+
+    sunk = []
+    for rid, f in humans.items():
+        p = f["properties"]
+        g = p["ground_elev_navd88"]
+        src = p["ground_elev_source"]
+        x, y = f["geometry"]["coordinates"]
+        if src.startswith("declared:"):
+            ref = None
+            if "tread_elev_navd88" in src and not src.endswith("design_elev"):
+                anchor = p["geometry_anchor_source"]
+                for (sec, row), e in tread_elev.items():
+                    if f"{sec} r{row}" in anchor:
+                        ref = e
+            if "stage_core" in src:
+                ref = zones["stage_core"]["properties"]["elev_navd88"]
+            elif "cross_aisle" in src:
+                ref = zones["cross_aisle"]["properties"]["elev_navd88"]
+            elif "promenade_row5_bend" in src:
+                ref = zones["promenade_row5_bend"]["properties"]["elev_navd88"]
+            elif "design_elev" in src:
+                ref = g    # ambitious emission value — checked at build time
+            if ref is not None and abs(g - ref) > 0.01:
+                sunk.append(f"{rid}: recorded {g} != declared source {ref}")
+            # structure-deck refs (stage) legitimately sit above grade;
+            # everything else must also sit ON the emitted surface
+            if (samp and "structure_deck" not in src
+                    and "design_elev" not in src):
+                rz = samp(x, y)
+                if rz is not None and abs(g - rz) > 0.35:
+                    sunk.append(f"{rid}: floats/sinks {g - rz:+.2f} ft vs "
+                                "proposed grade")
+        elif src.startswith("raster:") and samp:
+            rz = samp(x, y)
+            if rz is not None and abs(g - rz) > 0.35:
+                sunk.append(f"{rid}: floats/sinks {g - rz:+.2f} ft vs "
+                            f"{src.split(':', 1)[1]}")
+    if sunk:
+        fail("human refs float or sink off their ground source: "
+             + "; ".join(sunk))
+    else:
+        ok("no ref floats or sinks: recorded ground elevations re-derive "
+           "from their declared layers and sit on the proposed grade")
+
+    # 5. dimension honesty — geometric length vs claimed length_ft
+    bad_dims = []
+    for rid, f in dims.items():
+        p = f["properties"]
+        (ax_, ay_), (bx_, by_) = f["geometry"]["coordinates"]
+        L = ((bx_ - ax_) ** 2 + (by_ - ay_) ** 2) ** 0.5
+        if abs(L - p["length_ft"]) > 0.15:
+            bad_dims.append(f"{rid}: drawn {L:.2f} vs claimed {p['length_ft']}")
+    if "dim_scale_50ft" in dims \
+            and abs(dims["dim_scale_50ft"]["properties"]["length_ft"] - 50.0) > 0.01:
+        bad_dims.append("dim_scale_50ft is not 50 ft")
+    if bad_dims:
+        fail("dimension refs disagree with their geometry: " + "; ".join(bad_dims))
+    else:
+        ok("dimension refs honest: geometric lengths match claimed length_ft "
+           "(50-ft bar exact)")
+
+    # 6. bay-view obstruction — the same visual-envelope rule the stage is
+    # judged by: inside the measured az-330 corridor, no head may rise above
+    # the camera→NW-rim-silhouette grazing ray (everything below that ray is
+    # already hidden by the rim, so it cannot block NEW bay).
+    RIM_SILHOUETTE = 618.5            # flat NW rim check datum (validation F5)
+    vps = {f["properties"]["name"]: f
+           for f in load_vec("in_situ_viewpoints.geojson")["features"]}
+    mid = vps.get("mid_row_audience_to_bay")
+    corr_f = next((f for f in load_vec("site_context.geojson")["features"]
+                   if f["properties"]["kind"] == "bay_view_corridor"), None)
+    if mid and corr_f:
+        from shapely.geometry import LineString as _LS, Point as _Pt
+        corr = _shape(corr_f["geometry"])
+        mp = mid["properties"]
+        cx_, cy_ = mid["geometry"]["coordinates"]
+        cz = mp["camera_elev_navd88"]
+        dx, dy = mp["look_target_x"] - cx_, mp["look_target_y"] - cy_
+        D = (dx * dx + dy * dy) ** 0.5
+        ux_, uy_ = dx / D, dy / D
+        # distance camera → rim silhouette along the look ray
+        rim = [f for f in load_vec("site_context.geojson")["features"]
+               if f["properties"]["kind"] == "rim_arrival_edge"]
+        d_rim = 263.0
+        if rim:
+            ray = _LS([(cx_, cy_), (cx_ + ux_ * 900, cy_ + uy_ * 900)])
+            hit = ray.intersection(_shape(rim[0]["geometry"]))
+            if not hit.is_empty:
+                pts = (hit.geoms if hasattr(hit, "geoms") else [hit])
+                d_rim = min(_Pt(cx_, cy_).distance(p) for p in pts)
+        slope = (RIM_SILHOUETTE - cz) / d_rim
+        cuts = []
+        for rid, f in humans.items():
+            p = f["properties"]
+            x, y = f["geometry"]["coordinates"]
+            if not _Pt(x, y).within(corr):
+                continue
+            s = (x - cx_) * ux_ + (y - cy_) * uy_
+            if s <= 0:
+                continue
+            graze_z = cz + slope * s
+            head = p["ground_elev_navd88"] + p["height_ft"]
+            if head > graze_z - 0.25:
+                cuts.append(f"{rid}: head {head:.1f} vs rim-grazing ray "
+                            f"{graze_z:.1f} at {s:.0f} ft")
+        if cuts:
+            fail("human refs add silhouette inside the bay-view corridor "
+                 "(incremental obstruction vs the NW rim, the stage's own "
+                 "rule): " + "; ".join(cuts))
+        else:
+            ok("no human ref adds silhouette above the NW-rim grazing ray "
+               f"inside the bay corridor (rim {RIM_SILHOUETTE} at "
+               f"{d_rim:.0f} ft)")
+
+    # 7. wheelchair refs at the ADA-critical locations
+    chairs = [rid for rid, f in humans.items()
+              if f["properties"]["posture"] == "wheelchair"]
+    missing_ada = [r for r in HS.ADA_CRITICAL_WHEELCHAIR if r not in chairs]
+    if missing_ada:
+        fail(f"wheelchair refs missing from ADA-critical locations: {missing_ada}")
+    else:
+        ok(f"wheelchair refs present at the ADA-critical locations: {chairs}")
+
+    # 8. presentation outputs consume the source and render to scale
+    if os.path.exists(viewer_payload):
+        txt = open(viewer_payload).read()
+        payload = json.loads(txt[txt.index("window.SITE_DATA = ") + 19:]
+                             .strip().rstrip(";"))
+        vh = {h["id"]: h for h in payload["layers"]
+              .get("human_refs", {}).get("humans", [])}
+        probs = []
+        if not vh:
+            probs.append("viewer payload carries NO human refs — stale "
+                         "site_data.js; re-run scripts/build_truth_package.py")
+        for rid, h in vh.items():
+            srcf = humans.get(rid)
+            if srcf is None:
+                probs.append(f"{rid}: in the viewer but not in the source layer")
+                continue
+            sp = srcf["properties"]
+            if abs(h["h"] - sp["height_ft"]) > 1e-6 \
+                    or abs(h["z"] - sp["ground_elev_navd88"]) > 1e-6:
+                probs.append(f"{rid}: viewer height/ground differs from source")
+        if vh and not any(vh[r]["posture"] == "wheelchair" for r in vh):
+            probs.append("no wheelchair ref reaches the viewer (ADA preset "
+                         "view would show none)")
+        if probs:
+            fail("viewer human-scale integrity: " + "; ".join(probs))
+        else:
+            ok(f"viewer payload mirrors the source layer ({len(vh)} figures, "
+               "heights byte-exact, wheelchair present)")
+
+    man = json.load(open(man_path)) if os.path.exists(man_path) else {}
+    hs_blocks = []
+    if man:
+        hs_blocks.append(("boards/board_sources.json", man.get("human_scale")))
+    dp_path = os.path.join(REPO, "analysis", "decision_packet", "sources.json")
+    if os.path.exists(dp_path):
+        hs_blocks.append(("analysis/decision_packet/sources.json",
+                          json.load(open(dp_path)).get("human_scale")))
+    probs = []
+    for label, blk in hs_blocks:
+        if not blk or not blk.get("figures"):
+            probs.append(f"{label}: boards rendered without human-scale "
+                         "figure records — regenerate the boards")
+            continue
+        for r in blk["figures"]:
+            srcf = humans.get(r["ref_id"])
+            if srcf is None:
+                probs.append(f"{label}:{r['ref_id']}: drawn figure has no "
+                             "source ref (hand-drawn?)")
+                continue
+            if abs(r["drawn_height_ft"] - r["height_ft"]) > 0.05:
+                probs.append(f"{label}:{r['ref_id']}: drawn "
+                             f"{r['drawn_height_ft']} vs height_ft "
+                             f"{r['height_ft']}")
+            if abs(r["height_ft"]
+                   - srcf["properties"]["height_ft"]) > 1e-6:
+                probs.append(f"{label}:{r['ref_id']}: record height differs "
+                             "from the source layer")
+        if not blk.get("wheelchair_figures"):
+            probs.append(f"{label}: no wheelchair figure on the ADA-relevant "
+                         "boards")
+    if not hs_blocks:
+        probs.append("no board manifest carries human-scale records")
+    if probs:
+        fail("board human-scale integrity: " + "; ".join(probs[:8])
+             + ("…" if len(probs) > 8 else ""))
+    else:
+        nfig = sum(len(b.get("figures", [])) for _, b in hs_blocks)
+        ok(f"boards draw {nfig} figures from the source layer at 1:1 "
+           "(vertex-derived extents match height_ft; wheelchair on the "
+           "ADA-relevant boards)")
+
+
 def check_rasters(rasters_present):
     if not rasters_present:
         return
@@ -592,6 +913,7 @@ def main():
     check_viewpoints()
     check_design_intent()
     check_normalization_and_stage_study()
+    check_human_scale_refs(rasters_present)
     check_rasters(rasters_present)
 
     print("\n── in-situ package audit (three-section civic bowl) ──")

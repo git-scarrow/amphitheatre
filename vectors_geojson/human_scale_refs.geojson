@@ -127,8 +127,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533146.96,
-     750732.03
+     19533139.4,
+     750731.47
     ]
    }
   },
@@ -446,8 +446,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533201.93,
-     750685.14
+     19533194.46,
+     750684.46
     ]
    }
   },
@@ -547,7 +547,7 @@
     "posture": "standing",
     "role": "overflow / informal audience",
     "height_ft": 5.0,
-    "ground_elev_navd88": 619.47,
+    "ground_elev_navd88": 618.2,
     "ground_elev_source": "raster:dem/proposed_grade_1ft.tif",
     "anchor": "open-lawn informal overflow edge nearest the treatment cell (schematic lawn placement)",
     "geometry_anchor_source": "vectors_geojson/site_context.geojson:open_lawn exterior nearest vectors_geojson/bowl_zones.geojson:treatment_cell_landscape",
@@ -563,8 +563,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533000.64,
-     750923.96
+     19532955.7,
+     750905.73
     ]
    }
   },

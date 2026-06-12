@@ -175,7 +175,13 @@ def main():
           ["viewer", "board02_section", "board05_section", "board06"],
           eye_ft=H.SEATED_EYE_FT,
           label=f"seated eye {H.SEATED_EYE_FT} ft")
-    human("row1_center_standing", (c1[0] + 4.0, c1[1] - 2.5), "standing",
+    def along_row(tf, xy, dist):
+        """Offset a point along the tread band's measured tangent bearing so
+        companions stay ON the band instead of stepping onto a riser."""
+        b = math.radians(tf["properties"]["mean_tangent_bearing_deg"])
+        return (xy[0] + math.sin(b) * dist, xy[1] + math.cos(b) * dist)
+
+    human("row1_center_standing", along_row(b1, c1, 4.7), "standing",
           5.75, "audience", e1, s1,
           "bend row-1 tread, 4.7 ft along-row from the seated ref",
           f"{SRC_TREADS}:bend r1", ["viewer", "board06"])
@@ -249,7 +255,7 @@ def main():
           e18, s18, "bend row-18 tread (top formal row)",
           f"{SRC_TREADS}:bend r18",
           ["viewer", "board02_section", "board06"], eye_ft=H.SEATED_EYE_FT)
-    human("row18_upper_standing", (c18[0] + 4.0, c18[1] - 2.5), "standing",
+    human("row18_upper_standing", along_row(b18, c18, 4.7), "standing",
           6.25, "audience", e18, s18, "bend row-18 tread (top formal row)",
           f"{SRC_TREADS}:bend r18", ["viewer", "board06"],
           label="6.25 ft person")
@@ -299,8 +305,17 @@ def main():
           ["viewer", "board06"])
 
     # ── lawn / overflow edge ─────────────────────────────────────────────
+    # candidate points OUTSIDE the measured bay-view corridor: a person on
+    # the lawn must never add silhouette inside the audited view cone
     lawn = next(f for f in ctx if f["properties"]["kind"] == "open_lawn")
-    lp = nearest_points(shape(lawn["geometry"]).exterior, cell)[0]
+    corr = shape(next(f for f in ctx
+                      if f["properties"]["kind"] == "bay_view_corridor")
+                 ["geometry"])
+    ext = shape(lawn["geometry"]).exterior
+    cands = [ext.interpolate(d) for d in
+             [i * ext.length / 200.0 for i in range(200)]]
+    cands = [p for p in cands if not p.within(corr)] or cands
+    lp = min(cands, key=lambda p: p.distance(cell))
     gl = sample(lp.x, lp.y) if sample else None
     if gl is None:
         import rasterio
