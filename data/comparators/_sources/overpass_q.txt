@@ -1,0 +1,10 @@
+[out:json][timeout:60];
+(
+  way(623261253);
+  way(490428003);
+  way(around:200,34.43511,-119.69341)[building];
+  way(around:200,34.43511,-119.69341)[amenity=theatre];
+  way(around:150,42.97985,-85.58568)[building];
+  way(around:150,42.97985,-85.58568)[amenity=theatre];
+);
+out tags geom;

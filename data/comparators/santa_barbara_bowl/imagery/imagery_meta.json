@@ -1,0 +1,19 @@
+{
+ "source": "Esri World Imagery export endpoint",
+ "request_url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=252161.66964189618%2C3813342.663254677%2C252861.66964189618%2C3814042.663254677&bboxSR=26911&imageSR=26911&size=1400%2C1400&format=png&f=image",
+ "bounds_native": [
+  252161.66964189618,
+  3813342.663254677,
+  252861.66964189618,
+  3814042.663254677
+ ],
+ "crs": "EPSG:26911",
+ "px_size_m": 0.5,
+ "size_px": [
+  1400,
+  1400
+ ],
+ "acquisition_date": "UNKNOWN (mosaic) \u2014 derived measurements are INFERRED",
+ "attribution": "Esri, Maxar, Earthstar Geographics, USDA, USGS, AeroGRID, IGN, GIS User Community",
+ "fetched_on": "2026-06-12"
+}

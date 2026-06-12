@@ -1,0 +1,6 @@
+[out:json][timeout:90];
+(
+  nwr(around:250,34.43511,-119.69341);
+  nwr(around:200,42.97985,-85.58568);
+);
+out tags geom;

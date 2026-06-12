@@ -1,0 +1,345 @@
+{
+ "petoskey": {
+  "site": "Petoskey Pit civic bowl (Scenario E, in-situ package)",
+  "slug": "petoskey",
+  "location": "Petoskey, MI",
+  "crs": "EPSG:6494 NAD83(2011) Michigan Central, intl ft; NAVD88 ft",
+  "dem": {
+   "value": "2015 USGS LiDAR (MI 13County C16) + 2026 supplement, design rasters at 1 ft",
+   "basis": "canon"
+  },
+  "capacity": {
+   "value": 1283,
+   "basis": "canon",
+   "note": "nominal Scenario E baseline; 1,243 Band-A validated; options to 1,505 validated"
+  },
+  "audience_facing_az_deg": {
+   "value": 312.0,
+   "basis": "canon",
+   "note": "seating axis az 132 -> nominal facing 312; bay-view corridor az 330"
+  },
+  "stage_frontage_ft": {
+   "value": 70.0,
+   "basis": "canon",
+   "note": "70x34 ft low stage core + lateral shoulders; PROVISIONAL (Rule 9 OPEN)"
+  },
+  "stage_depth_ft": {
+   "value": 34.0,
+   "basis": "canon",
+   "note": "Rule 9 OPEN"
+  },
+  "stage_front_to_row1_ft": {
+   "value": 35.0,
+   "basis": "canon",
+   "note": "event floor between stage and row 1"
+  },
+  "floor_elev_ft": {
+   "value": 612.5,
+   "basis": "canon",
+   "note": "stage/event-floor reference"
+  },
+  "row1_elev_ft": {
+   "value": 610.8,
+   "basis": "measured_dem",
+   "note": "mean of row-1 treads (terrace_treads.geojson)"
+  },
+  "top_row_elev_ft": {
+   "value": 633.7,
+   "basis": "measured_dem",
+   "note": "mean of row-18 treads"
+  },
+  "rise_row1_to_top_ft": {
+   "value": 22.8,
+   "basis": "measured_dem"
+  },
+  "avg_rake_pct": {
+   "value": 31.8,
+   "basis": "measured_dem",
+   "note": "fit across tread radii/elevs"
+  },
+  "local_rake_range_pct": {
+   "value": [
+    32.7,
+    32.7
+   ],
+   "basis": "measured_dem",
+   "note": "per-section tread fits"
+  },
+  "fan_angle_deg": {
+   "value": 110.0,
+   "basis": "canon",
+   "note": "\u00b155\u00b0 about the seating axis"
+  },
+  "inner_radius_ft": {
+   "value": 85.0,
+   "basis": "measured_dem",
+   "note": "row-1 axis radius"
+  },
+  "outer_radius_ft": {
+   "value": 156.8,
+   "basis": "measured_dem",
+   "note": "row-18 axis radius"
+  },
+  "upper_row_distance_ft": {
+   "value": 106.8,
+   "basis": "measured_dem",
+   "note": "stage front -> row 18: 35 ft floor + seating depth (rN - r1 radii)"
+  },
+  "row1_arc_length_ft": {
+   "value": 163.2,
+   "basis": "canon"
+  },
+  "frontage_to_row1_arc": {
+   "value": 0.43,
+   "basis": "canon"
+  },
+  "row_count_est": {
+   "value": 15,
+   "basis": "canon",
+   "note": "formal rows 1-18 minus promenade 5 + aisle 9/10 = 15 treads x 3 sections",
+   "mean_tread_ft": 4.2
+  },
+  "ada": {
+   "value": "two 8.33% switchback routes + level cross-aisle (rows 9/10) at 622.01; validated",
+   "basis": "canon"
+  },
+  "backdrop": {
+   "value": "open to Little Traverse Bay az 330; no upstage wall (landscape venue)",
+   "basis": "canon"
+  }
+ },
+ "santa_barbara_bowl": {
+  "site": "Santa Barbara Bowl",
+  "slug": "santa_barbara_bowl",
+  "location": "1122 N Milpas St, Santa Barbara, CA",
+  "crs": "EPSG:26911 (m), vertical NAVD88 m -> reported ft",
+  "dem": {
+   "value": "USGS one meter x25y382 CA Montecito (1.0 m)",
+   "basis": "published",
+   "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_Montecito_2018/TIFF/USGS_one_meter_x25y382_CA_Montecito_2018.tif",
+   "acquisition": "2018 (CA Montecito post-debris-flow project)"
+  },
+  "capacity": {
+   "value": 4562,
+   "basis": "published",
+   "source": "https://en.wikipedia.org/wiki/Santa_Barbara_Bowl"
+  },
+  "audience_facing_az_deg": {
+   "value": 95.8,
+   "basis": "inferred_imagery",
+   "note": "from OSM stage rectangle orientation + seating side; consistent w/ DEM fall line"
+  },
+  "stage_frontage_ft": {
+   "value": 92,
+   "basis": "inferred_imagery",
+   "note": "inferred: deck west-edge span read from hillshade/imagery; OSM house long dim 125 ft is the upper bound incl. wings",
+   "range": [
+    85,
+    100
+   ]
+  },
+  "stage_depth_ft": {
+   "value": 50,
+   "basis": "inferred_imagery",
+   "note": "inferred: performance deck depth unknown; OSM house short dim 79 ft includes backstage; 2002 rebuild total 10,000 sqft stage+backstage bounds it",
+   "range": [
+    40,
+    79
+   ]
+  },
+  "stage_front_to_row1_ft": {
+   "value": 27,
+   "basis": "measured_dem",
+   "note": "digitized 2026-06-12 from DEM centerline profile fine structure + hillshade ring reads; row1 = first riser, seating_top = upper concourse bench at ~248 ft elev"
+  },
+  "floor_elev_ft": {
+   "value": 178.0,
+   "basis": "measured_dem"
+  },
+  "row1_elev_ft": {
+   "value": 179.0,
+   "basis": "measured_dem"
+  },
+  "top_row_elev_ft": {
+   "value": 247.8,
+   "basis": "measured_dem"
+  },
+  "rise_row1_to_top_ft": {
+   "value": 68.8,
+   "basis": "measured_dem"
+  },
+  "avg_rake_pct": {
+   "value": 36.6,
+   "basis": "measured_dem"
+  },
+  "local_rake_range_pct": {
+   "value": [
+    15.8,
+    61.1
+   ],
+   "basis": "measured_dem",
+   "note": "20-ft windows on centerline"
+  },
+  "fan_angle_deg": {
+   "value": 132.2,
+   "basis": "measured_dem",
+   "note": "angular extent (2-98 pct) of mid-bowl contour about stage-front anchor (anchor center inferred); imagery read was 140 deg"
+  },
+  "inner_radius_ft": {
+   "value": 27,
+   "basis": "measured_dem",
+   "note": "row-1 distance from stage-front arc center; contour check r(row1+2ft) = 43.4 ft"
+  },
+  "outer_radius_ft": {
+   "value": 215,
+   "basis": "measured_dem",
+   "note": "top-of-seating distance on centerline; contour check r(top-2ft) = 212.3 ft"
+  },
+  "upper_row_distance_ft": {
+   "value": 215,
+   "basis": "measured_dem",
+   "note": "stage front -> top seating row, on axis"
+  },
+  "row1_arc_length_ft": {
+   "value": 62.3,
+   "basis": "measured_dem",
+   "note": "measured fan x row-1 radius (anchor center inferred)"
+  },
+  "frontage_to_row1_arc": {
+   "value": 1.48,
+   "basis": "inferred_imagery",
+   "note": "frontage is the inferred quantity"
+  },
+  "row_count_est": {
+   "value": "~30-40 bench rows in 3 banks (A-C / D-I / J-O)",
+   "basis": "inferred_imagery",
+   "note": "inferred: imagery terrace texture + published section bands; 1 m DEM cannot resolve individual ~1 ft risers"
+  },
+  "ada": {
+   "value": "main cross-aisle visible ~ring 30 m + concourse at top of bowl; ADA platform added 2003 (published); switchback access roads N and S of bowl",
+   "basis": "inferred_imagery"
+  },
+  "backdrop": {
+   "value": "audience faces ~E into canyon hillside (oak woodland) behind stage house; enclosed canyon venue with tall stage house + roof",
+   "basis": "inferred_imagery"
+  }
+ },
+ "meijer_gardens_amphitheater": {
+  "site": "Frederik Meijer Gardens Amphitheater",
+  "slug": "meijer_gardens_amphitheater",
+  "location": "1000 E Beltline Ave NE, Grand Rapids, MI",
+  "crs": "EPSG:26916 (m), vertical NAVD88 m -> reported ft",
+  "dem": {
+   "value": "USGS one meter x61y476 MI 31Co Kent 2016 (1.0 m)",
+   "basis": "published",
+   "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/MI_31Co_Kent_2016/TIFF/USGS_one_meter_x61y476_MI_31Co_Kent_2016.tif",
+   "acquisition": "2016 (MI 31-County Kent collection)"
+  },
+  "capacity": {
+   "value": 1900,
+   "basis": "published",
+   "source": "https://en.wikipedia.org/wiki/Frederik_Meijer_Gardens (tiered lawn seating for 1,900; flagged citation-needed there, but the 1,900 figure is used venue-wide in press)"
+  },
+  "audience_facing_az_deg": {
+   "value": 20.9,
+   "basis": "inferred_imagery",
+   "note": "from OSM stage rectangle orientation + seating side; consistent w/ DEM fall line"
+  },
+  "stage_frontage_ft": {
+   "value": 100,
+   "basis": "inferred_imagery",
+   "note": "inferred: lens-canopy chord facing audience from OSM footprint (long dim 110 ft); deck edge slightly inside canopy",
+   "range": [
+    90,
+    110
+   ]
+  },
+  "stage_depth_ft": {
+   "value": 45,
+   "basis": "inferred_imagery",
+   "note": "inferred: OSM canopy short dim 54 ft; deck inset",
+   "range": [
+    35,
+    54
+   ]
+  },
+  "stage_front_to_row1_ft": {
+   "value": 10,
+   "basis": "measured_dem",
+   "note": "digitized 2026-06-12 from DEM centerline profile fine structure; row1 = first terrace seat-wall, top = lawn crest before promenade"
+  },
+  "floor_elev_ft": {
+   "value": 811.0,
+   "basis": "measured_dem"
+  },
+  "row1_elev_ft": {
+   "value": 811.2,
+   "basis": "measured_dem"
+  },
+  "top_row_elev_ft": {
+   "value": 824.1,
+   "basis": "measured_dem"
+  },
+  "rise_row1_to_top_ft": {
+   "value": 12.9,
+   "basis": "measured_dem"
+  },
+  "avg_rake_pct": {
+   "value": 14.3,
+   "basis": "measured_dem"
+  },
+  "local_rake_range_pct": {
+   "value": [
+    6.2,
+    21.0
+   ],
+   "basis": "measured_dem",
+   "note": "20-ft windows on centerline"
+  },
+  "fan_angle_deg": {
+   "value": 113.1,
+   "basis": "measured_dem",
+   "note": "angular extent (2-98 pct) of mid-bowl contour about stage-front anchor (anchor center inferred); imagery read was 100 deg"
+  },
+  "inner_radius_ft": {
+   "value": 10,
+   "basis": "measured_dem",
+   "note": "row-1 distance from stage-front arc center; contour check r(row1+2ft) = 31.2 ft"
+  },
+  "outer_radius_ft": {
+   "value": 100,
+   "basis": "measured_dem",
+   "note": "top-of-seating distance on centerline; contour check r(top-2ft) = 96.1 ft"
+  },
+  "upper_row_distance_ft": {
+   "value": 100,
+   "basis": "measured_dem",
+   "note": "stage front -> top seating row, on axis"
+  },
+  "row1_arc_length_ft": {
+   "value": 19.7,
+   "basis": "measured_dem",
+   "note": "measured fan x row-1 radius (anchor center inferred)"
+  },
+  "frontage_to_row1_arc": {
+   "value": 5.07,
+   "basis": "inferred_imagery",
+   "note": "frontage is the inferred quantity"
+  },
+  "row_count_est": {
+   "value": "~8-10 seat-wall terraces + open lawn above",
+   "basis": "inferred_imagery",
+   "note": "inferred: hillshade/imagery arc count ring 8-38 m; 1 m DEM cannot resolve individual seat walls"
+  },
+  "ada": {
+   "value": "level entry plaza at stage sides; flanking paths both sides of lawn; cross path mid-bowl ~ring 35 m (imagery)",
+   "basis": "inferred_imagery"
+  },
+  "backdrop": {
+   "value": "audience faces ~NNE across stage to pond + sculpture-park woodland; low covered stage, open landscape backdrop",
+   "basis": "inferred_imagery"
+  }
+ },
+ "generated": "scripts/comparators/extract_metrics.py",
+ "units": "all *_ft values international feet; *_pct percent"
+}

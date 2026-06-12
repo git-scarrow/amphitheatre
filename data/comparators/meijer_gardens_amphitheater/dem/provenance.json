@@ -1,0 +1,43 @@
+{
+ "site": "Frederik Meijer Gardens Amphitheater",
+ "slug": "meijer_gardens_amphitheater",
+ "source_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/MI_31Co_Kent_2016/TIFF/USGS_one_meter_x61y476_MI_31Co_Kent_2016.tif",
+ "dem_product": {
+  "title": "USGS one meter x61y476 MI 31Co Kent 2016",
+  "project": "MI_31Co_Kent_2016",
+  "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/MI_31Co_Kent_2016/TIFF/USGS_one_meter_x61y476_MI_31Co_Kent_2016.tif",
+  "publication_date": "2020-03-30",
+  "lidar_acquisition": "2016 (MI 31-County Kent collection)",
+  "resolution_m": 1.0
+ },
+ "access_method": "GDAL /vsicurl/ windowed read (this script)",
+ "fetched_on": "2026-06-12",
+ "native_crs": "EPSG:26916",
+ "native_resolution_m": [
+  1.0,
+  1.0
+ ],
+ "vertical": "NAVD88 meters (USGS 3DEP standard for 1 m DEM products)",
+ "center_lonlat_wgs84": [
+  -85.58568,
+  42.97985
+ ],
+ "center_native_xy": [
+  615317.4010307514,
+  4759547.586879386
+ ],
+ "clip_bounds_native": [
+  615017.4010307514,
+  4759247.586879386,
+  615617.4010307514,
+  4759847.586879386
+ ],
+ "clip_shape_px": [
+  600,
+  600
+ ],
+ "elev_min_m": 237.4453125,
+ "elev_max_m": 257.24578857421875,
+ "nodata": -999999.0,
+ "units_policy": "clip kept in native meters; all derived metrics convert to feet explicitly (suffix _ft)"
+}

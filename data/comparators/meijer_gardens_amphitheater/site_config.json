@@ -1,0 +1,58 @@
+{
+ "_provenance": "Digitized 2026-06-12 from OSM stage footprint (way 490428003) + Esri World Imagery + USGS 1m DEM diagnostics. All anchor values INFERRED (imagery/OSM-derived), not surveyed.",
+ "crs": "EPSG:26916",
+ "stage_centroid_xy": [
+  615319.6,
+  4759546.9
+ ],
+ "stage_rect_long_ft": 110,
+ "stage_rect_short_ft": 54,
+ "stage_rect_note": "OSM stage canopy footprint (lens-shaped); deck likely smaller than rect",
+ "stage_long_axis_az_deg": 110.9,
+ "audience_facing_azimuth_deg": 20.9,
+ "arc_center_xy": [
+  615316.7,
+  4759539.2
+ ],
+ "arc_center_note": "stage-front center = stage centroid moved 8.2 m along az 200.9 (half of OSM short dim)",
+ "profile_back_m": 35,
+ "profile_out_m": 110,
+ "fan_scan_r_m": [
+  15,
+  60
+ ],
+ "breaks_ft": {
+  "row1_s": 10,
+  "seating_top_s": 100,
+  "rim_crest_s": 135,
+  "_basis": "digitized 2026-06-12 from DEM centerline profile fine structure; row1 = first terrace seat-wall, top = lawn crest before promenade"
+ },
+ "fan_deg": {
+  "start_az": 150,
+  "end_az": 250,
+  "_basis": "inferred from DEM hillshade terrace extent + radial fan scan (smooth monotonic rise sector); +/-10 deg"
+ },
+ "stage_frontage_ft": {
+  "value": 100,
+  "range": [
+   90,
+   110
+  ],
+  "_basis": "inferred: lens-canopy chord facing audience from OSM footprint (long dim 110 ft); deck edge slightly inside canopy"
+ },
+ "stage_depth_ft": {
+  "value": 45,
+  "range": [
+   35,
+   54
+  ],
+  "_basis": "inferred: OSM canopy short dim 54 ft; deck inset"
+ },
+ "row_count_note": "stone seat-wall terraces lower bowl + open lawn above",
+ "row_count_inferred": {
+  "value": "~8-10 seat-wall terraces + open lawn above",
+  "_basis": "inferred: hillshade/imagery arc count ring 8-38 m; 1 m DEM cannot resolve individual seat walls"
+ },
+ "ada_circulation_note": "level entry plaza at stage sides; flanking paths both sides of lawn; cross path mid-bowl ~ring 35 m (imagery)",
+ "backdrop_note": "audience faces ~NNE across stage to pond + sculpture-park woodland; low covered stage, open landscape backdrop"
+}

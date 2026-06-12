@@ -1,0 +1,43 @@
+{
+ "site": "Santa Barbara Bowl",
+ "slug": "santa_barbara_bowl",
+ "source_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_Montecito_2018/TIFF/USGS_one_meter_x25y382_CA_Montecito_2018.tif",
+ "dem_product": {
+  "title": "USGS one meter x25y382 CA Montecito",
+  "project": "CA_Montecito_2018",
+  "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_Montecito_2018/TIFF/USGS_one_meter_x25y382_CA_Montecito_2018.tif",
+  "publication_date": "2020-03-31",
+  "lidar_acquisition": "2018 (CA Montecito post-debris-flow project)",
+  "resolution_m": 1.0
+ },
+ "access_method": "GDAL /vsicurl/ windowed read (this script)",
+ "fetched_on": "2026-06-12",
+ "native_crs": "EPSG:26911",
+ "native_resolution_m": [
+  1.0,
+  1.0
+ ],
+ "vertical": "NAVD88 meters (USGS 3DEP standard for 1 m DEM products)",
+ "center_lonlat_wgs84": [
+  -119.69341,
+  34.43511
+ ],
+ "center_native_xy": [
+  252511.66964189618,
+  3813692.663254677
+ ],
+ "clip_bounds_native": [
+  252161.66964189618,
+  3813342.663254677,
+  252861.66964189618,
+  3814042.663254677
+ ],
+ "clip_shape_px": [
+  700,
+  700
+ ],
+ "elev_min_m": 17.987445831298828,
+ "elev_max_m": 177.78282165527344,
+ "nodata": -999999.0,
+ "units_policy": "clip kept in native meters; all derived metrics convert to feet explicitly (suffix _ft)"
+}

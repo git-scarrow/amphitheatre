@@ -1,0 +1,58 @@
+{
+ "_provenance": "Digitized 2026-06-12 from OSM stage footprint (way 623261253) + Esri World Imagery + USGS 1m DEM diagnostics. All anchor values INFERRED (imagery/OSM-derived), not surveyed.",
+ "crs": "EPSG:26911",
+ "stage_centroid_xy": [
+  252510.4,
+  3813694.6
+ ],
+ "stage_rect_long_ft": 125,
+ "stage_rect_short_ft": 79,
+ "stage_rect_note": "OSM stage HOUSE footprint incl. backstage; performance deck is smaller \u2014 cross-checked vs 2002 rebuild total of 10,000 sq ft stage+backstage",
+ "stage_long_axis_az_deg": 5.8,
+ "audience_facing_azimuth_deg": 95.8,
+ "arc_center_xy": [
+  252498.4,
+  3813693.4
+ ],
+ "arc_center_note": "stage-front center = stage centroid moved 12.0 m along az 275.8 (half of OSM short dim)",
+ "profile_back_m": 35,
+ "profile_out_m": 130,
+ "fan_scan_r_m": [
+  25,
+  80
+ ],
+ "breaks_ft": {
+  "row1_s": 27,
+  "seating_top_s": 215,
+  "rim_crest_s": 265,
+  "_basis": "digitized 2026-06-12 from DEM centerline profile fine structure + hillshade ring reads; row1 = first riser, seating_top = upper concourse bench at ~248 ft elev"
+ },
+ "fan_deg": {
+  "start_az": 205,
+  "end_az": 345,
+  "_basis": "inferred from DEM hillshade terrace extent (spoke overlay); +/-10 deg"
+ },
+ "stage_frontage_ft": {
+  "value": 92,
+  "range": [
+   85,
+   100
+  ],
+  "_basis": "inferred: deck west-edge span read from hillshade/imagery; OSM house long dim 125 ft is the upper bound incl. wings"
+ },
+ "stage_depth_ft": {
+  "value": 50,
+  "range": [
+   40,
+   79
+  ],
+  "_basis": "inferred: performance deck depth unknown; OSM house short dim 79 ft includes backstage; 2002 rebuild total 10,000 sqft stage+backstage bounds it"
+ },
+ "row_count_note": "estimated from DEM riser detection below",
+ "row_count_inferred": {
+  "value": "~30-40 bench rows in 3 banks (A-C / D-I / J-O)",
+  "_basis": "inferred: imagery terrace texture + published section bands; 1 m DEM cannot resolve individual ~1 ft risers"
+ },
+ "ada_circulation_note": "main cross-aisle visible ~ring 30 m + concourse at top of bowl; ADA platform added 2003 (published); switchback access roads N and S of bowl",
+ "backdrop_note": "audience faces ~E into canyon hillside (oak woodland) behind stage house; enclosed canyon venue with tall stage house + roof"
+}

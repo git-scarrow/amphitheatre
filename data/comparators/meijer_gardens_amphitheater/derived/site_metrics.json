@@ -1,0 +1,116 @@
+{
+ "site": "Frederik Meijer Gardens Amphitheater",
+ "slug": "meijer_gardens_amphitheater",
+ "location": "1000 E Beltline Ave NE, Grand Rapids, MI",
+ "crs": "EPSG:26916 (m), vertical NAVD88 m -> reported ft",
+ "dem": {
+  "value": "USGS one meter x61y476 MI 31Co Kent 2016 (1.0 m)",
+  "basis": "published",
+  "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/MI_31Co_Kent_2016/TIFF/USGS_one_meter_x61y476_MI_31Co_Kent_2016.tif",
+  "acquisition": "2016 (MI 31-County Kent collection)"
+ },
+ "capacity": {
+  "value": 1900,
+  "basis": "published",
+  "source": "https://en.wikipedia.org/wiki/Frederik_Meijer_Gardens (tiered lawn seating for 1,900; flagged citation-needed there, but the 1,900 figure is used venue-wide in press)"
+ },
+ "audience_facing_az_deg": {
+  "value": 20.9,
+  "basis": "inferred_imagery",
+  "note": "from OSM stage rectangle orientation + seating side; consistent w/ DEM fall line"
+ },
+ "stage_frontage_ft": {
+  "value": 100,
+  "basis": "inferred_imagery",
+  "note": "inferred: lens-canopy chord facing audience from OSM footprint (long dim 110 ft); deck edge slightly inside canopy",
+  "range": [
+   90,
+   110
+  ]
+ },
+ "stage_depth_ft": {
+  "value": 45,
+  "basis": "inferred_imagery",
+  "note": "inferred: OSM canopy short dim 54 ft; deck inset",
+  "range": [
+   35,
+   54
+  ]
+ },
+ "stage_front_to_row1_ft": {
+  "value": 10,
+  "basis": "measured_dem",
+  "note": "digitized 2026-06-12 from DEM centerline profile fine structure; row1 = first terrace seat-wall, top = lawn crest before promenade"
+ },
+ "floor_elev_ft": {
+  "value": 811.0,
+  "basis": "measured_dem"
+ },
+ "row1_elev_ft": {
+  "value": 811.2,
+  "basis": "measured_dem"
+ },
+ "top_row_elev_ft": {
+  "value": 824.1,
+  "basis": "measured_dem"
+ },
+ "rise_row1_to_top_ft": {
+  "value": 12.9,
+  "basis": "measured_dem"
+ },
+ "avg_rake_pct": {
+  "value": 14.3,
+  "basis": "measured_dem"
+ },
+ "local_rake_range_pct": {
+  "value": [
+   6.2,
+   21.0
+  ],
+  "basis": "measured_dem",
+  "note": "20-ft windows on centerline"
+ },
+ "fan_angle_deg": {
+  "value": 113.1,
+  "basis": "measured_dem",
+  "note": "angular extent (2-98 pct) of mid-bowl contour about stage-front anchor (anchor center inferred); imagery read was 100 deg"
+ },
+ "inner_radius_ft": {
+  "value": 10,
+  "basis": "measured_dem",
+  "note": "row-1 distance from stage-front arc center; contour check r(row1+2ft) = 31.2 ft"
+ },
+ "outer_radius_ft": {
+  "value": 100,
+  "basis": "measured_dem",
+  "note": "top-of-seating distance on centerline; contour check r(top-2ft) = 96.1 ft"
+ },
+ "upper_row_distance_ft": {
+  "value": 100,
+  "basis": "measured_dem",
+  "note": "stage front -> top seating row, on axis"
+ },
+ "row1_arc_length_ft": {
+  "value": 19.7,
+  "basis": "measured_dem",
+  "note": "measured fan x row-1 radius (anchor center inferred)"
+ },
+ "frontage_to_row1_arc": {
+  "value": 5.07,
+  "basis": "inferred_imagery",
+  "note": "frontage is the inferred quantity"
+ },
+ "row_count_est": {
+  "value": "~8-10 seat-wall terraces + open lawn above",
+  "basis": "inferred_imagery",
+  "note": "inferred: hillshade/imagery arc count ring 8-38 m; 1 m DEM cannot resolve individual seat walls"
+ },
+ "ada": {
+  "value": "level entry plaza at stage sides; flanking paths both sides of lawn; cross path mid-bowl ~ring 35 m (imagery)",
+  "basis": "inferred_imagery"
+ },
+ "backdrop": {
+  "value": "audience faces ~NNE across stage to pond + sculpture-park woodland; low covered stage, open landscape backdrop",
+  "basis": "inferred_imagery"
+ }
+}
