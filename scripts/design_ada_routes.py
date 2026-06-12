@@ -27,7 +27,7 @@ sharp turns each, 1.2 ft mean segments. This stage:
 
 Outputs:
   vectors_geojson/ada_route.geojson        design centerlines + landings
-  vectors_geojson/route_corridors.geojson  corridor polygons
+  vectors_geojson/route_corridors_C.geojson  corridor SURFACES (Concept C)
   analysis/ada_rebuild/ada_validation.json full ordered validation
 Label stays: "ADA-compliant route concept pending civil/code detailing".
 Reproduce:  .venv/bin/python scripts/design_ada_routes.py
@@ -384,6 +384,70 @@ def sample_z(arr, tf, x, y):
     return None
 
 
+def corridor_surface_metrics(line, za, zb, width, dem_raw, tf,
+                             cross_slope=0.015, station_step=2.0):
+    """Convert a centerline into a CORRIDOR SURFACE: linear design profile
+    za->zb along the line, benched cross-section at `cross_slope` (1:67,
+    inside ADA's 1:48), sampled across the width. Returns grading volumes
+    vs the raw proposed grade, wall-likely zones (edge grade separation),
+    and a payload profile. A centerline is not an ADA route — this is."""
+    L = max(line.length, 1e-9)
+    n = max(int(L / station_step), 2)
+    offs = np.linspace(-width / 2, width / 2, 5)
+    cut_v = fill_v = 0.0
+    max_cut = max_fill = 0.0
+    profile = []
+    wall_st = []
+    for i in range(n + 1):
+        d = L * i / n
+        ppt = line.interpolate(d)
+        p2 = line.interpolate(min(d + 1.0, L))
+        hx, hy = p2.x - ppt.x, p2.y - ppt.y
+        hl = math.hypot(hx, hy) or 1.0
+        nxv, nyv = -hy / hl, hx / hl
+        z_c = za + (zb - za) * d / L
+        deltas = []
+        for o in offs:
+            x, y = ppt.x + nxv * o, ppt.y + nyv * o
+            zt = sample_z(dem_raw, tf, x, y)
+            zd = z_c - o * cross_slope        # bench falls to one side
+            deltas.append((zd - zt) if zt is not None else np.nan)
+        deltas = np.array(deltas, float)
+        if np.isfinite(deltas).any():
+            seg_len = L / n
+            cell = seg_len * width / len(offs)
+            cut_v += float(np.nansum(np.clip(-deltas, 0, None)) * cell)
+            fill_v += float(np.nansum(np.clip(deltas, 0, None)) * cell)
+            max_cut = max(max_cut, float(np.nanmax(-deltas)))
+            max_fill = max(max_fill, float(np.nanmax(deltas)))
+            edge = max(abs(deltas[0]) if np.isfinite(deltas[0]) else 0,
+                       abs(deltas[-1]) if np.isfinite(deltas[-1]) else 0)
+            if edge > 2.5:
+                wall_st.append(round(d, 1))
+        if i % 4 == 0 or i == n:
+            profile.append([round(ppt.x, 1), round(ppt.y, 1),
+                            round(z_c, 2),
+                            round(float(np.nanmean(deltas)), 2)
+                            if np.isfinite(deltas).any() else None])
+    return {
+        "cut_cy": round(cut_v / 27.0, 1),
+        "fill_cy": round(fill_v / 27.0, 1),
+        "max_cut_ft": round(max_cut, 2),
+        "max_fill_ft": round(max_fill, 2),
+        "designed_cross_slope_pct": {"p50": 1.5, "p90": 1.5, "p100": 1.5,
+                                     "note": "benched section DESIGNED at "
+                                             "1.5% (1:67, inside 1:48); "
+                                             "post-grading by construction "
+                                             "— field QA unresolved"},
+        "wall_curb_rail_zones": {
+            "stations_ft_with_edge_sep_gt_2p5": wall_st[:40],
+            "count": len(wall_st),
+            "note": "edge grade separation >2.5 ft -> low wall/guard "
+                    "likely; >4 ft -> retaining + guard"},
+        "profile": profile,
+    }
+
+
 # ── main ─────────────────────────────────────────────────────────────────
 def main():
     fc, zg = load_zones()
@@ -502,6 +566,7 @@ def main():
                         "ok": cross_len <= 24.0}
         width = WIDTH_FT[klass]
         corridor = line.buffer(width / 2, cap_style=2)
+        surface = corridor_surface_metrics(line, za, zb, width, dem_raw, tf)
         # cross slope: perpendicular terrain gradient at 10-ft stations
         gy, gx = np.gradient(np.where(dem == -9999, np.nan, dem))
         xs_pct = []
@@ -531,11 +596,17 @@ def main():
             "flags": {
                 "handrails_guards": grade > WALK_MAX,
                 "edge_protection": bool((xs_pct > 25).any()),
-                "retaining_likely": bool((bench_ft > 3.0).any()),
+                "retaining_likely": bool((bench_ft > 3.0).any()
+                                         or surface["max_cut_ft"] > 4.0),
                 "benching_required": bool((xs_pct > 2.0).any())},
-            "note": "cross slope is TERRAIN slope across the corridor — "
-                    "built cross slope <=2% requires the benching above; "
-                    "pending civil detailing"}
+            "grading": {k: surface[k] for k in
+                        ("cut_cy", "fill_cy", "max_cut_ft", "max_fill_ft")},
+            "designed_cross_slope_pct": surface["designed_cross_slope_pct"],
+            "wall_curb_rail_zones": surface["wall_curb_rail_zones"],
+            "profile": surface["profile"],
+            "note": "terrain cross slope shown above; the BENCHED section "
+                    "is designed at 1.5% — grading volumes are the cost of "
+                    "that bench; pending civil detailing"}
         corridors.append({"type": "Feature", "geometry": mapping(corridor),
                           "properties": corridor_props})
 
@@ -570,7 +641,7 @@ def main():
               f"{after['min_seg_ft']} ft, {len(lnd_pts)} landings")
 
     C.dump(C.fc(feats + landings_fc), os.path.join(VEC, "ada_route.geojson"))
-    C.dump(C.fc(corridors), os.path.join(VEC, "route_corridors.geojson"))
+    C.dump(C.fc(corridors), os.path.join(VEC, "route_corridors_C.geojson"))
 
     # ── validation ───────────────────────────────────────────────────────
     geom = {n: shape(next(f for f in feats
@@ -863,7 +934,7 @@ def main():
                                   "able-bodied stair path is shorter still; "
                                   "flags mark technically-compliant but "
                                   "socially-inferior access"},
-        "corridors": {"file": "vectors_geojson/route_corridors.geojson",
+        "corridors": {"file": "vectors_geojson/route_corridors_C.geojson",
                       "per_route": {c["properties"]["route"]:
                                     {k: c["properties"][k] for k in
                                      ("class", "width_ft", "area_sqft",

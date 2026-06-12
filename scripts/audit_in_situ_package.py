@@ -957,7 +957,7 @@ def check_ada_rebuild():
            "flagged socially-inferior pairs — honesty preserved, see "
            "recommendation)")
     if not os.path.exists(os.path.join(C.VEC_DIR,
-                                       "route_corridors.geojson")):
+                                       "route_corridors_C.geojson")):
         fail("ADA: route_corridors.geojson missing")
     else:
         cor = av.get("corridors", {}).get("per_route", {})
@@ -977,6 +977,41 @@ def check_ada_rebuild():
            str(hier.get("south_perimeter_status", ""))[:40])
     if not av.get("recommendation", {}).get("preferred"):
         fail("ADA: no preferred concept recommended")
+
+    # Concept C vs D comparison gates: D costs must be visible and
+    # constructed grades compliant; a governing recommendation must exist
+    cc = av.get("concepts", {})
+    if not cc:
+        fail("ADA: concepts block (C vs D) missing — run "
+             "scripts/design_constructed_ada.py")
+    else:
+        d_keys = [k for k in cc if k.startswith("D")]
+        if len(d_keys) < 2:
+            fail("ADA: fewer than two constructed (D) alternatives")
+        hidden = [k for k in d_keys if "totals" not in cc[k]
+                  or "seats_displaced" not in cc[k]["totals"]
+                  or "cut_cy" not in cc[k]["totals"]]
+        if hidden:
+            fail(f"ADA: concept cost sheets incomplete (cost hidden?): "
+                 f"{hidden}")
+        bad_grade = [k for k in d_keys if not cc[k].get(
+            "constructed_grades_compliant", False)]
+        if bad_grade:
+            fail(f"ADA: constructed elements exceed 8.33% in: {bad_grade}")
+        rec = av.get("recommendation_c_vs_d", {})
+        if not rec.get("governing_recommendation"):
+            fail("ADA: no governing C-vs-D recommendation")
+        else:
+            ok(f"ADA concepts: C + {len(d_keys)} constructed alternatives "
+               f"costed (seats/cut-fill/severance visible); governing = "
+               f"{rec['governing_recommendation']}; preferred D = "
+               f"{rec.get('preferred_D')}")
+        if not os.path.exists(os.path.join(C.VEC_DIR,
+                                           "route_corridors_D.geojson")):
+            fail("ADA: route_corridors_D.geojson missing")
+        if not os.path.exists(os.path.join(REPO, "dem",
+                                           "proposed_ada_grade_delta_D.tif")):
+            fail("ADA: proposed_ada_grade_delta_D.tif missing")
 
     # legacy layer must be quarantined OUT of bowl_zones
     zones = load_vec("bowl_zones.geojson")

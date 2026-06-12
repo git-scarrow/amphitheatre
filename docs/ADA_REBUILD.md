@@ -133,3 +133,17 @@ Stage-1 outputs moved to `analysis/ada_rebuild/solver_paths.geojson` +
 `solver_validation.json` (feasibility evidence only). The governing
 route artifact is now the DESIGNED `vectors_geojson/ada_route.geojson`;
 full story + preferred concept C in **docs/ADA_ROUTE_ALTERNATIVES.md**.
+
+---
+
+## Stage 3 (2026-06-12, later): Concept C vs Concept D
+
+Concept C (stage 2) was challenged as possibly too naturalistic. Three
+constructed cut-ramp alternatives (D1 integrated hinge ramp, D2 diagonal
+terrace cut, D3 hybrid) were designed, costed (cut/fill, seats displaced,
+severed rows, walls), and scored for dignity/directness
+(`scripts/design_constructed_ada.py`). Key finding: the terrain bounds
+every compliant route at ~4-5x the desire line, so construction buys a
+bounded improvement at structural cost. **C governs; D2 carried as the
+design-development alternative.** Full ledger + decision rule:
+**docs/ADA_CONCEPT_C_VS_D.md**.

@@ -549,7 +549,7 @@
   "note": "desire line = straight-line distance; able-bodied stair path is shorter still; flags mark technically-compliant but socially-inferior access"
  },
  "corridors": {
-  "file": "vectors_geojson/route_corridors.geojson",
+  "file": "vectors_geojson/route_corridors_C.geojson",
   "per_route": {
    "route_arrival_to_cross_aisle": {
     "class": "public_primary",
@@ -587,7 +587,7 @@
     "flags": {
      "handrails_guards": true,
      "edge_protection": true,
-     "retaining_likely": false,
+     "retaining_likely": true,
      "benching_required": true
     }
    },
@@ -667,7 +667,7 @@
     "flags": {
      "handrails_guards": true,
      "edge_protection": true,
-     "retaining_likely": false,
+     "retaining_likely": true,
      "benching_required": true
     }
    },
@@ -829,5 +829,976 @@
   "slopes_ok": true,
   "smoothness_ok": true,
   "network_ok": true
- }
+ },
+ "concepts": {
+  "D1_integrated_aisle_ramp": {
+   "label": "Integrated aisle-ramp on the east|bend hinge \u2014 arrival, cross-aisle, floor on one central line",
+   "constructed_elements": {
+    "D_hinge_stack_upper": {
+     "desc": "integrated switchback stack on the east|bend hinge (rows 11-18 band) landing on the cross-aisle at the hinge junction",
+     "from": "public_arrival_rim",
+     "to": "hinge_aisle_jct",
+     "length_ft": 272.6,
+     "drop_ft": 17.39,
+     "avg_running_slope_pct": 6.38,
+     "max_running_slope_pct": 8.33,
+     "compliant_grade": true,
+     "ramp_classified_len_gt5pct_ft": 209.0,
+     "ramp_runs": 7,
+     "landings": {
+      "count": 6,
+      "size": "5x5 ft min (60x60 in), <=2% any direction \u2014 pending civil detailing"
+     },
+     "turn_count": 16,
+     "corridor_width_ft": 8.0,
+     "grading": {
+      "cut_cy": 75.9,
+      "fill_cy": 52.1,
+      "max_cut_ft": 5.36,
+      "max_fill_ft": 4.47
+     },
+     "designed_cross_slope_pct": {
+      "p50": 1.5,
+      "p90": 1.5,
+      "p100": 1.5,
+      "note": "benched section DESIGNED at 1.5% (1:67, inside 1:48); post-grading by construction \u2014 field QA unresolved"
+     },
+     "wall_curb_rail_zones": {
+      "stations_ft_with_edge_sep_gt_2p5": [
+       2.0,
+       4.0,
+       6.0,
+       8.0,
+       10.0,
+       12.0,
+       26.1,
+       28.1,
+       30.1,
+       32.1,
+       34.1,
+       36.1,
+       38.1,
+       40.1,
+       42.1,
+       44.1,
+       46.1,
+       48.1,
+       50.1,
+       52.1,
+       54.1,
+       56.1,
+       58.1,
+       60.1,
+       62.1,
+       64.1,
+       80.2,
+       122.3,
+       124.3,
+       144.3,
+       146.3,
+       148.3,
+       150.3,
+       152.3,
+       154.4,
+       156.4,
+       158.4,
+       160.4,
+       162.4,
+       164.4
+      ],
+      "count": 73,
+      "note": "edge grade separation >2.5 ft -> low wall/guard likely; >4 ft -> retaining + guard"
+     },
+     "treatment_cell_ft": 0.0,
+     "swale_ft": 0.0,
+     "stage_zone_ft": 0.0,
+     "seats_displaced": 82.0,
+     "rows_cut": {
+      "bend r11": 4.9,
+      "bend r12": 13.3,
+      "bend r13": 14.3,
+      "bend r14": 14.5,
+      "bend r15": 14.6,
+      "bend r16": 13.6,
+      "bend r17": 13.3,
+      "bend r18": 13.8,
+      "east r12": 1.2,
+      "east r13": 11.1,
+      "east r14": 14.2,
+      "east r15": 14.7,
+      "east r16": 14.6,
+      "east r17": 13.8,
+      "east r18": 13.6
+     },
+     "rows_severed": [],
+     "sightline_impact": "ramp guards/walls rise beside cut rows \u2014 adjacent-seat C-value restudy REQUIRED before adoption",
+     "unresolved": [
+      "surface material",
+      "edge protection detail",
+      "handrails/guards",
+      "drainage at runs/landings",
+      "lighting"
+     ]
+    },
+    "D_jct_to_wc": {
+     "desc": "level distribution along the existing cross-aisle band",
+     "from": "hinge_aisle_jct",
+     "to": "wc_cluster_cross_aisle",
+     "length_ft": 14.8,
+     "drop_ft": 0.0,
+     "avg_running_slope_pct": 0.0,
+     "max_running_slope_pct": 0.0,
+     "compliant_grade": true,
+     "ramp_classified_len_gt5pct_ft": 0.0,
+     "ramp_runs": 0,
+     "landings": {
+      "count": 0,
+      "size": "5x5 ft min (60x60 in), <=2% any direction \u2014 pending civil detailing"
+     },
+     "turn_count": 0,
+     "corridor_width_ft": 8.0,
+     "grading": {
+      "cut_cy": 6.7,
+      "fill_cy": 0.1,
+      "max_cut_ft": 3.73,
+      "max_fill_ft": 0.2
+     },
+     "designed_cross_slope_pct": {
+      "p50": 1.5,
+      "p90": 1.5,
+      "p100": 1.5,
+      "note": "benched section DESIGNED at 1.5% (1:67, inside 1:48); post-grading by construction \u2014 field QA unresolved"
+     },
+     "wall_curb_rail_zones": {
+      "stations_ft_with_edge_sep_gt_2p5": [
+       0.0,
+       2.1,
+       4.2,
+       6.3,
+       8.4,
+       10.6
+      ],
+      "count": 6,
+      "note": "edge grade separation >2.5 ft -> low wall/guard likely; >4 ft -> retaining + guard"
+     },
+     "treatment_cell_ft": 0.0,
+     "swale_ft": 0.0,
+     "stage_zone_ft": 0.0,
+     "seats_displaced": 5.0,
+     "rows_cut": {
+      "bend r11": 10.0,
+      "bend r12": 2.3
+     },
+     "rows_severed": [],
+     "sightline_impact": "ramp guards/walls rise beside cut rows \u2014 adjacent-seat C-value restudy REQUIRED before adoption",
+     "unresolved": [
+      "surface material",
+      "edge protection detail",
+      "handrails/guards",
+      "drainage at runs/landings",
+      "lighting"
+     ]
+    },
+    "D_jct_to_mid": {
+     "desc": "level distribution along the existing cross-aisle band",
+     "from": "hinge_aisle_jct",
+     "to": "cross_aisle_mid",
+     "length_ft": 29.5,
+     "drop_ft": 0.0,
+     "avg_running_slope_pct": 0.0,
+     "max_running_slope_pct": 0.0,
+     "compliant_grade": true,
+     "ramp_classified_len_gt5pct_ft": 0.0,
+     "ramp_runs": 0,
+     "landings": {
+      "count": 0,
+      "size": "5x5 ft min (60x60 in), <=2% any direction \u2014 pending civil detailing"
+     },
+     "turn_count": 0,
+     "corridor_width_ft": 8.0,
+     "grading": {
+      "cut_cy": 7.6,
+      "fill_cy": 0.2,
+      "max_cut_ft": 3.73,
+      "max_fill_ft": 0.2
+     },
+     "designed_cross_slope_pct": {
+      "p50": 1.5,
+      "p90": 1.5,
+      "p100": 1.5,
+      "note": "benched section DESIGNED at 1.5% (1:67, inside 1:48); post-grading by construction \u2014 field QA unresolved"
+     },
+     "wall_curb_rail_zones": {
+      "stations_ft_with_edge_sep_gt_2p5": [
+       0.0,
+       2.1,
+       4.2,
+       6.3,
+       8.4,
+       10.5
+      ],
+      "count": 6,
+      "note": "edge grade separation >2.5 ft -> low wall/guard likely; >4 ft -> retaining + guard"
+     },
+     "treatment_cell_ft": 0.0,
+     "swale_ft": 0.0,
+     "stage_zone_ft": 0.0,
+     "seats_displaced": 8.0,
+     "rows_cut": {
+      "bend r11": 17.2,
+      "bend r12": 1.4
+     },
+     "rows_severed": [],
+     "sightline_impact": "ramp guards/walls rise beside cut rows \u2014 adjacent-seat C-value restudy REQUIRED before adoption",
+     "unresolved": [
+      "surface material",
+      "edge protection detail",
+      "handrails/guards",
+      "drainage at runs/landings",
+      "lighting"
+     ]
+    },
+    "D_hinge_stack_lower": {
+     "desc": "integrated switchback stack continuing the hinge through rows 1-8 to the event floor at the 612.5 datum",
+     "from": "hinge_aisle_jct",
+     "to": "floor_arrival",
+     "length_ft": 186.9,
+     "drop_ft": 9.51,
+     "avg_running_slope_pct": 5.09,
+     "max_running_slope_pct": 8.33,
+     "compliant_grade": true,
+     "ramp_classified_len_gt5pct_ft": 114.0,
+     "ramp_runs": 4,
+     "landings": {
+      "count": 3,
+      "size": "5x5 ft min (60x60 in), <=2% any direction \u2014 pending civil detailing"
+     },
+     "turn_count": 10,
+     "corridor_width_ft": 8.0,
+     "grading": {
+      "cut_cy": 36.2,
+      "fill_cy": 34.8,
+      "max_cut_ft": 4.47,
+      "max_fill_ft": 3.34
+     },
+     "designed_cross_slope_pct": {
+      "p50": 1.5,
+      "p90": 1.5,
+      "p100": 1.5,
+      "note": "benched section DESIGNED at 1.5% (1:67, inside 1:48); post-grading by construction \u2014 field QA unresolved"
+     },
+     "wall_curb_rail_zones": {
+      "stations_ft_with_edge_sep_gt_2p5": [
+       22.1,
+       24.1,
+       26.1,
+       28.1,
+       48.2,
+       50.2,
+       58.3,
+       78.4,
+       80.4,
+       82.4,
+       84.4,
+       86.4,
+       88.4,
+       132.6,
+       134.6,
+       136.7,
+       138.7,
+       154.7,
+       156.8,
+       176.8,
+       178.9,
+       180.9,
+       182.9,
+       184.9,
+       186.9
+      ],
+      "count": 25,
+      "note": "edge grade separation >2.5 ft -> low wall/guard likely; >4 ft -> retaining + guard"
+     },
+     "treatment_cell_ft": 0.0,
+     "swale_ft": 0.0,
+     "stage_zone_ft": 0.0,
+     "seats_displaced": 63.0,
+     "rows_cut": {
+      "bend r1": 0.7,
+      "bend r2": 2.4,
+      "bend r3": 13.3,
+      "bend r4": 14.8,
+      "bend r6": 14.5,
+      "bend r7": 15.0,
+      "bend r8": 14.8,
+      "east r1": 0.8,
+      "east r2": 0.6,
+      "east r3": 4.5,
+      "east r4": 9.8,
+      "east r6": 13.7,
+      "east r7": 16.0,
+      "east r8": 15.2,
+      "east r11": 7.8
+     },
+     "rows_severed": [],
+     "sightline_impact": "ramp guards/walls rise beside cut rows \u2014 adjacent-seat C-value restudy REQUIRED before adoption",
+     "unresolved": [
+      "surface material",
+      "edge protection detail",
+      "handrails/guards",
+      "drainage at runs/landings",
+      "lighting"
+     ]
+    }
+   },
+   "reused_concept_C_legs": {
+    "route_cross_aisle_to_wc_cluster": {
+     "length_ft": 15.3,
+     "from": "cross_aisle_mid",
+     "to": "wc_cluster_cross_aisle",
+     "reused_from_C": true
+    },
+    "route_floor_to_wc_cluster": {
+     "length_ft": 14.0,
+     "from": "floor_arrival",
+     "to": "wc_cluster_floor",
+     "reused_from_C": true
+    },
+    "route_cross_aisle_to_egress": {
+     "length_ft": 439.6,
+     "from": "cross_aisle_mid",
+     "to": "egress_rim_south",
+     "reused_from_C": true
+    },
+    "route_floor_to_egress": {
+     "length_ft": 427.6,
+     "from": "floor_arrival",
+     "to": "egress_rim_south",
+     "reused_from_C": true
+    }
+   },
+   "totals": {
+    "constructed_length_ft": 504.0,
+    "network_length_ft": 1400.0,
+    "ramp_runs": 11,
+    "landings": 9,
+    "cut_cy": 126.4,
+    "fill_cy": 87.2,
+    "max_cut_ft": 5.36,
+    "max_fill_ft": 4.47,
+    "seats_displaced": 158.0,
+    "rows_severed": [],
+    "treatment_cell_ft": 0.0,
+    "swale_ft": 0.0,
+    "stage_zone_ft": 0.0
+   },
+   "detour": {
+    "public_arrival_rim->cross_aisle_mid": {
+     "desire_line_ft": 51.7,
+     "route_ft": 302.1,
+     "detour_ratio": 5.85,
+     "flag_socially_inferior": true
+    },
+    "public_arrival_rim->floor_arrival": {
+     "desire_line_ft": 90.0,
+     "route_ft": 459.5,
+     "detour_ratio": 5.11,
+     "flag_socially_inferior": true
+    },
+    "public_arrival_rim->wc_cluster_cross_aisle": {
+     "desire_line_ft": 42.5,
+     "route_ft": 287.4,
+     "detour_ratio": 6.76,
+     "flag_socially_inferior": true
+    },
+    "public_arrival_rim->wc_cluster_floor": {
+     "desire_line_ft": 86.2,
+     "route_ft": 473.5,
+     "detour_ratio": 5.5,
+     "flag_socially_inferior": true
+    }
+   },
+   "worst_served_detour_ratio": 6.76,
+   "constructed_grades_compliant": true,
+   "dignity_directness_score": 67.0,
+   "valid": true
+  },
+  "D2_diagonal_terrace_cut": {
+   "label": "Diagonal terrace cut across the upper fan to the cross-aisle; floor via the west park walk",
+   "constructed_elements": {
+    "D_diagonal_cut": {
+     "desc": "two-leg diagonal graded promenade cut across the upper fan (rows 11-18) arriving directly at the wheelchair cluster",
+     "from": "public_arrival_rim",
+     "to": "wc_cluster_cross_aisle",
+     "length_ft": 214.4,
+     "drop_ft": 17.39,
+     "avg_running_slope_pct": 8.11,
+     "max_running_slope_pct": 8.26,
+     "compliant_grade": true,
+     "ramp_classified_len_gt5pct_ft": 211.0,
+     "ramp_runs": 2,
+     "landings": {
+      "count": 1,
+      "size": "5x5 ft min (60x60 in), <=2% any direction \u2014 pending civil detailing"
+     },
+     "turn_count": 3,
+     "corridor_width_ft": 8.0,
+     "grading": {
+      "cut_cy": 61.9,
+      "fill_cy": 162.1,
+      "max_cut_ft": 7.29,
+      "max_fill_ft": 8.93
+     },
+     "designed_cross_slope_pct": {
+      "p50": 1.5,
+      "p90": 1.5,
+      "p100": 1.5,
+      "note": "benched section DESIGNED at 1.5% (1:67, inside 1:48); post-grading by construction \u2014 field QA unresolved"
+     },
+     "wall_curb_rail_zones": {
+      "stations_ft_with_edge_sep_gt_2p5": [
+       2.0,
+       4.0,
+       6.0,
+       8.0,
+       10.0,
+       12.0,
+       14.0,
+       16.0,
+       18.0,
+       20.0,
+       22.0,
+       24.0,
+       26.1,
+       28.1,
+       30.1,
+       32.1,
+       34.1,
+       36.1,
+       38.1,
+       40.1,
+       42.1,
+       44.1,
+       46.1,
+       48.1,
+       50.1,
+       52.1,
+       54.1,
+       56.1,
+       58.1,
+       60.1,
+       62.1,
+       64.1,
+       66.1,
+       68.1,
+       70.1,
+       72.1,
+       74.1,
+       76.2,
+       78.2,
+       80.2
+      ],
+      "count": 79,
+      "note": "edge grade separation >2.5 ft -> low wall/guard likely; >4 ft -> retaining + guard"
+     },
+     "treatment_cell_ft": 0.0,
+     "swale_ft": 0.0,
+     "stage_zone_ft": 0.0,
+     "seats_displaced": 121.0,
+     "rows_cut": {
+      "bend r11": 42.9,
+      "bend r12": 17.1,
+      "bend r13": 9.2,
+      "bend r14": 40.1,
+      "bend r15": 51.9,
+      "bend r16": 22.2,
+      "bend r17": 12.9,
+      "bend r18": 11.2,
+      "south r14": 3.5,
+      "south r15": 9.1,
+      "south r16": 13.8,
+      "south r17": 19.7,
+      "south r18": 19.8
+     },
+     "rows_severed": [
+      "bend r11",
+      "bend r16"
+     ],
+     "sightline_impact": "ramp guards/walls rise beside cut rows \u2014 adjacent-seat C-value restudy REQUIRED before adoption; SEVERS rows mid-tread into dead-end segments (egress re-planning) and raises a railed line across the fan's visual field",
+     "unresolved": [
+      "surface material",
+      "edge protection detail",
+      "handrails/guards",
+      "drainage at runs/landings",
+      "lighting"
+     ]
+    }
+   },
+   "reused_concept_C_legs": {
+    "route_park_to_floor": {
+     "length_ft": 246.2,
+     "from": "park_arrival_west",
+     "to": "floor_arrival",
+     "reused_from_C": true
+    },
+    "route_cross_aisle_to_wc_cluster": {
+     "length_ft": 15.3,
+     "from": "cross_aisle_mid",
+     "to": "wc_cluster_cross_aisle",
+     "reused_from_C": true
+    },
+    "route_floor_to_wc_cluster": {
+     "length_ft": 14.0,
+     "from": "floor_arrival",
+     "to": "wc_cluster_floor",
+     "reused_from_C": true
+    },
+    "route_cross_aisle_to_egress": {
+     "length_ft": 439.6,
+     "from": "cross_aisle_mid",
+     "to": "egress_rim_south",
+     "reused_from_C": true
+    },
+    "route_floor_to_egress": {
+     "length_ft": 427.6,
+     "from": "floor_arrival",
+     "to": "egress_rim_south",
+     "reused_from_C": true
+    }
+   },
+   "totals": {
+    "constructed_length_ft": 214.0,
+    "network_length_ft": 1357.0,
+    "ramp_runs": 2,
+    "landings": 1,
+    "cut_cy": 61.9,
+    "fill_cy": 162.1,
+    "max_cut_ft": 7.29,
+    "max_fill_ft": 8.93,
+    "seats_displaced": 121.0,
+    "rows_severed": [
+     "bend r11",
+     "bend r16"
+    ],
+    "treatment_cell_ft": 0.0,
+    "swale_ft": 0.0,
+    "stage_zone_ft": 0.0
+   },
+   "detour": {
+    "public_arrival_rim->cross_aisle_mid": {
+     "desire_line_ft": 51.7,
+     "route_ft": 229.7,
+     "detour_ratio": 4.44,
+     "flag_socially_inferior": true
+    },
+    "park_arrival_west->floor_arrival": {
+     "desire_line_ft": 58.5,
+     "route_ft": 246.2,
+     "detour_ratio": 4.21,
+     "flag_socially_inferior": true
+    },
+    "public_arrival_rim->wc_cluster_cross_aisle": {
+     "desire_line_ft": 42.5,
+     "route_ft": 214.4,
+     "detour_ratio": 5.04,
+     "flag_socially_inferior": true
+    },
+    "park_arrival_west->wc_cluster_floor": {
+     "desire_line_ft": 45.0,
+     "route_ft": 260.2,
+     "detour_ratio": 5.79,
+     "flag_socially_inferior": true
+    }
+   },
+   "worst_served_detour_ratio": 5.79,
+   "constructed_grades_compliant": true,
+   "dignity_directness_score": 79.0,
+   "valid": true
+  },
+  "D3_hybrid_short_ramp": {
+   "label": "Hybrid: D1 upper stack to the cross-aisle + west park walk to the floor",
+   "constructed_elements": {
+    "D_hinge_stack_upper": {
+     "desc": "integrated switchback stack on the east|bend hinge (rows 11-18 band) landing on the cross-aisle at the hinge junction",
+     "from": "public_arrival_rim",
+     "to": "hinge_aisle_jct",
+     "length_ft": 272.6,
+     "drop_ft": 17.39,
+     "avg_running_slope_pct": 6.38,
+     "max_running_slope_pct": 8.33,
+     "compliant_grade": true,
+     "ramp_classified_len_gt5pct_ft": 209.0,
+     "ramp_runs": 7,
+     "landings": {
+      "count": 6,
+      "size": "5x5 ft min (60x60 in), <=2% any direction \u2014 pending civil detailing"
+     },
+     "turn_count": 16,
+     "corridor_width_ft": 8.0,
+     "grading": {
+      "cut_cy": 75.9,
+      "fill_cy": 52.1,
+      "max_cut_ft": 5.36,
+      "max_fill_ft": 4.47
+     },
+     "designed_cross_slope_pct": {
+      "p50": 1.5,
+      "p90": 1.5,
+      "p100": 1.5,
+      "note": "benched section DESIGNED at 1.5% (1:67, inside 1:48); post-grading by construction \u2014 field QA unresolved"
+     },
+     "wall_curb_rail_zones": {
+      "stations_ft_with_edge_sep_gt_2p5": [
+       2.0,
+       4.0,
+       6.0,
+       8.0,
+       10.0,
+       12.0,
+       26.1,
+       28.1,
+       30.1,
+       32.1,
+       34.1,
+       36.1,
+       38.1,
+       40.1,
+       42.1,
+       44.1,
+       46.1,
+       48.1,
+       50.1,
+       52.1,
+       54.1,
+       56.1,
+       58.1,
+       60.1,
+       62.1,
+       64.1,
+       80.2,
+       122.3,
+       124.3,
+       144.3,
+       146.3,
+       148.3,
+       150.3,
+       152.3,
+       154.4,
+       156.4,
+       158.4,
+       160.4,
+       162.4,
+       164.4
+      ],
+      "count": 73,
+      "note": "edge grade separation >2.5 ft -> low wall/guard likely; >4 ft -> retaining + guard"
+     },
+     "treatment_cell_ft": 0.0,
+     "swale_ft": 0.0,
+     "stage_zone_ft": 0.0,
+     "seats_displaced": 82.0,
+     "rows_cut": {
+      "bend r11": 4.9,
+      "bend r12": 13.3,
+      "bend r13": 14.3,
+      "bend r14": 14.5,
+      "bend r15": 14.6,
+      "bend r16": 13.6,
+      "bend r17": 13.3,
+      "bend r18": 13.8,
+      "east r12": 1.2,
+      "east r13": 11.1,
+      "east r14": 14.2,
+      "east r15": 14.7,
+      "east r16": 14.6,
+      "east r17": 13.8,
+      "east r18": 13.6
+     },
+     "rows_severed": [],
+     "sightline_impact": "ramp guards/walls rise beside cut rows \u2014 adjacent-seat C-value restudy REQUIRED before adoption",
+     "unresolved": [
+      "surface material",
+      "edge protection detail",
+      "handrails/guards",
+      "drainage at runs/landings",
+      "lighting"
+     ]
+    },
+    "D_jct_to_wc": {
+     "desc": "level distribution along the existing cross-aisle band",
+     "from": "hinge_aisle_jct",
+     "to": "wc_cluster_cross_aisle",
+     "length_ft": 14.8,
+     "drop_ft": 0.0,
+     "avg_running_slope_pct": 0.0,
+     "max_running_slope_pct": 0.0,
+     "compliant_grade": true,
+     "ramp_classified_len_gt5pct_ft": 0.0,
+     "ramp_runs": 0,
+     "landings": {
+      "count": 0,
+      "size": "5x5 ft min (60x60 in), <=2% any direction \u2014 pending civil detailing"
+     },
+     "turn_count": 0,
+     "corridor_width_ft": 8.0,
+     "grading": {
+      "cut_cy": 6.7,
+      "fill_cy": 0.1,
+      "max_cut_ft": 3.73,
+      "max_fill_ft": 0.2
+     },
+     "designed_cross_slope_pct": {
+      "p50": 1.5,
+      "p90": 1.5,
+      "p100": 1.5,
+      "note": "benched section DESIGNED at 1.5% (1:67, inside 1:48); post-grading by construction \u2014 field QA unresolved"
+     },
+     "wall_curb_rail_zones": {
+      "stations_ft_with_edge_sep_gt_2p5": [
+       0.0,
+       2.1,
+       4.2,
+       6.3,
+       8.4,
+       10.6
+      ],
+      "count": 6,
+      "note": "edge grade separation >2.5 ft -> low wall/guard likely; >4 ft -> retaining + guard"
+     },
+     "treatment_cell_ft": 0.0,
+     "swale_ft": 0.0,
+     "stage_zone_ft": 0.0,
+     "seats_displaced": 5.0,
+     "rows_cut": {
+      "bend r11": 10.0,
+      "bend r12": 2.3
+     },
+     "rows_severed": [],
+     "sightline_impact": "ramp guards/walls rise beside cut rows \u2014 adjacent-seat C-value restudy REQUIRED before adoption",
+     "unresolved": [
+      "surface material",
+      "edge protection detail",
+      "handrails/guards",
+      "drainage at runs/landings",
+      "lighting"
+     ]
+    },
+    "D_jct_to_mid": {
+     "desc": "level distribution along the existing cross-aisle band",
+     "from": "hinge_aisle_jct",
+     "to": "cross_aisle_mid",
+     "length_ft": 29.5,
+     "drop_ft": 0.0,
+     "avg_running_slope_pct": 0.0,
+     "max_running_slope_pct": 0.0,
+     "compliant_grade": true,
+     "ramp_classified_len_gt5pct_ft": 0.0,
+     "ramp_runs": 0,
+     "landings": {
+      "count": 0,
+      "size": "5x5 ft min (60x60 in), <=2% any direction \u2014 pending civil detailing"
+     },
+     "turn_count": 0,
+     "corridor_width_ft": 8.0,
+     "grading": {
+      "cut_cy": 7.6,
+      "fill_cy": 0.2,
+      "max_cut_ft": 3.73,
+      "max_fill_ft": 0.2
+     },
+     "designed_cross_slope_pct": {
+      "p50": 1.5,
+      "p90": 1.5,
+      "p100": 1.5,
+      "note": "benched section DESIGNED at 1.5% (1:67, inside 1:48); post-grading by construction \u2014 field QA unresolved"
+     },
+     "wall_curb_rail_zones": {
+      "stations_ft_with_edge_sep_gt_2p5": [
+       0.0,
+       2.1,
+       4.2,
+       6.3,
+       8.4,
+       10.5
+      ],
+      "count": 6,
+      "note": "edge grade separation >2.5 ft -> low wall/guard likely; >4 ft -> retaining + guard"
+     },
+     "treatment_cell_ft": 0.0,
+     "swale_ft": 0.0,
+     "stage_zone_ft": 0.0,
+     "seats_displaced": 8.0,
+     "rows_cut": {
+      "bend r11": 17.2,
+      "bend r12": 1.4
+     },
+     "rows_severed": [],
+     "sightline_impact": "ramp guards/walls rise beside cut rows \u2014 adjacent-seat C-value restudy REQUIRED before adoption",
+     "unresolved": [
+      "surface material",
+      "edge protection detail",
+      "handrails/guards",
+      "drainage at runs/landings",
+      "lighting"
+     ]
+    }
+   },
+   "reused_concept_C_legs": {
+    "route_park_to_floor": {
+     "length_ft": 246.2,
+     "from": "park_arrival_west",
+     "to": "floor_arrival",
+     "reused_from_C": true
+    },
+    "route_cross_aisle_to_wc_cluster": {
+     "length_ft": 15.3,
+     "from": "cross_aisle_mid",
+     "to": "wc_cluster_cross_aisle",
+     "reused_from_C": true
+    },
+    "route_floor_to_wc_cluster": {
+     "length_ft": 14.0,
+     "from": "floor_arrival",
+     "to": "wc_cluster_floor",
+     "reused_from_C": true
+    },
+    "route_cross_aisle_to_egress": {
+     "length_ft": 439.6,
+     "from": "cross_aisle_mid",
+     "to": "egress_rim_south",
+     "reused_from_C": true
+    },
+    "route_floor_to_egress": {
+     "length_ft": 427.6,
+     "from": "floor_arrival",
+     "to": "egress_rim_south",
+     "reused_from_C": true
+    }
+   },
+   "totals": {
+    "constructed_length_ft": 317.0,
+    "network_length_ft": 1460.0,
+    "ramp_runs": 7,
+    "landings": 6,
+    "cut_cy": 90.2,
+    "fill_cy": 52.4,
+    "max_cut_ft": 5.36,
+    "max_fill_ft": 4.47,
+    "seats_displaced": 95.0,
+    "rows_severed": [],
+    "treatment_cell_ft": 0.0,
+    "swale_ft": 0.0,
+    "stage_zone_ft": 0.0
+   },
+   "detour": {
+    "public_arrival_rim->cross_aisle_mid": {
+     "desire_line_ft": 51.7,
+     "route_ft": 302.1,
+     "detour_ratio": 5.85,
+     "flag_socially_inferior": true
+    },
+    "park_arrival_west->floor_arrival": {
+     "desire_line_ft": 58.5,
+     "route_ft": 246.2,
+     "detour_ratio": 4.21,
+     "flag_socially_inferior": true
+    },
+    "public_arrival_rim->wc_cluster_cross_aisle": {
+     "desire_line_ft": 42.5,
+     "route_ft": 287.4,
+     "detour_ratio": 6.76,
+     "flag_socially_inferior": true
+    },
+    "park_arrival_west->wc_cluster_floor": {
+     "desire_line_ft": 45.0,
+     "route_ft": 260.2,
+     "detour_ratio": 5.79,
+     "flag_socially_inferior": true
+    }
+   },
+   "worst_served_detour_ratio": 6.76,
+   "constructed_grades_compliant": true,
+   "dignity_directness_score": 67.0,
+   "valid": true
+  },
+  "C_naturalistic_promenade": {
+   "label": "Concept C \u2014 naturalistic promenade / low-ramp classification (Stage 2, preserved)",
+   "totals": {
+    "network_length_ft": 1508.0,
+    "cut_cy": 0,
+    "fill_cy": 0,
+    "seats_displaced": 0,
+    "treatment_cell_ft": 0.0
+   },
+   "detour": {
+    "public_arrival_rim->cross_aisle_mid": {
+     "desire_line_ft": 51.7,
+     "accessible_route_ft": 365.3,
+     "detour_ratio": 7.07,
+     "flag_socially_inferior": true
+    },
+    "park_arrival_west->floor_arrival": {
+     "desire_line_ft": 58.5,
+     "accessible_route_ft": 246.2,
+     "detour_ratio": 4.21,
+     "flag_socially_inferior": true
+    },
+    "public_arrival_rim->wc_cluster_cross_aisle": {
+     "desire_line_ft": 42.5,
+     "accessible_route_ft": 380.6,
+     "detour_ratio": 8.95,
+     "flag_socially_inferior": true
+    },
+    "park_arrival_west->wc_cluster_floor": {
+     "desire_line_ft": 45.0,
+     "accessible_route_ft": 260.2,
+     "detour_ratio": 5.79,
+     "flag_socially_inferior": true
+    }
+   },
+   "worst_served_detour_ratio": 8.95,
+   "dignity_directness_score": 16.0,
+   "note": "full per-route detail lives in the stage-2 sections of this file (topology/conflicts/slopes/smoothness/corridors)"
+  }
+ },
+ "dignity_rubric": {
+  "base": 100,
+  "directness": "-12 pts per detour-ratio unit above 1.5 (worst SERVED pair)",
+  "perimeter_penalty": "-15 if >50% of primary access length lies outside the seating fan / behind the rim (reads as back-of-house or perimeter-only)",
+  "shared_arrival": "+10 if the accessible route IS the general arrival path (no separate accessible door)",
+  "in_bowl_arrival": "+10 if the route delivers users INTO the bowl with everyone else (central aisle / shared promenade), not at a remote corner",
+  "integration": "+10 wheelchair clusters adjacent to companion seats on primary sightlines (all concepts: yes, by node design)",
+  "note": "design-judgment heuristic with documented weights \u2014 not a code metric"
+ },
+ "recommendation_c_vs_d": {
+  "preferred_D": "D2_diagonal_terrace_cut",
+  "governing_recommendation": "C_naturalistic_promenade",
+  "tradeoff": "D2_diagonal_terrace_cut: dignity 79 vs C 16; seats displaced 121 vs 0; constructed cut 61.9 CY + fill 162.1 CY vs C bench 0+0 CY",
+  "terrain_bound_detour": {
+   "pairs": {
+    "cross_aisle_mid": {
+     "desire_ft": 51.7,
+     "min_compliant_route_ft": 209.0,
+     "terrain_bound_detour_ratio": 4.04
+    },
+    "wc_cluster_cross_aisle": {
+     "desire_ft": 42.5,
+     "min_compliant_route_ft": 209.0,
+     "terrain_bound_detour_ratio": 4.91
+    },
+    "floor_arrival": {
+     "desire_ft": 90.0,
+     "min_compliant_route_ft": 323.0,
+     "terrain_bound_detour_ratio": 3.59
+    },
+    "wc_cluster_floor": {
+     "desire_ft": 86.2,
+     "min_compliant_route_ft": 323.0,
+     "terrain_bound_detour_ratio": 3.75
+    }
+   },
+   "finding": "the bowl's drop at 8.33% max grade puts a FLOOR of ~4-5x under every detour ratio from the east arrival \u2014 no constructed route can reach 'direct'; reshaping buys a bounded improvement (C ~7-9x -> best D ~4-6x), never parity with the stair desire line"
+  },
+  "rule": "D governs if dignity advantage >=20 pts AND seats displaced <60 (<5% of 1,283) AND no rows severed mid-tread; otherwise C governs and the preferred D is carried as the design-development alternative"
+ },
+ "concept_C_status": "PRESERVED as the naturalistic promenade / low-ramp-classification concept; NOT ADA compliant until corridor cross-slope and surface sections are resolved in civil detailing"
 }

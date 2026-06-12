@@ -61,6 +61,8 @@ SRC = {
     "ada_route": "vectors_geojson/ada_route.geojson",
     "ada_legacy": "vectors_geojson/legacy_ada_rejected.geojson",
     "ada_validation": "analysis/ada_rebuild/ada_validation.json",
+    "corridors_C": "vectors_geojson/route_corridors_C.geojson",
+    "corridors_D": "vectors_geojson/route_corridors_D.geojson",
     "grading_manifest": "dem/in_situ_grading_manifest.json",
     "decision_table": "analysis/decision_packet/decision_table.csv",
     "earthwork_csv": "analysis/scenarioE_civic/earthwork.csv",
@@ -324,6 +326,28 @@ if os.path.exists(p(SRC["ada_legacy"])):
             "rejection": f["properties"].get("rejection"),
             "polys": rings_of(f["geometry"])})
 
+# ── corridor SURFACES for both ADA concepts (a centerline is not a route) ──
+ada_corridors = {"C": [], "D": []}
+if os.path.exists(p(SRC["corridors_C"])):
+    for f in jload(SRC["corridors_C"])["features"]:
+        pr = f["properties"]
+        if pr.get("profile"):
+            ada_corridors["C"].append({
+                "route": pr.get("route"), "class": pr.get("class"),
+                "width": pr.get("width_ft", 8),
+                "profile": [[*rxy(st[0], st[1]), st[2], st[3]]
+                            for st in pr["profile"]]})
+if os.path.exists(p(SRC["corridors_D"])):
+    for f in jload(SRC["corridors_D"])["features"]:
+        pr = f["properties"]
+        if pr.get("role") == "centerline" and pr.get("profile"):
+            ada_corridors["D"].append({
+                "element": pr.get("element"),
+                "concepts": pr.get("concepts", []),
+                "width": 8,
+                "profile": [[*rxy(st[0], st[1]), st[2], st[3]]
+                            for st in pr["profile"]]})
+
 # ─────────────────────────────────────────────────────────────────────────────
 # 4. Terrain grids (real DEMs when present; labelled placeholder otherwise)
 # ─────────────────────────────────────────────────────────────────────────────
@@ -516,6 +540,22 @@ checks = [
                  ("marginal bands: " + ", ".join(marginal) +
                   " — at gate ceilings") if marginal else "",
              ])) or "all treads pass all four gates"},
+    {"id": "ada_concepts", "name": "ADA Concept C vs D (naturalistic vs "
+                                    "constructed)",
+     "status": "pass" if ada_rebuilt_valid.get("recommendation_c_vs_d")
+     else "unknown",
+     "value": (lambda rec, cc: (
+         f"governing: {rec.get('governing_recommendation')}; preferred D: "
+         f"{rec.get('preferred_D')} "
+         f"(dignity {cc.get(rec.get('preferred_D'), {}).get('dignity_directness_score')}, "
+         f"seats -{cc.get(rec.get('preferred_D'), {}).get('totals', {}).get('seats_displaced')})")
+         if rec else None)(
+         ada_rebuilt_valid.get("recommendation_c_vs_d"),
+         ada_rebuilt_valid.get("concepts", {})),
+     "source": SRC["ada_validation"],
+     "note": "constructed-concept costs (cut/fill, seats displaced, severed "
+             "rows) are reported, never hidden; terrain bounds detour at "
+             "~4-5x regardless of construction"},
     {"id": "ada_network", "name": "ADA route network (REBUILT: topology → "
                                    "conflicts → slopes)",
      "status": ("pass" if ada_rebuilt_valid.get("hard", {}).get("network_ok")
@@ -841,6 +881,7 @@ site_data = {
         "site_context": site_ctx,
         "human_refs": human_refs,
         "ada_rebuild": ada_rebuild,
+        "ada_corridors": ada_corridors,
     },
     "presets": presets,
     "audit": {

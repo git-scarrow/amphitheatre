@@ -1,6 +1,6 @@
 {
  "schema": "truthful-terrain/evaluation-report/0.1",
- "generated": "2026-06-12T17:27:48-04:00",
+ "generated": "2026-06-12T17:51:20-04:00",
  "generator": "scripts/build_truth_package.py",
  "design_state_ref": "truth_package/design_state.current.json",
  "summary": {
@@ -40,6 +40,14 @@
    "value": "42 pass / 2 warn / 1 fail of 45 treads",
    "source": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
    "note": "failed bands: south r18 \u2014 station C 2\u20137 mm under the 90 mm bar (canon Rule 8 note: within DEM noise); marginal bands: bend r1, south r6 \u2014 at gate ceilings"
+  },
+  {
+   "id": "ada_concepts",
+   "name": "ADA Concept C vs D (naturalistic vs constructed)",
+   "status": "pass",
+   "value": "governing: C_naturalistic_promenade; preferred D: D2_diagonal_terrace_cut (dignity 79.0, seats -121.0)",
+   "source": "analysis/ada_rebuild/ada_validation.json",
+   "note": "constructed-concept costs (cut/fill, seats displaced, severed rows) are reported, never hidden; terrain bounds detour at ~4-5x regardless of construction"
   },
   {
    "id": "ada_network",
@@ -321,12 +329,22 @@
   },
   "ada_validation": {
    "path": "analysis/ada_rebuild/ada_validation.json",
-   "sha256_12": "435936fbfcfc",
+   "sha256_12": "8f1fa4651f64",
    "present": true
   },
   "canon": {
    "path": "docs/DESIGN_CANON.md",
    "sha256_12": "60328eb434c7",
+   "present": true
+  },
+  "corridors_C": {
+   "path": "vectors_geojson/route_corridors_C.geojson",
+   "sha256_12": "f0e3f8906e2b",
+   "present": true
+  },
+  "corridors_D": {
+   "path": "vectors_geojson/route_corridors_D.geojson",
+   "sha256_12": "516fc34f2d3a",
    "present": true
   },
   "datum_note": {

@@ -664,6 +664,59 @@ const adaLegacyGroup = new THREE.Group();     // REJECTED fragments (hidden)
 scene.add(adaPrimaryGroup, adaSecondaryGroup, adaDistGroup,
           adaServiceGroup, adaAltGroup, adaLegacyGroup);
 
+/* ── ADA corridor SURFACES: Concept C (benched) vs Concept D (constructed
+      cuts) — ribbons triangulated from station profiles, colored by
+      grade change (red = cut, blue = fill). Not thin lines: these show
+      the real footprint and the real cost. ── */
+function corridorRibbon(profile, width) {
+  const verts = [], cols = [];
+  const half = width / 2;
+  for (let i = 0; i < profile.length; i++) {
+    const [x, y, z, delta] = profile[i];
+    const [x2, y2] = i < profile.length - 1
+      ? profile[i + 1] : profile[i - 1];
+    let hx = x2 - x, hy = y2 - y;
+    if (i === profile.length - 1) { hx = -hx; hy = -hy; }
+    const hl = Math.hypot(hx, hy) || 1;
+    const nx = -hy / hl, ny = hx / hl;
+    const L = W(x + nx * half, y + ny * half, z + 0.4);
+    const R = W(x - nx * half, y - ny * half, z + 0.4);
+    verts.push(L, R);
+    const d = delta ?? 0;
+    const mag = Math.min(Math.abs(d) / 4, 1);
+    const col = d < 0
+      ? new THREE.Color(0.55 + 0.45 * mag, 0.45 - 0.3 * mag, 0.35 - 0.2 * mag)
+      : new THREE.Color(0.45 - 0.25 * mag, 0.5 - 0.2 * mag, 0.6 + 0.4 * mag);
+    cols.push(col, col);
+  }
+  const idx = [];
+  for (let i = 0; i < profile.length - 1; i++) {
+    const a = 2 * i, b = a + 1, c = a + 2, d = a + 3;
+    idx.push(a, b, c, b, d, c);
+  }
+  const g = new THREE.BufferGeometry().setFromPoints(verts);
+  g.setIndex(idx);
+  g.setAttribute("color", new THREE.BufferAttribute(
+    new Float32Array(cols.flatMap(c => [c.r, c.g, c.b])), 3));
+  g.computeVertexNormals();
+  return new THREE.Mesh(g, new THREE.MeshLambertMaterial({
+    vertexColors: true, side: THREE.DoubleSide,
+    transparent: true, opacity: 0.92 }));
+}
+const corrCGroup = new THREE.Group();
+const corrD13Group = new THREE.Group();   // hinge ramp stacks (D1/D3)
+const corrD2Group = new THREE.Group();    // diagonal terrace cut (D2)
+{
+  const AC = D.layers.ada_corridors ?? { C: [], D: [] };
+  for (const c of AC.C)
+    corrCGroup.add(corridorRibbon(c.profile, c.width));
+  for (const c of AC.D) {
+    const grp = c.element === "D_diagonal_cut" ? corrD2Group : corrD13Group;
+    grp.add(corridorRibbon(c.profile, c.width));
+  }
+}
+scene.add(corrCGroup, corrD13Group, corrD2Group);
+
 /* ── site context ─────────────────────────────────────────────── */
 const ctxGroup = new THREE.Group();
 const CTX_LINE = {
@@ -875,6 +928,9 @@ function layerRow(holder, label, objs, tier, swatchColor, on = true) {
   layerRow(L, "ADA distribution connectors (cross-aisle / floor clusters)", [adaDistGroup], "concept", "#a87900");
   layerRow(L, "Stage service route (performer access — NOT public ADA)", [adaServiceGroup], "concept", "#c05c10", false);
   layerRow(L, "Alternative route legs (non-preferred)", [adaAltGroup], "concept", "#9a86b8", false);
+  layerRow(L, "Concept C corridor surfaces (benched, cut/fill colored)", [corrCGroup], "concept", "#b39ddb", false);
+  layerRow(L, "Concept D1/D3: hinge ramp stacks (constructed — seats displaced)", [corrD13Group], "concept", "#d35400", false);
+  layerRow(L, "Concept D2: diagonal terrace cut (constructed — severs a row)", [corrD2Group], "concept", "#7b241c", false);
   layerRow(L, "Legacy ADA fragments (REJECTED 2026-06-12)", [adaLegacyGroup], "rejected", "#8a2f2f", false);
   if (zoneGroups.circulation) layerRow(L, "Cross-aisle + row-5 promenades", [zoneGroups.circulation], "source_of_truth", "#9a8f7f");
   if (zoneGroups.drainage) layerRow(L, "Drainage swales", [zoneGroups.drainage], "source_of_truth", "#6da3a3");
