@@ -62,10 +62,16 @@ section comes from the *design surface*, not survey returns.
 New structured `ada_detail` (route concept / vertical drop / dispersion /
 redundancy / sightline preservation, each with a basis) for all three
 sites + a comparison table in the memo. Material finding from the SB 2007
-chart: **SB concentrates accessible seating at a single elevation**
-(sections P + S behind the floor), while Petoskey disperses across two
-elevations with two validated independent routes — Petoskey's ADA design
-exceeds both comparators, not merely "has a cross-aisle".
+chart: **SB's chart shows accessible seating at a single elevation**
+(sections P + S behind the floor), while Petoskey's design disperses across
+two elevations with two independent routes. Scope caveat (added after
+review): the Petoskey claim rests on
+`analysis/tier_emission/Scenario_E_baseline_reemit/validation.json`, which
+gates running slope / flight + landing counts / cross-aisle slopes +
+drainage only — not widths, clear floor space, companion seats, or §221
+dispersion counts — and the SB observation is a 2007 chart. The memo
+therefore presents this as a documentation comparison, **not a compliance
+ranking**.
 
 ## 6 · Rule 9 left open, explicitly
 

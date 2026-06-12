@@ -171,6 +171,13 @@ def main():
         check("cannot choose" in memo and "azimuth" in memo,
               "memo must state comparators cannot choose Petoskey's azimuth "
               "(Rule 9 stays open)")
+        # ADA claims must stay scoped to what validation.json actually
+        # gates (slope/landings/cross-aisle) — never a compliance ranking
+        check("not a compliance ranking" in memo,
+              "memo ADA section must carry the 'not a compliance ranking' "
+              "scope caveat naming the validation artifact's limits")
+        check("beats both" not in memo and "exceed both comparators" not in memo,
+              "memo must not claim ADA superiority over the as-built venues")
     for slug in SITES:
         sp = os.path.join(comp_dir, slug, "SOURCES.md")
         if os.path.exists(sp):

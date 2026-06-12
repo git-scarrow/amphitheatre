@@ -303,6 +303,17 @@ def petoskey_metrics():
                                        "flags in human_scale_refs.geojson "
                                        "(rim-grazing bay-view rule applied)",
                                        "basis": "canon"},
+            "validation_scope": {"value": "analysis/tier_emission/"
+                                 "Scenario_E_baseline_reemit/validation.json "
+                                 "gates ONLY running slope 8.33% + flight/"
+                                 "landing counts (routes A/B) and cross-"
+                                 "aisle cross/long slope + drainage + "
+                                 "wheelability. NOT validated: route "
+                                 "widths, landing dimensions, handrails, "
+                                 "clear floor space, companion seats, "
+                                 "ADAAG 221 dispersion counts. Design "
+                                 "intent, not a compliance determination.",
+                                 "basis": "canon"},
         },
         "backdrop": V("open to Little Traverse Bay az 330; no upstage wall "
                       "(landscape venue)", "canon"),

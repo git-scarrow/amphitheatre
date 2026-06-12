@@ -106,8 +106,9 @@ hashes against `truth_package/design_state.current.json`.
   but it serves touring amplified acts, not a civic landscape program.
 - **ADA/cross-aisle pattern** — Petoskey's mid-bowl level cross-aisle +
   switchback routes mirrors SB's legible mid-bowl aisle + concourse pattern,
-  and is *more* explicit than either comparator (it is validated geometry,
-  not inferred).
+  and is *more explicitly documented* than either comparator (geometric
+  gates on running slope, landings, and cross-aisle slopes/drainage — see
+  the scoped ADA comparison below; not a compliance ranking).
 
 **SUPPORTED with note**
 
@@ -150,10 +151,22 @@ hashes against `truth_package/design_state.current.json`.
 | redundancy | 2 independent validated routes | flanking paths both sides | 2 flank approaches to the single level |
 | sightlines from wheelchair positions | wheelchair-eye (3.90 ft) refs with blocks_bay_view flags, rim-grazing rule applied | unverified (shallow lawn) | plausibly preserved (front-of-bank), unverified |
 
-Petoskey's accessible-seating **dispersion and route redundancy exceed both
-comparators** as designed; SB — the professionally operated venue —
-concentrates accessible seating at a single elevation. Petoskey's pattern is
-not just plausible, it is better-documented than either real venue.
+Read this table as a **documentation comparison, not a compliance ranking.**
+What the Petoskey column rests on is one artifact —
+`analysis/tier_emission/Scenario_E_baseline_reemit/validation.json` — and it
+validates exactly: running slope 8.33% + flight/landing counts for routes
+A/B, and cross-aisle cross/long slope (2.0%/1.0%), drainage, wheelability
+(`hard.ada_ok`, `hard.cross_aisle_ok`). It does **not** validate route
+widths, landing dimensions, handrails, clear floor space at wheelchair
+positions, companion seating, or ADAAG §221 dispersion counts — those are
+unchecked design intent. On the comparator side the observation is
+incomplete and dated (SB's chart is from 2007; its current accessibility
+provisions were not surveyed). The defensible statement is narrower:
+Petoskey's *designed* ADA geometry is more explicit and more verifiable
+than anything observable for either comparator, and as designed it offers
+two accessible elevations and two independent routes where SB's 2007 chart
+shows one elevation. Whether it would outperform either venue as built is
+not established here.
 
 **DEM basis (verified, patch 1)**
 
