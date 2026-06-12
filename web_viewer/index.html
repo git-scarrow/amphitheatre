@@ -80,6 +80,7 @@
   .tier.conc  { background: #efe7d3; color: #8a6d2f; }
   .tier.illus { background: #eceae3; color: #7c776a; }
   .tier.mixed { background: #e8e4ec; color: #6e687c; }
+  .tier.rej   { background: #f3d9d9; color: #8a2f2f; }
   .swatch { width: 11px; height: 11px; border-radius: 2px; flex: none;
             border: 1px solid rgba(0,0,0,.18); }
 
@@ -297,6 +298,7 @@ const TIER_BADGE = {
   source_of_truth: ["sot", "source"], provisional: ["prov", "provisional"],
   concept: ["conc", "concept"], illustrative: ["illus", "illustr."],
   mixed: ["mixed", "mixed"], placeholder: ["illus", "placeholder"],
+  rejected: ["rej", "REJECTED"],
 };
 {
   const H = document.getElementById("checks");
@@ -602,6 +604,43 @@ const axisGroup = new THREE.Group();
 }
 scene.add(axisGroup);
 
+/* ── ADA rebuild: concept network + quarantined legacy fragments ── */
+const adaNetGroup = new THREE.Group();
+const adaLegacyGroup = new THREE.Group();
+{
+  const A = D.layers.ada_rebuild ?? { routes: [], landings: [], nodes: [], legacy: [] };
+  const matPub = new THREE.LineBasicMaterial({ color: 0x6a3d9a, linewidth: 2 });
+  const matSvc = new THREE.LineBasicMaterial({ color: 0xb15928, linewidth: 2 });
+  for (const r of A.routes)
+    adaNetGroup.add(drapedLine(r.line, r.class === "service" ? matSvc : matPub, { lift: 1.0, step: 6 }));
+  const lndMat = new THREE.MeshLambertMaterial({ color: 0xc2185b });
+  for (const l of A.landings) {
+    const z = demZ(l.xy[0], l.xy[1]);
+    if (isNaN(z)) continue;
+    const m = new THREE.Mesh(new THREE.BoxGeometry(2.4, 2.4, 0.5), lndMat);
+    m.position.copy(W(l.xy[0], l.xy[1], z + 0.8));
+    adaNetGroup.add(m);
+  }
+  const nodeMat = new THREE.MeshLambertMaterial({ color: 0x4a235a });
+  for (const n of A.nodes) {
+    const z = demZ(n.xy[0], n.xy[1]);
+    if (isNaN(z)) continue;
+    const m = new THREE.Mesh(new THREE.SphereGeometry(1.8, 12, 10), nodeMat);
+    m.position.copy(W(n.xy[0], n.xy[1], z + 1.5));
+    adaNetGroup.add(m);
+    const spr = textSprite(n.name.replaceAll("_", " "), {
+      x: n.xy[0], y: n.xy[1], z: z + 9, scl: 6.5, fg: "#4a235a" });
+    adaNetGroup.add(spr);
+    fadeSprites.push({ spr, min: 90 });
+  }
+  const legMat = new THREE.LineDashedMaterial({ color: 0x8a2f2f, dashSize: 3, gapSize: 3 });
+  for (const lf of A.legacy)
+    for (const poly of lf.polys)
+      for (const ring of [poly[0] ?? poly])
+        adaLegacyGroup.add(drapedLine(ring.concat([ring[0]]), legMat, { lift: 0.8, dashed: true, step: 6 }));
+}
+scene.add(adaNetGroup, adaLegacyGroup);
+
 /* ── site context ─────────────────────────────────────────────── */
 const ctxGroup = new THREE.Group();
 const CTX_LINE = {
@@ -808,7 +847,8 @@ function layerRow(holder, label, objs, tier, swatchColor, on = true) {
   layerRow(L, `Seating treads (${D.layers.treads.length}) — status colours`, [treadGroup], "source_of_truth", "#a3b18a");
   layerRow(L, "Row labels", [labelGroup], "illustrative", "#efe9da", false);
   if (zoneGroups.stage) layerRow(L, "Stage deck (inherited az-150)", [zoneGroups.stage, document.getElementById("stageFlag")].map(o => o.style ? { set visible(v) { o.style.display = v ? "" : "none"; } } : o), "provisional", "#8d7da6");
-  if (zoneGroups.ada) layerRow(L, "ADA routes A/B + 5 landings", [zoneGroups.ada], "source_of_truth", "#4d7ea8");
+  layerRow(L, "ADA route network (rebuilt concept — pending civil/code detailing)", [adaNetGroup], "concept", "#6a3d9a");
+  layerRow(L, "Legacy ADA fragments (REJECTED 2026-06-12)", [adaLegacyGroup], "rejected", "#8a2f2f", false);
   if (zoneGroups.circulation) layerRow(L, "Cross-aisle + row-5 promenades", [zoneGroups.circulation], "source_of_truth", "#9a8f7f");
   if (zoneGroups.drainage) layerRow(L, "Drainage swales", [zoneGroups.drainage], "source_of_truth", "#6da3a3");
   if (zoneGroups.treatment_cell) layerRow(L, "Treatment cell (landscape)", [zoneGroups.treatment_cell], "concept", "#7ca98c");

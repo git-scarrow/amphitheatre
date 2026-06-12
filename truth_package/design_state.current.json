@@ -1,6 +1,6 @@
 {
  "schema": "truthful-terrain/design-state/0.1",
- "generated": "2026-06-12T13:18:59-04:00",
+ "generated": "2026-06-12T16:24:46-04:00",
  "generator": "scripts/build_truth_package.py",
  "project": "Petoskey Pit amphitheatre \u2014 Open Civic Bowl (in-situ package)",
  "design_of_record": {
@@ -122,28 +122,21 @@
    "truth_tier": "provisional"
   },
   "ada_route": {
-   "kind": "two switchback routes (A: rim\u2192floor; B: rim\u2192cross-aisle) + 5 landings",
-   "validation": [
-    {
-     "name": "accessible_route_A_floor",
-     "flights": 3,
-     "running_slope_pct": 8.33,
-     "landings": 4,
-     "running_ok": true
-    },
-    {
-     "name": "accessible_route_B_mid_row9",
-     "flights": 4,
-     "running_slope_pct": 8.33,
-     "landings": 5,
-     "running_ok": true
-    }
-   ],
+   "kind": "REBUILT node-to-node accessible network: rim arrival + south egress + cross-aisle + floor + wheelchair clusters + classified service spur",
+   "status": "ADA-compliant route concept pending civil/code detailing \u2014 topology, conflicts and slopes validated; code details explicitly unchecked",
+   "legacy": "2026-06-12: legacy scenarioE ada_ramp/landing REJECTED (disconnected fragments; route A 63% in treatment cell; route B crossed swale short of the cross-aisle) \u2014 quarantined in vectors_geojson/legacy_ada_rejected.geojson",
+   "validation": {
+    "topology_ok": true,
+    "conflicts_ok": true,
+    "slopes_ok": true,
+    "network_ok": true
+   },
    "source": [
-    "vectors_geojson/bowl_zones.geojson",
-    "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json"
+    "vectors_geojson/ada_nodes.geojson",
+    "vectors_geojson/ada_route.geojson",
+    "analysis/ada_rebuild/ada_validation.json"
    ],
-   "truth_tier": "source_of_truth"
+   "truth_tier": "concept"
   },
   "cross_aisle": {
    "kind": "rows 9/10 reclassified as level accessible cross-aisle",
@@ -278,6 +271,26 @@
   "Tree survey (governs bay-view tuning)"
  ],
  "sources": {
+  "ada_legacy": {
+   "path": "vectors_geojson/legacy_ada_rejected.geojson",
+   "sha256_12": "024ce41695b3",
+   "present": true
+  },
+  "ada_nodes": {
+   "path": "vectors_geojson/ada_nodes.geojson",
+   "sha256_12": "9821a79eada2",
+   "present": true
+  },
+  "ada_route": {
+   "path": "vectors_geojson/ada_route.geojson",
+   "sha256_12": "840494e411e6",
+   "present": true
+  },
+  "ada_validation": {
+   "path": "analysis/ada_rebuild/ada_validation.json",
+   "sha256_12": "64311f0e6335",
+   "present": true
+  },
   "canon": {
    "path": "docs/DESIGN_CANON.md",
    "sha256_12": "60328eb434c7",
@@ -330,7 +343,7 @@
   },
   "human_refs": {
    "path": "vectors_geojson/human_scale_refs.geojson",
-   "sha256_12": "4b84766dc9ec",
+   "sha256_12": "1c4c4b8f307b",
    "present": true
   },
   "material_zones": {
@@ -365,12 +378,12 @@
   },
   "viewpoints": {
    "path": "vectors_geojson/in_situ_viewpoints.geojson",
-   "sha256_12": "e439c4ab9bc9",
+   "sha256_12": "dc8e2246f4c2",
    "present": true
   },
   "zones": {
    "path": "vectors_geojson/bowl_zones.geojson",
-   "sha256_12": "ef32696e94c1",
+   "sha256_12": "3228c4b2ff70",
    "present": true
   }
  }

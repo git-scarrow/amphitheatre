@@ -59,10 +59,14 @@ VECTORS = [
     "terrace_treads.geojson", "terrace_edges.geojson", "bowl_zones.geojson",
     "site_context.geojson", "material_zones.geojson",
     "in_situ_viewpoints.geojson", "event_modes.geojson",
-    "scenarioE_geometry.geojson", "human_scale_refs.geojson",
+    "scenarioE_geometry.geojson",
+    "human_scale_refs.geojson",
+    # ADA rebuild (2026-06-12): nodes-first network + quarantined legacy
+    "ada_nodes.geojson", "ada_route.geojson", "legacy_ada_rejected.geojson",
 ]
-SUPERSEDED_COPIES = ["seating_rows.geojson", "stage_floor.geojson",
-                     "ada_route.geojson"]
+# ada_route.geojson left this list when the REBUILT network took the name:
+# the legacy fragments live in legacy_ada_rejected.geojson instead
+SUPERSEDED_COPIES = ["seating_rows.geojson", "stage_floor.geojson"]
 BOARDS = ["boards/01_site_fit_board.png", "boards/02_experience_board.png",
           "boards/03_landscape_character_board.png",
           "boards/06_human_scale_board.png", "boards/board_sources.json"]
@@ -864,6 +868,96 @@ def check_human_scale_refs(rasters_present):
            "ADA-relevant boards)")
 
 
+def check_ada_rebuild():
+    """ADA gates (2026-06-12 rebuild): a route network may only be called
+    anything at all if TOPOLOGY and CONFLICTS pass — slope-only validation
+    is exactly the failure mode that produced the rejected legacy layer.
+
+    FAILS when: ada_validation.json missing; any required topology pair
+    disconnected; any route touches the treatment cell; any swale overlap
+    without a declared engineered crossing type (or longer than the cap);
+    bowl_zones still carries ada_ramp/ada_landing zones; the design state
+    labels the ADA element above concept tier or drops the pending-civil
+    label; or any emitted route is a fragment (endpoint not a network
+    node)."""
+    av_path = os.path.join(REPO, "analysis", "ada_rebuild",
+                           "ada_validation.json")
+    if not os.path.exists(av_path):
+        fail("ADA: analysis/ada_rebuild/ada_validation.json missing — "
+             "run scripts/rebuild_ada_routes.py")
+        return
+    with open(av_path) as fh:
+        av = json.load(fh)
+    hard = av.get("hard", {})
+    topo = av.get("topology", {})
+    if not hard.get("topology_ok"):
+        bad = [k for k, v in topo.get("pairs", {}).items() if not v]
+        fail(f"ADA topology gate FAILED — disconnected pairs: {bad}")
+    else:
+        ok(f"ADA topology: all {len(topo.get('pairs', {}))} required "
+           "connections present")
+    confl = av.get("conflicts", {})
+    if not hard.get("conflicts_ok"):
+        bad = [n for n, c in confl.get("per_route", {}).items()
+               if not c.get("ok")]
+        fail(f"ADA conflict gate FAILED on: {bad}")
+    else:
+        n_cross = sum(1 for c in confl.get("per_route", {}).values()
+                      if c.get("swale_crossing_declared"))
+        ok(f"ADA conflicts: 0 treatment-cell/stage/wedge violations; "
+           f"{n_cross} declared engineered swale crossings")
+    for n, c in confl.get("per_route", {}).items():
+        if c.get("treatment_cell_ft", 0) > 0.01:
+            fail(f"ADA: {n} touches the treatment cell "
+                 f"({c['treatment_cell_ft']} ft) — no crossing type exists "
+                 "for the cell")
+        if c.get("swale_ft", 0) > 0.01 and not c.get("swale_crossing_declared"):
+            fail(f"ADA: {n} crosses a swale without a declared crossing type")
+    if not hard.get("slopes_ok"):
+        fail("ADA slope gate FAILED (after topology+conflicts)")
+    elif hard.get("topology_ok") and hard.get("conflicts_ok"):
+        ok("ADA slopes: within planning tolerance AFTER topology+conflict "
+           "gates (never slope-only)")
+    if "pending civil" not in av.get("label", ""):
+        fail("ADA: validation label must carry 'pending civil/code "
+             "detailing' — never plain 'ADA compliant'")
+    # routes must be node-to-node (no fragments)
+    routes = topo.get("routes", {})
+    node_names = set()
+    try:
+        nfc = load_vec("ada_nodes.geojson")
+        node_names = {f["properties"]["name"] for f in nfc["features"]}
+    except FileNotFoundError:
+        fail("ADA: ada_nodes.geojson missing")
+    frag = [n for n, ri in routes.items()
+            if ri.get("from") not in node_names
+            or ri.get("to") not in node_names]
+    if frag:
+        fail(f"ADA: fragment routes with non-node endpoints: {frag}")
+    else:
+        ok(f"ADA: all {len(routes)} routes are node-to-node (no fragments)")
+    # legacy layer must be quarantined OUT of bowl_zones
+    zones = load_vec("bowl_zones.geojson")
+    leftovers = [f["properties"].get("name") for f in zones["features"]
+                 if f["properties"].get("zone") in ("ada_ramp", "ada_landing")]
+    if leftovers:
+        fail(f"ADA: legacy ada zones still in bowl_zones.geojson: {leftovers}")
+    else:
+        ok("ADA: bowl_zones carries no legacy ada_ramp/ada_landing zones")
+    # design state must keep the element at concept tier with the label
+    ds_path = os.path.join(REPO, "truth_package", "design_state.current.json")
+    if os.path.exists(ds_path):
+        with open(ds_path) as fh:
+            ds = json.load(fh)
+        el = ds.get("elements", {}).get("ada_route", {})
+        if el.get("truth_tier") not in (None, "concept"):
+            fail("ADA: design_state ada_route truth_tier must be 'concept' "
+                 f"until civil/code detailing (found {el.get('truth_tier')})")
+        if "pending civil" not in str(el.get("status", "")):
+            fail("ADA: design_state ada_route status lost the "
+                 "'pending civil/code detailing' label")
+
+
 def check_rasters(rasters_present):
     if not rasters_present:
         return
@@ -914,6 +1008,7 @@ def main():
     check_design_intent()
     check_normalization_and_stage_study()
     check_human_scale_refs(rasters_present)
+    check_ada_rebuild()
     check_rasters(rasters_present)
 
     print("\n── in-situ package audit (three-section civic bowl) ──")

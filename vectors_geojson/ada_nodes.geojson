@@ -1,0 +1,130 @@
+{
+ "type": "FeatureCollection",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::6494"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533220.12,
+     750714.05
+    ]
+   },
+   "properties": {
+    "name": "public_arrival_rim",
+    "class": "public",
+    "note": "rim / public-way entry above row 18 at the east|bend hinge; connection onward to street/parking is outside this package",
+    "ground_elev_navd88_proposed": 637.33,
+    "source": "scripts/rebuild_ada_routes.py \u2014 anchored to canonical zones/axis (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533153.96,
+     750647.89
+    ]
+   },
+   "properties": {
+    "name": "egress_rim_south",
+    "class": "public",
+    "note": "second rim connection above row 18 at the bend|south hinge \u2014 egress redundancy",
+    "ground_elev_navd88_proposed": 638.93,
+    "source": "scripts/rebuild_ada_routes.py \u2014 anchored to canonical zones/axis (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533168.77,
+     750708.2
+    ]
+   },
+   "properties": {
+    "name": "cross_aisle_mid",
+    "class": "public",
+    "note": "mid-bowl accessible cross-aisle (rows 9/10 band, datum 622.01)",
+    "ground_elev_navd88_proposed": 622.44,
+    "source": "scripts/rebuild_ada_routes.py \u2014 anchored to canonical zones/axis (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533177.96,
+     750719.76
+    ]
+   },
+   "properties": {
+    "name": "wc_cluster_cross_aisle",
+    "class": "public",
+    "note": "wheelchair seating cluster ON the cross-aisle with adjacent companion seats (row-9 tread band)",
+    "ground_elev_navd88_proposed": 622.98,
+    "source": "scripts/rebuild_ada_routes.py \u2014 anchored to canonical zones/axis (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533140.65,
+     750756.3
+    ]
+   },
+   "properties": {
+    "name": "floor_arrival",
+    "class": "public",
+    "note": "accessible arrival on the orchestra/event floor",
+    "ground_elev_navd88_proposed": 609.81,
+    "source": "scripts/rebuild_ada_routes.py \u2014 anchored to canonical zones/axis (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533138.74,
+     750742.37
+    ]
+   },
+   "properties": {
+    "name": "wc_cluster_floor",
+    "class": "public",
+    "note": "wheelchair seating cluster at the floor edge behind row-1 radius with companion seats",
+    "ground_elev_navd88_proposed": 609.99,
+    "source": "scripts/rebuild_ada_routes.py \u2014 anchored to canonical zones/axis (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533130.51,
+     750760.41
+    ]
+   },
+   "properties": {
+    "name": "service_stage_access",
+    "class": "service",
+    "note": "OPTIONAL performer/service access at the stage right shoulder edge \u2014 classified service, NOT part of the public network",
+    "ground_elev_navd88_proposed": 609.59,
+    "source": "scripts/rebuild_ada_routes.py \u2014 anchored to canonical zones/axis (read-only)"
+   }
+  }
+ ]
+}

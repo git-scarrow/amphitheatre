@@ -82,7 +82,7 @@ hashes against `truth_package/design_state.current.json`.
 | local rake range (%) | ~32.7 uniform [M] | 6–21 [M] | 16–61 [M] |
 | upper-row distance (ft) | 107 [M] | 100 [M] | 215 [M] |
 | rows / terraces | 15 treads × 3 sections (rows 1–18, 5/9/10 repurposed) [C] | ~8–10 seat-wall terraces + lawn [I] | 40 lettered terrace rows in 4 banks + 14 floor rows — official 2007 seating chart [P] |
-| ADA / circulation | 2 × 8.33% switchback routes + level cross-aisle rows 9/10, validated [C] | level side plazas + flanking paths + mid cross path [I] | designated handicapped sections P + S at one level behind floor (2007 chart) + top concourse [P/I] |
+| ADA / circulation | legacy route geometry REJECTED 2026-06-12; rebuilt node-to-node network is a route CONCEPT pending civil/code detailing (level cross-aisle rows 9/10 remains valid seating-derived geometry) [C] | level side plazas + flanking paths + mid cross path [I] | designated handicapped sections P + S at one level behind floor (2007 chart) + top concourse [P/I] |
 | backdrop | open to Little Traverse Bay az 330, no upstage wall [C] | pond + woodland behind low canopy [I] | full stage house against canyon hillside [I] |
 
 ## Verdicts on Petoskey dimensions
@@ -104,11 +104,11 @@ hashes against `truth_package/design_state.current.json`.
   the same climate band (low covered stage, open landscape backdrop, lawn
   bowl) at the same capacity. SB's full stage house is the counterexample,
   but it serves touring amplified acts, not a civic landscape program.
-- **ADA/cross-aisle pattern** — Petoskey's mid-bowl level cross-aisle +
-  switchback routes mirrors SB's legible mid-bowl aisle + concourse pattern,
-  and is *more explicitly documented* than either comparator (geometric
-  gates on running slope, landings, and cross-aisle slopes/drainage — see
-  the scoped ADA comparison below; not a compliance ranking).
+- **Cross-aisle pattern** — Petoskey's mid-bowl level cross-aisle (rows
+  9/10, seating-derived geometry, slope/drainage gated) mirrors SB's
+  legible mid-bowl aisle + concourse pattern. NOTE: this supports the
+  cross-aisle only; the ADA *route* verdict moved to the scoped section
+  below after the legacy route geometry was rejected.
 
 **SUPPORTED with note**
 
@@ -141,32 +141,41 @@ hashes against `truth_package/design_state.current.json`.
   decide the shoulder-programming question — Rule 9 stays open**; the
   +25.6° axis mismatch on record is untouched by this benchmark.
 
-**ADA comparison (expanded, patch 1)**
+**ADA comparison (rewritten after the route-geometry rejection)**
 
-| dimension | Petoskey [C] | Meijer [I] | SB Bowl [P/I] |
+**2026-06-12: Petoskey's legacy ADA route geometry was REJECTED** — the
+viewer showed it as disconnected fragments; measurement confirmed route A
+sits 63% inside the treatment cell and 34.6 ft from the floor, route B
+crosses a swale and stops 21.9 ft short of the cross-aisle, and the two
+fragments are 115.6 ft apart. The old artifact
+(`Scenario_E_baseline_reemit/validation.json`) only ever checked slope
+along the fragments and **is void as an ADA route validation**. Full
+record: `docs/ADA_REBUILD.md`;
+quarantine: `vectors_geojson/legacy_ada_rejected.geojson`.
+
+A first-principles network was rebuilt
+(`vectors_geojson/ada_nodes.geojson` + `ada_route.geojson`, validated
+topology → conflicts → slopes in `analysis/ada_rebuild/ada_validation.json`)
+and carries the label **"ADA-compliant route concept pending civil/code
+detailing."**
+
+| dimension | Petoskey (rebuilt CONCEPT) [C/M] | Meijer [I] | SB Bowl [P/I] |
 |---|---|---|---|
-| route concept | 2 dedicated 8.33% switchback ramps + level cross-aisle (rows 9/10) | level garden-path entries bottom + rim of a low bowl | approach to one accessible level behind the floor |
-| vertical drop handled | ~21 ft rim→floor, 3–4 flights, 4–5 landings, validated | 12.9 ft total; no dedicated ramp structures needed | bowl rises 68.8 ft; accessible seating avoids it by staying low |
-| dispersion | 2 elevations (floor + mid-bowl cross-aisle) | likely 2 elevations (plaza + rim), unmarked | **1 elevation** — sections P + S flanking Founders Row (2007 chart) |
-| redundancy | 2 independent validated routes | flanking paths both sides | 2 flank approaches to the single level |
-| sightlines from wheelchair positions | wheelchair-eye (3.90 ft) refs with blocks_bay_view flags, rim-grazing rule applied | unverified (shallow lawn) | plausibly preserved (front-of-bank), unverified |
+| route concept | 7-route node network: rim arrival, south rim egress, cross-aisle, floor, wheelchair clusters w/ companions, classified service spur | level garden-path entries bottom + rim of a low bowl | approach to one accessible level behind the floor |
+| vertical drop handled | ~16 ft rim→cross-aisle / ~28 ft rim→floor on 418–456 ft alignments; landing positions marked, pads pending civil detailing | 12.9 ft total; no dedicated ramp structures needed | bowl rises 68.8 ft; accessible seating avoids it by staying low |
+| dispersion | two accessible elevations (floor + cross-aisle) topology-connected — concept only, §221 counts unchecked | likely 2 elevations (plaza + rim), unmarked | 1 elevation — sections P + S (2007 chart) |
+| redundancy | two rim connections on separate flanks; route disjointness NOT analyzed — no independence claim | flanking paths both sides | 2 flank approaches to the single level |
+| sightlines from wheelchair positions | refs at rebuilt landings carry blocks_bay_view flags; NOT C-value validated | unverified | plausibly preserved, unverified |
 
-Read this table as a **documentation comparison, not a compliance ranking.**
-What the Petoskey column rests on is one artifact —
-`analysis/tier_emission/Scenario_E_baseline_reemit/validation.json` — and it
-validates exactly: running slope 8.33% + flight/landing counts for routes
-A/B, and cross-aisle cross/long slope (2.0%/1.0%), drainage, wheelability
-(`hard.ada_ok`, `hard.cross_aisle_ok`). It does **not** validate route
-widths, landing dimensions, handrails, clear floor space at wheelchair
-positions, companion seating, or ADAAG §221 dispersion counts — those are
-unchecked design intent. On the comparator side the observation is
-incomplete and dated (SB's chart is from 2007; its current accessibility
-provisions were not surveyed). The defensible statement is narrower:
-Petoskey's *designed* ADA geometry is more explicit and more verifiable
-than anything observable for either comparator, and as designed it offers
-two accessible elevations and two independent routes where SB's 2007 chart
-shows one elevation. Whether it would outperform either venue as built is
-not established here.
+Read this as a **concept-vs-observation comparison, not a compliance
+ranking.** No Petoskey ADA advantage over the as-built venues is claimed:
+the rebuilt network is unbuilt concept geometry whose code-level details
+(widths, landings, turning radii, handrails, edge protection, clear floor
+space, companion dimensions, surface, cross slope, §221 dispersion) are
+explicitly unchecked, and the comparator observation remains incomplete
+and dated. What the rebuild does establish is that a topology-valid
+accessible network is *feasible* on this terrain within the canonical
+zones — something the rejected legacy layer never showed.
 
 **DEM basis (verified, patch 1)**
 

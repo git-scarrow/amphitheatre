@@ -98,3 +98,13 @@ geometry unchanged and passing.
 `comparison.json` · per-site `site_metrics.json` ·
 `boards/comparator_side_by_side.png` · `AMPHITHEATRE_COMPARATORS.md` ·
 new `data/comparators/santa_barbara_bowl/SBB_Reserved_seating_2007_wayback.pdf`.
+
+---
+
+**SUPERSEDED NOTE (2026-06-12, later same day):** §5's ADA comparison was
+itself superseded when the underlying Petoskey ADA route geometry was found
+topologically invalid and REJECTED (disconnected fragments in/over the
+treatment plain). The legacy layer is quarantined, the network was rebuilt
+from first principles, and all ADA advantage claims were removed from the
+comparator memo. See `docs/ADA_REBUILD.md` — the governing record for
+everything ADA.

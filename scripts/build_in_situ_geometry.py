@@ -210,15 +210,13 @@ def main():
     aisle = roles["cross_aisle"][0]
     add_zone("cross_aisle", aisle["geometry"], cost_status="geometry_backed",
              **{k: v for k, v in aisle["properties"].items() if k != "role"})
-    for f in roles["ada_ramp"]:
-        add_zone("ada_ramp", f["geometry"], cost_status="geometry_backed",
-                 geometry_source="scenarioE ada_ramp (emitted + validated)",
-                 **{k: v for k, v in f["properties"].items() if k != "role"})
-    for i, f in enumerate(roles["landing"], 1):
-        add_zone("ada_landing", f["geometry"], name=f"ada_landing_{i}",
-                 cost_status="geometry_backed",
-                 geometry_source="scenarioE landing (emitted + validated)",
-                 **{k: v for k, v in f["properties"].items() if k != "role"})
+    # scenarioE ada_ramp/landing roles are NOT imported: that layer was
+    # REJECTED 2026-06-12 (disconnected fragments; route A 63% inside the
+    # treatment cell; route B crosses a swale and never reaches the
+    # cross-aisle). The quarantined copies live in
+    # vectors_geojson/legacy_ada_rejected.geojson; the rebuilt network is
+    # emitted by scripts/rebuild_ada_routes.py into ada_nodes.geojson /
+    # ada_route.geojson with analysis/ada_rebuild/ada_validation.json.
     for f in roles["drainage_swale"]:
         add_zone("drainage_swale", f["geometry"], cost_status="geometry_backed",
                  geometry_source="scenarioE drainage_swale (emitted + validated)",

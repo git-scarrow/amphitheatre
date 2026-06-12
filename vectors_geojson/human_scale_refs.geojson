@@ -459,10 +459,10 @@
     "posture": "wheelchair",
     "role": "wheelchair user",
     "height_ft": 4.23,
-    "ground_elev_navd88": 622.44,
+    "ground_elev_navd88": 622.01,
     "ground_elev_source": "raster:dem/proposed_grade_1ft.tif",
-    "anchor": "route-B switchback landing 5 (arrival at the cross-aisle)",
-    "geometry_anchor_source": "vectors_geojson/bowl_zones.geojson:ada_landing_5",
+    "anchor": "rebuilt arrival route: last landing before the cross-aisle (concept, pending civil detailing)",
+    "geometry_anchor_source": "vectors_geojson/ada_route.geojson:route_arrival_to_cross_aisle_landing_9",
     "height_source": "US Access Board occupied-wheelchair eye height 43-51 in; midpoint 3.90 ft; vertex = eye + 0.33 ft",
     "view_context": [
      "viewer",
@@ -476,8 +476,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533013.12,
-     750682.32
+     19533190.2,
+     750783.19
     ]
    }
   },
@@ -489,10 +489,10 @@
     "posture": "standing",
     "role": "walker",
     "height_ft": 5.0,
-    "ground_elev_navd88": 609.92,
+    "ground_elev_navd88": 619.34,
     "ground_elev_source": "raster:dem/proposed_grade_1ft.tif",
-    "anchor": "route-A switchback landing 2 (floor approach)",
-    "geometry_anchor_source": "vectors_geojson/bowl_zones.geojson:ada_landing_2",
+    "anchor": "rebuilt floor route: last landing on the descent to the event floor (concept, pending civil detailing)",
+    "geometry_anchor_source": "vectors_geojson/ada_route.geojson:route_arrival_to_floor_landing_9",
     "height_source": "CDC/NHANES adult stature percentiles (5th F / mean M / 95th M)",
     "view_context": [
      "viewer",
@@ -505,8 +505,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533060.2,
-     750812.31
+     19533186.08,
+     750809.71
     ]
    }
   },

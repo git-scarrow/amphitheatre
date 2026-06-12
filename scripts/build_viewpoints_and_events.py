@@ -155,20 +155,25 @@ def main():
        "performer's view: east, bend and south families each curve with their "
        "own terrain — not one fan — rising ~15 ft around the floor")
 
-    # 4 — ADA arrival to the cross-aisle (route B top landing)
-    ramp_b = next(f for f in zones["ada_ramp"]
-                  if "B" in str(f["properties"].get("name", "")))
-    rb = shape(ramp_b["geometry"])
-    far = max(rb.exterior.coords if rb.geom_type == "Polygon"
-              else max(rb.geoms, key=lambda g: g.area).exterior.coords,
-              key=lambda c: (c[0] - stage_c.x) ** 2 + (c[1] - stage_c.y) ** 2)
-    drop = float(ramp_b["properties"].get("drop_ft") or 8.0)
-    ada_g, ada_src = ground(far[0], far[1], fallback=C.AISLE_ELEV + drop,
-                            what="cross-aisle elev + route-B drop")
-    vp("ada_arrival_to_cross_aisle", (far[0], far[1]), ada_g, ada_src,
+    # 4 — ADA arrival to the cross-aisle (REBUILT network; the legacy
+    # ada_ramp zones were REJECTED 2026-06-12 — quarantined in
+    # vectors_geojson/legacy_ada_rejected.geojson). Camera sits ~40 ft back
+    # along the rebuilt arrival route from its cross-aisle end.
+    with open(os.path.join(C.REPO, "vectors_geojson",
+                           "ada_route.geojson")) as fh:
+        ada_fc = json.load(fh)
+    arr = next(f for f in ada_fc["features"]
+               if f["properties"].get("name") == "route_arrival_to_cross_aisle")
+    arr_line = shape(arr["geometry"])
+    cam_pt = arr_line.interpolate(max(arr_line.length - 40.0, 0.0))
+    ada_g, ada_src = ground(cam_pt.x, cam_pt.y, fallback=C.AISLE_ELEV + 3.0,
+                            what="rebuilt arrival route, 40 ft before the "
+                                 "cross-aisle end")
+    vp("ada_arrival_to_cross_aisle", (cam_pt.x, cam_pt.y), ada_g, ada_src,
        C.EYE_STANDING_FT, (aisle_c.x, aisle_c.y), C.AISLE_ELEV + 2.0, False,
-       "arriving on the route-B switchback: the rows-9/10 cross-aisle — level, "
-       "wheelable, with the mid-bowl view pause — opens below")
+       "arriving on the rebuilt accessible route (concept, pending civil "
+       "detailing): the rows-9/10 cross-aisle — level, wheelable, with the "
+       "mid-bowl view pause — opens below")
 
     # 5 — outside the bowl, from the park edge
     park_g, park_src = ground(pour_xy[0], pour_xy[1], fallback=spill,

@@ -57,6 +57,10 @@ SRC = {
     "stage_lineage": "design_open_low/stage_floor.geojson",
     "human_refs": "vectors_geojson/human_scale_refs.geojson",
     "validation": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+    "ada_nodes": "vectors_geojson/ada_nodes.geojson",
+    "ada_route": "vectors_geojson/ada_route.geojson",
+    "ada_legacy": "vectors_geojson/legacy_ada_rejected.geojson",
+    "ada_validation": "analysis/ada_rebuild/ada_validation.json",
     "grading_manifest": "dem/in_situ_grading_manifest.json",
     "decision_table": "analysis/decision_packet/decision_table.csv",
     "earthwork_csv": "analysis/scenarioE_civic/earthwork.csv",
@@ -202,8 +206,6 @@ ZONE_TIER = {  # rendering truth-tier; concept/schematic zones are illustrative
     "stage_shoulder_left": ("stage", "provisional"),
     "stage_shoulder_right": ("stage", "provisional"),
     "cross_aisle": ("circulation", "source_of_truth"),
-    "ada_ramp": ("ada", "source_of_truth"),
-    "ada_landing": ("ada", "source_of_truth"),
     "drainage_swale": ("drainage", "source_of_truth"),
     "treatment_cell_landscape": ("treatment_cell", "concept"),
     "orchestra_event_floor": ("event_floor", "concept"),
@@ -213,7 +215,7 @@ zones = []
 for f in zones_fc["features"]:
     pr = f["properties"]
     zone = pr.get("zone", "")
-    key = "ada_landing" if zone.startswith("ada_landing") else zone
+    key = zone
     if key not in ZONE_TIER:
         continue
     group, tier = ZONE_TIER[key]
@@ -285,6 +287,36 @@ for f in site_fc["features"]:
     else:
         continue
     site_ctx.append(item)
+
+# ── ADA rebuild layers: nodes + concept routes + REJECTED legacy ──────────
+ada_rebuild = {"label": "ADA route network — REBUILT 2026-06-12",
+               "status": "ADA-compliant route concept pending civil/code "
+                         "detailing",
+               "routes": [], "landings": [], "nodes": [], "legacy": []}
+if os.path.exists(p(SRC["ada_route"])):
+    for f in jload(SRC["ada_route"])["features"]:
+        pr = f["properties"]
+        if pr.get("role") == "ada_route_concept":
+            ada_rebuild["routes"].append({
+                "name": pr["name"], "class": pr["class"],
+                "length_ft": pr["length_ft"],
+                "line": [rxy(x, y) for x, y in f["geometry"]["coordinates"]]})
+        elif pr.get("role") == "landing":
+            x, y = f["geometry"]["coordinates"]
+            ada_rebuild["landings"].append({"xy": rxy(x, y),
+                                            "route": pr["route"]})
+if os.path.exists(p(SRC["ada_nodes"])):
+    for f in jload(SRC["ada_nodes"])["features"]:
+        x, y = f["geometry"]["coordinates"]
+        ada_rebuild["nodes"].append({"name": f["properties"]["name"],
+                                     "class": f["properties"]["class"],
+                                     "xy": rxy(x, y)})
+if os.path.exists(p(SRC["ada_legacy"])):
+    for f in jload(SRC["ada_legacy"])["features"]:
+        ada_rebuild["legacy"].append({
+            "name": f["properties"].get("name"),
+            "rejection": f["properties"].get("rejection"),
+            "polys": rings_of(f["geometry"])})
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 4. Terrain grids (real DEMs when present; labelled placeholder otherwise)
@@ -447,7 +479,10 @@ presets.insert(0, {"id": "site_overview", "name": "Site overview",
 # ─────────────────────────────────────────────────────────────────────────────
 hard = validation.get("hard", {})
 vols = validation.get("volumes", {})
-ada = validation.get("ada", [])
+ada = validation.get("ada", [])          # LEGACY (void for routes — kept for
+                                          # cross-aisle band data only)
+ada_rebuilt_valid = (jload(SRC["ada_validation"])
+                     if os.path.exists(p(SRC["ada_validation"])) else {})
 swales = validation.get("swales", [])
 xaisle = validation.get("cross_aisle", {})
 
@@ -475,13 +510,19 @@ checks = [
                  ("marginal bands: " + ", ".join(marginal) +
                   " — at gate ceilings") if marginal else "",
              ])) or "all treads pass all four gates"},
-    {"id": "ada_running", "name": "ADA routes A/B running slope (planning)",
-     "status": "pass" if ada and all(a.get("running_ok") for a in ada) else "unknown",
-     "value": "; ".join(f"{a['name']}: {a['running_slope_pct']}%, "
-                        f"{a['flights']} flights, {a['landings']} landings"
-                        for a in ada) or None,
-     "source": SRC["validation"],
-     "note": "geometry-backed running slope only — NOT a full ADA compliance review"},
+    {"id": "ada_network", "name": "ADA route network (REBUILT: topology → "
+                                   "conflicts → slopes)",
+     "status": ("pass" if ada_rebuilt_valid.get("hard", {}).get("network_ok")
+                else "fail"),
+     "value": (f"{len(ada_rebuild['routes'])} routes / "
+               f"{len(ada_rebuild['nodes'])} nodes; topology "
+               f"{ada_rebuilt_valid.get('hard', {}).get('topology_ok')}, "
+               f"conflicts {ada_rebuilt_valid.get('hard', {}).get('conflicts_ok')}, "
+               f"slopes {ada_rebuilt_valid.get('hard', {}).get('slopes_ok')}"),
+     "source": SRC["ada_validation"],
+     "note": "concept pending civil/code detailing — legacy slope-only ADA "
+             "fragments REJECTED 2026-06-12 (quarantined in "
+             + SRC["ada_legacy"] + "); never described as ADA compliant"},
     {"id": "cross_aisle", "name": "Cross-aisle (rows 9/10 reclassification)",
      "status": "pass" if xaisle.get("wheelable") and xaisle.get("drains") else "warn",
      "value": f"datum {xaisle.get('datum')} ft, cross {xaisle.get('cross_slope_pct')}%, "
@@ -630,11 +671,20 @@ design_state = {
             "truth_tier": "provisional",
         },
         "ada_route": {
-            "kind": "two switchback routes (A: rim→floor; B: rim→cross-aisle) "
-                    "+ 5 landings",
-            "validation": ada,
-            "source": [SRC["zones"], SRC["validation"]],
-            "truth_tier": "source_of_truth",
+            "kind": "REBUILT node-to-node accessible network: rim arrival + "
+                    "south egress + cross-aisle + floor + wheelchair "
+                    "clusters + classified service spur",
+            "status": "ADA-compliant route concept pending civil/code "
+                      "detailing — topology, conflicts and slopes validated; "
+                      "code details explicitly unchecked",
+            "legacy": "2026-06-12: legacy scenarioE ada_ramp/landing REJECTED "
+                      "(disconnected fragments; route A 63% in treatment "
+                      "cell; route B crossed swale short of the cross-aisle) "
+                      "— quarantined in " + SRC["ada_legacy"],
+            "validation": ada_rebuilt_valid.get("hard"),
+            "source": [SRC["ada_nodes"], SRC["ada_route"],
+                       SRC["ada_validation"]],
+            "truth_tier": "concept",
         },
         "cross_aisle": {
             "kind": "rows 9/10 reclassified as level accessible cross-aisle",
@@ -784,6 +834,7 @@ site_data = {
         "focal": focal,
         "site_context": site_ctx,
         "human_refs": human_refs,
+        "ada_rebuild": ada_rebuild,
     },
     "presets": presets,
     "audit": {
@@ -795,8 +846,13 @@ site_data = {
              "source": terrain["label"]},
             {"layer": "Seating treads + sightline status",
              "tier": "source_of_truth", "source": SRC["treads"]},
-            {"layer": "ADA routes, landings, cross-aisle, swales",
-             "tier": "source_of_truth", "source": SRC["zones"]},
+            {"layer": "Cross-aisle, swales", "tier": "source_of_truth",
+             "source": SRC["zones"]},
+            {"layer": "ADA route network (rebuilt)", "tier": "concept",
+             "source": SRC["ada_route"] + " — pending civil/code detailing"},
+            {"layer": "Legacy ADA fragments", "tier": "rejected",
+             "source": SRC["ada_legacy"] + " — REJECTED 2026-06-12, shown "
+                       "only as quarantined history"},
             {"layer": "Stage deck", "tier": "provisional",
              "source": "inherited az-150 stage — Rule 9 OPEN"},
             {"layer": "Treatment cell, event floor", "tier": "concept",

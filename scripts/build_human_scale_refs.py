@@ -260,25 +260,46 @@ def main():
           f"{SRC_TREADS}:bend r18", ["viewer", "board06"],
           label="6.25 ft person")
 
-    # ── ADA ramp landings ────────────────────────────────────────────────
-    landings = {f["properties"]["name"]: f for f in zmap["ada_landing"]}
-    l5 = landings["ada_landing_5"]          # route B arrival at cross-aisle
-    p5 = rep_pt(l5["geometry"])
+    # ── ADA route landings (REBUILT network) ────────────────────────────
+    # The legacy ada_landing zones were REJECTED 2026-06-12 (disconnected
+    # fragments — see vectors_geojson/legacy_ada_rejected.geojson). The two
+    # ADA-critical refs keep their ids but re-anchor to the rebuilt
+    # network's landings (scripts/rebuild_ada_routes.py): the last landing
+    # before the cross-aisle arrival, and the last landing on the floor
+    # descent. Status: concept route pending civil/code detailing.
+    SRC_ADA = "vectors_geojson/ada_route.geojson"
+    with open(os.path.join(C.REPO, SRC_ADA)) as fh:
+        ada_fc = json.load(fh)
+    ada_landings = {}
+    for f in ada_fc["features"]:
+        if f["properties"].get("role") == "landing":
+            ada_landings.setdefault(f["properties"]["route"], []).append(f)
+    def last_landing(route):
+        ls = sorted(ada_landings.get(route, []),
+                    key=lambda f: f["properties"]["name"])
+        if not ls:
+            raise SystemExit(f"rebuilt ADA network has no landings on "
+                             f"{route} — re-run scripts/rebuild_ada_routes.py")
+        return ls[-1]
+    l5 = last_landing("route_arrival_to_cross_aisle")
+    p5 = tuple(l5["geometry"]["coordinates"])
     g5 = sample(*p5) if sample else eca
     human("ada_landing_routeB_wheelchair", p5, "wheelchair",
           H.WHEELCHAIR_HEIGHT_FT, "wheelchair user", g5,
           f"raster:{SRC_RASTER}" if sample
           else f"fallback_declared:{SRC_ZONES}:cross_aisle.elev_navd88",
-          "route-B switchback landing 5 (arrival at the cross-aisle)",
-          f"{SRC_ZONES}:ada_landing_5", ["viewer", "board06"],
+          "rebuilt arrival route: last landing before the cross-aisle "
+          "(concept, pending civil detailing)",
+          f"{SRC_ADA}:{l5['properties']['name']}", ["viewer", "board06"],
           eye_ft=H.WHEELCHAIR_EYE_FT)
-    l2 = landings["ada_landing_2"]          # route A, near the event floor
-    p2 = rep_pt(l2["geometry"])
+    l2 = last_landing("route_arrival_to_floor")
+    p2 = tuple(l2["geometry"]["coordinates"])
     g2 = sample(*p2) if sample else 610.0
     human("ada_landing_routeA_standing", p2, "standing", 5.0, "walker",
           g2, f"raster:{SRC_RASTER}" if sample else "fallback_declared:610.0",
-          "route-A switchback landing 2 (floor approach)",
-          f"{SRC_ZONES}:ada_landing_2", ["viewer", "board06"])
+          "rebuilt floor route: last landing on the descent to the event "
+          "floor (concept, pending civil detailing)",
+          f"{SRC_ADA}:{l2['properties']['name']}", ["viewer", "board06"])
 
     # ── treatment-cell foreground edge (visible beyond the stage) ───────
     cell = shape(zmap["treatment_cell_landscape"][0]["geometry"])

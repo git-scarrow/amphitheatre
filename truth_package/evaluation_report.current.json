@@ -1,6 +1,6 @@
 {
  "schema": "truthful-terrain/evaluation-report/0.1",
- "generated": "2026-06-12T13:18:59-04:00",
+ "generated": "2026-06-12T16:24:46-04:00",
  "generator": "scripts/build_truth_package.py",
  "design_state_ref": "truth_package/design_state.current.json",
  "summary": {
@@ -42,12 +42,12 @@
    "note": "failed bands: south r18 \u2014 station C 2\u20137 mm under the 90 mm bar (canon Rule 8 note: within DEM noise); marginal bands: bend r1, south r6 \u2014 at gate ceilings"
   },
   {
-   "id": "ada_running",
-   "name": "ADA routes A/B running slope (planning)",
+   "id": "ada_network",
+   "name": "ADA route network (REBUILT: topology \u2192 conflicts \u2192 slopes)",
    "status": "pass",
-   "value": "accessible_route_A_floor: 8.33%, 3 flights, 4 landings; accessible_route_B_mid_row9: 8.33%, 4 flights, 5 landings",
-   "source": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
-   "note": "geometry-backed running slope only \u2014 NOT a full ADA compliance review"
+   "value": "7 routes / 7 nodes; topology True, conflicts True, slopes True",
+   "source": "analysis/ada_rebuild/ada_validation.json",
+   "note": "concept pending civil/code detailing \u2014 legacy slope-only ADA fragments REJECTED 2026-06-12 (quarantined in vectors_geojson/legacy_ada_rejected.geojson); never described as ADA compliant"
   },
   {
    "id": "cross_aisle",
@@ -304,6 +304,26 @@
   "Tree survey (governs bay-view tuning)"
  ],
  "sources": {
+  "ada_legacy": {
+   "path": "vectors_geojson/legacy_ada_rejected.geojson",
+   "sha256_12": "024ce41695b3",
+   "present": true
+  },
+  "ada_nodes": {
+   "path": "vectors_geojson/ada_nodes.geojson",
+   "sha256_12": "9821a79eada2",
+   "present": true
+  },
+  "ada_route": {
+   "path": "vectors_geojson/ada_route.geojson",
+   "sha256_12": "840494e411e6",
+   "present": true
+  },
+  "ada_validation": {
+   "path": "analysis/ada_rebuild/ada_validation.json",
+   "sha256_12": "64311f0e6335",
+   "present": true
+  },
   "canon": {
    "path": "docs/DESIGN_CANON.md",
    "sha256_12": "60328eb434c7",
@@ -356,7 +376,7 @@
   },
   "human_refs": {
    "path": "vectors_geojson/human_scale_refs.geojson",
-   "sha256_12": "4b84766dc9ec",
+   "sha256_12": "1c4c4b8f307b",
    "present": true
   },
   "material_zones": {
@@ -391,12 +411,12 @@
   },
   "viewpoints": {
    "path": "vectors_geojson/in_situ_viewpoints.geojson",
-   "sha256_12": "e439c4ab9bc9",
+   "sha256_12": "dc8e2246f4c2",
    "present": true
   },
   "zones": {
    "path": "vectors_geojson/bowl_zones.geojson",
-   "sha256_12": "ef32696e94c1",
+   "sha256_12": "3228c4b2ff70",
    "present": true
   }
  }

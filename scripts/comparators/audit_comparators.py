@@ -167,17 +167,53 @@ def main():
     # must be logged per comparator
     memo_p = os.path.join(ROOT, "docs", "AMPHITHEATRE_COMPARATORS.md")
     if os.path.exists(memo_p):
-        memo = open(memo_p).read().lower()
+        memo = " ".join(open(memo_p).read().lower().split())
         check("cannot choose" in memo and "azimuth" in memo,
               "memo must state comparators cannot choose Petoskey's azimuth "
               "(Rule 9 stays open)")
-        # ADA claims must stay scoped to what validation.json actually
-        # gates (slope/landings/cross-aisle) — never a compliance ranking
+        # ADA claims: the legacy slope-only artifact is VOID as a route
+        # validation (2026-06-12 rejection). Any ADA statement must rest on
+        # the rebuilt network's ordered gates and stay a concept claim.
         check("not a compliance ranking" in memo,
               "memo ADA section must carry the 'not a compliance ranking' "
-              "scope caveat naming the validation artifact's limits")
-        check("beats both" not in memo and "exceed both comparators" not in memo,
-              "memo must not claim ADA superiority over the as-built venues")
+              "scope caveat")
+        for phrase in ("beats both", "exceed both comparators",
+                       "two independent routes",
+                       "independent validated routes",
+                       "validated ada routes", "more verifiable"):
+            check(phrase not in memo,
+                  f"memo must not claim '{phrase}' — route independence/"
+                  "compliance is not established")
+        check("pending civil/code detailing" in memo,
+              "memo ADA section must carry the pending-civil concept label")
+        check("rejected" in memo and "legacy" in memo,
+              "memo must record the legacy ADA route rejection")
+        av_path = os.path.join(ROOT, "analysis", "ada_rebuild",
+                               "ada_validation.json")
+        check(os.path.exists(av_path),
+              "ADA claims require analysis/ada_rebuild/ada_validation.json")
+        if os.path.exists(av_path):
+            av = json.load(open(av_path))
+            h = av.get("hard", {})
+            check(h.get("topology_ok") and h.get("conflicts_ok"),
+                  "ADA network topology/conflict gates not passing — no ADA "
+                  "claim may stand on slope checks alone")
+            check("pending civil" in av.get("label", ""),
+                  "ada_validation label lost the pending-civil wording")
+            for n, c in av.get("conflicts", {}).get("per_route", {}).items():
+                check(c.get("treatment_cell_ft", 1) < 0.01,
+                      f"ADA route {n} touches the treatment cell")
+                check(c.get("swale_ft", 0) < 0.01
+                      or c.get("swale_crossing_declared"),
+                      f"ADA route {n} crosses a swale without a declared "
+                      "crossing type")
+            pairs = av.get("topology", {}).get("pairs", {})
+            for pname, okv in pairs.items():
+                check(bool(okv), f"ADA topology pair disconnected: {pname}")
+        vs = pz.get("ada_detail", {}).get("validation_scope", {})
+        check("topology" in str(vs.get("value", "")).lower(),
+              "petoskey ada_detail.validation_scope must name topology "
+              "gating (slope-only validation is forbidden)")
     for slug in SITES:
         sp = os.path.join(comp_dir, slug, "SOURCES.md")
         if os.path.exists(sp):

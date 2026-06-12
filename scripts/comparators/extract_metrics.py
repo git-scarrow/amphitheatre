@@ -277,42 +277,50 @@ def petoskey_metrics():
                            mean_tread_ft=round((rN_rad - r1_rad)
                                                / (row_ids[-1] - row_ids[0]),
                                                1)),
-        "ada": V("two 8.33% switchback routes + level cross-aisle "
-                 "(rows 9/10) at 622.01; validated", "canon"),
+        "ada": V("Legacy ADA route geometry REJECTED 2026-06-12 "
+                 "(disconnected fragments; quarantined in vectors_geojson/"
+                 "legacy_ada_rejected.geojson). Rebuilt node-to-node network "
+                 "passes topology->conflict->slope gates as an ADA-compliant "
+                 "route CONCEPT pending civil/code detailing "
+                 "(analysis/ada_rebuild/ada_validation.json).", "canon"),
         "ada_detail": {
-            "route_concept": {"value": "two dedicated 8.33% switchback "
-                              "ramps (A: rim->event floor, B: rim->cross-"
-                              "aisle) + rows 9/10 reclassified as a level "
-                              "accessible cross-aisle at 622.01",
-                              "basis": "canon"},
-            "vertical_drop_ft": {"value": "~21 ft rim->floor (row-18 "
-                                 "633.7 -> floor 612.5), taken in 3-4 "
-                                 "flights with 4-5 landings, validated "
-                                 "running slope 8.33%",
-                                 "basis": "canon"},
-            "dispersion": {"value": "two elevations: event floor (612.5) "
-                           "and mid-bowl cross-aisle (622.01) — both with "
-                           "wheelchair + companion positions in the "
-                           "human-scale reference layer",
-                           "basis": "canon"},
-            "redundancy": {"value": "two independent validated routes "
-                           "(A and B) from the rim", "basis": "canon"},
-            "sightline_preservation": {"value": "wheelchair eye 3.90 ft "
-                                       "refs placed at cross-aisle and ADA "
+            "route_concept": {"value": "rebuilt 7-route node network: rim "
+                              "arrival + south rim egress + cross-aisle + "
+                              "floor + wheelchair clusters w/ companions + "
+                              "classified service spur; concept tier",
+                              "basis": "measured_dem"},
+            "vertical_drop_ft": {"value": "~16 ft rim->cross-aisle over a "
+                                 "418 ft route; ~28 ft rim->floor over "
+                                 "456 ft; landings marked every <=2.5 ft "
+                                 "rise (pads pending civil detailing)",
+                                 "basis": "measured_dem"},
+            "dispersion": {"value": "two accessible elevations (event floor "
+                           "+ cross-aisle) topology-connected in the "
+                           "rebuilt network — CONCEPT, not built/verified; "
+                           "ADAAG 221 counts unchecked",
+                           "basis": "measured_dem"},
+            "redundancy": {"value": "two rim connections (arrival east, "
+                           "egress south) on separate flanks; full route "
+                           "independence (disjointness) NOT yet analyzed — "
+                           "do not claim 'two independent routes'",
+                           "basis": "measured_dem"},
+            "sightline_preservation": {"value": "wheelchair refs at rebuilt "
                                        "landings carry blocks_bay_view "
-                                       "flags in human_scale_refs.geojson "
-                                       "(rim-grazing bay-view rule applied)",
+                                       "flags; NOT C-value validated",
                                        "basis": "canon"},
-            "validation_scope": {"value": "analysis/tier_emission/"
-                                 "Scenario_E_baseline_reemit/validation.json "
-                                 "gates ONLY running slope 8.33% + flight/"
-                                 "landing counts (routes A/B) and cross-"
-                                 "aisle cross/long slope + drainage + "
-                                 "wheelability. NOT validated: route "
-                                 "widths, landing dimensions, handrails, "
-                                 "clear floor space, companion seats, "
-                                 "ADAAG 221 dispersion counts. Design "
-                                 "intent, not a compliance determination.",
+            "validation_scope": {"value": "analysis/ada_rebuild/"
+                                 "ada_validation.json gates IN ORDER "
+                                 "topology -> conflicts (treatment cell/"
+                                 "swale crossing types/stage/wedge/"
+                                 "fragments) -> slopes -> landings; the "
+                                 "legacy slope-only artifact "
+                                 "(Scenario_E_baseline_reemit/"
+                                 "validation.json) is VOID as a route "
+                                 "validation. Unchecked: widths, landing "
+                                 "dims, turning radii, handrails, edge "
+                                 "protection, clear floor space, companion "
+                                 "dims, surface FSS, cross slope, ADAAG "
+                                 "221 dispersion counts.",
                                  "basis": "canon"},
         },
         "backdrop": V("open to Little Traverse Bay az 330; no upstage wall "

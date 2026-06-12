@@ -1,0 +1,324 @@
+{
+ "generated": "scripts/rebuild_ada_routes.py",
+ "label": "ADA-compliant route concept pending civil/code detailing",
+ "NOT_ADA_COMPLIANT_NOTICE": "This artifact validates topology, conflicts, terrain slope along alignments, and landing spacing ONLY. The items in unchecked_code_details are NOT checked. Do not describe the network as 'ADA compliant'.",
+ "legacy_rejection": {
+  "file": "vectors_geojson/legacy_ada_rejected.geojson",
+  "count": 7,
+  "reason": "disconnected fragments; route A 63% in treatment cell; route B crosses swale, 21.9 ft short of cross-aisle; slope-only legacy validation is not a route validation",
+  "superseded_artifact": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json (ada/cross_aisle sections remain valid for the CROSS-AISLE band geometry only \u2014 its 'ada' route entries are void)"
+ },
+ "gate_order": [
+  "topology",
+  "conflicts",
+  "slopes",
+  "landings",
+  "unchecked_code_details"
+ ],
+ "topology": {
+  "pairs": {
+   "public_arrival->floor": true,
+   "public_arrival->cross_aisle": true,
+   "cross_aisle->wc_clusters": true,
+   "wc_clusters->egress": true,
+   "service->stage (classified service)": true
+  },
+  "ok": true,
+  "routes": {
+   "route_arrival_to_cross_aisle": {
+    "status": "OK",
+    "from": "public_arrival_rim",
+    "to": "cross_aisle_mid",
+    "class": "public",
+    "length_ft": 418.0,
+    "max_step_slope_pct": 8.62,
+    "landings_marked": 11,
+    "crossing": {
+     "crossing_type": "culvert crossing (engineered, pending civil detailing)",
+     "length_ft": 4.3,
+     "ok": true
+    },
+    "grading_required": {
+     "max_cut_ft": 0.72,
+     "max_fill_ft": 1.08,
+     "mean_abs_ft": 0.24,
+     "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
+    },
+    "outside_legacy_envelope_ft": 305.5,
+    "gateway_transition_ft": 121.0
+   },
+   "route_arrival_to_floor": {
+    "status": "OK",
+    "from": "public_arrival_rim",
+    "to": "floor_arrival",
+    "class": "public",
+    "length_ft": 456.3,
+    "max_step_slope_pct": 8.63,
+    "landings_marked": 13,
+    "crossing": {
+     "crossing_type": "culvert crossing (engineered, pending civil detailing)",
+     "length_ft": 4.1,
+     "ok": true
+    },
+    "grading_required": {
+     "max_cut_ft": 0.63,
+     "max_fill_ft": 1.13,
+     "mean_abs_ft": 0.17,
+     "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
+    },
+    "outside_legacy_envelope_ft": 421.8,
+    "gateway_transition_ft": 56.0
+   },
+   "route_cross_aisle_to_wc_cluster": {
+    "status": "OK",
+    "from": "cross_aisle_mid",
+    "to": "wc_cluster_cross_aisle",
+    "class": "public",
+    "length_ft": 15.4,
+    "max_step_slope_pct": 0.0,
+    "landings_marked": 0,
+    "crossing": null,
+    "grading_required": {
+     "max_cut_ft": -0.43,
+     "max_fill_ft": 0.62,
+     "mean_abs_ft": 0.54,
+     "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
+    },
+    "outside_legacy_envelope_ft": 0.0,
+    "gateway_transition_ft": 15.4
+   },
+   "route_floor_to_wc_cluster": {
+    "status": "OK",
+    "from": "floor_arrival",
+    "to": "wc_cluster_floor",
+    "class": "public",
+    "length_ft": 14.2,
+    "max_step_slope_pct": 4.08,
+    "landings_marked": 0,
+    "crossing": null,
+    "grading_required": {
+     "max_cut_ft": -0.11,
+     "max_fill_ft": 0.39,
+     "mean_abs_ft": 0.2,
+     "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
+    },
+    "outside_legacy_envelope_ft": 14.2,
+    "gateway_transition_ft": 0.0
+   },
+   "route_cross_aisle_to_egress": {
+    "status": "OK",
+    "from": "cross_aisle_mid",
+    "to": "egress_rim_south",
+    "class": "public",
+    "length_ft": 510.4,
+    "max_step_slope_pct": 8.61,
+    "landings_marked": 11,
+    "crossing": {
+     "crossing_type": "culvert crossing (engineered, pending civil detailing)",
+     "length_ft": 5.5,
+     "ok": true
+    },
+    "grading_required": {
+     "max_cut_ft": 1.62,
+     "max_fill_ft": 0.87,
+     "mean_abs_ft": 0.41,
+     "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
+    },
+    "outside_legacy_envelope_ft": 333.5,
+    "gateway_transition_ft": 148.3
+   },
+   "route_floor_to_egress": {
+    "status": "OK",
+    "from": "floor_arrival",
+    "to": "egress_rim_south",
+    "class": "public",
+    "length_ft": 555.0,
+    "max_step_slope_pct": 8.62,
+    "landings_marked": 15,
+    "crossing": {
+     "crossing_type": "culvert crossing (engineered, pending civil detailing)",
+     "length_ft": 4.1,
+     "ok": true
+    },
+    "grading_required": {
+     "max_cut_ft": 0.63,
+     "max_fill_ft": 1.2,
+     "mean_abs_ft": 0.16,
+     "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
+    },
+    "outside_legacy_envelope_ft": 498.8,
+    "gateway_transition_ft": 56.0
+   },
+   "route_service_to_stage": {
+    "status": "OK",
+    "from": "floor_arrival",
+    "to": "service_stage_access",
+    "class": "service",
+    "length_ft": 10.9,
+    "max_step_slope_pct": 5.75,
+    "landings_marked": 0,
+    "crossing": null,
+    "grading_required": {
+     "max_cut_ft": -0.02,
+     "max_fill_ft": 0.15,
+     "mean_abs_ft": 0.08,
+     "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
+    },
+    "outside_legacy_envelope_ft": 10.9,
+    "gateway_transition_ft": 0.0
+   }
+  }
+ },
+ "conflicts": {
+  "per_route": {
+   "route_arrival_to_cross_aisle": {
+    "treatment_cell_ft": 0.0,
+    "swale_ft": 4.29,
+    "swale_crossing_declared": true,
+    "swale_crossing_ok": true,
+    "stage_zone_ft": 0.0,
+    "stage_ok": true,
+    "seating_wedge_ft": 0.0,
+    "ok": true
+   },
+   "route_arrival_to_floor": {
+    "treatment_cell_ft": 0.0,
+    "swale_ft": 4.13,
+    "swale_crossing_declared": true,
+    "swale_crossing_ok": true,
+    "stage_zone_ft": 0.0,
+    "stage_ok": true,
+    "seating_wedge_ft": 0.0,
+    "ok": true
+   },
+   "route_cross_aisle_to_wc_cluster": {
+    "treatment_cell_ft": 0.0,
+    "swale_ft": 0.0,
+    "swale_crossing_declared": false,
+    "swale_crossing_ok": true,
+    "stage_zone_ft": 0.0,
+    "stage_ok": true,
+    "seating_wedge_ft": 0.0,
+    "ok": true
+   },
+   "route_floor_to_wc_cluster": {
+    "treatment_cell_ft": 0.0,
+    "swale_ft": 0.0,
+    "swale_crossing_declared": false,
+    "swale_crossing_ok": true,
+    "stage_zone_ft": 0.0,
+    "stage_ok": true,
+    "seating_wedge_ft": 0.0,
+    "ok": true
+   },
+   "route_cross_aisle_to_egress": {
+    "treatment_cell_ft": 0.0,
+    "swale_ft": 5.51,
+    "swale_crossing_declared": true,
+    "swale_crossing_ok": true,
+    "stage_zone_ft": 0.0,
+    "stage_ok": true,
+    "seating_wedge_ft": 0.0,
+    "ok": true
+   },
+   "route_floor_to_egress": {
+    "treatment_cell_ft": 0.0,
+    "swale_ft": 4.12,
+    "swale_crossing_declared": true,
+    "swale_crossing_ok": true,
+    "stage_zone_ft": 0.0,
+    "stage_ok": true,
+    "seating_wedge_ft": 0.0,
+    "ok": true
+   },
+   "route_service_to_stage": {
+    "treatment_cell_ft": 0.0,
+    "swale_ft": 0.0,
+    "swale_crossing_declared": false,
+    "swale_crossing_ok": true,
+    "stage_zone_ft": 0.0,
+    "stage_ok": true,
+    "seating_wedge_ft": 0.0,
+    "ok": true
+   }
+  },
+  "ok": true,
+  "policy": "treatment cell: forbidden, no crossing type exists for it; swale: only an engineered crossing <= 16.0 ft, declared on the route; stage zones: service class only; seating wedge: forbidden outside cross-aisle/promenade corridors"
+ },
+ "slopes": {
+  "per_route": {
+   "route_arrival_to_cross_aisle": {
+    "max_step_slope_pct": 8.62,
+    "within_8_33": false,
+    "within_tolerance_band": true,
+    "landings_marked": 11
+   },
+   "route_arrival_to_floor": {
+    "max_step_slope_pct": 8.63,
+    "within_8_33": false,
+    "within_tolerance_band": true,
+    "landings_marked": 13
+   },
+   "route_cross_aisle_to_wc_cluster": {
+    "max_step_slope_pct": 0.0,
+    "within_8_33": true,
+    "within_tolerance_band": true,
+    "landings_marked": 0
+   },
+   "route_floor_to_wc_cluster": {
+    "max_step_slope_pct": 4.08,
+    "within_8_33": true,
+    "within_tolerance_band": true,
+    "landings_marked": 0
+   },
+   "route_cross_aisle_to_egress": {
+    "max_step_slope_pct": 8.61,
+    "within_8_33": false,
+    "within_tolerance_band": true,
+    "landings_marked": 11
+   },
+   "route_floor_to_egress": {
+    "max_step_slope_pct": 8.62,
+    "within_8_33": false,
+    "within_tolerance_band": true,
+    "landings_marked": 15
+   },
+   "route_service_to_stage": {
+    "max_step_slope_pct": 5.75,
+    "within_8_33": true,
+    "within_tolerance_band": true,
+    "landings_marked": 0
+   }
+  },
+  "ok_within_tolerance": true,
+  "ok_strict_8_33": false,
+  "method": "2 ft sampling of proposed_grade_1ft.tif along built alignments; cross slope NOT validated (needs benched section design)"
+ },
+ "landings": {
+  "spacing_rule": "marked every <=2.5 ft of cumulative rise (30 in max rise per run)",
+  "status": "positions emitted; pads require grading \u2014 pending civil detailing"
+ },
+ "floor_elevation_flag": {
+  "note": "floor_arrival node reads 609.65 ft on the proposed grade raster vs the 612.5 concept event-floor datum \u2014 the event floor is concept-tier and not yet graded into the raster; routes to the floor inherit this uncertainty"
+ },
+ "unchecked_code_details": [
+  "route clear width (36 in min / 60 in passing)",
+  "landing dimensions and <=2% landing slopes (positions emitted only)",
+  "turning radii / maneuvering clearances",
+  "handrails and guards on ramp runs",
+  "edge protection",
+  "wheelchair clear floor space (30x48 in) at clusters",
+  "companion seating dimensions and count",
+  "surface firmness / stability / slip resistance",
+  "cross slope <=2% on built route (terrain cross slope not benched yet)",
+  "sightline preservation from wheelchair positions (refs flagged, not C-value validated)",
+  "ADAAG 221 dispersion counts vs total seat count",
+  "winter / maintenance operations"
+ ],
+ "hard": {
+  "topology_ok": true,
+  "conflicts_ok": true,
+  "slopes_ok": true,
+  "network_ok": true
+ }
+}
