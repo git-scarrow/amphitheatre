@@ -21,6 +21,7 @@ $PY scripts/build_in_situ_geometry.py         # 1. treads, edges, zones (+copies
 $PY scripts/build_site_context.py             # 2. site context + material zones
 $PY scripts/build_viewpoints_and_events.py    # 3. viewpoints + event modes
 $PY scripts/build_proposed_grade.py           # 4. rasters OR missing-data diagnostic
-$PY scripts/build_qgis_project.py             # 5. QGIS review project
-$PY scripts/render_in_situ_boards.py          # 6. renders + three boards
-$PY scripts/audit_in_situ_package.py          # 7. audit gate (exit 1 on failure)
+$PY scripts/build_human_scale_refs.py         # 5. to-scale human reference layer
+$PY scripts/build_qgis_project.py             # 6. QGIS review project
+$PY scripts/render_in_situ_boards.py          # 7. renders + boards
+$PY scripts/audit_in_situ_package.py          # 8. audit gate (exit 1 on failure)
