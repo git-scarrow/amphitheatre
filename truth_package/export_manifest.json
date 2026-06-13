@@ -1,6 +1,6 @@
 {
  "schema": "truthful-terrain/export-manifest/0.1",
- "generated": "2026-06-12T17:51:20-04:00",
+ "generated": "2026-06-12T21:45:28-04:00",
  "note": "Contract for FUTURE handoffs. Only targets marked implemented exist today. Every export must carry the design_state warnings block \u2014 exports that strip the planning-grade caveats are non-conforming.",
  "targets": [
   {

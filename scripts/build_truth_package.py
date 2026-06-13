@@ -772,7 +772,42 @@ design_state = {
         "options": decision_rows,
         "source": [SRC["decision_table"], SRC["decision_brief"]],
         "shown_in_viewer": "option A (Scenario E baseline)",
-    }],
+    }] + ([{
+        "id": "decision_2_ada_concept_adoption",
+        "question": "Adopt an ADA route concept (triggers construction-"
+                    "envelope re-emission and locks the circulation plan)",
+        "options": [{
+            "option": "C",
+            "label": "Concept C — naturalistic promenade (RECOMMENDED, "
+                     "currently governs at planning grade)",
+            "seats_displaced": 0,
+            "worst_detour_ratio": ada_rebuilt_valid["concepts"]
+                ["C_naturalistic_promenade"]["worst_served_detour_ratio"],
+            "dignity_score": ada_rebuilt_valid["concepts"]
+                ["C_naturalistic_promenade"]["dignity_directness_score"],
+        }, {
+            "option": ada_rebuilt_valid["recommendation_c_vs_d"]
+                ["preferred_D"],
+            "label": "preferred constructed alternative — carried, NOT "
+                     "adopted; adoption path: fix 2 row severances + "
+                     "causeway C-value sightline study, then re-run the "
+                     "documented decision rule",
+            "seats_displaced": ada_rebuilt_valid["concepts"]
+                [ada_rebuilt_valid["recommendation_c_vs_d"]["preferred_D"]]
+                ["totals"]["seats_displaced"],
+            "worst_detour_ratio": ada_rebuilt_valid["concepts"]
+                [ada_rebuilt_valid["recommendation_c_vs_d"]["preferred_D"]]
+                ["worst_served_detour_ratio"],
+            "dignity_score": ada_rebuilt_valid["concepts"]
+                [ada_rebuilt_valid["recommendation_c_vs_d"]["preferred_D"]]
+                ["dignity_directness_score"],
+        }],
+        "decision_rule": ada_rebuilt_valid["recommendation_c_vs_d"]["rule"],
+        "terrain_bound_note": "every compliant route is floored at ~4-5x "
+                              "the desire line by the bowl itself",
+        "source": [SRC["ada_validation"], "docs/ADA_CONCEPT_C_VS_D.md"],
+        "shown_in_viewer": "Concept C network (D corridors toggleable)",
+    }] if ada_rebuilt_valid.get("recommendation_c_vs_d") else []),
     "warnings": WARNINGS,
     "missing_data": [c["name"] for c in checks if c["status"] == "unknown"],
     "sources": sources_block,

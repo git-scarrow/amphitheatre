@@ -1,6 +1,6 @@
 {
  "schema": "truthful-terrain/evaluation-report/0.1",
- "generated": "2026-06-12T17:51:20-04:00",
+ "generated": "2026-06-12T21:45:28-04:00",
  "generator": "scripts/build_truth_package.py",
  "design_state_ref": "truth_package/design_state.current.json",
  "summary": {

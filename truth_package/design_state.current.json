@@ -1,6 +1,6 @@
 {
  "schema": "truthful-terrain/design-state/0.1",
- "generated": "2026-06-12T17:51:20-04:00",
+ "generated": "2026-06-12T21:45:28-04:00",
  "generator": "scripts/build_truth_package.py",
  "project": "Petoskey Pit amphitheatre \u2014 Open Civic Bowl (in-situ package)",
  "design_of_record": {
@@ -248,6 +248,33 @@
     "docs/HUMAN_DECISION_BRIEF.md"
    ],
    "shown_in_viewer": "option A (Scenario E baseline)"
+  },
+  {
+   "id": "decision_2_ada_concept_adoption",
+   "question": "Adopt an ADA route concept (triggers construction-envelope re-emission and locks the circulation plan)",
+   "options": [
+    {
+     "option": "C",
+     "label": "Concept C \u2014 naturalistic promenade (RECOMMENDED, currently governs at planning grade)",
+     "seats_displaced": 0,
+     "worst_detour_ratio": 8.95,
+     "dignity_score": 16.0
+    },
+    {
+     "option": "D2_diagonal_terrace_cut",
+     "label": "preferred constructed alternative \u2014 carried, NOT adopted; adoption path: fix 2 row severances + causeway C-value sightline study, then re-run the documented decision rule",
+     "seats_displaced": 121.0,
+     "worst_detour_ratio": 5.79,
+     "dignity_score": 79.0
+    }
+   ],
+   "decision_rule": "D governs if dignity advantage >=20 pts AND seats displaced <60 (<5% of 1,283) AND no rows severed mid-tread; otherwise C governs and the preferred D is carried as the design-development alternative",
+   "terrain_bound_note": "every compliant route is floored at ~4-5x the desire line by the bowl itself",
+   "source": [
+    "analysis/ada_rebuild/ada_validation.json",
+    "docs/ADA_CONCEPT_C_VS_D.md"
+   ],
+   "shown_in_viewer": "Concept C network (D corridors toggleable)"
   }
  ],
  "warnings": [
