@@ -84,6 +84,11 @@ unreal_export/terrain/*.r16
 #    under terrain/ stays trackable (do not broaden back to *.png).
 unreal_export/terrain/heightfield_*.png
 
+# ── Speckle review bridge: generated payloads (regenerate with ────────────────
+#    scripts/export_speckle_payload.py). Pure derivation of unreal_export/, which
+#    is itself derived — no need to commit. The bridge scripts + docs ARE tracked.
+speckle_export/
+
 # ── misc scratch ─────────────────────────────────────────────────────────────
 *.log
 .DS_Store

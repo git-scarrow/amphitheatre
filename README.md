@@ -38,6 +38,60 @@ ambitious seating scope (+262); (2) close Rule 9 for the stage.
 - Swale drainage: geometric fall confirmed toward NE pour point; hydraulic sizing is data-gated pending soil and hydrology study.
 - Scenario E stage: inherited geometry, not yet validated against emitted seating. See `DESIGN_CANON Rule 9`.
 
+## Speckle review boundary (object-truth boundary)
+
+The repo runs a **side-by-side 3D workflow**: the authoritative GIS/design repo
+on one side, a [Speckle](https://speckle.systems) server as a **versioned review
+surface** on the other. The boundary between them is strict and one-directional:
+
+> **Speckle is for review, comparison, and collaboration. It is *not* design
+> truth.** The Python/QGIS validation repo — its gates, its `validation.json`,
+> its `verify_unreal_export.py` — is the **only acceptance authority.** Nothing
+> rendered, measured, or edited in Speckle becomes design truth until it has
+> returned as a proposal GeoJSON in EPSG:6494 and passed those gates.
+
+The bridge is a downstream derivation, never a substitute for the gates:
+
+```
+repo (authoritative) ─► unreal_export/ (validated viewer layer) ─► speckle_export/*.json ─► Speckle (review)
+        ▲                       gates run here                          │
+        └──────────── proposal GeoJSON must pass the gates ◄────────────┘  (the only way back to truth)
+```
+
+- **`scripts/export_speckle_payload.py`** reshapes the *validated* `unreal_export/`
+  artifacts into Speckle objects. It **recomputes nothing** — `C_mm`, seat
+  counts, ADA status strings, cut/fill, and the planning-grade warnings are
+  copied verbatim. Every leaf object preserves `source_file`, `feature_id`, a
+  derived `row_id`, its C-value, ADA status, cut/fill, and the warnings; the
+  lossless EPSG:6494 source geometry rides in `@geo_epsg6494` while the rendered
+  geometry is the local ENU-metre frame (viewer float precision).
+- **`scripts/publish_speckle.py`** is **dry-run-first**. It **refuses to publish**
+  unless (1) `scripts/verify_unreal_export.py` exits 0, (2) the payload passes the
+  object-truth boundary checks, and (3) the branch prefix matches the acceptance
+  state. The default run sends nothing and imports no SDK; only `--publish` (with
+  `SPECKLE_TOKEN`/`SPECKLE_PROJECT_ID`) performs a real send, lazily importing
+  `specklepy` into the project venv.
+- **`scripts/test_speckle_payload.py`** proves the boundary: missing provenance,
+  missing validation fields, strengthened ADA status, dropped warnings, a
+  branch/state mismatch, and a failed Unreal-export verification each **block**
+  publication.
+
+**Branch / stream naming conventions** (Speckle v3 calls a stream a *project*
+and a branch a *model*; one project per venue, `petoskey-pit-civic-bowl`):
+
+| State | Branch / model name | Meaning |
+|---|---|---|
+| **accepted** | `accepted/scenario-e-baseline` | the validated control. Provisional/concept elements (stage Rule 9 OPEN, ADA concept, treatment cell) ride inside it **individually flagged** `must_label` — inclusion never promotes them |
+| **proposal** | `proposal/<topic>-<yyyymmdd>` | a not-yet-accepted bundle for review/comparison (e.g. `proposal/ambitious-seating-20260611`, `proposal/ada-concept-c-hybrid-20260612`) |
+| **reference** | `reference/<topic>` | non-decision context (`reference/terrain-existing`, `reference/cameras-human-scale`) |
+
+The publisher enforces that an `accepted/*` branch carries `acceptance.state =
+accepted` and a `proposal/*` branch carries `proposal` — the accepted/proposal
+distinction is enforced, not cosmetic.
+
+Self-hosting the review server: **`docs/proxmox_speckle.md`** (Docker Compose on
+Proxmox — reverse proxy, storage, backups, private-network assumptions).
+
 ## Running the scripts
 
 All scripts require the project virtual environment. From the repo root:
@@ -49,4 +103,11 @@ python scripts/stage_refit_sweep.py        # re-run stage alignment audit
 python scripts/score_inevitability.py      # B-rejected / D-accepted proof
 python scripts/validate_scenarioB.py       # Scenario B spatial validation
 python scripts/test_cross_aisle_provenance.py  # provenance regression test
+
+# Unreal handoff + Speckle review bridge
+python scripts/build_unreal_export.py      # build the validated viewer package (unreal_export/)
+python scripts/verify_unreal_export.py     # 30 acceptance gates (must be green)
+python scripts/export_speckle_payload.py   # unreal_export/ → speckle_export/*.speckle.json
+python scripts/publish_speckle.py          # DRY RUN review publish (gated; --publish to send)
+python scripts/test_speckle_payload.py     # boundary tests (failures must block publication)
 ```
