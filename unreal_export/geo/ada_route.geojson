@@ -1,0 +1,1862 @@
+{
+ "type": "FeatureCollection",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::6494"
+  }
+ },
+ "name": "ada_route",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533220.2,
+      750714.15
+     ],
+     [
+      19533227.2,
+      750760.15
+     ],
+     [
+      19533229.2,
+      750803.15
+     ],
+     [
+      19533223.151539776,
+      750879.1877856543
+     ],
+     [
+      19533222.884347636,
+      750881.8092077468
+     ],
+     [
+      19533222.558541104,
+      750883.6923668513
+     ],
+     [
+      19533222.17412018,
+      750884.8372629678
+     ],
+     [
+      19533221.73108487,
+      750885.2438960965
+     ],
+     [
+      19533221.22943516,
+      750884.9122662372
+     ],
+     [
+      19533220.66917106,
+      750883.84237339
+     ],
+     [
+      19533220.050292574,
+      750882.0342175548
+     ],
+     [
+      19533219.37279969,
+      750879.4877987318
+     ],
+     [
+      19533214.2,
+      750858.15
+     ],
+     [
+      19533206.2,
+      750803.15
+     ],
+     [
+      19533190.2,
+      750797.15
+     ],
+     [
+      19533187.2,
+      750760.15
+     ],
+     [
+      19533169.2,
+      750708.15
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_cross_aisle",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 0,
+    "kind": "route",
+    "name": "route_arrival_to_cross_aisle",
+    "from": "public_arrival_rim",
+    "to": "cross_aisle_mid",
+    "route_class": "public_primary",
+    "role": "ada_route_concept",
+    "status": "ADA-compliant route concept pending civil/code detailing",
+    "preferred": true,
+    "alternatives": [
+     "A_east_primary",
+     "C_hybrid"
+    ],
+    "length_ft": 365.3,
+    "drop_ft": 15.3,
+    "design_grade_pct": 4.19,
+    "profile": "sloped_walk(<=5%)",
+    "landings_marked": 3,
+    "smoothness_before": {
+     "total_ft": 418.0,
+     "n_segments": 350,
+     "min_seg_ft": 1.0,
+     "mean_seg_ft": 1.2,
+     "turn_count_gt20deg": 57,
+     "angle_changes_gt5deg": 59
+    },
+    "smoothness_after": {
+     "total_ft": 376.6,
+     "n_segments": 8,
+     "min_seg_ft": 17.1,
+     "mean_seg_ft": 47.1,
+     "turn_count_gt20deg": 3,
+     "angle_changes_gt5deg": 7
+    },
+    "validation_running_slope_pct": null,
+    "validation_flights": null,
+    "validation_landings": null,
+    "validation_running_ok": null,
+    "grading_required": {
+     "max_cut_ft": 1.86,
+     "max_fill_ft": 4.26,
+     "mean_abs_ft": 1.17,
+     "note": "linear design profile between node datums vs raw proposed grade — pending civil detailing"
+    },
+    "material_id": "ada_preferred",
+    "provenance": "derived from ada_route.geojson (read-only); running-slope/flights/landings cross-checked against validation.json ada[]"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533220.2,
+      750714.15
+     ],
+     [
+      19533227.2,
+      750755.15
+     ],
+     [
+      19533229.2,
+      750791.15
+     ],
+     [
+      19533220.93909351,
+      750880.1842143652
+     ],
+     [
+      19533220.696530946,
+      750881.9471890866
+     ],
+     [
+      19533220.33839,
+      750883.2532204333
+     ],
+     [
+      19533219.864670683,
+      750884.1023084053
+     ],
+     [
+      19533219.275372982,
+      750884.4944530027
+     ],
+     [
+      19533218.57049691,
+      750884.4296542252
+     ],
+     [
+      19533217.75004246,
+      750883.9079120733
+     ],
+     [
+      19533216.814009637,
+      750882.9292265465
+     ],
+     [
+      19533215.76239843,
+      750881.4935976453
+     ],
+     [
+      19533200.2,
+      750858.15
+     ],
+     [
+      19533144.2,
+      750799.15
+     ],
+     [
+      19533145.06454291,
+      750770.6200840458
+     ],
+     [
+      19533145.033307463,
+      750768.8508537895
+     ],
+     [
+      19533144.831235446,
+      750767.1192302565
+     ],
+     [
+      19533144.45832686,
+      750765.4252134473
+     ],
+     [
+      19533143.914581716,
+      750763.7688033619
+     ],
+     [
+      19533143.2,
+      750762.15
+     ],
+     [
+      19533140.2,
+      750756.15
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_floor",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 1,
+    "kind": "route",
+    "name": "route_arrival_to_floor",
+    "from": "public_arrival_rim",
+    "to": "floor_arrival",
+    "route_class": "public_secondary",
+    "role": "ada_route_concept",
+    "status": "ADA-compliant route concept pending civil/code detailing",
+    "preferred": false,
+    "alternatives": [
+     "A_east_primary"
+    ],
+    "length_ft": 330.1,
+    "drop_ft": 24.8,
+    "design_grade_pct": 7.52,
+    "profile": "ramp_runs(5-8.33%)",
+    "landings_marked": 11,
+    "smoothness_before": {
+     "total_ft": 456.3,
+     "n_segments": 385,
+     "min_seg_ft": 1.0,
+     "mean_seg_ft": 1.2,
+     "turn_count_gt20deg": 79,
+     "angle_changes_gt5deg": 82
+    },
+    "smoothness_after": {
+     "total_ft": 336.7,
+     "n_segments": 7,
+     "min_seg_ft": 11.2,
+     "mean_seg_ft": 48.1,
+     "turn_count_gt20deg": 3,
+     "angle_changes_gt5deg": 6
+    },
+    "validation_running_slope_pct": null,
+    "validation_flights": null,
+    "validation_landings": null,
+    "validation_running_ok": null,
+    "grading_required": {
+     "max_cut_ft": 5.65,
+     "max_fill_ft": 7.23,
+     "mean_abs_ft": 3.61,
+     "note": "linear design profile between node datums vs raw proposed grade — pending civil detailing"
+    },
+    "material_id": "ada_alternative",
+    "provenance": "derived from ada_route.geojson (read-only); running-slope/flights/landings cross-checked against validation.json ada[]"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533169.2,
+      750708.15
+     ],
+     [
+      19533177.2,
+      750721.15
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_cross_aisle_to_wc_cluster",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 2,
+    "kind": "route",
+    "name": "route_cross_aisle_to_wc_cluster",
+    "from": "cross_aisle_mid",
+    "to": "wc_cluster_cross_aisle",
+    "route_class": "distribution",
+    "role": "ada_route_concept",
+    "status": "ADA-compliant route concept pending civil/code detailing",
+    "preferred": true,
+    "alternatives": [
+     "A_east_primary",
+     "B_south_perimeter",
+     "C_hybrid"
+    ],
+    "length_ft": 15.3,
+    "drop_ft": 0.0,
+    "design_grade_pct": 0.0,
+    "profile": "sloped_walk(<=5%)",
+    "landings_marked": 0,
+    "smoothness_before": {
+     "total_ft": 15.4,
+     "n_segments": 8,
+     "min_seg_ft": 1.4,
+     "mean_seg_ft": 1.9,
+     "turn_count_gt20deg": 0,
+     "angle_changes_gt5deg": 1
+    },
+    "smoothness_after": {
+     "total_ft": 15.3,
+     "n_segments": 1,
+     "min_seg_ft": 15.3,
+     "mean_seg_ft": 15.3,
+     "turn_count_gt20deg": 0,
+     "angle_changes_gt5deg": 0
+    },
+    "validation_running_slope_pct": null,
+    "validation_flights": null,
+    "validation_landings": null,
+    "validation_running_ok": null,
+    "grading_required": {
+     "max_cut_ft": 0.0,
+     "max_fill_ft": -0.0,
+     "mean_abs_ft": 0.0,
+     "note": "linear design profile between node datums vs raw proposed grade — pending civil detailing"
+    },
+    "material_id": "ada_preferred",
+    "provenance": "derived from ada_route.geojson (read-only); running-slope/flights/landings cross-checked against validation.json ada[]"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533140.2,
+      750756.15
+     ],
+     [
+      19533139.2,
+      750742.15
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_wc_cluster",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 3,
+    "kind": "route",
+    "name": "route_floor_to_wc_cluster",
+    "from": "floor_arrival",
+    "to": "wc_cluster_floor",
+    "route_class": "distribution",
+    "role": "ada_route_concept",
+    "status": "ADA-compliant route concept pending civil/code detailing",
+    "preferred": true,
+    "alternatives": [
+     "A_east_primary",
+     "B_south_perimeter",
+     "C_hybrid"
+    ],
+    "length_ft": 14.0,
+    "drop_ft": 0.0,
+    "design_grade_pct": 0.0,
+    "profile": "sloped_walk(<=5%)",
+    "landings_marked": 0,
+    "smoothness_before": {
+     "total_ft": 14.2,
+     "n_segments": 13,
+     "min_seg_ft": 1.0,
+     "mean_seg_ft": 1.1,
+     "turn_count_gt20deg": 1,
+     "angle_changes_gt5deg": 1
+    },
+    "smoothness_after": {
+     "total_ft": 14.0,
+     "n_segments": 1,
+     "min_seg_ft": 14.0,
+     "mean_seg_ft": 14.0,
+     "turn_count_gt20deg": 0,
+     "angle_changes_gt5deg": 0
+    },
+    "validation_running_slope_pct": null,
+    "validation_flights": null,
+    "validation_landings": null,
+    "validation_running_ok": null,
+    "grading_required": {
+     "max_cut_ft": -2.81,
+     "max_fill_ft": 2.91,
+     "mean_abs_ft": 2.87,
+     "note": "linear design profile between node datums vs raw proposed grade — pending civil detailing"
+    },
+    "material_id": "ada_preferred",
+    "provenance": "derived from ada_route.geojson (read-only); running-slope/flights/landings cross-checked against validation.json ada[]"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533169.2,
+      750708.15
+     ],
+     [
+      19533151.2,
+      750700.15
+     ],
+     [
+      19533137.860023357,
+      750694.9622313058
+     ],
+     [
+      19533135.9829614,
+      750694.2950536988
+     ],
+     [
+      19533134.079794206,
+      750693.7433059217
+     ],
+     [
+      19533132.150521778,
+      750693.306987975
+     ],
+     [
+      19533130.19514412,
+      750692.9860998587
+     ],
+     [
+      19533128.213661227,
+      750692.7806415724
+     ],
+     [
+      19533052.2,
+      750687.15
+     ],
+     [
+      19532953.854067486,
+      750663.0105438373
+     ],
+     [
+      19532951.290350515,
+      750662.2562513264
+     ],
+     [
+      19532949.42623335,
+      750661.4236457119
+     ],
+     [
+      19532948.261715997,
+      750660.5127269941
+     ],
+     [
+      19532947.79679844,
+      750659.5234951728
+     ],
+     [
+      19532948.031480696,
+      750658.4559502483
+     ],
+     [
+      19532948.965762757,
+      750657.3100922203
+     ],
+     [
+      19532950.59964462,
+      750656.0859210888
+     ],
+     [
+      19532952.93312629,
+      750654.783436854
+     ],
+     [
+      19532965.46687371,
+      750648.516563146
+     ],
+     [
+      19532969.810609918,
+      750646.5980782434
+     ],
+     [
+      19532974.2553175,
+      750645.1358740518
+     ],
+     [
+      19532978.80099647,
+      750644.1299505718
+     ],
+     [
+      19532983.44764682,
+      750643.5803078031
+     ],
+     [
+      19532988.19526855,
+      750643.4869457458
+     ],
+     [
+      19533154.2,
+      750648.15
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_cross_aisle_to_egress",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 4,
+    "kind": "route",
+    "name": "route_cross_aisle_to_egress",
+    "from": "cross_aisle_mid",
+    "to": "egress_rim_south",
+    "route_class": "public_secondary",
+    "role": "ada_route_concept",
+    "status": "ADA-compliant route concept pending civil/code detailing",
+    "preferred": true,
+    "alternatives": [
+     "A_east_primary",
+     "B_south_perimeter",
+     "C_hybrid"
+    ],
+    "length_ft": 439.6,
+    "drop_ft": -16.9,
+    "design_grade_pct": 3.85,
+    "profile": "sloped_walk(<=5%)",
+    "landings_marked": 1,
+    "smoothness_before": {
+     "total_ft": 510.4,
+     "n_segments": 428,
+     "min_seg_ft": 1.0,
+     "mean_seg_ft": 1.2,
+     "turn_count_gt20deg": 55,
+     "angle_changes_gt5deg": 57
+    },
+    "smoothness_after": {
+     "total_ft": 449.6,
+     "n_segments": 6,
+     "min_seg_ft": 19.3,
+     "mean_seg_ft": 74.9,
+     "turn_count_gt20deg": 2,
+     "angle_changes_gt5deg": 4
+    },
+    "validation_running_slope_pct": null,
+    "validation_flights": null,
+    "validation_landings": null,
+    "validation_running_ok": null,
+    "grading_required": {
+     "max_cut_ft": 1.98,
+     "max_fill_ft": 6.91,
+     "mean_abs_ft": 2.02,
+     "note": "linear design profile between node datums vs raw proposed grade — pending civil detailing"
+    },
+    "material_id": "ada_preferred",
+    "provenance": "derived from ada_route.geojson (read-only); running-slope/flights/landings cross-checked against validation.json ada[]"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533140.2,
+      750756.15
+     ],
+     [
+      19533143.518318016,
+      750765.441290442
+     ],
+     [
+      19533144.13619919,
+      750767.3360363988
+     ],
+     [
+      19533144.644497115,
+      750769.2533066219
+     ],
+     [
+      19533145.043211795,
+      750771.193101112
+     ],
+     [
+      19533145.332343236,
+      750773.1554198689
+     ],
+     [
+      19533145.51189143,
+      750775.1402628925
+     ],
+     [
+      19533147.2,
+      750802.15
+     ],
+     [
+      19533187.27909277,
+      750806.7745107042
+     ],
+     [
+      19533190.14691527,
+      750807.2692307011
+     ],
+     [
+      19533192.789929155,
+      750808.0656460436
+     ],
+     [
+      19533195.208134428,
+      750809.163756732
+     ],
+     [
+      19533197.401531085,
+      750810.5635627662
+     ],
+     [
+      19533199.370119132,
+      750812.2650641459
+     ],
+     [
+      19533201.11389856,
+      750814.2682608716
+     ],
+     [
+      19533202.632869378,
+      750816.573152943
+     ],
+     [
+      19533203.92703158,
+      750819.1797403602
+     ],
+     [
+      19533224.47296842,
+      750867.1202596398
+     ],
+     [
+      19533225.580866445,
+      750869.5178550368
+     ],
+     [
+      19533226.541044734,
+      750871.1957710475
+     ],
+     [
+      19533227.353503287,
+      750872.1540076718
+     ],
+     [
+      19533228.018242106,
+      750872.3925649099
+     ],
+     [
+      19533228.535261184,
+      750871.9114427618
+     ],
+     [
+      19533228.904560525,
+      750870.7106412275
+     ],
+     [
+      19533229.126140133,
+      750868.790160307
+     ],
+     [
+      19533229.2,
+      750866.15
+     ],
+     [
+      19533229.2,
+      750740.15
+     ],
+     [
+      19533228.98533748,
+      750735.4006749485
+     ],
+     [
+      19533228.341349896,
+      750730.7526997933
+     ],
+     [
+      19533227.268037267,
+      750726.2060745349
+     ],
+     [
+      19533225.76539959,
+      750721.7607991731
+     ],
+     [
+      19533223.833436854,
+      750717.416873708
+     ],
+     [
+      19533205.488768768,
+      750680.7275375332
+     ],
+     [
+      19533204.096812014,
+      750678.1516240215
+     ],
+     [
+      19533202.551956754,
+      750675.6859135119
+     ],
+     [
+      19533200.854203,
+      750673.3304060054
+     ],
+     [
+      19533199.003550753,
+      750671.0851015014
+     ],
+     [
+      19533197.0,
+      750668.9500000001
+     ],
+     [
+      19533194.4,
+      750666.35
+     ],
+     [
+      19533192.25225034,
+      750664.3755786967
+     ],
+     [
+      19533189.96900135,
+      750662.6123147865
+     ],
+     [
+      19533187.550253034,
+      750661.0602082696
+     ],
+     [
+      19533184.996005394,
+      750659.719259146
+     ],
+     [
+      19533182.306258425,
+      750658.5894674156
+     ],
+     [
+      19533154.2,
+      750648.15
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 5,
+    "kind": "route",
+    "name": "route_floor_to_egress",
+    "from": "floor_arrival",
+    "to": "egress_rim_south",
+    "route_class": "public_secondary",
+    "role": "ada_route_concept",
+    "status": "ADA-compliant route concept pending civil/code detailing",
+    "preferred": true,
+    "alternatives": [
+     "B_south_perimeter",
+     "C_hybrid"
+    ],
+    "length_ft": 427.6,
+    "drop_ft": -26.4,
+    "design_grade_pct": 6.18,
+    "profile": "ramp_runs(5-8.33%)",
+    "landings_marked": 13,
+    "smoothness_before": {
+     "total_ft": 555.0,
+     "n_segments": 440,
+     "min_seg_ft": 1.0,
+     "mean_seg_ft": 1.3,
+     "turn_count_gt20deg": 61,
+     "angle_changes_gt5deg": 65
+    },
+    "smoothness_after": {
+     "total_ft": 441.5,
+     "n_segments": 8,
+     "min_seg_ft": 14.9,
+     "mean_seg_ft": 55.2,
+     "turn_count_gt20deg": 5,
+     "angle_changes_gt5deg": 7
+    },
+    "validation_running_slope_pct": null,
+    "validation_flights": null,
+    "validation_landings": null,
+    "validation_running_ok": null,
+    "grading_required": {
+     "max_cut_ft": 9.13,
+     "max_fill_ft": 6.67,
+     "mean_abs_ft": 5.2,
+     "note": "linear design profile between node datums vs raw proposed grade — pending civil detailing"
+    },
+    "material_id": "ada_preferred",
+    "provenance": "derived from ada_route.geojson (read-only); running-slope/flights/landings cross-checked against validation.json ada[]"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533140.2,
+      750756.15
+     ],
+     [
+      19533130.2,
+      750760.15
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_service_to_stage",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 6,
+    "kind": "route",
+    "name": "route_service_to_stage",
+    "from": "floor_arrival",
+    "to": "service_stage_access",
+    "route_class": "service",
+    "role": "ada_route_concept",
+    "status": "ADA-compliant route concept pending civil/code detailing",
+    "preferred": false,
+    "alternatives": [],
+    "length_ft": 10.8,
+    "drop_ft": 0.0,
+    "design_grade_pct": 0.0,
+    "profile": "sloped_walk(<=5%)",
+    "landings_marked": 0,
+    "smoothness_before": {
+     "total_ft": 10.9,
+     "n_segments": 6,
+     "min_seg_ft": 1.0,
+     "mean_seg_ft": 1.8,
+     "turn_count_gt20deg": 1,
+     "angle_changes_gt5deg": 1
+    },
+    "smoothness_after": {
+     "total_ft": 10.8,
+     "n_segments": 1,
+     "min_seg_ft": 10.8,
+     "mean_seg_ft": 10.8,
+     "turn_count_gt20deg": 0,
+     "angle_changes_gt5deg": 0
+    },
+    "validation_running_slope_pct": null,
+    "validation_flights": null,
+    "validation_landings": null,
+    "validation_running_ok": null,
+    "grading_required": {
+     "max_cut_ft": -2.85,
+     "max_fill_ft": 2.96,
+     "mean_abs_ft": 2.91,
+     "note": "linear design profile between node datums vs raw proposed grade — pending civil detailing"
+    },
+    "material_id": "ada_service",
+    "provenance": "derived from ada_route.geojson (read-only); running-slope/flights/landings cross-checked against validation.json ada[]"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533118.2,
+      750703.15
+     ],
+     [
+      19533056.2,
+      750704.15
+     ],
+     [
+      19533049.2,
+      750715.15
+     ],
+     [
+      19533048.361348238,
+      750739.4709010755
+     ],
+     [
+      19533048.367262874,
+      750741.3313766886
+     ],
+     [
+      19533048.514085367,
+      750743.1695243872
+     ],
+     [
+      19533048.80181572,
+      750744.9853441721
+     ],
+     [
+      19533049.23045393,
+      750746.7788360431
+     ],
+     [
+      19533049.8,
+      750748.55
+     ],
+     [
+      19533052.2,
+      750755.15
+     ],
+     [
+      19533096.2,
+      750791.15
+     ],
+     [
+      19533115.2,
+      750795.15
+     ],
+     [
+      19533132.2,
+      750783.15
+     ],
+     [
+      19533142.2,
+      750774.15
+     ],
+     [
+      19533145.2,
+      750771.15
+     ],
+     [
+      19533140.2,
+      750756.15
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_park_to_floor",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 7,
+    "kind": "route",
+    "name": "route_park_to_floor",
+    "from": "park_arrival_west",
+    "to": "floor_arrival",
+    "route_class": "public_primary",
+    "role": "ada_route_concept",
+    "status": "ADA-compliant route concept pending civil/code detailing",
+    "preferred": true,
+    "alternatives": [
+     "C_hybrid"
+    ],
+    "length_ft": 246.2,
+    "drop_ft": 5.3,
+    "design_grade_pct": 2.14,
+    "profile": "sloped_walk(<=5%)",
+    "landings_marked": 3,
+    "smoothness_before": {
+     "total_ft": 255.0,
+     "n_segments": 196,
+     "min_seg_ft": 1.0,
+     "mean_seg_ft": 1.3,
+     "turn_count_gt20deg": 22,
+     "angle_changes_gt5deg": 32
+    },
+    "smoothness_after": {
+     "total_ft": 246.4,
+     "n_segments": 10,
+     "min_seg_ft": 4.2,
+     "mean_seg_ft": 24.6,
+     "turn_count_gt20deg": 7,
+     "angle_changes_gt5deg": 8
+    },
+    "validation_running_slope_pct": null,
+    "validation_flights": null,
+    "validation_landings": null,
+    "validation_running_ok": null,
+    "grading_required": {
+     "max_cut_ft": -0.39,
+     "max_fill_ft": 5.99,
+     "mean_abs_ft": 3.52,
+     "note": "linear design profile between node datums vs raw proposed grade — pending civil detailing"
+    },
+    "material_id": "ada_preferred",
+    "provenance": "derived from ada_route.geojson (read-only); running-slope/flights/landings cross-checked against validation.json ada[]"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533222.2,
+     750891.15
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_cross_aisle_landing_1",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 8,
+    "kind": "turn-pad",
+    "name": "route_arrival_to_cross_aisle_landing_1",
+    "elev_navd88_ft": 631.03,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     47.0916,
+     28.0264,
+     192.3379
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533206.2,
+     750803.15
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_cross_aisle_landing_2",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 9,
+    "kind": "turn-pad",
+    "name": "route_arrival_to_cross_aisle_landing_2",
+    "elev_navd88_ft": 626.61,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     42.2148,
+     1.204,
+     190.9907
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533190.2,
+     750797.15
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_cross_aisle_landing_3",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 10,
+    "kind": "turn-pad",
+    "name": "route_arrival_to_cross_aisle_landing_3",
+    "elev_navd88_ft": 621.46,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     37.338,
+     -0.6248,
+     189.421
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533225.79,
+     750746.91
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_floor_landing_1",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 11,
+    "kind": "rise-interval",
+    "name": "route_arrival_to_floor_landing_1",
+    "elev_navd88_ft": 637.19,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     48.1858,
+     -15.938,
+     194.2155
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533228.58,
+     750779.99
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_floor_landing_2",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 12,
+    "kind": "rise-interval",
+    "name": "route_arrival_to_floor_landing_2",
+    "elev_navd88_ft": 635.96,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     49.0362,
+     -5.8552,
+     193.8406
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533227.16,
+     750813.12
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_floor_landing_3",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 13,
+    "kind": "rise-interval",
+    "name": "route_arrival_to_floor_landing_3",
+    "elev_navd88_ft": 633.64,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     48.6034,
+     4.2428,
+     193.1335
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533224.09,
+     750846.21
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_floor_landing_4",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 14,
+    "kind": "rise-interval",
+    "name": "route_arrival_to_floor_landing_4",
+    "elev_navd88_ft": 631.18,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     47.6677,
+     14.3286,
+     192.3837
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533221.02,
+     750879.31
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_floor_landing_5",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 15,
+    "kind": "rise-interval",
+    "name": "route_arrival_to_floor_landing_5",
+    "elev_navd88_ft": 630.23,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     46.7319,
+     24.4175,
+     192.0941
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533203.16,
+     750862.58
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_floor_landing_6",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 16,
+    "kind": "rise-interval",
+    "name": "route_arrival_to_floor_landing_6",
+    "elev_navd88_ft": 624.82,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     41.2882,
+     19.3182,
+     190.4451
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533180.99,
+     750837.91
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_floor_landing_7",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 17,
+    "kind": "rise-interval",
+    "name": "route_arrival_to_floor_landing_7",
+    "elev_navd88_ft": 617.67,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     34.5308,
+     11.7988,
+     188.2658
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533158.11,
+     750813.8
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_floor_landing_8",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 18,
+    "kind": "rise-interval",
+    "name": "route_arrival_to_floor_landing_8",
+    "elev_navd88_ft": 611.73,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     27.557,
+     4.4501,
+     186.4553
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533144.59,
+     750786.12
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_floor_landing_9",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 19,
+    "kind": "rise-interval",
+    "name": "route_arrival_to_floor_landing_9",
+    "elev_navd88_ft": 610.1,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     23.4361,
+     -3.9868,
+     185.9585
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533220.2,
+     750888.15
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_floor_landing_10",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 20,
+    "kind": "turn-pad",
+    "name": "route_arrival_to_floor_landing_10",
+    "elev_navd88_ft": 630.53,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     46.482,
+     27.112,
+     192.1855
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533144.2,
+     750799.15
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_arrival_to_floor_landing_11",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 21,
+    "kind": "turn-pad",
+    "name": "route_arrival_to_floor_landing_11",
+    "elev_navd88_ft": 609.58,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     23.3172,
+     -0.0152,
+     185.8
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532942.2,
+     750660.15
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_cross_aisle_to_egress_landing_1",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 22,
+    "kind": "turn-pad",
+    "name": "route_cross_aisle_to_egress_landing_1",
+    "elev_navd88_ft": 631.1,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     -38.2524,
+     -42.3824,
+     192.3593
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533146.8,
+     750795.75
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_1",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 23,
+    "kind": "rise-interval",
+    "name": "route_floor_to_egress_landing_1",
+    "elev_navd88_ft": 609.83,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     24.1097,
+     -1.0516,
+     185.8762
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533181.01,
+     750806.05
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_2",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 24,
+    "kind": "rise-interval",
+    "name": "route_floor_to_egress_landing_2",
+    "elev_navd88_ft": 617.6,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     34.5369,
+     2.0879,
+     188.2445
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533208.76,
+     750830.46
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_3",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 25,
+    "kind": "rise-interval",
+    "name": "route_floor_to_egress_landing_3",
+    "elev_navd88_ft": 626.7,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     42.9951,
+     9.528,
+     191.0182
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533224.71,
+     750867.63
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_4",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 26,
+    "kind": "rise-interval",
+    "name": "route_floor_to_egress_landing_4",
+    "elev_navd88_ft": 631.04,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     47.8566,
+     20.8575,
+     192.341
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533229.2,
+     750838.21
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_5",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 27,
+    "kind": "rise-interval",
+    "name": "route_floor_to_egress_landing_5",
+    "elev_navd88_ft": 633.07,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     49.2252,
+     11.8902,
+     192.9597
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533229.2,
+     750797.77
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_6",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 28,
+    "kind": "rise-interval",
+    "name": "route_floor_to_egress_landing_6",
+    "elev_navd88_ft": 635.24,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     49.2252,
+     -0.4359,
+     193.6212
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533229.2,
+     750757.32
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_7",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 29,
+    "kind": "rise-interval",
+    "name": "route_floor_to_egress_landing_7",
+    "elev_navd88_ft": 637.49,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     49.2252,
+     -12.765,
+     194.307
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533223.95,
+     750717.68
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_8",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 30,
+    "kind": "rise-interval",
+    "name": "route_floor_to_egress_landing_8",
+    "elev_navd88_ft": 638.34,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     47.625,
+     -24.8473,
+     194.566
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533205.88,
+     750681.5
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_9",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 31,
+    "kind": "rise-interval",
+    "name": "route_floor_to_egress_landing_9",
+    "elev_navd88_ft": 636.68,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     42.1173,
+     -35.875,
+     194.0601
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533175.89,
+     750656.21
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_10",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 32,
+    "kind": "rise-interval",
+    "name": "route_floor_to_egress_landing_10",
+    "elev_navd88_ft": 637.9,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     32.9763,
+     -43.5834,
+     194.4319
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533147.2,
+     750802.15
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_11",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 33,
+    "kind": "turn-pad",
+    "name": "route_floor_to_egress_landing_11",
+    "elev_navd88_ft": 609.89,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     24.2316,
+     0.8992,
+     185.8945
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533199.2,
+     750808.15
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_12",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 34,
+    "kind": "turn-pad",
+    "name": "route_floor_to_egress_landing_12",
+    "elev_navd88_ft": 623.76,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     40.0812,
+     2.728,
+     190.122
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533229.2,
+     750878.15
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_floor_to_egress_landing_13",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 35,
+    "kind": "turn-pad",
+    "name": "route_floor_to_egress_landing_13",
+    "elev_navd88_ft": 632.0,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     49.2252,
+     24.064,
+     192.6336
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533056.2,
+     750704.15
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_park_to_floor_landing_1",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 36,
+    "kind": "turn-pad",
+    "name": "route_park_to_floor_landing_1",
+    "elev_navd88_ft": 615.3,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     -3.5052,
+     -28.9712,
+     187.5434
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533115.2,
+     750795.15
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_park_to_floor_landing_2",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 37,
+    "kind": "turn-pad",
+    "name": "route_park_to_floor_landing_2",
+    "elev_navd88_ft": 609.43,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     14.478,
+     -1.2344,
+     185.7543
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533145.2,
+     750771.15
+    ]
+   },
+   "properties": {
+    "feature_id": "ada_route_park_to_floor_landing_3",
+    "source_file": "vectors_geojson/ada_route.geojson",
+    "source_index": 38,
+    "kind": "turn-pad",
+    "name": "route_park_to_floor_landing_3",
+    "elev_navd88_ft": 610.32,
+    "crossing": null,
+    "design_grade_pct": null,
+    "note": "graded level pad >=5x5 ft, <=2% — pending civil detailing",
+    "material_id": "ada_landing",
+    "unreal_anchor_local_m": [
+     23.622,
+     -8.5496,
+     186.0255
+    ],
+    "provenance": "derived from ada_route.geojson (read-only)"
+   }
+  }
+ ]
+}

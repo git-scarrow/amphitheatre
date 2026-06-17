@@ -1,0 +1,208 @@
+{
+ "schema": "unreal-handoff/camera-manifest/0.1",
+ "frame": "positions in local ENU metres, Z-up; azimuth deg clockwise from north; bay-view axis = 330.0 deg",
+ "requested_slots": [
+  "stage",
+  "row1",
+  "row9",
+  "upper_row",
+  "ada_route",
+  "rim"
+ ],
+ "slots_covered": [
+  "ada_route",
+  "rim",
+  "row1",
+  "row9",
+  "stage",
+  "upper_row"
+ ],
+ "slots_uncovered": [],
+ "cameras": [
+  {
+   "camera_name": "Cam_upper_rim_down_to_stage",
+   "requested_slot": "upper_row",
+   "source_file": "vectors_geojson/in_situ_viewpoints.geojson",
+   "source_feature_id": "upper_rim_down_to_stage",
+   "position_local_m": [
+    40.9468,
+    -39.496,
+    196.0474
+   ],
+   "position_epsg6494_ft": [
+    19533202.04,
+    750669.62
+   ],
+   "eye_elev_navd88_ft": 643.2,
+   "eye_height_ft": 5.2,
+   "look_azimuth_deg": 308.4,
+   "look_target_local_m": [
+    7.4493,
+    -12.9022,
+    187.2996
+   ],
+   "fov_deg": 60,
+   "description": "standing above the bend (southeast) section's last row: three terrain-fitted seating families step down to the low stage, bay beyond",
+   "derived": false,
+   "provenance": "in_situ_viewpoints.geojson (authoritative camera)"
+  },
+  {
+   "camera_name": "Cam_mid_row_audience_to_bay",
+   "requested_slot": "row9",
+   "source_file": "vectors_geojson/in_situ_viewpoints.geojson",
+   "source_feature_id": "mid_row_audience_to_bay",
+   "position_local_m": [
+    27.048,
+    -26.795,
+    189.9666
+   ],
+   "position_epsg6494_ft": [
+    19533156.44,
+    750711.29
+   ],
+   "eye_elev_navd88_ft": 623.25,
+   "eye_height_ft": 3.94,
+   "look_azimuth_deg": 327.4,
+   "look_target_local_m": [
+    -93.1347,
+    161.3154,
+    176.6164
+   ],
+   "fov_deg": 60,
+   "description": "seated mid-bowl on the bend (southeast) section: performer below, dry treatment cell as scenic foreground, Little Traverse Bay + sky as the backdrop",
+   "derived": false,
+   "provenance": "in_situ_viewpoints.geojson (authoritative camera)"
+  },
+  {
+   "camera_name": "Cam_stage_looking_back_to_audience",
+   "requested_slot": "stage",
+   "source_file": "vectors_geojson/in_situ_viewpoints.geojson",
+   "source_feature_id": "stage_looking_back_to_audience",
+   "position_local_m": [
+    7.4493,
+    -12.9022,
+    188.275
+   ],
+   "position_epsg6494_ft": [
+    19533092.14,
+    750756.87
+   ],
+   "eye_elev_navd88_ft": 617.7,
+   "eye_height_ft": 5.2,
+   "look_azimuth_deg": 126.9,
+   "look_target_local_m": [
+    30.4952,
+    -30.1935,
+    191.6339
+   ],
+   "fov_deg": 60,
+   "description": "performer's view: east, bend and south families each curve with their own terrain — not one fan — rising ~15 ft around the floor",
+   "derived": false,
+   "provenance": "in_situ_viewpoints.geojson (authoritative camera)"
+  },
+  {
+   "camera_name": "Cam_ada_arrival_to_cross_aisle",
+   "requested_slot": "ada_route",
+   "source_file": "vectors_geojson/in_situ_viewpoints.geojson",
+   "source_feature_id": "ada_arrival_to_cross_aisle",
+   "position_local_m": [
+    34.924,
+    -16.2306,
+    191.0547
+   ],
+   "position_epsg6494_ft": [
+    19533182.28,
+    750745.95
+   ],
+   "eye_elev_navd88_ft": 626.82,
+   "eye_height_ft": 5.2,
+   "look_azimuth_deg": 236.0,
+   "look_target_local_m": [
+    22.162,
+    -24.8382,
+    190.1982
+   ],
+   "fov_deg": 60,
+   "description": "arriving on the rebuilt accessible route (concept, pending civil detailing): the rows-9/10 cross-aisle — level, wheelable, with the mid-bowl view pause — opens below",
+   "derived": false,
+   "provenance": "in_situ_viewpoints.geojson (authoritative camera)"
+  },
+  {
+   "camera_name": "Cam_outside_bowl_from_park_edge",
+   "requested_slot": "rim",
+   "source_file": "vectors_geojson/in_situ_viewpoints.geojson",
+   "source_feature_id": "outside_bowl_from_park_edge",
+   "position_local_m": [
+    -30.6324,
+    31.9888,
+    189.9422
+   ],
+   "position_epsg6494_ft": [
+    19532967.2,
+    750904.15
+   ],
+   "eye_elev_navd88_ft": 623.17,
+   "eye_height_ft": 5.2,
+   "look_azimuth_deg": 139.7,
+   "look_target_local_m": [
+    7.4493,
+    -12.9022,
+    187.2996
+   ],
+   "fov_deg": 60,
+   "description": "from the NE rim / park edge: the bowl reads as landscape; the contour-fitted bands disappear into the slope",
+   "derived": false,
+   "provenance": "in_situ_viewpoints.geojson (authoritative camera)"
+  },
+  {
+   "camera_name": "Cam_event_floor_to_treatment_cell",
+   "requested_slot": "stage",
+   "source_file": "vectors_geojson/in_situ_viewpoints.geojson",
+   "source_feature_id": "event_floor_to_treatment_cell",
+   "position_local_m": [
+    16.575,
+    -15.6271,
+    188.275
+   ],
+   "position_epsg6494_ft": [
+    19533122.08,
+    750747.93
+   ],
+   "eye_elev_navd88_ft": 617.7,
+   "eye_height_ft": 5.2,
+   "look_azimuth_deg": 320.1,
+   "look_target_local_m": [
+    -7.7541,
+    13.4325,
+    185.9585
+   ],
+   "fov_deg": 60,
+   "description": "standing on the orchestra floor: past the stage shoulder to the dry bioretention meadow — ephemeral water only, never a pool",
+   "derived": false,
+   "provenance": "in_situ_viewpoints.geojson (authoritative camera)"
+  },
+  {
+   "camera_name": "Cam_row1_bend_r1",
+   "requested_slot": "row1",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_feature_id": "tread_bend_r1",
+   "position_local_m": [
+    20.994,
+    -20.7432,
+    187.3819
+   ],
+   "position_epsg6494_ft": [
+    19533136.58,
+    750731.14
+   ],
+   "eye_elev_navd88_ft": 614.77,
+   "eye_height_ft": 3.94,
+   "look_azimuth_deg": 330.0,
+   "look_target_local_m": null,
+   "fov_deg": 50,
+   "description": "seated eye at bend r1 looking toward the bay axis",
+   "derived": true,
+   "provenance": "DERIVED from terrace_treads.geojson centroid + 3.94 ft seated eye (no authoritative viewpoint for this slot)"
+  }
+ ]
+}

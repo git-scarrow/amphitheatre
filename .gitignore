@@ -74,6 +74,16 @@ dem/MISSING_DATA.md
 # ── local Claude Code settings (paths, session permissions) ──────────────────
 .claude/settings.local.json
 
+# ── Unreal handoff: heavy regenerable binaries (rebuild with ──────────────────
+#    scripts/build_unreal_export.py). The lightweight geo/, tables/, manifests/,
+#    and *.heightfield.json sidecars ARE committed (review-friendly truth).
+unreal_export/terrain/*.glb
+unreal_export/terrain/*.obj
+unreal_export/terrain/*.r16
+#    only the generated 16-bit previews; a future lightweight diagnostic PNG
+#    under terrain/ stays trackable (do not broaden back to *.png).
+unreal_export/terrain/heightfield_*.png
+
 # ── misc scratch ─────────────────────────────────────────────────────────────
 *.log
 .DS_Store

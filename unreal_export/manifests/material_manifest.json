@@ -1,0 +1,99 @@
+{
+ "schema": "unreal-handoff/material-manifest/0.1",
+ "note": "Materials are PRESENTATION ONLY. Each is keyed to a validation attribute READ from the source tables; none re-computes or overrides a validated state. Provisional/concept tiers MUST remain visually marked (see must_label).",
+ "materials": {
+  "row_formal": {
+   "label": "Seating row - formal (C >= 90 mm)",
+   "color": "#2e7d32",
+   "keyed_to": "band_status=formal"
+  },
+  "row_partial": {
+   "label": "Seating row - partial band",
+   "color": "#f9a825",
+   "keyed_to": "band_status=partial"
+  },
+  "row_warn": {
+   "label": "Seating row - sightline WARN (C < 90 mm)",
+   "color": "#ef6c00",
+   "keyed_to": "sightline_verdict=WARN"
+  },
+  "row_unknown": {
+   "label": "Seating row - status unknown",
+   "color": "#9e9e9e",
+   "keyed_to": "band_status=unknown"
+  },
+  "stage": {
+   "label": "Stage deck",
+   "color": "#37474f",
+   "keyed_to": "zone=stage_core/shoulder"
+  },
+  "stage_provisional": {
+   "label": "Stage deck - PROVISIONAL (DESIGN_CANON Rule 9 OPEN)",
+   "color": "#c62828",
+   "hatch": "diagonal",
+   "keyed_to": "rule9_status=open",
+   "must_label": true
+  },
+  "event_floor_concept": {
+   "label": "Orchestra / event floor - concept tier",
+   "color": "#bcaaa4",
+   "keyed_to": "concept_tier=true"
+  },
+  "treatment_cell_concept": {
+   "label": "Treatment cell - concept tier",
+   "color": "#4fc3f7",
+   "keyed_to": "concept_tier=true"
+  },
+  "bay_view_axis": {
+   "label": "Bay-view axis (330.0 deg)",
+   "color": "#01579b",
+   "keyed_to": "reference_axis"
+  },
+  "ada_preferred": {
+   "label": "ADA route - preferred concept",
+   "color": "#1565c0",
+   "keyed_to": "preferred=true"
+  },
+  "ada_alternative": {
+   "label": "ADA route - alternative concept",
+   "color": "#7e57c2",
+   "keyed_to": "preferred=false"
+  },
+  "ada_service": {
+   "label": "ADA service route",
+   "color": "#8d6e63",
+   "keyed_to": "class=service"
+  },
+  "ada_landing": {
+   "label": "ADA landing / node",
+   "color": "#90caf9",
+   "keyed_to": "kind=landing"
+  },
+  "cutfill_diverging": {
+   "label": "Cut/fill overlay (blue=cut, red=fill, white=balanced)",
+   "ramp": {
+    "cut_-10ft": "#2166ac",
+    "balanced_0": "#f7f7f7",
+    "fill_+10ft": "#b2182b"
+   },
+   "keyed_to": "cutfill_mean_ft (from cut_fill_1ft.tif)"
+  },
+  "terrain_existing": {
+   "label": "Existing ground (LiDAR, planning-grade)",
+   "color": "#cfd8dc"
+  },
+  "terrain_proposed": {
+   "label": "Proposed grade (planning-grade)",
+   "color": "#d7ccc8"
+  }
+ },
+ "validation_state_palette": {
+  "PASS": "#2e7d32",
+  "WARN": "#ef6c00",
+  "FAIL": "#c62828",
+  "UNKNOWN": "#9e9e9e",
+  "provisional": "#c62828",
+  "concept": "#bcaaa4",
+  "source_of_truth": "#2e7d32"
+ }
+}

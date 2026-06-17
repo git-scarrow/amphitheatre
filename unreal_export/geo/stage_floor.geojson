@@ -1,0 +1,755 @@
+{
+ "type": "FeatureCollection",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::6494"
+  }
+ },
+ "name": "stage_floor",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       19533069.89,
+       750725.41
+      ],
+      [
+       19533130.51,
+       750760.41
+      ],
+      [
+       19533113.51,
+       750789.85
+      ],
+      [
+       19533052.89,
+       750754.85
+      ],
+      [
+       19533069.89,
+       750725.41
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "zone_stage_core",
+    "source_file": "vectors_geojson/bowl_zones.geojson",
+    "source_index": 0,
+    "role": "stage",
+    "zone": "stage_core",
+    "name": "stage_core",
+    "elev_navd88_ft": 612.5,
+    "rule9_status": "open",
+    "provisional": true,
+    "concept_tier": false,
+    "blocks_bay_view": false,
+    "open_to_bay_side": true,
+    "max_structure_height_ft": 4.0,
+    "geometry_source": "scenarioE stage_surface (inherited)",
+    "surface": "hardscape deck",
+    "material_id": "stage_provisional",
+    "note": "inherited design_open_low stage reused by Scenario E; axis refit OPEN per DESIGN_CANON Rule 9 — no fan is declared by this package",
+    "unreal_anchor_local_m": [
+     7.3152,
+     -12.6705,
+     186.69
+    ],
+    "provenance": "derived from bowl_zones.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       19533069.89,
+       750725.41
+      ],
+      [
+       19533054.17,
+       750718.64
+      ],
+      [
+       19533050.36,
+       750737.23
+      ],
+      [
+       19533052.89,
+       750754.85
+      ],
+      [
+       19533069.89,
+       750725.41
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "zone_stage_shoulder_left",
+    "source_file": "vectors_geojson/bowl_zones.geojson",
+    "source_index": 1,
+    "role": "stage_shoulder",
+    "zone": "stage_shoulder_left",
+    "name": "stage_shoulder_left",
+    "elev_navd88_ft": 612.5,
+    "rule9_status": "open",
+    "provisional": true,
+    "concept_tier": false,
+    "blocks_bay_view": false,
+    "open_to_bay_side": true,
+    "max_structure_height_ft": 4.0,
+    "geometry_source": "scenarioE stage_surface (inherited)",
+    "surface": "hardscape deck",
+    "material_id": "stage_provisional",
+    "note": "lateral floor-level shoulder — not an enclosing wall",
+    "unreal_anchor_local_m": [
+     -2.9842,
+     -19.9898,
+     186.69
+    ],
+    "provenance": "derived from bowl_zones.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       19533130.51,
+       750760.41
+      ],
+      [
+       19533144.23,
+       750770.64
+      ],
+      [
+       19533130.04,
+       750783.23
+      ],
+      [
+       19533113.51,
+       750789.85
+      ],
+      [
+       19533130.51,
+       750760.41
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "zone_stage_shoulder_right",
+    "source_file": "vectors_geojson/bowl_zones.geojson",
+    "source_index": 2,
+    "role": "stage_shoulder",
+    "zone": "stage_shoulder_right",
+    "name": "stage_shoulder_right",
+    "elev_navd88_ft": 612.5,
+    "rule9_status": "open",
+    "provisional": true,
+    "concept_tier": false,
+    "blocks_bay_view": false,
+    "open_to_bay_side": true,
+    "max_structure_height_ft": 4.0,
+    "geometry_source": "scenarioE stage_surface (inherited)",
+    "surface": "hardscape deck",
+    "material_id": "stage_provisional",
+    "note": "lateral floor-level shoulder — not an enclosing wall",
+    "unreal_anchor_local_m": [
+     18.8034,
+     -7.4102,
+     186.69
+    ],
+    "provenance": "derived from bowl_zones.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        19533151.71,
+        750768.46
+       ],
+       [
+        19533153.37,
+        750786.96
+       ],
+       [
+        19533151.82,
+        750756.0
+       ],
+       [
+        19533151.71,
+        750768.46
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        19533147.3,
+        750748.61
+       ],
+       [
+        19533145.08,
+        750742.31
+       ],
+       [
+        19533141.9,
+        750736.34
+       ],
+       [
+        19533138.44,
+        750731.84
+       ],
+       [
+        19533134.35,
+        750728.19
+       ],
+       [
+        19533130.47,
+        750726.01
+       ],
+       [
+        19533127.07,
+        750724.92
+       ],
+       [
+        19533123.35,
+        750724.48
+       ],
+       [
+        19533118.12,
+        750724.98
+       ],
+       [
+        19533117.43,
+        750721.31
+       ],
+       [
+        19533121.7,
+        750720.72
+       ],
+       [
+        19533106.1,
+        750720.14
+       ],
+       [
+        19533111.47,
+        750720.67
+       ],
+       [
+        19533110.99,
+        750724.42
+       ],
+       [
+        19533099.92,
+        750723.62
+       ],
+       [
+        19533074.41,
+        750723.45
+       ],
+       [
+        19533064.53,
+        750722.99
+       ],
+       [
+        19533069.94,
+        750725.32
+       ],
+       [
+        19533130.56,
+        750760.32
+       ],
+       [
+        19533144.32,
+        750770.59
+       ],
+       [
+        19533130.09,
+        750783.32
+       ],
+       [
+        19533113.74,
+        750789.87
+       ],
+       [
+        19533149.93,
+        750792.28
+       ],
+       [
+        19533147.97,
+        750769.72
+       ],
+       [
+        19533147.76,
+        750760.28
+       ],
+       [
+        19533148.12,
+        750754.9
+       ],
+       [
+        19533151.77,
+        750755.21
+       ],
+       [
+        19533150.86,
+        750747.68
+       ],
+       [
+        19533147.3,
+        750748.61
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        19533061.03,
+        750721.49
+       ],
+       [
+        19533061.37,
+        750718.89
+       ],
+       [
+        19533072.44,
+        750719.6
+       ],
+       [
+        19533091.86,
+        750719.69
+       ],
+       [
+        19533054.44,
+        750718.65
+       ],
+       [
+        19533061.03,
+        750721.49
+       ]
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "zone_orchestra_event_floor",
+    "source_file": "vectors_geojson/bowl_zones.geojson",
+    "source_index": 3,
+    "role": "forecourt_event_floor",
+    "zone": "orchestra_event_floor",
+    "name": "orchestra_event_floor",
+    "elev_navd88_ft": 612.5,
+    "rule9_status": null,
+    "provisional": false,
+    "concept_tier": true,
+    "blocks_bay_view": null,
+    "open_to_bay_side": null,
+    "max_structure_height_ft": null,
+    "geometry_source": "derived: convex_hull(stage, row-1 bands) minus both",
+    "surface": "stabilized turf / accessible event floor",
+    "material_id": "event_floor_concept",
+    "note": "floor between stage and the three row-1 bands; floor-level accessible seating",
+    "unreal_anchor_local_m": [
+     25.7861,
+     -8.7559,
+     186.69
+    ],
+    "provenance": "derived from bowl_zones.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       19533060.2,
+       750812.19
+      ],
+      [
+       19532991.26,
+       750800.04
+      ],
+      [
+       19532990.88,
+       750802.45
+      ],
+      [
+       19532990.58,
+       750804.87
+      ],
+      [
+       19532990.37,
+       750807.31
+      ],
+      [
+       19532990.24,
+       750809.75
+      ],
+      [
+       19532990.2,
+       750812.19
+      ],
+      [
+       19532990.24,
+       750814.63
+      ],
+      [
+       19532990.37,
+       750817.07
+      ],
+      [
+       19532990.58,
+       750819.51
+      ],
+      [
+       19532990.88,
+       750821.93
+      ],
+      [
+       19532991.26,
+       750824.35
+      ],
+      [
+       19532991.73,
+       750826.74
+      ],
+      [
+       19532992.28,
+       750829.12
+      ],
+      [
+       19532992.91,
+       750831.48
+      ],
+      [
+       19532993.63,
+       750833.82
+      ],
+      [
+       19532994.42,
+       750836.13
+      ],
+      [
+       19532995.3,
+       750838.41
+      ],
+      [
+       19532996.25,
+       750840.66
+      ],
+      [
+       19532997.28,
+       750842.88
+      ],
+      [
+       19532998.39,
+       750845.05
+      ],
+      [
+       19532999.58,
+       750847.19
+      ],
+      [
+       19533000.84,
+       750849.28
+      ],
+      [
+       19533002.17,
+       750851.33
+      ],
+      [
+       19533003.57,
+       750853.34
+      ],
+      [
+       19533005.04,
+       750855.29
+      ],
+      [
+       19533006.58,
+       750857.19
+      ],
+      [
+       19533008.18,
+       750859.03
+      ],
+      [
+       19533009.85,
+       750860.82
+      ],
+      [
+       19533011.57,
+       750862.54
+      ],
+      [
+       19533013.36,
+       750864.21
+      ],
+      [
+       19533015.2,
+       750865.81
+      ],
+      [
+       19533017.1,
+       750867.35
+      ],
+      [
+       19533019.06,
+       750868.82
+      ],
+      [
+       19533021.06,
+       750870.22
+      ],
+      [
+       19533023.11,
+       750871.55
+      ],
+      [
+       19533025.2,
+       750872.81
+      ],
+      [
+       19533027.34,
+       750874.0
+      ],
+      [
+       19533029.51,
+       750875.11
+      ],
+      [
+       19533031.73,
+       750876.14
+      ],
+      [
+       19533033.98,
+       750877.09
+      ],
+      [
+       19533036.26,
+       750877.97
+      ],
+      [
+       19533038.57,
+       750878.76
+      ],
+      [
+       19533040.91,
+       750879.48
+      ],
+      [
+       19533043.27,
+       750880.11
+      ],
+      [
+       19533045.65,
+       750880.66
+      ],
+      [
+       19533048.04,
+       750881.13
+      ],
+      [
+       19533050.46,
+       750881.51
+      ],
+      [
+       19533052.88,
+       750881.81
+      ],
+      [
+       19533055.32,
+       750882.02
+      ],
+      [
+       19533057.76,
+       750882.15
+      ],
+      [
+       19533060.2,
+       750882.19
+      ],
+      [
+       19533062.64,
+       750882.15
+      ],
+      [
+       19533065.08,
+       750882.02
+      ],
+      [
+       19533067.52,
+       750881.81
+      ],
+      [
+       19533069.94,
+       750881.51
+      ],
+      [
+       19533072.36,
+       750881.13
+      ],
+      [
+       19533074.75,
+       750880.66
+      ],
+      [
+       19533077.13,
+       750880.11
+      ],
+      [
+       19533079.49,
+       750879.48
+      ],
+      [
+       19533081.83,
+       750878.76
+      ],
+      [
+       19533084.14,
+       750877.97
+      ],
+      [
+       19533086.42,
+       750877.09
+      ],
+      [
+       19533088.67,
+       750876.14
+      ],
+      [
+       19533090.89,
+       750875.11
+      ],
+      [
+       19533093.06,
+       750874.0
+      ],
+      [
+       19533095.2,
+       750872.81
+      ],
+      [
+       19533097.29,
+       750871.55
+      ],
+      [
+       19533099.34,
+       750870.22
+      ],
+      [
+       19533101.34,
+       750868.82
+      ],
+      [
+       19533103.3,
+       750867.35
+      ],
+      [
+       19533105.2,
+       750865.81
+      ],
+      [
+       19533060.2,
+       750812.19
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "zone_treatment_cell_landscape",
+    "source_file": "vectors_geojson/bowl_zones.geojson",
+    "source_index": 4,
+    "role": "treatment_cell",
+    "zone": "treatment_cell_landscape",
+    "name": "treatment_cell_landscape",
+    "elev_navd88_ft": null,
+    "rule9_status": null,
+    "provisional": false,
+    "concept_tier": true,
+    "blocks_bay_view": null,
+    "open_to_bay_side": null,
+    "max_structure_height_ft": null,
+    "geometry_source": "treatment_wet_cell reused verbatim (stage4 → design_open_low → scenarioE drain target)",
+    "surface": null,
+    "material_id": "treatment_cell_concept",
+    "note": "dry bioretention cell beyond the stage; ponds only shallowly and transiently after large storms — never a standing pool",
+    "unreal_anchor_local_m": [
+     -7.7549,
+     13.4334,
+     0.0
+    ],
+    "provenance": "derived from bowl_zones.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533075.2,
+      750786.21
+     ],
+     [
+      19532945.2,
+      751011.38
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "lineage_bay_view_axis",
+    "source_file": "design_open_low/stage_floor.geojson",
+    "source_index": 1,
+    "role": "bay_view_axis",
+    "name": "bay_view_axis",
+    "az_deg": 330.0,
+    "note": "NNW toward Little Traverse Bay / evening sun",
+    "material_id": "bay_view_axis",
+    "lineage": "inherited design_open_low stage lineage",
+    "provenance": "derived from design_open_low/stage_floor.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533100.2,
+     750742.91
+    ]
+   },
+   "properties": {
+    "feature_id": "lineage_focal_point_stage_front",
+    "source_file": "design_open_low/stage_floor.geojson",
+    "source_index": 2,
+    "role": "focal_point_stage_front",
+    "name": "focal_point_stage_front",
+    "az_deg": null,
+    "note": "sightline focus + stage front, 35 ft from row 1",
+    "material_id": "bay_view_axis",
+    "lineage": "inherited design_open_low stage lineage",
+    "provenance": "derived from design_open_low/stage_floor.geojson (read-only)"
+   }
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "name": "proposed",
+ "source": "dem/proposed_grade_1ft.tif",
+ "sha256_12": "86de4d4e99a7",
+ "format": "16-bit unsigned, little-endian, row-major (N->S rows, W->E cols)",
+ "grid": [
+  801,
+  801
+ ],
+ "res_ft": 1.0,
+ "res_m": 0.3048,
+ "z_navd88_ft": {
+  "min": 588.23,
+  "max": 662.092,
+  "span": 73.862
+ },
+ "reconstruct_navd88_ft": "zmin + raw/65535 * span",
+ "unreal_landscape": {
+  "size_px": [
+   801,
+   801
+  ],
+  "xy_scale_cm_per_px": 30.48,
+  "z_scale_note": "Unreal Z 'scale' 100 maps the full 0..65535 raw to 512 m. To honour NAVD88 ft, set landscape Z scale = 4.397086 (so 65535 -> 22.513 m span), Z offset = 17929.2 cm."
+ },
+ "void_frac": 0.1211,
+ "datum": "NAVD88 (Geoid12A), international feet",
+ "horizontal_crs": "EPSG:6494 NAD83(2011)/Michigan Central, intl ft",
+ "nw_corner_epsg6494_ft": [
+  19532622.7,
+  751186.65
+ ],
+ "nw_corner_local_m": [
+  -135.636,
+  118.0948,
+  179.2925
+ ],
+ "files": {
+  "raw": "heightfield_proposed.r16",
+  "png": "heightfield_proposed.png"
+ },
+ "WARNING": "planning-grade (2015 USGS LiDAR + supplement) - not a survey"
+}

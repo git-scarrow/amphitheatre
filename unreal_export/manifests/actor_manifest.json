@@ -1,0 +1,1919 @@
+{
+ "schema": "unreal-handoff/actor-manifest/0.1",
+ "note": "Every Unreal actor traces to a source file + feature id. anchor_local_m is the ENU metre position; anchor_epsg6494_ft is the georeferenced position for round-trip back to GIS.",
+ "frame": "local ENU metres, Z-up; origin EPSG:6494 (19533067.7, 750799.2) intl ft; ft->m 0.3048",
+ "n_actors": 91,
+ "actors": [
+  {
+   "actor_name": "Row_bend_01",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r1",
+   "anchor_epsg6494_ft": [
+    19533136.58,
+    750731.14
+   ],
+   "anchor_local_m": [
+    20.994,
+    -20.7432,
+    186.181
+   ],
+   "z_navd88_ft": 610.83,
+   "material_id": "row_formal",
+   "validation_state": "formal",
+   "provisional": false,
+   "note": "19 seats; band formal; C=Nonemm"
+  },
+  {
+   "actor_name": "Row_bend_02",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r2",
+   "anchor_epsg6494_ft": [
+    19533139.73,
+    750727.91
+   ],
+   "anchor_local_m": [
+    21.9544,
+    -21.7302,
+    186.4949
+   ],
+   "z_navd88_ft": 611.86,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "21 seats; band formal; C=196.2mm"
+  },
+  {
+   "actor_name": "Row_bend_03",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r3",
+   "anchor_epsg6494_ft": [
+    19533142.72,
+    750724.96
+   ],
+   "anchor_local_m": [
+    22.8667,
+    -22.628,
+    186.8515
+   ],
+   "z_navd88_ft": 613.03,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "22 seats; band formal; C=211.8mm"
+  },
+  {
+   "actor_name": "Row_bend_04",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r4",
+   "anchor_epsg6494_ft": [
+    19533145.46,
+    750722.3
+   ],
+   "anchor_local_m": [
+    23.7001,
+    -23.4387,
+    187.199
+   ],
+   "z_navd88_ft": 614.17,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "23 seats; band formal; C=214.2mm"
+  },
+  {
+   "actor_name": "Row_bend_06",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r6",
+   "anchor_epsg6494_ft": [
+    19533150.98,
+    750716.57
+   ],
+   "anchor_local_m": [
+    25.3829,
+    -25.1856,
+    187.9763
+   ],
+   "z_navd88_ft": 616.72,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "24 seats; band formal; C=421.5mm"
+  },
+  {
+   "actor_name": "Row_bend_07",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r7",
+   "anchor_epsg6494_ft": [
+    19533153.7,
+    750713.89
+   ],
+   "anchor_local_m": [
+    26.2137,
+    -26.0022,
+    188.3725
+   ],
+   "z_navd88_ft": 618.02,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "25 seats; band formal; C=215.2mm"
+  },
+  {
+   "actor_name": "Row_bend_08",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r8",
+   "anchor_epsg6494_ft": [
+    19533156.44,
+    750711.29
+   ],
+   "anchor_local_m": [
+    27.0482,
+    -26.7959,
+    188.7657
+   ],
+   "z_navd88_ft": 619.31,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "26 seats; band formal; C=193.9mm"
+  },
+  {
+   "actor_name": "Row_bend_11",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r11",
+   "anchor_epsg6494_ft": [
+    19533164.85,
+    750702.91
+   ],
+   "anchor_local_m": [
+    29.6108,
+    -29.3493,
+    190.0123
+   ],
+   "z_navd88_ft": 623.4,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "29 seats; band formal; C=501.2mm"
+  },
+  {
+   "actor_name": "Row_bend_12",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r12",
+   "anchor_epsg6494_ft": [
+    19533167.75,
+    750700.14
+   ],
+   "anchor_local_m": [
+    30.4938,
+    -30.1925,
+    190.4329
+   ],
+   "z_navd88_ft": 624.78,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "29 seats; band formal; C=178.1mm"
+  },
+  {
+   "actor_name": "Row_bend_13",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r13",
+   "anchor_epsg6494_ft": [
+    19533171.1,
+    750697.17
+   ],
+   "anchor_local_m": [
+    31.5173,
+    -31.0983,
+    190.8962
+   ],
+   "z_navd88_ft": 626.3,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "31 seats; band formal; C=192.9mm"
+  },
+  {
+   "actor_name": "Row_bend_14",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r14",
+   "anchor_epsg6494_ft": [
+    19533174.31,
+    750694.26
+   ],
+   "anchor_local_m": [
+    32.4946,
+    -31.9844,
+    191.3534
+   ],
+   "z_navd88_ft": 627.8,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "32 seats; band formal; C=139.2mm"
+  },
+  {
+   "actor_name": "Row_bend_15",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r15",
+   "anchor_epsg6494_ft": [
+    19533177.46,
+    750691.25
+   ],
+   "anchor_local_m": [
+    33.4551,
+    -32.902,
+    191.8228
+   ],
+   "z_navd88_ft": 629.34,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "33 seats; band formal; C=149.6mm"
+  },
+  {
+   "actor_name": "Row_bend_16",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r16",
+   "anchor_epsg6494_ft": [
+    19533180.09,
+    750688.1
+   ],
+   "anchor_local_m": [
+    34.2566,
+    -33.8639,
+    192.2526
+   ],
+   "z_navd88_ft": 630.75,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "34 seats; band formal; C=143.5mm"
+  },
+  {
+   "actor_name": "Row_bend_17",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r17",
+   "anchor_epsg6494_ft": [
+    19533183.3,
+    750684.97
+   ],
+   "anchor_local_m": [
+    35.2336,
+    -34.8165,
+    192.7068
+   ],
+   "z_navd88_ft": 632.24,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "35 seats; band formal; C=109.2mm"
+  },
+  {
+   "actor_name": "Row_bend_18",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_bend_r18",
+   "anchor_epsg6494_ft": [
+    19533186.37,
+    750682.06
+   ],
+   "anchor_local_m": [
+    36.1713,
+    -35.7045,
+    193.1396
+   ],
+   "z_navd88_ft": 633.66,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "36 seats; band formal; C=112.7mm"
+  },
+  {
+   "actor_name": "Row_east_01",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r1",
+   "anchor_epsg6494_ft": [
+    19533150.43,
+    750773.67
+   ],
+   "anchor_local_m": [
+    25.2149,
+    -7.7818,
+    186.1901
+   ],
+   "z_navd88_ft": 610.86,
+   "material_id": "row_formal",
+   "validation_state": "formal",
+   "provisional": false,
+   "note": "16 seats; band formal; C=Nonemm"
+  },
+  {
+   "actor_name": "Row_east_02",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r2",
+   "anchor_epsg6494_ft": [
+    19533155.6,
+    750773.15
+   ],
+   "anchor_local_m": [
+    26.7928,
+    -7.9388,
+    186.4949
+   ],
+   "z_navd88_ft": 611.86,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "18 seats; band formal; C=181.5mm"
+  },
+  {
+   "actor_name": "Row_east_03",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r3",
+   "anchor_epsg6494_ft": [
+    19533160.24,
+    750772.12
+   ],
+   "anchor_local_m": [
+    28.2067,
+    -8.2546,
+    186.8515
+   ],
+   "z_navd88_ft": 613.03,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "18 seats; band formal; C=210.7mm"
+  },
+  {
+   "actor_name": "Row_east_04",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r4",
+   "anchor_epsg6494_ft": [
+    19533164.3,
+    750771.66
+   ],
+   "anchor_local_m": [
+    29.4434,
+    -8.3929,
+    187.2051
+   ],
+   "z_navd88_ft": 614.19,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "19 seats; band formal; C=218.8mm"
+  },
+  {
+   "actor_name": "Row_east_06",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r6",
+   "anchor_epsg6494_ft": [
+    19533172.05,
+    750770.08
+   ],
+   "anchor_local_m": [
+    31.8046,
+    -8.8745,
+    187.9824
+   ],
+   "z_navd88_ft": 616.74,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "21 seats; band formal; C=431.5mm"
+  },
+  {
+   "actor_name": "Row_east_07",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r7",
+   "anchor_epsg6494_ft": [
+    19533175.68,
+    750769.09
+   ],
+   "anchor_local_m": [
+    32.9111,
+    -9.1769,
+    188.3786
+   ],
+   "z_navd88_ft": 618.04,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "22 seats; band formal; C=212.6mm"
+  },
+  {
+   "actor_name": "Row_east_08",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r8",
+   "anchor_epsg6494_ft": [
+    19533179.33,
+    750768.62
+   ],
+   "anchor_local_m": [
+    34.0243,
+    -9.3218,
+    188.7657
+   ],
+   "z_navd88_ft": 619.31,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "23 seats; band formal; C=192.2mm"
+  },
+  {
+   "actor_name": "Row_east_11",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r11",
+   "anchor_epsg6494_ft": [
+    19533190.38,
+    750766.65
+   ],
+   "anchor_local_m": [
+    37.3916,
+    -9.9214,
+    190.0032
+   ],
+   "z_navd88_ft": 623.37,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "25 seats; band formal; C=494.2mm"
+  },
+  {
+   "actor_name": "Row_east_12",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r12",
+   "anchor_epsg6494_ft": [
+    19533194.06,
+    750765.64
+   ],
+   "anchor_local_m": [
+    38.5141,
+    -10.2293,
+    190.4421
+   ],
+   "z_navd88_ft": 624.81,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "26 seats; band formal; C=166.8mm"
+  },
+  {
+   "actor_name": "Row_east_13",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r13",
+   "anchor_epsg6494_ft": [
+    19533197.98,
+    750764.67
+   ],
+   "anchor_local_m": [
+    39.7106,
+    -10.524,
+    190.8993
+   ],
+   "z_navd88_ft": 626.31,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "27 seats; band formal; C=215.0mm"
+  },
+  {
+   "actor_name": "Row_east_14",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r14",
+   "anchor_epsg6494_ft": [
+    19533201.94,
+    750763.64
+   ],
+   "anchor_local_m": [
+    40.915,
+    -10.8372,
+    191.3748
+   ],
+   "z_navd88_ft": 627.87,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "28 seats; band formal; C=153.1mm"
+  },
+  {
+   "actor_name": "Row_east_15",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r15",
+   "anchor_epsg6494_ft": [
+    19533206.03,
+    750762.66
+   ],
+   "anchor_local_m": [
+    42.1615,
+    -11.1384,
+    191.835
+   ],
+   "z_navd88_ft": 629.38,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "29 seats; band formal; C=136.2mm"
+  },
+  {
+   "actor_name": "Row_east_16",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r16",
+   "anchor_epsg6494_ft": [
+    19533209.79,
+    750762.13
+   ],
+   "anchor_local_m": [
+    43.3086,
+    -11.2995,
+    192.2526
+   ],
+   "z_navd88_ft": 630.75,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "30 seats; band formal; C=145.3mm"
+  },
+  {
+   "actor_name": "Row_east_17",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r17",
+   "anchor_epsg6494_ft": [
+    19533214.0,
+    750761.59
+   ],
+   "anchor_local_m": [
+    44.5937,
+    -11.4632,
+    192.7159
+   ],
+   "z_navd88_ft": 632.27,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "31 seats; band formal; C=109.1mm"
+  },
+  {
+   "actor_name": "Row_east_18",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_east_r18",
+   "anchor_epsg6494_ft": [
+    19533217.85,
+    750760.59
+   ],
+   "anchor_local_m": [
+    45.7658,
+    -11.7698,
+    193.1426
+   ],
+   "z_navd88_ft": 633.67,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "32 seats; band formal; C=100.1mm"
+  },
+  {
+   "actor_name": "Row_south_01",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r1",
+   "anchor_epsg6494_ft": [
+    19533086.2,
+    750721.61
+   ],
+   "anchor_local_m": [
+    5.6382,
+    -23.6491,
+    186.1749
+   ],
+   "z_navd88_ft": 610.81,
+   "material_id": "row_formal",
+   "validation_state": "formal",
+   "provisional": false,
+   "note": "22 seats; band formal; C=Nonemm"
+  },
+  {
+   "actor_name": "Row_south_02",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r2",
+   "anchor_epsg6494_ft": [
+    19533086.69,
+    750717.09
+   ],
+   "anchor_local_m": [
+    5.7869,
+    -25.0281,
+    186.498
+   ],
+   "z_navd88_ft": 611.87,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "23 seats; band formal; C=205.2mm"
+  },
+  {
+   "actor_name": "Row_south_03",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r3",
+   "anchor_epsg6494_ft": [
+    19533086.82,
+    750713.24
+   ],
+   "anchor_local_m": [
+    5.8272,
+    -26.1998,
+    186.8515
+   ],
+   "z_navd88_ft": 613.03,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "25 seats; band formal; C=204.2mm"
+  },
+  {
+   "actor_name": "Row_south_04",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r4",
+   "anchor_epsg6494_ft": [
+    19533087.2,
+    750709.62
+   ],
+   "anchor_local_m": [
+    5.9421,
+    -27.3025,
+    187.2051
+   ],
+   "z_navd88_ft": 614.19,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "26 seats; band formal; C=217.2mm"
+  },
+  {
+   "actor_name": "Row_south_06",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r6",
+   "anchor_epsg6494_ft": [
+    19533087.69,
+    750701.77
+   ],
+   "anchor_local_m": [
+    6.0936,
+    -29.6956,
+    187.9793
+   ],
+   "z_navd88_ft": 616.73,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "29 seats; band formal; C=418.6mm"
+  },
+  {
+   "actor_name": "Row_south_07",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r7",
+   "anchor_epsg6494_ft": [
+    19533087.69,
+    750698.23
+   ],
+   "anchor_local_m": [
+    6.0942,
+    -30.7763,
+    188.3847
+   ],
+   "z_navd88_ft": 618.06,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "30 seats; band formal; C=236.6mm"
+  },
+  {
+   "actor_name": "Row_south_08",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r8",
+   "anchor_epsg6494_ft": [
+    19533088.18,
+    750694.52
+   ],
+   "anchor_local_m": [
+    6.2414,
+    -31.905,
+    188.7626
+   ],
+   "z_navd88_ft": 619.3,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "31 seats; band formal; C=181.2mm"
+  },
+  {
+   "actor_name": "Row_south_11",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r11",
+   "anchor_epsg6494_ft": [
+    19533089.2,
+    750683.72
+   ],
+   "anchor_local_m": [
+    6.5519,
+    -35.1987,
+    190.0062
+   ],
+   "z_navd88_ft": 623.38,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "34 seats; band formal; C=507.7mm"
+  },
+  {
+   "actor_name": "Row_south_12",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r12",
+   "anchor_epsg6494_ft": [
+    19533089.68,
+    750680.16
+   ],
+   "anchor_local_m": [
+    6.7008,
+    -36.2821,
+    190.439
+   ],
+   "z_navd88_ft": 624.8,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "36 seats; band formal; C=169.2mm"
+  },
+  {
+   "actor_name": "Row_south_13",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r13",
+   "anchor_epsg6494_ft": [
+    19533090.23,
+    750676.26
+   ],
+   "anchor_local_m": [
+    6.8657,
+    -37.4727,
+    190.8962
+   ],
+   "z_navd88_ft": 626.3,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "37 seats; band formal; C=187.6mm"
+  },
+  {
+   "actor_name": "Row_south_14",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r14",
+   "anchor_epsg6494_ft": [
+    19533090.71,
+    750672.52
+   ],
+   "anchor_local_m": [
+    7.0123,
+    -38.6131,
+    191.3656
+   ],
+   "z_navd88_ft": 627.84,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "39 seats; band formal; C=169.8mm"
+  },
+  {
+   "actor_name": "Row_south_15",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r15",
+   "anchor_epsg6494_ft": [
+    19533091.2,
+    750668.64
+   ],
+   "anchor_local_m": [
+    7.1625,
+    -39.7948,
+    191.8228
+   ],
+   "z_navd88_ft": 629.34,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "40 seats; band formal; C=127.4mm"
+  },
+  {
+   "actor_name": "Row_south_16",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r16",
+   "anchor_epsg6494_ft": [
+    19533091.18,
+    750665.05
+   ],
+   "anchor_local_m": [
+    7.1576,
+    -40.8892,
+    192.2526
+   ],
+   "z_navd88_ft": 630.75,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "41 seats; band formal; C=148.3mm"
+  },
+  {
+   "actor_name": "Row_south_17",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r17",
+   "anchor_epsg6494_ft": [
+    19533091.66,
+    750661.19
+   ],
+   "anchor_local_m": [
+    7.3036,
+    -42.0655,
+    192.725
+   ],
+   "z_navd88_ft": 632.3,
+   "material_id": "row_formal",
+   "validation_state": "PASS",
+   "provisional": false,
+   "note": "42 seats; band formal; C=130.6mm"
+  },
+  {
+   "actor_name": "Row_south_18",
+   "actor_class": "spline_mesh",
+   "source_file": "vectors_geojson/terrace_treads.geojson",
+   "source_sha256_12": "e74d78853e2d",
+   "source_feature_id": "tread_south_r18",
+   "anchor_epsg6494_ft": [
+    19533092.18,
+    750657.44
+   ],
+   "anchor_local_m": [
+    7.4609,
+    -43.209,
+    193.1426
+   ],
+   "z_navd88_ft": 633.67,
+   "material_id": "row_formal",
+   "validation_state": "WARN",
+   "provisional": false,
+   "note": "44 seats; band formal; C=87.8mm"
+  },
+  {
+   "actor_name": "Stage_stage_core",
+   "actor_class": "mesh",
+   "source_file": "vectors_geojson/bowl_zones.geojson",
+   "source_sha256_12": "3228c4b2ff70",
+   "source_feature_id": "zone_stage_core",
+   "anchor_epsg6494_ft": [
+    19533091.7,
+    750757.63
+   ],
+   "anchor_local_m": [
+    7.3152,
+    -12.6705,
+    186.69
+   ],
+   "z_navd88_ft": 612.5,
+   "material_id": "stage_provisional",
+   "validation_state": "provisional",
+   "provisional": true,
+   "note": "Rule 9 OPEN - stage deck PROVISIONAL"
+  },
+  {
+   "actor_name": "Stage_stage_shoulder_left",
+   "actor_class": "mesh",
+   "source_file": "vectors_geojson/bowl_zones.geojson",
+   "source_sha256_12": "3228c4b2ff70",
+   "source_feature_id": "zone_stage_shoulder_left",
+   "anchor_epsg6494_ft": [
+    19533057.91,
+    750733.62
+   ],
+   "anchor_local_m": [
+    -2.9842,
+    -19.9898,
+    186.69
+   ],
+   "z_navd88_ft": 612.5,
+   "material_id": "stage_provisional",
+   "validation_state": "provisional",
+   "provisional": true,
+   "note": "Rule 9 OPEN - stage deck PROVISIONAL"
+  },
+  {
+   "actor_name": "Stage_stage_shoulder_right",
+   "actor_class": "mesh",
+   "source_file": "vectors_geojson/bowl_zones.geojson",
+   "source_sha256_12": "3228c4b2ff70",
+   "source_feature_id": "zone_stage_shoulder_right",
+   "anchor_epsg6494_ft": [
+    19533129.39,
+    750774.89
+   ],
+   "anchor_local_m": [
+    18.8034,
+    -7.4102,
+    186.69
+   ],
+   "z_navd88_ft": 612.5,
+   "material_id": "stage_provisional",
+   "validation_state": "provisional",
+   "provisional": true,
+   "note": "Rule 9 OPEN - stage deck PROVISIONAL"
+  },
+  {
+   "actor_name": "OrchestraEventFloor",
+   "actor_class": "mesh",
+   "source_file": "vectors_geojson/bowl_zones.geojson",
+   "source_sha256_12": "3228c4b2ff70",
+   "source_feature_id": "zone_orchestra_event_floor",
+   "anchor_epsg6494_ft": [
+    19533152.3,
+    750770.47
+   ],
+   "anchor_local_m": [
+    25.7861,
+    -8.7559,
+    186.69
+   ],
+   "z_navd88_ft": 612.5,
+   "material_id": "event_floor_concept",
+   "validation_state": "concept",
+   "provisional": false,
+   "note": "concept-tier illustrative"
+  },
+  {
+   "actor_name": "TreatmentCellLandscape",
+   "actor_class": "mesh",
+   "source_file": "vectors_geojson/bowl_zones.geojson",
+   "source_sha256_12": "3228c4b2ff70",
+   "source_feature_id": "zone_treatment_cell_landscape",
+   "anchor_epsg6494_ft": [
+    19533042.26,
+    750843.27
+   ],
+   "anchor_local_m": [
+    -7.7549,
+    13.4334,
+    0.0
+   ],
+   "z_navd88_ft": null,
+   "material_id": "treatment_cell_concept",
+   "validation_state": "concept",
+   "provisional": false,
+   "note": "concept-tier illustrative"
+  },
+  {
+   "actor_name": "BayViewAxis",
+   "actor_class": "spline",
+   "source_file": "design_open_low/stage_floor.geojson",
+   "source_sha256_12": "59a32670aab6",
+   "source_feature_id": "lineage_bay_view_axis",
+   "anchor_epsg6494_ft": [
+    19533075.2,
+    750786.21
+   ],
+   "anchor_local_m": [
+    2.286,
+    -3.9594,
+    0.0
+   ],
+   "z_navd88_ft": null,
+   "material_id": "bay_view_axis",
+   "validation_state": "reference_axis",
+   "provisional": false,
+   "note": "bay-view azimuth 330.0 deg"
+  },
+  {
+   "actor_name": "FocalPointStageFront",
+   "actor_class": "point",
+   "source_file": "design_open_low/stage_floor.geojson",
+   "source_sha256_12": "59a32670aab6",
+   "source_feature_id": "lineage_focal_point_stage_front",
+   "anchor_epsg6494_ft": [
+    19533100.2,
+    750742.91
+   ],
+   "anchor_local_m": [
+    9.906,
+    -17.1572,
+    0.0
+   ],
+   "z_navd88_ft": null,
+   "material_id": "bay_view_axis",
+   "validation_state": "reference_axis",
+   "provisional": false,
+   "note": "bay-view azimuth 330.0 deg"
+  },
+  {
+   "actor_name": "ADA_route_arrival_to_cross_aisle",
+   "actor_class": "spline",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_cross_aisle",
+   "anchor_epsg6494_ft": [
+    19533220.2,
+    750714.15
+   ],
+   "anchor_local_m": [
+    46.482,
+    -25.9232,
+    0.0
+   ],
+   "z_navd88_ft": null,
+   "material_id": "ada_preferred",
+   "validation_state": "route_concept_pending_civil",
+   "provisional": false,
+   "note": "ADA-compliant route concept pending civil/code detailing"
+  },
+  {
+   "actor_name": "ADA_route_arrival_to_floor",
+   "actor_class": "spline",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_floor",
+   "anchor_epsg6494_ft": [
+    19533220.2,
+    750714.15
+   ],
+   "anchor_local_m": [
+    46.482,
+    -25.9232,
+    0.0
+   ],
+   "z_navd88_ft": null,
+   "material_id": "ada_alternative",
+   "validation_state": "route_concept_pending_civil",
+   "provisional": false,
+   "note": "ADA-compliant route concept pending civil/code detailing"
+  },
+  {
+   "actor_name": "ADA_route_cross_aisle_to_wc_cluster",
+   "actor_class": "spline",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_cross_aisle_to_wc_cluster",
+   "anchor_epsg6494_ft": [
+    19533169.2,
+    750708.15
+   ],
+   "anchor_local_m": [
+    30.9372,
+    -27.752,
+    0.0
+   ],
+   "z_navd88_ft": null,
+   "material_id": "ada_preferred",
+   "validation_state": "route_concept_pending_civil",
+   "provisional": false,
+   "note": "ADA-compliant route concept pending civil/code detailing"
+  },
+  {
+   "actor_name": "ADA_route_floor_to_wc_cluster",
+   "actor_class": "spline",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_wc_cluster",
+   "anchor_epsg6494_ft": [
+    19533140.2,
+    750756.15
+   ],
+   "anchor_local_m": [
+    22.098,
+    -13.1216,
+    0.0
+   ],
+   "z_navd88_ft": null,
+   "material_id": "ada_preferred",
+   "validation_state": "route_concept_pending_civil",
+   "provisional": false,
+   "note": "ADA-compliant route concept pending civil/code detailing"
+  },
+  {
+   "actor_name": "ADA_route_cross_aisle_to_egress",
+   "actor_class": "spline",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_cross_aisle_to_egress",
+   "anchor_epsg6494_ft": [
+    19533169.2,
+    750708.15
+   ],
+   "anchor_local_m": [
+    30.9372,
+    -27.752,
+    0.0
+   ],
+   "z_navd88_ft": null,
+   "material_id": "ada_preferred",
+   "validation_state": "route_concept_pending_civil",
+   "provisional": false,
+   "note": "ADA-compliant route concept pending civil/code detailing"
+  },
+  {
+   "actor_name": "ADA_route_floor_to_egress",
+   "actor_class": "spline",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress",
+   "anchor_epsg6494_ft": [
+    19533140.2,
+    750756.15
+   ],
+   "anchor_local_m": [
+    22.098,
+    -13.1216,
+    0.0
+   ],
+   "z_navd88_ft": null,
+   "material_id": "ada_preferred",
+   "validation_state": "route_concept_pending_civil",
+   "provisional": false,
+   "note": "ADA-compliant route concept pending civil/code detailing"
+  },
+  {
+   "actor_name": "ADA_route_service_to_stage",
+   "actor_class": "spline",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_service_to_stage",
+   "anchor_epsg6494_ft": [
+    19533140.2,
+    750756.15
+   ],
+   "anchor_local_m": [
+    22.098,
+    -13.1216,
+    0.0
+   ],
+   "z_navd88_ft": null,
+   "material_id": "ada_service",
+   "validation_state": "route_concept_pending_civil",
+   "provisional": false,
+   "note": "ADA-compliant route concept pending civil/code detailing"
+  },
+  {
+   "actor_name": "ADA_route_park_to_floor",
+   "actor_class": "spline",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_park_to_floor",
+   "anchor_epsg6494_ft": [
+    19533118.2,
+    750703.15
+   ],
+   "anchor_local_m": [
+    15.3924,
+    -29.276,
+    0.0
+   ],
+   "z_navd88_ft": null,
+   "material_id": "ada_preferred",
+   "validation_state": "route_concept_pending_civil",
+   "provisional": false,
+   "note": "ADA-compliant route concept pending civil/code detailing"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_cross_aisle_landing_1",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_cross_aisle_landing_1",
+   "anchor_epsg6494_ft": [
+    19533222.2,
+    750891.15
+   ],
+   "anchor_local_m": [
+    47.0916,
+    28.0264,
+    192.3379
+   ],
+   "z_navd88_ft": 631.03,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "turn-pad"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_cross_aisle_landing_2",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_cross_aisle_landing_2",
+   "anchor_epsg6494_ft": [
+    19533206.2,
+    750803.15
+   ],
+   "anchor_local_m": [
+    42.2148,
+    1.204,
+    190.9907
+   ],
+   "z_navd88_ft": 626.61,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "turn-pad"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_cross_aisle_landing_3",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_cross_aisle_landing_3",
+   "anchor_epsg6494_ft": [
+    19533190.2,
+    750797.15
+   ],
+   "anchor_local_m": [
+    37.338,
+    -0.6248,
+    189.421
+   ],
+   "z_navd88_ft": 621.46,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "turn-pad"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_floor_landing_1",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_floor_landing_1",
+   "anchor_epsg6494_ft": [
+    19533225.79,
+    750746.91
+   ],
+   "anchor_local_m": [
+    48.1858,
+    -15.938,
+    194.2155
+   ],
+   "z_navd88_ft": 637.19,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_floor_landing_2",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_floor_landing_2",
+   "anchor_epsg6494_ft": [
+    19533228.58,
+    750779.99
+   ],
+   "anchor_local_m": [
+    49.0362,
+    -5.8552,
+    193.8406
+   ],
+   "z_navd88_ft": 635.96,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_floor_landing_3",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_floor_landing_3",
+   "anchor_epsg6494_ft": [
+    19533227.16,
+    750813.12
+   ],
+   "anchor_local_m": [
+    48.6034,
+    4.2428,
+    193.1335
+   ],
+   "z_navd88_ft": 633.64,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_floor_landing_4",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_floor_landing_4",
+   "anchor_epsg6494_ft": [
+    19533224.09,
+    750846.21
+   ],
+   "anchor_local_m": [
+    47.6677,
+    14.3286,
+    192.3837
+   ],
+   "z_navd88_ft": 631.18,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_floor_landing_5",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_floor_landing_5",
+   "anchor_epsg6494_ft": [
+    19533221.02,
+    750879.31
+   ],
+   "anchor_local_m": [
+    46.7319,
+    24.4175,
+    192.0941
+   ],
+   "z_navd88_ft": 630.23,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_floor_landing_6",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_floor_landing_6",
+   "anchor_epsg6494_ft": [
+    19533203.16,
+    750862.58
+   ],
+   "anchor_local_m": [
+    41.2882,
+    19.3182,
+    190.4451
+   ],
+   "z_navd88_ft": 624.82,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_floor_landing_7",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_floor_landing_7",
+   "anchor_epsg6494_ft": [
+    19533180.99,
+    750837.91
+   ],
+   "anchor_local_m": [
+    34.5308,
+    11.7988,
+    188.2658
+   ],
+   "z_navd88_ft": 617.67,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_floor_landing_8",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_floor_landing_8",
+   "anchor_epsg6494_ft": [
+    19533158.11,
+    750813.8
+   ],
+   "anchor_local_m": [
+    27.557,
+    4.4501,
+    186.4553
+   ],
+   "z_navd88_ft": 611.73,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_floor_landing_9",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_floor_landing_9",
+   "anchor_epsg6494_ft": [
+    19533144.59,
+    750786.12
+   ],
+   "anchor_local_m": [
+    23.4361,
+    -3.9868,
+    185.9585
+   ],
+   "z_navd88_ft": 610.1,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_floor_landing_10",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_floor_landing_10",
+   "anchor_epsg6494_ft": [
+    19533220.2,
+    750888.15
+   ],
+   "anchor_local_m": [
+    46.482,
+    27.112,
+    192.1855
+   ],
+   "z_navd88_ft": 630.53,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "turn-pad"
+  },
+  {
+   "actor_name": "ADANode_route_arrival_to_floor_landing_11",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_arrival_to_floor_landing_11",
+   "anchor_epsg6494_ft": [
+    19533144.2,
+    750799.15
+   ],
+   "anchor_local_m": [
+    23.3172,
+    -0.0152,
+    185.8
+   ],
+   "z_navd88_ft": 609.58,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "turn-pad"
+  },
+  {
+   "actor_name": "ADANode_route_cross_aisle_to_egress_landing_1",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_cross_aisle_to_egress_landing_1",
+   "anchor_epsg6494_ft": [
+    19532942.2,
+    750660.15
+   ],
+   "anchor_local_m": [
+    -38.2524,
+    -42.3824,
+    192.3593
+   ],
+   "z_navd88_ft": 631.1,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "turn-pad"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_1",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_1",
+   "anchor_epsg6494_ft": [
+    19533146.8,
+    750795.75
+   ],
+   "anchor_local_m": [
+    24.1097,
+    -1.0516,
+    185.8762
+   ],
+   "z_navd88_ft": 609.83,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_2",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_2",
+   "anchor_epsg6494_ft": [
+    19533181.01,
+    750806.05
+   ],
+   "anchor_local_m": [
+    34.5369,
+    2.0879,
+    188.2445
+   ],
+   "z_navd88_ft": 617.6,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_3",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_3",
+   "anchor_epsg6494_ft": [
+    19533208.76,
+    750830.46
+   ],
+   "anchor_local_m": [
+    42.9951,
+    9.528,
+    191.0182
+   ],
+   "z_navd88_ft": 626.7,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_4",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_4",
+   "anchor_epsg6494_ft": [
+    19533224.71,
+    750867.63
+   ],
+   "anchor_local_m": [
+    47.8566,
+    20.8575,
+    192.341
+   ],
+   "z_navd88_ft": 631.04,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_5",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_5",
+   "anchor_epsg6494_ft": [
+    19533229.2,
+    750838.21
+   ],
+   "anchor_local_m": [
+    49.2252,
+    11.8902,
+    192.9597
+   ],
+   "z_navd88_ft": 633.07,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_6",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_6",
+   "anchor_epsg6494_ft": [
+    19533229.2,
+    750797.77
+   ],
+   "anchor_local_m": [
+    49.2252,
+    -0.4359,
+    193.6212
+   ],
+   "z_navd88_ft": 635.24,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_7",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_7",
+   "anchor_epsg6494_ft": [
+    19533229.2,
+    750757.32
+   ],
+   "anchor_local_m": [
+    49.2252,
+    -12.765,
+    194.307
+   ],
+   "z_navd88_ft": 637.49,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_8",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_8",
+   "anchor_epsg6494_ft": [
+    19533223.95,
+    750717.68
+   ],
+   "anchor_local_m": [
+    47.625,
+    -24.8473,
+    194.566
+   ],
+   "z_navd88_ft": 638.34,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_9",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_9",
+   "anchor_epsg6494_ft": [
+    19533205.88,
+    750681.5
+   ],
+   "anchor_local_m": [
+    42.1173,
+    -35.875,
+    194.0601
+   ],
+   "z_navd88_ft": 636.68,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_10",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_10",
+   "anchor_epsg6494_ft": [
+    19533175.89,
+    750656.21
+   ],
+   "anchor_local_m": [
+    32.9763,
+    -43.5834,
+    194.4319
+   ],
+   "z_navd88_ft": 637.9,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "rise-interval"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_11",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_11",
+   "anchor_epsg6494_ft": [
+    19533147.2,
+    750802.15
+   ],
+   "anchor_local_m": [
+    24.2316,
+    0.8992,
+    185.8945
+   ],
+   "z_navd88_ft": 609.89,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "turn-pad"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_12",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_12",
+   "anchor_epsg6494_ft": [
+    19533199.2,
+    750808.15
+   ],
+   "anchor_local_m": [
+    40.0812,
+    2.728,
+    190.122
+   ],
+   "z_navd88_ft": 623.76,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "turn-pad"
+  },
+  {
+   "actor_name": "ADANode_route_floor_to_egress_landing_13",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_floor_to_egress_landing_13",
+   "anchor_epsg6494_ft": [
+    19533229.2,
+    750878.15
+   ],
+   "anchor_local_m": [
+    49.2252,
+    24.064,
+    192.6336
+   ],
+   "z_navd88_ft": 632.0,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "turn-pad"
+  },
+  {
+   "actor_name": "ADANode_route_park_to_floor_landing_1",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_park_to_floor_landing_1",
+   "anchor_epsg6494_ft": [
+    19533056.2,
+    750704.15
+   ],
+   "anchor_local_m": [
+    -3.5052,
+    -28.9712,
+    187.5434
+   ],
+   "z_navd88_ft": 615.3,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "turn-pad"
+  },
+  {
+   "actor_name": "ADANode_route_park_to_floor_landing_2",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_park_to_floor_landing_2",
+   "anchor_epsg6494_ft": [
+    19533115.2,
+    750795.15
+   ],
+   "anchor_local_m": [
+    14.478,
+    -1.2344,
+    185.7543
+   ],
+   "z_navd88_ft": 609.43,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "turn-pad"
+  },
+  {
+   "actor_name": "ADANode_route_park_to_floor_landing_3",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/ada_route.geojson",
+   "source_sha256_12": "1b591af7b9a7",
+   "source_feature_id": "ada_route_park_to_floor_landing_3",
+   "anchor_epsg6494_ft": [
+    19533145.2,
+    750771.15
+   ],
+   "anchor_local_m": [
+    23.622,
+    -8.5496,
+    186.0255
+   ],
+   "z_navd88_ft": 610.32,
+   "material_id": "ada_landing",
+   "validation_state": "landing_concept",
+   "provisional": false,
+   "note": "turn-pad"
+  }
+ ]
+}

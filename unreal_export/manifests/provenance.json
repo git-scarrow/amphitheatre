@@ -1,0 +1,263 @@
+{
+ "schema": "unreal-handoff/provenance/0.1",
+ "generated": "2026-06-17T18:26:42-04:00",
+ "generator": "scripts/build_unreal_export.py",
+ "git_commit": "84aa207",
+ "constants_source": "scripts/in_situ_common.py",
+ "authoritative_boundary": "The GIS/design repo is the SINGLE source of truth. This package is a viewer/export layer. Unreal is NOT source of truth. Any geometry edited in Unreal must return as a proposal GeoJSON in EPSG:6494 and pass the existing Python/QGIS gates (scripts/audit_in_situ_package.py et al.) before it can become design truth.",
+ "crs": {
+  "horizontal": "EPSG:6494 NAD83(2011)/Michigan Central, INTERNATIONAL feet",
+  "vertical": "NAVD88 (Geoid12A), international feet",
+  "local_origin_epsg6494_ft": [
+   19533067.7,
+   750799.2
+  ],
+  "ft_to_m": 0.3048,
+  "local_frame": "ENU, Z-up, metres; x=east y=north z=NAVD88ft*0.3048",
+  "reverse_transform": "X_epsg6494_ft = x_local_m/0.3048 + origin_x; Y_epsg6494_ft = y_local_m/0.3048 + origin_y; navd88_ft = z_local_m/0.3048"
+ },
+ "bay_view_az_deg": 330.0,
+ "bay_plane_navd88_ft": 579.45,
+ "warnings": [
+  "PLANNING-GRADE ONLY — derived from 2015 USGS LiDAR + supplement; not a stamped engineering design and not a field survey.",
+  "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is OPEN (inherited az-150 stage; +25.6° audience-axis mismatch on record).",
+  "Coordinates are EPSG:6494 INTERNATIONAL feet — misreading as US survey feet shifts absolute easting ~39 ft (docs/datum_note.md).",
+  "Component CY totals are validated proxies that understate mobilization-level earthwork (analysis/tier_emission/TIER_EMISSION_VALIDATION.md).",
+  "Seating scope Decision 1 is pending; this package shows the Scenario E baseline (option A).",
+  "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed."
+ ],
+ "warnings_source": "truth_package/design_state.current.json",
+ "sources": {
+  "treads": {
+   "path": "vectors_geojson/terrace_treads.geojson",
+   "sha256_12": "e74d78853e2d",
+   "exists": true
+  },
+  "zones": {
+   "path": "vectors_geojson/bowl_zones.geojson",
+   "sha256_12": "3228c4b2ff70",
+   "exists": true
+  },
+  "stage_lineage": {
+   "path": "design_open_low/stage_floor.geojson",
+   "sha256_12": "59a32670aab6",
+   "exists": true
+  },
+  "ada_route": {
+   "path": "vectors_geojson/ada_route.geojson",
+   "sha256_12": "1b591af7b9a7",
+   "exists": true
+  },
+  "viewpoints": {
+   "path": "vectors_geojson/in_situ_viewpoints.geojson",
+   "sha256_12": "82c0bfb6babf",
+   "exists": true
+  },
+  "validation": {
+   "path": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+   "sha256_12": "e08f0e8d2055",
+   "exists": true
+  },
+  "design_state": {
+   "path": "truth_package/design_state.current.json",
+   "sha256_12": "c305a211b590",
+   "exists": true
+  },
+  "dem_existing": {
+   "path": "dem/dem_design_1ft.tif",
+   "sha256_12": "035eb77372e0",
+   "exists": true
+  },
+  "dem_proposed": {
+   "path": "dem/proposed_grade_1ft.tif",
+   "sha256_12": "86de4d4e99a7",
+   "exists": true
+  },
+  "dem_cutfill": {
+   "path": "dem/cut_fill_1ft.tif",
+   "sha256_12": "566badb423e6",
+   "exists": true
+  },
+  "data_inventory": {
+   "path": "truth_package/data_inventory.md",
+   "sha256_12": "bc1bca2d2863",
+   "exists": true
+  }
+ },
+ "build_stats": {
+  "seating": {
+   "n_rows": 45,
+   "seat_total": 1283
+  },
+  "stage": {
+   "n_stage_features": 7
+  },
+  "ada": {
+   "n_routes": 8,
+   "n_nodes": 31
+  },
+  "sightline": {
+   "n_rows": 45,
+   "warn_rows": [
+    "south r18"
+   ],
+   "banded_total_a": 1243.1005642207256
+  },
+  "terrain": {
+   "meshes": [
+    {
+     "name": "existing",
+     "source": "dem/dem_design_1ft.tif",
+     "sha256_12": "035eb77372e0",
+     "grid": [
+      401,
+      401
+     ],
+     "step_px": 2,
+     "res_ft": 2.0,
+     "res_m": 0.6096,
+     "verts": 160801,
+     "faces": 320000,
+     "void_frac": 0.1215,
+     "z_navd88_ft": [
+      588.23,
+      662.09
+     ],
+     "glb": "terrain/terrain_existing.glb",
+     "obj": null,
+     "frame": "local ENU metres, Z-up; x=east y=north z=NAVD88ft*0.3048; origin EPSG:6494 (19533067.7, 750799.2) intl ft"
+    },
+    {
+     "name": "proposed",
+     "source": "dem/proposed_grade_1ft.tif",
+     "sha256_12": "86de4d4e99a7",
+     "grid": [
+      401,
+      401
+     ],
+     "step_px": 2,
+     "res_ft": 2.0,
+     "res_m": 0.6096,
+     "verts": 160801,
+     "faces": 320000,
+     "void_frac": 0.1215,
+     "z_navd88_ft": [
+      588.23,
+      662.09
+     ],
+     "glb": "terrain/terrain_proposed.glb",
+     "obj": "terrain/terrain_proposed.obj",
+     "frame": "local ENU metres, Z-up; x=east y=north z=NAVD88ft*0.3048; origin EPSG:6494 (19533067.7, 750799.2) intl ft"
+    }
+   ],
+   "heightfields": [
+    {
+     "name": "existing",
+     "source": "dem/dem_design_1ft.tif",
+     "sha256_12": "035eb77372e0",
+     "format": "16-bit unsigned, little-endian, row-major (N->S rows, W->E cols)",
+     "grid": [
+      801,
+      801
+     ],
+     "res_ft": 1.0,
+     "res_m": 0.3048,
+     "z_navd88_ft": {
+      "min": 588.23,
+      "max": 662.092,
+      "span": 73.862
+     },
+     "reconstruct_navd88_ft": "zmin + raw/65535 * span",
+     "unreal_landscape": {
+      "size_px": [
+       801,
+       801
+      ],
+      "xy_scale_cm_per_px": 30.48,
+      "z_scale_note": "Unreal Z 'scale' 100 maps the full 0..65535 raw to 512 m. To honour NAVD88 ft, set landscape Z scale = 4.397086 (so 65535 -> 22.513 m span), Z offset = 17929.2 cm."
+     },
+     "void_frac": 0.1211,
+     "datum": "NAVD88 (Geoid12A), international feet",
+     "horizontal_crs": "EPSG:6494 NAD83(2011)/Michigan Central, intl ft",
+     "nw_corner_epsg6494_ft": [
+      19532622.7,
+      751186.65
+     ],
+     "nw_corner_local_m": [
+      -135.636,
+      118.0948,
+      179.2925
+     ],
+     "files": {
+      "raw": "heightfield_existing.r16",
+      "png": "heightfield_existing.png"
+     },
+     "WARNING": "planning-grade (2015 USGS LiDAR + supplement) - not a survey"
+    },
+    {
+     "name": "proposed",
+     "source": "dem/proposed_grade_1ft.tif",
+     "sha256_12": "86de4d4e99a7",
+     "format": "16-bit unsigned, little-endian, row-major (N->S rows, W->E cols)",
+     "grid": [
+      801,
+      801
+     ],
+     "res_ft": 1.0,
+     "res_m": 0.3048,
+     "z_navd88_ft": {
+      "min": 588.23,
+      "max": 662.092,
+      "span": 73.862
+     },
+     "reconstruct_navd88_ft": "zmin + raw/65535 * span",
+     "unreal_landscape": {
+      "size_px": [
+       801,
+       801
+      ],
+      "xy_scale_cm_per_px": 30.48,
+      "z_scale_note": "Unreal Z 'scale' 100 maps the full 0..65535 raw to 512 m. To honour NAVD88 ft, set landscape Z scale = 4.397086 (so 65535 -> 22.513 m span), Z offset = 17929.2 cm."
+     },
+     "void_frac": 0.1211,
+     "datum": "NAVD88 (Geoid12A), international feet",
+     "horizontal_crs": "EPSG:6494 NAD83(2011)/Michigan Central, intl ft",
+     "nw_corner_epsg6494_ft": [
+      19532622.7,
+      751186.65
+     ],
+     "nw_corner_local_m": [
+      -135.636,
+      118.0948,
+      179.2925
+     ],
+     "files": {
+      "raw": "heightfield_proposed.r16",
+      "png": "heightfield_proposed.png"
+     },
+     "WARNING": "planning-grade (2015 USGS LiDAR + supplement) - not a survey"
+    }
+   ]
+  },
+  "cameras": {
+   "n_cameras": 7,
+   "covered": [
+    "ada_route",
+    "rim",
+    "row1",
+    "row9",
+    "stage",
+    "upper_row"
+   ],
+   "uncovered": []
+  },
+  "materials": {
+   "n_materials": 16
+  },
+  "actors": {
+   "n_actors": 91
+  }
+ },
+ "regenerate": "python scripts/build_unreal_export.py",
+ "verify": "python scripts/verify_unreal_export.py"
+}
