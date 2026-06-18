@@ -52,6 +52,23 @@ def _warn_labels(materials: dict, material_id: str | None) -> list[str]:
     return []
 
 
+def _site_base_elev_ft(export: dict) -> float:
+    """Lowest seating-row NAVD88 elevation ≈ the event-floor / bowl-base grade.
+
+    Used as the RENDER-ONLY Z for planimetric Stage/ADA features (those with no
+    source elevation) so they sit at the bowl base instead of dropping to datum
+    0 — i.e. NAVD88 0 ft, ~186 m below grade — which made them look "so far off"
+    in the viewer. The faithful source z is preserved separately in @geo.
+    """
+    zs = []
+    for key in ("seating_rows", "seating_splines"):
+        for f in export.get(key, {}).get("features", []):
+            z = f.get("properties", {}).get("proposed_elev_navd88_ft")
+            if isinstance(z, (int, float)) and z > 0:
+                zs.append(z)
+    return min(zs) if zs else 0.0
+
+
 def build_seating(export: dict) -> dict:
     """Seating rows -> closed-polyline tread + open-polyline centreline objects.
 
@@ -121,13 +138,15 @@ def build_seating(export: dict) -> dict:
     return S.collection("Seating", elements, region="three-section civic bowl (Scenario E)")
 
 
-def build_stage(export: dict, materials: dict) -> dict:
+def build_stage(export: dict, materials: dict, base_elev_ft: float = 0.0) -> dict:
     elements = []
     for feat in export["stage_floor"]["features"]:
         pr = feat["properties"]
         fid = pr["feature_id"]
         gtype = feat["geometry"]["type"]
-        z = pr.get("elev_navd88_ft") or 0.0
+        z_src = pr.get("elev_navd88_ft")
+        # render Z: drape planimetric (no-elevation) footprints to the bowl base
+        z = z_src if isinstance(z_src, (int, float)) and z_src else base_elev_ft
 
         if gtype == "Point":
             geom = S._point(feat["geometry"]["coordinates"][0],
@@ -172,21 +191,26 @@ def build_stage(export: dict, materials: dict) -> dict:
             "provenance": pr.get("provenance"),
         }
         geo = {"type": gtype, "coordinates": feat["geometry"]["coordinates"],
-               "z_navd88_ft": z, "crs": "EPSG:6494 intl ft; z=NAVD88 ft"}
+               "z_navd88_ft": z_src,  # faithful source z (null when planimetric)
+               "z_render_navd88_ft": z,
+               "z_draped": not (isinstance(z_src, (int, float)) and z_src),
+               "crs": "EPSG:6494 intl ft; z=NAVD88 ft"}
         elements.append(S.review_object(geom, pr.get("name") or fid, review, geo))
     return S.collection("Stage", elements,
                         caveat="Stage deck PROVISIONAL (DESIGN_CANON Rule 9 OPEN); "
                                "event floor + treatment cell are concept-tier")
 
 
-def build_ada(export: dict) -> dict:
+def build_ada(export: dict, base_elev_ft: float = 0.0) -> dict:
     elements = []
     for feat in export["ada_route"]["features"]:
         pr = feat["properties"]
         fid = pr["feature_id"]
         kind = pr.get("kind")
         gtype = feat["geometry"]["type"]
-        z = pr.get("elev_navd88_ft") or 0.0
+        z_src = pr.get("elev_navd88_ft")
+        # render Z: drape planimetric (no-elevation) routes/nodes to the bowl base
+        z = z_src if isinstance(z_src, (int, float)) and z_src else base_elev_ft
 
         if kind == "route":
             geom = S._polyline(S._ring_to_local(feat["geometry"]["coordinates"], z),
@@ -247,7 +271,10 @@ def build_ada(export: dict) -> dict:
             }
             name = f"ADANode_{pr.get('name') or fid}"
         geo = {"type": gtype, "coordinates": feat["geometry"]["coordinates"],
-               "z_navd88_ft": z, "crs": "EPSG:6494 intl ft; z=NAVD88 ft"}
+               "z_navd88_ft": z_src,  # faithful source z (null when planimetric)
+               "z_render_navd88_ft": z,
+               "z_draped": not (isinstance(z_src, (int, float)) and z_src),
+               "crs": "EPSG:6494 intl ft; z=NAVD88 ft"}
         elements.append(S.review_object(geom, name, review, geo))
     return S.collection("ADA", elements,
                         caveat="ADA route concept pending civil/code detailing — "
@@ -307,7 +334,8 @@ def build_reference(export: dict) -> dict:
 
 
 # ── payload assembly ──────────────────────────────────────────────────────────
-def build_payload(export: dict, state: str, topic: str | None) -> dict:
+def build_payload(export: dict, state: str, topic: str | None,
+                  layers: set[str] | None = None) -> dict:
     prov = export["provenance"]
     materials = export["materials"]
     export.setdefault("_actor_by_fid", {})  # populated by main(); display names
@@ -316,12 +344,19 @@ def build_payload(export: dict, state: str, topic: str | None) -> dict:
     date_compact = "".join(ch for ch in gen[:10] if ch.isdigit()) or None
     branch = S.branch_for_state(state, topic, date_compact)
 
+    base_elev_ft = _site_base_elev_ft(export)
     elements = [
         build_seating(export),
-        build_stage(export, materials),
-        build_ada(export),
+        build_stage(export, materials, base_elev_ft),
+        build_ada(export, base_elev_ft),
         build_reference(export),
     ]
+    # Layer selection. ``layers=None`` keeps every collection (used by the tests
+    # so the fixture still documents every object schema). The accepted bundle
+    # excludes the Rule-9-OPEN "Stage" — it ships as a labelled proposal instead,
+    # so the accepted review surface shows only accepted-context geometry.
+    if layers is not None:
+        elements = [c for c in elements if c["name"] in layers]
 
     acceptance = {
         "state": state,
@@ -407,9 +442,11 @@ def minimal_fixture(payload: dict) -> dict:
 def _acceptance_rationale(state: str) -> str:
     if state == S.STATE_ACCEPTED:
         return ("Scenario E three-section seating / ADA topology / drainage is the "
-                "validated control (ACCEPTED). Stage deck (Rule 9 OPEN) and ADA "
-                "route concept ride inside this bundle individually flagged as "
-                "proposal/provisional — they are not promoted by inclusion.")
+                "validated control (ACCEPTED). The Rule-9-OPEN stage is NOT in this "
+                "bundle — it ships separately as proposal/stage-rule9-open so the "
+                "accepted surface shows only accepted-context geometry. The ADA route "
+                "concept rides inside individually flagged proposal/provisional and is "
+                "not promoted by inclusion.")
     if state == S.STATE_REFERENCE:
         return "Non-decision context (terrain, cameras) for orientation only."
     return ("Proposal bundle for review/comparison. Not accepted. Any geometry must "
@@ -423,6 +460,10 @@ def main(argv: list[str] | None = None) -> int:
                     help="review state (default: accepted = Scenario E baseline)")
     ap.add_argument("--topic", default=None,
                     help="proposal/reference topic slug (for branch naming)")
+    ap.add_argument("--layers", default=None,
+                    help="comma-separated collections to include "
+                         "(Seating,Stage,ADA,Reference). Default: accepted excludes "
+                         "the Rule-9-OPEN Stage; other states include all.")
     ap.add_argument("--export-dir", default=S.EXPORT_DIR)
     ap.add_argument("--out-dir", default=S.OUT_DIR)
     ap.add_argument("--emit-fixture", metavar="PATH", default=None,
@@ -444,7 +485,13 @@ def main(argv: list[str] | None = None) -> int:
     else:
         export["_actor_by_fid"] = {}
 
-    payload = build_payload(export, args.state, args.topic)
+    if args.layers:
+        layers = {s.strip() for s in args.layers.split(",") if s.strip()}
+    elif args.state == S.STATE_ACCEPTED:
+        layers = {"Seating", "ADA", "Reference"}  # Rule-9-OPEN stage ships as a proposal
+    else:
+        layers = None
+    payload = build_payload(export, args.state, args.topic, layers)
 
     if args.emit_fixture:
         fix = minimal_fixture(payload)

@@ -1,0 +1,8 @@
+[Unit]
+Description=Speckle review server application-consistent backup (pg_dump + MinIO mirror + config)
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/srv/speckle/backup.sh

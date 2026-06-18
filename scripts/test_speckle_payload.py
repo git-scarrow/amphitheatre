@@ -53,9 +53,12 @@ def install_fake_specklepy(calls: dict):
         return m
 
     class FakeBase:
-        def __init__(self):
+        speckle_type = "Base"
+
+        def __init__(self, **kw):
             object.__setattr__(self, "_items", {})
-            object.__setattr__(self, "speckle_type", "Base")
+            for k, v in kw.items():
+                object.__setattr__(self, k, v)
 
         def __setitem__(self, k, v):
             self._items[k] = v
@@ -63,11 +66,33 @@ def install_fake_specklepy(calls: dict):
         def __getitem__(self, k):
             return self._items[k]
 
+    # real specklepy geometry/collection classes carry the speckle_type via the
+    # class, so _dict_to_base must construct them (a bare Base renders nothing).
+    class FakePolyline(FakeBase):
+        speckle_type = "Objects.Geometry.Polyline"
+
+    class FakePoint(FakeBase):
+        speckle_type = "Objects.Geometry.Point"
+
+    class FakeCollection(FakeBase):
+        speckle_type = "Speckle.Core.Models.Collections.Collection"
+
+    def _walk_types(o, acc):
+        st = getattr(o, "speckle_type", None)
+        if st:
+            acc.add(st)
+        els = getattr(o, "elements", None)
+        if isinstance(els, list):
+            for it in els:
+                _walk_types(it, acc)
+
     def fake_send(base=None, transports=None):
         calls["send_base"] = base
         calls["send_transports"] = transports
-        # prove _dict_to_base produced a Base carrying the root speckle_type
         calls["send_base_speckle_type"] = getattr(base, "speckle_type", None)
+        acc = set()
+        _walk_types(base, acc)
+        calls["send_types"] = acc
         return "obj_FAKE_ID"
 
     class FakeServerTransport:
@@ -99,6 +124,10 @@ def install_fake_specklepy(calls: dict):
     # build the package tree at the exact import paths do_publish uses
     mod("specklepy")
     objects = mod("specklepy.objects"); objects.Base = FakeBase
+    geometry = mod("specklepy.objects.geometry")
+    geometry.Polyline = FakePolyline; geometry.Point = FakePoint
+    mod("specklepy.objects.models"); mod("specklepy.objects.models.collections")
+    coll = mod("specklepy.objects.models.collections.collection"); coll.Collection = FakeCollection
     api = mod("specklepy.api")
     operations = mod("specklepy.api.operations"); operations.send = fake_send
     api.operations = operations
@@ -240,8 +269,10 @@ def main() -> int:
               "do_publish: authenticate_with_token called with the token")
         check(calls.get("transport_stream_id") == "proj_123",
               "do_publish: ServerTransport stream_id == project id")
-        check(calls.get("send_base_speckle_type") == base.get("speckle_type"),
-              "do_publish: _dict_to_base built a Base carrying the root speckle_type")
+        check(str(calls.get("send_base_speckle_type") or "").endswith("Collection"),
+              "do_publish: _dict_to_base built the root as a real Collection (renderable container)")
+        check("Objects.Geometry.Polyline" in (calls.get("send_types") or set()),
+              "do_publish: geometry leaves built as real Polyline (typed so the viewer renders them)")
         vk = getattr(calls.get("version_create_input"), "kw", {})
         check(vk.get("project_id") == "proj_123" and vk.get("model_id") == "model_456"
               and vk.get("object_id") == "obj_FAKE_ID" and vk.get("message"),

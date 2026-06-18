@@ -1,0 +1,25 @@
+#cloud-config
+hostname: speckle-review
+fqdn: speckle-review.scarrow.tailnet
+preserve_hostname: false
+ssh_pwauth: false
+ssh_authorized_keys:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILqCXuox2rKOMQ94zK3P2SI4UX611o8AbjFdUij4528s sam@gentoo
+package_update: true
+packages:
+  - qemu-guest-agent
+  - ca-certificates
+  - curl
+  - jq
+  - docker.io
+  - docker-compose-v2
+runcmd:
+  - systemctl enable --now qemu-guest-agent
+  - systemctl enable --now docker
+  - usermod -aG docker ubuntu || true
+  - curl -fsSL https://tailscale.com/install.sh | sh
+  - tailscale up --login-server=https://vpn.scarrow.net --authkey='<HEADSCALE_PREAUTH_KEY>' --hostname=speckle-review --accept-dns=true || tailscale up --login-server=https://vpn.scarrow.net --authkey='<HEADSCALE_PREAUTH_KEY>' --hostname=speckle-review
+  - mkdir -p /srv/speckle/postgres-data /srv/speckle/redis-data /srv/speckle/minio-data /srv/speckle/caddy-data /srv/speckle/backups
+  - tailscale ip -4 > /var/log/speckle-tailscale-ip.txt 2>&1 || true
+  - touch /var/lib/speckle-bootstrap-done
+final_message: "speckle-review bootstrap complete after $UPTIME seconds"

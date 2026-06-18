@@ -1,0 +1,19 @@
+[Unit]
+Description=Petoskey Pit Speckle stack (compose up after the tailnet IP is ready)
+# Caddy publishes on the tailnet IP, so the stack must (re)start only once
+# tailscaled has assigned 100.64.x. unless-stopped handles the rest at runtime.
+After=docker.service tailscaled.service network-online.target
+Wants=docker.service tailscaled.service network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/bin/bash -c 'for i in $(seq 1 60); do tailscale ip -4 >/dev/null 2>&1 && exit 0; sleep 2; done; exit 0'
+ExecStart=/usr/bin/docker compose -f /srv/speckle/docker-compose.yml up -d
+# Caddy publishes on the tailnet IP; force-recreate it now that the IP exists so
+# the host port bind (100.64.0.10:443) is (re)established after a cold boot.
+ExecStart=/usr/bin/docker compose -f /srv/speckle/docker-compose.yml up -d --force-recreate --no-deps caddy
+ExecStop=/usr/bin/docker compose -f /srv/speckle/docker-compose.yml stop
+
+[Install]
+WantedBy=multi-user.target

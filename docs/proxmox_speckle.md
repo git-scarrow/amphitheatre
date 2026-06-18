@@ -378,3 +378,223 @@ and the payload clears the object-truth boundary — see the README section.
 
 Pin image digests once a known-good set is found so an upgrade is deliberate,
 not incidental to `:latest` drift.
+
+---
+
+## 9. As-built record — private tailnet deployment (2026-06-17)
+
+This section documents the **actual** deployment, which differs from the generic
+plan above in a few verified ways. The instance is reachable **only over the
+Headscale-managed tailnet `scarrow.tailnet`** — there is no public or LAN-facing
+port.
+
+### 9.1 What exists
+
+| Thing | Value |
+|---|---|
+| Proxmox host | node `pve` (PVE 9.2.3); API `https://10.10.10.2:8006` (also tailnet `https://100.64.0.1:8006`) |
+| VM | id **131**, name `speckle-review`, Ubuntu 24.04 cloud image, 4 vCPU / 8 GB (balloon 2 GB) / 64 GB on `local-lvm`, bridge `vmbr0` (DHCP → `10.10.10.114`), `onboot=1`, qemu-guest-agent on |
+| Tailnet node | `speckle-review` = **`100.64.0.10`** (`fd7a:115c:a1e0::a`), user `sam`, Headscale node id 90 |
+| Service URL | **`https://speckle-review.scarrow.tailnet`** (MagicDNS, base_domain `scarrow.tailnet`) |
+| Speckle | server **v2.25.4** + Frontend-2 (images pinned to the `:2` major tag) |
+| TLS | Caddy **internal CA** (`CN=Caddy Local Authority …`); root at `/srv/speckle/caddy-data/caddy/pki/authorities/local/root.crt` |
+| Project | "Petoskey Pit Civic Bowl" — id `3d44308d44` (PRIVATE) |
+| Models | `accepted/scenario-e-baseline` `017f613f5a` · `proposal/scenario-d2-alternative-20260617` `1c837c46fa` · `reference/context` `a8b820ea72` |
+| First published version | object `9243c7512cbfaa81c0addc89a4e44c84`, version `d243a81b32` on `accepted/scenario-e-baseline` |
+
+**Secrets are not committed.** The Proxmox API token is in 1Password
+(`Remote Access Keys` → `Proxmox api`, user `mcp@pam!automation`). The Speckle
+admin password, the scoped publisher PAT, and the stack `.env` (Postgres / S3 /
+session secrets, generated on the VM with `openssl rand`) live only on the VM
+(`/srv/speckle/.env`, mode 600) and should be copied into 1Password.
+
+### 9.2 Verified deviations from the generic plan
+
+1. **Caddy replaces the `speckle-docker-compose-ingress` container.** That image
+   (`:2`) ships an `nginx.conf` that emits `pcre_jit` into the `http` include
+   context and crash-loops. Caddy reproduces the ingress route map directly:
+   `/(graphql|explorer|auth/*|objects/*|preview/*|api/*|static/*)` →
+   `speckle-server:3000`, `/minio/*` → `minio:9000`, everything else →
+   `speckle-frontend-2:8080`. (The generic §2 Caddy block also proxied to
+   `127.0.0.1:8080/9000`, which is wrong for a containerised Caddy — use the
+   compose **service names** as above.)
+2. **`preview-service` needs `PORT`; `fileimport-service` needs `REDIS_URL`** in
+   addition to what §2 lists (newer images validate env with `znv`).
+3. **Tailnet-only binding.** Caddy publishes on the tailnet IP only —
+   `ports: ["100.64.0.10:443:443", "100.64.0.10:80:80"]` — so the LAN-facing
+   `ens18` (`10.10.10.114`) never exposes the service. MinIO console stays on
+   `127.0.0.1:9001`. No host firewall is required for this control, though one
+   may be added as defence-in-depth.
+4. **Restart survival needs a post-tailnet hook.** Because Caddy binds to the
+   tailnet IP, on a cold boot Docker's `unless-stopped` auto-start races ahead of
+   `tailscaled` and fails to publish the port. `speckle-stack.service` waits for
+   `tailscale ip -4` then runs `docker compose up -d` **and force-recreates
+   caddy**, so the tailnet bind reliably reattaches. Verified: after a full VM
+   reboot the UI returns unattended in ~40 s.
+
+### 9.3 Exact commands
+
+**Headscale (control server already running as a Docker container on `aws-ec2`; do not deploy a second one):**
+
+```sh
+# mint a pre-auth key (user id 1 = "sam"), non-reusable, valid 24h
+ssh sam@aws-ec2 'sudo docker exec headscale headscale preauthkeys create -u 1 -e 24h'
+# after the node joins, confirm registration
+ssh sam@aws-ec2 'sudo docker exec headscale headscale nodes list | grep speckle-review'
+```
+
+Login server clients use: `https://vpn.scarrow.net` (this is also gentoo's
+`tailscale debug prefs` ControlURL). MagicDNS is enabled tailnet-wide
+(`base_domain: scarrow.tailnet`, `magic_dns: true`), so the node name resolves as
+`speckle-review.scarrow.tailnet` automatically — no manual DNS.
+
+**Tailscale (run inside the guest; here baked into cloud-init `runcmd`):**
+
+```sh
+curl -fsSL https://tailscale.com/install.sh | sh
+tailscale up --login-server=https://vpn.scarrow.net --authkey=<PREAUTH_KEY> \
+             --hostname=speckle-review --accept-dns=true
+```
+
+**Proxmox VM creation (from the repo host over the tailnet/LAN, using the API token):**
+
+```sh
+# token + reachable endpoint (the host's MCP-configured 192.168.1.156 is stale)
+TOK='PVEAPIToken=mcp@pam!automation=<secret-from-1Password>'
+PVE=https://10.10.10.2:8006
+# 1. cloud image + NoCloud seed ISO onto 'local' (upload needs Datastore.AllocateTemplate;
+#    note: download-url needs Sys.Modify which this token lacks, so we upload instead)
+curl -k -H "Authorization: $TOK" -F content=import \
+  -F 'filename=@noble.qcow2;filename=noble-server-cloudimg-amd64.qcow2' \
+  "$PVE/api2/json/nodes/pve/storage/local/upload"
+curl -k -H "Authorization: $TOK" -F content=iso \
+  -F 'filename=@seed.iso;filename=speckle-review-seed.iso' \
+  "$PVE/api2/json/nodes/pve/storage/local/upload"
+# 2. create VM 131 (cloud image imported to scsi0, NoCloud seed as ide2 cdrom)
+curl -k -H "Authorization: $TOK" -X POST "$PVE/api2/json/nodes/pve/qemu" \
+  --data-urlencode vmid=131 --data-urlencode name=speckle-review \
+  --data-urlencode cores=4 --data-urlencode memory=8192 --data-urlencode balloon=2048 \
+  --data-urlencode cpu=host --data-urlencode ostype=l26 --data-urlencode scsihw=virtio-scsi-single \
+  --data-urlencode agent=1 --data-urlencode 'net0=virtio,bridge=vmbr0,firewall=0' \
+  --data-urlencode 'scsi0=local-lvm:0,import-from=local:import/noble-server-cloudimg-amd64.qcow2,iothread=1,discard=on,ssd=1' \
+  --data-urlencode 'ide2=local:iso/speckle-review-seed.iso,media=cdrom' \
+  --data-urlencode 'boot=order=scsi0' --data-urlencode serial0=socket --data-urlencode vga=std \
+  --data-urlencode onboot=1
+# 3. grow the boot disk and start
+curl -k -H "Authorization: $TOK" -X PUT  "$PVE/api2/json/nodes/pve/qemu/131/resize" --data-urlencode disk=scsi0 --data-urlencode size=64G
+curl -k -H "Authorization: $TOK" -X POST "$PVE/api2/json/nodes/pve/qemu/131/status/start"
+```
+
+The NoCloud seed ISO (`cidata`-labelled, holding `user-data` + `meta-data`) is
+the bootstrap: cloud-init installs `qemu-guest-agent`, `docker.io`,
+`docker-compose-v2`, then runs the `tailscale up` above and creates
+`/srv/speckle/*`. It is needed because the host has no Ubuntu cloud image, the
+API token cannot upload snippets, and there is no SSH to `pve`.
+
+**Admin / project / model / token (GraphQL against the live server):**
+
+```sh
+# first local registration becomes server admin (server is not invite-only)
+curl -k -X POST "$URL/auth/local/register?challenge=$CH" -H content-type:application/json \
+  -d '{"email":"sscarrow@gmail.com","password":"<gen>","name":"Sam Scarrow"}'   # -> 302 ?access_code=...
+curl -k -X POST "$URL/auth/token" -H content-type:application/json \
+  -d '{"accessCode":"<code>","appId":"spklwebapp","appSecret":"spklwebapp","challenge":"'"$CH"'"}'
+# then projectMutations.create / modelMutations.create / apiTokenCreate
+#   (publisher PAT scopes: streams:read, streams:write, profile:read)
+```
+
+**Publish from the repo (`gentoo`, over the tailnet):**
+
+```sh
+export SPECKLE_SERVER=https://speckle-review.scarrow.tailnet
+export SPECKLE_TOKEN=<publisher-PAT> SPECKLE_PROJECT_ID=3d44308d44 SPECKLE_MODEL_ID=017f613f5a
+# trust the Caddy internal CA (combine system certs + the exported root):
+export REQUESTS_CA_BUNDLE=/path/to/speckle-ca-bundle.pem SSL_CERT_FILE=/path/to/speckle-ca-bundle.pem
+python scripts/export_speckle_payload.py
+python scripts/publish_speckle.py                 # dry run (gates only, no network)
+python scripts/publish_speckle.py --publish       # real send
+```
+
+`specklepy` (3.x) must be in a venv; its import paths in `publish_speckle.py`
+(`ServerTransport(stream_id,client)`, `CreateVersionInput(object_id,model_id,
+project_id,message)`) match. Export the Caddy root for clients:
+`ssh ubuntu@speckle-review.scarrow.tailnet 'sudo cat /srv/speckle/caddy-data/caddy/pki/authorities/local/root.crt'`.
+
+### 9.4 ACL / firewall / restart assumptions
+
+- **Headscale ACL:** the tailnet uses the default allow-all policy (no ACL file
+  restricting peers); the node is **untagged**, owned by user `sam`. If an ACL is
+  later introduced, add a rule permitting reviewer devices → `speckle-review:443`.
+- **No public inbound, no port-forward.** The service is reachable only via the
+  tailnet IP bind (§9.2.3). The VM's LAN address `10.10.10.114` does not serve
+  80/443. Proxmox does not forward any port to the VM.
+- **Restart behaviour:** `restart: unless-stopped` (all services) + `onboot=1`
+  (VM) + `speckle-stack.service` (post-tailnet `up -d` + caddy force-recreate).
+  Confirmed by a full reboot.
+
+### 9.5 Backups & restore (as-built)
+
+**Two layers, both in place:**
+
+1. **Application-consistent** — `/srv/speckle/backup.sh`, run daily by
+   `speckle-backup.timer` (03:30 UTC, 14-day retention). Each run writes
+   `/srv/speckle/backups/<ts>/` containing `speckle.dump` (`pg_dump -Fc`),
+   `minio/` (MinIO bucket mirror via a transient `minio/mc` container), and
+   `config.tgz` (Caddyfile, compose, `.env`, Caddy CA/PKI).
+2. **PVE-level** — VM snapshot `postdeploy20260618`, and a `vzdump` archive on
+   **`hdd2tb`** (`dump/vzdump-qemu-131-*.vma.zst`). Snapshot before every
+   `docker compose pull` upgrade.
+
+**Restore — application-consistent (bad upgrade / accidental deletion):**
+
+```sh
+cd /srv/speckle
+docker compose up -d postgres minio
+# Postgres
+cat backups/<ts>/speckle.dump | docker compose exec -T postgres \
+  pg_restore -U speckle -d speckle --clean --if-exists
+# MinIO bucket (mirror the saved tree back)
+docker run --rm --network speckle-server_default -v /srv/speckle/backups/<ts>:/b \
+  -e "MC_HOST_local=http://$S3_ACCESS_KEY:$S3_SECRET_KEY@minio:9000" \
+  minio/mc mirror --overwrite /b/minio local/speckle-server
+docker compose up -d
+```
+
+**Restore — PVE bare-metal:** roll back the snapshot
+(`POST /nodes/pve/qemu/131/snapshot/postdeploy20260618/rollback`), or restore the
+`vzdump` archive from `hdd2tb` to a fresh VMID
+(`POST /nodes/pve/qemu` with `archive=hdd2tb:backup/vzdump-qemu-131-….vma.zst`).
+Postgres + MinIO must be restored **together** (they cross-reference object ids).
+Test a restore into a throwaway VM quarterly.
+
+### 9.6 Viewer rendering fixes (bridge, found during bring-up)
+
+The first live publish stored fine but the web viewer showed **nothing**. Two
+bridge bugs, both now fixed (see `scripts/publish_speckle.py` and
+`scripts/export_speckle_payload.py`; `scripts/test_speckle_payload.py` asserts
+both):
+
+1. **Typeless geometry.** `_dict_to_base` *assigned* `speckle_type` onto a bare
+   `Base`; specklepy **3.x drops that** (type derives from the Python class), so
+   every object serialized as `"Base"` and the viewer rendered nothing. Fix:
+   construct the real classes — `specklepy.objects.geometry.Polyline` / `Point`
+   and `…models.collections.collection.Collection` — keeping `@review` /
+   `@geo_epsg6494` / `name` as dynamic detached members. (The earlier test only
+   mocked the send, so it never caught this — the mock now stubs the typed
+   classes and asserts a `Polyline` is produced.)
+2. **Planimetric layers at datum 0.** Stage/ADA footprints without a source
+   elevation were placed at NAVD88 0 ft (≈186 m below the bowl — a "floating
+   lower layer"). Fix: `export_speckle_payload.py` drapes elevation-less
+   Stage/ADA geometry to the **site base grade** (`_site_base_elev_ft`, the
+   lowest seating elevation) for rendering, while `@geo_epsg6494` keeps the
+   faithful source z (`null` when planimetric) plus a `z_draped` flag. All
+   layers now sit in a ~179–196 m band.
+3. **Rule-9-OPEN stage pulled out of the accepted bundle.** The published stage
+   was the inherited `design_open_low` footprint — the documented Rule-9-OPEN
+   mismatch (−22.3 ft lateral / +25.4° off the seating frame) that overlaps the
+   south/west seating. Rule 9 was never closed and no adopted stage geometry
+   exists, so it must not be presented as accepted. `export_speckle_payload.py`
+   gained a `layers` selector: the **accepted** bundle now ships
+   `Seating/ADA/Reference` only, and the inherited stage ships as a labelled
+   `proposal/stage-rule9-open-<date>` model. Moving/adopting a corrected stage
+   (P_opt or other) remains a governed Rule-9 decision, not a bridge change.

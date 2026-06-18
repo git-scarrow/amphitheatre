@@ -89,6 +89,10 @@ unreal_export/terrain/heightfield_*.png
 #    is itself derived — no need to commit. The bridge scripts + docs ARE tracked.
 speckle_export/
 
+# ── Speckle server secrets: real .env lives only on the VM (mode 600). Only the
+#    .env.example template is tracked. Never commit the filled-in secrets.
+deploy/speckle/.env
+
 # ── misc scratch ─────────────────────────────────────────────────────────────
 *.log
 .DS_Store

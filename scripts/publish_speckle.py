@@ -103,22 +103,46 @@ def _commit_message(payload: dict) -> str:
 def _dict_to_base(node):
     """Rebuild a specklepy Base tree from our plain-dict payload.
 
-    Follows specklepy's documented dynamic-member idiom: dynamic and
-    ``@``-detached members are set by item assignment (``base[key] = value``),
-    which is what keeps the ``@`` detach prefix meaningful on the server. Only
-    ``speckle_type`` is a fixed attribute.
+    Leaf geometry and collections are rebuilt as their REAL specklepy classes
+    (``Polyline`` / ``Point`` / ``Collection``) so the server records the correct
+    ``speckle_type`` and the web viewer actually renders them. A bare ``Base``
+    with ``speckle_type`` merely *assigned* is serialized by specklepy 3.x as
+    ``"Base"`` (the type string is dropped) and the viewer shows nothing — so the
+    class must be constructed, not faked. Dynamic / ``@``-detached members
+    (``@review``, ``@geo_epsg6494``, ``name``, ``applicationId``) are set by item
+    assignment, which preserves the ``@`` detach prefix on the server.
     """
     from specklepy.objects import Base
+    from specklepy.objects.geometry import Polyline, Point
+    from specklepy.objects.models.collections.collection import Collection
 
     if isinstance(node, list):
         return [_dict_to_base(x) for x in node]
     if not isinstance(node, dict):
         return node
-    b = Base()
-    if node.get("speckle_type"):
-        b.speckle_type = node["speckle_type"]
+
+    st = node.get("speckle_type")
+    consumed = {"speckle_type"}
+    if st == "Objects.Geometry.Polyline":
+        b = Polyline(value=[float(x) for x in (node.get("value") or [])],
+                     units=node.get("units", "m"))
+        b.closed = bool(node.get("closed", False))
+        consumed |= {"value", "units", "closed"}
+    elif st == "Objects.Geometry.Point":
+        b = Point(x=float(node.get("x", 0.0)), y=float(node.get("y", 0.0)),
+                  z=float(node.get("z", 0.0)), units=node.get("units", "m"))
+        consumed |= {"x", "y", "z", "units"}
+    elif st == "Objects.Organization.Collection":
+        b = Collection(name=node.get("name", "collection"), elements=[])
+        b.elements = _dict_to_base(node.get("@elements", []))
+        if node.get("collectionType"):
+            b.collectionType = node["collectionType"]
+        consumed |= {"name", "@elements", "collectionType"}
+    else:
+        b = Base()  # the payload root: a plain container traversed via @elements
+
     for k, v in node.items():
-        if k == "speckle_type":
+        if k in consumed:
             continue
         b[k] = _dict_to_base(v)  # dynamic / @-detached member
     return b

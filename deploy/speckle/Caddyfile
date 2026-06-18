@@ -1,0 +1,27 @@
+speckle-review.scarrow.tailnet {
+    encode zstd gzip
+    request_body {
+        max_size 512MB
+    }
+
+    # object store public path (preview thumbnails, large blobs) -> MinIO
+    handle_path /minio/* {
+        reverse_proxy minio:9000
+    }
+
+    # API surface -> speckle-server:3000 (mirrors the upstream nginx ingress map:
+    # /graphql /explorer /auth/* /objects/* /preview/* /api/* /static/*)
+    @api path /graphql /graphql/* /explorer /explorer/* /auth/* /objects/* /preview/* /api/* /static/*
+    handle @api {
+        reverse_proxy speckle-server:3000
+    }
+
+    # everything else -> the Nuxt frontend (Frontend-2). WebSocket upgrade is
+    # handled by Caddy's reverse_proxy automatically.
+    handle {
+        reverse_proxy speckle-frontend-2:8080
+    }
+
+    # Private-first: internal CA, no public ACME, no inbound ports.
+    tls internal
+}
