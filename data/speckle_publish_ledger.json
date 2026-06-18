@@ -1,0 +1,5 @@
+{
+  "schema": "speckle-publish-ledger/1",
+  "note": "Speckle version history is NOT acceptance history. A Speckle version counts as part of the project record only if it is backed by an entry in this ledger whose export_payload_hash still matches the payload it published. The Python/QGIS repo gates remain the sole acceptance authority; this file is the repo's record of which review versions mirror a gated, committed state.",
+  "entries": []
+}

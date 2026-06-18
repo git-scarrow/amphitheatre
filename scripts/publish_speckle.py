@@ -34,6 +34,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import speckle_common as S  # noqa: E402
+import speckle_ledger as L  # noqa: E402
 
 VERIFY_SCRIPT = os.path.join(S.REPO, "scripts", "verify_unreal_export.py")
 
@@ -73,6 +74,99 @@ def preflight(payload: dict, *, verify_cmd: list[str] | None = None,
 
 def _indent(text: str, pad: str = "      ") -> str:
     return "\n".join(pad + ln for ln in text.splitlines())
+
+
+# ── gates + acceptance-discipline guard (Phase 2) ─────────────────────────────
+def gather_gates(payload: dict, *, verify_cmd: list[str] | None = None,
+                 require_source_exists: bool = True, repo: str = S.REPO) -> dict:
+    """Run every gate ONCE and return the structured results the guard consumes:
+    the live verify result, the object-truth boundary errors, and the working-tree
+    cleanliness. Kept separate from :func:`guard` so the policy is pure and
+    testable with injected gate outcomes."""
+    verify_passed, verify_tail = run_export_gate(verify_cmd)
+    boundary_errs = S.validate_payload(payload, require_source_exists=require_source_exists,
+                                       repo=repo)
+    repo_clean, dirty = L.repo_status(repo)
+    return {
+        "verify_passed": verify_passed,
+        "verify_tail": verify_tail,
+        "boundary_errs": boundary_errs,
+        "repo_clean": repo_clean,
+        "dirty": dirty,
+    }
+
+
+def resolve_design_state(payload: dict, explicit: str | None = None) -> str:
+    """The publish-discipline channel. Explicit --design-state wins; otherwise the
+    payload's acceptance.state (accepted/proposal/reference). scratch only ever
+    comes from the explicit flag — no payload carries a scratch acceptance.state."""
+    if explicit:
+        return explicit
+    return (payload.get("acceptance") or {}).get("state") or L.DS_PROPOSAL
+
+
+def guard(payload: dict, design_state: str, gates: dict, *,
+          allow_dirty: bool = False, open_decisions: list[str] | None = None
+          ) -> tuple[bool, list[str]]:
+    """The acceptance-discipline guard. Returns (allowed, reasons_if_blocked).
+
+    Channels:
+      * accepted/* — only verified mirrors of a repo-accepted, committed state:
+        repo clean (or --allow-dirty), verify green, boundary clean, payload
+        acceptance.state == accepted, and NO object carrying an unresolved hard
+        decision flag (e.g. RULE-9-OPEN).
+      * proposal/* — a reviewable alternative: verify green + boundary clean, and
+        MUST carry open_decisions metadata (a proposal that resolves everything
+        should publish as accepted).
+      * reference/* — non-decision context: verify green + boundary clean.
+      * scratch/*  — render/debug: permissive, nothing blocks; excluded from the
+        accepted ledger reports.
+    """
+    reasons: list[str] = []
+    if design_state not in L.LEDGER_STATES:
+        return False, [f"unknown design_state {design_state!r} (expected one of {L.LEDGER_STATES})"]
+
+    if design_state == L.DS_SCRATCH:
+        return True, reasons  # render/debug channel — deliberately permissive
+
+    # accepted / proposal / reference are all real review bundles: the validated
+    # export must be intact and the object-truth boundary clean.
+    if not gates["verify_passed"]:
+        reasons.append("Unreal-export verification FAILED "
+                       "(scripts/verify_unreal_export.py exited non-zero):\n"
+                       + _indent(gates["verify_tail"]))
+    if gates["boundary_errs"]:
+        reasons.append(f"payload failed the object-truth boundary "
+                       f"({len(gates['boundary_errs'])} error(s)):\n"
+                       + _indent("\n".join(f"- {e}" for e in gates["boundary_errs"])))
+
+    if design_state == L.DS_ACCEPTED:
+        if not gates["repo_clean"] and not allow_dirty:
+            reasons.append(
+                "repo is DIRTY — an accepted publish must mirror a committed repo "
+                "state so the ledger commit is reproducible:\n"
+                + _indent("\n".join(f"- {f}" for f in gates["dirty"][:20]))
+                + "\n      (override with --allow-dirty only if the working tree "
+                  "deliberately matches the intended accepted state)")
+        st = (payload.get("acceptance") or {}).get("state")
+        if st != L.DS_ACCEPTED:
+            reasons.append(f"design_state is 'accepted' but payload acceptance.state is {st!r}")
+        und = L.unresolved_object_decisions(payload)
+        if und:
+            flags = "; ".join(f"{u['name']} [{'/'.join(u['flags'])}]" for u in und)
+            reasons.append(
+                f"accepted publish blocked — {len(und)} object(s) carry unresolved "
+                f"decision flags (these must ship as a proposal, not accepted): {flags}")
+
+    if design_state == L.DS_PROPOSAL:
+        od = open_decisions if open_decisions is not None else L.derive_open_decisions(payload)
+        if not od:
+            reasons.append(
+                "proposal publish must carry open_decisions metadata (none found in "
+                "the payload and none provided via --open-decision). A proposal that "
+                "resolves every decision should be published as 'accepted' instead.")
+
+    return (not reasons), reasons
 
 
 # ── publish plan (what a real send would do) ──────────────────────────────────
@@ -208,6 +302,18 @@ def main(argv: list[str] | None = None) -> int:
                     help="actually send to Speckle (default: dry run only)")
     ap.add_argument("--allow-state-mismatch", action="store_true",
                     help="permit a branch prefix that disagrees with acceptance.state")
+    ap.add_argument("--design-state", choices=L.LEDGER_STATES, default=None,
+                    help="publish-discipline channel (default: payload acceptance.state). "
+                         "Use 'scratch' for render/debug pushes excluded from the "
+                         "accepted ledger reports.")
+    ap.add_argument("--allow-dirty", action="store_true",
+                    help="permit an accepted publish from a dirty working tree "
+                         "(otherwise blocked; the working tree must match a commit)")
+    ap.add_argument("--open-decision", action="append", default=None, metavar="TEXT",
+                    help="record an open decision (repeatable); proposals require at "
+                         "least one (auto-derived from the payload if omitted)")
+    ap.add_argument("--notes", default=None, help="free-text note stored on the ledger entry")
+    ap.add_argument("--ledger", default=L.LEDGER_PATH, help="ledger path (advanced)")
     args = ap.parse_args(argv)
 
     if not os.path.exists(args.payload):
@@ -218,30 +324,55 @@ def main(argv: list[str] | None = None) -> int:
         payload = json.load(fh)
 
     mode = "PUBLISH" if args.publish else "DRY RUN"
-    print(f"=== Speckle publish · {mode} ===")
+    design_state = resolve_design_state(payload, args.design_state)
+    print(f"=== Speckle publish · {mode} · channel={design_state} ===")
     print(f"payload: {os.path.relpath(args.payload, S.REPO)}")
 
-    ok, reasons = preflight(payload)
+    gates = gather_gates(payload)
     plan = publish_plan(payload, args.server)
+    open_decisions = args.open_decision if args.open_decision else None
 
     print("\nplan:")
     for k, v in plan.items():
         print(f"  {k:18} {v}")
+    print(f"  {'design_state':18} {design_state}")
+    print(f"  {'repo_clean':18} {gates['repo_clean']}")
 
+    ok, reasons = guard(payload, design_state, gates,
+                        allow_dirty=args.allow_dirty, open_decisions=open_decisions)
+
+    # The ledger entry this publish would create / will create. Built before the
+    # send so a dry run can show it; rebuilt with the real ids after a send.
+    preview = L.build_entry(payload, design_state=design_state, gates=gates,
+                            server=args.server, open_decisions=open_decisions,
+                            notes=args.notes)
+
+    # A DRY RUN always shows the prospective entry AND the guard verdict, so the
+    # operator sees exactly what would be recorded and what (if anything) blocks it.
+    if not args.publish:
+        if ok:
+            print(f"\nguard: OK ({design_state} discipline satisfied)")
+        else:
+            print(f"\nguard: WOULD BLOCK a real {design_state} publish:")
+            for r in reasons:
+                print("  • " + r)
+        print("\nledger entry (preview — would be appended on --publish):")
+        print(_indent(json.dumps(preview, indent=2)))
+        print(f"\nDRY RUN complete — nothing was sent, ledger unchanged "
+              f"({os.path.relpath(args.ledger, S.REPO)}). Re-run with --publish "
+              "(and SPECKLE_TOKEN / SPECKLE_PROJECT_ID set) to publish + record.")
+        return 0 if ok else 1
+
+    # --publish: the guard is a hard gate.
     if not ok:
-        print("\nREFUSED — publication is blocked:", file=sys.stderr)
+        print(f"\nREFUSED — {design_state} publication is blocked:", file=sys.stderr)
         for r in reasons:
             print("  • " + r, file=sys.stderr)
         print("\nSpeckle is a review surface; the repo gates are the acceptance "
               "authority. Fix the blocking issues and re-run.", file=sys.stderr)
         return 1
 
-    print("\npreflight: OK (verify gate green · boundary clean · branch matches state)")
-
-    if not args.publish:
-        print("\nDRY RUN complete — nothing was sent. Re-run with --publish "
-              "(and SPECKLE_TOKEN / SPECKLE_PROJECT_ID set) to publish.")
-        return 0
+    print(f"\nguard: OK ({design_state} discipline satisfied)")
 
     token = os.environ.get("SPECKLE_TOKEN")
     if not token:
@@ -253,6 +384,16 @@ def main(argv: list[str] | None = None) -> int:
     print("\nPUBLISHED:")
     for k, v in result.items():
         print(f"  {k:12} {v}")
+
+    entry = L.build_entry(payload, design_state=design_state, gates=gates,
+                          publish_result=result, server=args.server,
+                          open_decisions=open_decisions, notes=args.notes)
+    L.append_entry(entry, args.ledger)
+    print(f"\nledger: appended entry (version={entry.get('version_id')}, "
+          f"hash={entry.get('export_payload_hash')}) to "
+          f"{os.path.relpath(args.ledger, S.REPO)}")
+    print("Commit the ledger so the repo records this publish — Speckle history is "
+          "not acceptance history without it.")
     print("\nReminder: this is a review version. It is NOT design truth. Any geometry "
           "edited in Speckle must return as a proposal GeoJSON and pass the repo gates.")
     return 0

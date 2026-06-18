@@ -89,6 +89,34 @@ The publisher enforces that an `accepted/*` branch carries `acceptance.state =
 accepted` and a `proposal/*` branch carries `proposal` — the accepted/proposal
 distinction is enforced, not cosmetic.
 
+### Acceptance discipline + publish ledger (Phase 2)
+
+Speckle version history is **not** acceptance history. A version becomes part of
+the project record only when it is backed by an entry in
+[`data/speckle_publish_ledger.json`](data/speckle_publish_ledger.json) whose
+content hash still matches the payload it published, derived from a gated,
+committed repo state. The lifecycle is **scratch → proposal → accepted**:
+
+- **`scripts/speckle_ledger.py`** — the repo-side ledger: data model, payload
+  content hash, git/working-tree helpers, decision-flag scanners, and the
+  read-side reports (`--accepted-only`, hash verification, webhook lookup).
+- **the `publish_speckle.py` guard** — per-channel discipline: `scratch/*` is
+  permissive (render/debug, excluded from accepted reports); `proposal/*` must
+  carry `open_decisions` metadata; `accepted/*` is refused unless the repo is
+  clean (or `--allow-dirty`), the verify + boundary gates are green, and **no
+  object carries an unresolved decision flag** such as `RULE-9-OPEN`. A real
+  `--publish` appends a ledger entry; a dry run previews it.
+- **`scripts/speckle_compare.py`** — diffs an accepted bundle against a proposal:
+  added/removed objects by class, changed row / ADA-route / stage ids, validation
+  deltas, and the unresolved decisions on each side.
+- **`scripts/speckle_webhook.py`** — a tailnet-local "version created" handshake
+  receiver (never pulls geometry) that **flags any `accepted/*` version lacking a
+  valid repo ledger entry**.
+- **`scripts/test_speckle_phase2.py`** — proves the guard, ledger, compare, and
+  webhook behaviours.
+
+Full lifecycle + field reference: **[`docs/speckle_publish_ledger.md`](docs/speckle_publish_ledger.md)**.
+
 Self-hosting the review server: **`docs/proxmox_speckle.md`** (Docker Compose on
 Proxmox — reverse proxy, storage, backups, private-network assumptions).
 
@@ -110,4 +138,10 @@ python scripts/verify_unreal_export.py     # 30 acceptance gates (must be green)
 python scripts/export_speckle_payload.py   # unreal_export/ → speckle_export/*.speckle.json
 python scripts/publish_speckle.py          # DRY RUN review publish (gated; --publish to send)
 python scripts/test_speckle_payload.py     # boundary tests (failures must block publication)
+
+# Acceptance discipline + publish ledger (Phase 2)
+python scripts/speckle_ledger.py           # inspect the repo-side publish ledger
+python scripts/speckle_compare.py          # diff accepted vs proposal payloads
+python scripts/speckle_webhook.py --check event.json   # webhook handshake vs the ledger
+python scripts/test_speckle_phase2.py      # guard / ledger / compare / webhook tests
 ```
