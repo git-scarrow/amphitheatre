@@ -1,5 +1,59 @@
 {
   "schema": "speckle-publish-ledger/1",
   "note": "Speckle version history is NOT acceptance history. A Speckle version counts as part of the project record only if it is backed by an entry in this ledger whose export_payload_hash still matches the payload it published. The Python/QGIS repo gates remain the sole acceptance authority; this file is the repo's record of which review versions mirror a gated, committed state.",
-  "entries": []
+  "entries": [
+    {
+      "timestamp": "2026-06-19T14:22:21+00:00",
+      "design_state": "accepted",
+      "project_slug": "petoskey-pit-civic-bowl",
+      "branch": "accepted/scenario-e-baseline",
+      "project_id": "3d44308d44",
+      "model_id": "017f613f5a",
+      "version_id": "a6e9dab770",
+      "object_id": "b7ed3711c2bf37e4a1a0f349cf8ede85",
+      "speckle_url": "https://speckle-review.scarrow.tailnet/projects/3d44308d44/models/017f613f5a@a6e9dab770",
+      "source_git_commit": "84aa207",
+      "export_payload_hash": "sha256:473e0c88867d736680106a88779beb91a360bbccf46d13ab411b8ff4dbb3e0d2",
+      "validation_commands": [
+        "python scripts/verify_unreal_export.py",
+        "python scripts/publish_speckle.py  (object-truth boundary: speckle_common.validate_payload)"
+      ],
+      "validation_passed": true,
+      "validation_detail": {
+        "verify_unreal_export": true,
+        "object_truth_boundary": true,
+        "boundary_error_count": 0,
+        "repo_clean": true
+      },
+      "source_files": [
+        "dem/dem_design_1ft.tif",
+        "dem/proposed_grade_1ft.tif",
+        "vectors_geojson/ada_route.geojson",
+        "vectors_geojson/in_situ_viewpoints.geojson",
+        "vectors_geojson/terrace_treads.geojson"
+      ],
+      "open_decisions": [
+        "ADA-CONCEPT-PENDING: route 'route_arrival_to_cross_aisle' is concept pending civil/code detailing",
+        "ADA-CONCEPT-PENDING: route 'route_arrival_to_floor' is concept pending civil/code detailing",
+        "ADA-CONCEPT-PENDING: route 'route_cross_aisle_to_wc_cluster' is concept pending civil/code detailing",
+        "ADA-CONCEPT-PENDING: route 'route_floor_to_wc_cluster' is concept pending civil/code detailing",
+        "ADA-CONCEPT-PENDING: route 'route_cross_aisle_to_egress' is concept pending civil/code detailing",
+        "ADA-CONCEPT-PENDING: route 'route_floor_to_egress' is concept pending civil/code detailing",
+        "ADA-CONCEPT-PENDING: route 'route_service_to_stage' is concept pending civil/code detailing",
+        "ADA-CONCEPT-PENDING: route 'route_park_to_floor' is concept pending civil/code detailing"
+      ],
+      "notes": "BACKFILL ratification of the pre-existing live accepted version (docs/speckle_publish_ledger.md §7). No new Speckle version was created and the live model was not touched; this entry records that the existing live version mirrors a gated, committed repo state.",
+      "backfill": {
+        "reason": "First/curated accepted publish (a6e9dab770) predated the Phase-2 ledger, so the webhook correctly FLAGged it as un-ratified.",
+        "publish_commit": "3556cd9",
+        "unreal_build_commit": "84aa207",
+        "payload_reproduced": true,
+        "reproduction_method": "export_speckle_payload.py default accepted bundle (Seating/ADA/Reference) is byte-deterministic from committed unreal_export/ (provenance git_commit 84aa207, generated 2026-06-17T18:26:42-04:00). Payload-determining code (export_speckle_payload.py + speckle_common.py) is unchanged 3556cd9..HEAD, so the recomputed export_payload_hash equals the hash of the artifact that produced a6e9dab770.",
+        "object_id_content_anchor": "b7ed3711c2bf37e4a1a0f349cf8ede85",
+        "fetched_from_server": false,
+        "repo_clean_note": "repo_clean records the clean publish-basis commit 3556cd9; the working tree at backfill time carried unrelated uncommitted docs (deploy/speckle/README.md, docs/proxmox_speckle.md, docs/speckle_review_runbook.md)."
+      }
+    }
+  ],
+  "updated": "2026-06-19T14:22:21+00:00"
 }
