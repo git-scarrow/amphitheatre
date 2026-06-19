@@ -2,8 +2,11 @@
 
 These are the exact files running on VM `speckle-review` (Proxmox `pve`, id 131),
 reachable only at **`https://speckle-review.scarrow.tailnet`** over the
-Headscale-managed tailnet. Full deployment narrative, exact Headscale / Tailscale
-/ Proxmox commands, and backup/restore are in
+Headscale-managed tailnet. **Operator runbook (read first):**
+[`docs/speckle_review_runbook.md`](../../docs/speckle_review_runbook.md) —
+orientation, where the credentials really are, the publish workflow, and the
+landmines. Full deployment narrative + exact Headscale / Tailscale / Proxmox
+commands + backup/restore are in
 [`docs/proxmox_speckle.md` §9](../../docs/proxmox_speckle.md).
 
 | File | Where it lives on the VM | Purpose |

@@ -1,5 +1,10 @@
 # Self-hosted Speckle Server on Proxmox — deployment plan
 
+> **Operating the live instance?** Start with the
+> [operator runbook](speckle_review_runbook.md) — orientation, where the
+> credentials actually are, the publish workflow, and the landmines. This file
+> is the original plan plus the exhaustive as-built build record in §9.
+
 A practical Docker Compose deployment for a **private** Speckle Server that acts
 as the **review surface** for the Petoskey Pit civic-bowl bridge. Speckle is for
 review, comparison, and collaboration only — the Python/QGIS repo remains the
