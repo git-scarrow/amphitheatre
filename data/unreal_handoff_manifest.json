@@ -1,0 +1,461 @@
+{
+  "schema": "unreal-handoff/manifest/1.0",
+  "package": "unreal_handoff_v1",
+  "title": "Petoskey Pit Civic Bowl — Unreal handoff v1 (MCP runway index)",
+  "doc": "docs/unreal_handoff_v1.md",
+  "generated_by": "scripts/build_unreal_handoff_manifest.py",
+  "verify": "python scripts/build_unreal_handoff_manifest.py --check",
+  "purpose": "repo truth -> Speckle review -> Unreal scene import -> MCP-controlled visual/proposal edits -> repo validation -> ledgered acceptance",
+  "built_from": {
+    "provenance": "unreal_export/manifests/provenance.json",
+    "provenance_git_commit": "84aa207",
+    "provenance_generated": "2026-06-17T18:26:42-04:00",
+    "export_generator": "scripts/build_unreal_export.py",
+    "export_verifier": "scripts/verify_unreal_export.py"
+  },
+  "authoritative_boundary": "The GIS/design repo is the SINGLE source of truth. This package is a viewer/export layer. Unreal is NOT source of truth. Any geometry edited in Unreal must return as a proposal GeoJSON in EPSG:6494 and pass the existing Python/QGIS gates (scripts/audit_in_situ_package.py et al.) before it can become design truth.",
+  "crs": {
+    "horizontal": "EPSG:6494 NAD83(2011)/Michigan Central, INTERNATIONAL feet",
+    "vertical": "NAVD88 (Geoid12A), international feet",
+    "local_origin_epsg6494_ft": [
+      19533067.7,
+      750799.2
+    ],
+    "ft_to_m": 0.3048,
+    "local_frame": "ENU, Z-up, metres; x=east y=north z=NAVD88ft*0.3048",
+    "reverse_transform": "X_epsg6494_ft = x_local_m/0.3048 + origin_x; Y_epsg6494_ft = y_local_m/0.3048 + origin_y; navd88_ft = z_local_m/0.3048"
+  },
+  "units": {
+    "horizontal_geojson": "EPSG:6494 international feet",
+    "3d_scene": "local ENU metres, Z-up (x=east, y=north, z=NAVD88 ft x 0.3048)",
+    "ft_to_m": 0.3048,
+    "vertical_datum": "NAVD88 (Geoid12A), international feet"
+  },
+  "package_fingerprint_sha256": "4280f54f5cef25769005ef969ff6355da1993d95ff6988265d2eb04724fa0bea",
+  "committed_package_file_count": 12,
+  "layers": [
+    {
+      "name": "seating_rows",
+      "title": "Seating rows — tread polygons + per-row attributes (Scenario E)",
+      "role": "accepted-read-only",
+      "speckle_collection": "Seating",
+      "speckle_acceptance": "accepted",
+      "unreal": {
+        "folder": "Seating",
+        "actor_prefix": "Row_",
+        "import_as": "GeoJSON (georef) or actor_manifest anchors"
+      },
+      "authoritative_source": [
+        "vectors_geojson/terrace_treads.geojson"
+      ],
+      "validation_read_from": [
+        "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json"
+      ],
+      "editable_in_unreal": false,
+      "package_files": [
+        {
+          "path": "unreal_export/geo/seating_rows.geojson",
+          "sha256": "2ba355642b818a6c6cf7cbd5a9e18ea086b9d4ee91dba366dc9fc795a9821309",
+          "bytes": 583609
+        }
+      ]
+    },
+    {
+      "name": "seating_row_splines",
+      "title": "Seating row centrelines (open polylines for lofting/labels)",
+      "role": "accepted-read-only",
+      "speckle_collection": "Seating",
+      "speckle_acceptance": "accepted",
+      "unreal": {
+        "folder": "Seating",
+        "actor_prefix": "Row_",
+        "import_as": "GeoJSON spline"
+      },
+      "authoritative_source": [
+        "vectors_geojson/terrace_treads.geojson"
+      ],
+      "validation_read_from": [],
+      "editable_in_unreal": false,
+      "package_files": [
+        {
+          "path": "unreal_export/geo/seating_row_splines.geojson",
+          "sha256": "26c9edc3b9801f968fe586557b3b2833edbda3f8825aacbecb5f1c050d98361a",
+          "bytes": 551013
+        }
+      ]
+    },
+    {
+      "name": "stage_floor",
+      "title": "Stage / floor footprint — PROVISIONAL (DESIGN_CANON Rule 9 OPEN)",
+      "role": "proposal-provisional",
+      "speckle_collection": "Stage",
+      "speckle_acceptance": "proposal (excluded from the accepted bundle)",
+      "unreal": {
+        "folder": "Stage",
+        "actor_prefix": "Stage_",
+        "import_as": "GeoJSON (render-only Z)"
+      },
+      "authoritative_source": [
+        "vectors_geojson/bowl_zones.geojson",
+        "design_open_low/stage_floor.geojson"
+      ],
+      "validation_read_from": [],
+      "editable_in_unreal": "proposal-only (must keep provisional / Rule-9 label)",
+      "package_files": [
+        {
+          "path": "unreal_export/geo/stage_floor.geojson",
+          "sha256": "faf98f33e5ea81653f00dbfcdcb994aff7b5adc9b2073cec17d99f2ef107d291",
+          "bytes": 13380
+        }
+      ]
+    },
+    {
+      "name": "ada_route",
+      "title": "ADA route network — CONCEPT pending civil/code detailing",
+      "role": "proposal-concept",
+      "speckle_collection": "ADA",
+      "speckle_acceptance": "proposal (carried in accepted-context bundle, status verbatim)",
+      "unreal": {
+        "folder": "ADA",
+        "actor_prefix": "ADA_ / ADANode_",
+        "import_as": "GeoJSON"
+      },
+      "authoritative_source": [
+        "vectors_geojson/ada_route.geojson"
+      ],
+      "validation_read_from": [
+        "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json"
+      ],
+      "editable_in_unreal": "proposal-only (status strings never strengthened past concept/pending)",
+      "package_files": [
+        {
+          "path": "unreal_export/geo/ada_route.geojson",
+          "sha256": "9edcf6a70f6e66414bcfbc7cbca1cf3bb715887dd546ccc523ade691272e56e1",
+          "bytes": 43095
+        }
+      ]
+    },
+    {
+      "name": "sightline_table",
+      "title": "Per-row sightline readout (C_mm, band, verdict) — read from validation",
+      "role": "accepted-read-only",
+      "speckle_collection": null,
+      "speckle_acceptance": "accepted (validation readout, not geometry)",
+      "unreal": {
+        "folder": null,
+        "actor_prefix": null,
+        "import_as": "DataTable (string/float)"
+      },
+      "authoritative_source": [
+        "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json"
+      ],
+      "validation_read_from": [
+        "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json"
+      ],
+      "editable_in_unreal": false,
+      "package_files": [
+        {
+          "path": "unreal_export/tables/sightline_table.csv",
+          "sha256": "5ae912e3d6897f6678f392a8649963103274cefb4bbab91f4b19b05910042ac0",
+          "bytes": 5576
+        }
+      ]
+    },
+    {
+      "name": "terrain_existing",
+      "title": "Existing-grade terrain (mesh + heightfield) — reference",
+      "role": "reference-read-only",
+      "speckle_collection": "Reference",
+      "speckle_acceptance": "accepted (reference context)",
+      "unreal": {
+        "folder": "Terrain",
+        "actor_prefix": "Terrain_Existing",
+        "import_as": "Landscape (r16) or static mesh (glb)"
+      },
+      "authoritative_source": [
+        "dem/dem_design_1ft.tif"
+      ],
+      "validation_read_from": [],
+      "editable_in_unreal": false,
+      "package_files": [
+        {
+          "path": "unreal_export/terrain/heightfield_existing.heightfield.json",
+          "sha256": "21ecb8bfe428862d355eb0e4035e896a46274d93998de5512d0fbef626149e47",
+          "bytes": 1065
+        }
+      ],
+      "regenerable_binaries": {
+        "status": "gitignored — heavy, rebuild from source DEM (not hashed here)",
+        "rebuild": "python scripts/build_unreal_export.py",
+        "paths": [
+          "unreal_export/terrain/terrain_existing.glb",
+          "unreal_export/terrain/heightfield_existing.r16",
+          "unreal_export/terrain/heightfield_existing.png"
+        ]
+      }
+    },
+    {
+      "name": "terrain_proposed",
+      "title": "Proposed-grade terrain (mesh + heightfield) — reference",
+      "role": "reference-read-only",
+      "speckle_collection": "Reference",
+      "speckle_acceptance": "accepted (reference context)",
+      "unreal": {
+        "folder": "Terrain",
+        "actor_prefix": "Terrain_Proposed",
+        "import_as": "Landscape (r16) or static mesh (glb/obj)"
+      },
+      "authoritative_source": [
+        "dem/proposed_grade_1ft.tif"
+      ],
+      "validation_read_from": [],
+      "editable_in_unreal": false,
+      "package_files": [
+        {
+          "path": "unreal_export/terrain/heightfield_proposed.heightfield.json",
+          "sha256": "eb89ce554328b3e66caec77c745ffc2a3539c193072cbfaf96b0342ffcd64094",
+          "bytes": 1069
+        }
+      ],
+      "regenerable_binaries": {
+        "status": "gitignored — heavy, rebuild from source DEM (not hashed here)",
+        "rebuild": "python scripts/build_unreal_export.py",
+        "paths": [
+          "unreal_export/terrain/terrain_proposed.glb",
+          "unreal_export/terrain/terrain_proposed.obj",
+          "unreal_export/terrain/heightfield_proposed.r16",
+          "unreal_export/terrain/heightfield_proposed.png"
+        ]
+      }
+    },
+    {
+      "name": "actor_manifest",
+      "title": "Actor bridge — local-metre + EPSG:6494 anchors, source provenance",
+      "role": "index-provenance",
+      "speckle_collection": null,
+      "speckle_acceptance": null,
+      "unreal": {
+        "folder": null,
+        "actor_prefix": null,
+        "import_as": "placement table (json/csv)"
+      },
+      "authoritative_source": [
+        "unreal_export/manifests/provenance.json"
+      ],
+      "validation_read_from": [],
+      "editable_in_unreal": false,
+      "package_files": [
+        {
+          "path": "unreal_export/manifests/actor_manifest.json",
+          "sha256": "9e2e50dd3ff425e235375b63bd7ad2fd56630fbe4bfb89c1b1b18c02ca572d70",
+          "bytes": 48052
+        },
+        {
+          "path": "unreal_export/manifests/actor_manifest.csv",
+          "sha256": "ae2ad89acc401ff3cfe39d54aa95a3125f6e4d5ac0d5281a3fa24696740c40c0",
+          "bytes": 20013
+        }
+      ]
+    },
+    {
+      "name": "material_manifest",
+      "title": "Materials — styling only, keyed to a validated attribute",
+      "role": "styling-visual-only",
+      "speckle_collection": null,
+      "speckle_acceptance": null,
+      "unreal": {
+        "folder": null,
+        "actor_prefix": null,
+        "import_as": "material set"
+      },
+      "authoritative_source": [
+        "unreal_export/manifests/provenance.json"
+      ],
+      "validation_read_from": [],
+      "editable_in_unreal": "visual-only (recolour allowed; must_label flags must survive)",
+      "package_files": [
+        {
+          "path": "unreal_export/manifests/material_manifest.json",
+          "sha256": "866b1896fa6d17742b046bf09e6b300c887df3c82d01d3c0cf1ceb9377e000a4",
+          "bytes": 2696
+        }
+      ]
+    },
+    {
+      "name": "camera_manifest",
+      "title": "Cameras — viewpoints (position_local_m, azimuth, fov)",
+      "role": "viewpoints-visual-only",
+      "speckle_collection": null,
+      "speckle_acceptance": null,
+      "unreal": {
+        "folder": "Cameras",
+        "actor_prefix": "Cam_",
+        "import_as": "CineCamera placements"
+      },
+      "authoritative_source": [
+        "vectors_geojson/in_situ_viewpoints.geojson"
+      ],
+      "validation_read_from": [],
+      "editable_in_unreal": "visual-only (spawn/move cameras freely)",
+      "package_files": [
+        {
+          "path": "unreal_export/manifests/camera_manifest.json",
+          "sha256": "dd423f87a37da54e27325c0a6a60ccf9dd452c94a2980aa7ccabbedf39d2f0a2",
+          "bytes": 5699
+        }
+      ]
+    },
+    {
+      "name": "provenance",
+      "title": "Provenance + authoritative-source boundary + planning-grade warnings",
+      "role": "authority",
+      "speckle_collection": null,
+      "speckle_acceptance": null,
+      "unreal": {
+        "folder": null,
+        "actor_prefix": null,
+        "import_as": "metadata"
+      },
+      "authoritative_source": [
+        "truth_package/design_state.current.json"
+      ],
+      "validation_read_from": [],
+      "editable_in_unreal": false,
+      "package_files": [
+        {
+          "path": "unreal_export/manifests/provenance.json",
+          "sha256": "a78215732aeb3c0f5565d610f1bb6177de813a48cd3b44cdcd07114d63c23d33",
+          "bytes": 7544
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "treads": {
+      "path": "vectors_geojson/terrace_treads.geojson",
+      "sha256_12": "e74d78853e2d",
+      "exists": true
+    },
+    "zones": {
+      "path": "vectors_geojson/bowl_zones.geojson",
+      "sha256_12": "3228c4b2ff70",
+      "exists": true
+    },
+    "stage_lineage": {
+      "path": "design_open_low/stage_floor.geojson",
+      "sha256_12": "59a32670aab6",
+      "exists": true
+    },
+    "ada_route": {
+      "path": "vectors_geojson/ada_route.geojson",
+      "sha256_12": "1b591af7b9a7",
+      "exists": true
+    },
+    "viewpoints": {
+      "path": "vectors_geojson/in_situ_viewpoints.geojson",
+      "sha256_12": "82c0bfb6babf",
+      "exists": true
+    },
+    "validation": {
+      "path": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
+      "sha256_12": "e08f0e8d2055",
+      "exists": true
+    },
+    "design_state": {
+      "path": "truth_package/design_state.current.json",
+      "sha256_12": "c305a211b590",
+      "exists": true
+    },
+    "dem_existing": {
+      "path": "dem/dem_design_1ft.tif",
+      "sha256_12": "035eb77372e0",
+      "exists": true
+    },
+    "dem_proposed": {
+      "path": "dem/proposed_grade_1ft.tif",
+      "sha256_12": "86de4d4e99a7",
+      "exists": true
+    },
+    "dem_cutfill": {
+      "path": "dem/cut_fill_1ft.tif",
+      "sha256_12": "566badb423e6",
+      "exists": true
+    },
+    "data_inventory": {
+      "path": "truth_package/data_inventory.md",
+      "sha256_12": "bc1bca2d2863",
+      "exists": true
+    }
+  },
+  "acceptance": {
+    "authority": "THIS REPO is the sole acceptance authority: the Python/QGIS validation gates plus data/speckle_publish_ledger.json. Speckle version history and Unreal scene state are NEVER acceptance authority.",
+    "geometry_change_by_this_package": "none — indexes the existing validated export; creates and modifies no geometry, ledger, or validation output",
+    "accepted_baseline": "Scenario E three-section civic bowl",
+    "gates": [
+      "python scripts/verify_unreal_export.py",
+      "python scripts/audit_in_situ_package.py",
+      "python scripts/build_unreal_handoff_manifest.py --check"
+    ],
+    "warnings": [
+      "PLANNING-GRADE ONLY — derived from 2015 USGS LiDAR + supplement; not a stamped engineering design and not a field survey.",
+      "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is OPEN (inherited az-150 stage; +25.6° audience-axis mismatch on record).",
+      "Coordinates are EPSG:6494 INTERNATIONAL feet — misreading as US survey feet shifts absolute easting ~39 ft (docs/datum_note.md).",
+      "Component CY totals are validated proxies that understate mobilization-level earthwork (analysis/tier_emission/TIER_EMISSION_VALIDATION.md).",
+      "Seating scope Decision 1 is pending; this package shows the Scenario E baseline (option A).",
+      "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed."
+    ],
+    "warnings_source": "truth_package/design_state.current.json",
+    "ledger_entry": {
+      "file": "data/speckle_publish_ledger.json",
+      "design_state": "accepted",
+      "branch": "accepted/scenario-e-baseline",
+      "project_id": "3d44308d44",
+      "model_id": "017f613f5a",
+      "version_id": "a6e9dab770",
+      "source_git_commit": "84aa207",
+      "export_payload_hash": "sha256:473e0c88867d736680106a88779beb91a360bbccf46d13ab411b8ff4dbb3e0d2",
+      "validation_passed": true,
+      "open_decisions_count": 8
+    }
+  },
+  "speckle": {
+    "role": "review / exchange surface — NOT acceptance authority",
+    "principle": "Speckle version history is not acceptance history; a version counts as part of the record only while its export_payload_hash still matches a ledger entry.",
+    "payload_generator": "scripts/export_speckle_payload.py",
+    "publish_guard": "scripts/publish_speckle.py (dry-run first; refuses unless verify_unreal_export passes)",
+    "ledger": "data/speckle_publish_ledger.json",
+    "compare": "scripts/speckle_compare.py",
+    "webhook": "scripts/speckle_webhook.py",
+    "bundles": {
+      "accepted": [
+        "Seating",
+        "ADA",
+        "Reference"
+      ],
+      "shipped_separately_as_proposal": [
+        "Stage (DESIGN_CANON Rule 9 OPEN)"
+      ]
+    },
+    "this_handoff": "does NOT publish to Speckle and does NOT mutate the live server"
+  },
+  "mcp_runway": {
+    "role": "Unreal (optionally driven by an MCP bridge) is a presentation + proposal surface. Nothing rendered or edited there is design truth until it passes the repo gates and is ledgered.",
+    "allowed": [
+      "spawn / move cameras; render stills and flythroughs; set bookmarks",
+      "assign or recolour materials from material_manifest; toggle layer visibility",
+      "spawn labels / text / decals from sightline_table.csv and feature properties",
+      "toggle cut/fill overlay, validation tints, provisional hatching",
+      "import the generated terrain / heightfield / GeoJSON / DataTable",
+      "measure, annotate, place reference splines that are NOT exported back as design"
+    ],
+    "disallowed": [
+      "move / rescale / rotate / re-loft seating, stage, treatment cell, ADA, or terrain and call the result the design",
+      "edit elevations (tread proposed_elev_navd88_ft, stage deck, ADA landings)",
+      "change seat counts, C-values, ADA slopes/landings, or earthwork quantities",
+      "recolour a provisional/concept element to read as accepted, or drop the Rule-9 / planning-grade labels",
+      "export Unreal geometry directly into vectors_geojson/, dem/, truth_package/, or analysis/ validation outputs",
+      "write back in Unreal units (cm, Y-up, local frame) without reversing the coordinate contract to EPSG:6494 intl ft / NAVD88"
+    ],
+    "edit_return_path": "Unreal edit -> proposal GeoJSON in EPSG:6494 intl ft / NAVD88 (keep feature_id) under requests/ -> run the owning gate(s) -> only on PASS does a maintainer fold it into the authoritative sources, then rebuild this package. See docs/unreal_handoff_v1.md."
+  }
+}
