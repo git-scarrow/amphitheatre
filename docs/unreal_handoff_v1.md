@@ -14,6 +14,7 @@ This doc is the **governance contract**. Its companions:
 | `scripts/build_unreal_handoff_manifest.py` | deterministic generator + `--check` drift gate for the manifest |
 | `unreal_export/manifests/provenance.json` | the export's own CRS / sources / warnings (this doc reads from it, never restates as new truth) |
 | `docs/speckle_review_runbook.md`, `docs/speckle_publish_ledger.md` | Speckle review + acceptance-ledger discipline |
+| `docs/unreal_mcp_readonly_scene_v0.md` | v0 read-only scene **assembly runbook + host status** (what to import, hierarchy, cameras, captures) |
 
 The runway, end to end:
 
