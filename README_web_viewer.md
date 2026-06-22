@@ -42,6 +42,37 @@ two row-eye presets are computed at tread centroid + 4 ft eye height.
 scene and the left audit panel — which reads the same truth package — remains
 fully functional. Tested in WebGL-less headless Firefox.
 
+### Live preview on a private URL (auto-reloads on edits)
+
+For sharing a working copy that updates as you edit, run the live server
+instead of opening the file:
+
+```bash
+scripts/serve_viewer.sh --rebuild
+```
+
+This serves `web_viewer/` on `127.0.0.1:8788` behind the `amphitheatre`
+Cloudflare tunnel — a private, unlisted URL:
+
+```
+https://amphitheatre.scarrow.net
+```
+
+The page holds an `EventSource("/__livereload")` connection and reloads itself
+whenever a watched file changes:
+
+- edit `index.html` → reload
+- regenerate `web_viewer/data/site_data.js` → reload
+- with `--rebuild`, edit any build source (`vectors_geojson/*.geojson`,
+  `dem/*.tif`, the Scenario-E `validation.json`, …) → `build_truth_package.py`
+  re-runs automatically → `site_data.js` is rewritten → reload
+
+`scripts/serve_viewer.py` is the stdlib-only server (HTML injection + SSE
+watcher); the `.sh` wrapper builds-if-missing, starts it, and starts
+`cloudflared` with an **explicit `--config`** (this host's shared default
+cloudflared config otherwise silently 404s the edge). Drop the URL by stopping
+both with Ctrl-C; the tunnel/DNS artifacts persist for reuse.
+
 ## 2. What you are looking at — truth tiers
 
 Every layer in the panel is tagged with its tier. The viewer never blends them
