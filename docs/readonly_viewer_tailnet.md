@@ -249,9 +249,9 @@ viewer.** The three surfaces are separate:
 - **(b) Speckle review** — a separate, heavier interactive 3D service
   (`https://speckle-review.scarrow.tailnet`, accepted model `017f613f5a`), already deployed,
   browser-only from the Mac (needs the Caddy internal-CA root trusted).
-- **(c) Unreal / UE 5.8 MCP scene** — **not yet assembled or deployed**; an editor/MCP target on
-  gentoo, *not* a web endpoint. See `docs/unreal_mcp_readonly_scene_v0.md` and
-  `docs/UNREAL_MCP_SCENE_V0_NEXT.md`.
+- **(c) Unreal / UE 5.8 MCP scene** — an editor/MCP target on gentoo, *not* a web endpoint. A
+  headless MCP assembly of `/Game/Maps/CivicBowl` is documented, but the repo does not yet contain
+  the durable assembly scripts needed to reproduce it; see `docs/UNREAL_MCP_SCENE_V0_NEXT.md`.
 
 All are read-only review; none is acceptance authority (the Python/QGIS gates + the ledger are).
 
