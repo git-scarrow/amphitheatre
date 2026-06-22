@@ -97,9 +97,38 @@ Materials/validation/tags come from `manifests/actor_manifest.json` (joined by
 - **Sightline DataTable: TODO** — needs a `TableRowBase` struct, not creatable
   headless (GUI or committed C++/uasset).
 - **Rendered captures: TODO** — need a GPU/GUI launch (`run_mcp_server.sh 8000 gui`).
-- **Handedness:** direct ENU→UE mapping (internally consistent; a global mirror vs
-  true geography — a Y-negation may be wanted before captures).
-- **In-editor scripts are validated by syntax + dry-run here**, not yet by a live UE
-  run; the import-factory / save details may need first-run tuning on gentoo
-  (FbxFactory accepts obj/fbx, not glb — terrain glb is converted to obj offline).
-  `never pkill -f` a UE pattern; stop by PID.
+- **Handedness — CLASSIFIED (mirror, not a rotation/data error):** the ENU source
+  data is geographically faithful (verified: bay-view axis azimuth = 330.0° NNW,
+  matching the manifest; camera azimuths match; seating wraps the SE quadrant
+  opening NW). The bug is only the frame mapping: `civicbowl_common` copies ENU
+  (right-handed: E,N,Up) → UE (left-handed) component-wise, which is a **parity
+  reflection** — the scene is internally consistent but mirror-imaged vs true
+  geography (clockwise-from-north angles read counter-clockwise; E/W sense flips).
+  Does **not** block assembly/verify. Fix (follow-on): negate one horizontal axis
+  in the transform (e.g. UE_Y = −north, the conventional X=North/Y=East mapping),
+  then re-gen. Left as-is for v0 per "don't fix visual issues that don't block."
+
+## First live run on gentoo — 2026-06-22 (PASS)
+
+Ran headless via `UnrealEditor-Cmd … -run=pythonscript` (the MCP path needs a
+session-registered server, unavailable mid-session). Result: `assemble` →
+`/Game/Maps/CivicBowl` (2 terrain + 91 actors + 7 cameras), saved inline (250 KB
+.umap); reload `verify` → **PASS**, all 9 groups exact. Two issues found + fixed
+(both blocked assembly/verification, so in scope):
+
+1. **`spawn_actor_from_object` SIGSEGVs in a commandlet.** It routes through the
+   level-editor viewport `PlacementSubsystem::FindAssetFactoryFromAssetData`
+   (`PlacementSubsystem.cpp:87`), null without a live editor viewport. **Fix:**
+   spawn via `spawn_actor_from_class(StaticMeshActor)` + `set_static_mesh` (uses
+   `UWorld::SpawnActor` directly — commandlet-safe).
+2. **Assemble was not idempotent** — it spawned on top of the prior scene (counts
+   doubled: cameras 7→14, etc.). `delete_asset` on the loaded startup level isn't
+   reliable headless. **Fix:** after `load_level`, destroy any actors left in our
+   managed folders, then rebuild (verified: cleared 111, rebuilt 93+7 clean).
+
+Confirmed working headless: OBJ import via the **Interchange** importer (no glb —
+terrain glb is converted to obj offline), per-mesh `save_asset`, inline level save,
+reload + actor enumeration. `never pkill -f` a UE pattern; stop by PID.
+
+Still pending live: colored materials, human-scale refs, sightline DataTable,
+rendered captures (GPU/GUI), and the handedness Y-negation above.

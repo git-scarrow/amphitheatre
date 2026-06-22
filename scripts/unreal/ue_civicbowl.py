@@ -100,8 +100,13 @@ def _import_mesh(unreal, abs_obj: str, dest: str):
 
 
 def _spawn_static(unreal, eas, mesh_asset, location, scale, label, folder, tags):
+    # NOTE: spawn_actor_from_OBJECT routes through the level-editor viewport
+    # PlacementSubsystem (FindAssetFactoryFromAssetData), which is null in a
+    # headless `-run=pythonscript` commandlet -> SIGSEGV. spawn_actor_from_CLASS
+    # uses UWorld::SpawnActor directly and is commandlet-safe; set the mesh after.
     loc = unreal.Vector(location[0], location[1], location[2])
-    actor = eas.spawn_actor_from_object(mesh_asset, loc, unreal.Rotator(0, 0, 0))
+    actor = eas.spawn_actor_from_class(unreal.StaticMeshActor, loc, unreal.Rotator(0, 0, 0))
+    actor.static_mesh_component.set_static_mesh(mesh_asset)
     actor.set_actor_scale3d(unreal.Vector(scale, scale, scale))
     actor.set_actor_label(label)
     actor.set_folder_path(folder)
@@ -117,15 +122,24 @@ def assemble(plan_path: str, force: bool) -> int:
     eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
     les = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
 
-    # 1. NON-WP level (actors persist inline). Duplicate the Basic template.
-    if eal.does_asset_exist(p["map_package"]):
-        if force:
-            eal.delete_asset(p["map_package"])
-        else:
-            unreal.log_warning(f"{p['map_package']} exists; pass --force to recreate")
+    # 1. NON-WP level (actors persist inline). Create from the Basic template if
+    #    missing; otherwise reuse it. (delete_asset on the loaded startup level is
+    #    not reliable headless, so we do NOT rely on it to clear old content.)
     if not eal.does_asset_exist(p["map_package"]):
         eal.duplicate_asset(p["level_template"], p["map_package"])
     les.load_level(p["map_package"])
+
+    # 1b. IDEMPOTENT rebuild: destroy any actors a prior run left in our managed
+    #     folders, so re-assembling replaces rather than accretes (the first live
+    #     run spawned on top of an older scene -> doubled counts). Template
+    #     defaults live at the root folder ("") and are preserved.
+    managed = tuple(sorted({g["folder"].split("/")[0] for g in cb.SCENE_SPEC.values()}))
+    cleared = 0
+    for a in eas.get_all_level_actors():
+        fp = str(a.get_folder_path())
+        if fp and fp.startswith(managed):
+            eas.destroy_actor(a); cleared += 1
+    unreal.log(f"[civicbowl] cleared {cleared} prior actor(s) from managed folders {managed}")
 
     # 2. import all unique meshes (relative paths -> abs under the plan dir)
     rels = sorted({a["mesh"] for a in p["actors"] if a["mesh"]} |
