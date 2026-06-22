@@ -119,10 +119,12 @@ PrivateTmp=yes
 ProtectControlGroups=yes
 ProtectKernelTunables=yes
 ProtectKernelModules=yes
-RestrictAddressFamilies=AF_INET AF_INET6
+RestrictAddressFamilies=AF_INET AF_INET6 AF_NETLINK
 RestrictNamespaces=yes
 LockPersonality=yes
 # (No ReadWritePaths= is granted on purpose — the service has zero writable paths.)
+# AF_NETLINK is required only so the ExecStartPre probe can query interface state with
+# `ip` (rtnetlink); the HTTP server still binds only to the configured tailnet IPv4 address.
 
 [Install]
 WantedBy=multi-user.target
@@ -237,13 +239,21 @@ tailnet. Caveats: it publishes to the Cloudflare edge (external service); pass a
 
 ---
 
-## 11. Alternative tailnet review surface (context)
+## 11. The three review surfaces — kept distinct
 
-The private **Speckle** server (`https://speckle-review.scarrow.tailnet`, accepted model
-`017f613f5a`) is the other, heavier tailnet review surface (interactive 3D, federated models). It's
-already deployed and is also browser-only from the Mac (needs the Caddy internal-CA root trusted).
-This doc's static viewer is the **lightweight, zero-dependency** option. Both are read-only review;
-neither is acceptance authority.
+Despite the `unreal/…` branch name, **this doc deploys the static web viewer, not the Unreal
+viewer.** The three surfaces are separate:
+
+- **(a) Static Three.js web viewer** — *this doc*. Always-on, browser-only, read-only, tailnet-served
+  from `web_viewer/`; the lightweight, zero-dependency option.
+- **(b) Speckle review** — a separate, heavier interactive 3D service
+  (`https://speckle-review.scarrow.tailnet`, accepted model `017f613f5a`), already deployed,
+  browser-only from the Mac (needs the Caddy internal-CA root trusted).
+- **(c) Unreal / UE 5.8 MCP scene** — **not yet assembled or deployed**; an editor/MCP target on
+  gentoo, *not* a web endpoint. See `docs/unreal_mcp_readonly_scene_v0.md` and
+  `docs/UNREAL_MCP_SCENE_V0_NEXT.md`.
+
+All are read-only review; none is acceptance authority (the Python/QGIS gates + the ledger are).
 
 ---
 
