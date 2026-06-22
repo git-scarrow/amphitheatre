@@ -96,3 +96,7 @@ deploy/speckle/.env
 # ── misc scratch ─────────────────────────────────────────────────────────────
 *.log
 .DS_Store
+
+# ── local Claude Code session state ──────────────────────────────────────────
+# Holds per-session settings and a full nested git worktree; never commit it.
+.claude/
