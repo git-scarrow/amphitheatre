@@ -100,3 +100,7 @@ deploy/speckle/.env
 # ── local Claude Code session state ──────────────────────────────────────────
 # Holds per-session settings and a full nested git worktree; never commit it.
 .claude/
+
+# ── generated build outputs (regenerable) ────────────────────────────────────
+# scripts/unreal/gen_review_meshes.py writes meshes + scene_plan.json here.
+build/

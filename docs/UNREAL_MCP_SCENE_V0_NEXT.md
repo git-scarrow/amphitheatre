@@ -80,11 +80,16 @@ Seating_Rows (45 treads) + Stage_Floor (6 slabs, provisional) + 7 cameras, in a 
 are explicitly **deferred** to follow-on increments (§2 items 2–6).
 
 Deliverables of this step:
-- `scripts/unreal/gen_review_meshes.py` + `scripts/unreal/assemble_scene_mcp.py` (+ a short
-  `scripts/unreal/README.md`), reconstructed from the documented method in
-  `gentoo_unreal_host_setup.md` §8.222.
-- Refresh `unreal_mcp_readonly_scene_v0.md` §1 to reflect the assembled scene + point here.
-- Commit `gentoo_unreal_host_setup.md` (currently untracked) so the assembly record is tracked.
+- **DONE** — `scripts/unreal/` toolchain landed: `civicbowl_common.py` (frame + `SCENE_SPEC`
+  contract), `gen_review_meshes.py` (offline mesh + deterministic `scene_plan.json`),
+  `ue_civicbowl.py` (in-editor `assemble`/`verify`), `verify_civicbowl.py` (offline report),
+  and `scripts/unreal/README.md`. Offline gen+verify tested; in-editor scripts syntax- and
+  dry-run-checked. The v0 inventory actually exceeds the original baseline (adds ADA routes +
+  landings, treatment cell, event floor, bay-view axis), sourced entirely from the gated
+  `unreal_export/` package. Remaining: human-scale refs (not yet in the geo/ package),
+  colored materials, sightline DataTable, captures — see `scripts/unreal/README.md`.
+- TODO — refresh `unreal_mcp_readonly_scene_v0.md` §1 once the scripts run live on gentoo.
+- DONE — `gentoo_unreal_host_setup.md` is now tracked (commit `756ac9d`).
 
 ## 5. MCP verification target (run later on gentoo)
 
