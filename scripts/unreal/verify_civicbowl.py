@@ -110,6 +110,48 @@ def main() -> int:
     if plan.get("warnings"):
         print(f"warnings (z fallbacks etc.): {len(plan['warnings'])}")
 
+    # 6. orientation / handedness — computed THROUGH the ENU->UE transform
+    import math
+    print("\norientation (computed through the ENU->UE map):")
+    det = cb.det3()
+    det_ok = abs(det + 1.0) < 1e-9
+    print(f"   {'OK' if det_ok else 'FAIL':9s} ENU->UE determinant = {det:+.1f} "
+          f"(must be -1: right-handed ENU -> left-handed UE, i.e. NOT mirrored)")
+    if not det_ok:
+        ok = False; rc = rc or 1
+
+    def ue_az(ue_x, ue_y):  # azimuth cw-from-north in the UE frame
+        return (math.degrees(math.atan2(ue_y, ue_x)) + 360) % 360
+
+    # bay-view axis: take its endpoints from source, push through the same map
+    stage = cb.geojson_features(os.path.join(root, "unreal_export/geo/stage_floor.geojson"))
+    axis = next((f for f in stage if cb.feature_id(f) == "lineage_bay_view_axis"), None)
+    if axis:
+        c0 = axis["geometry"]["coordinates"][0]; c1 = axis["geometry"]["coordinates"][-1]
+        a = cb.enu_to_ue(*cb.ft_xy_to_enu(c0[0], c0[1]), 0.0)
+        b = cb.enu_to_ue(*cb.ft_xy_to_enu(c1[0], c1[1]), 0.0)
+        az = ue_az(b[0] - a[0], b[1] - a[1])
+        bv_ok = abs(((az - 330.0 + 180) % 360) - 180) < 2.0
+        if not bv_ok:
+            ok = False; rc = rc or 1
+        print(f"   {'OK' if bv_ok else 'FAIL':9s} bay-view axis azimuth = {az:.1f}deg (expect 330 NNW)")
+
+    # seating must occupy the S/SE rake (azimuth 90..200 cw-from-north)
+    import collections
+    secs = collections.defaultdict(list)
+    for f in cb.geojson_features(os.path.join(root, "unreal_export/geo/seating_rows.geojson")):
+        ring = f["geometry"]["coordinates"][0]
+        es = [cb.ft_xy_to_enu(p[0], p[1]) for p in ring]
+        e = sum(p[0] for p in es) / len(es); n = sum(p[1] for p in es) / len(es)
+        ux, uy, _ = cb.enu_to_ue(e, n, 0.0)
+        secs[(f["properties"] or {}).get("section_family") or "?"].append(ue_az(ux, uy))
+    for s, az in sorted(secs.items()):
+        m = sum(az) / len(az)
+        good = 90 <= m <= 200
+        if not good:
+            ok = False; rc = rc or 1
+        print(f"   {'OK' if good else 'FAIL':9s} seating[{s}] mean azimuth = {m:.0f}deg (expect S/SE 90..200)")
+
     print("\nlive MCP reload-verify (on gentoo, editor up):")
     print("   python scripts/unreal/ue_civicbowl.py verify")
     print(f"\nVERDICT: {'PASS (offline)' if ok and rc == 0 else 'ISSUES — see above'}")

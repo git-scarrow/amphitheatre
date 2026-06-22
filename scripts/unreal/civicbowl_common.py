@@ -62,6 +62,39 @@ def ft_z_to_m(navd88_ft: float) -> float:
     return navd88_ft * FT_TO_M
 
 
+# ── ENU (right-handed) -> Unreal (left-handed) frame mapping ─────────────────
+# ENU is right-handed: x=East, y=North, z=Up. Unreal world is LEFT-handed, Z-up.
+# Mapping a right-handed coordinate component-wise into a left-handed frame
+# (the old UE_X=East, UE_Y=North) leaves the data right-handed inside a
+# left-handed renderer -> the scene is MIRROR-imaged vs true geography.
+#
+# The fix is a handedness-flipping (determinant = -1) axis map. We use the
+# conventional Unreal geospatial mapping:
+#       UE_X = North   UE_Y = East   UE_Z = Up
+# An East<->North swap has determinant -1, so it converts right-handed ENU into
+# Unreal's left-handed frame WITHOUT reflecting the geometry. Bearing is then
+# azimuth(cw-from-North) = atan2(UE_Y, UE_X) = atan2(East, North), i.e. the
+# scene's compass matches the real site. Z (elevation) is untouched.
+ENU_TO_UE_LINEAR = (
+    (0.0, 1.0, 0.0),   # UE_X = North  (= ENU y)
+    (1.0, 0.0, 0.0),   # UE_Y = East   (= ENU x)
+    (0.0, 0.0, 1.0),   # UE_Z = Up     (= ENU z)
+)
+
+
+def enu_to_ue(e: float, n: float, u: float) -> tuple[float, float, float]:
+    """ENU metres (East, North, Up) -> Unreal-frame metres (X=North, Y=East, Z=Up)."""
+    return (n, e, u)
+
+
+def det3(m=ENU_TO_UE_LINEAR) -> float:
+    """Determinant of a 3x3 (stdlib). For ENU_TO_UE_LINEAR this is -1.0 — the
+    handedness flip that guarantees the UE scene is not mirror-imaged."""
+    return (m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1])
+            - m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0])
+            + m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]))
+
+
 # ── canonical scene inventory (the contract the verifier checks) ─────────────
 # Each group: which gated source produces it, the geometry kind, and the Outliner
 # folder. "expected" is the count the generated plan / loaded scene must report.

@@ -97,16 +97,17 @@ Materials/validation/tags come from `manifests/actor_manifest.json` (joined by
 - **Sightline DataTable: TODO** — needs a `TableRowBase` struct, not creatable
   headless (GUI or committed C++/uasset).
 - **Rendered captures: TODO** — need a GPU/GUI launch (`run_mcp_server.sh 8000 gui`).
-- **Handedness — CLASSIFIED (mirror, not a rotation/data error):** the ENU source
-  data is geographically faithful (verified: bay-view axis azimuth = 330.0° NNW,
-  matching the manifest; camera azimuths match; seating wraps the SE quadrant
-  opening NW). The bug is only the frame mapping: `civicbowl_common` copies ENU
-  (right-handed: E,N,Up) → UE (left-handed) component-wise, which is a **parity
-  reflection** — the scene is internally consistent but mirror-imaged vs true
-  geography (clockwise-from-north angles read counter-clockwise; E/W sense flips).
-  Does **not** block assembly/verify. Fix (follow-on): negate one horizontal axis
-  in the transform (e.g. UE_Y = −north, the conventional X=North/Y=East mapping),
-  then re-gen. Left as-is for v0 per "don't fix visual issues that don't block."
+- **Handedness — FIXED (`civicbowl_common.enu_to_ue`).** ENU is right-handed
+  (x=East, y=North, z=Up); Unreal is left-handed. The original component-wise copy
+  (UE_X=East, UE_Y=North) had determinant **+1** — it left the data right-handed
+  inside UE's left-handed frame, so the scene rendered **mirror-imaged**. The
+  transform is now the conventional, handedness-flipping map
+  **`UE_X = North, UE_Y = East, UE_Z = Up`** (East↔North swap, determinant **−1**),
+  baked into every mesh, marker anchor, and camera coordinate by `gen_review_meshes`.
+  `verify_civicbowl.py` asserts det = −1 and checks azimuths through the map:
+  bay-view axis = 330.0° NNW; seating east/SE/south = 105/135/169° (S/SE rake);
+  consistent with the geographically-faithful ENU source. `ue_civicbowl.py` is
+  frame-agnostic (it just places the UE coords the plan gives it).
 
 ## First live run on gentoo — 2026-06-22 (PASS)
 
@@ -130,5 +131,10 @@ Confirmed working headless: OBJ import via the **Interchange** importer (no glb 
 terrain glb is converted to obj offline), per-mesh `save_asset`, inline level save,
 reload + actor enumeration. `never pkill -f` a UE pattern; stop by PID.
 
+**Update 2026-06-22 (later):** handedness fix applied (`UE_X=North, UE_Y=East`,
+det −1) and re-verified live — assemble + reload `verify` → **PASS**, orientation
+no longer mirrored (det −1, bay-view 330° NNW, seating in S/SE). UE captures are
+now spatially trustworthy for review.
+
 Still pending live: colored materials, human-scale refs, sightline DataTable,
-rendered captures (GPU/GUI), and the handedness Y-negation above.
+rendered captures (GPU/GUI).

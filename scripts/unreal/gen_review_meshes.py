@@ -45,6 +45,18 @@ SLAB_THICKNESS_M = 0.15      # crude visible thickness for footprint slabs
 RIBBON_WIDTH_M = 1.2         # ADA ribbon width (visual proxy, not a code width)
 MARKER_SIZE_M = 0.6          # shared cube marker edge for point actors
 
+# ENU(right-handed) -> UE(left-handed) as a 4x4 (X=North, Y=East, Z=Up). The
+# determinant is -1, so trimesh flips triangle winding on apply_transform and
+# normals stay outward. Baking this into the meshes (and into marker anchors +
+# camera coords) makes the UE scene geographically faithful, not mirror-imaged.
+UE_MAT = np.array([[r[0], r[1], r[2], 0.0] for r in cb.ENU_TO_UE_LINEAR] + [[0, 0, 0, 1.0]], float)
+
+
+def _to_ue(mesh):
+    """Apply the ENU->UE handedness-correct map to a baked (ENU) mesh, in place."""
+    mesh.apply_transform(UE_MAT)
+    return mesh
+
 
 # ── geometry helpers (all in local ENU metres) ──────────────────────────────
 def _enu_ring(coords) -> list[tuple[float, float]]:
@@ -74,7 +86,7 @@ def slab_mesh(geom: dict, z_top_m: float):
         parts.append(m)
     if not parts:
         return None
-    return trimesh.util.concatenate(parts)
+    return _to_ue(trimesh.util.concatenate(parts))
 
 
 def ribbon_mesh(geom: dict, z_m: float):
@@ -86,7 +98,7 @@ def ribbon_mesh(geom: dict, z_m: float):
         return None
     m = trimesh.creation.extrude_polygon(poly, height=SLAB_THICKNESS_M)
     m.apply_translation((0.0, 0.0, z_m - SLAB_THICKNESS_M))
-    return m
+    return _to_ue(m)
 
 
 def marker_mesh():
@@ -229,7 +241,7 @@ def build(root: str, out: str) -> dict:
             emit_mesh(f"Ref_{fid}", None, cb.SCENE_SPEC["bay_view_axis"]["folder"], mid,
                       (a or {}).get("validation_state", "reference_axis"), False,
                       ["acceptance:reference", f"material:{mid}", "reference_only", "marker"],
-                      {"file": stp, "feature_id": fid, "sha12": sha}, anchor=[x, y, z])
+                      {"file": stp, "feature_id": fid, "sha12": sha}, anchor=list(cb.enu_to_ue(x, y, z)))
 
     # 4) ADA routes (8 lines) + landings (31 points) --------------------------
     adp = "unreal_export/geo/ada_route.geojson"
@@ -253,7 +265,7 @@ def build(root: str, out: str) -> dict:
             emit_mesh(f"ADANode_{fid}", None, cb.SCENE_SPEC["ada_landings"]["folder"], mid,
                       (a or {}).get("validation_state", "landing_concept"), True,
                       ["acceptance:concept", f"material:{mid}", "concept_pending_civil", "marker"],
-                      {"file": adp, "feature_id": fid, "sha12": sha}, anchor=[x, y, z])
+                      {"file": adp, "feature_id": fid, "sha12": sha}, anchor=list(cb.enu_to_ue(x, y, z)))
 
     # shared marker mesh (placed at each point actor's anchor in-editor) -------
     marker_mesh().export(os.path.join(mesh_dir, "_marker_unit.obj"), file_type="obj")
@@ -262,13 +274,16 @@ def build(root: str, out: str) -> dict:
     terrain = []
     tdir = os.path.join(root, "unreal_export/terrain")
     # proposed: already OBJ
-    shutil.copy2(os.path.join(tdir, "terrain_proposed.obj"), os.path.join(mesh_dir, "terrain_proposed.obj"))
+    # proposed: load OBJ, apply the ENU->UE handedness map (NOT a raw copy, or it
+    # would stay mirrored vs the transformed actors), re-export.
+    pr = trimesh.load(os.path.join(tdir, "terrain_proposed.obj"), force="mesh")
+    _to_ue(pr).export(os.path.join(mesh_dir, "terrain_proposed.obj"), file_type="obj")
     terrain.append({"name": "Terrain_Proposed", "mesh": "meshes/terrain_proposed.obj",
                     "group": cb.SCENE_SPEC["terrain"]["folder"], "scale": cb.UE_SCALE,
                     "tags": ["acceptance:reference", "terrain:proposed"]})
-    # existing: convert glb -> obj
+    # existing: convert glb -> obj, apply the same map
     ex = trimesh.load(os.path.join(tdir, "terrain_existing.glb"), force="mesh")
-    ex.export(os.path.join(mesh_dir, "terrain_existing.obj"), file_type="obj")
+    _to_ue(ex).export(os.path.join(mesh_dir, "terrain_existing.obj"), file_type="obj")
     terrain.append({"name": "Terrain_Existing", "mesh": "meshes/terrain_existing.obj",
                     "group": cb.SCENE_SPEC["terrain"]["folder"], "scale": cb.UE_SCALE,
                     "tags": ["acceptance:reference", "terrain:existing"]})
@@ -278,11 +293,12 @@ def build(root: str, out: str) -> dict:
     cameras = []
     for c in cams:
         pos = c.get("position_local_m")
+        tgt = c.get("look_target_local_m")
         cameras.append({
             "name": c.get("camera_name"),
             "group": cb.SCENE_SPEC["cameras"]["folder"],
-            "position_m": pos,
-            "look_at_m": c.get("look_target_local_m"),
+            "position_m": list(cb.enu_to_ue(*pos)) if pos else None,
+            "look_at_m": list(cb.enu_to_ue(*tgt)) if tgt else None,
             "fov": c.get("fov_deg"),
             "scale": cb.UE_SCALE,
             "tags": sorted({f"slot:{c.get('requested_slot')}", "camera",
@@ -298,8 +314,10 @@ def build(root: str, out: str) -> dict:
         "level_template": cb.LEVEL_TEMPLATE,
         "frame": {"origin_epsg6494_ft": [cb.ORIGIN_X_FT, cb.ORIGIN_Y_FT],
                   "ft_to_m": cb.FT_TO_M, "ue_scale_m_to_cm": cb.UE_SCALE,
-                  "note": "meshes are baked in ENU metres; actors placed at scale; "
-                          "markers placed at anchor. Direct ENU->UE (handedness TODO)."},
+                  "enu_to_ue": "UE_X=North, UE_Y=East, UE_Z=Up (det -1, handedness-correct)",
+                  "note": "meshes/markers/cameras are baked in the UE frame via the "
+                          "handedness-flipping ENU->UE map; actors placed at origin, "
+                          "markers/cameras at their UE coords, all at ue_scale."},
         "terrain": terrain,
         "actors": actors,
         "cameras": cameras,
