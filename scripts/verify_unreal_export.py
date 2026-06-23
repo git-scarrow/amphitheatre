@@ -55,6 +55,7 @@ def out(rel):
 REQUIRED = [
     "geo/seating_rows.geojson", "geo/seating_row_splines.geojson",
     "geo/stage_floor.geojson", "geo/ada_route.geojson",
+    "geo/human_scale_refs.geojson",
     "tables/sightline_table.csv",
     "manifests/actor_manifest.json", "manifests/actor_manifest.csv",
     "manifests/material_manifest.json", "manifests/camera_manifest.json",
@@ -243,6 +244,40 @@ def gate_roundtrip():
         f"H local->EPSG:6494 round-trip exact (worst {worst:.4f} ft)")
 
 
+# ── I. human-scale export integrity ─────────────────────────────────────────
+def gate_human_scale():
+    """The gated package must carry the human-scale layer the source defines —
+    baseline figures + dims, with the metadata gen_review_meshes consumes and the
+    ADA-critical wheelchairs — so the UE scene can never silently omit it."""
+    base = [f for f in jload(src("vectors_geojson/human_scale_refs.geojson"))["features"]
+            if f["properties"].get("scope") != "ambitious_option"]
+    s_h = [f for f in base if f["properties"].get("type") == "human"]
+    s_d = [f for f in base if f["properties"].get("type") == "dimension"]
+    exp = jload(out("geo/human_scale_refs.geojson"))["features"]
+    e_h = [f for f in exp if f["properties"].get("type") == "human"]
+    e_d = [f for f in exp if f["properties"].get("type") == "dimension"]
+    (ok if len(e_h) == len(s_h) and len(e_d) == len(s_d) else bad)(
+        f"I human-scale export matches source baseline "
+        f"(humans {len(e_h)}/{len(s_h)}, dims {len(e_d)}/{len(s_d)})")
+    bad_meta = [f["properties"].get("ref_id") for f in e_h
+                if not f["properties"].get("feature_id")
+                or f["properties"].get("height_ft") is None
+                or f["properties"].get("ground_elev_navd88") is None]
+    (ok if not bad_meta else bad)(
+        f"I exported human refs carry feature_id + height + ground ({bad_meta or 'ok'})")
+    chairs = {f["properties"].get("ref_id") for f in e_h
+              if f["properties"].get("posture") == "wheelchair"}
+    need = {"cross_aisle_wheelchair", "ada_landing_routeB_wheelchair"}
+    (ok if need <= chairs else bad)(
+        f"I ADA-critical wheelchair refs exported (missing {sorted(need - chairs) or 'none'})")
+    am_fids = {a.get("source_feature_id") for a in
+               jload(out("manifests/actor_manifest.json"))["actors"]}
+    unbridged = [f["properties"].get("feature_id") for f in exp
+                 if f["properties"].get("feature_id") not in am_fids]
+    (ok if not unbridged else bad)(
+        f"I every exported human ref has an actor_manifest row ({unbridged or 'ok'})")
+
+
 def main():
     if not os.path.isdir(OUT):
         print("FATAL: unreal_export/ not found - run scripts/build_unreal_export.py",
@@ -250,7 +285,7 @@ def main():
         return 2
     for g in (gate_presence, gate_actor_provenance, gate_seat_counts,
               gate_sightlines, gate_ada_status, gate_provisional,
-              gate_warnings, gate_roundtrip):
+              gate_warnings, gate_roundtrip, gate_human_scale):
         try:
             g()
         except Exception as exc:  # a gate that crashes is a failure

@@ -90,6 +90,30 @@ so they are checked against the declared deck elevation, not the raster.
 - **boards/05_seating_options_section.png**: 1:1 figures incl. the wheelchair
   and the ambitious row-20 seated ref.
 
+## Unreal review scene (gated UE 5.8 package)
+
+The same source layer drives the reproducible `/Game/Maps/CivicBowl` UE 5.8 scene
+(`scripts/unreal/`). `scripts/build_unreal_export.build_human_scale` re-emits the
+**baseline** refs — the `scope:ambitious_option` ref is excluded to match the accepted
+scene/viewer — into the gated package:
+
+- `unreal_export/geo/human_scale_refs.geojson` — 15 figures + 4 dimensions, EPSG:6494,
+  with `height_ft` / `eye_height_ft` / `ground_elev_navd88` carried **verbatim** from the
+  source (nothing recomputed);
+- `manifests/actor_manifest.json` rows (one per ref) + `manifests/material_manifest.json`
+  entries (`human_standing` / `human_seated` / `human_wheelchair` / `human_dimension`,
+  all `must_label`).
+
+`scripts/unreal/gen_review_meshes.py` then builds, through the handedness-correct ENU→UE
+map (`UE_X=North, UE_Y=East, UE_Z=Up`, determinant −1 — not mirror-imaged), an
+**exact-height post** per figure (head apex = ground + `height_ft`; footprint schematic)
+and a ribbon per dimension, in the `Reference/HumanScale` Outliner folder.
+`civicbowl_common.SCENE_SPEC["human_scale"]` (`expected: 19`) is the contract the verifier
+checks. The scene is **reproducibly assembled and reload-verified on gentoo through the
+headless commandlet scripts** (`ue_civicbowl.py assemble` / `verify`); **MCP remains the
+intended in-editor inspection/manipulation interface**, and nothing in the UE path writes
+back to the source layers, Speckle, or `data/speckle_publish_ledger.json`.
+
 ## Scale assumptions
 
 - Figure **heights are exact in data units** (ft); silhouettes are schematic.
@@ -122,6 +146,12 @@ Hard failures, each verified by sabotage tests on 2026-06-12:
    viewer heights/grounds not byte-equal to the source; any drawn figure
    without a source ref; `drawn_height_ft` vs `height_ft` beyond 0.05 ft;
    no wheelchair figure reaching the viewer or the ADA-relevant boards.
+7. **Unreal export** — the human-scale layer must reach the gated
+   `unreal_export/geo/human_scale_refs.geojson` + `actor_manifest`: every baseline
+   ref present (the UE scene cannot silently omit scale), the ADA-critical
+   wheelchairs exported, and each exported ref bridged to an actor row.
+   `scripts/verify_unreal_export.py` gate I additionally cross-checks the exported
+   count against the source baseline (humans + dimensions).
 
 ## Regeneration
 
@@ -130,7 +160,17 @@ Hard failures, each verified by sabotage tests on 2026-06-12:
 .venv/bin/python scripts/build_truth_package.py      # viewer payload
 .venv/bin/python scripts/render_in_situ_boards.py    # boards 01-03, 06
 .venv/bin/python scripts/render_decision_packet.py   # boards 04-05
-.venv/bin/python scripts/audit_in_situ_package.py    # gate
+.venv/bin/python scripts/audit_in_situ_package.py    # gate (incl. UE-export check)
+
+# Unreal review scene — offline build + verify; live assemble/verify on gentoo
+.venv/bin/python scripts/build_unreal_export.py      # gated package incl. human_scale
+.venv/bin/python scripts/verify_unreal_export.py     # gate I: human-scale exported
+.venv/bin/python scripts/unreal/gen_review_meshes.py # exact-height posts + ribbons
+.venv/bin/python scripts/unreal/verify_civicbowl.py  # offline: det -1, human_scale=19
+# on the gentoo editor host (headless commandlet):
+UnrealEditor-Cmd <project>.uproject -run=pythonscript \
+  -script="scripts/unreal/ue_civicbowl.py assemble --plan build/unreal_scene/scene_plan.json"
+.venv/bin/python scripts/unreal/ue_civicbowl.py verify   # live reload verify
 ```
 
 `scripts/build_in_situ_package.sh` runs the generator as step 5.

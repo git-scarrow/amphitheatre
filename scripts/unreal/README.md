@@ -63,7 +63,7 @@ geometry-group counts · missing inputs · whether the map reloads via MCP.
 
 ## Scene inventory (v0)
 
-Built from the gated package (93 placed objects + 7 cameras):
+Built from the gated package (112 placed objects + 7 cameras):
 
 | Group | Folder | Count | Source |
 |---|---|---|---|
@@ -75,6 +75,7 @@ Built from the gated package (93 placed objects + 7 cameras):
 | bay-view axis | `Reference/BayView` | 2 | `geo/stage_floor.geojson` (`lineage_*`) |
 | ADA routes | `Concept_ADA/Routes` | 8 | `geo/ada_route.geojson` (lines) |
 | ADA landings | `Concept_ADA/Landings` | 31 | `geo/ada_route.geojson` (points) |
+| human scale | `Reference/HumanScale` | 19 | `geo/human_scale_refs.geojson` (15 figures + 4 dims) |
 | cameras | `Cameras` | 7 | `manifests/camera_manifest.json` |
 
 Materials/validation/tags come from `manifests/actor_manifest.json` (joined by
@@ -91,9 +92,12 @@ Materials/validation/tags come from `manifests/actor_manifest.json` (joined by
 - **Draped elevations:** ADA route lines + the bay-view axis/focal carry `z==0` in
   the manifest, so they're draped onto a data-derived datum (route = mean of its
   landings; bay-view = stage datum). Recorded in `scene_plan.json["warnings"]`.
-- **human-scale refs: TODO** — `vectors_geojson/human_scale_refs.geojson` is not in
-  the gated `unreal_export/geo/` package; export it via `build_unreal_export.py`
-  first, then it becomes a built group.
+- **human-scale refs: INCLUDED** — exported to the gated
+  `unreal_export/geo/human_scale_refs.geojson` by `build_unreal_export.build_human_scale`
+  (baseline only; `scope:ambitious_option` excluded) and built as the
+  `Reference/HumanScale` group: exact-height posts (head apex = ground + `height_ft`) +
+  dimension ribbons, `SCENE_SPEC` expected **19**. `verify_unreal_export.py` gate I and
+  the package audit fail if the layer is dropped.
 - **Sightline DataTable: TODO** — needs a `TableRowBase` struct, not creatable
   headless (GUI or committed C++/uasset).
 - **Rendered captures: TODO** — need a GPU/GUI launch (`run_mcp_server.sh 8000 gui`).
@@ -136,5 +140,9 @@ det −1) and re-verified live — assemble + reload `verify` → **PASS**, orie
 no longer mirrored (det −1, bay-view 330° NNW, seating in S/SE). UE captures are
 now spatially trustworthy for review.
 
-Still pending live: colored materials, human-scale refs, sightline DataTable,
-rendered captures (GPU/GUI).
+**Update 2026-06-22 (human scale):** the human-scale layer is now exported to the gated
+package and built as `Reference/HumanScale` (19 = 15 exact-height figure posts + 4
+dimension ribbons), through the same det −1 ENU→UE map; offline `gen` + `verify_civicbowl`
+PASS (human_scale 19/19, det −1). MCP remains the intended in-editor inspection interface.
+
+Still pending live: colored materials, sightline DataTable, rendered captures (GPU/GUI).

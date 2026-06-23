@@ -78,6 +78,7 @@ SRC = {
     "zones": "vectors_geojson/bowl_zones.geojson",
     "stage_lineage": "design_open_low/stage_floor.geojson",
     "ada_route": "vectors_geojson/ada_route.geojson",
+    "human_scale": "vectors_geojson/human_scale_refs.geojson",
     "viewpoints": "vectors_geojson/in_situ_viewpoints.geojson",
     "validation": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
     "design_state": "truth_package/design_state.current.json",
@@ -563,6 +564,83 @@ def build_ada(validation):
     return {"n_routes": n_routes, "n_nodes": n_nodes}
 
 
+# ── 3b. human-scale references (calibrated schematic scale) ─────────────────
+HUMAN_MATERIAL = {
+    "standing": "human_standing",
+    "seated": "human_seated",
+    "wheelchair": "human_wheelchair",
+}
+
+
+def build_human_scale():
+    """Export the calibrated human-scale layer into the gated package.
+
+    Reads vectors_geojson/human_scale_refs.geojson (generated, read-only) and
+    re-emits the BASELINE refs — dropping scope=ambitious_option, the Decision-1
+    option shown only on board 05, never in the accepted scene — as
+    geo/human_scale_refs.geojson plus one actor-manifest row per ref. Heights,
+    eye heights, grounds, and provenance are carried VERBATIM so gen_review_meshes
+    can build exact-height posts and the audit can re-derive every number; nothing
+    here recomputes a height or elevation.
+    """
+    hs = jload(SRC["human_scale"])
+    feats = []
+    n_h = n_d = n_chair = 0
+    for i, f in enumerate(hs["features"]):
+        pr = f["properties"]
+        if pr.get("scope") == "ambitious_option":
+            continue  # baseline scene only (matches the viewer/accepted package)
+        rid = pr["ref_id"]
+        typ = pr.get("type")
+        geom = f["geometry"]
+        fid = f"human_{rid}"
+        if typ == "human":
+            n_h += 1
+            posture = pr.get("posture", "standing")
+            if posture == "wheelchair":
+                n_chair += 1
+            material_id = HUMAN_MATERIAL.get(posture, "human_standing")
+            x, y = geom["coordinates"][:2]
+        elif typ == "dimension":
+            n_d += 1
+            posture = None
+            material_id = "human_dimension"
+            x, y = geom["coordinates"][0][:2]
+        else:
+            continue
+        z = pr.get("ground_elev_navd88")
+        props = dict(pr)  # carry every source field verbatim (height/eye/ground)
+        props.update({
+            "feature_id": fid,
+            "source_file": SRC["human_scale"],
+            "source_index": i,
+            "material_id": material_id,
+            "unreal_anchor_local_m": to_local_m(x, y, z or 0.0),
+            "provenance": "derived from human_scale_refs.geojson (read-only); "
+                          "height/eye/ground/length carried verbatim",
+        })
+        feats.append({"type": "Feature", "geometry": geom, "properties": props})
+        register_actor(
+            name=(f"Human_{rid}" if typ == "human" else f"Dim_{rid}"),
+            actor_class=("point" if typ == "human" else "spline"),
+            source_file=SRC["human_scale"],
+            source_feature_id=fid,
+            anchor_xyz_epsg6494_ft=(x, y),
+            z_navd88_ft=z,
+            material_id=material_id,
+            validation_state="human_scale_reference",
+            note=(f"{posture} {pr.get('height_ft')} ft"
+                  + (f"; eye {pr.get('eye_height_ft')} ft" if pr.get("eye_height_ft") else "")
+                  if typ == "human"
+                  else f"{pr.get('length_ft')} ft: {pr.get('label')}"),
+        )
+    fc = {"type": "FeatureCollection", "crs": CRS6494,
+          "name": "human_scale_refs", "features": feats}
+    jwrite("geo/human_scale_refs.geojson", fc)
+    return {"n_humans": n_h, "n_dimensions": n_d, "n_wheelchair": n_chair,
+            "n_features": len(feats)}
+
+
 # ── 4. sightline_table.csv (read straight from validation.json) ─────────────
 def build_sightline_table(validation):
     c_rows = validation.get("c_rows", {})
@@ -881,6 +959,18 @@ def build_material_manifest():
                         "keyed_to": "class=service"},
         "ada_landing": {"label": "ADA landing / node", "color": "#90caf9",
                         "keyed_to": "kind=landing"},
+        "human_standing": {"label": "Human scale - standing (5.0/5.75/6.25 ft)",
+                           "color": "#9c5b33", "must_label": True,
+                           "keyed_to": "type=human posture=standing"},
+        "human_seated": {"label": "Human scale - seated (eye 3.94 ft)",
+                         "color": "#6d597a", "must_label": True,
+                         "keyed_to": "type=human posture=seated"},
+        "human_wheelchair": {"label": "Human scale - wheelchair (eye 3.90 ft)",
+                             "color": "#355070", "must_label": True,
+                             "keyed_to": "type=human posture=wheelchair"},
+        "human_dimension": {"label": "Human scale - dimension / scale bar",
+                            "color": "#b3541e", "must_label": True,
+                            "keyed_to": "type=dimension"},
         "cutfill_diverging": {
             "label": "Cut/fill overlay (blue=cut, red=fill, white=balanced)",
             "ramp": {"cut_-10ft": "#2166ac", "balanced_0": "#f7f7f7",
@@ -1017,6 +1107,10 @@ def main():
     print("[3/8] ADA route + landings ...")
     stats["ada"] = build_ada(validation)
     print("      ", stats["ada"])
+
+    print("[3b/8] human-scale references ...")
+    stats["human_scale"] = build_human_scale()
+    print("      ", stats["human_scale"])
 
     print("[4/8] sightline_table.csv ...")
     stats["sightline"] = build_sightline_table(validation)

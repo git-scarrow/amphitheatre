@@ -2,7 +2,7 @@
  "schema": "unreal-handoff/actor-manifest/0.1",
  "note": "Every Unreal actor traces to a source file + feature id. anchor_local_m is the ENU metre position; anchor_epsg6494_ft is the georeferenced position for round-trip back to GIS.",
  "frame": "local ENU metres, Z-up; origin EPSG:6494 (19533067.7, 750799.2) intl ft; ft->m 0.3048",
- "n_actors": 91,
+ "n_actors": 110,
  "actors": [
   {
    "actor_name": "Row_bend_01",
@@ -1914,6 +1914,405 @@
    "validation_state": "landing_concept",
    "provisional": false,
    "note": "turn-pad"
+  },
+  {
+   "actor_name": "Human_stage_front_performer",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_stage_front_performer",
+   "anchor_epsg6494_ft": [
+    19533100.2,
+    750742.91
+   ],
+   "anchor_local_m": [
+    9.906,
+    -17.1572,
+    186.69
+   ],
+   "z_navd88_ft": 612.5,
+   "material_id": "human_standing",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "standing 6.25 ft"
+  },
+  {
+   "actor_name": "Human_center_stage",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_center_stage",
+   "anchor_epsg6494_ft": [
+    19533091.7,
+    750757.63
+   ],
+   "anchor_local_m": [
+    7.3152,
+    -12.6705,
+    186.69
+   ],
+   "z_navd88_ft": 612.5,
+   "material_id": "human_standing",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "standing 5.75 ft"
+  },
+  {
+   "actor_name": "Human_row1_center_seated",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_row1_center_seated",
+   "anchor_epsg6494_ft": [
+    19533142.96,
+    750734.53
+   ],
+   "anchor_local_m": [
+    22.9392,
+    -19.7114,
+    186.181
+   ],
+   "z_navd88_ft": 610.83,
+   "material_id": "human_seated",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "seated 4.27 ft; eye 3.94 ft"
+  },
+  {
+   "actor_name": "Human_row1_center_standing",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_row1_center_standing",
+   "anchor_epsg6494_ft": [
+    19533139.4,
+    750731.47
+   ],
+   "anchor_local_m": [
+    21.8542,
+    -20.6441,
+    186.181
+   ],
+   "z_navd88_ft": 610.83,
+   "material_id": "human_standing",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "standing 5.75 ft"
+  },
+  {
+   "actor_name": "Human_row1_east_pocket",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_row1_east_pocket",
+   "anchor_epsg6494_ft": [
+    19533148.89,
+    750779.02
+   ],
+   "anchor_local_m": [
+    24.7467,
+    -6.1509,
+    186.1901
+   ],
+   "z_navd88_ft": 610.86,
+   "material_id": "human_standing",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "standing 5.0 ft"
+  },
+  {
+   "actor_name": "Dim_dim_pocket_east",
+   "actor_class": "spline",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_dim_pocket_east",
+   "anchor_epsg6494_ft": [
+    19533136.91,
+    750780.3
+   ],
+   "anchor_local_m": [
+    21.0952,
+    -5.7607,
+    186.1901
+   ],
+   "z_navd88_ft": 610.86,
+   "material_id": "human_dimension",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "12.05 ft: 12 ft pocket"
+  },
+  {
+   "actor_name": "Human_row1_south_pocket",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_row1_south_pocket",
+   "anchor_epsg6494_ft": [
+    19533076.5,
+    750723.38
+   ],
+   "anchor_local_m": [
+    2.6822,
+    -23.1099,
+    186.1749
+   ],
+   "z_navd88_ft": 610.81,
+   "material_id": "human_standing",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "standing 5.0 ft"
+  },
+  {
+   "actor_name": "Dim_dim_pocket_south",
+   "actor_class": "spline",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_dim_pocket_south",
+   "anchor_epsg6494_ft": [
+    19533076.29,
+    750745.3
+   ],
+   "anchor_local_m": [
+    2.6182,
+    -16.4287,
+    186.1749
+   ],
+   "z_navd88_ft": 610.81,
+   "material_id": "human_dimension",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "21.92 ft: 22 ft pocket"
+  },
+  {
+   "actor_name": "Dim_dim_stage_front_to_row1",
+   "actor_class": "spline",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_dim_stage_front_to_row1",
+   "anchor_epsg6494_ft": [
+    19533131.01,
+    750776.89
+   ],
+   "anchor_local_m": [
+    19.2969,
+    -6.8001,
+    186.181
+   ],
+   "z_navd88_ft": 610.83,
+   "material_id": "human_dimension",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "32.73 ft: 33 ft stage→row 1"
+  },
+  {
+   "actor_name": "Dim_dim_scale_50ft",
+   "actor_class": "spline",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_dim_scale_50ft",
+   "anchor_epsg6494_ft": [
+    19533121.85,
+    750755.41
+   ],
+   "anchor_local_m": [
+    16.5049,
+    -13.3472,
+    186.69
+   ],
+   "z_navd88_ft": 612.5,
+   "material_id": "human_dimension",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "50.0 ft: 50 ft scale"
+  },
+  {
+   "actor_name": "Human_row5_promenade",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_row5_promenade",
+   "anchor_epsg6494_ft": [
+    19533155.32,
+    750722.54
+   ],
+   "anchor_local_m": [
+    26.7066,
+    -23.366,
+    187.577
+   ],
+   "z_navd88_ft": 615.41,
+   "material_id": "human_standing",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "standing 5.75 ft"
+  },
+  {
+   "actor_name": "Human_cross_aisle_wheelchair",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_cross_aisle_wheelchair",
+   "anchor_epsg6494_ft": [
+    19533106.8,
+    750689.03
+   ],
+   "anchor_local_m": [
+    11.9177,
+    -33.5798,
+    189.5886
+   ],
+   "z_navd88_ft": 622.01,
+   "material_id": "human_wheelchair",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "wheelchair 4.23 ft; eye 3.9 ft"
+  },
+  {
+   "actor_name": "Human_cross_aisle_companion",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_cross_aisle_companion",
+   "anchor_epsg6494_ft": [
+    19533111.3,
+    750690.53
+   ],
+   "anchor_local_m": [
+    13.2893,
+    -33.1226,
+    189.5886
+   ],
+   "z_navd88_ft": 622.01,
+   "material_id": "human_standing",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "standing 5.75 ft"
+  },
+  {
+   "actor_name": "Human_row18_upper_seated",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_row18_upper_seated",
+   "anchor_epsg6494_ft": [
+    19533197.93,
+    750687.64
+   ],
+   "anchor_local_m": [
+    39.6941,
+    -34.0035,
+    193.1396
+   ],
+   "z_navd88_ft": 633.66,
+   "material_id": "human_seated",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "seated 4.27 ft; eye 3.94 ft"
+  },
+  {
+   "actor_name": "Human_row18_upper_standing",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_row18_upper_standing",
+   "anchor_epsg6494_ft": [
+    19533194.46,
+    750684.46
+   ],
+   "anchor_local_m": [
+    38.6364,
+    -34.9728,
+    193.1396
+   ],
+   "z_navd88_ft": 633.66,
+   "material_id": "human_standing",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "standing 6.25 ft"
+  },
+  {
+   "actor_name": "Human_ada_landing_routeB_wheelchair",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_ada_landing_routeB_wheelchair",
+   "anchor_epsg6494_ft": [
+    19533190.2,
+    750797.15
+   ],
+   "anchor_local_m": [
+    37.338,
+    -0.6248,
+    189.4698
+   ],
+   "z_navd88_ft": 621.62,
+   "material_id": "human_wheelchair",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "wheelchair 4.23 ft; eye 3.9 ft"
+  },
+  {
+   "actor_name": "Human_ada_landing_routeA_standing",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_ada_landing_routeA_standing",
+   "anchor_epsg6494_ft": [
+    19533144.59,
+    750786.12
+   ],
+   "anchor_local_m": [
+    23.4361,
+    -3.9868,
+    185.9036
+   ],
+   "z_navd88_ft": 609.92,
+   "material_id": "human_standing",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "standing 5.0 ft"
+  },
+  {
+   "actor_name": "Human_treatment_cell_edge",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_treatment_cell_edge",
+   "anchor_epsg6494_ft": [
+    19533060.2,
+    750812.19
+   ],
+   "anchor_local_m": [
+    -2.286,
+    3.9594,
+    185.9036
+   ],
+   "z_navd88_ft": 609.92,
+   "material_id": "human_standing",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "standing 5.75 ft"
+  },
+  {
+   "actor_name": "Human_lawn_overflow_edge",
+   "actor_class": "point",
+   "source_file": "vectors_geojson/human_scale_refs.geojson",
+   "source_sha256_12": "a4dd4301f3aa",
+   "source_feature_id": "human_lawn_overflow_edge",
+   "anchor_epsg6494_ft": [
+    19532955.7,
+    750905.73
+   ],
+   "anchor_local_m": [
+    -34.1376,
+    32.4703,
+    188.4274
+   ],
+   "z_navd88_ft": 618.2,
+   "material_id": "human_standing",
+   "validation_state": "human_scale_reference",
+   "provisional": false,
+   "note": "standing 5.0 ft"
   }
  ]
 }

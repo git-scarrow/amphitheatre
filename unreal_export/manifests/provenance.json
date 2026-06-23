@@ -1,8 +1,8 @@
 {
  "schema": "unreal-handoff/provenance/0.1",
- "generated": "2026-06-17T18:26:42-04:00",
+ "generated": "2026-06-22T22:39:27-04:00",
  "generator": "scripts/build_unreal_export.py",
- "git_commit": "84aa207",
+ "git_commit": "6ea2e23",
  "constants_source": "scripts/in_situ_common.py",
  "authoritative_boundary": "The GIS/design repo is the SINGLE source of truth. This package is a viewer/export layer. Unreal is NOT source of truth. Any geometry edited in Unreal must return as a proposal GeoJSON in EPSG:6494 and pass the existing Python/QGIS gates (scripts/audit_in_situ_package.py et al.) before it can become design truth.",
  "crs": {
@@ -46,6 +46,11 @@
   "ada_route": {
    "path": "vectors_geojson/ada_route.geojson",
    "sha256_12": "1b591af7b9a7",
+   "exists": true
+  },
+  "human_scale": {
+   "path": "vectors_geojson/human_scale_refs.geojson",
+   "sha256_12": "a4dd4301f3aa",
    "exists": true
   },
   "viewpoints": {
@@ -95,6 +100,12 @@
   "ada": {
    "n_routes": 8,
    "n_nodes": 31
+  },
+  "human_scale": {
+   "n_humans": 15,
+   "n_dimensions": 4,
+   "n_wheelchair": 2,
+   "n_features": 19
   },
   "sightline": {
    "n_rows": 45,
@@ -252,10 +263,10 @@
    "uncovered": []
   },
   "materials": {
-   "n_materials": 16
+   "n_materials": 20
   },
   "actors": {
-   "n_actors": 91
+   "n_actors": 110
   }
  },
  "regenerate": "python scripts/build_unreal_export.py",

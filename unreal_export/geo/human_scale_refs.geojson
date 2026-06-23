@@ -1,0 +1,763 @@
+{
+ "type": "FeatureCollection",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::6494"
+  }
+ },
+ "name": "human_scale_refs",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533100.2,
+     750742.91
+    ]
+   },
+   "properties": {
+    "ref_id": "stage_front_performer",
+    "type": "human",
+    "posture": "standing",
+    "role": "performer",
+    "height_ft": 6.25,
+    "ground_elev_navd88": 612.5,
+    "ground_elev_source": "declared:vectors_geojson/bowl_zones.geojson:stage_core.elev_navd88(structure_deck)",
+    "anchor": "stage-front focal point (inherited stage lineage)",
+    "geometry_anchor_source": "design_open_low/stage_floor.geojson:focal_point_stage_front",
+    "height_source": "CDC/NHANES adult stature percentiles (5th F / mean M / 95th M)",
+    "view_context": [
+     "viewer",
+     "board02_section",
+     "board05_section",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "label": "6.25 ft person",
+    "note": "stage deck PROVISIONAL — DESIGN_CANON Rule 9 OPEN; ref stands on the 612.5 deck for scale only, adopts no stage geometry",
+    "feature_id": "human_stage_front_performer",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 0,
+    "material_id": "human_standing",
+    "unreal_anchor_local_m": [
+     9.906,
+     -17.1572,
+     186.69
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533091.7,
+     750757.63
+    ]
+   },
+   "properties": {
+    "ref_id": "center_stage",
+    "type": "human",
+    "posture": "standing",
+    "role": "performer",
+    "height_ft": 5.75,
+    "ground_elev_navd88": 612.5,
+    "ground_elev_source": "declared:vectors_geojson/bowl_zones.geojson:stage_core.elev_navd88(structure_deck)",
+    "anchor": "stage_core representative point",
+    "geometry_anchor_source": "vectors_geojson/bowl_zones.geojson:stage_core",
+    "height_source": "CDC/NHANES adult stature percentiles (5th F / mean M / 95th M)",
+    "view_context": [
+     "viewer",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "note": "stage deck PROVISIONAL — DESIGN_CANON Rule 9 OPEN; ref stands on the 612.5 deck for scale only, adopts no stage geometry",
+    "feature_id": "human_center_stage",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 1,
+    "material_id": "human_standing",
+    "unreal_anchor_local_m": [
+     7.3152,
+     -12.6705,
+     186.69
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533142.96,
+     750734.53
+    ]
+   },
+   "properties": {
+    "ref_id": "row1_center_seated",
+    "type": "human",
+    "posture": "seated",
+    "role": "audience",
+    "height_ft": 4.27,
+    "ground_elev_navd88": 610.83,
+    "ground_elev_source": "declared:vectors_geojson/terrace_treads.geojson:tread_elev_navd88",
+    "anchor": "bend row-1 tread representative point",
+    "geometry_anchor_source": "vectors_geojson/terrace_treads.geojson:bend r1",
+    "height_source": "scripts/in_situ_common.py EYE_SEATED_FT=3.94 (1200 mm C-value standard); vertex = eye + 0.33 ft",
+    "view_context": [
+     "viewer",
+     "board02_section",
+     "board05_section",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "eye_height_ft": 3.94,
+    "label": "seated eye 3.94 ft",
+    "feature_id": "human_row1_center_seated",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 2,
+    "material_id": "human_seated",
+    "unreal_anchor_local_m": [
+     22.9392,
+     -19.7114,
+     186.181
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533139.4,
+     750731.47
+    ]
+   },
+   "properties": {
+    "ref_id": "row1_center_standing",
+    "type": "human",
+    "posture": "standing",
+    "role": "audience",
+    "height_ft": 5.75,
+    "ground_elev_navd88": 610.83,
+    "ground_elev_source": "declared:vectors_geojson/terrace_treads.geojson:tread_elev_navd88",
+    "anchor": "bend row-1 tread, 4.7 ft along-row from the seated ref",
+    "geometry_anchor_source": "vectors_geojson/terrace_treads.geojson:bend r1",
+    "height_source": "CDC/NHANES adult stature percentiles (5th F / mean M / 95th M)",
+    "view_context": [
+     "viewer",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "feature_id": "human_row1_center_standing",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 3,
+    "material_id": "human_standing",
+    "unreal_anchor_local_m": [
+     21.8542,
+     -20.6441,
+     186.181
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533148.89,
+     750779.02
+    ]
+   },
+   "properties": {
+    "ref_id": "row1_east_pocket",
+    "type": "human",
+    "posture": "standing",
+    "role": "audience",
+    "height_ft": 5.0,
+    "ground_elev_navd88": 610.86,
+    "ground_elev_source": "declared:vectors_geojson/terrace_treads.geojson:tread_elev_navd88",
+    "anchor": "east row-1 edge at the pinch vs the P_opt provisional deck",
+    "geometry_anchor_source": "nearest_points(analysis/in_situ_normalization/stage_typology_scores.json:P_opt deck, vectors_geojson/terrace_treads.geojson:east r1)",
+    "height_source": "CDC/NHANES adult stature percentiles (5th F / mean M / 95th M)",
+    "view_context": [
+     "viewer",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "note": "stage deck PROVISIONAL — DESIGN_CANON Rule 9 OPEN; ref stands on the 612.5 deck for scale only, adopts no stage geometry",
+    "feature_id": "human_row1_east_pocket",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 4,
+    "material_id": "human_standing",
+    "unreal_anchor_local_m": [
+     24.7467,
+     -6.1509,
+     186.1901
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533136.91,
+      750780.3
+     ],
+     [
+      19533148.89,
+      750779.02
+     ]
+    ]
+   },
+   "properties": {
+    "ref_id": "dim_pocket_east",
+    "type": "dimension",
+    "length_ft": 12.05,
+    "label": "12 ft pocket",
+    "ground_elev_navd88": 610.86,
+    "geometry_anchor_source": "nearest_points(analysis/in_situ_normalization/stage_typology_scores.json:P_opt deck, vectors_geojson/terrace_treads.geojson:east r1)",
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "note": "row-1 pocket pinch — P_opt placement keeps every family ≥12 ft (stage provisional, Rule 9 OPEN)",
+    "feature_id": "human_dim_pocket_east",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 5,
+    "material_id": "human_dimension",
+    "unreal_anchor_local_m": [
+     21.0952,
+     -5.7607,
+     186.1901
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533076.5,
+     750723.38
+    ]
+   },
+   "properties": {
+    "ref_id": "row1_south_pocket",
+    "type": "human",
+    "posture": "standing",
+    "role": "audience",
+    "height_ft": 5.0,
+    "ground_elev_navd88": 610.81,
+    "ground_elev_source": "declared:vectors_geojson/terrace_treads.geojson:tread_elev_navd88",
+    "anchor": "south row-1 edge at the pinch vs the P_opt provisional deck",
+    "geometry_anchor_source": "nearest_points(analysis/in_situ_normalization/stage_typology_scores.json:P_opt deck, vectors_geojson/terrace_treads.geojson:south r1)",
+    "height_source": "CDC/NHANES adult stature percentiles (5th F / mean M / 95th M)",
+    "view_context": [
+     "viewer",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "note": "stage deck PROVISIONAL — DESIGN_CANON Rule 9 OPEN; ref stands on the 612.5 deck for scale only, adopts no stage geometry",
+    "feature_id": "human_row1_south_pocket",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 6,
+    "material_id": "human_standing",
+    "unreal_anchor_local_m": [
+     2.6822,
+     -23.1099,
+     186.1749
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533076.29,
+      750745.3
+     ],
+     [
+      19533076.5,
+      750723.38
+     ]
+    ]
+   },
+   "properties": {
+    "ref_id": "dim_pocket_south",
+    "type": "dimension",
+    "length_ft": 21.92,
+    "label": "22 ft pocket",
+    "ground_elev_navd88": 610.81,
+    "geometry_anchor_source": "nearest_points(analysis/in_situ_normalization/stage_typology_scores.json:P_opt deck, vectors_geojson/terrace_treads.geojson:south r1)",
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "note": "row-1 pocket pinch — P_opt placement keeps every family ≥12 ft (stage provisional, Rule 9 OPEN)",
+    "feature_id": "human_dim_pocket_south",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 7,
+    "material_id": "human_dimension",
+    "unreal_anchor_local_m": [
+     2.6182,
+     -16.4287,
+     186.1749
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533131.01,
+      750776.89
+     ],
+     [
+      19533147.38,
+      750748.54
+     ]
+    ]
+   },
+   "properties": {
+    "ref_id": "dim_stage_front_to_row1",
+    "type": "dimension",
+    "length_ft": 32.73,
+    "label": "33 ft stage→row 1",
+    "ground_elev_navd88": 610.83,
+    "geometry_anchor_source": "nearest_points(analysis/in_situ_normalization/stage_typology_scores.json:P_opt deck, vectors_geojson/terrace_treads.geojson:bend r1)",
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "note": "bend-family orchestra gap; canon baseline quotes stage front ≈35 ft from row 1 (performer→row-1 39.6 ft per stage_typology_scores.json)",
+    "feature_id": "human_dim_stage_front_to_row1",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 8,
+    "material_id": "human_dimension",
+    "unreal_anchor_local_m": [
+     19.2969,
+     -6.8001,
+     186.181
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      19533121.85,
+      750755.41
+     ],
+     [
+      19533078.55,
+      750730.41
+     ]
+    ]
+   },
+   "properties": {
+    "ref_id": "dim_scale_50ft",
+    "type": "dimension",
+    "length_ft": 50.0,
+    "label": "50 ft scale",
+    "ground_elev_navd88": 612.5,
+    "geometry_anchor_source": "constructed: 50 ft along the stage-front axis about design_open_low/stage_floor.geojson:focal_point_stage_front",
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "feature_id": "human_dim_scale_50ft",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 9,
+    "material_id": "human_dimension",
+    "unreal_anchor_local_m": [
+     16.5049,
+     -13.3472,
+     186.69
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533155.32,
+     750722.54
+    ]
+   },
+   "properties": {
+    "ref_id": "row5_promenade",
+    "type": "human",
+    "posture": "standing",
+    "role": "promenade walker",
+    "height_ft": 5.75,
+    "ground_elev_navd88": 615.41,
+    "ground_elev_source": "declared:vectors_geojson/bowl_zones.geojson:promenade_row5_bend.elev_navd88",
+    "anchor": "row-5 promenade hinge band (bend)",
+    "geometry_anchor_source": "vectors_geojson/bowl_zones.geojson:promenade_row5_bend",
+    "height_source": "CDC/NHANES adult stature percentiles (5th F / mean M / 95th M)",
+    "view_context": [
+     "viewer",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "feature_id": "human_row5_promenade",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 10,
+    "material_id": "human_standing",
+    "unreal_anchor_local_m": [
+     26.7066,
+     -23.366,
+     187.577
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533106.8,
+     750689.03
+    ]
+   },
+   "properties": {
+    "ref_id": "cross_aisle_wheelchair",
+    "type": "human",
+    "posture": "wheelchair",
+    "role": "wheelchair user",
+    "height_ft": 4.23,
+    "ground_elev_navd88": 622.01,
+    "ground_elev_source": "declared:vectors_geojson/bowl_zones.geojson:cross_aisle.elev_navd88",
+    "anchor": "accessible cross-aisle band (rows 9/10 reclassification)",
+    "geometry_anchor_source": "vectors_geojson/bowl_zones.geojson:cross_aisle",
+    "height_source": "US Access Board occupied-wheelchair eye height 43-51 in; midpoint 3.90 ft; vertex = eye + 0.33 ft",
+    "view_context": [
+     "viewer",
+     "board02_section",
+     "board05_section",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "eye_height_ft": 3.9,
+    "label": "wheelchair ref",
+    "feature_id": "human_cross_aisle_wheelchair",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 11,
+    "material_id": "human_wheelchair",
+    "unreal_anchor_local_m": [
+     11.9177,
+     -33.5798,
+     189.5886
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533111.3,
+     750690.53
+    ]
+   },
+   "properties": {
+    "ref_id": "cross_aisle_companion",
+    "type": "human",
+    "posture": "standing",
+    "role": "companion",
+    "height_ft": 5.75,
+    "ground_elev_navd88": 622.01,
+    "ground_elev_source": "declared:vectors_geojson/bowl_zones.geojson:cross_aisle.elev_navd88",
+    "anchor": "accessible cross-aisle band, 4.7 ft from the wheelchair ref",
+    "geometry_anchor_source": "vectors_geojson/bowl_zones.geojson:cross_aisle",
+    "height_source": "CDC/NHANES adult stature percentiles (5th F / mean M / 95th M)",
+    "view_context": [
+     "viewer",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "feature_id": "human_cross_aisle_companion",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 12,
+    "material_id": "human_standing",
+    "unreal_anchor_local_m": [
+     13.2893,
+     -33.1226,
+     189.5886
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533197.93,
+     750687.64
+    ]
+   },
+   "properties": {
+    "ref_id": "row18_upper_seated",
+    "type": "human",
+    "posture": "seated",
+    "role": "audience",
+    "height_ft": 4.27,
+    "ground_elev_navd88": 633.66,
+    "ground_elev_source": "declared:vectors_geojson/terrace_treads.geojson:tread_elev_navd88",
+    "anchor": "bend row-18 tread (top formal row)",
+    "geometry_anchor_source": "vectors_geojson/terrace_treads.geojson:bend r18",
+    "height_source": "scripts/in_situ_common.py EYE_SEATED_FT=3.94 (1200 mm C-value standard); vertex = eye + 0.33 ft",
+    "view_context": [
+     "viewer",
+     "board02_section",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "eye_height_ft": 3.94,
+    "feature_id": "human_row18_upper_seated",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 13,
+    "material_id": "human_seated",
+    "unreal_anchor_local_m": [
+     39.6941,
+     -34.0035,
+     193.1396
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533194.46,
+     750684.46
+    ]
+   },
+   "properties": {
+    "ref_id": "row18_upper_standing",
+    "type": "human",
+    "posture": "standing",
+    "role": "audience",
+    "height_ft": 6.25,
+    "ground_elev_navd88": 633.66,
+    "ground_elev_source": "declared:vectors_geojson/terrace_treads.geojson:tread_elev_navd88",
+    "anchor": "bend row-18 tread (top formal row)",
+    "geometry_anchor_source": "vectors_geojson/terrace_treads.geojson:bend r18",
+    "height_source": "CDC/NHANES adult stature percentiles (5th F / mean M / 95th M)",
+    "view_context": [
+     "viewer",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "label": "6.25 ft person",
+    "feature_id": "human_row18_upper_standing",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 14,
+    "material_id": "human_standing",
+    "unreal_anchor_local_m": [
+     38.6364,
+     -34.9728,
+     193.1396
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533190.2,
+     750797.15
+    ]
+   },
+   "properties": {
+    "ref_id": "ada_landing_routeB_wheelchair",
+    "type": "human",
+    "posture": "wheelchair",
+    "role": "wheelchair user",
+    "height_ft": 4.23,
+    "ground_elev_navd88": 621.62,
+    "ground_elev_source": "raster:dem/proposed_grade_1ft.tif",
+    "anchor": "rebuilt arrival route: last landing before the cross-aisle (concept, pending civil detailing)",
+    "geometry_anchor_source": "vectors_geojson/ada_route.geojson:route_arrival_to_cross_aisle_landing_3",
+    "height_source": "US Access Board occupied-wheelchair eye height 43-51 in; midpoint 3.90 ft; vertex = eye + 0.33 ft",
+    "view_context": [
+     "viewer",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "eye_height_ft": 3.9,
+    "feature_id": "human_ada_landing_routeB_wheelchair",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 15,
+    "material_id": "human_wheelchair",
+    "unreal_anchor_local_m": [
+     37.338,
+     -0.6248,
+     189.4698
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533144.59,
+     750786.12
+    ]
+   },
+   "properties": {
+    "ref_id": "ada_landing_routeA_standing",
+    "type": "human",
+    "posture": "standing",
+    "role": "walker",
+    "height_ft": 5.0,
+    "ground_elev_navd88": 609.92,
+    "ground_elev_source": "raster:dem/proposed_grade_1ft.tif",
+    "anchor": "rebuilt floor route: last landing on the descent to the event floor (concept, pending civil detailing)",
+    "geometry_anchor_source": "vectors_geojson/ada_route.geojson:route_arrival_to_floor_landing_9",
+    "height_source": "CDC/NHANES adult stature percentiles (5th F / mean M / 95th M)",
+    "view_context": [
+     "viewer",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "feature_id": "human_ada_landing_routeA_standing",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 16,
+    "material_id": "human_standing",
+    "unreal_anchor_local_m": [
+     23.4361,
+     -3.9868,
+     185.9036
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533060.2,
+     750812.19
+    ]
+   },
+   "properties": {
+    "ref_id": "treatment_cell_edge",
+    "type": "human",
+    "posture": "standing",
+    "role": "maintenance / passer-by",
+    "height_ft": 5.75,
+    "ground_elev_navd88": 609.92,
+    "ground_elev_source": "raster:dem/proposed_grade_1ft.tif",
+    "anchor": "treatment-cell foreground edge on the bay-view azimuth from the stage front (dry/ephemeral cell — landscape, not water)",
+    "geometry_anchor_source": "intersection(az-330 ray from focal, vectors_geojson/bowl_zones.geojson:treatment_cell_landscape exterior)",
+    "height_source": "CDC/NHANES adult stature percentiles (5th F / mean M / 95th M)",
+    "view_context": [
+     "viewer",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "feature_id": "human_treatment_cell_edge",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 17,
+    "material_id": "human_standing",
+    "unreal_anchor_local_m": [
+     -2.286,
+     3.9594,
+     185.9036
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532955.7,
+     750905.73
+    ]
+   },
+   "properties": {
+    "ref_id": "lawn_overflow_edge",
+    "type": "human",
+    "posture": "standing",
+    "role": "overflow / informal audience",
+    "height_ft": 5.0,
+    "ground_elev_navd88": 618.2,
+    "ground_elev_source": "raster:dem/proposed_grade_1ft.tif",
+    "anchor": "open-lawn informal overflow edge nearest the treatment cell (schematic lawn placement)",
+    "geometry_anchor_source": "vectors_geojson/site_context.geojson:open_lawn exterior nearest vectors_geojson/bowl_zones.geojson:treatment_cell_landscape",
+    "height_source": "CDC/NHANES adult stature percentiles (5th F / mean M / 95th M)",
+    "view_context": [
+     "viewer",
+     "board06"
+    ],
+    "scope": "baseline",
+    "blocks_bay_view": false,
+    "schematic_figure": true,
+    "feature_id": "human_lawn_overflow_edge",
+    "source_file": "vectors_geojson/human_scale_refs.geojson",
+    "source_index": 18,
+    "material_id": "human_standing",
+    "unreal_anchor_local_m": [
+     -34.1376,
+     32.4703,
+     188.4274
+    ],
+    "provenance": "derived from human_scale_refs.geojson (read-only); height/eye/ground/length carried verbatim"
+   }
+  }
+ ]
+}
