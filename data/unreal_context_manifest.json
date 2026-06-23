@@ -1,0 +1,105 @@
+{
+  "schema": "unreal-context-manifest/0.1",
+  "purpose": "Registry of APPROXIMATE geographic-context layers added around the audited Petoskey Pit CivicBowl UE scene, so it can be reviewed at human/civic scale (city, bay, horizon, sunset). Every layer DECLARES its provenance. Context never edits or gates the audited design geometry (see scripts/unreal/context_common.py: assert_disjoint_from_design).",
+  "site": {
+    "name": "Petoskey Pit / CivicBowl, Petoskey MI",
+    "latitude_deg": 45.374552,
+    "longitude_deg": -84.958053,
+    "latlon_provenance": "EPSG:6494 local origin [19533067.7, 750799.2] ft -> EPSG:4326 via pyproj Transformer(always_xy); recorded as a constant so the solar calc needs no GIS deps",
+    "water_surface_elev_navd88_ft": 579.45,
+    "water_surface_elev_provenance": "MEASURED via EPT viewshed analysis (scripts/build_site_context.py); elevation measured, drawn planar extent is a simplified proxy",
+    "bay_view_axis_azimuth_deg": 330.0,
+    "outliner_root": "Context",
+    "outliner_root_note": "Disjoint from every audited design folder root; excluded from design-count gates."
+  },
+  "redistributability_policy": "Only open / derived / computed data is committed or built. No proprietary Google Earth/Maps/Street View geometry, imagery, or DEM is imported. OSM-derived layers carry ODbL attribution. Layers marked redistributable:false are refused by the generator and verifier.",
+  "layers": [
+    {
+      "layer_name": "bay_water_plane",
+      "source": "Little Traverse Bay water surface; elevation 579.45 ft NAVD88 (EPT viewshed analysis). Planar extent is a simplified rectangle NNW of the site.",
+      "source_type": "inferred",
+      "accuracy_class": "elevation MEASURED (+/-0.5 ft); horizontal extent APPROXIMATE (simplified rectangle, not a surveyed shoreline)",
+      "redistributable": true,
+      "intended_use": "review",
+      "included_in_verification": false,
+      "obstruction_role": "backdrop",
+      "build": "always",
+      "notes": "Flat horizontal surface at the water elevation, far below seating and the NW rim; the thing being viewed, not an occluder."
+    },
+    {
+      "layer_name": "bay_shoreline_ref",
+      "source": "Optional OSM coastline / natural=water edge at data/context/shoreline.geojson; else a straight-line proxy perpendicular to the bay-view axis at the simplified water near-edge.",
+      "source_type": "OSM",
+      "accuracy_class": "OSM shoreline ~few m where present; else straight-line PROXY (schematic, non-surveyed)",
+      "redistributable": true,
+      "attribution": "(c) OpenStreetMap contributors, ODbL",
+      "intended_use": "reference",
+      "included_in_verification": false,
+      "obstruction_role": "backdrop",
+      "build": "if_input_present_else_proxy",
+      "expected_input": "data/context/shoreline.geojson (EPSG:4326 LineString features; fetch via scripts/unreal/fetch_osm_context.py)"
+    },
+    {
+      "layer_name": "distant_horizon_band",
+      "source": "Experiential far-horizon reference band beyond the bay along the bay-view axis.",
+      "source_type": "atmospheric",
+      "accuracy_class": "NON-METRIC visual reference only; not a measured landform",
+      "redistributable": true,
+      "intended_use": "cinematic",
+      "included_in_verification": false,
+      "obstruction_role": "backdrop",
+      "build": "always",
+      "notes": "Tall thin band far NNW; closes the view without claiming a real far-shore profile. Neutral material."
+    },
+    {
+      "layer_name": "city_massing",
+      "source": "OSM building footprints, extruded. Generic height when no height/building:levels tag.",
+      "source_type": "OSM",
+      "accuracy_class": "APPROXIMATE MASSING, not measured architecture; footprints OSM (~few m), heights generic (8 m) unless tagged",
+      "redistributable": true,
+      "attribution": "(c) OpenStreetMap contributors, ODbL",
+      "intended_use": "review",
+      "included_in_verification": false,
+      "obstruction_role": "occluder",
+      "build": "if_input_present_else_deferred",
+      "expected_input": "data/context/osm_petoskey_buildings.geojson (EPSG:4326 Polygon features; fetch via scripts/unreal/fetch_osm_context.py)",
+      "generic_height_m": 8.0
+    },
+    {
+      "layer_name": "city_roads",
+      "source": "OSM road centerlines, drawn as flat ribbons at the local datum.",
+      "source_type": "OSM",
+      "accuracy_class": "APPROXIMATE centerlines; OSM (~few m), no measured width/grade",
+      "redistributable": true,
+      "attribution": "(c) OpenStreetMap contributors, ODbL",
+      "intended_use": "reference",
+      "included_in_verification": false,
+      "obstruction_role": "none",
+      "build": "if_input_present_else_deferred",
+      "expected_input": "data/context/osm_petoskey_roads.geojson (EPSG:4326 LineString features; fetch via scripts/unreal/fetch_osm_context.py)"
+    },
+    {
+      "layer_name": "sun_sky_sunset",
+      "source": "Calculated solar position (NOAA solar-position algorithm) for Petoskey MI at named summer-evening timestamps; drives a directional light + sky.",
+      "source_type": "measured",
+      "accuracy_class": "COMPUTED solar position (NOAA, ~0.01 deg); apparent elevation includes Saemundsson refraction. Sky colour/intensity is atmospheric (artistic), the SUN DIRECTION is calculated.",
+      "redistributable": true,
+      "intended_use": "cinematic",
+      "included_in_verification": false,
+      "obstruction_role": "none",
+      "build": "always",
+      "events": ["summer_solstice_sunset_2026", "midsummer_concert_sunset_2026"]
+    },
+    {
+      "layer_name": "sunset_review_camera",
+      "source": "Camera derived from the audited seating + bay-view axis: an upper seating row looking over the stage toward the bay/horizon along azimuth 330.",
+      "source_type": "derived",
+      "accuracy_class": "Position from audited seating geometry (exact); aim along the audited bay-view axis. Separate from the 7 audited cameras (does not change the design camera count).",
+      "redistributable": true,
+      "intended_use": "cinematic",
+      "included_in_verification": false,
+      "obstruction_role": "none",
+      "build": "always"
+    }
+  ]
+}

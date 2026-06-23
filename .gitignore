@@ -104,3 +104,6 @@ deploy/speckle/.env
 # ── generated build outputs (regenerable) ────────────────────────────────────
 # scripts/unreal/gen_review_meshes.py writes meshes + scene_plan.json here.
 build/
+
+# UE context: fetched OSM bulk is regenerable (ODbL) — not committed
+data/context/osm_petoskey_*.geojson

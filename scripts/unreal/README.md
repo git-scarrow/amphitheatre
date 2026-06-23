@@ -138,3 +138,40 @@ now spatially trustworthy for review.
 
 Still pending live: colored materials, human-scale refs, sightline DataTable,
 rendered captures (GPU/GUI).
+
+## Context + Horizon v0 (parallel layer — does NOT touch the audited design)
+
+A separate, clearly-labeled geographic-context layer (bay, horizon, optional
+open-data city massing, **calculated** sunset sun/sky) lives alongside the
+audited scene. It writes its own artifact set and spawns only under the
+`Context/` Outliner root, asserted disjoint from every design folder — so the
+audited group-count gates never see a context actor. Full write-up:
+[`docs/UE_CONTEXT_HORIZON_V0.md`](../../docs/UE_CONTEXT_HORIZON_V0.md).
+
+| File | Where | Role |
+|---|---|---|
+| `context_common.py` | anywhere | Context contract: layer-field schema, `Context/` root + disjointness guard, bay/horizon datums, and a **real NOAA solar-position calc** (stdlib). |
+| `fetch_osm_context.py` | anywhere | Reproducible OSM (ODbL) city fetch via Overpass → `data/context/osm_petoskey_*.geojson`. Default prints the query + expected paths; `--run` downloads. |
+| `gen_context.py` | **offline** | Reads `data/unreal_context_manifest.json` → context meshes + deterministic `context_plan.json`. City layers built only if OSM input present, else DEFERRED. |
+| `ue_context.py` | **inside UE** | `assemble` adds context under `Context/` (clears only `Context/`); `verify` counts context + confirms the audited design folders are still exact. |
+| `verify_context.py` | anywhere | Extended offline gate: design unchanged · manifest valid · context isolated from design gates · **bay-view corridor unobstructed** · orientation preserved. |
+
+```sh
+python scripts/unreal/fetch_osm_context.py            # (optional) OSM query/paths; --run to download
+python scripts/unreal/gen_context.py                  # -> build/unreal_scene/context_plan.json
+python scripts/unreal/verify_context.py               # exit 0 == PASS
+# on gentoo: ue_civicbowl.py assemble  THEN  ue_context.py assemble  THEN  ue_context.py verify
+```
+
+The layer registry `data/unreal_context_manifest.json` declares every layer's
+`source / source_type / accuracy_class / redistributable / intended_use /
+included_in_verification`. No proprietary Google assets; OSM carries ODbL
+attribution. Context never contributes to a design gate (none set
+`included_in_verification:true`).
+
+**First context pass — 2026-06-22 (PASS).** Offline `verify_context` PASS; live
+(gentoo, `-nullrhi`) context assemble → `3 actors + 1 camera + 2 sun lights` under
+`Context/`, reload `ue_context.py verify` → **PASS** with all 9 audited design
+groups still exact. Calculated sunsets: solstice 21:33 EDT az 305.7° NW; mid-Aug
+20:48 EDT az 290.9° WNW — both ~24–39° west of the 330° bay-view axis. City
+massing/roads DEFERRED pending an OSM fetch with network egress.
