@@ -1,8 +1,18 @@
 # Unreal MCP Read-Only Scene Assembly v0 — Petoskey Pit Civic Bowl
 
-**Status:** `v0 · BLOCKED-ON-HOST · package validated & import-ready`
+**Status:** `v0 · package validated & import-ready` · **SUPERSEDED 2026-06-22 — the scene is now reproducibly assembled + reload-verified on gentoo (see the Update note below)**
 **Date:** 2026-06-20 · **Repo HEAD:** `5d47190` (`main`) · **Authoritative commit:** `5d47190`
 **Change to geometry / validation / ledger:** **none.** This file is documentation only.
+
+> **Update — 2026-06-22 (branch `unreal/mcp-readonly-scene-v0`):** the host limitation recorded
+> in §1–§2 below is **superseded**. The `/Game/Maps/CivicBowl` UE 5.8 scene is now **reproducibly
+> assembled and reload-verified on gentoo** through the tracked headless commandlet scripts in
+> `scripts/unreal/` — offline `gen_review_meshes.py` → `verify_civicbowl.py`, then live
+> `ue_civicbowl.py assemble` / `verify` on the gentoo editor host. The ENU→UE transform is
+> handedness-correct (`UE_X=North, UE_Y=East, UE_Z=Up`, det −1), so the scene is **not**
+> mirror-imaged. **MCP** remains the intended in-editor inspection/manipulation interface; the
+> static **Three.js viewer** remains the always-on browser review surface. §1–§2 are kept verbatim
+> as the dated 2026-06-20 host-probe record (true when written), not as current status.
 
 This is the v0 record of attempting the *read-only review scene* described in the
 [Unreal handoff v1 governance contract](unreal_handoff_v1.md). It is deliberately honest:
