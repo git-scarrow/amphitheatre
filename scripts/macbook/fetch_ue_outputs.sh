@@ -15,12 +15,23 @@ mkdir -p "${LOCAL_OUT}" || die "cannot create LOCAL_OUT: ${LOCAL_OUT}"
 ok "fetching into ${LOCAL_OUT}/"
 
 # Resolve remote sources (skip those that don't exist) to avoid noisy errors.
-mapfile -t srcs < <(ssh_gentoo "bash -lc '
+# Portable to macOS default Bash 3.2: no `mapfile` (Bash 4+). Capture the remote
+# listing into a string, then read it line-by-line into the srcs array.
+remote_list="$(ssh_gentoo "bash -lc '
   for p in \"${REMOTE_PROJECT}/Saved/Logs\" \"${REMOTE_PROJECT}/Saved/Screenshots\" \"${REMOTE_REPO}/unreal_export/captures\"; do
     [ -e \"\$p\" ] && echo \"\$p\"
   done
   true
-'") || die "could not enumerate remote outputs."
+'")" || die "could not enumerate remote outputs."
+
+srcs=()
+while IFS= read -r line; do
+  if [ -n "${line}" ]; then
+    srcs+=("${line}")
+  fi
+done <<EOF
+${remote_list}
+EOF
 
 [ "${#srcs[@]}" -gt 0 ] || { warn "nothing to fetch yet (no Logs/Screenshots/captures on gentoo — capture is pending)."; exit 0; }
 
