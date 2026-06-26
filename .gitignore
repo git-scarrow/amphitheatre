@@ -105,5 +105,14 @@ deploy/speckle/.env
 # scripts/unreal/gen_review_meshes.py writes meshes + scene_plan.json here.
 build/
 
-# UE context: fetched OSM bulk is regenerable (ODbL) — not committed
-data/context/osm_petoskey_*.geojson
+# UE context: ALL fetched/derived context inputs are regenerable and bulky —
+# OSM (ODbL) via fetch_osm_context.py, 3DEP DEM/LiDAR (public domain) via
+# fetch_foreground_dem.py + the LPC tile fetch, Microsoft footprints (ODbL).
+# Not committed; regenerate with the fetch scripts.
+data/context/
+
+# Web viewer: render copies + manifest are PUBLISHED from renders/ (incl.
+# renders/ue_live/) by scripts/build_viewer_renders.py (also run by serve_viewer.py).
+# Source frames live under renders/ue_live/ and ARE committed.
+web_viewer/data/renders/
+web_viewer/data/renders_manifest.js

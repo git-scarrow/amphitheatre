@@ -39,13 +39,18 @@ import context_common as ctx    # noqa: E402
 try:
     import numpy as np
     import shapely.geometry as sg
+    from shapely.ops import linemerge, unary_union, split
+    from shapely.prepared import prep
     import trimesh
 except Exception as exc:  # pragma: no cover
     print(f"[gen-context] missing geometry dep ({exc.__class__.__name__}: {exc}).\n"
           "      Install into the repo venv: shapely trimesh numpy mapbox_earcut", file=sys.stderr)
     raise
 
-UE_MAT = np.array([[r[0], r[1], r[2], 0.0] for r in cb.ENU_TO_UE_LINEAR] + [[0, 0, 0, 1.0]], float)
+# MESH baking matrix: East pre-negated to cancel UE's OBJ-import Y flip, so the
+# imported mesh lands on the true enu_to_ue frame (not mirror-imaged). Sun + camera
+# below use cb.enu_to_ue directly (placed, not OBJ-round-tripped) and stay true.
+UE_MAT = np.array([[r[0], r[1], r[2], 0.0] for r in cb.ENU_TO_UE_MESH_LINEAR] + [[0, 0, 0, 1.0]], float)
 
 # simplified bay-plane extent — canonical in context_common (shared with verify).
 BAY_NEAR_N_M = ctx.BAY_NEAR_N_M
@@ -55,7 +60,27 @@ HORIZON_RANGE_M = 5200.0     # far band distance along the bay-view axis
 HORIZON_HALF_W_M = 2600.0
 HORIZON_HEIGHT_M = 120.0
 ROAD_WIDTH_M = 5.0
+# Ribbon width (m, full carriageway/path) by OSM highway class — was a single 5 m
+# for everything, which made footways/service drives read like multi-lane streets.
+ROAD_WIDTH_BY_TYPE_M = {
+    "motorway": 12.0, "trunk": 9.0, "primary": 9.0, "secondary": 7.0, "tertiary": 6.0,
+    "unclassified": 5.0, "residential": 5.0, "living_street": 4.0, "raceway": 8.0,
+    "service": 3.5, "track": 3.0, "pedestrian": 4.0,
+    "footway": 1.5, "path": 1.2, "cycleway": 2.0, "steps": 1.2,
+}
 SLAB_T = 0.15
+
+
+def _smooth_z(zs, k=2):
+    """Moving-average smooth of a per-vertex elevation list to damp 2 m-DEM jitter
+    so draped ribbons don't read jagged. k = half-window."""
+    if len(zs) <= 2:
+        return list(zs)
+    out = []
+    for i in range(len(zs)):
+        lo, hi = max(0, i - k), min(len(zs), i + k + 1)
+        out.append(sum(zs[lo:hi]) / (hi - lo))
+    return out
 
 
 def _to_ue(mesh):
@@ -98,9 +123,246 @@ def extrude_poly_enu(ring_enu, base_z, height):
     return _to_ue(m), poly
 
 
+def harbor_wall(coords_enu, base_z, width, height):
+    """A thin extruded wall (breakwater / pier) along an ENU centreline, sitting on
+    the water at base_z and rising `height` metres — so it reads as a structure IN
+    the water, not a fused land tongue. Baked to UE."""
+    line = sg.LineString(coords_enu)
+    poly = line.buffer(width / 2.0, cap_style=2, join_style=2)
+    if poly.is_empty:
+        return None
+    m = trimesh.creation.extrude_polygon(poly, height=height)
+    m.apply_translation((0, 0, base_z))
+    return _to_ue(m)
+
+
+HARBOR_REL = "data/context/osm_petoskey_harbor.geojson"
+WATER_EDGE_REL = "data/context/osm_petoskey_water_edge.geojson"
+
+
+def _water_plane_covers(e, n):
+    """True where the (visible) bay water plane lies under (e,n). Terrain is only
+    ever dropped where water actually shows, so the clip never punches sky holes."""
+    return (BAY_NEAR_N_M <= n <= BAY_FAR_N_M) and (-ctx_be() <= e <= ctx_be())
+
+
+def _land_mask(root, warnings):
+    """Prepared LAND polygon = the side of the OSM bay shoreline containing the site,
+    minus the marina/harbour basin. Used to clip the 3DEP terrain so the coast follows
+    the authoritative shoreline (not the noisy DEM water-elevation contour) and the
+    harbor basin reads as water. Returns (prepared, polygon) or (None, None)."""
+    wpath = os.path.join(root, WATER_EDGE_REL)
+    if not os.path.exists(wpath):
+        warnings.append("land_mask: no water_edge.geojson — terrain NOT clipped to shoreline")
+        return None, None
+    tf = _transformer()
+    segs = []
+    for f in cb.geojson_features(wpath):
+        if (f.get("properties") or {}).get("role") != "bay_shoreline":
+            continue
+        g = f["geometry"]
+        chunks = [g["coordinates"]] if g["type"] == "LineString" else g["coordinates"]
+        for ch in chunks:
+            pts = [_lonlat_to_enu(tf, c[0], c[1]) for c in ch]
+            if len(pts) >= 2:
+                segs.append(sg.LineString(pts))
+    if not segs:
+        warnings.append("land_mask: no bay_shoreline features — terrain NOT clipped")
+        return None, None
+    merged = linemerge(unary_union(segs))
+    if merged.geom_type == "MultiLineString":
+        merged = max(merged.geoms, key=lambda l: l.length)
+    coords = list(merged.coords)
+    arr = np.array(coords)
+    half = ctx_be() + 300.0
+    Emin = min(arr[:, 0].min(), -half) - 300.0
+    Emax = max(arr[:, 0].max(), half) + 300.0
+    Nmin = -1600.0
+    Nmax = arr[:, 1].max() + 400.0
+    bbox = sg.box(Emin, Nmin, Emax, Nmax)
+
+    def _ext(p_in, p_out, d=12000.0):
+        vx, vy = p_out[0] - p_in[0], p_out[1] - p_in[1]
+        L = math.hypot(vx, vy) or 1.0
+        return (p_out[0] + vx / L * d, p_out[1] + vy / L * d)
+
+    line = sg.LineString([_ext(coords[1], coords[0])] + coords + [_ext(coords[-2], coords[-1])])
+    pieces = list(split(bbox, line).geoms)
+    land = unary_union([g for g in pieces if g.contains(sg.Point(0.0, 0.0))])
+    if land.is_empty or land.area > 0.97 * bbox.area:
+        warnings.append("land_mask: shoreline did not cleanly split the bbox — terrain NOT clipped")
+        return None, None
+    # carve the explicitly-tagged marina/harbour basin out of the land
+    hpath = os.path.join(root, HARBOR_REL)
+    if os.path.exists(hpath):
+        marinas = []
+        for f in cb.geojson_features(hpath):
+            if (f.get("properties") or {}).get("kind") != "marina":
+                continue
+            ring = f["geometry"]["coordinates"][0]
+            poly = sg.Polygon([_lonlat_to_enu(tf, c[0], c[1]) for c in ring]).buffer(0)
+            if not poly.is_empty:
+                marinas.append(poly)
+        if marinas:
+            land = land.difference(unary_union(marinas))
+    return prep(land), land
+
+
 def _lonlat_to_enu(transformer, lon, lat):
     x_ft, y_ft = transformer.transform(lon, lat)   # EPSG:4326 -> EPSG:6494 ft
     return cb.ft_xy_to_enu(x_ft, y_ft)
+
+
+def _in_corridor(corr, e, n) -> bool:
+    """True if ENU point (e,n) is inside the bay-view sightline strip (bay side)."""
+    ox, oy = corr["origin_enu_m"]; de, dn = corr["dir_to_bay"]
+    re, rn = e - ox, n - oy
+    along = re * de + rn * dn
+    perp = abs(re * (-dn) + rn * de)
+    return along >= 0 and perp <= corr["half_width_m"]
+
+
+# ── foreground (3DEP) terrain helpers ────────────────────────────────────────
+PED_HIGHWAYS = {"footway", "path", "steps", "pedestrian", "cycleway", "track"}
+FG_DEM_REL = "data/context/dem/foreground_3dep.tif"
+CITY_DEM_REL = "data/context/dem/city_3dep.tif"   # city-wide 3DEP for draping city layers
+
+
+def draped_ribbon(coords_enu, zs, width, z_offset=0.05):
+    """Terrain-following ribbon: a single-surface strip through the polyline whose
+    vertices sit at the per-vertex sampled elevations ``zs`` (+ a small z_offset to
+    avoid z-fighting). Replaces the old flat ``ribbon`` for draped paths/roads."""
+    pts = np.array(coords_enu, float)
+    if len(pts) < 2:
+        return None
+    half = width / 2.0
+    verts, faces = [], []
+    for i in range(len(pts)):
+        if i == 0:
+            tan = pts[1] - pts[0]
+        elif i == len(pts) - 1:
+            tan = pts[-1] - pts[-2]
+        else:
+            tan = pts[i + 1] - pts[i - 1]
+        L = math.hypot(tan[0], tan[1])
+        if L < 1e-9:
+            nx, ny = 0.0, 1.0
+        else:
+            nx, ny = -tan[1] / L, tan[0] / L     # left-perpendicular unit
+        z = float(zs[i]) + z_offset
+        verts.append([pts[i][0] + nx * half, pts[i][1] + ny * half, z])
+        verts.append([pts[i][0] - nx * half, pts[i][1] - ny * half, z])
+    for i in range(len(pts) - 1):
+        a, b, c, d = 2 * i, 2 * i + 1, 2 * i + 2, 2 * i + 3
+        faces.append([a, b, c]); faces.append([b, d, c])
+    return _to_ue(trimesh.Trimesh(vertices=np.array(verts, float), faces=np.array(faces), process=False))
+
+
+def _sample_dem_lonlat(dem, transformer, lon, lat):
+    """Elevation (m) at a lon/lat from a (arr,transform) DEM, or None if off-grid."""
+    if dem is None:
+        return None
+    x_ft, y_ft = transformer.transform(lon, lat)
+    return _dem_z_at(dem[0], dem[1], x_ft, y_ft)
+
+
+def _load_dem(path):
+    """Return (Z[m] masked array, affine transform, nodata) for the EPSG:6494 DEM."""
+    import rasterio
+    with rasterio.open(path) as ds:
+        arr = ds.read(1).astype("float64")
+        nodata = ds.nodata
+        tr = ds.transform
+    if nodata is not None:
+        arr[arr == nodata] = np.nan
+    arr[arr < -1e4] = np.nan          # guard against sentinel voids
+    return arr, tr
+
+
+def _dem_z_at(arr, tr, x_ft, y_ft):
+    """Nearest-cell elevation (m) for an EPSG:6494 (x,y) ft point, or None if off-grid/void."""
+    col, row = (~tr) * (x_ft, y_ft)
+    c, r = int(round(col)), int(round(row))
+    if r < 0 or c < 0 or r >= arr.shape[0] or c >= arr.shape[1]:
+        return None
+    z = arr[r, c]
+    return None if not np.isfinite(z) else float(z)
+
+
+def _dem_mesh_enu(arr, tr, stride, min_n_m, keep=None):
+    """Build a decimated ground mesh (ENU m, baked to UE) from the EPSG:6494 DEM,
+    keeping only cells with local North >= ``min_n_m`` so it never overlaps the
+    audited project terrain. ``keep(e,n)`` (optional) further restricts cells —
+    used to clip the mesh to land (drop the bay/harbor where water shows).
+    Returns (mesh, extent[emin,emax,nmin,nmax,ztop]) or (None,None)."""
+    ny, nx = arr.shape
+    rows = list(range(0, ny, stride))
+    cols = list(range(0, nx, stride))
+    idx = {}                          # (ri,ci) -> vertex index
+    verts, faces = [], []
+    emin = nmin = float("inf"); emax = nmax = ztop = float("-inf")
+    for ri, r in enumerate(rows):
+        for ci, c in enumerate(cols):
+            x_ft, y_ft = tr * (c + 0.5, r + 0.5)
+            e, n = cb.ft_xy_to_enu(x_ft, y_ft)
+            z = arr[r, c]
+            if n < min_n_m or not np.isfinite(z):
+                continue
+            if keep is not None and not keep(e, n):
+                continue
+            idx[(ri, ci)] = len(verts)
+            verts.append((e, n, z))
+            emin, emax = min(emin, e), max(emax, e)
+            nmin, nmax = min(nmin, n), max(nmax, n)
+            ztop = max(ztop, z)
+    if len(verts) < 3:
+        return None, None
+    for ri in range(len(rows) - 1):
+        for ci in range(len(cols) - 1):
+            a = idx.get((ri, ci)); b = idx.get((ri, ci + 1))
+            c2 = idx.get((ri + 1, ci)); d = idx.get((ri + 1, ci + 1))
+            if a is not None and b is not None and c2 is not None:
+                faces.append((a, c2, b))
+            if b is not None and c2 is not None and d is not None:
+                faces.append((b, c2, d))
+    if not faces:
+        return None, None
+    m = trimesh.Trimesh(vertices=np.array(verts, float), faces=np.array(faces), process=False)
+    return _to_ue(m), [emin, emax, nmin, nmax, ztop]
+
+
+def _dem_mesh_keep(arr, tr, stride, keep_fn):
+    """Decimated ground mesh from the EPSG:6494 DEM, keeping only cells where
+    ``keep_fn(e, n)`` is True (used to carve out the design + foreground terrain
+    footprints so the city ground never z-fights them). Returns (mesh, extent)."""
+    ny, nx = arr.shape
+    rows = list(range(0, ny, stride)); cols = list(range(0, nx, stride))
+    idx = {}; verts = []; faces = []
+    emin = nmin = float("inf"); emax = nmax = ztop = float("-inf")
+    for ri, r in enumerate(rows):
+        for ci, c in enumerate(cols):
+            x_ft, y_ft = tr * (c + 0.5, r + 0.5)
+            e, n = cb.ft_xy_to_enu(x_ft, y_ft)
+            z = arr[r, c]
+            if not np.isfinite(z) or not keep_fn(e, n):
+                continue
+            idx[(ri, ci)] = len(verts); verts.append((e, n, z))
+            emin, emax = min(emin, e), max(emax, e)
+            nmin, nmax = min(nmin, n), max(nmax, n); ztop = max(ztop, z)
+    if len(verts) < 3:
+        return None, None
+    for ri in range(len(rows) - 1):
+        for ci in range(len(cols) - 1):
+            a = idx.get((ri, ci)); b = idx.get((ri, ci + 1))
+            c2 = idx.get((ri + 1, ci)); d = idx.get((ri + 1, ci + 1))
+            if a is not None and b is not None and c2 is not None:
+                faces.append((a, c2, b))
+            if b is not None and c2 is not None and d is not None:
+                faces.append((b, c2, d))
+    if not faces:
+        return None, None
+    m = trimesh.Trimesh(vertices=np.array(verts, float), faces=np.array(faces), process=False)
+    return _to_ue(m), [emin, emax, nmin, nmax, ztop]
 
 
 def build(root: str, out: str) -> dict:
@@ -118,22 +380,44 @@ def build(root: str, out: str) -> dict:
     deferred: list[dict] = []
     warnings: list[str] = []
 
-    def emit(name, mesh, layer, role, tags, anchor=None, extent=None):
+    def _group_for(lm, layer):
+        # New context categories nest under Context/<category>/<layer>; the legacy
+        # backdrop/lighting/review layers keep their existing Context/<layer> folder
+        # so the accepted scene's HIDDEN proxies are never moved.
+        cat = (lm or {}).get("category")
+        if cat in ("City_LoFi", "Foreground_HiFi"):
+            return f"{ctx.CONTEXT_FOLDER_ROOT}/{cat}/{layer}"
+        return f"{ctx.CONTEXT_FOLDER_ROOT}/{layer}"
+
+    def emit(name, mesh, layer, role, tags, anchor=None, extent=None, label_text=None):
         rel = f"meshes/{name}.obj"
         if mesh is not None:
             mesh.export(os.path.join(out, rel), file_type="obj")
         lm = ctx.layer_by_name(man, layer)
         actors.append({
-            "name": name, "group": f"{ctx.CONTEXT_FOLDER_ROOT}/{layer}",
+            "name": name, "group": _group_for(lm, layer),
             "mesh": rel if mesh is not None else None,
             "place_at_anchor": anchor, "scale": cb.UE_SCALE,
-            "layer": layer, "obstruction_role": role,
+            "layer": layer, "category": (lm or {}).get("category"),
+            "obstruction_role": role,
+            "label_text": label_text,
             "source_type": lm.get("source_type"), "accuracy_class": lm.get("accuracy_class"),
             "intended_use": lm.get("intended_use"),
             "included_in_verification": lm.get("included_in_verification", False),
             "extent_enu_m": extent,     # [emin,emax,nmin,nmax, ztop] for the obstruction gate
             "tags": sorted(set(tags)),
         })
+
+    # 0) LAND mask — clip 3DEP terrain to the authoritative OSM shoreline so the
+    # coast follows real data (not the noisy DEM water contour) and the harbor basin
+    # reads as water. A cell is dropped only where the visible water plane shows,
+    # so the clip never punches sky holes outside the water footprint.
+    land_prep, _land_poly = _land_mask(root, warnings)
+
+    def _water_keep(e, n):
+        if land_prep is None:
+            return True
+        return land_prep.contains(sg.Point(e, n)) or not _water_plane_covers(e, n)
 
     # 1) bay water plane (always) -------------------------------------------------
     emit("ctx_bay_water_plane", flat_quad(-ctx_be(), ctx_be(), BAY_NEAR_N_M, BAY_FAR_N_M, ctx.WATER_ELEV_M),
@@ -180,24 +464,132 @@ def build(root: str, out: str) -> dict:
     # 4) + 5) city massing + roads (OSM if present, else deferred) ----------------
     bpath = os.path.join(root, "data/context/osm_petoskey_buildings.geojson")
     rpath = os.path.join(root, "data/context/osm_petoskey_roads.geojson")
+    # city-wide 3DEP DEM used to DRAPE city massing/roads/parks onto real terrain
+    # (instead of the old water-datum placeholder). None -> water-datum fallback.
+    city_dem = _load_dem(os.path.join(root, CITY_DEM_REL)) if os.path.exists(os.path.join(root, CITY_DEM_REL)) else None
+    if city_dem is None:
+        warnings.append("city_3dep.tif missing — city layers fall back to water datum (placeholder)")
+
+    # 4a) city GROUND surface — mesh the city 3DEP so massing/roads sit on visible
+    # ground (was: only ribbons+blocks on the invisible DEM -> sky showed between).
+    # Carved around the audited design terrain + the foreground corridor (no z-fight).
+    cg_layer = ctx.layer_by_name(man, "city_ground")
+    if city_dem is not None and cg_layer is not None:
+        arr_c, tr_c = city_dem
+
+        def _keep_city(e, n):
+            if -136.0 <= e <= 109.0 and -127.0 <= n <= 119.0:
+                return False                      # carve the bowl / design terrain
+            if n >= 118.0 and -665.0 <= e <= 523.0:
+                return False                      # carve the foreground 3DEP corridor
+            return _water_keep(e, n)              # clip to land (drop bay/harbor water)
+        gmesh, gext = _dem_mesh_keep(arr_c, tr_c, int(cg_layer.get("decimate_stride", 6)), _keep_city)
+        if gmesh is not None:
+            emit("ctx_city_ground", gmesh, "city_ground", "none",
+                 ["context", "3DEP", "USGS", "public_domain", "city_ground_surface", "use:review"],
+                 extent=gext)
+        else:
+            warnings.append("city_ground: no mesh produced")
+    elif cg_layer is not None:
+        deferred.append({"layer": "city_ground", "reason": "no city DEM",
+                         "expected_input": cg_layer.get("expected_input")})
+
     blayer = ctx.layer_by_name(man, "city_massing")
     if os.path.exists(bpath):
         transformer = _transformer()
         gen_h = float(blayer.get("generic_height_m", 8.0))
+        ms_height = _ms_height_lookup(root, transformer)   # Microsoft ML heights (real, ~54% cover)
+        lidar_height = _lidar_height_lookup(root, transformer, city_dem)  # 3DEP LiDAR, near-pit
+        corr = ctx.corridor_geometry(root)
+        n_corr = n_ph = n_ms = n_lid = 0
+        osm_cents = []   # ENU centroids of OSM buildings, for Microsoft backfill dedup
         feats = sorted(cb.geojson_features(bpath), key=lambda f: (f["properties"] or {}).get("osm_id", 0))
         for f in feats:
             ring = f["geometry"]["coordinates"][0]
             enu = [_lonlat_to_enu(transformer, c[0], c[1]) for c in ring]
             props = f["properties"] or {}
-            h = _height_from_tags(props, gen_h)
-            mesh, poly = extrude_poly_enu(enu, ctx.WATER_ELEV_M, h)  # base draped at water datum (v0)
+            # Buildings in the bay-view sightline strip are KEPT (was: dropped). They are
+            # the actual subject of the obstruction question (e.g. Beards Brewery north of
+            # the pit); tag them so the corridor gate / analysis can evaluate them.
+            in_corr = bool(corr and any(_in_corridor(corr, e, n) for (e, n) in enu))
+            n_corr += int(in_corr)
+            # base elevation = median 3DEP terrain under the footprint; else water datum
+            zs = [z for z in (_sample_dem_lonlat(city_dem, transformer, c[0], c[1]) for c in ring) if z is not None]
+            base_z = sorted(zs)[len(zs) // 2] if zs else ctx.WATER_ELEV_M
+            placeholder = not zs
+            n_ph += int(placeholder)
+            # height: prefer Microsoft ML height at the footprint centroid, then OSM
+            # tags, then the building-type typology heuristic.
+            ce = sum(e for e, _ in enu) / len(enu); cn = sum(n for _, n in enu) / len(enu)
+            osm_cents.append((ce, cn))
+            lid_h = lidar_height(ring) if lidar_height else None
+            ms_h = ms_height(ce, cn) if ms_height else None
+            if lid_h and lid_h > 1.5:
+                h = lid_h; hsrc = "lidar_height"; n_lid += 1
+            elif ms_h and ms_h > 0:
+                h = ms_h; hsrc = "ms_height"; n_ms += 1
+            elif _tagged_height(props):
+                h = _height_from_tags(props, gen_h); hsrc = "tagged_height"
+            else:
+                h = _height_from_tags(props, gen_h); hsrc = "typology_height"
+            mesh, poly = extrude_poly_enu(enu, base_z, h)   # base on terrain
             if mesh is None:
                 continue
             ex = poly.bounds  # (emin,nmin,emax,nmax)
+            nm = props.get("name")
             emit(f"ctx_bldg_{props.get('osm_id')}", mesh, "city_massing", "occluder",
                  ["context", "OSM", "ODbL", "approximate_massing", "use:review", "must_label",
-                  f"height_m:{h:g}", "generic_height" if not _tagged_height(props) else "tagged_height"],
-                 extent=[ex[0], ex[2], ex[1], ex[3], ctx.WATER_ELEV_M + h])
+                  f"height_m:{h:g}", hsrc,
+                  "placeholder_water_datum" if placeholder else "base_on_3dep"]
+                 + (["in_bay_view_corridor"] if in_corr else [])
+                 + ([f"name:{nm}"] if nm else []),
+                 extent=[ex[0], ex[2], ex[1], ex[3], base_z + h])
+        if n_corr:
+            warnings.append(f"city_massing: {n_corr} building(s) sit in the bay-view corridor — KEPT for "
+                            f"obstruction analysis (e.g. Beards Brewery north of the pit)")
+        if n_ph:
+            warnings.append(f"city_massing: {n_ph} building(s) outside city DEM -> water-datum placeholder")
+        warnings.append(f"city_massing heights: {n_lid} LiDAR-measured + {n_ms} Microsoft ML (rest OSM tag/typology)")
+
+        # BACKFILL: add Microsoft footprints that OSM is missing (no OSM building within
+        # 12 m), so gaps like the building across the street from the pit get filled.
+        # MS geometry + MS height (or 7 m), draped on the city DEM, same corridor tagging.
+        n_back = 0
+        ms_path = os.path.join(root, MS_BUILDINGS_REL)
+        if osm_cents and os.path.exists(ms_path):
+            from scipy.spatial import cKDTree
+            otree = cKDTree(np.array(osm_cents))
+            for f in cb.geojson_features(ms_path):
+                if f["geometry"]["type"] != "Polygon":
+                    continue
+                ring = f["geometry"]["coordinates"][0]
+                enu = [_lonlat_to_enu(transformer, c[0], c[1]) for c in ring]
+                ce = sum(e for e, _ in enu) / len(enu); cn = sum(n for _, n in enu) / len(enu)
+                if otree.query([ce, cn])[0] <= 12.0:
+                    continue                       # OSM already has this building
+                zs = [z for z in (_sample_dem_lonlat(city_dem, transformer, c[0], c[1]) for c in ring) if z is not None]
+                base_z = sorted(zs)[len(zs) // 2] if zs else ctx.WATER_ELEV_M
+                hh = (f["properties"] or {}).get("height")
+                lid_h = lidar_height(ring) if lidar_height else None
+                if lid_h and lid_h > 1.5:
+                    h, hsrc = lid_h, "lidar_height"
+                elif hh and hh > 0:
+                    h, hsrc = float(hh), "ms_height"
+                else:
+                    h, hsrc = 7.0, "typology_height"
+                mesh, poly = extrude_poly_enu(enu, base_z, h)
+                if mesh is None:
+                    continue
+                in_corr = bool(corr and any(_in_corridor(corr, e, n) for (e, n) in enu))
+                ex = poly.bounds
+                emit(f"ctx_bldg_ms_{n_back}", mesh, "city_massing", "occluder",
+                     ["context", "Microsoft", "ODbL", "backfill_ms", "approximate_massing", "use:review",
+                      f"height_m:{h:g}", hsrc]
+                     + (["in_bay_view_corridor"] if in_corr else []),
+                     extent=[ex[0], ex[2], ex[1], ex[3], base_z + h])
+                n_back += 1
+            if n_back:
+                warnings.append(f"city_massing: backfilled {n_back} Microsoft-only building(s) where OSM had none")
     else:
         deferred.append({"layer": "city_massing", "reason": "no OSM building input",
                          "expected_input": blayer.get("expected_input")})
@@ -208,12 +600,189 @@ def build(root: str, out: str) -> dict:
         transformer = _transformer()
         feats = sorted(cb.geojson_features(rpath), key=lambda f: (f["properties"] or {}).get("osm_id", 0))
         for f in feats:
-            enu = [_lonlat_to_enu(transformer, c[0], c[1]) for c in f["geometry"]["coordinates"]]
-            emit(f"ctx_road_{(f['properties'] or {}).get('osm_id')}", ribbon(enu, ctx.WATER_ELEV_M, ROAD_WIDTH_M),
-                 "city_roads", "none", ["context", "OSM", "ODbL", "approximate", "use:reference"])
+            props = f["properties"] or {}
+            hw = props.get("highway")
+            width = ROAD_WIDTH_BY_TYPE_M.get(hw, 4.0)   # was uniform 5 m for everything
+            enu = []; zs = []
+            for c in f["geometry"]["coordinates"]:
+                e, n = _lonlat_to_enu(transformer, c[0], c[1])
+                z = _sample_dem_lonlat(city_dem, transformer, c[0], c[1])
+                enu.append((e, n)); zs.append(z if z is not None else ctx.WATER_ELEV_M)
+            if len(enu) < 2:
+                continue
+            ph = all(_sample_dem_lonlat(city_dem, transformer, c[0], c[1]) is None
+                     for c in f["geometry"]["coordinates"])
+            emit(f"ctx_road_{props.get('osm_id')}",
+                 draped_ribbon(enu, _smooth_z(zs), width), "city_roads", "none",
+                 ["context", "OSM", "ODbL", "approximate", "use:reference",
+                  f"highway:{hw}", f"width_m:{width:g}",
+                  "placeholder_water_datum" if ph else "draped_3dep"])
     else:
         deferred.append({"layer": "city_roads", "reason": "no OSM road input",
                          "expected_input": rlayer.get("expected_input")})
+
+    # 5b) city parks — OSM open-space polygons as flat green pads -----------------
+    ppath = os.path.join(root, "data/context/osm_petoskey_parks.geojson")
+    if os.path.exists(ppath):
+        transformer = _transformer()
+        feats = sorted(cb.geojson_features(ppath), key=lambda f: (f["properties"] or {}).get("osm_id", 0))
+        for f in feats:
+            if f["geometry"]["type"] != "Polygon":
+                continue
+            ring = f["geometry"]["coordinates"][0]
+            enu = [_lonlat_to_enu(transformer, c[0], c[1]) for c in ring]
+            zs = [z for z in (_sample_dem_lonlat(city_dem, transformer, c[0], c[1]) for c in ring) if z is not None]
+            base_z = sorted(zs)[len(zs) // 2] if zs else ctx.WATER_ELEV_M  # median terrain under park
+            mesh, _ = extrude_poly_enu(enu, base_z, 0.2)   # thin pad on terrain
+            if mesh is None:
+                continue
+            emit(f"ctx_park_{(f['properties'] or {}).get('osm_id')}", mesh, "city_parks", "none",
+                 ["context", "OSM", "ODbL", "open_space", "use:review",
+                  "placeholder_water_datum" if not zs else "base_on_3dep"])
+    else:
+        deferred.append({"layer": "city_parks", "reason": "no OSM parks input",
+                         "expected_input": ctx.layer_by_name(man, "city_parks").get("expected_input")})
+
+    # 5c) city labels — OSM place nodes as text markers (no mesh) -----------------
+    lpath = os.path.join(root, "data/context/osm_petoskey_places.geojson")
+    if os.path.exists(lpath):
+        transformer = _transformer()
+        feats = sorted(cb.geojson_features(lpath), key=lambda f: (f["properties"] or {}).get("osm_id", 0))
+        for f in feats:
+            name = (f["properties"] or {}).get("name")
+            if not name:
+                continue
+            lon, lat = f["geometry"]["coordinates"]
+            e, n = _lonlat_to_enu(transformer, lon, lat)
+            anchor = list(cb.enu_to_ue(e, n, ctx.WATER_ELEV_M + 20.0))   # float text above datum
+            emit(f"ctx_label_{(f['properties'] or {}).get('osm_id')}", None, "city_labels", "none",
+                 ["context", "OSM", "ODbL", "label", "use:reference",
+                  f"place:{(f['properties'] or {}).get('place')}"],
+                 anchor=anchor, label_text=name)
+    else:
+        deferred.append({"layer": "city_labels", "reason": "no OSM places input",
+                         "expected_input": ctx.layer_by_name(man, "city_labels").get("expected_input")})
+
+    # 5d) bay edge — cartographic LINE (Lake Michigan relation edge), NOT a slab --
+    wpath = os.path.join(root, "data/context/osm_petoskey_water_edge.geojson")
+    bay_feats = []
+    if os.path.exists(wpath):
+        transformer = _transformer()
+        feats = sorted(cb.geojson_features(wpath), key=lambda f: (f["properties"] or {}).get("osm_id", 0))
+        bay_feats = [f for f in feats if (f["properties"] or {}).get("role") == "bay_shoreline"]
+        for i, f in enumerate(bay_feats):
+            enu = [_lonlat_to_enu(transformer, c[0], c[1]) for c in f["geometry"]["coordinates"]]
+            emit(f"ctx_bay_edge_{i:03d}", ribbon(enu, ctx.WATER_ELEV_M + 0.3, 3.0),
+                 "bay_edge_cartographic", "backdrop",
+                 ["context", "OSM", "ODbL", "cartographic_edge", "use:review", "not_a_slab"])
+        if not bay_feats:
+            warnings.append("bay_edge_cartographic: water_edge.geojson has no role=bay_shoreline features")
+    else:
+        deferred.append({"layer": "bay_edge_cartographic", "reason": "no OSM water edge input",
+                         "expected_input": ctx.layer_by_name(man, "bay_edge_cartographic").get("expected_input")})
+
+    # 5e) FOREGROUND terrain — 3DEP DEM mesh north of the audited project terrain --
+    fg = ctx.layer_by_name(man, "fg_terrain")
+    dem_path = os.path.join(root, FG_DEM_REL)
+    dem = None
+    if os.path.exists(dem_path):
+        dem = _load_dem(dem_path)
+        arr, tr = dem
+        stride = int(fg.get("decimate_stride", 3))
+        min_n = float(fg.get("min_north_local_m", 120.0))
+        mesh, extent = _dem_mesh_enu(arr, tr, stride, min_n, keep=_water_keep)
+        if mesh is not None:
+            emit("ctx_fg_terrain", mesh, "fg_terrain", "none",
+                 ["context", "3DEP", "USGS", "public_domain", "real_terrain", "use:review",
+                  f"stride:{stride}", f"min_north_m:{min_n:g}"],
+                 extent=extent)
+        else:
+            warnings.append("fg_terrain: DEM produced no mesh north of the clip line")
+    else:
+        deferred.append({"layer": "fg_terrain", "reason": "no 3DEP DEM",
+                         "expected_input": fg.get("expected_input")})
+
+    # 5e2) HARBOR structures — OSM breakwaters + piers redrawn as thin walls sitting
+    # ON the water (the terrain under them was clipped away in §0), so they read as
+    # structures surrounded by water instead of one fused land peninsula. The long
+    # breakwater carries the Bayfront pierhead light.
+    hs_layer = ctx.layer_by_name(man, "harbor_structures")
+    hpath = os.path.join(root, HARBOR_REL)
+    if hs_layer is not None and os.path.exists(hpath):
+        transformer = _transformer()
+        feats = sorted(cb.geojson_features(hpath),
+                       key=lambda f: (f["properties"] or {}).get("osm_id", 0))
+        wz = ctx.WATER_ELEV_M
+        n_struct = 0
+        for f in feats:
+            props = f["properties"] or {}
+            kind = props.get("kind")
+            if kind not in ("breakwater", "pier", "groyne"):
+                continue                          # marina polygon is a carve, not a mesh
+            if f["geometry"]["type"] != "LineString":
+                continue
+            enu = [_lonlat_to_enu(transformer, c[0], c[1]) for c in f["geometry"]["coordinates"]]
+            if len(enu) < 2:
+                continue
+            is_bw = kind in ("breakwater", "groyne")
+            width = 7.0 if is_bw else 3.0
+            height = 2.2 if is_bw else 1.2        # above the water plane
+            mesh = harbor_wall(enu, wz, width, height)
+            if mesh is None:
+                continue
+            emit(f"ctx_harbor_{kind}_{props.get('osm_id')}", mesh,
+                 "harbor_structures", "backdrop",
+                 ["context", "OSM", "ODbL", f"man_made:{kind}", "use:review", "in_water"])
+            n_struct += 1
+        if n_struct == 0:
+            warnings.append("harbor_structures: no breakwater/pier lines in harbor geojson")
+    elif hs_layer is not None:
+        deferred.append({"layer": "harbor_structures", "reason": "no OSM harbor input",
+                         "expected_input": hs_layer.get("expected_input")})
+
+    # 5f) FOREGROUND paths — OSM pedestrian ways draped on the 3DEP terrain --------
+    if dem is not None and os.path.exists(rpath):
+        arr, tr = dem
+        min_n = float(fg.get("min_north_local_m", 120.0))
+        transformer = _transformer()
+        feats = sorted(cb.geojson_features(rpath), key=lambda f: (f["properties"] or {}).get("osm_id", 0))
+        n_paths = 0
+        for f in feats:
+            props = f["properties"] or {}
+            if props.get("highway") not in PED_HIGHWAYS:
+                continue
+            pts = []
+            for c in f["geometry"]["coordinates"]:
+                x_ft, y_ft = transformer.transform(c[0], c[1])
+                e, n = cb.ft_xy_to_enu(x_ft, y_ft)
+                z = _dem_z_at(arr, tr, x_ft, y_ft)
+                if z is None or n < min_n:
+                    continue
+                pts.append((e, n, z))
+            if len(pts) < 2:
+                continue
+            # drape PER-VERTEX on the 3DEP foreground (was: flat at per-path mean z)
+            enu2d = [(p[0], p[1]) for p in pts]
+            rib = draped_ribbon(enu2d, [p[2] for p in pts], 1.5)
+            if rib is None:
+                continue
+            emit(f"ctx_fgpath_{props.get('osm_id')}", rib, "fg_paths", "none",
+                 ["context", "OSM", "ODbL", "draped_3dep_pervertex", "use:reference",
+                  f"highway:{props.get('highway')}"])
+            n_paths += 1
+        if n_paths == 0:
+            warnings.append("fg_paths: no pedestrian ways fell within the foreground corridor")
+    else:
+        deferred.append({"layer": "fg_paths", "reason": "needs 3DEP DEM + OSM roads",
+                         "expected_input": ctx.layer_by_name(man, "fg_paths").get("expected_input")})
+
+    # 5g) foreground waterfront / treatment-cell / canopy — declared, deferred v0 --
+    for lyr, reason in (
+        ("fg_waterfront_edge", "covered by bay_edge_cartographic in v0; distinct near-shore detail TBD"),
+        ("fg_treatment_cell_edge", "read-only echo of audited geometry — pending confirmation"),
+        ("fg_canopy", "no canopy data fetched yet")):
+        deferred.append({"layer": lyr, "reason": reason,
+                         "expected_input": (ctx.layer_by_name(man, lyr) or {}).get("expected_input")})
 
     # 6) sun/sky — CALCULATED solar position -> light config (always) ------------
     events = ctx.resolve_solar_events()
@@ -276,6 +845,23 @@ def _tagged_height(props: dict) -> bool:
     return bool(props.get("height") or props.get("building:levels"))
 
 
+# Approximate massing heights (m) by OSM building type, used when no height/levels
+# tag exists (OSM coverage here is ~0%). Still APPROXIMATE — a typology heuristic,
+# not surveyed heights — but reads better than a single generic value.
+BUILDING_TYPE_HEIGHTS_M = {
+    "house": 6.0, "detached": 6.0, "bungalow": 5.0, "cabin": 4.0, "hut": 3.0,
+    "garage": 3.0, "garages": 3.0, "shed": 3.0, "roof": 4.0, "carport": 3.0,
+    "apartments": 12.0, "residential": 9.0, "dormitory": 12.0, "terrace": 8.0,
+    "retail": 7.0, "commercial": 9.0, "office": 12.0, "supermarket": 8.0,
+    "industrial": 8.0, "warehouse": 9.0, "manufacture": 9.0,
+    "school": 9.0, "university": 12.0, "college": 12.0, "kindergarten": 6.0,
+    "church": 14.0, "cathedral": 18.0, "chapel": 9.0, "temple": 12.0,
+    "hospital": 15.0, "hotel": 15.0, "civic": 10.0, "public": 10.0,
+    "government": 12.0, "stadium": 18.0, "grandstand": 10.0, "sports_hall": 11.0,
+    "yes": 7.0,
+}
+
+
 def _height_from_tags(props: dict, generic: float) -> float:
     if props.get("height"):
         try:
@@ -287,7 +873,73 @@ def _height_from_tags(props: dict, generic: float) -> float:
             return float(props["building:levels"]) * 3.0
         except ValueError:
             pass
-    return generic
+    return BUILDING_TYPE_HEIGHTS_M.get(props.get("building"), generic)
+
+
+MS_BUILDINGS_REL = "data/context/ms_buildings.geojson"
+
+
+def _ms_height_lookup(root, transformer):
+    """Nearest-centroid lookup of Microsoft GlobalMLBuildingFootprints heights (m),
+    keyed in ENU metres. Returns a function(e, n) -> height or None. Only MS records
+    with a REAL height (not -1) are indexed; OSM massing falls back to the typology
+    heuristic where MS has no nearby footprint."""
+    path = os.path.join(root, MS_BUILDINGS_REL)
+    if not os.path.exists(path):
+        return None
+    from scipy.spatial import cKDTree
+    pts, hts = [], []
+    for f in cb.geojson_features(path):
+        h = (f["properties"] or {}).get("height")
+        if h is None or h in (-1, -1.0) or f["geometry"]["type"] != "Polygon":
+            continue
+        ring = f["geometry"]["coordinates"][0]
+        lon_c = sum(c[0] for c in ring) / len(ring); lat_c = sum(c[1] for c in ring) / len(ring)
+        pts.append(_lonlat_to_enu(transformer, lon_c, lat_c)); hts.append(float(h))
+    if not pts:
+        return None
+    tree = cKDTree(np.array(pts)); harr = np.array(hts)
+
+    def lookup(e, n, max_d=20.0):
+        d, i = tree.query([e, n])
+        return float(harr[i]) if d <= max_d else None
+    return lookup
+
+
+# LiDAR first-return DSM (ft, EPSG:6494). Prefer the city-wide mosaic; fall back to
+# the near-pit DSM. Built from 3DEP LAZ tiles via PDAL (writers.gdal max Z).
+CITY_DSM_REL = "data/context/dem/city_dsm.tif"
+PIT_DSM_REL = "data/context/dem/pit_dsm.tif"
+
+
+def _lidar_height_lookup(root, transformer, dtm):
+    """LiDAR-MEASURED building height: first-return DSM (3DEP LAZ) minus the bare-earth
+    DTM, sampled over the footprint. Returns function(ring_lonlat) -> height m or None.
+    Covers wherever the 3DEP LAZ tiles reach (city-wide mosaic if built)."""
+    dsm_p = next((os.path.join(root, p) for p in (CITY_DSM_REL, PIT_DSM_REL)
+                  if os.path.exists(os.path.join(root, p))), None)
+    if dsm_p is None or dtm is None:
+        return None
+    dsm = _load_dem(dsm_p)   # (arr, tr); Z in FEET
+
+    def height(ring_lonlat):
+        hs = []
+        cs = list(ring_lonlat)
+        clon = sum(c[0] for c in cs) / len(cs); clat = sum(c[1] for c in cs) / len(cs)
+        for lon, lat in cs + [(clon, clat)]:
+            x_ft, y_ft = transformer.transform(lon, lat)
+            zd = _dem_z_at(dsm[0], dsm[1], x_ft, y_ft)        # ft (surface)
+            zg = _dem_z_at(dtm[0], dtm[1], x_ft, y_ft)        # m (bare earth)
+            if zd is None or zg is None:
+                continue
+            h = zd * cb.FT_TO_M - zg
+            if 0.5 < h < 45.0:                                # plausible building height
+                hs.append(h)
+        if len(hs) < 3:
+            return None
+        hs.sort()
+        return hs[int(len(hs) * 0.75)]                        # ~roof (75th pct, reject ground/edges)
+    return height
 
 
 def _sunset_camera(root: str) -> dict | None:

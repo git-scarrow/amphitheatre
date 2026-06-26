@@ -124,6 +124,43 @@
           background: linear-gradient(#cfdde6 0%, #e7ebe3 58%, #d9d4c4 100%); }
   #view canvas { display: block; }
 
+  /* ── photoreal UE render overlay ─────────────────────────────── */
+  #ueRender {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: contain; background: #15171a;
+    opacity: 0; visibility: hidden; transition: opacity .35s ease;
+    z-index: 3; pointer-events: none;
+  }
+  #ueRender.on { opacity: 1; visibility: visible; }
+  #ueCaption {
+    position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
+    max-width: 70%; padding: 6px 14px; border-radius: 13px; text-align: center;
+    background: rgba(21,23,26,.82); color: #f3efe2; font-size: 11.5px;
+    line-height: 1.4; white-space: nowrap; z-index: 4;
+    opacity: 0; visibility: hidden; transition: opacity .35s ease; pointer-events: none;
+  }
+  #ueCaption.on { opacity: 1; visibility: visible; }
+  #ueCaption .stamp { color: #b9b2a2; font-weight: 400; }
+  #ueToggle {
+    position: absolute; top: 12px; right: 12px; z-index: 6;
+    padding: 6px 12px; border-radius: 13px; font-size: 11.5px; font-weight: 600;
+    background: rgba(43,43,40,.78); color: #f3efe2; border: 1px solid transparent;
+    cursor: pointer; transition: background .15s, border-color .15s;
+  }
+  #ueToggle:hover { border-color: var(--accent); }
+  #ueToggle.on { background: var(--accent); }
+  #ueToggle.disabled { opacity: .4; cursor: default; pointer-events: none; }
+
+  /* render gallery in side panel */
+  .render-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .render-grid figure { margin: 0; cursor: pointer; border: 1px solid var(--line);
+    border-radius: 4px; overflow: hidden; background: var(--paper-2); }
+  .render-grid figure:hover { border-color: var(--accent); }
+  .render-grid img { display: block; width: 100%; height: 64px; object-fit: cover; }
+  .render-grid figcaption { padding: 3px 5px; font-size: 10.5px; color: var(--ink-soft);
+    line-height: 1.3; }
+  .render-grid figure.paired figcaption::before { content: "◎ "; color: var(--accent); }
+
   #topBanner {
     position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
     padding: 5px 14px; border-radius: 14px; font-size: 11.5px; font-weight: 600;
@@ -224,11 +261,14 @@
 </aside>
 
 <main id="view">
+  <img id="ueRender" alt="Unreal photoreal render">
+  <button id="ueToggle" class="disabled" title="Toggle the Unreal render overlay for this view (V)">UE view: —</button>
+  <div id="ueCaption"></div>
   <div id="topBanner">PLANNING-GRADE — 2015 LiDAR · EPSG:6494 intl ft · NAVD88</div>
   <div id="stageFlag">STAGE PROVISIONAL — Rule 9 open, no adoption path declared</div>
   <div id="compass"><div class="needle" id="needle"></div><div class="n">N</div></div>
   <div id="infoCard"><span class="close" onclick="this.parentElement.style.display='none'">×</span><div id="infoBody"></div></div>
-  <div id="hint">drag orbit · right-drag pan · wheel zoom · keys 1–7 presets, 0 reset<br>click a tread for its audit record</div>
+  <div id="hint">drag orbit · right-drag pan · wheel zoom · keys 1–7 presets, 0 reset · V toggle UE render<br>click a tread for its audit record</div>
 </main>
 
 <div id="errOverlay" style="display:none;position:absolute;top:80px;left:50%;transform:translateX(-50%);
@@ -244,6 +284,7 @@ addEventListener("error", e => {
 <script src="vendor/three.min.js"></script>
 <script src="vendor/OrbitControls.js"></script>
 <script src="data/site_data.js"></script>
+<script src="data/renders_manifest.js"></script>
 <script>
 "use strict";
 const D = window.SITE_DATA;
@@ -838,7 +879,7 @@ function flyTo(eye, target, ms = 1600) {
   };
 }
 const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-function applyPreset(p) { flyTo(p.eye, p.target); }
+function applyPreset(p) { flyTo(p.eye, p.target); setRenderForPreset(p); }
 const presetByKey = {};
 {
   const holder = document.getElementById("presets");
@@ -865,6 +906,116 @@ addEventListener("keydown", e => {
   const p = D.presets.find(q => q.id === "site_overview") ?? D.presets[0];
   camera.position.copy(W(...p.eye));
   controls.target.copy(W(...p.target));
+}
+
+/* ── photoreal UE render overlay ──────────────────────────────────
+   Pairs each camera preset with the latest Unreal review-camera capture
+   (data/renders_manifest.js, published by scripts/build_viewer_renders.py).
+   Flip with the on-screen button or the "V" key; the schematic stays live
+   underneath so you can A/B the planning geometry against the rendered scene. */
+const UER = window.UE_RENDERS || null;
+const ueImg = document.getElementById("ueRender");
+const ueCap = document.getElementById("ueCaption");
+const ueBtn = document.getElementById("ueToggle");
+let ueFile = null, ueLabel = "", ueShown = false;
+
+function _stamp(file) {
+  if (!UER) return "";
+  const stem = file.split("/").pop().replace(/\.png$/, "");
+  const r = UER.renders && UER.renders[stem];
+  return r && r.captured ? r.captured.replace("T", " ").replace("+00:00", " UTC") : "";
+}
+function _kindTag(file) {
+  // ue_live/ frames are real Game-View captures; the preset-paired renders/
+  // are schematic plan diagrams (placeholders until real per-view captures land).
+  return file.includes("/ue_live/") ? "UE render" : "schematic diagram";
+}
+function showRender(file, label) {
+  if (!file) return;
+  ueFile = file; ueLabel = label || "";
+  ueImg.src = file;
+  ueImg.classList.add("on");
+  const st = _stamp(file);
+  ueCap.innerHTML = `${ueLabel} &nbsp;<span class="stamp">${_kindTag(file)}${st ? " · " + st : ""}</span>`;
+  ueCap.classList.add("on");
+  ueShown = true;
+  ueBtn.classList.add("on"); ueBtn.textContent = "UE view: on";
+}
+function hideRender() {
+  ueImg.classList.remove("on"); ueCap.classList.remove("on");
+  ueShown = false;
+  ueBtn.classList.remove("on");
+  ueBtn.textContent = ueFile ? "UE view: off" : "UE view: —";
+}
+function setRenderForPreset(p) {
+  const file = UER && UER.by_preset && UER.by_preset[p.id]
+    ? "data/renders/" + UER.by_preset[p.id] : null;
+  if (file) {
+    ueBtn.classList.remove("disabled");
+    if (ueShown) { showRender(file, p.name); }     // keep overlay on across paired presets
+    else { ueFile = file; ueLabel = p.name; ueBtn.textContent = "UE view: off"; }
+  } else {
+    hideRender(); ueFile = null;
+    ueBtn.classList.add("disabled"); ueBtn.textContent = "UE view: —";
+  }
+}
+function toggleRender() {
+  if (!ueFile) return;
+  if (ueShown) hideRender(); else showRender(ueFile, ueLabel);
+}
+ueBtn.onclick = toggleRender;
+addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT") return;
+  if (e.key.toLowerCase() === "v") toggleRender();
+});
+
+/* UE scene gallery in the side panel: real live captures + preset diagrams */
+if (UER) {
+  const cam = document.getElementById("presets").closest("details");
+  const sec = document.createElement("details");
+  sec.className = "sec"; sec.open = true;
+  const lm = UER.live_meta || {};
+  const liveStamp = (lm.captured || "").trim();
+  sec.innerHTML = `<summary>UE scene renders</summary>
+    <div class="body" id="ueBody"></div>`;
+  cam.after(sec);
+  const body = sec.querySelector("#ueBody");
+
+  const seen = new Set();
+  const makeFig = (grid, file, label, presetId) => {
+    const stem = file.split("/").pop();
+    if (seen.has(stem)) return; seen.add(stem);
+    const fig = document.createElement("figure");
+    if (presetId) fig.className = "paired";
+    fig.innerHTML = `<img src="${file}" loading="lazy" alt=""><figcaption>${label}</figcaption>`;
+    fig.onclick = () => {
+      const p = presetId && D.presets.find(q => q.id === presetId);
+      if (p) applyPreset(p);            // fly the schematic there too
+      showRender(file, p ? p.name : label);
+    };
+    grid.appendChild(fig);
+  };
+  const group = (title, note) => {
+    const h = document.createElement("p");
+    h.style.cssText = "font-size:11px;color:var(--ink-soft);margin:10px 0 6px";
+    h.innerHTML = `<b style="color:var(--ink)">${title}</b>${note ? " — " + note : ""}`;
+    body.appendChild(h);
+    const g = document.createElement("div"); g.className = "render-grid";
+    body.appendChild(g); return g;
+  };
+
+  // 1. Real Game-View captures of the live scene.
+  if ((UER.live || []).length) {
+    const g = group("Live scene", `latest real UE captures${liveStamp ? " · " + liveStamp : ""}. Click to overlay.`);
+    for (const f of UER.live) makeFig(g, f.file, f.label, null);
+  }
+  // 2. Preset-paired schematic plan diagrams (placeholders until real per-view captures land).
+  const g2 = group("Preset diagrams", "schematic plan stand-ins paired to camera presets (◎). Click to overlay + fly.");
+  for (const [pid, fname] of Object.entries(UER.by_preset || {})) {
+    const p = D.presets.find(q => q.id === pid);
+    makeFig(g2, "data/renders/" + fname, p ? p.name : pid, pid);
+  }
+  for (const u of (UER.unpaired || [])) makeFig(g2, u.file, u.label, null);
 }
 
 /* ── layer panel ──────────────────────────────────────────────── */

@@ -1,0 +1,16 @@
+{
+  "source": "Unreal Engine 5.8 — PetoskeyCivicBowl CivicBowl.umap, Game View captures via the ModelContextProtocol plugin (EditorAppToolset.CaptureViewport)",
+  "scene_state": "GIS-first nested context build: full OSM+Microsoft city massing with 99% LiDAR-measured (3DEP) building heights, width-graded draped streets, foreground 3DEP terrain, accepted bowl design untouched; crude bay/horizon proxies hidden.",
+  "umap_sha256": "26a0bd4275d90ffa83f43ae5367ea8ba23adbcf7c5c944c1faa315b4d250aff8",
+  "captured": "2026-06-25",
+  "note": "These are real perspective renders of the live editor scene, persisted from ephemeral job-tmp so the web viewer can show the latest rendered scene. Refresh by re-capturing from the editor and re-running scripts/build_viewer_renders.py.",
+  "frames": {
+    "01_city_overview.png": "City overview — LiDAR-height massing, bowl at centre, Little Traverse Bay beyond",
+    "02_city_massing_measured_heights.png": "City massing — per-building measured heights",
+    "03_street_grid_draped.png": "Street grid — width-graded, terrain-draped",
+    "04_bowl_in_context_beards_study.png": "Bowl in context — Beards Brewery bay-view obstruction study angle",
+    "05_bowl_and_bay_edge.png": "Bowl and bay edge",
+    "06_near_plan_streets_parks.png": "Near-plan — streets and parks",
+    "07_harbor_breakwaters_in_water.png": "Harbor — breakwaters + piers now surrounded by water (coast clipped to OSM shoreline; long breakwater carries the pierhead light)"
+  }
+}

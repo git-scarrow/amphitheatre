@@ -45,11 +45,12 @@ SLAB_THICKNESS_M = 0.15      # crude visible thickness for footprint slabs
 RIBBON_WIDTH_M = 1.2         # ADA ribbon width (visual proxy, not a code width)
 MARKER_SIZE_M = 0.6          # shared cube marker edge for point actors
 
-# ENU(right-handed) -> UE(left-handed) as a 4x4 (X=North, Y=East, Z=Up). The
-# determinant is -1, so trimesh flips triangle winding on apply_transform and
-# normals stay outward. Baking this into the meshes (and into marker anchors +
-# camera coords) makes the UE scene geographically faithful, not mirror-imaged.
-UE_MAT = np.array([[r[0], r[1], r[2], 0.0] for r in cb.ENU_TO_UE_LINEAR] + [[0, 0, 0, 1.0]], float)
+# ENU(right-handed) -> UE(left-handed) as a 4x4, for MESH baking only. Uses the
+# East-pre-negated mesh matrix (civicbowl_common.ENU_TO_UE_MESH_LINEAR) so that
+# after UE's OBJ importer flips Y the geometry lands at the true enu_to_ue frame
+# (X=North, Y=+East), not mirror-imaged. Marker anchors + camera coords below use
+# cb.enu_to_ue directly (they are placed, not OBJ-round-tripped) and stay true.
+UE_MAT = np.array([[r[0], r[1], r[2], 0.0] for r in cb.ENU_TO_UE_MESH_LINEAR] + [[0, 0, 0, 1.0]], float)
 
 
 def _to_ue(mesh):
@@ -99,6 +100,45 @@ def ribbon_mesh(geom: dict, z_m: float):
     m = trimesh.creation.extrude_polygon(poly, height=SLAB_THICKNESS_M)
     m.apply_translation((0.0, 0.0, z_m - SLAB_THICKNESS_M))
     return _to_ue(m)
+
+
+def proposed_grade_sampler(root: str):
+    """Nearest-vertex elevation sampler over the PROPOSED grade (ENU metres), used to
+    drape ADA routes onto finished grade instead of a single mean-landing datum."""
+    import math
+    from scipy.spatial import cKDTree
+    pr = trimesh.load(os.path.join(root, "unreal_export/terrain/terrain_proposed.obj"),
+                      force="mesh", process=False)
+    v = np.asarray(pr.vertices)            # ENU (e, n, z) metres
+    tree = cKDTree(v[:, :2]); zc = v[:, 2]
+
+    def sample(e, n):
+        _, i = tree.query([e, n])
+        return float(zc[i])
+    return sample, math
+
+
+def draped_ribbon_mesh(geom: dict, sampler, ribbon_math, z_offset=0.05):
+    """LineString draped PER-VERTEX on the sampled grade (terrain-following ribbon).
+    z_offset (~2 in) is the path surface above grade; returns (mesh, offsets_ft) where
+    offsets are 0 at the centerline by construction (the route conforms to grade)."""
+    pts = np.array(_enu_ring(geom["coordinates"]), float)
+    if len(pts) < 2:
+        return None, []
+    half = RIBBON_WIDTH_M / 2.0
+    verts, faces = [], []
+    for i in range(len(pts)):
+        tan = (pts[1] - pts[0]) if i == 0 else (pts[-1] - pts[-2]) if i == len(pts) - 1 \
+            else (pts[i + 1] - pts[i - 1])
+        L = ribbon_math.hypot(tan[0], tan[1])
+        nx, ny = (-tan[1] / L, tan[0] / L) if L > 1e-9 else (0.0, 1.0)
+        z = sampler(pts[i][0], pts[i][1]) + z_offset
+        verts.append([pts[i][0] + nx * half, pts[i][1] + ny * half, z])
+        verts.append([pts[i][0] - nx * half, pts[i][1] - ny * half, z])
+    for i in range(len(pts) - 1):
+        a, b, c, d = 2 * i, 2 * i + 1, 2 * i + 2, 2 * i + 3
+        faces.append([a, b, c]); faces.append([b, d, c])
+    return _to_ue(trimesh.Trimesh(vertices=np.array(verts, float), faces=np.array(faces), process=False)), []
 
 
 def marker_mesh():
@@ -246,16 +286,20 @@ def build(root: str, out: str) -> dict:
     # 4) ADA routes (8 lines) + landings (31 points) --------------------------
     adp = "unreal_export/geo/ada_route.geojson"
     sha = cb.sha256_12(os.path.join(root, adp))
+    grade, gmath = proposed_grade_sampler(root)   # drape routes on PROPOSED finished grade
     for feat in sorted(cb.geojson_features(os.path.join(root, adp)), key=lambda f: cb.feature_id(f) or ""):
         fid = cb.feature_id(feat); a = aidx.get(fid); gt = feat["geometry"]["type"]
         mid = (a or {}).get("material_id", "ada_preferred" if gt == "LineString" else "ada_landing")
         if gt == "LineString":
-            z = route_z(fid)  # routes carry no z; drape on their landings' mean
-            emit_mesh(f"ADA_{fid}", ribbon_mesh(feat["geometry"], z),
+            # Conform PER-VERTEX to the proposed grade (was: flat at landings' mean z,
+            # which bridged the route over varying terrain). Cut/fill at centerline = 0
+            # by construction; route surface sits ~2 in above grade (path thickness).
+            rib, _ = draped_ribbon_mesh(feat["geometry"], grade, gmath)
+            emit_mesh(f"ADA_{fid}", rib,
                       cb.SCENE_SPEC["ada_routes"]["folder"], mid,
                       (a or {}).get("validation_state", "route_concept_pending_civil"), True,
                       ["acceptance:concept", "PLANNING-GRADE", f"material:{mid}",
-                       "concept_pending_civil", "must_label"],
+                       "concept_pending_civil", "must_label", "draped_on_proposed_grade"],
                       {"file": adp, "feature_id": fid, "sha12": sha})
         elif gt == "Point":
             z = feature_z_m(feat, a)

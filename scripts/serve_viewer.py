@@ -56,6 +56,9 @@ SOURCE_GLOBS = [
     "dem/in_situ_grading_manifest.json",
     "scripts/build_truth_package.py",
     "scripts/in_situ_common.py",
+    # Latest Unreal review-camera captures; published into the viewer by
+    # scripts/build_viewer_renders.py (run from _run_build).
+    "renders/*.png",
 ]
 
 # ── live-reload client, injected into every HTML response ────────────────────
@@ -140,6 +143,18 @@ def _run_build() -> bool:
         return False
     tail = (proc.stdout.strip().splitlines() or ["(no output)"])[-1]
     print(f"[serve_viewer] rebuilt in {time.time() - t0:.1f}s — {tail}", flush=True)
+    # Republish the latest UE renders into the viewer (decoupled from the
+    # audited truth build; safe to fail without blocking the reload).
+    rscript = os.path.join(REPO, "scripts", "build_viewer_renders.py")
+    if os.path.exists(rscript):
+        try:
+            rp = subprocess.run([py, rscript], cwd=REPO, capture_output=True, text=True, timeout=120)
+            if rp.returncode == 0:
+                print(f"[serve_viewer] renders: {(rp.stdout.strip().splitlines() or ['—'])[0]}", flush=True)
+            else:
+                print(f"[serve_viewer] render publish skipped rc={rp.returncode}: {rp.stderr.strip()[-300:]}", flush=True)
+        except subprocess.TimeoutExpired:
+            print("[serve_viewer] render publish TIMEOUT", file=sys.stderr, flush=True)
     return True
 
 

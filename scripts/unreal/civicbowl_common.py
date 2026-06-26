@@ -95,6 +95,34 @@ def det3(m=ENU_TO_UE_LINEAR) -> float:
             + m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]))
 
 
+# ── OBJ round-trip handedness correction (mesh baking ONLY) ──────────────────
+# enu_to_ue above gives the correct, non-mirrored UE coordinates for DIRECT
+# placement — camera and light positions set straight into the editor. Mesh
+# GEOMETRY, however, is written to OBJ (a right-handed interchange format) and
+# re-imported by UE's OBJ/FBX importer, which performs ANOTHER right->left
+# handedness conversion (it negates the UE Y / East axis). Round-tripping the
+# already-left-handed coords through that importer MIRRORS every mesh East<->West
+# (verified 2026-06-25: imported mesh Y == -East, while enu_to_ue gives +East).
+#
+# To cancel it, mesh vertices are baked with Y (East) PRE-NEGATED, so the
+# post-import result lands back on the true enu_to_ue frame (UE_Y = +East),
+# matching the directly-placed cameras/lights. enu_to_ue / det3 are deliberately
+# left unchanged (cameras, lights, verifier orientation gates depend on them).
+OBJ_IMPORT_NEGATES_Y = True
+
+ENU_TO_UE_MESH_LINEAR = (
+    (0.0, 1.0, 0.0),    # UE_X = North  (= ENU n)
+    (-1.0, 0.0, 0.0),   # UE_Y = -East  (pre-negated; OBJ import flips it back to +East)
+    (0.0, 0.0, 1.0),    # UE_Z = Up     (= ENU u)
+)
+
+
+def enu_to_ue_mesh(e: float, n: float, u: float) -> tuple[float, float, float]:
+    """ENU metres -> UE-frame metres for OBJ MESH baking. East is pre-negated to
+    cancel the OBJ importer's Y flip; after import the mesh matches enu_to_ue."""
+    return (n, -e, u)
+
+
 # ── canonical scene inventory (the contract the verifier checks) ─────────────
 # Each group: which gated source produces it, the geometry kind, and the Outliner
 # folder. "expected" is the count the generated plan / loaded scene must report.
