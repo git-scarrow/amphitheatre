@@ -8,11 +8,12 @@ international feet into the local-ENU-metre frame, writes one OBJ mesh per actor
 ``scene_plan.json`` — the complete, deterministic spec the in-editor assembler
 (``ue_civicbowl.py``) consumes.
 
-What it builds (v0 — see civicbowl_common.SCENE_SPEC):
+What it builds (see civicbowl_common.SCENE_SPEC):
   terrain (2)  seating (45)  stage slabs (5)  bay-view axis+focal (2)
-  ADA route ribbons (8)  ADA landing markers (31)  cameras (7, plan only)
-TODO groups (geometry not yet in unreal_export/geo/): treatment cell, event floor,
-human-scale refs — recorded in the plan as deferred, not built.
+  ADA route ribbons (8)  ADA landing markers (31)
+  human-scale posts + dimension ribbons (19)  cameras (7, plan only)
+Human-scale refs are exact-height posts (head apex = ground + height_ft) and
+scale-bar ribbons, sourced from the gated geo/human_scale_refs.geojson.
 
 Determinism: output is sorted by feature id and carries source sha256(12) for
 provenance but no timestamps, so ``gen`` + diff is a reproducibility check.
@@ -143,6 +144,22 @@ def draped_ribbon_mesh(geom: dict, sampler, ribbon_math, z_offset=0.05):
 
 def marker_mesh():
     return trimesh.creation.box(extents=(MARKER_SIZE_M, MARKER_SIZE_M, MARKER_SIZE_M))
+
+
+POST_SIZE_M = 0.40           # human-scale post footprint (schematic; HEIGHT is exact)
+
+
+def post_mesh(x_enu: float, y_enu: float, z_ground_m: float, height_m: float):
+    """Exact-height vertical post for a human-scale ref: a small square footprint
+    at (x,y) extruded from the ground to ground+height. The HEIGHT is exact (the
+    whole point of a scale reference — head apex = ground + height_ft); the
+    footprint is a schematic proxy. Baked through the ENU->UE map like the slabs."""
+    h = POST_SIZE_M / 2.0
+    sq = sg.Polygon([(x_enu - h, y_enu - h), (x_enu + h, y_enu - h),
+                     (x_enu + h, y_enu + h), (x_enu - h, y_enu + h)])
+    m = trimesh.creation.extrude_polygon(sq, height=height_m)
+    m.apply_translation((0.0, 0.0, z_ground_m))
+    return _to_ue(m)
 
 
 def feature_z_m(feat: dict, actor: dict | None) -> float | None:
@@ -310,6 +327,42 @@ def build(root: str, out: str) -> dict:
                       (a or {}).get("validation_state", "landing_concept"), True,
                       ["acceptance:concept", f"material:{mid}", "concept_pending_civil", "marker"],
                       {"file": adp, "feature_id": fid, "sha12": sha}, anchor=list(cb.enu_to_ue(x, y, z)))
+
+    # 5) human-scale refs: exact-height posts (figures) + ribbons (dimensions) -
+    #    Every figure/scale marker traces to vectors_geojson/human_scale_refs.geojson
+    #    via the gated geo/ export (build_unreal_export.build_human_scale); heights
+    #    are exact, footprints schematic — never decorative entourage.
+    hsp = "unreal_export/geo/human_scale_refs.geojson"
+    if os.path.exists(os.path.join(root, hsp)):
+        sha = cb.sha256_12(os.path.join(root, hsp))
+        hs_folder = cb.SCENE_SPEC["human_scale"]["folder"]
+        for feat in sorted(cb.geojson_features(os.path.join(root, hsp)),
+                           key=lambda f: cb.feature_id(f) or ""):
+            fid = cb.feature_id(feat); a = aidx.get(fid)
+            props = feat.get("properties") or {}
+            gt = feat["geometry"]["type"]
+            mid = (a or {}).get("material_id") or props.get("material_id", "human_standing")
+            z = cb.ft_z_to_m(float(props["ground_elev_navd88"]))
+            if gt == "Point":
+                posture = props.get("posture", "standing")
+                h_ft = float(props["height_ft"])
+                x, y = cb.ft_xy_to_enu(*feat["geometry"]["coordinates"][:2])
+                tags = ["acceptance:reference", "human_scale", "reference_only",
+                        "must_label", f"posture:{posture}", f"height_ft:{h_ft}",
+                        f"material:{mid}"]
+                if props.get("eye_height_ft") is not None:
+                    tags.append(f"eye_height_ft:{props['eye_height_ft']}")
+                emit_mesh(f"Human_{props['ref_id']}",
+                          post_mesh(x, y, z, cb.ft_z_to_m(h_ft)), hs_folder, mid,
+                          "human_scale_reference", False, tags,
+                          {"file": hsp, "feature_id": fid, "sha12": sha})
+            elif gt == "LineString":
+                emit_mesh(f"Dim_{props['ref_id']}", ribbon_mesh(feat["geometry"], z),
+                          hs_folder, mid, "human_scale_reference", False,
+                          ["acceptance:reference", "human_scale", "dimension",
+                           "reference_only", "must_label",
+                           f"length_ft:{props.get('length_ft')}", f"material:{mid}"],
+                          {"file": hsp, "feature_id": fid, "sha12": sha})
 
     # shared marker mesh (placed at each point actor's anchor in-editor) -------
     marker_mesh().export(os.path.join(mesh_dir, "_marker_unit.obj"), file_type="obj")

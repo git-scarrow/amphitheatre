@@ -69,6 +69,30 @@
    "color": "#90caf9",
    "keyed_to": "kind=landing"
   },
+  "human_standing": {
+   "label": "Human scale - standing (5.0/5.75/6.25 ft)",
+   "color": "#9c5b33",
+   "must_label": true,
+   "keyed_to": "type=human posture=standing"
+  },
+  "human_seated": {
+   "label": "Human scale - seated (eye 3.94 ft)",
+   "color": "#6d597a",
+   "must_label": true,
+   "keyed_to": "type=human posture=seated"
+  },
+  "human_wheelchair": {
+   "label": "Human scale - wheelchair (eye 3.90 ft)",
+   "color": "#355070",
+   "must_label": true,
+   "keyed_to": "type=human posture=wheelchair"
+  },
+  "human_dimension": {
+   "label": "Human scale - dimension / scale bar",
+   "color": "#b3541e",
+   "must_label": true,
+   "keyed_to": "type=dimension"
+  },
   "cutfill_diverging": {
    "label": "Cut/fill overlay (blue=cut, red=fill, white=balanced)",
    "ramp": {

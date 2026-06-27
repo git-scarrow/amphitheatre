@@ -191,14 +191,17 @@ SCENE_SPEC = {
         "expected": 7,
         "included": True,
     },
-    # ── documented TODOs (geometry not in the gated geo/ package yet) ────────
+    # human-scale references (calibrated schematic scale, exported to the gated
+    # package by build_unreal_export.build_human_scale; baseline only — the
+    # ambitious-option ref is excluded to match the accepted scene/viewer).
     "human_scale": {
         "folder": "Reference/HumanScale",
-        "kind": "point",
-        "source": "vectors_geojson/human_scale_refs.geojson "
-        "— NOT yet exported to unreal_export/geo/",
-        "expected": None,
-        "included": False,
+        "kind": "point+line",
+        "source": "unreal_export/geo/human_scale_refs.geojson "
+        "(15 baseline figures: standing 5.0/5.75/6.25, seated eye 3.94, "
+        "wheelchair eye 3.90 + 4 dimension/scale refs)",
+        "expected": 19,
+        "included": True,
     },
 }
 
@@ -207,6 +210,7 @@ REQUIRED_INPUTS = [
     "unreal_export/geo/seating_rows.geojson",
     "unreal_export/geo/stage_floor.geojson",
     "unreal_export/geo/ada_route.geojson",
+    "unreal_export/geo/human_scale_refs.geojson",
     "unreal_export/terrain/terrain_proposed.obj",
     "unreal_export/terrain/terrain_existing.glb",
     "unreal_export/manifests/actor_manifest.json",

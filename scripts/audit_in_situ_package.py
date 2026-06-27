@@ -867,6 +867,44 @@ def check_human_scale_refs(rasters_present):
            "(vertex-derived extents match height_ft; wheelchair on the "
            "ADA-relevant boards)")
 
+    # 9. the UE export carries the human-scale layer — it must reach the gated
+    #    unreal_export/geo package + actor manifest, not live only in the source,
+    #    viewer, or boards, so the reproducible UE scene shows scale too.
+    ue_geo = os.path.join(REPO, "unreal_export", "geo", "human_scale_refs.geojson")
+    ue_am = os.path.join(REPO, "unreal_export", "manifests", "actor_manifest.json")
+    baseline = {rid for rid, f in {**humans, **dims}.items()
+                if f["properties"].get("scope") != "ambitious_option"}
+    if not os.path.exists(ue_geo):
+        fail("UE export omits the human-scale layer: "
+             "unreal_export/geo/human_scale_refs.geojson missing — run "
+             "scripts/build_unreal_export.py")
+    else:
+        ue_feats = json.load(open(ue_geo))["features"]
+        ue_ids = {f["properties"].get("ref_id") for f in ue_feats}
+        ue_chairs = {f["properties"].get("ref_id") for f in ue_feats
+                     if f["properties"].get("posture") == "wheelchair"}
+        ue_probs = []
+        miss_ref = sorted(baseline - ue_ids)
+        if miss_ref:
+            ue_probs.append(f"baseline refs absent from the UE export: {miss_ref}")
+        miss_chair = [r for r in HS.ADA_CRITICAL_WHEELCHAIR if r not in ue_chairs]
+        if miss_chair:
+            ue_probs.append(f"ADA-critical wheelchairs absent from the UE export: {miss_chair}")
+        if os.path.exists(ue_am):
+            am_fids = {a.get("source_feature_id")
+                       for a in json.load(open(ue_am))["actors"]}
+            unbridged = [f["properties"].get("feature_id") for f in ue_feats
+                         if f["properties"].get("feature_id") not in am_fids]
+            if unbridged:
+                ue_probs.append(f"exported refs without an actor_manifest row: {unbridged}")
+        else:
+            ue_probs.append("unreal_export actor_manifest.json missing")
+        if ue_probs:
+            fail("UE human-scale export: " + "; ".join(ue_probs[:6]))
+        else:
+            ok(f"UE export carries the human-scale layer: {len(ue_feats)} refs "
+               f"({len(ue_chairs)} wheelchair) in unreal_export/geo + actor manifest")
+
 
 def check_ada_rebuild():
     """ADA gates (2026-06-12 rebuild): a route network may only be called
