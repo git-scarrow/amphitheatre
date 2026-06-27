@@ -68,7 +68,9 @@ def load():
         blds.append(dict(
             osm_id=m["osm_id"], name=m.get("name") or f"osm{m['osm_id']}",
             poly=box(C.CX + be0 * FT, C.CY + bn0 * FT, C.CX + be1 * FT, C.CY + bn1 * FT),
-            top_ft=float(m["top_ft"]), az=m.get("az")))
+            top_ft=float(m["top_ft"]),
+            base_ft=float(m["base_m"]) * FT if m.get("base_m") is not None else None,
+            az=m.get("az")))
     return treads, stage, blds
 
 
@@ -164,14 +166,16 @@ def section_beards(treads, blds):
     t = next(f for f in treads if f["properties"]["row"] == 17 and f["properties"]["section"] == "east")
     g = shape(t["geometry"]).centroid
     eye_z = t["properties"]["tread_elev_navd88"] + C.EYE_SEATED_FT
-    az = 334.0
+    # az 338 passes through the BODY of Beards (100 ft crossing width), not a
+    # corner clip — so the building silhouette is fully shown.
+    az = 338.0
     e, n = C.U(az)
     horizon = -math.degrees(math.sqrt(2 * (eye_z - C.BAY_PLANE) / 20.9e6))
 
     ds_ft = np.arange(0, 760, 2.0)
-    terr = [dem(g.x + e * d, g.y + n * d) for d in ds_ft]
+    terr = np.array([dem(g.x + e * d, g.y + n * d) for d in ds_ft])
 
-    # Beards on this ray
+    # Beards crossing on this ray
     beards = next((b for b in blds if "Beards" in str(b["name"])), None)
     bd0 = bd1 = None
     if beards:
@@ -182,37 +186,51 @@ def section_beards(treads, blds):
                   for cx, cy in (gg.coords if hasattr(gg, "coords") else [])]
             bd0, bd1 = min(dd), max(dd)
 
-    fig, ax = plt.subplots(figsize=(13, 6))
-    ax.plot(ds_ft, terr, color="#8a6d3b", lw=1.4, label="terrain (DEM)")
-    ax.fill_between(ds_ft, 560, terr, color="#e8dcc0", alpha=0.6)
-    ax.axhline(eye_z, color="gray", lw=0.6, ls=":")
-    ax.plot(0, eye_z, "ko", ms=7, label=f"east r17 eye ({eye_z:.0f}ft)")
-    # horizon sightline
+    fig, ax = plt.subplots(figsize=(13, 6.5))
+    # terrain (NaN-safe: matplotlib breaks the line at NaN voids automatically)
+    ax.plot(ds_ft, terr, color="#8a6d3b", lw=1.4, label="terrain (DEM; gaps = DEM void)")
+    ax.fill_between(ds_ft, 560, np.nan_to_num(terr, nan=560.0), color="#e8dcc0", alpha=0.5)
+    ax.plot(0, eye_z, "ko", ms=8, zorder=10)
+    ax.annotate(f"east r17 eye\n{eye_z:.0f} ft", (0, eye_z), (18, eye_z + 6),
+                fontsize=8, fontweight="bold")
+
+    # the two sightlines that decide the case, drawn as rays FROM the eye
     xs = np.array([0, 760])
     ax.plot(xs, eye_z + xs * math.tan(math.radians(horizon)),
-            color="teal", lw=1.2, ls="--", label=f"bay horizon sightline ({horizon:.2f}°)")
-    ax.axhline(C.BAY_PLANE, color="#3a7abf", lw=1.0, label=f"bay plane ({C.BAY_PLANE:.0f}ft)")
-    # Beards silhouette
-    if beards and bd0 is not None:
-        ax.add_patch(plt.Rectangle((bd0, dem(g.x + e * bd0, g.y + n * bd0)),
-                                   bd1 - bd0, beards["top_ft"] - dem(g.x + e * bd0, g.y + n * bd0),
-                                   fc="#c0392b", ec="black", alpha=0.8, zorder=5,
-                                   label=f"Beards Brewery ({beards['top_ft']:.0f}ft, LiDAR height)"))
-        # sightline to building top
-        ang_top = math.degrees(math.atan2(beards["top_ft"] - eye_z, bd0))
-        ax.annotate(f"+{ang_top:.1f}° (above horizon {horizon:.1f}° → BLOCKS)\n"
-                    f"UE trace confirms hit @ {bd0*0.3048:.0f}m",
-                    xy=(bd0, beards["top_ft"]), xytext=(bd0 + 60, beards["top_ft"] + 18),
-                    fontsize=8, color="#c0392b",
-                    arrowprops=dict(arrowstyle="->", color="#c0392b"))
+            color="teal", lw=1.6, ls="--",
+            label=f"bay-horizon sightline ({horizon:.2f}°) — what should reach the bay")
+    ax.axhline(C.BAY_PLANE, color="#3a7abf", lw=1.0,
+               label=f"bay water plane ({C.BAY_PLANE:.0f} ft)")
 
-    ax.set_xlabel("Distance from eye along az 334° (ft)")
+    # Beards silhouette anchored to its RECORDED base (DEM is void here)
+    if beards and bd0 is not None:
+        base = beards["base_ft"] if beards["base_ft"] else (terr[~np.isnan(terr)][-1])
+        ax.add_patch(plt.Rectangle((bd0, base), bd1 - bd0, beards["top_ft"] - base,
+                                   fc="#c0392b", ec="black", alpha=0.85, zorder=6,
+                                   label=f"Beards Brewery ({base:.0f}→{beards['top_ft']:.0f} ft, "
+                                         f"{(beards['top_ft']-base):.0f} ft, LiDAR height)"))
+        ang_top = math.degrees(math.atan2(beards["top_ft"] - eye_z, bd0))
+        # sightline from eye grazing the building roof
+        ax.plot([0, bd0], [eye_z, beards["top_ft"]], color="#c0392b", lw=1.4, zorder=7)
+        ax.plot([bd0, 760], [beards["top_ft"], eye_z + 760 * math.tan(math.radians(ang_top))],
+                color="#c0392b", lw=0.8, ls=":", zorder=5)
+        ax.annotate(
+            f"roof at +{ang_top:.1f}° (vs bay horizon {horizon:.2f}°)\n"
+            f"roof line sits ABOVE the horizon → bay occluded\n"
+            f"live UE trace confirms hit @ {bd0*0.3048:.0f} m",
+            xy=(bd0, beards["top_ft"]), xytext=(bd0 + 70, beards["top_ft"] + 16),
+            fontsize=8.5, color="#c0392b", fontweight="bold",
+            arrowprops=dict(arrowstyle="->", color="#c0392b"))
+
+    ax.set_xlabel(f"Distance from eye along az {az:.0f}° (ft)")
     ax.set_ylabel("Elevation NAVD88 (ft)")
+    ax.set_xlim(-10, 760)
     ax.set_ylim(560, 680)
-    ax.set_title("Section: east r17 eye → bay along az 334° (NW corridor)\n"
-                 "Beards Brewery roof rises +3.6° above eye; bay horizon is −0.13°. "
-                 "Building occludes the bay in this azimuth.")
-    ax.legend(fontsize=8, loc="upper right")
+    ax.set_title(
+        f"Section: east r17 eye → bay along az {az:.0f}° (NW half of corridor)\n"
+        "Beards Brewery roof (652 ft) rises +3.7° above the eye; the bay horizon is −0.13°.\n"
+        "The red roof line lies above the teal horizon line → the bay is hidden behind the building.")
+    ax.legend(fontsize=8, loc="lower right")
     ax.grid(alpha=0.3)
     plt.tight_layout()
     fig.savefig(os.path.join(OUT, "section_beards_east.png"), dpi=140, bbox_inches="tight")
