@@ -1,8 +1,72 @@
 # Bay-View Obstruction — Confidence-Banded Validation Report
 
-Generated 2026-06-27.
-Scope: confidence assessment of the evidence already in hand.
-No design changes, no reruns, no scene edits in this pass.
+> **REVISION 2 (2026-06-27, scene-level evidence).** Adds the stage-polygon
+> raycast, the live UE actor audit, the layered terrain/stage/city deltas, and
+> a two-source (Python DEM+OSM ↔ live UE `trace_world`) cross-check. The
+> Revision-1 table is preserved below the rule for traceability. Read-only:
+> no geometry was moved, hidden, deleted, or relit.
+
+---
+
+## Revision-2 headline
+
+**The terrain-only "first acceptable row" was optimistic for the EAST section.**
+Adding the W/NW city massing (dominated by **Beards Brewery**, a real on-grade
+building at 652 ft, ~75 m NNW of the east seats) occludes the NW half of the
+bay corridor (az ≈ 328–342°) from the east upper rows. East rows 11–18, scored
+97–100 % clear terrain-only, fall to **46–62 % clear** with city massing — i.e.
+**marginal, not acceptable**. The SW half of the corridor (az ≤ 326°) stays
+clear. Bend rows lose 3–10 %; south rows are unaffected (they face away from the
+W/NW buildings). The **stage contributes 0.0 %** obstruction across every band.
+
+Both the Python model and live UE raycast agree to ~1 m (az 334° → hit @ 77 m;
+az 322° → clear). Evidence: `layered_obstruction.csv`,
+`layered_delta_row_x_az.csv`, `section_beards_east.png`, `layered_plan_view.png`,
+`UE_ACTOR_AUDIT.md`.
+
+## Revision-2 claim table
+
+| # | Claim | Confidence (was → now) | What was tested | What remains untested | Design reliance | Max without field survey |
+|---|---|---|---|---|---|---|
+| 1 | DEM terrain obstruction by row/section | Medium → **Medium-High** | Section profiles spot-checked; ray engine cross-validated against live UE `trace_world` (clear/blocked match) | DEM vertical datum vs survey benchmark (no control points checked) | Yes (bare-earth planning) | **High** (needs benchmark) |
+| 2 | Stage does not obstruct the bay view | Medium → **High (scoped)** | Stage polygons added to raycast → **Δ = 0.0 % every band**; UE audit confirms exactly 3 flat stage actors, Z 612.0–612.5 ft, **no vertical shell** | Nothing for the current deck | Yes — current flat/open stage only | **High** (achieved, for current deck) |
+| 3 | Live UE scene not contaminated by stale/provisional stage | Low → **Medium** | Full stage-like enumeration: 1 current stage system, **no** shell/provisional/rule9/duplicate; raycast cross-check matches | Editor visibility (`bHiddenEd`) of bay-water/horizon proxies not readable via API; runtime `bHidden=false` unreconciled with memory's `bVisible=false` | Yes (review renders) | **Medium-High** (needs component visibility read or visual confirm) |
+| 4a | City massing **materially obstructs** the bay corridor (east section) | Indeterminate → **Medium-High** | Layered raycast: east upper rows 100 %→46–62 % clear; **confirmed by live UE trace @ 73–77 m** | Beards Brewery roof height is LiDAR DSM−DTM (10.4 m), not surveyed | Yes — supersedes terrain-only "row 11 acceptable" for east | **High** (needs roof survey) |
+| 4b | Tree / canopy obstruction contribution | Indeterminate → **Indeterminate** | — (confirmed **no tree/canopy actors exist** in the scene) | Everything — foreground tree band (az 315–320) has no geometry to test | Must not be relied on for rows 6–10 | **Indeterminate until a canopy layer exists** |
+| 4c | Harbor obstruction | Indeterminate → **Low (does not obstruct)** | Harbor structures sit at/below the bay water plane (579.45 ft) | No per-structure raycast | Minor | **Medium** |
+| 5 | Suspicious W/NW building is real & correctly placed | Medium → **Medium** | Two distinct things separated: (a) *visual "domination"* = Police Dept cluster + **hidden bay-water plane** (representation artifact); (b) *measured obstructor* = **Beards Brewery**, a named OSM building, base−terrain ≈ −0.09 m (on grade) | No field/photogrammetric survey; LiDAR-derived heights | Low (visual), but its height drives Claim 4a magnitude | **High** (needs survey) |
+
+## Scoped strong claims (Revision 2)
+
+> **High confidence (scoped): the current flat/open stage geometry does not
+> materially obstruct the DEM-defined bay-view rays.** Stage raycast Δ = 0.0 %
+> on every band; live UE confirms 3 flat actors at 612.0–612.5 ft with no
+> vertical shell. **Invalidated if any Rule-9 refit adds vertical elements.**
+
+> **Medium-High confidence: the W/NW city massing materially obstructs the NW
+> half of the bay corridor from the EAST upper rows** (clear% 100 → 46–62),
+> confirmed by two independent raycast methods. The obstructor is Beards
+> Brewery (real, on-grade); magnitude depends on its LiDAR-derived roof height.
+
+> **Medium confidence: the live UE scene is obstruction-clean of stale/
+> provisional stage geometry** — exactly one stage system, no shell/duplicate —
+> **but** the editor-visibility of the bay-water/horizon proxies is unconfirmed
+> via the API, so "render is proxy-clean" is not yet High.
+
+> **Indeterminate: canopy obstruction** — no tree/canopy actors exist to test;
+> the foreground tree band (az 315–320) remains unmodelled. Rows 6–10 "bay
+> acceptable" must stay qualified.
+
+## What changed for design reliance
+
+- The east-section "bay-view acceptable from row 11" claim (terrain-only) is
+  **downgraded to marginal** once city massing is included. Do not present east
+  upper rows as having a clean bay view without naming the Beards Brewery
+  occlusion of the NW corridor half.
+- The stage is now cleared at **High (scoped)** — design discussion may rely on
+  "the current flat stage does not block the bay," with the explicit Rule-9
+  vertical-element caveat.
+- South section remains the strongest: terrain- and city-clear from row 6.
 
 ---
 
@@ -17,7 +81,7 @@ No design changes, no reruns, no scene edits in this pass.
 
 ---
 
-## Claim table
+## Claim table — REVISION 1 (superseded by Revision 2 above; kept for traceability)
 
 | # | Claim | Current confidence | Evidence already supporting it | Missing evidence | Test needed to raise confidence | Max confidence after test | Design decisions may rely on this? |
 |---|---|---|---|---|---|---|---|

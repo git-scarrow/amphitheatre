@@ -1,0 +1,2045 @@
+{
+ "generated_by": "scripts/bay_view_layered_obstruction.py",
+ "method": "cumulative-layer ray-trace; clear = bay horizon above max silhouette of included layers; corridor 318-342, 3 samples/tread",
+ "layers": {
+  "L0": "terrain (DEM bare-earth)",
+  "L1": "+ current Scenario-E stage (3 flat surfaces, top 612.5 ft, no vertical shell \u2014 verified in UE, Z 612.0-612.5 ft)",
+  "L2": "+ 18 LiDAR-height-verified W/NW OSM buildings",
+  "L3": "+ harbor/trees: NO verified tree-canopy actors in scene; harbor at/below bay plane \u2014 INDETERMINATE by absence"
+ },
+ "caveats": [
+  "stage claim scoped to current flat/open stage; any Rule-9 vertical element invalidates L1",
+  "city layer counts only LiDAR-height-verified buildings; 0 unverified-height buildings excluded",
+  "foreground tree band (az 315-320) still not modelled (no actor)"
+ ],
+ "stage_actors_verified": "UE: Stage_zone_stage_core + shoulder_left + shoulder_right; Z 612.0-612.5 ft; no shell",
+ "summaries": [
+  {
+   "band_key": "east r1",
+   "section": "east",
+   "row": 1,
+   "eye_elev_navd88": 614.8,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "east r2",
+   "section": "east",
+   "row": 2,
+   "eye_elev_navd88": 615.8,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "east r3",
+   "section": "east",
+   "row": 3,
+   "eye_elev_navd88": 616.97,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "east r4",
+   "section": "east",
+   "row": 4,
+   "eye_elev_navd88": 618.13,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "east r6",
+   "section": "east",
+   "row": 6,
+   "eye_elev_navd88": 620.68,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "east r7",
+   "section": "east",
+   "row": 7,
+   "eye_elev_navd88": 621.98,
+   "clear_pct_terrain": 2.6,
+   "clear_pct_terrain_stage": 2.6,
+   "clear_pct_terrain_stage_city": 2.6,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "east r8",
+   "section": "east",
+   "row": 8,
+   "eye_elev_navd88": 623.25,
+   "clear_pct_terrain": 18.0,
+   "clear_pct_terrain_stage": 18.0,
+   "clear_pct_terrain_stage_city": 18.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "east r11",
+   "section": "east",
+   "row": 11,
+   "eye_elev_navd88": 627.31,
+   "clear_pct_terrain": 97.4,
+   "clear_pct_terrain_stage": 97.4,
+   "clear_pct_terrain_stage_city": 61.5,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 35.9
+  },
+  {
+   "band_key": "east r12",
+   "section": "east",
+   "row": 12,
+   "eye_elev_navd88": 628.75,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 61.5,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 38.5
+  },
+  {
+   "band_key": "east r13",
+   "section": "east",
+   "row": 13,
+   "eye_elev_navd88": 630.25,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 61.5,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 38.5
+  },
+  {
+   "band_key": "east r14",
+   "section": "east",
+   "row": 14,
+   "eye_elev_navd88": 631.81,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 53.8,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 46.2
+  },
+  {
+   "band_key": "east r15",
+   "section": "east",
+   "row": 15,
+   "eye_elev_navd88": 633.32,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 53.8,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 46.2
+  },
+  {
+   "band_key": "east r16",
+   "section": "east",
+   "row": 16,
+   "eye_elev_navd88": 634.69,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 51.3,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 48.7
+  },
+  {
+   "band_key": "east r17",
+   "section": "east",
+   "row": 17,
+   "eye_elev_navd88": 636.21,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 46.2,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 53.8
+  },
+  {
+   "band_key": "east r18",
+   "section": "east",
+   "row": 18,
+   "eye_elev_navd88": 637.61,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 46.2,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 53.8
+  },
+  {
+   "band_key": "bend r1",
+   "section": "bend",
+   "row": 1,
+   "eye_elev_navd88": 614.77,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "bend r2",
+   "section": "bend",
+   "row": 2,
+   "eye_elev_navd88": 615.8,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "bend r3",
+   "section": "bend",
+   "row": 3,
+   "eye_elev_navd88": 616.97,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "bend r4",
+   "section": "bend",
+   "row": 4,
+   "eye_elev_navd88": 618.11,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "bend r6",
+   "section": "bend",
+   "row": 6,
+   "eye_elev_navd88": 620.66,
+   "clear_pct_terrain": 28.2,
+   "clear_pct_terrain_stage": 28.2,
+   "clear_pct_terrain_stage_city": 28.2,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "bend r7",
+   "section": "bend",
+   "row": 7,
+   "eye_elev_navd88": 621.96,
+   "clear_pct_terrain": 48.7,
+   "clear_pct_terrain_stage": 48.7,
+   "clear_pct_terrain_stage_city": 48.7,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "bend r8",
+   "section": "bend",
+   "row": 8,
+   "eye_elev_navd88": 623.25,
+   "clear_pct_terrain": 69.2,
+   "clear_pct_terrain_stage": 69.2,
+   "clear_pct_terrain_stage_city": 69.2,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "bend r11",
+   "section": "bend",
+   "row": 11,
+   "eye_elev_navd88": 627.34,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 97.4,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 2.6
+  },
+  {
+   "band_key": "bend r12",
+   "section": "bend",
+   "row": 12,
+   "eye_elev_navd88": 628.72,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 97.4,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 2.6
+  },
+  {
+   "band_key": "bend r13",
+   "section": "bend",
+   "row": 13,
+   "eye_elev_navd88": 630.24,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 94.9,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 5.1
+  },
+  {
+   "band_key": "bend r14",
+   "section": "bend",
+   "row": 14,
+   "eye_elev_navd88": 631.74,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 94.9,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 5.1
+  },
+  {
+   "band_key": "bend r15",
+   "section": "bend",
+   "row": 15,
+   "eye_elev_navd88": 633.28,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 94.9,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 5.1
+  },
+  {
+   "band_key": "bend r16",
+   "section": "bend",
+   "row": 16,
+   "eye_elev_navd88": 634.69,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 92.3,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 7.7
+  },
+  {
+   "band_key": "bend r17",
+   "section": "bend",
+   "row": 17,
+   "eye_elev_navd88": 636.18,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 92.3,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 7.7
+  },
+  {
+   "band_key": "bend r18",
+   "section": "bend",
+   "row": 18,
+   "eye_elev_navd88": 637.6,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 89.7,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 10.3
+  },
+  {
+   "band_key": "south r1",
+   "section": "south",
+   "row": 1,
+   "eye_elev_navd88": 614.75,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r2",
+   "section": "south",
+   "row": 2,
+   "eye_elev_navd88": 615.81,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r3",
+   "section": "south",
+   "row": 3,
+   "eye_elev_navd88": 616.97,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r4",
+   "section": "south",
+   "row": 4,
+   "eye_elev_navd88": 618.13,
+   "clear_pct_terrain": 0.0,
+   "clear_pct_terrain_stage": 0.0,
+   "clear_pct_terrain_stage_city": 0.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r6",
+   "section": "south",
+   "row": 6,
+   "eye_elev_navd88": 620.67,
+   "clear_pct_terrain": 89.7,
+   "clear_pct_terrain_stage": 89.7,
+   "clear_pct_terrain_stage_city": 89.7,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r7",
+   "section": "south",
+   "row": 7,
+   "eye_elev_navd88": 622.0,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 100.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r8",
+   "section": "south",
+   "row": 8,
+   "eye_elev_navd88": 623.24,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 100.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r11",
+   "section": "south",
+   "row": 11,
+   "eye_elev_navd88": 627.32,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 100.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r12",
+   "section": "south",
+   "row": 12,
+   "eye_elev_navd88": 628.74,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 100.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r13",
+   "section": "south",
+   "row": 13,
+   "eye_elev_navd88": 630.24,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 100.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r14",
+   "section": "south",
+   "row": 14,
+   "eye_elev_navd88": 631.78,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 100.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r15",
+   "section": "south",
+   "row": 15,
+   "eye_elev_navd88": 633.28,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 100.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r16",
+   "section": "south",
+   "row": 16,
+   "eye_elev_navd88": 634.69,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 100.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r17",
+   "section": "south",
+   "row": 17,
+   "eye_elev_navd88": 636.24,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 100.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  },
+  {
+   "band_key": "south r18",
+   "section": "south",
+   "row": 18,
+   "eye_elev_navd88": 637.61,
+   "clear_pct_terrain": 100.0,
+   "clear_pct_terrain_stage": 100.0,
+   "clear_pct_terrain_stage_city": 100.0,
+   "delta_stage_pct": 0.0,
+   "delta_city_pct": 0.0
+  }
+ ],
+ "bands": [
+  {
+   "band_key": "east r1",
+   "section": "east",
+   "row": 1,
+   "tread_elev_navd88": 610.86,
+   "eye_elev_navd88": 614.8,
+   "horizon_deg": -0.105,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 614.8,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 614.8,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 614.8,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "east r2",
+   "section": "east",
+   "row": 2,
+   "tread_elev_navd88": 611.86,
+   "eye_elev_navd88": 615.8,
+   "horizon_deg": -0.107,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 615.8,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 615.8,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 615.8,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "east r3",
+   "section": "east",
+   "row": 3,
+   "tread_elev_navd88": 613.03,
+   "eye_elev_navd88": 616.97,
+   "horizon_deg": -0.109,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 616.97,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 616.97,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 616.97,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "east r4",
+   "section": "east",
+   "row": 4,
+   "tread_elev_navd88": 614.19,
+   "eye_elev_navd88": 618.13,
+   "horizon_deg": -0.11,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 618.13,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 618.13,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 618.13,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "east r6",
+   "section": "east",
+   "row": 6,
+   "tread_elev_navd88": 616.74,
+   "eye_elev_navd88": 620.68,
+   "horizon_deg": -0.114,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 620.68,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 620.68,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 620.68,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "east r7",
+   "section": "east",
+   "row": 7,
+   "tread_elev_navd88": 618.04,
+   "eye_elev_navd88": 621.98,
+   "horizon_deg": -0.116,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 621.98,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 621.98,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 621.98,
+     "corridor_rays": 13,
+     "clear_pct_L0": 7.7,
+     "clear_pct_L1": 7.7,
+     "clear_pct_L2": 7.7
+    }
+   ]
+  },
+  {
+   "band_key": "east r8",
+   "section": "east",
+   "row": 8,
+   "tread_elev_navd88": 619.31,
+   "eye_elev_navd88": 623.25,
+   "horizon_deg": -0.117,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 623.25,
+     "corridor_rays": 13,
+     "clear_pct_L0": 7.7,
+     "clear_pct_L1": 7.7,
+     "clear_pct_L2": 7.7
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 623.25,
+     "corridor_rays": 13,
+     "clear_pct_L0": 15.4,
+     "clear_pct_L1": 15.4,
+     "clear_pct_L2": 15.4
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 623.25,
+     "corridor_rays": 13,
+     "clear_pct_L0": 30.8,
+     "clear_pct_L1": 30.8,
+     "clear_pct_L2": 30.8
+    }
+   ]
+  },
+  {
+   "band_key": "east r11",
+   "section": "east",
+   "row": 11,
+   "tread_elev_navd88": 623.37,
+   "eye_elev_navd88": 627.31,
+   "horizon_deg": -0.123,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 627.31,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 69.2
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 627.31,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 61.5
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 627.31,
+     "corridor_rays": 13,
+     "clear_pct_L0": 92.3,
+     "clear_pct_L1": 92.3,
+     "clear_pct_L2": 53.8
+    }
+   ]
+  },
+  {
+   "band_key": "east r12",
+   "section": "east",
+   "row": 12,
+   "tread_elev_navd88": 624.81,
+   "eye_elev_navd88": 628.75,
+   "horizon_deg": -0.124,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 628.75,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 69.2
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 628.75,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 61.5
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 628.75,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 53.8
+    }
+   ]
+  },
+  {
+   "band_key": "east r13",
+   "section": "east",
+   "row": 13,
+   "tread_elev_navd88": 626.31,
+   "eye_elev_navd88": 630.25,
+   "horizon_deg": -0.126,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 630.25,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 69.2
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 630.25,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 61.5
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 630.25,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 53.8
+    }
+   ]
+  },
+  {
+   "band_key": "east r14",
+   "section": "east",
+   "row": 14,
+   "tread_elev_navd88": 627.87,
+   "eye_elev_navd88": 631.81,
+   "horizon_deg": -0.128,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 631.81,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 61.5
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 631.81,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 53.8
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 631.81,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 46.2
+    }
+   ]
+  },
+  {
+   "band_key": "east r15",
+   "section": "east",
+   "row": 15,
+   "tread_elev_navd88": 629.38,
+   "eye_elev_navd88": 633.32,
+   "horizon_deg": -0.13,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 633.32,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 61.5
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 633.32,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 53.8
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 633.32,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 46.2
+    }
+   ]
+  },
+  {
+   "band_key": "east r16",
+   "section": "east",
+   "row": 16,
+   "tread_elev_navd88": 630.75,
+   "eye_elev_navd88": 634.69,
+   "horizon_deg": -0.132,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 634.69,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 61.5
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 634.69,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 53.8
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 634.69,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 38.5
+    }
+   ]
+  },
+  {
+   "band_key": "east r17",
+   "section": "east",
+   "row": 17,
+   "tread_elev_navd88": 632.27,
+   "eye_elev_navd88": 636.21,
+   "horizon_deg": -0.134,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 636.21,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 53.8
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 636.21,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 46.2
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 636.21,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 38.5
+    }
+   ]
+  },
+  {
+   "band_key": "east r18",
+   "section": "east",
+   "row": 18,
+   "tread_elev_navd88": 633.67,
+   "eye_elev_navd88": 637.61,
+   "horizon_deg": -0.135,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 637.61,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 53.8
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 637.61,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 46.2
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 637.61,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 38.5
+    }
+   ]
+  },
+  {
+   "band_key": "bend r1",
+   "section": "bend",
+   "row": 1,
+   "tread_elev_navd88": 610.83,
+   "eye_elev_navd88": 614.77,
+   "horizon_deg": -0.105,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 614.77,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 614.77,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 614.77,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "bend r2",
+   "section": "bend",
+   "row": 2,
+   "tread_elev_navd88": 611.86,
+   "eye_elev_navd88": 615.8,
+   "horizon_deg": -0.107,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 615.8,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 615.8,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 615.8,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "bend r3",
+   "section": "bend",
+   "row": 3,
+   "tread_elev_navd88": 613.03,
+   "eye_elev_navd88": 616.97,
+   "horizon_deg": -0.109,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 616.97,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 616.97,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 616.97,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "bend r4",
+   "section": "bend",
+   "row": 4,
+   "tread_elev_navd88": 614.17,
+   "eye_elev_navd88": 618.11,
+   "horizon_deg": -0.11,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 618.11,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 618.11,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 618.11,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "bend r6",
+   "section": "bend",
+   "row": 6,
+   "tread_elev_navd88": 616.72,
+   "eye_elev_navd88": 620.66,
+   "horizon_deg": -0.114,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 620.66,
+     "corridor_rays": 13,
+     "clear_pct_L0": 15.4,
+     "clear_pct_L1": 15.4,
+     "clear_pct_L2": 15.4
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 620.66,
+     "corridor_rays": 13,
+     "clear_pct_L0": 30.8,
+     "clear_pct_L1": 30.8,
+     "clear_pct_L2": 30.8
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 620.66,
+     "corridor_rays": 13,
+     "clear_pct_L0": 38.5,
+     "clear_pct_L1": 38.5,
+     "clear_pct_L2": 38.5
+    }
+   ]
+  },
+  {
+   "band_key": "bend r7",
+   "section": "bend",
+   "row": 7,
+   "tread_elev_navd88": 618.02,
+   "eye_elev_navd88": 621.96,
+   "horizon_deg": -0.116,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 621.96,
+     "corridor_rays": 13,
+     "clear_pct_L0": 38.5,
+     "clear_pct_L1": 38.5,
+     "clear_pct_L2": 38.5
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 621.96,
+     "corridor_rays": 13,
+     "clear_pct_L0": 46.2,
+     "clear_pct_L1": 46.2,
+     "clear_pct_L2": 46.2
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 621.96,
+     "corridor_rays": 13,
+     "clear_pct_L0": 61.5,
+     "clear_pct_L1": 61.5,
+     "clear_pct_L2": 61.5
+    }
+   ]
+  },
+  {
+   "band_key": "bend r8",
+   "section": "bend",
+   "row": 8,
+   "tread_elev_navd88": 619.31,
+   "eye_elev_navd88": 623.25,
+   "horizon_deg": -0.117,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 623.25,
+     "corridor_rays": 13,
+     "clear_pct_L0": 53.8,
+     "clear_pct_L1": 53.8,
+     "clear_pct_L2": 53.8
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 623.25,
+     "corridor_rays": 13,
+     "clear_pct_L0": 69.2,
+     "clear_pct_L1": 69.2,
+     "clear_pct_L2": 69.2
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 623.25,
+     "corridor_rays": 13,
+     "clear_pct_L0": 84.6,
+     "clear_pct_L1": 84.6,
+     "clear_pct_L2": 84.6
+    }
+   ]
+  },
+  {
+   "band_key": "bend r11",
+   "section": "bend",
+   "row": 11,
+   "tread_elev_navd88": 623.4,
+   "eye_elev_navd88": 627.34,
+   "horizon_deg": -0.123,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 627.34,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 92.3
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 627.34,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 627.34,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "bend r12",
+   "section": "bend",
+   "row": 12,
+   "tread_elev_navd88": 624.78,
+   "eye_elev_navd88": 628.72,
+   "horizon_deg": -0.124,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 628.72,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 92.3
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 628.72,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 628.72,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "bend r13",
+   "section": "bend",
+   "row": 13,
+   "tread_elev_navd88": 626.3,
+   "eye_elev_navd88": 630.24,
+   "horizon_deg": -0.126,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 630.24,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 84.6
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 630.24,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 630.24,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "bend r14",
+   "section": "bend",
+   "row": 14,
+   "tread_elev_navd88": 627.8,
+   "eye_elev_navd88": 631.74,
+   "horizon_deg": -0.128,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 631.74,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 84.6
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 631.74,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 631.74,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "bend r15",
+   "section": "bend",
+   "row": 15,
+   "tread_elev_navd88": 629.34,
+   "eye_elev_navd88": 633.28,
+   "horizon_deg": -0.13,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 633.28,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 84.6
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 633.28,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 633.28,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "bend r16",
+   "section": "bend",
+   "row": 16,
+   "tread_elev_navd88": 630.75,
+   "eye_elev_navd88": 634.69,
+   "horizon_deg": -0.132,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 634.69,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 84.6
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 634.69,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 92.3
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 634.69,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "bend r17",
+   "section": "bend",
+   "row": 17,
+   "tread_elev_navd88": 632.24,
+   "eye_elev_navd88": 636.18,
+   "horizon_deg": -0.133,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 636.18,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 84.6
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 636.18,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 92.3
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 636.18,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "bend r18",
+   "section": "bend",
+   "row": 18,
+   "tread_elev_navd88": 633.66,
+   "eye_elev_navd88": 637.6,
+   "horizon_deg": -0.135,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 637.6,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 76.9
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 637.6,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 92.3
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 637.6,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r1",
+   "section": "south",
+   "row": 1,
+   "tread_elev_navd88": 610.81,
+   "eye_elev_navd88": 614.75,
+   "horizon_deg": -0.105,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 614.75,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 614.75,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 614.75,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r2",
+   "section": "south",
+   "row": 2,
+   "tread_elev_navd88": 611.87,
+   "eye_elev_navd88": 615.81,
+   "horizon_deg": -0.107,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 615.81,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 615.81,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 615.81,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r3",
+   "section": "south",
+   "row": 3,
+   "tread_elev_navd88": 613.03,
+   "eye_elev_navd88": 616.97,
+   "horizon_deg": -0.109,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 616.97,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 616.97,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 616.97,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r4",
+   "section": "south",
+   "row": 4,
+   "tread_elev_navd88": 614.19,
+   "eye_elev_navd88": 618.13,
+   "horizon_deg": -0.11,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 618.13,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 618.13,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 618.13,
+     "corridor_rays": 13,
+     "clear_pct_L0": 0.0,
+     "clear_pct_L1": 0.0,
+     "clear_pct_L2": 0.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r6",
+   "section": "south",
+   "row": 6,
+   "tread_elev_navd88": 616.73,
+   "eye_elev_navd88": 620.67,
+   "horizon_deg": -0.114,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 620.67,
+     "corridor_rays": 13,
+     "clear_pct_L0": 76.9,
+     "clear_pct_L1": 76.9,
+     "clear_pct_L2": 76.9
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 620.67,
+     "corridor_rays": 13,
+     "clear_pct_L0": 92.3,
+     "clear_pct_L1": 92.3,
+     "clear_pct_L2": 92.3
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 620.67,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r7",
+   "section": "south",
+   "row": 7,
+   "tread_elev_navd88": 618.06,
+   "eye_elev_navd88": 622.0,
+   "horizon_deg": -0.116,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 622.0,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 622.0,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 622.0,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r8",
+   "section": "south",
+   "row": 8,
+   "tread_elev_navd88": 619.3,
+   "eye_elev_navd88": 623.24,
+   "horizon_deg": -0.117,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 623.24,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 623.24,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 623.24,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r11",
+   "section": "south",
+   "row": 11,
+   "tread_elev_navd88": 623.38,
+   "eye_elev_navd88": 627.32,
+   "horizon_deg": -0.123,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 627.32,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 627.32,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 627.32,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r12",
+   "section": "south",
+   "row": 12,
+   "tread_elev_navd88": 624.8,
+   "eye_elev_navd88": 628.74,
+   "horizon_deg": -0.124,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 628.74,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 628.74,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 628.74,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r13",
+   "section": "south",
+   "row": 13,
+   "tread_elev_navd88": 626.3,
+   "eye_elev_navd88": 630.24,
+   "horizon_deg": -0.126,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 630.24,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 630.24,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 630.24,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r14",
+   "section": "south",
+   "row": 14,
+   "tread_elev_navd88": 627.84,
+   "eye_elev_navd88": 631.78,
+   "horizon_deg": -0.128,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 631.78,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 631.78,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 631.78,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r15",
+   "section": "south",
+   "row": 15,
+   "tread_elev_navd88": 629.34,
+   "eye_elev_navd88": 633.28,
+   "horizon_deg": -0.13,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 633.28,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 633.28,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 633.28,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r16",
+   "section": "south",
+   "row": 16,
+   "tread_elev_navd88": 630.75,
+   "eye_elev_navd88": 634.69,
+   "horizon_deg": -0.132,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 634.69,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 634.69,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 634.69,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r17",
+   "section": "south",
+   "row": 17,
+   "tread_elev_navd88": 632.3,
+   "eye_elev_navd88": 636.24,
+   "horizon_deg": -0.134,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 636.24,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 636.24,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 636.24,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  },
+  {
+   "band_key": "south r18",
+   "section": "south",
+   "row": 18,
+   "tread_elev_navd88": 633.67,
+   "eye_elev_navd88": 637.61,
+   "horizon_deg": -0.135,
+   "samples": [
+    {
+     "sample": "left_third",
+     "eye_elev_navd88": 637.61,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "centroid",
+     "eye_elev_navd88": 637.61,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    },
+    {
+     "sample": "right_third",
+     "eye_elev_navd88": 637.61,
+     "corridor_rays": 13,
+     "clear_pct_L0": 100.0,
+     "clear_pct_L1": 100.0,
+     "clear_pct_L2": 100.0
+    }
+   ]
+  }
+ ]
+}
