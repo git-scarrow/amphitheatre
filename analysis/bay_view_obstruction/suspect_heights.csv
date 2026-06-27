@@ -1,0 +1,6 @@
+osm_id,name,building,footprint_m2,ue_x_cm,ue_y_cm,dist_focal_m,azimuth_deg,d_to_bay_axis_deg,base_elev_m,roof_height_m,roof_top_m,roof_top_ft,terrain_under_centroid_m,base_minus_terrain_m,roof_vs_bowlrim_m,roof_vs_street_m
+510276684,Petoskey Police Dept,yes,1119.0,8287.0,-17864.0,213.0,297.9,32.1,179.9,10.4,190.3,624.0,180.3,-0.39,-1.8,4.5
+558923136,unnamed NW,yes,754.0,22922.0,-39087.0,470.0,301.6,28.4,179.0,10.5,189.5,622.0,179.2,-0.24,-2.6,3.7
+510276685,Little Traverse Historical Society,yes,631.0,12185.0,-6783.0,159.0,330.8,0.8,179.9,4.4,184.3,605.0,179.9,0.05,-7.8,-1.5
+510501792,Beards Brewery (N ref),yes,551.0,6907.0,1942.0,87.0,6.3,36.3,188.7,10.4,199.0,653.0,188.8,-0.09,6.9,13.2
+558923134,unnamed on-axis,yes,282.0,19796.0,-8683.0,236.0,335.8,5.8,178.0,5.4,183.4,602.0,178.0,-0.01,-8.7,-2.4
