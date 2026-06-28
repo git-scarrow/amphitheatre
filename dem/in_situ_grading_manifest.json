@@ -7,19 +7,19 @@
   "dem/proposed_grade_1ft.tif",
   "dem/cut_fill_1ft.tif"
  ],
- "fill_cy_total": 103.1,
- "cut_cy_total": 232.8,
+ "fill_cy_total": 155.1,
+ "cut_cy_total": 231.9,
  "zones": {
   "terrace_treads_restored": {
-   "area_sf": 10480.0,
-   "fill_cy": 64.0,
-   "cut_cy": 64.2,
+   "area_sf": 12199.0,
+   "fill_cy": 120.8,
+   "cut_cy": 64.8,
    "cost_status": "geometry_backed"
   },
   "cross_aisle": {
-   "area_sf": 1354.0,
-   "fill_cy": 39.1,
-   "cut_cy": 4.4,
+   "area_sf": 1661.0,
+   "fill_cy": 50.0,
+   "cut_cy": 7.7,
    "cost_status": "geometry_backed"
   },
   "east_flank_swale": {
@@ -43,6 +43,7 @@
  },
  "flags": {
   "tread_model": "restored to composition elevation (Scenario D restoration \u2014 cut AND fill; z-residual gate 0.25 ft)",
+  "flat_plate_rasterization": "treads + cross-aisle burned all_touched=True (2026-06-27): flattens the full visible footprint incl. perimeter fringe so no existing ground overflows a designed flat terrace. Prior all_touched=False left a one-cell ring of retained ground up to +2.71 ft above the plate (audit: analysis/terrain_audit/).",
   "ada_ramps": "not burned in this raster; geometry-backed volumes in analysis/scenarioE_civic/earthwork.csv (route A 79.2, route B 126.0 gross CY)",
   "stage": "low deck STRUCTURE, not grading; refit OPEN per DESIGN_CANON Rule 9 \u2014 excluded here as in Scenario E's 500.8 CY total",
   "orchestra_event_floor": "left on existing grade (schematic zone, concept tier)",

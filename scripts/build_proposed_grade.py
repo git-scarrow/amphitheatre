@@ -86,9 +86,16 @@ def main():
     proposed = existing.copy()
     zone_burns = []
 
-    def burn(geom_elev_pairs, zone):
+    def burn(geom_elev_pairs, zone, all_touched=True):
+        # all_touched=True flattens the WHOLE visible footprint of each flat
+        # plate, including the perimeter fringe.  With all_touched=False the
+        # one-cell ring whose centre falls outside the polygon kept existing
+        # ground, which rose up to ~2.7 ft above the flat tread — green terrain
+        # poking through the rendered seating plate (the audited overflow defect,
+        # analysis/terrain_audit/).  Flat terraces MUST burn all_touched=True so
+        # no retained ground overflows a designed flat surface.
         surf = rasterize(geom_elev_pairs, out_shape=(H, W), transform=T,
-                         fill=np.nan, dtype="float64", all_touched=False)
+                         fill=np.nan, dtype="float64", all_touched=all_touched)
         m = np.isfinite(surf) & valid
         proposed[m] = surf[m]
         zone_burns.append((zone, m))
@@ -155,6 +162,13 @@ def main():
         "flags": {
             "tread_model": "restored to composition elevation (Scenario D "
                            "restoration — cut AND fill; z-residual gate 0.25 ft)",
+            "flat_plate_rasterization": "treads + cross-aisle burned "
+                           "all_touched=True (2026-06-27): flattens the full "
+                           "visible footprint incl. perimeter fringe so no "
+                           "existing ground overflows a designed flat terrace. "
+                           "Prior all_touched=False left a one-cell ring of "
+                           "retained ground up to +2.71 ft above the plate "
+                           "(audit: analysis/terrain_audit/).",
             "ada_ramps": "not burned in this raster; geometry-backed volumes in "
                          "analysis/scenarioE_civic/earthwork.csv (route A 79.2, "
                          "route B 126.0 gross CY)",

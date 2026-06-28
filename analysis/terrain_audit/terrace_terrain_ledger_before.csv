@@ -1,0 +1,59 @@
+feature_id,kind,section,design_elev_ft,terrain_min_ft,terrain_mean_ft,terrain_max_ft,delta_min_ft,delta_max_ft,protrusion_max_ft,protrusion_cells,riser_step_cells,depression_max_ft,depression_cells,footprint_cells,operation,cut_cy,fill_cy,note
+tread_bend_r1,seating_tread,bend,610.83,610.09,610.85,611.86,-0.74,1.03,0.7,29,2,0.0,0,217,cut,0.45,0.0,
+tread_bend_r2,seating_tread,bend,611.86,610.83,611.87,613.03,-1.03,1.17,0.8,15,17,0.0,0,231,cut,0.23,0.0,
+tread_bend_r3,seating_tread,bend,613.03,611.86,613.07,614.17,-1.17,1.14,0.87,9,50,0.0,0,253,cut,0.16,0.0,
+tread_bend_r4,seating_tread,bend,614.17,613.03,614.14,615.25,-1.14,1.08,1.08,35,25,0.0,0,255,cut,0.91,0.0,
+tread_bend_r6,seating_tread,bend,616.72,615.56,616.79,618.02,-1.16,1.3,0.92,8,28,0.0,0,273,cut,0.18,0.0,
+tread_bend_r7,seating_tread,bend,618.02,616.72,618.04,619.31,-1.3,1.29,0.95,17,59,0.0,0,283,cut,0.39,0.0,
+tread_bend_r8,seating_tread,bend,619.31,618.02,619.48,622.01,-1.29,2.7,0.82,8,61,0.0,0,294,cut,0.19,0.0,
+tread_bend_r11,seating_tread,bend,623.4,622.01,623.44,624.78,-1.39,1.38,0.99,27,39,0.0,0,321,cut,0.66,0.0,
+tread_bend_r12,seating_tread,bend,624.78,623.4,624.76,626.3,-1.38,1.52,1.17,46,25,0.0,0,333,cut,1.2,0.0,
+tread_bend_r13,seating_tread,bend,626.3,624.78,626.32,627.8,-1.52,1.5,1.0,42,12,0.0,0,347,cut,1.12,0.0,
+tread_bend_r14,seating_tread,bend,627.8,626.3,627.81,629.34,-1.5,1.54,1.24,49,9,0.0,0,358,cut,1.35,0.0,
+tread_bend_r15,seating_tread,bend,629.34,627.8,629.35,630.75,-1.54,1.41,1.0,30,19,0.0,0,372,cut,0.71,0.0,
+tread_bend_r16,seating_tread,bend,630.75,629.34,630.71,632.24,-1.41,1.49,1.15,49,28,0.0,0,380,cut,1.32,0.0,
+tread_bend_r17,seating_tread,bend,632.24,630.75,632.26,633.66,-1.49,1.42,1.12,45,13,0.0,0,393,cut,1.19,0.0,
+tread_bend_r18,seating_tread,bend,633.66,632.24,633.65,634.77,-1.42,1.11,1.11,56,8,0.0,0,407,cut,1.42,0.0,
+tread_east_r1,seating_tread,east,610.86,610.34,610.86,611.38,-0.52,0.52,0.52,16,0,0.0,0,169,cut,0.18,0.0,
+tread_east_r2,seating_tread,east,611.86,611.1,611.87,612.82,-0.76,0.96,0.96,19,7,0.0,0,194,cut,0.32,0.0,
+tread_east_r3,seating_tread,east,613.03,612.2,613.06,614.19,-0.83,1.16,0.76,18,25,0.0,0,206,cut,0.35,0.0,
+tread_east_r4,seating_tread,east,614.19,613.03,614.18,615.28,-1.16,1.09,1.09,28,9,0.0,0,211,cut,0.64,0.0,
+tread_east_r6,seating_tread,east,616.74,615.71,616.78,618.04,-1.03,1.3,0.83,12,17,0.0,0,233,cut,0.26,0.0,
+tread_east_r7,seating_tread,east,618.04,616.74,618.05,619.31,-1.3,1.27,0.62,7,43,0.0,0,244,cut,0.11,0.0,
+tread_east_r8,seating_tread,east,619.31,618.04,619.48,622.01,-1.27,2.7,0.87,4,53,0.0,0,252,cut,0.08,0.0,
+tread_east_r11,seating_tread,east,623.37,622.01,623.37,624.81,-1.36,1.44,1.0,13,49,0.0,0,280,cut,0.36,0.0,
+tread_east_r12,seating_tread,east,624.81,623.37,624.77,626.31,-1.44,1.5,1.14,30,29,0.0,0,288,cut,0.76,0.0,
+tread_east_r13,seating_tread,east,626.31,624.81,626.3,627.87,-1.5,1.56,1.12,31,16,0.0,0,300,cut,0.79,0.0,
+tread_east_r14,seating_tread,east,627.87,626.31,627.83,629.38,-1.56,1.51,1.13,40,9,0.0,0,310,cut,0.91,0.0,
+tread_east_r15,seating_tread,east,629.38,627.87,629.41,630.75,-1.51,1.37,1.13,15,24,0.0,0,317,cut,0.39,0.0,
+tread_east_r16,seating_tread,east,630.75,629.38,630.71,631.94,-1.37,1.19,1.19,42,24,0.0,0,331,cut,1.18,0.0,
+tread_east_r17,seating_tread,east,632.27,631.19,632.28,633.67,-1.08,1.4,0.92,26,13,0.0,0,336,cut,0.67,0.0,
+tread_east_r18,seating_tread,east,633.67,632.27,633.63,634.86,-1.4,1.19,1.19,42,17,0.0,0,345,cut,1.12,0.0,
+tread_south_r1,seating_tread,south,610.81,610.28,610.81,611.31,-0.53,0.5,0.5,16,0,0.0,0,222,cut,0.22,0.0,
+tread_south_r2,seating_tread,south,611.87,611.18,611.93,613.03,-0.69,1.16,0.49,6,27,0.0,0,252,cut,0.09,0.0,
+tread_south_r3,seating_tread,south,613.03,611.87,613.04,614.19,-1.16,1.16,0.77,8,38,0.0,0,265,cut,0.16,0.0,
+tread_south_r4,seating_tread,south,614.19,613.03,614.14,615.28,-1.16,1.09,1.09,39,32,0.0,0,287,cut,1.01,0.0,
+tread_south_r6,seating_tread,south,616.73,615.7,616.83,618.06,-1.03,1.33,0.86,2,41,0.0,0,312,cut,0.04,0.0,
+tread_south_r7,seating_tread,south,618.06,616.73,618.03,619.3,-1.33,1.24,0.8,12,62,0.0,0,318,cut,0.25,0.0,
+tread_south_r8,seating_tread,south,619.3,618.06,619.51,622.01,-1.24,2.71,0.44,1,68,0.0,0,333,cut,0.02,0.0,
+tread_south_r11,seating_tread,south,623.38,622.01,623.42,624.8,-1.37,1.42,0.33,2,77,0.0,0,367,cut,0.02,0.0,
+tread_south_r12,seating_tread,south,624.8,623.38,624.75,626.3,-1.42,1.5,1.23,28,56,0.0,0,381,cut,0.78,0.0,
+tread_south_r13,seating_tread,south,626.3,624.8,626.33,627.84,-1.5,1.54,1.24,17,46,0.0,0,397,cut,0.52,0.0,
+tread_south_r14,seating_tread,south,627.84,626.3,627.83,629.34,-1.54,1.5,1.11,28,53,0.0,0,412,cut,0.73,0.0,
+tread_south_r15,seating_tread,south,629.34,627.84,629.39,630.75,-1.5,1.41,0.79,2,72,0.0,0,426,cut,0.05,0.0,
+tread_south_r16,seating_tread,south,630.75,629.34,630.73,632.3,-1.41,1.55,1.26,26,70,0.0,0,433,cut,0.77,0.0,
+tread_south_r17,seating_tread,south,632.3,630.75,632.31,633.67,-1.55,1.37,0.75,20,57,0.0,0,448,cut,0.46,0.0,
+tread_south_r18,seating_tread,south,633.67,632.3,633.63,635.0,-1.37,1.33,1.33,55,34,0.0,0,465,cut,1.66,0.0,
+zone_cross_aisle,cross_aisle,,622.01,619.3,621.89,623.4,-2.71,1.39,1.05,38,178,0.0,0,1661,cut,0.86,0.0,
+zone_stage_core,stage_structure,,612.5,608.28,609.78,610.22,-4.22,-2.28,0.0,0,0,4.22,2379,2522,fill,0.0,239.12,"612.5 ft is a STRUCTURE (deck) over existing grade ~609.78 ft; fill_cy is the void under the deck, not earthwork (DESIGN_CANON Rule 9, refit OPEN)"
+zone_stage_shoulder_left,stage_structure,,612.5,608.32,609.65,611.01,-4.18,-1.49,0.0,0,13,4.18,338,403,fill,0.0,36.52,"612.5 ft is a STRUCTURE (deck) over existing grade ~609.65 ft; fill_cy is the void under the deck, not earthwork (DESIGN_CANON Rule 9, refit OPEN)"
+zone_stage_shoulder_right,stage_structure,,612.5,609.54,609.77,610.08,-2.96,-2.42,0.0,0,0,2.96,349,409,fill,0.0,35.35,"612.5 ft is a STRUCTURE (deck) over existing grade ~609.77 ft; fill_cy is the void under the deck, not earthwork (DESIGN_CANON Rule 9, refit OPEN)"
+zone_orchestra_event_floor,event_floor,,612.5,609.37,609.94,611.86,-3.13,-0.64,0.0,0,134,3.13,2118,2436,fill,0.0,208.03,"612.5 ft is a STRUCTURE (deck) over existing grade ~609.94 ft; fill_cy is the void under the deck, not earthwork (DESIGN_CANON Rule 9, refit OPEN)"
+ada_route_arrival_to_cross_aisle,ada_route,public_primary,,619.31,629.29,638.88,,,,,,,,3350,corridor_regrade_concept,,,sloped corridor; design grade 4.19% drop 15.3 ft over 365.3 ft; ramp volumes in analysis/scenarioE_civic/earthwork.csv
+ada_route_arrival_to_floor,ada_route,public_secondary,,608.2,625.53,638.88,,,,,,,,3090,corridor_regrade_concept,,,sloped corridor; design grade 7.52% drop 24.8 ft over 330.1 ft; ramp volumes in analysis/scenarioE_civic/earthwork.csv
+ada_route_cross_aisle_to_wc_cluster,ada_route,distribution,,620.73,622.41,623.4,,,,,,,,212,corridor_regrade_concept,,,sloped corridor; design grade 0.0% drop 0.0 ft over 15.3 ft; ramp volumes in analysis/scenarioE_civic/earthwork.csv
+ada_route_floor_to_wc_cluster,ada_route,distribution,,609.44,609.72,610.39,,,,,,,,196,corridor_regrade_concept,,,sloped corridor; design grade 0.0% drop 0.0 ft over 14.0 ft; ramp volumes in analysis/scenarioE_civic/earthwork.csv
+ada_route_cross_aisle_to_egress,ada_route,public_secondary,,618.02,629.41,640.45,,,,,,,,4073,corridor_regrade_concept,,,sloped corridor; design grade 3.85% drop -16.9 ft over 439.6 ft; ramp volumes in analysis/scenarioE_civic/earthwork.csv
+ada_route_floor_to_egress,ada_route,public_secondary,,608.31,629.44,640.56,,,,,,,,3958,corridor_regrade_concept,,,sloped corridor; design grade 6.18% drop -26.4 ft over 427.6 ft; ramp volumes in analysis/scenarioE_civic/earthwork.csv
+ada_route_service_to_stage,ada_route,service,,609.48,609.61,610.0,,,,,,,,171,corridor_regrade_concept,,,sloped corridor; design grade 0.0% drop 0.0 ft over 10.8 ft; ramp volumes in analysis/scenarioE_civic/earthwork.csv
+ada_route_park_to_floor,ada_route,public_primary,,608.22,611.61,618.06,,,,,,,,2338,corridor_regrade_concept,,,sloped corridor; design grade 2.14% drop 5.3 ft over 246.2 ft; ramp volumes in analysis/scenarioE_civic/earthwork.csv

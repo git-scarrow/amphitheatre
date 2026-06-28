@@ -1,0 +1,17 @@
+{
+ "type": "FeatureCollection",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::6494"
+  }
+ },
+ "name": "terrain_error_layer",
+ "metadata": {
+  "description": "cells where rendered terrain protrudes above a designed flat surface (operation=cut)",
+  "tolerance_ft": 0.1,
+  "grade_source": "dem/proposed_grade_1ft.tif",
+  "datum": "NAVD88 Geoid12A intl ft"
+ },
+ "features": []
+}

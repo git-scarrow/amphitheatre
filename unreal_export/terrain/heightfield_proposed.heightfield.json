@@ -1,7 +1,7 @@
 {
  "name": "proposed",
  "source": "dem/proposed_grade_1ft.tif",
- "sha256_12": "86de4d4e99a7",
+ "sha256_12": "29d7770ba95e",
  "format": "16-bit unsigned, little-endian, row-major (N->S rows, W->E cols)",
  "grid": [
   801,
