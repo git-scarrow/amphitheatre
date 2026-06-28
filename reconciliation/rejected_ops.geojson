@@ -1,0 +1,55 @@
+{
+ "type": "FeatureCollection",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::6494"
+  }
+ },
+ "metadata": {
+  "description": "Rejected / out-of-scope candidates for the terrain judge commit. Null geometry = branch-level or mechanism-level judgment, not a sited op.",
+  "rule": "Judge rule 5 \u2014 no overflow may be hidden via material/mesh/z-offset/camera without a recorded cut/fill."
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "rej_id": "REJ-001",
+    "target": "branch:worktree-context-reclassify",
+    "reason_code": "visual_diagnostic_no_terrain_op",
+    "reason": "Context-massing provenance reclassification (buildings/trees/unknown). Its own docstring: 'This is an AUDIT, not a geometry edit.' Writes only analysis/context_reclassification/. No seating/stage/ADA/terrain/ledger change. Out of scope for the terrain judge commit; keep as a separate context-analysis patch."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "rej_id": "REJ-002",
+    "target": "branch:worktree-sunset-scene-authoring (merged @17b9635)",
+    "reason_code": "visual_only_lighting_water_context",
+    "reason": "Golden-hour sun grade, reflective water material, real far-shore DEM context. Pure rendering/context. Touches no governing design geometry or terrain ledger. Already on main; not re-judged here."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "rej_id": "REJ-003",
+    "target": "branch:worktree-ue-context-horizon-v0 (@21e2180)",
+    "reason_code": "stale_behind_base",
+    "reason": "Branch is an ANCESTOR of base 8b0f161; diffing base..branch shows 46,722 deletions (it predates the obstruction + context work). Merging would REVERT accepted history. Rejected as stale."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "rej_id": "REJ-004",
+    "target": "mechanism:any overflow hidden via material-priority / mesh-delete / z-offset / camera",
+    "reason_code": "none_detected",
+    "reason": "No candidate attempted to mask terrain overflow with a material priority, mesh deletion, z-offset, or camera trick. The accepted fix is a real DEM edit, recorded numerically (manifest + ledger) and geometrically (raster/heightfield/mesh). Listed here to record the check explicitly per judge rule 5."
+   }
+  }
+ ]
+}
