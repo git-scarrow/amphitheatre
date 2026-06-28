@@ -61,8 +61,13 @@ labeled experiential, and the angles are reproducible from the calculation.
   positions (~few m); heights are **generic 8 m** unless the OSM feature carries
   `height`/`building:levels`. Labeled *approximate massing, not measured
   architecture*. ODbL attribution is carried in the GeoJSON and the manifest.
-- **Horizon band — atmospheric.** A visual reference only; it does not claim a
-  real far-shore profile.
+- **Horizon band — atmospheric (SUPERSEDED 2026-06-27).** The flat
+  `ctx_distant_horizon_band` was a visual reference only and did not claim a real
+  far-shore profile. It is now **HIDDEN** and replaced by **`ctx_farshore_terrain`**
+  — real USGS 3DEP terrain of the opposite (N/NW) shore (Harbor Springs / Harbor
+  Point + bluffs), built via `fetch_farshore_dem.py` + `build_farshore_terrain.py`
+  in the same EPSG:6494→ENU→UE frame. Real relief to ~136 m above the bay. See the
+  far-shore section in `docs/UNREAL_SCENE_SUNSET_HANDOFF.md §7`.
 - **No proprietary assets.** No Google Earth / Maps / Street View geometry,
   imagery, or DEM is imported. Layers marked `redistributable:false` are refused
   by both the generator and verifier.
