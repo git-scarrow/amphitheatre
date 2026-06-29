@@ -1,0 +1,74 @@
+{
+ "schema": "amphitheatre/terrace-material-manifest/0.2",
+ "principle": "Materials communicate HOW each surface is built, not merely how it is coloured. Keyed to the terrain-op ledger.",
+ "render_lift_ft": 0.02,
+ "clip_policy": {
+  "clipped_surface_classes": [
+   "cap",
+   "tread",
+   "riser",
+   "drainage",
+   "ada",
+   "stage"
+  ],
+  "rule": "Terrain (existing/no-touch + graded) material MUST NOT draw over any clipped surface. Enforced by (1) the per-row clip_mask cutouts, (2) the all_touched=True raster flattening in build_proposed_grade.py, and (3) a 0.02 ft render lift on constructed surfaces."
+ },
+ "materials": {
+  "existing_ground": {
+   "label": "Existing ground - no touch (LiDAR)",
+   "debug_color": "#9e9e9e",
+   "surface_class": "existing_no_touch"
+  },
+  "graded_cut": {
+   "label": "Cut to design plate",
+   "debug_color": "#2166ac",
+   "surface_class": "cut"
+  },
+  "graded_fill": {
+   "label": "Engineered fill to design plate",
+   "debug_color": "#b2182b",
+   "surface_class": "fill"
+  },
+  "timber_precast_cap": {
+   "label": "Seat cap - timber / light precast",
+   "debug_color": "#5d4037",
+   "surface_class": "cap"
+  },
+  "gravel_fines_tread": {
+   "label": "Foot tread - compacted gravel fines",
+   "debug_color": "#cdbfa6",
+   "surface_class": "tread"
+  },
+  "planted_riser": {
+   "label": "Riser face - planted / seeded slope",
+   "debug_color": "#7cb342",
+   "surface_class": "riser"
+  },
+  "gravel_drainage": {
+   "label": "Drainage strip - open gravel",
+   "debug_color": "#26a69a",
+   "surface_class": "drainage"
+  },
+  "stabilized_ada": {
+   "label": "ADA route - stabilized aggregate",
+   "debug_color": "#1565c0",
+   "surface_class": "ada"
+  },
+  "stage_open_low": {
+   "label": "Stage / floor - low open deck",
+   "debug_color": "#a1887f",
+   "surface_class": "stage"
+  }
+ },
+ "debug_palette_by_surface_class": {
+  "existing_no_touch": "#9e9e9e",
+  "cut": "#2166ac",
+  "fill": "#b2182b",
+  "cap": "#5d4037",
+  "tread": "#cdbfa6",
+  "riser": "#7cb342",
+  "drainage": "#26a69a",
+  "ada": "#1565c0",
+  "stage": "#a1887f"
+ }
+}

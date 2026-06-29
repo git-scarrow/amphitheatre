@@ -1,0 +1,2350 @@
+{
+ "schema": "amphitheatre/terrain-ops/0.2",
+ "status": "accepted",
+ "design": "open_civic_bowl",
+ "crs": "EPSG:6494",
+ "datum": "NAVD88 Geoid12A intl ft",
+ "bowl_center_epsg6494": [
+  19533075.2,
+  750786.21
+ ],
+ "invariants": {
+  "design": "open_civic_bowl",
+  "rows": 16,
+  "fan_half_angle_deg": 55.0,
+  "fan_total_angle_deg": 110.0,
+  "audience_face_az_deg": 330.0,
+  "stage_forward": true,
+  "low_open_bay_facing": true,
+  "default_retaining_walls": false,
+  "wall_trigger_ft": 2.0
+ },
+ "sources": {
+  "seating_rows": "design_open_low/seating_rows.geojson",
+  "stage_floor": "design_open_low/stage_floor.geojson",
+  "ada_route": "design_open_low/ada_route.geojson",
+  "accepted_grade_raster": "dem/proposed_grade_1ft.tif"
+ },
+ "surface_classes": {
+  "existing_no_touch": {
+   "debug_color": "#9e9e9e",
+   "material": "existing_ground",
+   "label": "Existing ground - no touch (LiDAR)"
+  },
+  "cut": {
+   "debug_color": "#2166ac",
+   "material": "graded_cut",
+   "label": "Cut to design plate"
+  },
+  "fill": {
+   "debug_color": "#b2182b",
+   "material": "graded_fill",
+   "label": "Engineered fill to design plate"
+  },
+  "cap": {
+   "debug_color": "#5d4037",
+   "material": "timber_precast_cap",
+   "label": "Seat cap - timber / light precast"
+  },
+  "tread": {
+   "debug_color": "#cdbfa6",
+   "material": "gravel_fines_tread",
+   "label": "Foot tread - compacted gravel fines"
+  },
+  "riser": {
+   "debug_color": "#7cb342",
+   "material": "planted_riser",
+   "label": "Riser face - planted / seeded slope"
+  },
+  "drainage": {
+   "debug_color": "#26a69a",
+   "material": "gravel_drainage",
+   "label": "Drainage strip - open gravel"
+  },
+  "ada": {
+   "debug_color": "#1565c0",
+   "material": "stabilized_ada",
+   "label": "ADA route - stabilized aggregate"
+  },
+  "stage": {
+   "debug_color": "#a1887f",
+   "material": "stage_open_low",
+   "label": "Stage / floor - low open deck"
+  }
+ },
+ "op_count": 106,
+ "op_count_by_surface_class": {
+  "riser": 16,
+  "tread": 16,
+  "cap": 16,
+  "drainage": 16,
+  "existing_no_touch": 15,
+  "clip": 16,
+  "fill": 3,
+  "cut": 1,
+  "stage": 4,
+  "ada": 3
+ },
+ "row_op_template": [
+  "riser",
+  "tread",
+  "cap",
+  "drainage",
+  "transition",
+  "clip"
+ ],
+ "ops": [
+  {
+   "op_id": "op.row01.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 1,
+   "parent": "op.row01",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row01.riser",
+   "elev_lo_navd88": 612.5,
+   "elev_hi_navd88": 613.54,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 1,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": null,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row01.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 1,
+   "parent": "op.row01",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row01.tread",
+   "elev_lo_navd88": 613.54,
+   "elev_hi_navd88": 613.54,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 1,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": null,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row01.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 1,
+   "parent": "op.row01",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row01.cap",
+   "elev_lo_navd88": 613.54,
+   "elev_hi_navd88": 613.54,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 1,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": null,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row01.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 1,
+   "parent": "op.row01",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row01.drainage",
+   "elev_lo_navd88": 613.24,
+   "elev_hi_navd88": 613.54,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 1,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": null,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row01.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 1,
+   "parent": "op.row01",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row01.transition",
+   "elev_lo_navd88": 613.54,
+   "elev_hi_navd88": 613.54,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 1,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": null,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row01.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 1,
+   "parent": "op.row01",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row01.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row01.riser",
+    "op.row01.tread",
+    "op.row01.cap",
+    "op.row01.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row02.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 2,
+   "parent": "op.row02",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row02.riser",
+   "elev_lo_navd88": 613.54,
+   "elev_hi_navd88": 614.29,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 2,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 91,
+     "cut_fill_ft": 0.02
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row02.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 2,
+   "parent": "op.row02",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row02.tread",
+   "elev_lo_navd88": 614.29,
+   "elev_hi_navd88": 614.29,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 2,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 91,
+     "cut_fill_ft": 0.02
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row02.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 2,
+   "parent": "op.row02",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row02.cap",
+   "elev_lo_navd88": 614.29,
+   "elev_hi_navd88": 614.29,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 2,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 91,
+     "cut_fill_ft": 0.02
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row02.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 2,
+   "parent": "op.row02",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row02.drainage",
+   "elev_lo_navd88": 613.99,
+   "elev_hi_navd88": 614.29,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 2,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 91,
+     "cut_fill_ft": 0.02
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row02.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 2,
+   "parent": "op.row02",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row02.transition",
+   "elev_lo_navd88": 614.27,
+   "elev_hi_navd88": 614.29,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 2,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 91,
+     "cut_fill_ft": 0.02
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row02.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 2,
+   "parent": "op.row02",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row02.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row02.riser",
+    "op.row02.tread",
+    "op.row02.cap",
+    "op.row02.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row03.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 3,
+   "parent": "op.row03",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row03.riser",
+   "elev_lo_navd88": 614.29,
+   "elev_hi_navd88": 615.07,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 3,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 93,
+     "cut_fill_ft": 0.1
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row03.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 3,
+   "parent": "op.row03",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row03.tread",
+   "elev_lo_navd88": 615.07,
+   "elev_hi_navd88": 615.07,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 3,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 93,
+     "cut_fill_ft": 0.1
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row03.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 3,
+   "parent": "op.row03",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row03.cap",
+   "elev_lo_navd88": 615.07,
+   "elev_hi_navd88": 615.07,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 3,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 93,
+     "cut_fill_ft": 0.1
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row03.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 3,
+   "parent": "op.row03",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row03.drainage",
+   "elev_lo_navd88": 614.77,
+   "elev_hi_navd88": 615.07,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 3,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 93,
+     "cut_fill_ft": 0.1
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row03.transition",
+   "kind": "transition",
+   "surface_class": "fill",
+   "row": 3,
+   "parent": "op.row03",
+   "material": "graded_fill",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row03.transition",
+   "elev_lo_navd88": 614.97,
+   "elev_hi_navd88": 615.07,
+   "debug_color": "#b2182b",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 3,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 93,
+     "cut_fill_ft": 0.1
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row03.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 3,
+   "parent": "op.row03",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row03.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row03.riser",
+    "op.row03.tread",
+    "op.row03.cap",
+    "op.row03.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row04.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 4,
+   "parent": "op.row04",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row04.riser",
+   "elev_lo_navd88": 615.07,
+   "elev_hi_navd88": 616.0,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 4,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 129,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row04.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 4,
+   "parent": "op.row04",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row04.tread",
+   "elev_lo_navd88": 616.0,
+   "elev_hi_navd88": 616.0,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 4,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 129,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row04.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 4,
+   "parent": "op.row04",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row04.cap",
+   "elev_lo_navd88": 616.0,
+   "elev_hi_navd88": 616.0,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 4,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 129,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row04.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 4,
+   "parent": "op.row04",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row04.drainage",
+   "elev_lo_navd88": 615.7,
+   "elev_hi_navd88": 616.0,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 4,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 129,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row04.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 4,
+   "parent": "op.row04",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row04.transition",
+   "elev_lo_navd88": 615.99,
+   "elev_hi_navd88": 616.0,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 4,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 129,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row04.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 4,
+   "parent": "op.row04",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row04.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row04.riser",
+    "op.row04.tread",
+    "op.row04.cap",
+    "op.row04.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row05.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 5,
+   "parent": "op.row05",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row05.riser",
+   "elev_lo_navd88": 616.0,
+   "elev_hi_navd88": 616.94,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 5,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 123,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row05.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 5,
+   "parent": "op.row05",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row05.tread",
+   "elev_lo_navd88": 616.94,
+   "elev_hi_navd88": 616.94,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 5,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 123,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row05.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 5,
+   "parent": "op.row05",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row05.cap",
+   "elev_lo_navd88": 616.94,
+   "elev_hi_navd88": 616.94,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 5,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 123,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row05.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 5,
+   "parent": "op.row05",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row05.drainage",
+   "elev_lo_navd88": 616.64,
+   "elev_hi_navd88": 616.94,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 5,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 123,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row05.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 5,
+   "parent": "op.row05",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row05.transition",
+   "elev_lo_navd88": 616.93,
+   "elev_hi_navd88": 616.94,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 5,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 123,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row05.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 5,
+   "parent": "op.row05",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row05.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row05.riser",
+    "op.row05.tread",
+    "op.row05.cap",
+    "op.row05.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row06.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 6,
+   "parent": "op.row06",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row06.riser",
+   "elev_lo_navd88": 616.94,
+   "elev_hi_navd88": 617.79,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 6,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 90,
+     "cut_fill_ft": 0.05
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row06.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 6,
+   "parent": "op.row06",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row06.tread",
+   "elev_lo_navd88": 617.79,
+   "elev_hi_navd88": 617.79,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 6,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 90,
+     "cut_fill_ft": 0.05
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row06.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 6,
+   "parent": "op.row06",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row06.cap",
+   "elev_lo_navd88": 617.79,
+   "elev_hi_navd88": 617.79,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 6,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 90,
+     "cut_fill_ft": 0.05
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row06.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 6,
+   "parent": "op.row06",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row06.drainage",
+   "elev_lo_navd88": 617.49,
+   "elev_hi_navd88": 617.79,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 6,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 90,
+     "cut_fill_ft": 0.05
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row06.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 6,
+   "parent": "op.row06",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row06.transition",
+   "elev_lo_navd88": 617.74,
+   "elev_hi_navd88": 617.79,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 6,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 90,
+     "cut_fill_ft": 0.05
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row06.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 6,
+   "parent": "op.row06",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row06.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row06.riser",
+    "op.row06.tread",
+    "op.row06.cap",
+    "op.row06.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row07.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 7,
+   "parent": "op.row07",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row07.riser",
+   "elev_lo_navd88": 617.79,
+   "elev_hi_navd88": 618.68,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 7,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 97,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row07.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 7,
+   "parent": "op.row07",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row07.tread",
+   "elev_lo_navd88": 618.68,
+   "elev_hi_navd88": 618.68,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 7,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 97,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row07.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 7,
+   "parent": "op.row07",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row07.cap",
+   "elev_lo_navd88": 618.68,
+   "elev_hi_navd88": 618.68,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 7,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 97,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row07.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 7,
+   "parent": "op.row07",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row07.drainage",
+   "elev_lo_navd88": 618.38,
+   "elev_hi_navd88": 618.68,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 7,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 97,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row07.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 7,
+   "parent": "op.row07",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row07.transition",
+   "elev_lo_navd88": 618.67,
+   "elev_hi_navd88": 618.68,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 7,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 97,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row07.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 7,
+   "parent": "op.row07",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row07.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row07.riser",
+    "op.row07.tread",
+    "op.row07.cap",
+    "op.row07.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row08.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 8,
+   "parent": "op.row08",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row08.riser",
+   "elev_lo_navd88": 618.68,
+   "elev_hi_navd88": 619.81,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 8,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 161,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row08.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 8,
+   "parent": "op.row08",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row08.tread",
+   "elev_lo_navd88": 619.81,
+   "elev_hi_navd88": 619.81,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 8,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 161,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row08.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 8,
+   "parent": "op.row08",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row08.cap",
+   "elev_lo_navd88": 619.81,
+   "elev_hi_navd88": 619.81,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 8,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 161,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row08.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 8,
+   "parent": "op.row08",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row08.drainage",
+   "elev_lo_navd88": 619.51,
+   "elev_hi_navd88": 619.81,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 8,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 161,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row08.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 8,
+   "parent": "op.row08",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row08.transition",
+   "elev_lo_navd88": 619.81,
+   "elev_hi_navd88": 619.81,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 8,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 161,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row08.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 8,
+   "parent": "op.row08",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row08.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row08.riser",
+    "op.row08.tread",
+    "op.row08.cap",
+    "op.row08.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row09.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 9,
+   "parent": "op.row09",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row09.riser",
+   "elev_lo_navd88": 619.81,
+   "elev_hi_navd88": 620.73,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 9,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 92,
+     "cut_fill_ft": 0.05
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row09.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 9,
+   "parent": "op.row09",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row09.tread",
+   "elev_lo_navd88": 620.73,
+   "elev_hi_navd88": 620.73,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 9,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 92,
+     "cut_fill_ft": 0.05
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row09.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 9,
+   "parent": "op.row09",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row09.cap",
+   "elev_lo_navd88": 620.73,
+   "elev_hi_navd88": 620.73,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 9,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 92,
+     "cut_fill_ft": 0.05
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row09.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 9,
+   "parent": "op.row09",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row09.drainage",
+   "elev_lo_navd88": 620.43,
+   "elev_hi_navd88": 620.73,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 9,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 92,
+     "cut_fill_ft": 0.05
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row09.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 9,
+   "parent": "op.row09",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row09.transition",
+   "elev_lo_navd88": 620.68,
+   "elev_hi_navd88": 620.73,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 9,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 92,
+     "cut_fill_ft": 0.05
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row09.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 9,
+   "parent": "op.row09",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row09.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row09.riser",
+    "op.row09.tread",
+    "op.row09.cap",
+    "op.row09.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row10.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 10,
+   "parent": "op.row10",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row10.riser",
+   "elev_lo_navd88": 620.73,
+   "elev_hi_navd88": 621.66,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 10,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 90,
+     "cut_fill_ft": 0.12
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row10.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 10,
+   "parent": "op.row10",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row10.tread",
+   "elev_lo_navd88": 621.66,
+   "elev_hi_navd88": 621.66,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 10,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 90,
+     "cut_fill_ft": 0.12
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row10.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 10,
+   "parent": "op.row10",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row10.cap",
+   "elev_lo_navd88": 621.66,
+   "elev_hi_navd88": 621.66,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 10,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 90,
+     "cut_fill_ft": 0.12
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row10.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 10,
+   "parent": "op.row10",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row10.drainage",
+   "elev_lo_navd88": 621.36,
+   "elev_hi_navd88": 621.66,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 10,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 90,
+     "cut_fill_ft": 0.12
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row10.transition",
+   "kind": "transition",
+   "surface_class": "fill",
+   "row": 10,
+   "parent": "op.row10",
+   "material": "graded_fill",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row10.transition",
+   "elev_lo_navd88": 621.54,
+   "elev_hi_navd88": 621.66,
+   "debug_color": "#b2182b",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 10,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": false,
+     "C_value_proposed_mm": 90,
+     "cut_fill_ft": 0.12
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row10.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 10,
+   "parent": "op.row10",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row10.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row10.riser",
+    "op.row10.tread",
+    "op.row10.cap",
+    "op.row10.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row11.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 11,
+   "parent": "op.row11",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row11.riser",
+   "elev_lo_navd88": 621.66,
+   "elev_hi_navd88": 622.67,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 11,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 109,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row11.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 11,
+   "parent": "op.row11",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row11.tread",
+   "elev_lo_navd88": 622.67,
+   "elev_hi_navd88": 622.67,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 11,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 109,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row11.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 11,
+   "parent": "op.row11",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row11.cap",
+   "elev_lo_navd88": 622.67,
+   "elev_hi_navd88": 622.67,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 11,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 109,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row11.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 11,
+   "parent": "op.row11",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row11.drainage",
+   "elev_lo_navd88": 622.37,
+   "elev_hi_navd88": 622.67,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 11,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 109,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row11.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 11,
+   "parent": "op.row11",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row11.transition",
+   "elev_lo_navd88": 622.66,
+   "elev_hi_navd88": 622.67,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 11,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 109,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row11.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 11,
+   "parent": "op.row11",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row11.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row11.riser",
+    "op.row11.tread",
+    "op.row11.cap",
+    "op.row11.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row12.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 12,
+   "parent": "op.row12",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row12.riser",
+   "elev_lo_navd88": 622.67,
+   "elev_hi_navd88": 623.97,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 12,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 189,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row12.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 12,
+   "parent": "op.row12",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row12.tread",
+   "elev_lo_navd88": 623.97,
+   "elev_hi_navd88": 623.97,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 12,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 189,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row12.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 12,
+   "parent": "op.row12",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row12.cap",
+   "elev_lo_navd88": 623.97,
+   "elev_hi_navd88": 623.97,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 12,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 189,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row12.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 12,
+   "parent": "op.row12",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row12.drainage",
+   "elev_lo_navd88": 623.67,
+   "elev_hi_navd88": 623.97,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 12,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 189,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row12.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 12,
+   "parent": "op.row12",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row12.transition",
+   "elev_lo_navd88": 623.97,
+   "elev_hi_navd88": 623.97,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 12,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 189,
+     "cut_fill_ft": 0.0
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row12.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 12,
+   "parent": "op.row12",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row12.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row12.riser",
+    "op.row12.tread",
+    "op.row12.cap",
+    "op.row12.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row13.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 13,
+   "parent": "op.row13",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row13.riser",
+   "elev_lo_navd88": 623.97,
+   "elev_hi_navd88": 625.16,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 13,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 149,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row13.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 13,
+   "parent": "op.row13",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row13.tread",
+   "elev_lo_navd88": 625.16,
+   "elev_hi_navd88": 625.16,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 13,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 149,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row13.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 13,
+   "parent": "op.row13",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row13.cap",
+   "elev_lo_navd88": 625.16,
+   "elev_hi_navd88": 625.16,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 13,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 149,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row13.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 13,
+   "parent": "op.row13",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row13.drainage",
+   "elev_lo_navd88": 624.86,
+   "elev_hi_navd88": 625.16,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 13,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 149,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row13.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 13,
+   "parent": "op.row13",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row13.transition",
+   "elev_lo_navd88": 625.15,
+   "elev_hi_navd88": 625.16,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 13,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 149,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row13.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 13,
+   "parent": "op.row13",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row13.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row13.riser",
+    "op.row13.tread",
+    "op.row13.cap",
+    "op.row13.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row14.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 14,
+   "parent": "op.row14",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row14.riser",
+   "elev_lo_navd88": 625.16,
+   "elev_hi_navd88": 626.18,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 14,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 93,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row14.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 14,
+   "parent": "op.row14",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row14.tread",
+   "elev_lo_navd88": 626.18,
+   "elev_hi_navd88": 626.18,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 14,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 93,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row14.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 14,
+   "parent": "op.row14",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row14.cap",
+   "elev_lo_navd88": 626.18,
+   "elev_hi_navd88": 626.18,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 14,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 93,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row14.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 14,
+   "parent": "op.row14",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row14.drainage",
+   "elev_lo_navd88": 625.88,
+   "elev_hi_navd88": 626.18,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 14,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 93,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row14.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 14,
+   "parent": "op.row14",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row14.transition",
+   "elev_lo_navd88": 626.17,
+   "elev_hi_navd88": 626.18,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 14,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 93,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row14.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 14,
+   "parent": "op.row14",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row14.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row14.riser",
+    "op.row14.tread",
+    "op.row14.cap",
+    "op.row14.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row15.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 15,
+   "parent": "op.row15",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row15.riser",
+   "elev_lo_navd88": 626.18,
+   "elev_hi_navd88": 627.33,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 15,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 128,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row15.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 15,
+   "parent": "op.row15",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row15.tread",
+   "elev_lo_navd88": 627.33,
+   "elev_hi_navd88": 627.33,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 15,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 128,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row15.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 15,
+   "parent": "op.row15",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row15.cap",
+   "elev_lo_navd88": 627.33,
+   "elev_hi_navd88": 627.33,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 15,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 128,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row15.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 15,
+   "parent": "op.row15",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row15.drainage",
+   "elev_lo_navd88": 627.03,
+   "elev_hi_navd88": 627.33,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 15,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 128,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row15.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 15,
+   "parent": "op.row15",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row15.transition",
+   "elev_lo_navd88": 627.32,
+   "elev_hi_navd88": 627.33,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 15,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 128,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row15.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 15,
+   "parent": "op.row15",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row15.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row15.riser",
+    "op.row15.tread",
+    "op.row15.cap",
+    "op.row15.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row16.riser",
+   "kind": "riser",
+   "surface_class": "riser",
+   "row": 16,
+   "parent": "op.row16",
+   "material": "planted_riser",
+   "geometry_ref": "unreal_export/geo/terrace_ops/riser_faces.geojson#op.row16.riser",
+   "elev_lo_navd88": 627.33,
+   "elev_hi_navd88": 628.53,
+   "debug_color": "#7cb342",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 16,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 138,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row16.tread",
+   "kind": "tread",
+   "surface_class": "tread",
+   "row": 16,
+   "parent": "op.row16",
+   "material": "gravel_fines_tread",
+   "geometry_ref": "unreal_export/geo/terrace_ops/tread_surfaces.geojson#op.row16.tread",
+   "elev_lo_navd88": 628.53,
+   "elev_hi_navd88": 628.53,
+   "debug_color": "#cdbfa6",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 16,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 138,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row16.cap",
+   "kind": "cap",
+   "surface_class": "cap",
+   "row": 16,
+   "parent": "op.row16",
+   "material": "timber_precast_cap",
+   "geometry_ref": "unreal_export/geo/terrace_ops/seat_caps.geojson#op.row16.cap",
+   "elev_lo_navd88": 628.53,
+   "elev_hi_navd88": 628.53,
+   "debug_color": "#5d4037",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 16,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 138,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row16.drainage",
+   "kind": "drainage",
+   "surface_class": "drainage",
+   "row": 16,
+   "parent": "op.row16",
+   "material": "gravel_drainage",
+   "geometry_ref": "unreal_export/geo/terrace_ops/drainage_bands.geojson#op.row16.drainage",
+   "elev_lo_navd88": 628.23,
+   "elev_hi_navd88": 628.53,
+   "debug_color": "#26a69a",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 16,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 138,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row16.transition",
+   "kind": "transition",
+   "surface_class": "existing_no_touch",
+   "row": 16,
+   "parent": "op.row16",
+   "material": "existing_ground",
+   "geometry_ref": "unreal_export/geo/terrace_ops/terrain_transitions.geojson#op.row16.transition",
+   "elev_lo_navd88": 628.52,
+   "elev_hi_navd88": 628.53,
+   "debug_color": "#9e9e9e",
+   "provenance": {
+    "source": "design_open_low/seating_rows.geojson",
+    "feature_row": 16,
+    "validation_read": {
+     "meets_C_proposed": true,
+     "meets_C_on_terrain": true,
+     "C_value_proposed_mm": 138,
+     "cut_fill_ft": 0.01
+    }
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.row16.clip",
+   "kind": "clip_mask",
+   "surface_class": "clip",
+   "row": 16,
+   "parent": "op.row16",
+   "geometry_ref": "unreal_export/geo/terrace_ops/clip_mask.geojson#op.row16.clip",
+   "suppress_terrain_draw": true,
+   "covers": [
+    "op.row16.riser",
+    "op.row16.tread",
+    "op.row16.cap",
+    "op.row16.drainage"
+   ],
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.grade.p_current",
+   "kind": "accepted_grade",
+   "surface_class": "fill",
+   "parent": null,
+   "geometry_ref": "unreal_export/geo/terrace_ops/grade_p_current.geojson#op.grade.p_current",
+   "raster_ref": "dem/proposed_grade_1ft.tif",
+   "provenance": {
+    "source": "dem/proposed_grade_1ft.tif",
+    "method": "build_proposed_grade.py all_touched=True"
+   },
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.grade.existing",
+   "kind": "existing_grade",
+   "surface_class": "existing_no_touch",
+   "parent": null,
+   "geometry_ref": "unreal_export/terrain/terrain_existing.obj",
+   "note": "Existing LiDAR ground. Visible only outside the row clip masks, ADA paths and stage footprints. Never sculpted in UE.",
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.cell.treatment",
+   "kind": "cut",
+   "surface_class": "cut",
+   "material": "graded_cut",
+   "parent": null,
+   "tier": "concept",
+   "geometry_ref": "unreal_export/geo/terrace_ops/stage_floor.geojson#op.cell.treatment",
+   "provenance": {
+    "source": "design_open_low/stage_floor.geojson",
+    "feature": "treatment_wet_cell"
+   },
+   "suppress_terrain_draw": false,
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.stage.deck",
+   "kind": "stage",
+   "surface_class": "stage",
+   "material": "stage_open_low",
+   "parent": null,
+   "geometry_ref": "unreal_export/geo/terrace_ops/stage_floor.geojson#op.stage.deck",
+   "elev_navd88": 612.5,
+   "provenance": {
+    "source": "design_open_low/stage_floor.geojson",
+    "feature": "stage"
+   },
+   "suppress_terrain_draw": true,
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.stage.shoulder_left",
+   "kind": "stage",
+   "surface_class": "stage",
+   "material": "stage_open_low",
+   "parent": null,
+   "geometry_ref": "unreal_export/geo/terrace_ops/stage_floor.geojson#op.stage.shoulder_left",
+   "elev_navd88": 612.5,
+   "provenance": {
+    "source": "design_open_low/stage_floor.geojson",
+    "feature": "stage_shoulder_left"
+   },
+   "suppress_terrain_draw": true,
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.stage.shoulder_right",
+   "kind": "stage",
+   "surface_class": "stage",
+   "material": "stage_open_low",
+   "parent": null,
+   "geometry_ref": "unreal_export/geo/terrace_ops/stage_floor.geojson#op.stage.shoulder_right",
+   "elev_navd88": 612.5,
+   "provenance": {
+    "source": "design_open_low/stage_floor.geojson",
+    "feature": "stage_shoulder_right"
+   },
+   "suppress_terrain_draw": true,
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.floor.forecourt",
+   "kind": "stage",
+   "surface_class": "stage",
+   "material": "stage_open_low",
+   "parent": null,
+   "geometry_ref": "unreal_export/geo/terrace_ops/stage_floor.geojson#op.floor.forecourt",
+   "elev_navd88": 612.5,
+   "provenance": {
+    "source": "design_open_low/stage_floor.geojson",
+    "feature": "event_floor_forecourt"
+   },
+   "suppress_terrain_draw": true,
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.ada.route_a_floor",
+   "kind": "ada",
+   "surface_class": "ada",
+   "material": "stabilized_ada",
+   "parent": null,
+   "geometry_ref": "unreal_export/geo/terrace_ops/ada_paths.geojson#op.ada.route_a_floor",
+   "provenance": {
+    "source": "design_open_low/ada_route.geojson",
+    "feature": "accessible_route_A_floor"
+   },
+   "suppress_terrain_draw": true,
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.ada.route_b_mid",
+   "kind": "ada",
+   "surface_class": "ada",
+   "material": "stabilized_ada",
+   "parent": null,
+   "geometry_ref": "unreal_export/geo/terrace_ops/ada_paths.geojson#op.ada.route_b_mid",
+   "provenance": {
+    "source": "design_open_low/ada_route.geojson",
+    "feature": "accessible_route_B_mid_row9"
+   },
+   "suppress_terrain_draw": true,
+   "status": "accepted"
+  },
+  {
+   "op_id": "op.ada.cross_aisle_row9",
+   "kind": "ada",
+   "surface_class": "ada",
+   "material": "stabilized_ada",
+   "parent": null,
+   "geometry_ref": "unreal_export/geo/terrace_ops/ada_paths.geojson#op.ada.cross_aisle_row9",
+   "provenance": {
+    "source": "design_open_low/ada_route.geojson",
+    "feature": "mid_cross_aisle"
+   },
+   "suppress_terrain_draw": true,
+   "status": "accepted"
+  }
+ ],
+ "validation": {
+  "state": "PASS",
+  "validated_by": "scripts/validate_terrain_ops.py",
+  "date": "2026-06-29",
+  "gates": [
+   "G1 16-row+6ops",
+   "G2 fan +/-55",
+   "G3 op_id coverage",
+   "G4 clip covers seats/treads/ada/stage",
+   "G5 no retaining walls",
+   "G6 construction materials + clip policy"
+  ],
+  "fan_arc_deg": 110.0,
+  "max_riser_ft": 1.3,
+  "op_count": 106
+ },
+ "provenance_note": "Generated by scripts/build_terrain_ops.py from the accepted Open Civic Bowl design. Visible terrain is generated from these operations, not sculpted in UE."
+}

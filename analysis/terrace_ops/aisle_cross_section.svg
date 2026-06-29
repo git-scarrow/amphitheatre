@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="380" viewBox="0 0 900 380" font-family="Helvetica,Arial,sans-serif">
+<title>Open Civic Bowl - aisle cross-section</title>
+<rect width="900" height="380" fill="#101418"/>
+<text x="14" y="20" fill="#e8eef2" font-size="14" font-weight="bold">Aisle / cross-aisle section - engineered terraces vs existing grade (330 deg axis)</text>
+<line x1="54" y1="340.0" x2="890" y2="340.0" stroke="#33424c" stroke-width="1"/>
+<line x1="54" y1="340.5" x2="890" y2="340.5" stroke="#1c2730" stroke-width="0.6"/>
+<text x="6" y="343.5" fill="#6c7c86" font-size="9">612</text>
+<line x1="54" y1="314.1" x2="890" y2="314.1" stroke="#1c2730" stroke-width="0.6"/>
+<text x="6" y="317.1" fill="#6c7c86" font-size="9">614</text>
+<line x1="54" y1="287.7" x2="890" y2="287.7" stroke="#1c2730" stroke-width="0.6"/>
+<text x="6" y="290.7" fill="#6c7c86" font-size="9">616</text>
+<line x1="54" y1="261.3" x2="890" y2="261.3" stroke="#1c2730" stroke-width="0.6"/>
+<text x="6" y="264.3" fill="#6c7c86" font-size="9">618</text>
+<line x1="54" y1="235.0" x2="890" y2="235.0" stroke="#1c2730" stroke-width="0.6"/>
+<text x="6" y="238.0" fill="#6c7c86" font-size="9">620</text>
+<line x1="54" y1="208.6" x2="890" y2="208.6" stroke="#1c2730" stroke-width="0.6"/>
+<text x="6" y="211.6" fill="#6c7c86" font-size="9">622</text>
+<line x1="54" y1="182.2" x2="890" y2="182.2" stroke="#1c2730" stroke-width="0.6"/>
+<text x="6" y="185.2" fill="#6c7c86" font-size="9">624</text>
+<line x1="54" y1="155.8" x2="890" y2="155.8" stroke="#1c2730" stroke-width="0.6"/>
+<text x="6" y="158.8" fill="#6c7c86" font-size="9">626</text>
+<line x1="54" y1="129.4" x2="890" y2="129.4" stroke="#1c2730" stroke-width="0.6"/>
+<text x="6" y="132.4" fill="#6c7c86" font-size="9">628</text>
+<line x1="54" y1="103.0" x2="890" y2="103.0" stroke="#1c2730" stroke-width="0.6"/>
+<text x="6" y="106.0" fill="#6c7c86" font-size="9">630</text>
+<line x1="54" y1="76.6" x2="890" y2="76.6" stroke="#1c2730" stroke-width="0.6"/>
+<text x="6" y="79.6" fill="#6c7c86" font-size="9">632</text>
+<line x1="54" y1="50.2" x2="890" y2="50.2" stroke="#1c2730" stroke-width="0.6"/>
+<text x="6" y="53.2" fill="#6c7c86" font-size="9">634</text>
+<polyline points="102.0,320.2 150.0,310.6 198.0,301.3 246.0,287.9 294.0,275.5 342.0,264.8 390.0,252.5 438.0,237.5 486.0,226.0 534.0,214.6 582.0,199.8 630.0,182.6 678.0,167.0 726.0,153.5 774.0,138.3 822.0,122.5" fill="none" stroke="#7f9b5f" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="672.0" y="116.5" fill="#9bb277" font-size="10">existing ground (no-touch)</text>
+<rect x="78.0" y="320.2" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="77.0" y="320.2" width="2.4" height="13.7" fill="#7cb342"/>
+<rect x="120.0" y="315.2" width="6" height="5" fill="#5d4037"/>
+<rect x="124.0" y="320.2" width="2" height="2.4" fill="#26a69a"/>
+<rect x="126.0" y="310.3" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="125.0" y="310.3" width="2.4" height="9.9" fill="#7cb342"/>
+<rect x="168.0" y="305.3" width="6" height="5" fill="#5d4037"/>
+<rect x="172.0" y="310.3" width="2" height="2.4" fill="#26a69a"/>
+<rect x="174.0" y="300.0" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="173.0" y="300.0" width="2.4" height="10.3" fill="#7cb342"/>
+<rect x="216.0" y="295.0" width="6" height="5" fill="#5d4037"/>
+<rect x="220.0" y="300.0" width="2" height="2.4" fill="#26a69a"/>
+<rect x="222.0" y="287.7" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="221.0" y="287.7" width="2.4" height="12.3" fill="#7cb342"/>
+<rect x="264.0" y="282.7" width="6" height="5" fill="#5d4037"/>
+<rect x="268.0" y="287.7" width="2" height="2.4" fill="#26a69a"/>
+<rect x="270.0" y="275.3" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="269.0" y="275.3" width="2.4" height="12.4" fill="#7cb342"/>
+<rect x="312.0" y="270.3" width="6" height="5" fill="#5d4037"/>
+<rect x="316.0" y="275.3" width="2" height="2.4" fill="#26a69a"/>
+<rect x="318.0" y="264.1" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="317.0" y="264.1" width="2.4" height="11.2" fill="#7cb342"/>
+<rect x="360.0" y="259.1" width="6" height="5" fill="#5d4037"/>
+<rect x="364.0" y="264.1" width="2" height="2.4" fill="#26a69a"/>
+<rect x="366.0" y="252.4" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="365.0" y="252.4" width="2.4" height="11.7" fill="#7cb342"/>
+<rect x="408.0" y="247.4" width="6" height="5" fill="#5d4037"/>
+<rect x="412.0" y="252.4" width="2" height="2.4" fill="#26a69a"/>
+<rect x="414.0" y="237.5" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="413.0" y="237.5" width="2.4" height="14.9" fill="#7cb342"/>
+<rect x="456.0" y="232.5" width="6" height="5" fill="#5d4037"/>
+<rect x="460.0" y="237.5" width="2" height="2.4" fill="#26a69a"/>
+<rect x="462.0" y="225.3" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="461.0" y="225.3" width="2.4" height="12.1" fill="#7cb342"/>
+<rect x="504.0" y="220.3" width="6" height="5" fill="#5d4037"/>
+<rect x="508.0" y="225.3" width="2" height="2.4" fill="#26a69a"/>
+<rect x="510.0" y="213.0" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="509.0" y="213.0" width="2.4" height="12.3" fill="#7cb342"/>
+<rect x="552.0" y="208.0" width="6" height="5" fill="#5d4037"/>
+<rect x="556.0" y="213.0" width="2" height="2.4" fill="#26a69a"/>
+<rect x="558.0" y="199.7" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="557.0" y="199.7" width="2.4" height="13.3" fill="#7cb342"/>
+<rect x="600.0" y="194.7" width="6" height="5" fill="#5d4037"/>
+<rect x="604.0" y="199.7" width="2" height="2.4" fill="#26a69a"/>
+<rect x="606.0" y="182.6" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="605.0" y="182.6" width="2.4" height="17.2" fill="#7cb342"/>
+<rect x="648.0" y="177.6" width="6" height="5" fill="#5d4037"/>
+<rect x="652.0" y="182.6" width="2" height="2.4" fill="#26a69a"/>
+<rect x="654.0" y="166.9" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="653.0" y="166.9" width="2.4" height="15.7" fill="#7cb342"/>
+<rect x="696.0" y="161.9" width="6" height="5" fill="#5d4037"/>
+<rect x="700.0" y="166.9" width="2" height="2.4" fill="#26a69a"/>
+<rect x="702.0" y="153.4" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="701.0" y="153.4" width="2.4" height="13.5" fill="#7cb342"/>
+<rect x="744.0" y="148.4" width="6" height="5" fill="#5d4037"/>
+<rect x="748.0" y="153.4" width="2" height="2.4" fill="#26a69a"/>
+<rect x="750.0" y="138.2" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="749.0" y="138.2" width="2.4" height="15.2" fill="#7cb342"/>
+<rect x="792.0" y="133.2" width="6" height="5" fill="#5d4037"/>
+<rect x="796.0" y="138.2" width="2" height="2.4" fill="#26a69a"/>
+<rect x="798.0" y="122.4" width="48.0" height="2.2" fill="#cdbfa6"/>
+<rect x="797.0" y="122.4" width="2.4" height="15.8" fill="#7cb342"/>
+<rect x="840.0" y="117.4" width="6" height="5" fill="#5d4037"/>
+<rect x="844.0" y="122.4" width="2" height="2.4" fill="#26a69a"/>
+<circle cx="442.8" cy="173.6" r="8.7" fill="#e8eef2"/>
+<line x1="442.8" y1="182.3" x2="442.8" y2="212.1" stroke="#e8eef2" stroke-width="2.4"/>
+<line x1="442.8" y1="237.5" x2="433.4" y2="212.1" stroke="#e8eef2" stroke-width="2.2"/>
+<line x1="442.8" y1="237.5" x2="452.2" y2="212.1" stroke="#e8eef2" stroke-width="2.2"/>
+<text x="450.8" y="201.2" fill="#e8eef2" font-size="10">5'6"</text>
+<rect x="54" y="364" width="11" height="11" fill="#cdbfa6"/>
+<text x="69" y="373" fill="#cdd6dc" font-size="10">gravel-fines tread</text>
+<rect x="204" y="364" width="11" height="11" fill="#7cb342"/>
+<text x="219" y="373" fill="#cdd6dc" font-size="10">planted riser</text>
+<rect x="354" y="364" width="11" height="11" fill="#5d4037"/>
+<text x="369" y="373" fill="#cdd6dc" font-size="10">timber/precast cap</text>
+<rect x="504" y="364" width="11" height="11" fill="#26a69a"/>
+<text x="519" y="373" fill="#cdd6dc" font-size="10">gravel drainage</text>
+</svg>
