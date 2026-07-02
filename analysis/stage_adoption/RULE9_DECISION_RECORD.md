@@ -82,10 +82,10 @@ equal bay Δ, and is adopted **with the same bundle**. If any pocket < 12 ft (ex
 - [ ] Re-emit every stage-derived artifact from the adopted footprint (bowl_zones/material_zones
       orchestra + untouched-slope, the six viewpoint stations, the event-mode screen line, grading
       rasters); drop Board 01's provisional floor/backdrop patches.
-- [ ] **Re-confirm row-1 gaps against the adopted Decision-1 tier's emitted geometry.** The gaps
-      above (12.0/32.7/21.9) were measured at the **1,283-seat baseline frame**; **Decision 1
-      (seating scope) is itself still OPEN** in `POST_EMISSION_DECISION_MEMO.md`, so `resolved`
-      is **blocked on Decision 1** regardless of the audits.
+- [x] **Re-confirm row-1 gaps against the adopted Decision-1 tier.** ✅ **Decision 1 ADOPTED
+      2026-07-02: (A) Scenario E baseline (1,243/1,283).** Baseline *is* the 1,283 frame the P_opt
+      gaps (12.0/32.7/21.9) were solved against — so they are already the adopted-tier gaps; no
+      re-measurement needed. `resolved` is no longer blocked on Decision 1.
 - [ ] Flip `DESIGN_CANON` Rule 9 + this record to `resolved`; drop the provisional banner in
       `docs/claude_design_handoff.md`.
 

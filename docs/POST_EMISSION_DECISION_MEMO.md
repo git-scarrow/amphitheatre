@@ -33,28 +33,37 @@ only the inherited stage object and the treatment cell).
 
 ## The two live decisions
 
-### Decision 1 — which seating scope to advance
+### Decision 1 — which seating scope to advance → **ADOPTED: (A) Scenario E baseline (2026-07-02)**
 
-Choose one of: **(A) Scenario E baseline** (1,243/1,283; no further work),
+**Decided: (A) Scenario E baseline — 1,243 validated / 1,283 nominal Band-A seats.** No
+stronger reason emerged in the docs to choose modest or ambitious: this is framed here as a
+civic/budget choice, not an engineering mandate; no capacity/attendance target exists in any
+doc; and the `INEVITABILITY` minimum-justified-intervention ethos leans conservative. Baseline
+is the accepted control and requires **no geometry re-point** (the in-situ package already sits
+on the 1,283 frame). **Off-ramp on file:** modest_normalization is the cheapest expansion
+(+114 seats for ~$2k / 25.3 CY, best marginal efficiency ≈48.5 QA/$1k) — the obvious first step
+*if* capacity is ever desired; re-open this decision to take it.
+
+The options as they stood: **(A) Scenario E baseline** (1,243/1,283; no further work),
 **(B) modest_normalization** (+114 for 25.3 CY — the cheapest validated step), or
-**(C) ambitious seating scope** (+262 for 47.3 CY — the validated Pareto knee).
-All three are emission-validated; this is now a civic/budget choice, not an open
-engineering question. Adoption of B or C means: update the `DESIGN_CANON` ledger,
-point the in-situ package at the chosen tier's emitted geometry
-(`analysis/tier_emission/<tier>/geometry.geojson`), and re-run the package audit.
+**(C) ambitious seating scope** (+262 for 47.3 CY — the validated Pareto knee). All three are
+emission-validated. Adopting B or C instead would mean: update the `DESIGN_CANON` ledger, point
+the in-situ package at that tier's emitted geometry (`analysis/tier_emission/<tier>/geometry.geojson`),
+and re-run the package audit.
 
-### Decision 2 — close Rule 9 (stage)
+### Decision 2 — close Rule 9 (stage) → **CARRIED PROVISIONAL (2026-07-02)**
 
-**Nothing about the stage was adopted by the emission validation.** P_opt, the faceted
-aprons, and any roofed/utilitarian typology remain *tested candidates*; the emitted
-tiers all carry the inherited az-150 stage with Rule 9 OPEN. Decision 1 is deliberately
-independent of Decision 2 (stage–seating decoupling,
-`analysis/stage_seating_decoupling/`). Close Rule 9 via
-`analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md`.
+The stage bundle is now adopted **provisionally** (doc state): P_opt placement (path 3, az150
+kept, bay Δ 0°, residuals −6.7 ft / −6.3° declared) + five_facet_apron + path-4 wide-fan +
+T1_deck_only. Record: `analysis/stage_adoption/RULE9_DECISION_RECORD.md`. **Not yet `resolved`**
+— that is an *audit* state, reached only when the stage package is re-emitted against the adopted
+footprint (Decision 1 = baseline), EarthworkEngine CY replaces the planar proxy, and
+`scripts/audit_in_situ_package.py` is genuinely green. `carried_provisional` is a document state,
+not a green audit; the red gate stands until the package is valid.
 
 ## Standing guardrails
 
-- **Claude Design stays PAUSED** (`docs/claude_design_handoff.md` banner) until Rule 9
-  is closed **or** the stage is explicitly carried as provisional in the handoff.
-- Seat or stage claims beyond the table above require re-emission + re-validation
+- **Claude Design is UN-PAUSED, stage flagged provisional** (`docs/claude_design_handoff.md`) —
+  depict the stage as provisional (never resolved/monumental) until Rule 9 is audit-`resolved`.
+- Seat or stage claims beyond the adopted baseline require re-emission + re-validation
   (canon Rules 3/5) before they may be quoted.

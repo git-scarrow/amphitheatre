@@ -152,11 +152,13 @@ placement (the east section sits outside ±55° under any az 150). Record:
 Scenario E now carries status:
 **"seating / ADA / drainage cost-proxy ACCEPTED · stage carried_provisional"**
 
-The engine must not report 10/10 ACCEPTED while the stage is only provisional. `resolved`
-requires the package audit green, the EarthworkEngine CY recompute (replacing the planar proxy),
-and the row-1 gaps re-confirmed against the adopted **Decision-1** tier — the gaps above are at
-the 1,283-seat frame, and Decision 1 (seating scope) is still OPEN, so `resolved` is **blocked on
-Decision 1**. The sweep's `az150_lat-20` is **superseded** — it was scored in the section-level
+The engine must not report 10/10 ACCEPTED while the stage is only provisional. **Decision 1 is
+now ADOPTED: (A) Scenario E baseline (1,243/1,283)** (`POST_EMISSION_DECISION_MEMO.md`) — so the
+P_opt row-1 gaps (measured at the 1,283 frame) are already against the adopted tier, and
+`resolved` is **no longer blocked on Decision 1**. `resolved` now requires only: the stage
+package re-emitted against the adopted footprint, the EarthworkEngine CY recompute (replacing the
+planar proxy), and `scripts/audit_in_situ_package.py` genuinely green — `carried_provisional` is a
+document state, not a green audit; the red gate stands until the package is valid. The sweep's `az150_lat-20` is **superseded** — it was scored in the section-level
 frame without the in-situ row-1 pocket gate, and is ~90% of the full shift P_lat, which touches
 east row 1 (infeasible); do not adopt it unless a one-run in-situ re-score clears every pocket
 ≥ 12 ft.
