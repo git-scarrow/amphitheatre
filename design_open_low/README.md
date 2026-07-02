@@ -7,6 +7,26 @@ NAVD88 (Geoid12A) intl ft · CRS **EPSG:6494**. Audience faces **az 330°** (NNW
 > (`dem/dem_design_1ft.tif`) plus labelled assumptions. The field/permit prerequisites in
 > [`../gating_dossier.md`](../gating_dossier.md) still govern before any construction.
 
+> ## ⛔ SUPERSEDED FOR SEATING (2026-07-02)
+> **This "Open Civic Bowl" seating geometry is not governing.** The **±55° / 110° open arc**,
+> **16-row / R130 stop**, uniform **35 ft stage-to-row-1**, and **~1,797 / 1,472 seat** figures
+> below describe a retired low-intervention *alternative*. Per
+> [`../docs/POST_EMISSION_DECISION_MEMO.md`](../docs/POST_EMISSION_DECISION_MEMO.md),
+> `design_open_low`'s single-fan geometry **"must not be used as governing geometry"** for seating.
+>
+> **The validated object is the Scenario E three-section civic bowl** (east / bend / south,
+> **~130° effective span**): **18 rows** climbing the continuous **~20° bowl wall**, plus two
+> emission-validated expansion tiers to rows 19–20 → Band-A **1,243 baseline / 1,357 modest /
+> 1,505 ambitious** seats ([`../SCENARIO_E_CIVIC.md`](../SCENARIO_E_CIVIC.md),
+> `../analysis/tier_emission/TIER_EMISSION_VALIDATION.md`). At the selected **P_opt** stage
+> placement the row-1 gaps are **12.0 / 32.7 / 21.9 ft by section**, not a uniform 35 ft
+> (`../analysis/in_situ_normalization/STAGE_SHAPE_STUDY.md`). The "retaining band" mentioned below
+> was proven an **artifact of the retired narrow-fan design, not a terrain condition**
+> (`../analysis/east_flank_reality_check/REASSESSMENT_MEMO.md`).
+>
+> **What still survives from this file:** only the **inherited stage object** (az-150 footprint,
+> Rule 9 **OPEN**) and the **treatment cell** — not the seating fan. Retained as historical record.
+
 ---
 
 ## The idea

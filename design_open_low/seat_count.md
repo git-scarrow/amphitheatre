@@ -7,6 +7,16 @@ Opened + lowered vs the first design (±30°/60°, 30 rows up the steep wall, 6�
 walls), with the **stage pushed forward into the orchestra** so the front row is **35 ft**
 from the stage (was 85 ft) — seats stay on the natural rake.
 
+> ## ⛔ SUPERSEDED FOR SEATING (2026-07-02)
+> **These open-arc seating numbers are not governing.** The ±55° / 110° fan, 16 rows, uniform
+> 35 ft stage-to-row-1, and 1,797 / 1,472 seats below are a retired alternative; per
+> `../docs/POST_EMISSION_DECISION_MEMO.md`, `design_open_low`'s single fan **"must not be used as
+> governing geometry"** for seating. **Governing object:** the Scenario E three-section civic bowl
+> (~130° effective span), 18 rows on the ~20° wall + emission-validated tiers to rows 19–20 →
+> **1,243 / 1,357 / 1,505** Band-A seats (`../SCENARIO_E_CIVIC.md`). At the selected P_opt stage
+> placement row-1 gaps are **12.0 / 32.7 / 21.9 ft by section**, not a uniform 35 ft. Only the
+> inherited stage object (Rule 9 OPEN) and the treatment cell survive from this file.
+
 | Parameter | Value |
 |---|---|
 | Fan / arc | ±55° (110° total) |
