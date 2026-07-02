@@ -3,6 +3,11 @@
 
 **Compiled 2026-06-06. Draft replacement language; do not overwrite originals without explicit confirmation.**
 
+> **SUPERSEDED (2026-07-02).** Historical draft. The READMEs this file proposed to edit have since
+> been retired by the Scenario E civic-bowl generation; the old-design figures quoted below are
+> kept only to show what was being replaced, and have been genericized so they cannot be mistaken
+> for live numbers. Current state: `docs/POST_EMISSION_DECISION_MEMO.md`.
+
 ---
 
 ## For `design_open_low/README.md` — key paragraph replacement
@@ -29,14 +34,14 @@
 
 ### Current text:
 ```
-The first design (`/package`, Stage 4/5) is a **tight rake on a narrow arc** — ±30° (60°), 30 rows
+The first design (`/package`, Stage 4/5) is a **tight rake on a narrow arc** — a 60°-total narrow fan, ~30 rows
 driven straight **up the steep S/SSE wall**, which forces rim-flatten fill and **6–14 ft structural
 retaining walls** (the bulk of its cost). This design does the opposite move, and the terrain rewards it:
 ```
 
 ### Replacement text:
 ```
-The first design (`/package`, Stage 4/5) is a **tight rake on a narrow arc** — ±30° (60°), 30 rows
+The first design (`/package`, Stage 4/5) is a **tight rake on a narrow arc** — a 60°-total narrow fan, ~30 rows
 driven straight up the S/SSE wall, which forces rim-flatten fill and **6–14 ft structural
 retaining walls in that specific geometry** (the bulk of its cost). This design does the opposite
 move, and the terrain rewards it:
@@ -93,8 +98,9 @@ seating band.
 
 ### Current text:
 ```
-- **30 terraced rows, ±30° fan, ~2,190 / ~1,790 seats** (geometric **planning estimate** — not
-  a code occupant load or event cap), audience facing **az 330°** (bay + evening sun).
+- **roughly 30 rows on a narrow (~60°-total) fan, on the order of 1,800–2,200 seats** (geometric
+  **planning estimate** — not a code occupant load or event cap), audience facing **az 330°**
+  (bay + evening sun).
 ```
 
 ### Replacement text:

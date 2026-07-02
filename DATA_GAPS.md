@@ -150,11 +150,17 @@ before the corresponding decision is made. Items are tagged by the stage that ne
 - **30-ft tie-in apron (`D_MAX`)** = the limit of disturbance / approximate retaining-wall
   line. Beyond it existing grade is kept. The apron distance and the choice "cut slope vs.
   retaining wall" are planning assumptions to confirm with geotech + cost.
-- **SE/SSE wall retaining + slope stability (REQUIRED follow-up).** Tie-in/ramp cuts reach
-  **6–14 ft over ~0.083 ac** against the steep wall (~72% perimeter tie-in, ~28% ADA Route
-  B). These should be **structural retaining walls** with subsurface drainage, not earth
-  cut slopes. Needs a stamped slope-stability analysis once soils are known — currently
-  **qualitative only**.
+- **~20° bowl-wall slope stability (REQUIRED follow-up) — reframed.** The S/SE/E bowl wall is a
+  continuous ~20° (≈35%) amphitheatre-grade rake (multi-scale DEM analysis;
+  `analysis/east_flank_reality_check/REASSESSMENT_MEMO.md` §2), **not** a retaining-wall
+  condition. The earlier 6–14 ft retaining figure was an artifact of the superseded narrow-fan,
+  30-row `/package` geometry (fan driven straight up the slope + ADA Route B bench-cut) —
+  **design vocabulary, not terrain law**. Scenario E grades access with **8.33% switchback ramps
+  and landings, no walls** (max cut/fill 0.95/1.59 ft, well under the 3 ft wall trigger). What
+  remains is a genuine **slope-stability check of the ~20° wall under terraced-seating loading
+  and Scenario E ramp cuts** — data-gated on borings/geotech, quantitative once soils are known.
+  Low (1–4 ft) seat/terrace walls, if used, are **civic design vocabulary, not emergency
+  geotechnical fixes**.
 - **East garden terraces** (5 benches, ENE flank az 88–122°, r 95–215 ft) were **designed
   in Stage 5** (Stage 4 left them schematic). Bench count, extent, pad elevations, and
   retaining between benches are placeholders pending a landscape program + survey.
@@ -213,11 +219,12 @@ before the corresponding decision is made. Items are tagged by the stage that ne
   the 20:00–21:30 solstice glare window actually coincides with shows.
 
 ## Stage 8 — Package assembly & gating dossier (added 2026-06-04)
-- **✅ Deliverable package assembled** under `package/` (indexed by `package/INDEX.md`):
-  combined georeferenced layout (`01_layout/site_layout.gpkg` + merged GeoJSON + annotated
-  plan PNG), grading plan, sections, stage-storage/storm-sizing/sightline tables, seat count,
-  sun/view recommendation, stormwater treatment train, and the Stage-1 terrain basis. Driver
-  `scripts/stage8_package.py` (rebuilds the combined layout).
+- **⛔ Deliverable package (`package/`) — SUPERSEDED.** The 2026-06-04 `package/` assembly (and
+  its master index) captured the original narrow-fan, 30-row generation and is **no longer the
+  governing deliverable**. Current project state is carried by
+  `docs/POST_EMISSION_DECISION_MEMO.md` (the controlling statement) and the Scenario E emission
+  validation (`analysis/tier_emission/TIER_EMISSION_VALIDATION.md`); the running technical record
+  is this file plus `gating_dossier.md`.
 - **✅ Gating dossier produced** (`gating_dossier.md`): every "before you can build" item —
   datum (A), survey (B), geotech (C), Phase I/II environmental (D), storm-sewer GIS (E),
   permitting scan (F), Parks master-plan/public process (G), and design-assumption
