@@ -1,22 +1,24 @@
 # Claude Design handoff — three-section civic bowl, Petoskey Pit
 
-> ## ⏸ HANDOFF PAUSED (2026-06-10)
-> The stage decision is unresolved. The seating balance is quantified and the
-> stage is now derived from the audience frame + independent zone analysis
-> (`analysis/in_situ_normalization/STAGE_SHAPE_STUDY.md`,
-> `analysis/stage_seating_decoupling/STAGE_SEATING_PARETO.md`), but a Rule 9
-> path and a stage typology have not been adopted. Do **not** start visual
-> work from this document until this banner is removed; the "low stage only"
-> framing below is superseded by the visual-envelope rule (taller utilitarian
-> mass is acceptable where the obstruction study clears it).
+> ## ▶ HANDOFF RESUMED — STAGE CARRIED PROVISIONAL (2026-07-02)
+> Rule 9 is **carried_provisional**: the stage bundle is adopted provisionally —
+> **P_opt** placement (az 150 kept, audience faces **330°, bay Δ 0°**; residuals
+> −6.7 ft / −6.3° declared; row-1 gaps 12.0/32.7/21.9 ft) + **five_facet_apron**
+> front + **path-4 wide-fan** declaration + **T1_deck_only** element bundle
+> (0.0% bay / 1.7% foreground). Record + rationale:
+> `analysis/stage_adoption/RULE9_DECISION_RECORD.md`.
 >
-> **2026-06-11 update:** still paused. The seating tiers are now
-> emission-validated (modest +114 / ambitious seating +262; N1 rejected) but
-> **not adopted** — the 1,283-seat frame below remains the baseline until
-> Decision 1 in `docs/POST_EMISSION_DECISION_MEMO.md` is made. Rule 9 closure
-> path: `analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md`. Resuming
-> visual work requires Rule 9 closed **or** the stage explicitly carried as
-> provisional here.
+> Visual work may resume, but **depict the stage as PROVISIONAL** in every image
+> and never as resolved/monumental. The bundle is not yet audit-`resolved`
+> (package audit + EarthworkEngine CY recompute + Decision-1 tier gap re-confirm
+> pending; **`resolved` is blocked on Decision 1**, still open — the 1,283-seat
+> frame below remains the baseline). The roof (**T2**) is a separate, *unadopted*
+> upgrade — the stage adoption does not smuggle it in.
+>
+> Retired by this adoption: the "low stage only" height framing (use the
+> visual-envelope rule — taller utilitarian mass is fine where the obstruction
+> study clears it) and the sweep's `az150_lat-20` "best candidate" (superseded
+> frame, pocket-unchecked; see the record's "Why not az150_lat-20").
 
 **Purpose:** visual / prototype brief for Claude Design. Everything here
 packages **audited repo outputs** (`scripts/audit_in_situ_package.py` green
@@ -37,8 +39,10 @@ CRS EPSG:6494 (intl ft) · NAVD88 (Geoid12A) intl ft · planning-grade.
 3. **The cross-aisle is a place.** Rows 9–10 became a level, wheelable
    622.01 bench — circulation + mid-bowl view pause.
 4. **Low open stage.** Deck at event-floor grade with lateral floor-level
-   shoulders only. Stage **axis is unresolved** (canon Rule 9 OPEN) — keep
-   the stage visually low-key and provisional; never heroic architecture.
+   shoulders only. Stage **axis carried provisional** (Rule 9 carried_provisional):
+   **P_opt keeps az 150 → audience faces 330°**, with a five-facet apron front and
+   the T1 deck-only bundle. Keep the stage visually low-key and **PROVISIONAL**;
+   never heroic architecture (the T2 roof is a separate, unadopted upgrade).
 5. **Water is ephemeral or distant.** The treatment cell is a dry
    bioretention meadow that ponds only after large storms. The only standing
    water in any image is the bay.
@@ -53,7 +57,8 @@ CRS EPSG:6494 (intl ft) · NAVD88 (Geoid12A) intl ft · planning-grade.
 - ❌ Anything tall in the bay-view corridor (az 330 ± 12°)
 - ❌ A reflecting pool / pond / standing water in the treatment cell
 - ❌ Retaining walls or risers over ~2 ft
-- ❌ A resolved, monumental stage (Rule 9 is open — no committed stage axis)
+- ❌ A resolved, monumental stage — Rule 9 is only *provisional* (axis is P_opt/az150,
+  T1 deck-only; the T2 roof is not adopted). Depict provisional, never resolved/monumental
 - ❌ Permanent event infrastructure (screens, PA towers) — event overlays
   are temporary by definition
 
@@ -99,10 +104,13 @@ Section accents on plans: east `#b08968` · bend `#7fae6e` · south `#5e8a9e`.
 
 ## Current caveats
 
-- **Stage refit OPEN (canon Rule 9):** +25.6° axis mismatch vs the seating
-  centroid; best feasible candidate `az150_lat-20`
-  (`analysis/stage_refit/STAGE_REFIT_SWEEP.md`). Until a path is adopted,
-  depict the stage as provisional.
+- **Stage refit CARRIED PROVISIONAL (canon Rule 9):** bundle adopted provisionally
+  2026-07-02 — P_opt (az 150, bay Δ 0°, residuals −6.7 ft / −6.3° declared) +
+  five_facet_apron + path-4 wide-fan + T1_deck_only
+  (`analysis/stage_adoption/RULE9_DECISION_RECORD.md`). Depict the stage as
+  **provisional** (not resolved) until the package audit + EarthworkEngine CY
+  recompute + Decision-1 tier gap re-confirm are green. The sweep's `az150_lat-20`
+  is superseded (pocket-unchecked).
 - DEM rasters are gitignored — fresh checkouts get `dem/MISSING_DATA.md`
   with restore steps; vector layers and boards still build.
 - Orchestra floor, promenade walk width, paths, lawns, tree-mass boundaries

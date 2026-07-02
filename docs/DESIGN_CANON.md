@@ -12,7 +12,7 @@ individual scenario memo.
 |---|---|---|
 | **Scenario B** — 0.5 ft fill-clip, "self-balancing" | **REJECTED** as formal seating baseline | `SCENARIO_B_VALIDATION.md` §§1–7; `INEVITABILITY.md` worked proof |
 | **Scenario D** — B + selective tread restoration (+26 CY) | **ACCEPTED** as designed baseline for formal terraced seating | `INEVITABILITY.md` worked proof; `score_inevitability.py` → 10/10 ACCEPTED |
-| **Scenario E** — D + aisles + ADA + drainage (500.8 CY total) | Seating / ADA / drainage cost-proxy **ACCEPTED** where geometry is emitted and validated · **Stage refit OPEN**: inherited az150 stage carries +25.6° audience-axis mismatch, −22.5 ft lateral offset; east section outside declared ±55° fan; fan declaration (110°/±55°) does not match emitted three-section geometry (~130° effective span). Status: **ACCEPTED (seating/ADA/drainage) · stage refit open** | `SCENARIO_E_CIVIC.md`; `analysis/stage_refit/STAGE_REFIT_SWEEP.md`; Rule 9; `INEVITABILITY.md` §concept→cost-proxy |
+| **Scenario E** — D + aisles + ADA + drainage (500.8 CY total) | Seating / ADA / drainage cost-proxy **ACCEPTED** where geometry is emitted and validated · **Stage refit CARRIED PROVISIONAL (2026-07-02)**: bundle adopted provisionally — P_opt placement (path 3; az150 kept, bay Δ 0°, residuals −6.7 ft / −6.3° declared) + five_facet_apron front + **path-4 wide-fan** (`formal_fan_half_deg 75`) + T1_deck_only. Not yet `resolved` (package audit + EarthworkEngine CY + Decision-1 tier gap re-confirm pending; resolved blocked on Decision 1). Status: **ACCEPTED (seating/ADA/drainage) · stage carried_provisional** | `SCENARIO_E_CIVIC.md`; `analysis/stage_adoption/RULE9_DECISION_RECORD.md`; `analysis/in_situ_normalization/STAGE_SHAPE_STUDY.md`; Rule 9; `INEVITABILITY.md` §concept→cost-proxy |
 
 ---
 
@@ -140,12 +140,26 @@ explicitly declared and wired:
    `formal_fan_half_deg: 75`, `formal_fan_angle_deg: 150`, `scenarioE_fan_type: wide_three_section_civic_bowl`;
    acoustic consequences of the wide-fan coverage noted.
 
-Until one path is adopted, Scenario E carries status:
-**"seating / ADA / drainage cost-proxy ACCEPTED · stage refit open"**
+**Adopted (carried_provisional, 2026-07-02) — a bundle, not a placement:** placement
+**path 3 = P_opt** (az 150 kept, audience faces 330°, bay Δ 0°; residuals −6.7 ft / −6.3°
+declared; row-1 gaps 12.0/32.7/21.9 ft, all ≥ 12; cell gap 32 ft) + **path 4 wide-fan**
+declaration (`formal_fan_half_deg: 75`, `formal_fan_angle_deg: 150`,
+`scenarioE_fan_type: wide_three_section_civic_bowl`) + **five_facet_apron** front +
+**T1_deck_only** element (0.0% bay / 1.7% foreground). Path 4 is load-bearing regardless of
+placement (the east section sits outside ±55° under any az 150). Record:
+`analysis/stage_adoption/RULE9_DECISION_RECORD.md`.
 
-The engine must not report 10/10 ACCEPTED while this item is unresolved.
-See `analysis/stage_refit/STAGE_REFIT_SWEEP.md` for the full sweep and top candidates
-(best feasible candidate: `az150_lat-20`, +3.0° mismatch, −2.5 ft lateral offset, 37.8 CY delta).
+Scenario E now carries status:
+**"seating / ADA / drainage cost-proxy ACCEPTED · stage carried_provisional"**
+
+The engine must not report 10/10 ACCEPTED while the stage is only provisional. `resolved`
+requires the package audit green, the EarthworkEngine CY recompute (replacing the planar proxy),
+and the row-1 gaps re-confirmed against the adopted **Decision-1** tier — the gaps above are at
+the 1,283-seat frame, and Decision 1 (seating scope) is still OPEN, so `resolved` is **blocked on
+Decision 1**. The sweep's `az150_lat-20` is **superseded** — it was scored in the section-level
+frame without the in-situ row-1 pocket gate, and is ~90% of the full shift P_lat, which touches
+east row 1 (infeasible); do not adopt it unless a one-run in-situ re-score clears every pocket
+≥ 12 ft.
 
 **Update 2026-06-10 — the in-situ studies supersede the sweep's candidate set.**
 The sweep scored section-level alignment only; the in-situ pass adds row-1
@@ -200,5 +214,5 @@ then re-emitting every stage-derived artifact from the adopted footprint
 | Is the 26 CY restoration optional? | No — it is the minimum effective intervention that makes terraces read as terraces. |
 | Can I call a desire-line the cross-aisle? | No — the aisle is built from row-9/10 geometry. Any other generator must be named. |
 | Can Scenario E's ADA cost appear in a project budget? | Only if the ADA switchback geometry is emitted and validated. |
-| Is Scenario E's stage configuration accepted? | No — stage refit is open. Inherited az150 stage has +25.6° mismatch; east section outside ±55° fan. Must explicitly adopt Path A / B / C / wide-fan before stage is settled. |
-| Can I quote Scenario E as "10/10 ACCEPTED"? | Seating, ADA, and drainage: yes. Stage/fan: no — unresolved. Full 10/10 requires Rule 9 to be satisfied. |
+| Is Scenario E's stage configuration accepted? | **Carried provisional (2026-07-02).** Bundle adopted: P_opt (path 3; az150, bay Δ 0°, residuals −6.7 ft / −6.3° declared) + path-4 wide-fan + five_facet_apron + T1_deck_only (`analysis/stage_adoption/RULE9_DECISION_RECORD.md`). Not yet `resolved` — package audit + EarthworkEngine CY + Decision-1 tier gap re-confirm pending (resolved blocked on Decision 1). |
+| Can I quote Scenario E as "10/10 ACCEPTED"? | Seating, ADA, and drainage: yes. Stage/fan: no — only carried_provisional. Full 10/10 requires Rule 9 `resolved`. |
