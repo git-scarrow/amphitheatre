@@ -28,6 +28,7 @@ Prints precise diagnostics; exits 1 on any failure.
 import json
 import os
 import re
+import subprocess
 import sys
 import xml.etree.ElementTree as ET
 
@@ -36,6 +37,52 @@ import in_situ_common as C
 
 REPO = C.REPO
 FAILS, WARNS, PASSES = [], [], []
+
+
+def _read(rel):
+    p = os.path.join(REPO, rel)
+    return open(p).read() if os.path.exists(p) else ""
+
+
+def _script_passes(rel):
+    """True if a repo script exits 0 (used to gate the handoff on live checks)."""
+    p = os.path.join(REPO, rel)
+    if not os.path.exists(p):
+        return False
+    return subprocess.run([sys.executable, p], capture_output=True).returncode == 0
+
+
+def handoff_unpause_gates():
+    """An UNPAUSED Claude-Design handoff is acceptable ONLY in the coherent
+    provisional state: the stage construction METHOD is selected while the
+    remaining base-fill QUANTITY is still explicitly provisional. Returns the
+    list of UNMET conditions (empty => UNPAUSED permitted). See the six numbered
+    conditions in RULE9_DECISION_RECORD / STAGE_CONSTRUCTION_METHOD_DECISION."""
+    dtext = _read("analysis/stage_adoption/STAGE_CONSTRUCTION_METHOD_DECISION.md")
+    r9 = _read("analysis/stage_adoption/RULE9_DECISION_RECORD.md")
+    dl = dtext.lower()
+    unmet = []
+    # 1. Method B deck-over-compacted-base is the selected method.
+    if not ("method b" in dl and "adopted" in dl and "compacted base" in dl):
+        unmet.append("Method B (deck-over-compacted-base) not recorded as ADOPTED")
+    # 2. 330.2 CY labeled only as the rejected solid-pad upper-bound, not import.
+    if not ("330.2" in dtext and "upper-bound" in dl and "reject" in dl):
+        unmet.append("330.2 CY not labeled as the rejected solid-pad upper-bound")
+    # 3. Geometry-backed Method-B base-fill CY still a Phase-B / provisional item.
+    if not (("phase-b" in dl or "phase b" in dl)
+            and ("base-fill" in dl or "base fill" in dl)):
+        unmet.append("Method-B base-fill CY not listed as a Phase-B follow-up")
+    # 4. Rule 9 remains not fully resolved (until that Method-B CY is accounted).
+    if "carried_provisional" not in r9 or re.search(r"Status:\*\*\s*`?resolved`?", r9):
+        unmet.append("Rule 9 is not carried_provisional (must stay unresolved "
+                     "until Method-B base-fill CY is computed)")
+    # 5. pipeline artifact contract passes.
+    if not _script_passes("scripts/check_pipeline_artifact_contract.py"):
+        unmet.append("pipeline artifact contract does not pass")
+    # 6. comparator audit passes.
+    if not _script_passes("scripts/comparators/audit_comparators.py"):
+        unmet.append("comparator audit does not pass")
+    return unmet
 
 
 def ok(msg):
@@ -541,11 +588,19 @@ def check_normalization_and_stage_study():
     hand = os.path.join(REPO, "docs", "claude_design_handoff.md")
     if os.path.exists(hand):
         head = open(hand).read(400)
-        if "PAUSED" not in head:
-            fail("docs/claude_design_handoff.md not marked PAUSED while the "
-                 "stage decision is unresolved")
-        else:
+        if "PAUSED" in head:
             ok("Claude Design handoff marked PAUSED")
+        else:
+            # UNPAUSED is acceptable ONLY in the coherent provisional state
+            # (construction method selected, remaining fill quantity provisional).
+            unmet = handoff_unpause_gates()
+            if unmet:
+                fail("docs/claude_design_handoff.md not marked PAUSED while the "
+                     "stage decision is unresolved: " + "; ".join(unmet))
+            else:
+                ok("Claude Design handoff UNPAUSED permitted — handoff allowed "
+                   "because construction method is selected and remaining fill "
+                   "quantity is explicitly provisional")
 
 
 def check_human_scale_refs(rasters_present):
