@@ -121,8 +121,8 @@
       750742.15
      ],
      [
-      19533224.2,
-      750743.15
+      19533225.2,
+      750744.15
      ],
      [
       19533225.2,
@@ -137,8 +137,8 @@
       750747.15
      ],
      [
-      19533225.2,
-      750748.15
+      19533226.2,
+      750749.15
      ],
      [
       19533226.2,
@@ -153,8 +153,8 @@
       750752.15
      ],
      [
-      19533226.2,
-      750753.15
+      19533227.2,
+      750754.15
      ],
      [
       19533227.2,
@@ -265,16 +265,16 @@
       750781.15
      ],
      [
-      19533228.2,
+      19533227.2,
+      750782.15
+     ],
+     [
+      19533227.2,
       750783.15
      ],
      [
-      19533228.2,
+      19533227.2,
       750784.15
-     ],
-     [
-      19533228.2,
-      750785.15
      ],
      [
       19533228.2,
@@ -289,8 +289,8 @@
       750788.15
      ],
      [
-      19533228.2,
-      750789.15
+      19533229.2,
+      750790.15
      ],
      [
       19533229.2,
@@ -1426,7 +1426,7 @@
     "grading_required": {
      "max_cut_ft": 0.72,
      "max_fill_ft": 1.08,
-     "mean_abs_ft": 0.24,
+     "mean_abs_ft": 0.25,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
     "outside_legacy_envelope_ft": 305.5,
@@ -1434,10 +1434,10 @@
     "status": "ADA-compliant route concept pending civil/code detailing",
     "length_ft": 418.0,
     "elev_from": 637.33,
-    "elev_to": 622.44,
-    "max_step_slope_pct": 8.62,
+    "elev_to": 622.53,
+    "max_step_slope_pct": 8.61,
     "gateway_transition_ft": 121.0,
-    "gateway_max_terrain_slope_pct": 28.8,
+    "gateway_max_terrain_slope_pct": 28.7,
     "gateway_note": "segments inside aisle/promenade row-end gateways are engineered graded transitions (design 8.33% max) \u2014 pending civil detailing",
     "landings_marked": 11,
     "source": "scripts/rebuild_ada_routes.py (Dijkstra on proposed_grade_1ft.tif, conflict-masked)",
@@ -1562,8 +1562,8 @@
       750742.15
      ],
      [
-      19533224.2,
-      750743.15
+      19533225.2,
+      750744.15
      ],
      [
       19533225.2,
@@ -1578,8 +1578,8 @@
       750747.15
      ],
      [
-      19533225.2,
-      750748.15
+      19533226.2,
+      750749.15
      ],
      [
       19533226.2,
@@ -1594,8 +1594,8 @@
       750752.15
      ],
      [
-      19533226.2,
-      750753.15
+      19533227.2,
+      750754.15
      ],
      [
       19533227.2,
@@ -1706,16 +1706,16 @@
       750781.15
      ],
      [
-      19533228.2,
+      19533227.2,
+      750782.15
+     ],
+     [
+      19533227.2,
       750783.15
      ],
      [
-      19533228.2,
+      19533227.2,
       750784.15
-     ],
-     [
-      19533228.2,
-      750785.15
      ],
      [
       19533228.2,
@@ -1730,8 +1730,8 @@
       750788.15
      ],
      [
-      19533228.2,
-      750789.15
+      19533229.2,
+      750790.15
      ],
      [
       19533229.2,
@@ -3078,20 +3078,20 @@
     "to": "wc_cluster_cross_aisle",
     "class": "public",
     "grading_required": {
-     "max_cut_ft": -0.43,
-     "max_fill_ft": 0.62,
-     "mean_abs_ft": 0.54,
+     "max_cut_ft": -0.52,
+     "max_fill_ft": 0.68,
+     "mean_abs_ft": 0.59,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
     "outside_legacy_envelope_ft": 0.0,
     "role": "ada_route_concept",
     "status": "ADA-compliant route concept pending civil/code detailing",
     "length_ft": 15.4,
-    "elev_from": 622.44,
-    "elev_to": 622.98,
+    "elev_from": 622.53,
+    "elev_to": 623.0,
     "max_step_slope_pct": 0.0,
     "gateway_transition_ft": 15.4,
-    "gateway_max_terrain_slope_pct": 5.4,
+    "gateway_max_terrain_slope_pct": 4.7,
     "gateway_note": "segments inside aisle/promenade row-end gateways are engineered graded transitions (design 8.33% max) \u2014 pending civil detailing",
     "landings_marked": 0,
     "source": "scripts/rebuild_ada_routes.py (Dijkstra on proposed_grade_1ft.tif, conflict-masked)"
@@ -3167,8 +3167,8 @@
     "class": "public",
     "grading_required": {
      "max_cut_ft": -0.11,
-     "max_fill_ft": 0.39,
-     "mean_abs_ft": 0.2,
+     "max_fill_ft": 0.4,
+     "mean_abs_ft": 0.21,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
     "outside_legacy_envelope_ft": 14.2,
@@ -3176,8 +3176,8 @@
     "status": "ADA-compliant route concept pending civil/code detailing",
     "length_ft": 14.2,
     "elev_from": 609.81,
-    "elev_to": 609.99,
-    "max_step_slope_pct": 4.08,
+    "elev_to": 610.0,
+    "max_step_slope_pct": 4.27,
     "gateway_transition_ft": 0.0,
     "gateway_max_terrain_slope_pct": 0.0,
     "gateway_note": "segments inside aisle/promenade row-end gateways are engineered graded transitions (design 8.33% max) \u2014 pending civil detailing",
@@ -4463,20 +4463,20 @@
       750644.15
      ],
      [
-      19533041.2,
+      19533040.2,
+      750644.15
+     ],
+     [
+      19533042.2,
       750645.15
      ],
      [
-      19533043.2,
+      19533044.2,
       750646.15
      ],
      [
-      19533045.2,
+      19533046.2,
       750647.15
-     ],
-     [
-      19533047.2,
-      750648.15
      ],
      [
       19533048.2,
@@ -4914,20 +4914,20 @@
     "to": "egress_rim_south",
     "class": "public",
     "grading_required": {
-     "max_cut_ft": 1.62,
-     "max_fill_ft": 0.87,
-     "mean_abs_ft": 0.41,
+     "max_cut_ft": 1.46,
+     "max_fill_ft": 0.88,
+     "mean_abs_ft": 0.39,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
     "outside_legacy_envelope_ft": 333.5,
     "role": "ada_route_concept",
     "status": "ADA-compliant route concept pending civil/code detailing",
     "length_ft": 510.4,
-    "elev_from": 622.44,
+    "elev_from": 622.53,
     "elev_to": 638.93,
     "max_step_slope_pct": 8.61,
     "gateway_transition_ft": 148.3,
-    "gateway_max_terrain_slope_pct": 24.7,
+    "gateway_max_terrain_slope_pct": 25.5,
     "gateway_note": "segments inside aisle/promenade row-end gateways are engineered graded transitions (design 8.33% max) \u2014 pending civil detailing",
     "landings_marked": 11,
     "source": "scripts/rebuild_ada_routes.py (Dijkstra on proposed_grade_1ft.tif, conflict-masked)",
@@ -6781,7 +6781,7 @@
     "class": "service",
     "grading_required": {
      "max_cut_ft": -0.02,
-     "max_fill_ft": 0.15,
+     "max_fill_ft": 0.16,
      "mean_abs_ft": 0.08,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
@@ -6791,7 +6791,7 @@
     "length_ft": 10.9,
     "elev_from": 609.81,
     "elev_to": 609.59,
-    "max_step_slope_pct": 5.75,
+    "max_step_slope_pct": 5.82,
     "gateway_transition_ft": 0.0,
     "gateway_max_terrain_slope_pct": 0.0,
     "gateway_note": "segments inside aisle/promenade row-end gateways are engineered graded transitions (design 8.33% max) \u2014 pending civil detailing",
@@ -7600,20 +7600,20 @@
     "to": "floor_arrival",
     "class": "public",
     "grading_required": {
-     "max_cut_ft": 0.47,
+     "max_cut_ft": 0.55,
      "max_fill_ft": 1.3,
-     "mean_abs_ft": 0.17,
+     "mean_abs_ft": 0.19,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
     "outside_legacy_envelope_ft": 139.0,
     "role": "ada_route_concept",
     "status": "ADA-compliant route concept pending civil/code detailing",
     "length_ft": 255.0,
-    "elev_from": 617.76,
+    "elev_from": 617.89,
     "elev_to": 609.81,
-    "max_step_slope_pct": 8.36,
+    "max_step_slope_pct": 8.37,
     "gateway_transition_ft": 86.6,
-    "gateway_max_terrain_slope_pct": 29.8,
+    "gateway_max_terrain_slope_pct": 29.9,
     "gateway_note": "segments inside aisle/promenade row-end gateways are engineered graded transitions (design 8.33% max) \u2014 pending civil detailing",
     "landings_marked": 3,
     "source": "scripts/rebuild_ada_routes.py (Dijkstra on proposed_grade_1ft.tif, conflict-masked)",
@@ -7654,7 +7654,7 @@
     "name": "route_arrival_to_cross_aisle_landing_2",
     "route": "route_arrival_to_cross_aisle",
     "role": "landing",
-    "elev_navd88": 635.6,
+    "elev_navd88": 635.59,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -7722,7 +7722,7 @@
     "name": "route_arrival_to_cross_aisle_landing_6",
     "route": "route_arrival_to_cross_aisle",
     "role": "landing",
-    "elev_navd88": 628.58,
+    "elev_navd88": 628.59,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -7756,7 +7756,7 @@
     "name": "route_arrival_to_cross_aisle_landing_8",
     "route": "route_arrival_to_cross_aisle",
     "role": "landing",
-    "elev_navd88": 622.88,
+    "elev_navd88": 622.89,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -7773,7 +7773,7 @@
     "name": "route_arrival_to_cross_aisle_landing_9",
     "route": "route_arrival_to_cross_aisle",
     "role": "landing",
-    "elev_navd88": 622.64,
+    "elev_navd88": 622.68,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -7790,7 +7790,7 @@
     "name": "route_arrival_to_cross_aisle_landing_10",
     "route": "route_arrival_to_cross_aisle",
     "role": "landing",
-    "elev_navd88": 622.57,
+    "elev_navd88": 622.66,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -7799,15 +7799,15 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533172.78,
-     750715.31
+     19533170.99,
+     750711.73
     ]
    },
    "properties": {
     "name": "route_arrival_to_cross_aisle_landing_11",
     "route": "route_arrival_to_cross_aisle",
     "role": "landing",
-    "elev_navd88": 622.27,
+    "elev_navd88": 622.31,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -7841,7 +7841,7 @@
     "name": "route_arrival_to_floor_landing_2",
     "route": "route_arrival_to_floor",
     "role": "landing",
-    "elev_navd88": 635.6,
+    "elev_navd88": 635.59,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8037,15 +8037,15 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533143.71,
-     750697.41
+     19533141.82,
+     750696.96
     ]
    },
    "properties": {
     "name": "route_cross_aisle_to_egress_landing_1",
     "route": "route_cross_aisle_to_egress",
     "role": "landing",
-    "elev_navd88": 620.79,
+    "elev_navd88": 620.76,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8054,15 +8054,15 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533084.9,
-     750692.15
+     19533077.13,
+     750691.15
     ]
    },
    "properties": {
     "name": "route_cross_aisle_to_egress_landing_2",
     "route": "route_cross_aisle_to_egress",
     "role": "landing",
-    "elev_navd88": 620.55,
+    "elev_navd88": 620.9,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8071,15 +8071,15 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533048.55,
-     750685.5
+     19533045.72,
+     750682.67
     ]
    },
    "properties": {
     "name": "route_cross_aisle_to_egress_landing_3",
     "route": "route_cross_aisle_to_egress",
     "role": "landing",
-    "elev_navd88": 621.72,
+    "elev_navd88": 622.33,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8088,15 +8088,15 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533043.64,
-     750677.59
+     19533042.23,
+     750676.18
     ]
    },
    "properties": {
     "name": "route_cross_aisle_to_egress_landing_4",
     "route": "route_cross_aisle_to_egress",
     "role": "landing",
-    "elev_navd88": 624.47,
+    "elev_navd88": 624.83,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8105,7 +8105,7 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533007.33,
+     19532985.31,
      750676.15
     ]
    },
@@ -8113,7 +8113,7 @@
     "name": "route_cross_aisle_to_egress_landing_5",
     "route": "route_cross_aisle_to_egress",
     "role": "landing",
-    "elev_navd88": 624.45,
+    "elev_navd88": 624.61,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8122,15 +8122,15 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19532976.47,
-     750671.15
+     19532974.7,
+     750670.15
     ]
    },
    "properties": {
     "name": "route_cross_aisle_to_egress_landing_6",
     "route": "route_cross_aisle_to_egress",
     "role": "landing",
-    "elev_navd88": 626.75,
+    "elev_navd88": 627.21,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8139,15 +8139,15 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19532968.4,
-     750664.55
+     19532962.08,
+     750664.15
     ]
    },
    "properties": {
     "name": "route_cross_aisle_to_egress_landing_7",
     "route": "route_cross_aisle_to_egress",
     "role": "landing",
-    "elev_navd88": 629.38,
+    "elev_navd88": 629.86,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8156,15 +8156,15 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19532953.85,
-     750654.33
+     19532959.22,
+     750651.64
     ]
    },
    "properties": {
     "name": "route_cross_aisle_to_egress_landing_8",
     "route": "route_cross_aisle_to_egress",
     "role": "landing",
-    "elev_navd88": 631.99,
+    "elev_navd88": 632.45,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8173,7 +8173,7 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19532997.25,
+     19533007.26,
      750643.15
     ]
    },
@@ -8181,7 +8181,7 @@
     "name": "route_cross_aisle_to_egress_landing_9",
     "route": "route_cross_aisle_to_egress",
     "role": "landing",
-    "elev_navd88": 634.56,
+    "elev_navd88": 635.03,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8190,7 +8190,7 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533048.11,
+     19533058.12,
      750648.15
     ]
    },
@@ -8198,7 +8198,7 @@
     "name": "route_cross_aisle_to_egress_landing_10",
     "route": "route_cross_aisle_to_egress",
     "role": "landing",
-    "elev_navd88": 635.49,
+    "elev_navd88": 635.82,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8207,7 +8207,7 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533132.18,
+     19533142.19,
      750648.15
     ]
    },
@@ -8215,7 +8215,7 @@
     "name": "route_cross_aisle_to_egress_landing_11",
     "route": "route_cross_aisle_to_egress",
     "role": "landing",
-    "elev_navd88": 638.01,
+    "elev_navd88": 638.36,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8402,7 +8402,7 @@
     "name": "route_floor_to_egress_landing_11",
     "route": "route_floor_to_egress",
     "role": "landing",
-    "elev_navd88": 635.79,
+    "elev_navd88": 635.77,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8419,7 +8419,7 @@
     "name": "route_floor_to_egress_landing_12",
     "route": "route_floor_to_egress",
     "role": "landing",
-    "elev_navd88": 638.31,
+    "elev_navd88": 638.3,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },
@@ -8487,7 +8487,7 @@
     "name": "route_park_to_floor_landing_1",
     "route": "route_park_to_floor",
     "role": "landing",
-    "elev_navd88": 614.44,
+    "elev_navd88": 614.45,
     "note": "graded level landing pad (>=5x5 ft, <=2% any direction) required here \u2014 pending civil detailing"
    }
   },

@@ -104,8 +104,8 @@
      "n_segments": 350,
      "min_seg_ft": 1.0,
      "mean_seg_ft": 1.2,
-     "turn_count_gt20deg": 57,
-     "angle_changes_gt5deg": 59
+     "turn_count_gt20deg": 55,
+     "angle_changes_gt5deg": 57
     },
     "smoothness_after": {
      "total_ft": 376.6,
@@ -118,7 +118,7 @@
     "grading_required": {
      "max_cut_ft": 1.86,
      "max_fill_ft": 4.26,
-     "mean_abs_ft": 1.17,
+     "mean_abs_ft": 1.14,
      "note": "linear design profile between node datums vs raw proposed grade \u2014 pending civil detailing"
     },
     "source": "scripts/design_ada_routes.py (LOS-rationalized from stage-1 solver corridor)",
@@ -140,47 +140,47 @@
      ],
      [
       19533227.2,
-      750755.15
+      750754.15
      ],
      [
       19533229.2,
-      750791.15
+      750790.15
      ],
      [
-      19533220.93909351,
-      750880.1842143652
+      19533223.046371773,
+      750877.1798849286
      ],
      [
-      19533220.696530946,
-      750881.9471890866
+      19533222.739488326,
+      750879.832473059
      ],
      [
-      19533220.33839,
-      750883.2532204333
+      19533222.242023867,
+      750881.8051799138
      ],
      [
-      19533219.864670683,
-      750884.1023084053
+      19533221.553978402,
+      750883.0980054934
      ],
      [
-      19533219.275372982,
-      750884.4944530027
+      19533220.675351925,
+      750883.7109497979
      ],
      [
-      19533218.57049691,
-      750884.4296542252
+      19533219.606144443,
+      750883.6440128272
      ],
      [
-      19533217.75004246,
-      750883.9079120733
+      19533218.346355945,
+      750882.8971945811
      ],
      [
-      19533216.814009637,
-      750882.9292265465
+      19533216.89598644,
+      750881.4704950597
      ],
      [
-      19533215.76239843,
-      750881.4935976453
+      19533215.25503593,
+      750879.3639142632
      ],
      [
       19533200.2,
@@ -231,9 +231,9 @@
     "alternatives": [
      "A_east_primary"
     ],
-    "length_ft": 330.1,
+    "length_ft": 329.8,
     "drop_ft": 24.8,
-    "design_grade_pct": 7.52,
+    "design_grade_pct": 7.53,
     "profile": "ramp_runs(5-8.33%)",
     "landings_marked": 11,
     "smoothness_before": {
@@ -241,21 +241,21 @@
      "n_segments": 385,
      "min_seg_ft": 1.0,
      "mean_seg_ft": 1.2,
-     "turn_count_gt20deg": 79,
-     "angle_changes_gt5deg": 82
+     "turn_count_gt20deg": 77,
+     "angle_changes_gt5deg": 80
     },
     "smoothness_after": {
-     "total_ft": 336.7,
+     "total_ft": 339.5,
      "n_segments": 7,
      "min_seg_ft": 11.2,
-     "mean_seg_ft": 48.1,
+     "mean_seg_ft": 48.5,
      "turn_count_gt20deg": 3,
      "angle_changes_gt5deg": 6
     },
     "grading_required": {
-     "max_cut_ft": 5.65,
-     "max_fill_ft": 7.23,
-     "mean_abs_ft": 3.61,
+     "max_cut_ft": 6.07,
+     "max_fill_ft": 7.25,
+     "mean_abs_ft": 3.71,
      "note": "linear design profile between node datums vs raw proposed grade \u2014 pending civil detailing"
     },
     "source": "scripts/design_ada_routes.py (LOS-rationalized from stage-1 solver corridor)",
@@ -526,7 +526,7 @@
     "grading_required": {
      "max_cut_ft": 1.98,
      "max_fill_ft": 6.91,
-     "mean_abs_ft": 2.02,
+     "mean_abs_ft": 2.0,
      "note": "linear design profile between node datums vs raw proposed grade \u2014 pending civil detailing"
     },
     "source": "scripts/design_ada_routes.py (LOS-rationalized from stage-1 solver corridor)",
@@ -908,8 +908,8 @@
      "C_hybrid"
     ],
     "length_ft": 246.2,
-    "drop_ft": 5.3,
-    "design_grade_pct": 2.14,
+    "drop_ft": 5.4,
+    "design_grade_pct": 2.19,
     "profile": "sloped_walk(<=5%)",
     "landings_marked": 3,
     "smoothness_before": {
@@ -929,9 +929,9 @@
      "angle_changes_gt5deg": 8
     },
     "grading_required": {
-     "max_cut_ft": -0.39,
-     "max_fill_ft": 5.99,
-     "mean_abs_ft": 3.52,
+     "max_cut_ft": -0.5,
+     "max_fill_ft": 6.07,
+     "mean_abs_ft": 3.59,
      "note": "linear design profile between node datums vs raw proposed grade \u2014 pending civil detailing"
     },
     "source": "scripts/design_ada_routes.py (LOS-rationalized from stage-1 solver corridor)",
@@ -974,7 +974,7 @@
     "route": "route_arrival_to_cross_aisle",
     "role": "landing",
     "kind": "turn-pad",
-    "elev_navd88": 626.61,
+    "elev_navd88": 626.62,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -992,7 +992,7 @@
     "route": "route_arrival_to_cross_aisle",
     "role": "landing",
     "kind": "turn-pad",
-    "elev_navd88": 621.46,
+    "elev_navd88": 621.48,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1001,8 +1001,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533225.79,
-     750746.91
+     19533225.92,
+     750746.85
     ]
    },
    "properties": {
@@ -1010,7 +1010,7 @@
     "route": "route_arrival_to_floor",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 637.19,
+    "elev_navd88": 637.18,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1019,8 +1019,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533228.58,
-     750779.99
+     19533228.63,
+     750779.91
     ]
    },
    "properties": {
@@ -1028,7 +1028,7 @@
     "route": "route_arrival_to_floor",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 635.96,
+    "elev_navd88": 635.95,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1037,8 +1037,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533227.16,
-     750813.12
+     19533227.58,
+     750813.04
     ]
    },
    "properties": {
@@ -1055,8 +1055,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533224.09,
-     750846.21
+     19533225.24,
+     750846.15
     ]
    },
    "properties": {
@@ -1064,7 +1064,7 @@
     "route": "route_arrival_to_floor",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 631.18,
+    "elev_navd88": 631.5,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1073,8 +1073,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533221.02,
-     750879.31
+     19533222.81,
+     750879.26
     ]
    },
    "properties": {
@@ -1082,7 +1082,7 @@
     "route": "route_arrival_to_floor",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 630.23,
+    "elev_navd88": 630.7,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1091,8 +1091,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533203.16,
-     750862.58
+     19533203.21,
+     750862.39
     ]
    },
    "properties": {
@@ -1109,8 +1109,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533180.99,
-     750837.91
+     19533180.92,
+     750837.84
     ]
    },
    "properties": {
@@ -1127,8 +1127,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533158.11,
-     750813.8
+     19533158.06,
+     750813.75
     ]
    },
    "properties": {
@@ -1145,8 +1145,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533144.59,
-     750786.12
+     19533144.6,
+     750786.09
     ]
    },
    "properties": {
@@ -1163,8 +1163,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533220.2,
-     750888.15
+     19533222.2,
+     750889.15
     ]
    },
    "properties": {
@@ -1172,7 +1172,7 @@
     "route": "route_arrival_to_floor",
     "role": "landing",
     "kind": "turn-pad",
-    "elev_navd88": 630.53,
+    "elev_navd88": 630.94,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1316,7 +1316,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 635.24,
+    "elev_navd88": 635.23,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1334,7 +1334,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 637.49,
+    "elev_navd88": 637.48,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1460,7 +1460,7 @@
     "route": "route_park_to_floor",
     "role": "landing",
     "kind": "turn-pad",
-    "elev_navd88": 615.3,
+    "elev_navd88": 615.34,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1496,7 +1496,7 @@
     "route": "route_park_to_floor",
     "role": "landing",
     "kind": "turn-pad",
-    "elev_navd88": 610.32,
+    "elev_navd88": 610.33,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   }

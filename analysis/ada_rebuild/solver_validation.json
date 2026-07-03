@@ -32,7 +32,7 @@
     "to": "cross_aisle_mid",
     "class": "public",
     "length_ft": 418.0,
-    "max_step_slope_pct": 8.62,
+    "max_step_slope_pct": 8.61,
     "landings_marked": 11,
     "crossing": {
      "crossing_type": "culvert crossing (engineered, pending civil detailing)",
@@ -42,7 +42,7 @@
     "grading_required": {
      "max_cut_ft": 0.72,
      "max_fill_ft": 1.08,
-     "mean_abs_ft": 0.24,
+     "mean_abs_ft": 0.25,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
     "outside_legacy_envelope_ft": 305.5,
@@ -80,9 +80,9 @@
     "landings_marked": 0,
     "crossing": null,
     "grading_required": {
-     "max_cut_ft": -0.43,
-     "max_fill_ft": 0.62,
-     "mean_abs_ft": 0.54,
+     "max_cut_ft": -0.52,
+     "max_fill_ft": 0.68,
+     "mean_abs_ft": 0.59,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
     "outside_legacy_envelope_ft": 0.0,
@@ -94,13 +94,13 @@
     "to": "wc_cluster_floor",
     "class": "public",
     "length_ft": 14.2,
-    "max_step_slope_pct": 4.08,
+    "max_step_slope_pct": 4.27,
     "landings_marked": 0,
     "crossing": null,
     "grading_required": {
      "max_cut_ft": -0.11,
-     "max_fill_ft": 0.39,
-     "mean_abs_ft": 0.2,
+     "max_fill_ft": 0.4,
+     "mean_abs_ft": 0.21,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
     "outside_legacy_envelope_ft": 14.2,
@@ -120,9 +120,9 @@
      "ok": true
     },
     "grading_required": {
-     "max_cut_ft": 1.62,
-     "max_fill_ft": 0.87,
-     "mean_abs_ft": 0.41,
+     "max_cut_ft": 1.46,
+     "max_fill_ft": 0.88,
+     "mean_abs_ft": 0.39,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
     "outside_legacy_envelope_ft": 333.5,
@@ -156,12 +156,12 @@
     "to": "service_stage_access",
     "class": "service",
     "length_ft": 10.9,
-    "max_step_slope_pct": 5.75,
+    "max_step_slope_pct": 5.82,
     "landings_marked": 0,
     "crossing": null,
     "grading_required": {
      "max_cut_ft": -0.02,
-     "max_fill_ft": 0.15,
+     "max_fill_ft": 0.16,
      "mean_abs_ft": 0.08,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
@@ -174,7 +174,7 @@
     "to": "floor_arrival",
     "class": "public",
     "length_ft": 255.0,
-    "max_step_slope_pct": 8.36,
+    "max_step_slope_pct": 8.37,
     "landings_marked": 3,
     "crossing": {
      "crossing_type": "culvert crossing (engineered, pending civil detailing)",
@@ -182,9 +182,9 @@
      "ok": true
     },
     "grading_required": {
-     "max_cut_ft": 0.47,
+     "max_cut_ft": 0.55,
      "max_fill_ft": 1.3,
-     "mean_abs_ft": 0.17,
+     "mean_abs_ft": 0.19,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
     "outside_legacy_envelope_ft": 139.0,
@@ -281,7 +281,7 @@
  "slopes": {
   "per_route": {
    "route_arrival_to_cross_aisle": {
-    "max_step_slope_pct": 8.62,
+    "max_step_slope_pct": 8.61,
     "within_8_33": false,
     "within_tolerance_band": true,
     "landings_marked": 11
@@ -299,7 +299,7 @@
     "landings_marked": 0
    },
    "route_floor_to_wc_cluster": {
-    "max_step_slope_pct": 4.08,
+    "max_step_slope_pct": 4.27,
     "within_8_33": true,
     "within_tolerance_band": true,
     "landings_marked": 0
@@ -317,13 +317,13 @@
     "landings_marked": 15
    },
    "route_service_to_stage": {
-    "max_step_slope_pct": 5.75,
+    "max_step_slope_pct": 5.82,
     "within_8_33": true,
     "within_tolerance_band": true,
     "landings_marked": 0
    },
    "route_park_to_floor": {
-    "max_step_slope_pct": 8.36,
+    "max_step_slope_pct": 8.37,
     "within_8_33": false,
     "within_tolerance_band": true,
     "landings_marked": 3

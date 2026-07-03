@@ -178,15 +178,22 @@ def main():
         color_hint="#b9a48a", open_structure=True,
         rule9_status=C.STAGE_RULE9_STATUS,
         note="no enclosing shell — lateral shoulders only; refit OPEN (Rule 9)")
+    # NOTE: the scenarioE ada_ramp/ada_landing zones were REMOVED from bowl_zones
+    # by the 2026-06-12 ADA rebuild (build_in_situ_geometry.py no longer emits
+    # them; see its "NOT imported" note). The live accessible-route surfaces now
+    # come from the rebuilt Concept-C corridors (route_corridors_C.geojson) — this
+    # script must run AFTER ADA stage 2. Sourcing the removed zones here was the
+    # pre-existing KeyError (repro_tickets/build_site_context_stale_ada_zones.md).
+    ada_corridors = load_vec("route_corridors_C.geojson")["features"]
     paths = unary_union(
         [shape(f["geometry"]) for f in
-         zones["cross_aisle"] + zones["ada_ramp"] + zones["ada_landing"]
-         + zones["promenade_hinge"]])
+         zones["cross_aisle"] + zones["promenade_hinge"]]
+        + [shape(f["geometry"]) for f in ada_corridors])
     mat("accessible_paths", rounded(paths.simplify(0.1)),
         "stabilized aggregate / boardwalk ramps, ≤8.33% running slope",
         color_hint="#d9cfa3",
-        note="switchback ADA ramps + landings, rows-9/10 cross-aisle, "
-             "row-5 promenade hinge band")
+        note="rebuilt Concept-C ADA corridors (route_corridors_C) + rows-9/10 "
+             "cross-aisle + row-5 promenade hinge band")
     mat("event_floor", zones["orchestra_event_floor"][0]["geometry"],
         "stabilized turf (grass pavers at high-wear lines)",
         schematic=True, color_hint="#a4c08a",

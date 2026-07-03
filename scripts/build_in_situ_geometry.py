@@ -23,6 +23,23 @@ inherits: the stage surfaces (flagged rule9_status=open) and the treatment
 cell (drain target). The audit gate enforces this.
 
 Planning-grade. NAVD88 intl ft. EPSG:6494. Run from repo root.
+
+── PIPELINE ARTIFACT CONTRACT (read before trusting this script's output) ──────
+This emitter's `bowl_zones.geojson` is an INTERMEDIATE product, not final Scenario
+E state. In particular:
+  * This emitter does NOT emit `ada_ramp` / `ada_landing` zones. The scenarioE ADA
+    layer was rejected by the 2026-06-12 rebuild; the LIVE accessible route is the
+    rebuilt `ada_route.geojson` network (design_ada_routes.py), which this emitter
+    must never delete (see the STALE_SINGLEFAN guard below).
+  * It emits inherited/schematic STAGE zones (stage_core / stage_shoulder_*, flagged
+    Rule 9 OPEN) and a schematic `orchestra_event_floor` that is re-emitted against
+    the ADOPTED P_opt deck edge (0-quantity cleanup; _adopted_stage_footprint()).
+The repo is valid ONLY after the full pipeline, IN ORDER:
+    build_in_situ_geometry.py → rebuild_ada_routes.py → design_ada_routes.py
+    → design_constructed_ada.py → build_site_context.py → build_truth_package.py
+    → scripts/comparators/audit_comparators.py
+Do NOT inspect or commit emitter-only outputs as final. Verify with
+`scripts/check_pipeline_artifact_contract.py` (and docs/PIPELINE_ARTIFACT_CONTRACT.md).
 """
 import json
 import os
@@ -79,6 +96,36 @@ def front_edge(geom, ref_xy):
             cur = 0
     idx = [(best_start + k) % n for k in range(min(best, n))]
     return xy[idx]
+
+
+def _drop_slivers(geom, min_sf):
+    """Drop disconnected polygon fragments below min_sf (schematic cleanup)."""
+    if geom.geom_type == "Polygon":
+        return geom
+    keep = [g for g in geom.geoms if g.area >= min_sf]
+    return unary_union(keep) if keep else geom
+
+
+def _adopted_stage_footprint(roles):
+    """Adopted P_opt stage footprint (deck + translated lateral shoulders), or
+    None if the adoption artifact is absent. Used to re-emit the schematic
+    orchestra floor against the adopted deck edge (Rule 9 stage-footprint
+    cleanup, STAGE_CONSTRUCTION_METHOD_DECISION / RULE9_DECISION_RECORD). The
+    floor is concept-tier, so subtracting this changes NO quantity (0 CY /
+    0 seats / 0 drainage; ADA uses only the floor centroid). Mirrors
+    stage_current_geometry_gate.py's footprint reconstruction."""
+    adf_path = os.path.join(C.REPO, "analysis", "in_situ_normalization",
+                            "adopted_stage_footprint.geojson")
+    if not os.path.exists(adf_path):
+        return None
+    from shapely.affinity import translate
+    adf = json.load(open(adf_path))["features"][0]
+    off = adf["properties"]["lateral_offset_from_inherited_ft"]
+    deck = shape(adf["geometry"])
+    inh = sorted((shape(f["geometry"]) for f in roles["stage_surface"]),
+                 key=lambda g: g.area, reverse=True)
+    shoulders = [translate(g, xoff=off[0], yoff=off[1]) for g in inh[1:]]
+    return unary_union([deck] + shoulders)
 
 
 def main():
@@ -184,13 +231,27 @@ def main():
     hull = unary_union([stage_shape] + row1).convex_hull
     orchestra = hull.difference(stage_shape.buffer(0.1)).difference(
         unary_union(tread_shapes).buffer(0.1)).simplify(0.25)
+    # Re-emit against the ADOPTED P_opt deck edge (Rule 9 stage-footprint
+    # cleanup): the hull above uses the INHERITED stage; subtract the adopted
+    # footprint so the derived floor does not sit under the adopted deck /
+    # shoulders (overlap → 0). Minimal subtraction, NOT a hull rebuild. Schematic
+    # floor → no quantity change (see _adopted_stage_footprint). Falls back to
+    # the inherited-only floor if the adoption artifact is absent.
+    o_src = "derived: convex_hull(stage, row-1 bands) minus both"
+    o_extra = {}
+    adopted_fp = _adopted_stage_footprint(roles)
+    if adopted_fp is not None:
+        orchestra = orchestra.difference(adopted_fp.buffer(0.1)).simplify(0.05).buffer(0)
+        orchestra = _drop_slivers(orchestra, 5.0)
+        o_src += "; re-emitted against adopted P_opt footprint (deck + shoulders)"
+        o_extra["reemitted_against_adopted_deck"] = "adopted_stage_footprint.geojson (P_opt)"
     add_zone("orchestra_event_floor", rounded(orchestra),
              grade_elev_navd88=C.FOCUS_ELEV,
              surface="stabilized turf / accessible event floor",
              schematic=True, cost_status="concept",
-             geometry_source="derived: convex_hull(stage, row-1 bands) minus both",
+             geometry_source=o_src,
              note="floor between stage and the three row-1 bands; "
-                  "floor-level accessible seating")
+                  "floor-level accessible seating", **o_extra)
 
     # treatment cell — reused verbatim (stage4 lineage via design_open_low,
     # the same polygon Scenario E uses as its drainage target)
@@ -289,8 +350,17 @@ def main():
     src["governing_scheme"] = C.GOVERNING_SCHEME
     C.dump(src, os.path.join(C.VEC_DIR, "scenarioE_geometry.geojson"))
 
-    # superseded copies from the old single-fan package must not linger
-    for stale in ("seating_rows.geojson", "stage_floor.geojson", "ada_route.geojson"):
+    # superseded copies from the old single-fan package must not linger.
+    # NOTE: ada_route.geojson is deliberately NOT in this list. The REBUILT ADA
+    # network (design_ada_routes.py, 2026-06-12) took that filename; it is a
+    # REQUIRED current artifact (see audit_in_situ_package.py VECTORS /
+    # SUPERSEDED_COPIES). Deleting it drops live Scenario E data and breaks
+    # truth_package. Keep this tuple == audit_in_situ_package.SUPERSEDED_COPIES.
+    STALE_SINGLEFAN = ("seating_rows.geojson", "stage_floor.geojson")
+    REQUIRED_KEEP = ("ada_route.geojson", "ada_nodes.geojson",
+                     "legacy_ada_rejected.geojson")
+    for stale in STALE_SINGLEFAN:
+        assert stale not in REQUIRED_KEEP, f"guard: refusing to delete required {stale}"
         p = os.path.join(C.VEC_DIR, stale)
         if os.path.exists(p):
             os.remove(p)

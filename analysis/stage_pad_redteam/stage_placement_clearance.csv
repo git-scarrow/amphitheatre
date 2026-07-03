@@ -1,0 +1,7 @@
+section,row,row_tread_elev_navd88,clear_core_front(canon meas.)_ft,clear_deck_front(core+apron)_ft,clear_full_footprint(+shoulders)_ft,shortfall_vs_35ft_core_ft
+east,1,610.86,12.0,12.0,0.0,23.0
+east,2,611.86,17.3,17.3,4.5,17.7
+bend,1,610.83,32.7,29.6,29.6,2.3
+bend,2,611.86,35.9,33.3,33.3,-0.9
+south,1,610.81,21.9,18.8,15.9,13.1
+south,2,611.87,26.6,23.4,20.5,8.4

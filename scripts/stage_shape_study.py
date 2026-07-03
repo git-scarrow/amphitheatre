@@ -565,6 +565,40 @@ def main():
             ),
         )
 
+    # ── ADOPTED FOOTPRINT EMISSION (Rule 9 path-3 P_opt + five_facet apron) ──
+    # Additive artifact: persists the geometry of the SELECTED candidate this
+    # study already measured, reusing the verified placement + apron machinery
+    # so the emitted footprint is identical to the measured one. It adopts
+    # nothing by itself — the builder + constants perform adoption. Shoulders
+    # are a rigid translation of the inherited stage_surface by the recorded
+    # P_opt offset, applied downstream (build_in_situ_geometry.py).
+    _ff_front = apron_front_candidates(P_s, sel["az"], fam_dirs)["five_facet_apron"][0]
+    _ff_world = [to_world(w, u) for w, u in _ff_front]
+    _ff_apron = Polygon([to_world(_ff_front[0][0], 0.0)] + _ff_world
+                        + [to_world(_ff_front[-1][0], 0.0)]).buffer(0)
+    _deck_total = core_deck.union(_ff_apron)
+    _P_inh = placements["P_inherited"]["P"]
+    _off = [round(P_s[0] - _P_inh[0], 4), round(P_s[1] - _P_inh[1], 4)]
+    C.dump(C.fc([
+        C.feat(dict(name="adopted_stage_deck", role="stage_surface_adopted",
+                    placement=sel_name, apron="five_facet_apron",
+                    axis_az=sel["az"],
+                    rule9_path="path3_compromise (P_opt) + path4_wide_fan",
+                    lateral_offset_from_inherited_ft=_off,
+                    front_to_row1_ft=axis_table[sel_name]["front_to_row1_ft"],
+                    deck_elev_navd88=C.FOCUS_ELEV, structure_band_ft=1.0,
+                    core_area_sf=round(core_deck.area, 0),
+                    apron_area_sf=round(_ff_apron.area, 0),
+                    total_area_sf=round(_deck_total.area, 0),
+                    note="P_opt-placed 70x34 core unioned with the five-facet "
+                         "apron; identical to the measured study footprint. "
+                         "Shoulders: translate inherited stage_surface by "
+                         "lateral_offset_from_inherited_ft downstream."),
+               dict(type="Polygon",
+                    coordinates=[[[round(x, 3), round(y, 3)]
+                                  for x, y in _deck_total.exterior.coords]])),
+    ]), os.path.join(OUT, "adopted_stage_footprint.geojson"))
+
     payload = dict(
         generated_by="scripts/stage_shape_study.py",
         governing_scheme=C.GOVERNING_SCHEME,

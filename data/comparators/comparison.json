@@ -62,9 +62,18 @@
    "note": "Rule 9 OPEN"
   },
   "stage_front_to_row1_ft": {
+   "value": {
+    "east": 12.0,
+    "bend": 32.7,
+    "south": 21.9
+   },
+   "basis": "measured_insitu",
+   "note": "CURRENT adopted P_opt per-section core->row-1 gaps (e/b/s); governing occupied-deck gaps with the five_facet_apron are 12.0/29.6/18.8; >=12 ft in-situ pocket gate PASS. The uniform 35 ft is RETIRED design_open_low \u2014 see stage_front_to_row1_openlow_ft"
+  },
+  "stage_front_to_row1_openlow_ft": {
    "value": 35.0,
-   "basis": "canon",
-   "note": "event floor between stage and row 1"
+   "basis": "scenario_open_low_retired",
+   "note": "historical single-fan uniform value (row 1 at radius 85); NOT current canon"
   },
   "floor_elev_ft": {
    "value": 612.5,
@@ -114,9 +123,9 @@
    "note": "row-18 axis radius"
   },
   "upper_row_distance_ft": {
-   "value": 106.8,
+   "value": 104.5,
    "basis": "measured_dem",
-   "note": "stage front -> row 18: 35 ft floor + seating depth (rN - r1 radii)"
+   "note": "stage front -> top row on the bay axis: bend on-axis gap (32.7 ft) + seating depth (rN - r1 radii); no longer uses the retired 35 ft"
   },
   "row1_arc_length_ft": {
    "value": 163.2,

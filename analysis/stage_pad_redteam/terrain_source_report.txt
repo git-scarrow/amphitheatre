@@ -1,0 +1,39 @@
+STAGE-PAD TERRAIN SOURCE REPORT  (advisory; changes no canon)
+======================================================================
+
+[1] SOURCE SURFACE USED FOR THE STAGE-PAD VOLUME
+    file            : dem/dem_design_1ft.tif
+    sha256          : 035eb77372e011110a733b5de9806cfcb7efb4fbf6d0868eaf03275a84e1666c
+    CRS             : EPSG:6494  (NAD83(2011) / Michigan Central (ft))
+    linear units    : foot (international ft)
+    vertical datum  : NAVD88 Geoid12A intl ft  (per dem/in_situ_grading_manifest.json;
+                      NOT embedded in the GeoTIFF — horizontal CRS only. Provenance-declared.)
+    pixel size      : (1.0, -1.0) ft   cell area 1.00 sf
+    grid            : 801x801   bounds [19532622.7, 750385.65, 19533423.7, 751186.65]
+    nodata          : -9999.0   band desc: 'idw' (IDW-interpolated)
+    provenance      : USGS 3DEP LiDAR, USGS_LPC_MI_13County_2015_C16 tiles 532749/532751,
+                      ground class 2 only -> PDAL writers.gdal IDW.  Generator: scripts/build_dems.py
+    sampling method : rasterize(all_touched=False), point-in-cell; 1 sf per cell
+
+[2] IS THIS THE EXISTING GROUND?  (verified, not assumed)
+    dem_design_1ft  vs  package/10_3d_viewer/dem/existing_ground_1ft.tif:
+      max|delta| over all valid cells = 0.0000 ft  ->  BYTE-VALUE IDENTICAL
+      => 'dem_design_1ft.tif' IS the bare existing-ground DEM (name 'design' is a misnomer).
+    proposed_grade_1ft within stage footprint (proposed - existing):
+      mean -0.128  min -1.50  max +0.00 ft
+      => proposed grade NEVER rises in the stage area (max +0.00); it CUTS
+         290 cells (drainage swales). The stage pad is NOT in the proposed grade,
+         so ~330 CY is additive to the raster — but it overlies counted swale CUTS (see overlap csv).
+
+[3] SAME SOURCE AS OTHER QUANTITIES?
+    seating/sightlines : dem/dem_design_1ft.tif  (existing)   SAME
+    drainage/swales    : dem/dem_design_1ft.tif  (existing)   SAME
+    earthwork 500.8 CY : dem/dem_design_1ft.tif  (existing)   SAME
+    ADA route grades   : dem/proposed_grade_1ft.tif (proposed) DIFFERENT — by design
+                         (ADA slope must be checked on the finished surface). Not a defect.
+    stage_pad_redteam  : dem/dem_design_1ft.tif  (existing)   SAME as seating/drainage/earthwork
+    VERDICT: terrain source is consistent and correct for a fill-vs-existing volume.
+
+[4] ARITHMETIC CLOSURE (union, target 612.5)
+    area 3386.0 sf  mean_fill 2.633 ft  ->  area*mean/27 = 330.2 CY  vs reported fill 330.2 CY
+    prose '2699 sf' = deck-only (core+apron); 330 CY is charged over the 3386 sf union (+2 shoulders).

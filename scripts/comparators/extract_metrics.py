@@ -185,7 +185,14 @@ def petoskey_metrics():
         zz = [p["tread_elev_navd88"] for p in sr]
         sec_rakes.append(np.polyfit(rr, zz, 1)[0])
 
-    STAGE_FRONT_TO_ROW1 = 35.0   # canon (goal/DESIGN_CANON; event floor)
+    # RETIRED: 35 ft is the design_open_low single-fan uniform stage-front->row-1
+    # value (row 1 at radius 85). It is NOT current canon — current DESIGN_CANON
+    # (Rule 9, P_opt) adopts a three-section geometry with per-section core gaps
+    # {east 12.0, bend 32.7, south 21.9} under a >=12 ft in-situ pocket gate.
+    # Kept only as a historical open_low metric; do not report as canon compliance.
+    STAGE_FRONT_TO_ROW1_OPENLOW = 35.0        # historical (design_open_low, retired)
+    STAGE_FRONT_TO_ROW1_INSITU = {"east": 12.0, "bend": 32.7, "south": 21.9}  # adopted P_opt core gaps
+    STAGE_FRONT_TO_ROW1_REPR = STAGE_FRONT_TO_ROW1_INSITU["bend"]  # bay-axis on-axis gap, for comparison
     STAGE_W, STAGE_D = 70.0, 34.0
     # measured from bowl_zones.geojson stage polygons (union of core +
     # both 17 ft shoulders, extent perpendicular to the az-150 stage axis)
@@ -242,8 +249,16 @@ def petoskey_metrics():
             "arc_geometric = 110 deg x 85 ft; row1_physical = built tread "
             "length (gaps at hinges excluded)"),
         "stage_depth_ft": V(STAGE_D, "canon", "Rule 9 OPEN"),
-        "stage_front_to_row1_ft": V(STAGE_FRONT_TO_ROW1, "canon",
-                                    "event floor between stage and row 1"),
+        "stage_front_to_row1_ft": V(STAGE_FRONT_TO_ROW1_INSITU, "measured_insitu",
+                                    "CURRENT adopted P_opt per-section core->row-1 "
+                                    "gaps (e/b/s); governing occupied-deck gaps with "
+                                    "the five_facet_apron are 12.0/29.6/18.8; >=12 ft "
+                                    "in-situ pocket gate PASS. The uniform 35 ft is "
+                                    "RETIRED design_open_low — see stage_front_to_row1_openlow_ft"),
+        "stage_front_to_row1_openlow_ft": V(STAGE_FRONT_TO_ROW1_OPENLOW,
+                                            "scenario_open_low_retired",
+                                            "historical single-fan uniform value "
+                                            "(row 1 at radius 85); NOT current canon"),
         "floor_elev_ft": V(612.5, "canon", "stage/event-floor reference"),
         "row1_elev_ft": V(round(r1_z, 1), "measured_dem",
                           "mean of row-1 treads (terrace_treads.geojson)"),
@@ -260,11 +275,12 @@ def petoskey_metrics():
                              "row-1 axis radius"),
         "outer_radius_ft": V(round(rN_rad, 1), "measured_dem",
                              f"row-{row_ids[-1]} axis radius"),
-        "upper_row_distance_ft": V(round(STAGE_FRONT_TO_ROW1
+        "upper_row_distance_ft": V(round(STAGE_FRONT_TO_ROW1_REPR
                                          + (rN_rad - r1_rad), 1),
                                    "measured_dem",
-                                   "stage front -> row 18: 35 ft floor + "
-                                   "seating depth (rN - r1 radii)"),
+                                   "stage front -> top row on the bay axis: "
+                                   "bend on-axis gap (32.7 ft) + seating depth "
+                                   "(rN - r1 radii); no longer uses the retired 35 ft"),
         "row1_arc_length_ft": V(round(row1_arc, 1), "canon",
                                 "geometric 110 deg x 85 ft; physical row-1 "
                                 "treads total 131.6 ft"),

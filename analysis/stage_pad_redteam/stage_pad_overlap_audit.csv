@@ -1,0 +1,9 @@
+other,overlap_area_sf,other_in_500_8,verdict
+treatment_cell_landscape,0.0,False,clear
+orchestra_event_floor,221.2,False,SHARED 612.5 AREA: count once (not additive)
+east_flank_swale,188.3,True,COLLISION+DOUBLE-COUNT: area is in 500.8 (cut); stage fill reverses counted cut
+south_flank_swale,103.5,True,COLLISION+DOUBLE-COUNT: area is in 500.8 (cut); stage fill reverses counted cut
+cross_aisle,0.0,True,clear
+construction_envelope,691.1,envelope,"envelope, not a volume"
+ada_route,0.0,True,clear
+terrace_treads,0.4,True,clear

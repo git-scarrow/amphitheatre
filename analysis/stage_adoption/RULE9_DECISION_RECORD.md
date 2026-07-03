@@ -76,12 +76,41 @@ equal bay Δ, and is adopted **with the same bundle**. If any pocket < 12 ft (ex
 - [ ] Re-emit the adopted stage footprint; re-run `scripts/stage_refit_sweep.py` +
       `scripts/audit_in_situ_package.py` → **green**.
 - [ ] Run the `az150_lat-20` in-situ tie-break (above).
-- [ ] **EarthworkEngine CY recompute** for the adopted footprint — replace the planar-proxy CY
-      (`STAGE_REFIT_SWEEP.md` §9 data gap) with a DEM-differenced number.
+- [~] **EarthworkEngine CY — method RESOLVED, precise quantity Phase-B.** DEM differencing of the
+      adopted footprint gives ~330 CY **only if** it is a solid earthen pad to 612.5 — **refuted by
+      red-team** (`analysis/stage_pad_redteam/stage_pad_redteam.md`): canon specifies a deck over
+      compacted base (option B ~98 CY / C ~0 CY), 612.5 is the deck **top** not the earthen target
+      (flood-safe base ≤612.0), and the footprint overlaps ~292 sf of drainage swale already in
+      the 500.8 (fill-vs-cut conflict + double count).
+      - [x] **Deck-vs-pad method SELECTED 2026-07-03: Method B — deck over compacted base**
+        (`STAGE_CONSTRUCTION_METHOD_DECISION.md`). Solid pad (A) rejected; 330.2 CY retained as the
+        upper-bound scenario only, never additive. C (freestanding deck) is the documented flood
+        fallback.
+      - [ ] **Phase-B EarthworkEngine:** compute Method-B base-fill CY with the base top pinned at
+        the flood-safe datum (≥612.0, not 612.5), net out the ~292 sf drainage-swale overlap already
+        in the 500.8, and emit a geometry-backed `earthwork.csv` component. Until then stage stays
+        "structure, not grading" (0 CY); ~98 CY is a planning estimate. **Do NOT quote 330 CY as
+        additive or "regardless of refit."**
+- [~] **Stage-footprint cleanup (NOT RED — no governing gate fails).**
+      Stage-pad volume arithmetic and terrain lineage pass. 330.2 CY is the pre-trim
+      solid-pad-to-612.5 upper-bound scenario, not required import. Occupied deck clearance passes
+      the current ≥12 ft pocket gate (min 12.02 ft).
+      - [x] **Orchestra re-emitted against the adopted deck edge (2026-07-03).** `deck ∩ floor`
+        100.3 → **0.0 sf**, `full ∩ floor` 221.2 → **0.0 sf**; both `bowl_zones/orchestra_event_floor`
+        and `material_zones/event_floor` patched (minimal subtraction of the adopted footprint, not a
+        hull rebuild). Proven **no adopted-quantity delta** (0 CY / 0 seats / 0 drainage; ADA centroid
+        node nudged 4.8 ft, concept-tier). Baked into `scripts/build_in_situ_geometry.py`
+        (`_adopted_stage_footprint`), mirrored by `build_site_context.py`; report
+        `analysis/stage_pad_redteam/orchestra_reemit_report.md`. truth_package hashes refreshed.
+      - [ ] Decide whether to adopt the optional shoulder trim (candidate
+        `repair_candidate_shoulders_trimmed.geojson`; deck already passes, so optional).
+      Detail + gate table: `analysis/stage_pad_redteam/stage_current_geometry_gate.md`.
 - [ ] Write the path-4 fan fields into `harness_config.yaml` + acoustic note.
-- [ ] Re-emit every stage-derived artifact from the adopted footprint (bowl_zones/material_zones
-      orchestra + untouched-slope, the six viewpoint stations, the event-mode screen line, grading
-      rasters); drop Board 01's provisional floor/backdrop patches.
+- [~] Re-emit every stage-derived artifact from the adopted footprint: **[x] bowl_zones/material_zones
+      orchestra (2026-07-03, baked into `build_in_situ_geometry.py`)**; still open — untouched-slope, the six
+      viewpoint stations, the event-mode screen line, grading rasters; drop Board 01's provisional
+      floor/backdrop patches. (Full re-emission is blocked on the emitter deleting the live
+      `ada_route.geojson` — ticket `analysis/repro_tickets/emitter_deletes_ada_route.md`.)
 - [x] **Re-confirm row-1 gaps against the adopted Decision-1 tier.** ✅ **Decision 1 ADOPTED
       2026-07-02: (A) Scenario E baseline (1,243/1,283).** Baseline *is* the 1,283 frame the P_opt
       gaps (12.0/32.7/21.9) were solved against — so they are already the adopted-tier gaps; no

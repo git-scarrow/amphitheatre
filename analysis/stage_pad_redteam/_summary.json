@@ -1,0 +1,203 @@
+{
+ "event_floor": 612.5,
+ "union": {
+  "cells": 3386,
+  "area": 3386.0,
+  "zmin": 609.62,
+  "zmean": 609.87,
+  "zmax": 610.55,
+  "mean_fill": 2.63,
+  "cut_cy": 0.0,
+  "fill_cy": 330.2,
+  "net_cy": 330.2
+ },
+ "components": {
+  "stage_core_70x34": {
+   "cells": 2380,
+   "area": 2380.0,
+   "zmin": 609.64,
+   "zmean": 609.87,
+   "zmax": 610.12,
+   "mean_fill": 2.63,
+   "cut_cy": 0.0,
+   "fill_cy": 231.7,
+   "net_cy": 231.7
+  },
+  "five_facet_apron": {
+   "cells": 316,
+   "area": 316.0,
+   "zmin": 609.62,
+   "zmean": 609.83,
+   "zmax": 610.0,
+   "mean_fill": 2.67,
+   "cut_cy": 0.0,
+   "fill_cy": 31.2,
+   "net_cy": 31.2
+  },
+  "shoulder_a": {
+   "cells": 345,
+   "area": 345.0,
+   "zmin": 609.75,
+   "zmean": 609.87,
+   "zmax": 609.98,
+   "mean_fill": 2.63,
+   "cut_cy": 0.0,
+   "fill_cy": 33.6,
+   "net_cy": 33.6
+  },
+  "shoulder_b": {
+   "cells": 345,
+   "area": 345.0,
+   "zmin": 609.7,
+   "zmean": 609.87,
+   "zmax": 610.55,
+   "mean_fill": 2.63,
+   "cut_cy": 0.0,
+   "fill_cy": 33.6,
+   "net_cy": 33.6
+  }
+ },
+ "orchestra": {
+  "cells": 2141,
+  "area": 2141.0,
+  "zmin": 609.37,
+  "zmean": 609.86,
+  "zmax": 611.43,
+  "mean_fill": 2.64,
+  "cut_cy": 0.0,
+  "fill_cy": 209.4,
+  "net_cy": 209.4
+ },
+ "datum_sweep": {
+  "611.3": {
+   "cells": 3386,
+   "area": 3386.0,
+   "zmin": 609.62,
+   "zmean": 609.87,
+   "zmax": 610.55,
+   "mean_fill": 1.43,
+   "cut_cy": 0.0,
+   "fill_cy": 179.7,
+   "net_cy": 179.7
+  },
+  "611.8": {
+   "cells": 3386,
+   "area": 3386.0,
+   "zmin": 609.62,
+   "zmean": 609.87,
+   "zmax": 610.55,
+   "mean_fill": 1.93,
+   "cut_cy": 0.0,
+   "fill_cy": 242.4,
+   "net_cy": 242.4
+  },
+  "612.0": {
+   "cells": 3386,
+   "area": 3386.0,
+   "zmin": 609.62,
+   "zmean": 609.87,
+   "zmax": 610.55,
+   "mean_fill": 2.13,
+   "cut_cy": 0.0,
+   "fill_cy": 267.5,
+   "net_cy": 267.5
+  },
+  "612.5": {
+   "cells": 3386,
+   "area": 3386.0,
+   "zmin": 609.62,
+   "zmean": 609.87,
+   "zmax": 610.55,
+   "mean_fill": 2.63,
+   "cut_cy": 0.0,
+   "fill_cy": 330.2,
+   "net_cy": 330.2
+  }
+ },
+ "alt_B_edges": {
+  "cells": 1006,
+  "area": 1006.0,
+  "zmin": 609.62,
+  "zmean": 609.86,
+  "zmax": 610.55,
+  "mean_fill": 2.64,
+  "cut_cy": 0.0,
+  "fill_cy": 98.4,
+  "net_cy": 98.4
+ },
+ "contamination": {
+  "adopted_core_area_sf": 2380.0,
+  "is_70x34_not_52x26": true,
+  "axis_az": 150.0,
+  "lateral_offset_ft": [
+   6.4234,
+   19.8744
+  ],
+  "front_to_row1_ft": {
+   "east": 12.0,
+   "bend": 32.7,
+   "south": 21.9
+  },
+  "min_row1_gap_ft": 12.0,
+  "no_85ft_or_35ft_stage_distance": true,
+  "bbox": [
+   19533056.8,
+   750738.5,
+   19533150.7,
+   750809.7
+  ],
+  "design_open_low_stagefloor_area_sf": 12510.0
+ },
+ "contam_fail": false,
+ "overlaps": [
+  {
+   "other": "treatment_cell_landscape",
+   "overlap_area_sf": 0.0,
+   "other_in_500_8": false,
+   "note": "clear"
+  },
+  {
+   "other": "orchestra_event_floor",
+   "overlap_area_sf": 221.2,
+   "other_in_500_8": false,
+   "note": "OVERLAP \u2014 double-count risk"
+  },
+  {
+   "other": "east_flank_swale",
+   "overlap_area_sf": 188.3,
+   "other_in_500_8": true,
+   "note": "OVERLAP \u2014 double-count risk"
+  },
+  {
+   "other": "south_flank_swale",
+   "overlap_area_sf": 103.5,
+   "other_in_500_8": true,
+   "note": "OVERLAP \u2014 double-count risk"
+  },
+  {
+   "other": "cross_aisle",
+   "overlap_area_sf": 0.0,
+   "other_in_500_8": "?",
+   "note": "clear"
+  },
+  {
+   "other": "construction_envelope",
+   "overlap_area_sf": 691.1,
+   "other_in_500_8": "envelope(not a volume)",
+   "note": "OVERLAP \u2014 double-count risk"
+  },
+  {
+   "other": "ada_route",
+   "overlap_area_sf": 0.0,
+   "other_in_500_8": true,
+   "note": "clear"
+  },
+  {
+   "other": "terrace_treads",
+   "overlap_area_sf": 0.4,
+   "other_in_500_8": true,
+   "note": "clear"
+  }
+ ],
+ "double_count_cy": -0.1
+}

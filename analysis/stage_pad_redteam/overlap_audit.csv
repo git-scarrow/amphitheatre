@@ -1,0 +1,9 @@
+other,overlap_area_sf,other_in_500_8,note
+treatment_cell_landscape,0.0,False,clear
+orchestra_event_floor,221.2,False,OVERLAP — double-count risk
+east_flank_swale,188.3,True,OVERLAP — double-count risk
+south_flank_swale,103.5,True,OVERLAP — double-count risk
+cross_aisle,0.0,?,clear
+construction_envelope,691.1,envelope(not a volume),OVERLAP — double-count risk
+ada_route,0.0,True,clear
+terrace_treads,0.4,True,clear

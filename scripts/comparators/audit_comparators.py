@@ -151,8 +151,14 @@ def main():
               "redundancy", "sightline_preservation"):
         check(k in pz.get("ada_detail", {}),
               f"petoskey ada_detail missing {k}")
-    check(pz["stage_front_to_row1_ft"]["value"] == 35.0,
-          "petoskey stage->row1 != 35")
+    # 35 ft is retired (design_open_low). Active metric must be the current
+    # in-situ per-section gaps, NOT a canon 35-ft compliance claim.
+    check(pz["stage_front_to_row1_ft"]["basis"] != "canon"
+          and isinstance(pz["stage_front_to_row1_ft"]["value"], dict),
+          "petoskey stage->row1 must be current in-situ per-section gaps, not canon 35")
+    check(pz.get("stage_front_to_row1_openlow_ft", {}).get("value") == 35.0
+          and pz["stage_front_to_row1_openlow_ft"]["basis"] == "scenario_open_low_retired",
+          "retired 35-ft open_low metric missing/mislabeled")
     check(C.AX_AZ == 132.0 and C.STAGE_RULE9_STATUS == "open",
           "in_situ_common canon changed (AX_AZ / Rule 9)")
 
