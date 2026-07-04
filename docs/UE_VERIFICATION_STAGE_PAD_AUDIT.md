@@ -7,6 +7,20 @@ in UE** — geometry is imported from the artifact pipeline, never hand-edited.
 
 ---
 
+## PASS 3 — corner-clearance pullback re-import (commit `f2cf2b9`) ✅
+
+Design review found the fan-end corners too close (east occupied deck 12 ft, wing
+touching row 1). Fixed by an **8 ft upstage pullback** of the whole stage (corners
+→ ≥20 ft; east/south 20, bend 36) + an **ADA seating-wedge cost penalty** so the
+floor routes hug the widened forecourt (all ADA gates back to green). Stage re-
+imported from the pulled-back export (import 4 meshes → spawn → remove the
+adopted-position actors → save): **0 `Stage_adopted*`, 4 `Stage_pulled*`.** Overhead
+`unreal_export/verification/post_reimport/05_pulled_back_overhead.png` shows the deck
+sitting back with a wider forecourt before row 1. Gates: deck 20.0 ft, seats
+1283/1243, contract HELD, comparator PASS, package ACCEPTED, verify_unreal_export 35/0.
+
+---
+
 ## PASS 2 — Phase-B adopted-deck re-import (commit `b0b0e38`) ✅
 
 The Phase-B stage-zone re-emission (`stage_zone_reemit_report.md`) put the adopted

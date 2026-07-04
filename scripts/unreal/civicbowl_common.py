@@ -183,8 +183,9 @@ SCENE_SPEC = {
         "folder": "Concept_ADA/Landings",
         "kind": "point",
         "source": "unreal_export/geo/ada_route.geojson (Point features); count is an "
-                  "ADA-solver output — re-solved to 19 after the adopted-deck orchestra shift",
-        "expected": 19,
+                  "ADA-solver output — re-solved to 27 after the stage pullback + "
+                  "seating-wedge-penalty forecourt re-route",
+        "expected": 27,
         "included": True,
     },
     "cameras": {

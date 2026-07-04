@@ -1,8 +1,8 @@
 {
  "schema": "unreal-handoff/provenance/0.1",
- "generated": "2026-07-04T18:32:51-04:00",
+ "generated": "2026-07-04T18:34:03-04:00",
  "generator": "scripts/build_unreal_export.py",
- "git_commit": "d723f83",
+ "git_commit": "f2cf2b9",
  "constants_source": "scripts/in_situ_common.py",
  "authoritative_boundary": "The GIS/design repo is the SINGLE source of truth. This package is a viewer/export layer. Unreal is NOT source of truth. Any geometry edited in Unreal must return as a proposal GeoJSON in EPSG:6494 and pass the existing Python/QGIS gates (scripts/audit_in_situ_package.py et al.) before it can become design truth.",
  "crs": {
