@@ -1,8 +1,8 @@
 {
  "schema": "unreal-handoff/provenance/0.1",
- "generated": "2026-06-27T20:38:40-04:00",
+ "generated": "2026-07-04T11:49:07-04:00",
  "generator": "scripts/build_unreal_export.py",
- "git_commit": "8b0f161",
+ "git_commit": "b0b0e38",
  "constants_source": "scripts/in_situ_common.py",
  "authoritative_boundary": "The GIS/design repo is the SINGLE source of truth. This package is a viewer/export layer. Unreal is NOT source of truth. Any geometry edited in Unreal must return as a proposal GeoJSON in EPSG:6494 and pass the existing Python/QGIS gates (scripts/audit_in_situ_package.py et al.) before it can become design truth.",
  "crs": {
@@ -35,17 +35,17 @@
   },
   "zones": {
    "path": "vectors_geojson/bowl_zones.geojson",
-   "sha256_12": "3228c4b2ff70",
+   "sha256_12": "f899b090449d",
    "exists": true
   },
-  "stage_lineage": {
-   "path": "design_open_low/stage_floor.geojson",
-   "sha256_12": "59a32670aab6",
+  "adopted_stage": {
+   "path": "analysis/in_situ_normalization/adopted_stage_footprint.geojson",
+   "sha256_12": "ab2099a4d3e7",
    "exists": true
   },
   "ada_route": {
    "path": "vectors_geojson/ada_route.geojson",
-   "sha256_12": "1b591af7b9a7",
+   "sha256_12": "b7ce7f2d719f",
    "exists": true
   },
   "human_scale": {
@@ -65,7 +65,7 @@
   },
   "design_state": {
    "path": "truth_package/design_state.current.json",
-   "sha256_12": "c305a211b590",
+   "sha256_12": "64b6397842ef",
    "exists": true
   },
   "dem_existing": {
@@ -95,11 +95,11 @@
    "seat_total": 1283
   },
   "stage": {
-   "n_stage_features": 7
+   "n_stage_features": 8
   },
   "ada": {
    "n_routes": 8,
-   "n_nodes": 31
+   "n_nodes": 19
   },
   "human_scale": {
    "n_humans": 15,
@@ -266,7 +266,7 @@
    "n_materials": 20
   },
   "actors": {
-   "n_actors": 110
+   "n_actors": 99
   }
  },
  "regenerate": "python scripts/build_unreal_export.py",

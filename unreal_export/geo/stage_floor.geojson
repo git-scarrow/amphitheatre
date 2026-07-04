@@ -15,24 +15,24 @@
     "coordinates": [
      [
       [
-       19533069.89,
-       750725.41
+       19533059.31,
+       750774.72
       ],
       [
-       19533130.51,
-       750760.41
+       19533119.93,
+       750809.72
       ],
       [
-       19533113.51,
-       750789.85
+       19533136.93,
+       750780.28
       ],
       [
-       19533052.89,
-       750754.85
+       19533076.31,
+       750745.28
       ],
       [
-       19533069.89,
-       750725.41
+       19533059.31,
+       750774.72
       ]
      ]
     ]
@@ -51,13 +51,18 @@
     "blocks_bay_view": false,
     "open_to_bay_side": true,
     "max_structure_height_ft": 4.0,
-    "geometry_source": "scenarioE stage_surface (inherited)",
-    "surface": "hardscape deck",
+    "geometry_source": "adopted_stage_footprint.geojson (P_opt 70x34 core)",
+    "surface": "hardwood/composite deck over compacted base",
     "material_id": "stage_provisional",
-    "note": "inherited design_open_low stage reused by Scenario E; axis refit OPEN per DESIGN_CANON Rule 9 — no fan is declared by this package",
+    "note": "adopted P_opt stage: 70x34 core + five-facet apron at the bay-preserving placement; construction Method B (deck over compacted base). See STAGE_CONSTRUCTION_METHOD_DECISION.md.",
+    "edge_class": "performance_core",
+    "occupied": true,
+    "governs_row1_pocket": false,
+    "construction_method": "Method B — deck over compacted base",
+    "placement": "P_opt (Rule 9 path-3 + path-4 wide-fan)",
     "unreal_anchor_local_m": [
-     7.3152,
-     -12.6705,
+     9.272,
+     -6.6142,
      186.69
     ],
     "provenance": "derived from bowl_zones.geojson (read-only)"
@@ -70,24 +75,104 @@
     "coordinates": [
      [
       [
-       19533069.89,
-       750725.41
+       19533136.93,
+       750780.28
       ],
       [
-       19533054.17,
-       750718.64
+       19533136.93,
+       750780.27
       ],
       [
-       19533050.36,
-       750737.23
+       19533126.8,
+       750769.83
       ],
       [
-       19533052.89,
-       750754.85
+       19533115.45,
+       750761.49
       ],
       [
-       19533069.89,
-       750725.41
+       19533103.56,
+       750754.08
+      ],
+      [
+       19533091.17,
+       750747.53
+      ],
+      [
+       19533078.1,
+       750742.18
+      ],
+      [
+       19533076.31,
+       750745.27
+      ],
+      [
+       19533076.31,
+       750745.28
+      ],
+      [
+       19533136.93,
+       750780.28
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "feature_id": "zone_stage_apron",
+    "source_file": "vectors_geojson/bowl_zones.geojson",
+    "source_index": 1,
+    "role": "stage_apron",
+    "zone": "stage_apron",
+    "name": "stage_apron",
+    "elev_navd88_ft": 612.5,
+    "rule9_status": "open",
+    "provisional": true,
+    "concept_tier": false,
+    "blocks_bay_view": false,
+    "open_to_bay_side": true,
+    "max_structure_height_ft": 4.0,
+    "geometry_source": "adopted_stage_footprint.geojson (five_facet_apron)",
+    "surface": "hardwood/composite deck over compacted base",
+    "material_id": "stage_provisional",
+    "note": "apron-inclusive deck front is the governed ≥12 ft row-1 pocket edge (occupied deck)",
+    "edge_class": "occupied_deck_apron",
+    "occupied": true,
+    "governs_row1_pocket": true,
+    "construction_method": "Method B — deck over compacted base",
+    "placement": "P_opt (Rule 9 path-3 + path-4 wide-fan)",
+    "unreal_anchor_local_m": [
+     11.2183,
+     -12.3628,
+     186.69
+    ],
+    "provenance": "derived from bowl_zones.geojson (read-only)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       19533060.59,
+       750738.51
+      ],
+      [
+       19533056.78,
+       750757.1
+      ],
+      [
+       19533059.31,
+       750774.72
+      ],
+      [
+       19533076.31,
+       750745.28
+      ],
+      [
+       19533060.59,
+       750738.51
       ]
      ]
     ]
@@ -95,7 +180,7 @@
    "properties": {
     "feature_id": "zone_stage_shoulder_left",
     "source_file": "vectors_geojson/bowl_zones.geojson",
-    "source_index": 1,
+    "source_index": 2,
     "role": "stage_shoulder",
     "zone": "stage_shoulder_left",
     "name": "stage_shoulder_left",
@@ -106,13 +191,18 @@
     "blocks_bay_view": false,
     "open_to_bay_side": true,
     "max_structure_height_ft": 4.0,
-    "geometry_source": "scenarioE stage_surface (inherited)",
-    "surface": "hardscape deck",
+    "geometry_source": "adopted_stage_footprint.geojson (translated shoulder)",
+    "surface": "flat landscape shoulder (not occupied deck)",
     "material_id": "stage_provisional",
-    "note": "lateral floor-level shoulder — not an enclosing wall",
+    "note": "non-governing visual/landscape shoulder — not an enclosing wall and not occupied deck unless explicitly adopted",
+    "edge_class": "lateral_nonoccupied",
+    "occupied": false,
+    "governs_row1_pocket": false,
+    "construction_method": "Method B — deck over compacted base",
+    "placement": "P_opt (Rule 9 path-3 + path-4 wide-fan)",
     "unreal_anchor_local_m": [
-     -2.9842,
-     -19.9898,
+     -1.0274,
+     -13.9334,
      186.69
     ],
     "provenance": "derived from bowl_zones.geojson (read-only)"
@@ -125,24 +215,24 @@
     "coordinates": [
      [
       [
-       19533130.51,
-       750760.41
+       19533119.93,
+       750809.72
       ],
       [
-       19533144.23,
-       750770.64
+       19533136.46,
+       750803.1
       ],
       [
-       19533130.04,
-       750783.23
+       19533150.65,
+       750790.51
       ],
       [
-       19533113.51,
-       750789.85
+       19533136.93,
+       750780.28
       ],
       [
-       19533130.51,
-       750760.41
+       19533119.93,
+       750809.72
       ]
      ]
     ]
@@ -150,7 +240,7 @@
    "properties": {
     "feature_id": "zone_stage_shoulder_right",
     "source_file": "vectors_geojson/bowl_zones.geojson",
-    "source_index": 2,
+    "source_index": 3,
     "role": "stage_shoulder",
     "zone": "stage_shoulder_right",
     "name": "stage_shoulder_right",
@@ -161,13 +251,18 @@
     "blocks_bay_view": false,
     "open_to_bay_side": true,
     "max_structure_height_ft": 4.0,
-    "geometry_source": "scenarioE stage_surface (inherited)",
-    "surface": "hardscape deck",
+    "geometry_source": "adopted_stage_footprint.geojson (translated shoulder)",
+    "surface": "flat landscape shoulder (not occupied deck)",
     "material_id": "stage_provisional",
-    "note": "lateral floor-level shoulder — not an enclosing wall",
+    "note": "non-governing visual/landscape shoulder — not an enclosing wall and not occupied deck unless explicitly adopted",
+    "edge_class": "lateral_nonoccupied",
+    "occupied": false,
+    "governs_row1_pocket": false,
+    "construction_method": "Method B — deck over compacted base",
+    "placement": "P_opt (Rule 9 path-3 + path-4 wide-fan)",
     "unreal_anchor_local_m": [
-     18.8034,
-     -7.4102,
+     20.7602,
+     -1.3538,
      186.69
     ],
     "provenance": "derived from bowl_zones.geojson (read-only)"
@@ -181,25 +276,53 @@
      [
       [
        [
-        19533151.71,
-        750768.46
+        19533078.14,
+        750742.08
        ],
        [
-        19533153.37,
-        750786.96
+        19533091.21,
+        750747.44
        ],
        [
-        19533151.82,
-        750756.0
+        19533103.61,
+        750753.99
        ],
        [
-        19533151.71,
-        750768.46
-       ]
-      ]
-     ],
-     [
-      [
+        19533115.51,
+        750761.41
+       ],
+       [
+        19533126.86,
+        750769.75
+       ],
+       [
+        19533137.02,
+        750780.23
+       ],
+       [
+        19533149.78,
+        750789.74
+       ],
+       [
+        19533148.04,
+        750770.75
+       ],
+       [
+        19533147.76,
+        750760.27
+       ],
+       [
+        19533148.12,
+        750754.9
+       ],
+       [
+        19533151.77,
+        750755.21
+       ],
+       [
+        19533150.86,
+        750747.68
+       ],
        [
         19533147.3,
         750748.61
@@ -261,88 +384,68 @@
         750723.62
        ],
        [
-        19533074.41,
+        19533074.38,
         750723.45
        ],
        [
-        19533064.53,
-        750722.99
+        19533061.02,
+        750722.67
        ],
        [
-        19533069.94,
-        750725.32
+        19533060.5,
+        750738.48
        ],
        [
-        19533130.56,
-        750760.32
+        19533076.27,
+        750745.16
        ],
        [
-        19533144.32,
-        750770.59
-       ],
-       [
-        19533130.09,
-        750783.32
-       ],
-       [
-        19533113.74,
-        750789.87
-       ],
-       [
-        19533149.93,
-        750792.28
-       ],
-       [
-        19533147.97,
-        750769.72
-       ],
-       [
-        19533147.76,
-        750760.28
-       ],
-       [
-        19533148.12,
-        750754.9
-       ],
-       [
-        19533151.77,
-        750755.21
-       ],
-       [
-        19533150.86,
-        750747.68
-       ],
-       [
-        19533147.3,
-        750748.61
+        19533078.14,
+        750742.08
        ]
       ]
      ],
      [
       [
        [
-        19533061.03,
-        750721.49
+        19533151.82,
+        750756.0
        ],
        [
-        19533061.37,
-        750718.89
+        19533151.71,
+        750768.46
        ],
        [
-        19533072.44,
-        750719.6
+        19533153.37,
+        750786.96
        ],
        [
-        19533091.86,
-        750719.69
+        19533151.82,
+        750756.0
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        19533149.88,
+        750791.34
        ],
        [
-        19533054.44,
-        750718.65
+        19533142.45,
+        750797.93
        ],
        [
-        19533061.03,
-        750721.49
+        19533153.41,
+        750792.19
+       ],
+       [
+        19533150.01,
+        750792.38
+       ],
+       [
+        19533149.88,
+        750791.34
        ]
       ]
      ]
@@ -351,7 +454,7 @@
    "properties": {
     "feature_id": "zone_orchestra_event_floor",
     "source_file": "vectors_geojson/bowl_zones.geojson",
-    "source_index": 3,
+    "source_index": 4,
     "role": "forecourt_event_floor",
     "zone": "orchestra_event_floor",
     "name": "orchestra_event_floor",
@@ -362,13 +465,18 @@
     "blocks_bay_view": null,
     "open_to_bay_side": null,
     "max_structure_height_ft": null,
-    "geometry_source": "derived: convex_hull(stage, row-1 bands) minus both",
+    "geometry_source": "derived: hull(adopted P_opt deck, row-1 bands) minus adopted footprint (deck + shoulders) + treads",
     "surface": "stabilized turf / accessible event floor",
     "material_id": "event_floor_concept",
     "note": "floor between stage and the three row-1 bands; floor-level accessible seating",
+    "edge_class": null,
+    "occupied": null,
+    "governs_row1_pocket": null,
+    "construction_method": null,
+    "placement": null,
     "unreal_anchor_local_m": [
-     25.7861,
-     -8.7559,
+     13.9035,
+     -16.5131,
      186.69
     ],
     "provenance": "derived from bowl_zones.geojson (read-only)"
@@ -678,7 +786,7 @@
    "properties": {
     "feature_id": "zone_treatment_cell_landscape",
     "source_file": "vectors_geojson/bowl_zones.geojson",
-    "source_index": 4,
+    "source_index": 5,
     "role": "treatment_cell",
     "zone": "treatment_cell_landscape",
     "name": "treatment_cell_landscape",
@@ -693,6 +801,11 @@
     "surface": null,
     "material_id": "treatment_cell_concept",
     "note": "dry bioretention cell beyond the stage; ponds only shallowly and transiently after large storms — never a standing pool",
+    "edge_class": null,
+    "occupied": null,
+    "governs_row1_pocket": null,
+    "construction_method": null,
+    "placement": null,
     "unreal_anchor_local_m": [
      -7.7549,
      13.4334,
@@ -704,51 +817,49 @@
   {
    "type": "Feature",
    "geometry": {
-    "type": "LineString",
+    "type": "Point",
     "coordinates": [
-     [
-      19533075.2,
-      750786.21
-     ],
-     [
-      19532945.2,
-      751011.38
-     ]
+     19533098.877,
+     750775.269
     ]
    },
    "properties": {
-    "feature_id": "lineage_bay_view_axis",
-    "source_file": "design_open_low/stage_floor.geojson",
-    "source_index": 1,
-    "role": "bay_view_axis",
-    "name": "bay_view_axis",
+    "feature_id": "adopted_focal_point_stage_front",
+    "source_file": "analysis/in_situ_normalization/adopted_stage_footprint.geojson",
+    "role": "focal_point_stage_front",
+    "name": "focal_point_stage_front",
     "az_deg": 330.0,
-    "note": "NNW toward Little Traverse Bay / evening sun",
     "material_id": "bay_view_axis",
-    "lineage": "inherited design_open_low stage lineage",
-    "provenance": "derived from design_open_low/stage_floor.geojson (read-only)"
+    "layer": "Reference/BayAxis",
+    "lineage": "re-emitted from adopted P_opt deck (design_open_low lineage quarantined)",
+    "provenance": "derived from adopted_stage_footprint.geojson + canonical bay azimuth 330.0 deg"
    }
   },
   {
    "type": "Feature",
    "geometry": {
-    "type": "Point",
+    "type": "LineString",
     "coordinates": [
-     19533100.2,
-     750742.91
+     [
+      19533128.877,
+      750723.307
+     ],
+     [
+      19532998.877,
+      750948.474
+     ]
     ]
    },
    "properties": {
-    "feature_id": "lineage_focal_point_stage_front",
-    "source_file": "design_open_low/stage_floor.geojson",
-    "source_index": 2,
-    "role": "focal_point_stage_front",
-    "name": "focal_point_stage_front",
-    "az_deg": null,
-    "note": "sightline focus + stage front, 35 ft from row 1",
+    "feature_id": "adopted_bay_view_axis",
+    "source_file": "analysis/in_situ_normalization/adopted_stage_footprint.geojson",
+    "role": "bay_view_axis",
+    "name": "bay_view_axis",
+    "az_deg": 330.0,
     "material_id": "bay_view_axis",
-    "lineage": "inherited design_open_low stage lineage",
-    "provenance": "derived from design_open_low/stage_floor.geojson (read-only)"
+    "layer": "Reference/BayAxis",
+    "lineage": "re-emitted from adopted P_opt deck (design_open_low lineage quarantined)",
+    "provenance": "derived from adopted_stage_footprint.geojson + canonical bay azimuth 330.0 deg"
    }
   }
  ]

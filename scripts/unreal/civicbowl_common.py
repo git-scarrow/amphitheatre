@@ -145,8 +145,9 @@ SCENE_SPEC = {
     "stage": {
         "folder": "Proposal_Editable/Stage",
         "kind": "polygon",
-        "source": "unreal_export/geo/stage_floor.geojson (zone_stage_* polygons)",
-        "expected": 3,
+        "source": "unreal_export/geo/stage_floor.geojson (zone_stage_* polygons: "
+                  "adopted P_opt core + apron + 2 shoulders)",
+        "expected": 4,
         "included": True,
     },
     "treatment_cell": {
@@ -166,7 +167,8 @@ SCENE_SPEC = {
     "bay_view_axis": {
         "folder": "Reference/BayView",
         "kind": "line+point",
-        "source": "unreal_export/geo/stage_floor.geojson (lineage_* features)",
+        "source": "unreal_export/geo/stage_floor.geojson (adopted_* features: "
+                  "bay axis + focal point re-emitted from the adopted P_opt deck)",
         "expected": 2,
         "included": True,
     },
@@ -180,8 +182,9 @@ SCENE_SPEC = {
     "ada_landings": {
         "folder": "Concept_ADA/Landings",
         "kind": "point",
-        "source": "unreal_export/geo/ada_route.geojson (Point features)",
-        "expected": 31,
+        "source": "unreal_export/geo/ada_route.geojson (Point features); count is an "
+                  "ADA-solver output — re-solved to 19 after the adopted-deck orchestra shift",
+        "expected": 19,
         "included": True,
     },
     "cameras": {

@@ -2,7 +2,7 @@
  "schema": "unreal-handoff/actor-manifest/0.1",
  "note": "Every Unreal actor traces to a source file + feature id. anchor_local_m is the ENU metre position; anchor_epsg6494_ft is the georeferenced position for round-trip back to GIS.",
  "frame": "local ENU metres, Z-up; origin EPSG:6494 (19533067.7, 750799.2) intl ft; ft->m 0.3048",
- "n_actors": 110,
+ "n_actors": 99,
  "actors": [
   {
    "actor_name": "Row_bend_01",
@@ -953,15 +953,36 @@
    "actor_name": "Stage_stage_core",
    "actor_class": "mesh",
    "source_file": "vectors_geojson/bowl_zones.geojson",
-   "source_sha256_12": "3228c4b2ff70",
+   "source_sha256_12": "f899b090449d",
    "source_feature_id": "zone_stage_core",
    "anchor_epsg6494_ft": [
-    19533091.7,
-    750757.63
+    19533098.12,
+    750777.5
    ],
    "anchor_local_m": [
-    7.3152,
-    -12.6705,
+    9.272,
+    -6.6142,
+    186.69
+   ],
+   "z_navd88_ft": 612.5,
+   "material_id": "stage_provisional",
+   "validation_state": "provisional",
+   "provisional": true,
+   "note": "Rule 9 OPEN - stage deck PROVISIONAL"
+  },
+  {
+   "actor_name": "Stage_stage_apron",
+   "actor_class": "mesh",
+   "source_file": "vectors_geojson/bowl_zones.geojson",
+   "source_sha256_12": "f899b090449d",
+   "source_feature_id": "zone_stage_apron",
+   "anchor_epsg6494_ft": [
+    19533104.51,
+    750758.64
+   ],
+   "anchor_local_m": [
+    11.2183,
+    -12.3628,
     186.69
    ],
    "z_navd88_ft": 612.5,
@@ -974,15 +995,15 @@
    "actor_name": "Stage_stage_shoulder_left",
    "actor_class": "mesh",
    "source_file": "vectors_geojson/bowl_zones.geojson",
-   "source_sha256_12": "3228c4b2ff70",
+   "source_sha256_12": "f899b090449d",
    "source_feature_id": "zone_stage_shoulder_left",
    "anchor_epsg6494_ft": [
-    19533057.91,
-    750733.62
+    19533064.33,
+    750753.49
    ],
    "anchor_local_m": [
-    -2.9842,
-    -19.9898,
+    -1.0274,
+    -13.9334,
     186.69
    ],
    "z_navd88_ft": 612.5,
@@ -995,15 +1016,15 @@
    "actor_name": "Stage_stage_shoulder_right",
    "actor_class": "mesh",
    "source_file": "vectors_geojson/bowl_zones.geojson",
-   "source_sha256_12": "3228c4b2ff70",
+   "source_sha256_12": "f899b090449d",
    "source_feature_id": "zone_stage_shoulder_right",
    "anchor_epsg6494_ft": [
-    19533129.39,
-    750774.89
+    19533135.81,
+    750794.76
    ],
    "anchor_local_m": [
-    18.8034,
-    -7.4102,
+    20.7602,
+    -1.3538,
     186.69
    ],
    "z_navd88_ft": 612.5,
@@ -1016,15 +1037,15 @@
    "actor_name": "OrchestraEventFloor",
    "actor_class": "mesh",
    "source_file": "vectors_geojson/bowl_zones.geojson",
-   "source_sha256_12": "3228c4b2ff70",
+   "source_sha256_12": "f899b090449d",
    "source_feature_id": "zone_orchestra_event_floor",
    "anchor_epsg6494_ft": [
-    19533152.3,
-    750770.47
+    19533113.32,
+    750745.02
    ],
    "anchor_local_m": [
-    25.7861,
-    -8.7559,
+    13.9035,
+    -16.5131,
     186.69
    ],
    "z_navd88_ft": 612.5,
@@ -1037,7 +1058,7 @@
    "actor_name": "TreatmentCellLandscape",
    "actor_class": "mesh",
    "source_file": "vectors_geojson/bowl_zones.geojson",
-   "source_sha256_12": "3228c4b2ff70",
+   "source_sha256_12": "f899b090449d",
    "source_feature_id": "zone_treatment_cell_landscape",
    "anchor_epsg6494_ft": [
     19533042.26,
@@ -1055,52 +1076,52 @@
    "note": "concept-tier illustrative"
   },
   {
-   "actor_name": "BayViewAxis",
-   "actor_class": "spline",
-   "source_file": "design_open_low/stage_floor.geojson",
-   "source_sha256_12": "59a32670aab6",
-   "source_feature_id": "lineage_bay_view_axis",
-   "anchor_epsg6494_ft": [
-    19533075.2,
-    750786.21
-   ],
-   "anchor_local_m": [
-    2.286,
-    -3.9594,
-    0.0
-   ],
-   "z_navd88_ft": null,
-   "material_id": "bay_view_axis",
-   "validation_state": "reference_axis",
-   "provisional": false,
-   "note": "bay-view azimuth 330.0 deg"
-  },
-  {
    "actor_name": "FocalPointStageFront",
    "actor_class": "point",
-   "source_file": "design_open_low/stage_floor.geojson",
-   "source_sha256_12": "59a32670aab6",
-   "source_feature_id": "lineage_focal_point_stage_front",
+   "source_file": "analysis/in_situ_normalization/adopted_stage_footprint.geojson",
+   "source_sha256_12": "ab2099a4d3e7",
+   "source_feature_id": "adopted_focal_point_stage_front",
    "anchor_epsg6494_ft": [
-    19533100.2,
-    750742.91
+    19533098.88,
+    750775.27
    ],
    "anchor_local_m": [
-    9.906,
-    -17.1572,
+    9.5027,
+    -7.2942,
     0.0
    ],
    "z_navd88_ft": null,
    "material_id": "bay_view_axis",
    "validation_state": "reference_axis",
    "provisional": false,
-   "note": "bay-view azimuth 330.0 deg"
+   "note": "bay-view azimuth 330.0 deg (re-emitted from adopted deck)"
+  },
+  {
+   "actor_name": "BayViewAxis",
+   "actor_class": "spline",
+   "source_file": "analysis/in_situ_normalization/adopted_stage_footprint.geojson",
+   "source_sha256_12": "ab2099a4d3e7",
+   "source_feature_id": "adopted_bay_view_axis",
+   "anchor_epsg6494_ft": [
+    19533098.88,
+    750775.27
+   ],
+   "anchor_local_m": [
+    9.5027,
+    -7.2942,
+    0.0
+   ],
+   "z_navd88_ft": null,
+   "material_id": "bay_view_axis",
+   "validation_state": "reference_axis",
+   "provisional": false,
+   "note": "bay-view azimuth 330.0 deg (re-emitted from adopted deck)"
   },
   {
    "actor_name": "ADA_route_arrival_to_cross_aisle",
    "actor_class": "spline",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_arrival_to_cross_aisle",
    "anchor_epsg6494_ft": [
     19533220.2,
@@ -1121,7 +1142,7 @@
    "actor_name": "ADA_route_arrival_to_floor",
    "actor_class": "spline",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_arrival_to_floor",
    "anchor_epsg6494_ft": [
     19533220.2,
@@ -1142,7 +1163,7 @@
    "actor_name": "ADA_route_cross_aisle_to_wc_cluster",
    "actor_class": "spline",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_cross_aisle_to_wc_cluster",
    "anchor_epsg6494_ft": [
     19533169.2,
@@ -1163,7 +1184,7 @@
    "actor_name": "ADA_route_floor_to_wc_cluster",
    "actor_class": "spline",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_wc_cluster",
    "anchor_epsg6494_ft": [
     19533140.2,
@@ -1184,7 +1205,7 @@
    "actor_name": "ADA_route_cross_aisle_to_egress",
    "actor_class": "spline",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_cross_aisle_to_egress",
    "anchor_epsg6494_ft": [
     19533169.2,
@@ -1205,7 +1226,7 @@
    "actor_name": "ADA_route_floor_to_egress",
    "actor_class": "spline",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_egress",
    "anchor_epsg6494_ft": [
     19533140.2,
@@ -1226,7 +1247,7 @@
    "actor_name": "ADA_route_service_to_stage",
    "actor_class": "spline",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_service_to_stage",
    "anchor_epsg6494_ft": [
     19533140.2,
@@ -1247,14 +1268,14 @@
    "actor_name": "ADA_route_park_to_floor",
    "actor_class": "spline",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_park_to_floor",
    "anchor_epsg6494_ft": [
-    19533118.2,
+    19533117.2,
     750703.15
    ],
    "anchor_local_m": [
-    15.3924,
+    15.0876,
     -29.276,
     0.0
    ],
@@ -1268,7 +1289,7 @@
    "actor_name": "ADANode_route_arrival_to_cross_aisle_landing_1",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_arrival_to_cross_aisle_landing_1",
    "anchor_epsg6494_ft": [
     19533222.2,
@@ -1289,7 +1310,7 @@
    "actor_name": "ADANode_route_arrival_to_cross_aisle_landing_2",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_arrival_to_cross_aisle_landing_2",
    "anchor_epsg6494_ft": [
     19533206.2,
@@ -1298,9 +1319,9 @@
    "anchor_local_m": [
     42.2148,
     1.204,
-    190.9907
+    190.9938
    ],
-   "z_navd88_ft": 626.61,
+   "z_navd88_ft": 626.62,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1310,7 +1331,7 @@
    "actor_name": "ADANode_route_arrival_to_cross_aisle_landing_3",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_arrival_to_cross_aisle_landing_3",
    "anchor_epsg6494_ft": [
     19533190.2,
@@ -1319,9 +1340,9 @@
    "anchor_local_m": [
     37.338,
     -0.6248,
-    189.421
+    189.4271
    ],
-   "z_navd88_ft": 621.46,
+   "z_navd88_ft": 621.48,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1331,228 +1352,39 @@
    "actor_name": "ADANode_route_arrival_to_floor_landing_1",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_arrival_to_floor_landing_1",
    "anchor_epsg6494_ft": [
-    19533225.79,
-    750746.91
+    19532943.2,
+    750661.15
    ],
    "anchor_local_m": [
-    48.1858,
-    -15.938,
-    194.2155
+    -37.9476,
+    -42.0776,
+    192.3227
    ],
-   "z_navd88_ft": 637.19,
-   "material_id": "ada_landing",
-   "validation_state": "landing_concept",
-   "provisional": false,
-   "note": "rise-interval"
-  },
-  {
-   "actor_name": "ADANode_route_arrival_to_floor_landing_2",
-   "actor_class": "point",
-   "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_arrival_to_floor_landing_2",
-   "anchor_epsg6494_ft": [
-    19533228.58,
-    750779.99
-   ],
-   "anchor_local_m": [
-    49.0362,
-    -5.8552,
-    193.8406
-   ],
-   "z_navd88_ft": 635.96,
-   "material_id": "ada_landing",
-   "validation_state": "landing_concept",
-   "provisional": false,
-   "note": "rise-interval"
-  },
-  {
-   "actor_name": "ADANode_route_arrival_to_floor_landing_3",
-   "actor_class": "point",
-   "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_arrival_to_floor_landing_3",
-   "anchor_epsg6494_ft": [
-    19533227.16,
-    750813.12
-   ],
-   "anchor_local_m": [
-    48.6034,
-    4.2428,
-    193.1335
-   ],
-   "z_navd88_ft": 633.64,
-   "material_id": "ada_landing",
-   "validation_state": "landing_concept",
-   "provisional": false,
-   "note": "rise-interval"
-  },
-  {
-   "actor_name": "ADANode_route_arrival_to_floor_landing_4",
-   "actor_class": "point",
-   "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_arrival_to_floor_landing_4",
-   "anchor_epsg6494_ft": [
-    19533224.09,
-    750846.21
-   ],
-   "anchor_local_m": [
-    47.6677,
-    14.3286,
-    192.3837
-   ],
-   "z_navd88_ft": 631.18,
-   "material_id": "ada_landing",
-   "validation_state": "landing_concept",
-   "provisional": false,
-   "note": "rise-interval"
-  },
-  {
-   "actor_name": "ADANode_route_arrival_to_floor_landing_5",
-   "actor_class": "point",
-   "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_arrival_to_floor_landing_5",
-   "anchor_epsg6494_ft": [
-    19533221.02,
-    750879.31
-   ],
-   "anchor_local_m": [
-    46.7319,
-    24.4175,
-    192.0941
-   ],
-   "z_navd88_ft": 630.23,
-   "material_id": "ada_landing",
-   "validation_state": "landing_concept",
-   "provisional": false,
-   "note": "rise-interval"
-  },
-  {
-   "actor_name": "ADANode_route_arrival_to_floor_landing_6",
-   "actor_class": "point",
-   "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_arrival_to_floor_landing_6",
-   "anchor_epsg6494_ft": [
-    19533203.16,
-    750862.58
-   ],
-   "anchor_local_m": [
-    41.2882,
-    19.3182,
-    190.4451
-   ],
-   "z_navd88_ft": 624.82,
-   "material_id": "ada_landing",
-   "validation_state": "landing_concept",
-   "provisional": false,
-   "note": "rise-interval"
-  },
-  {
-   "actor_name": "ADANode_route_arrival_to_floor_landing_7",
-   "actor_class": "point",
-   "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_arrival_to_floor_landing_7",
-   "anchor_epsg6494_ft": [
-    19533180.99,
-    750837.91
-   ],
-   "anchor_local_m": [
-    34.5308,
-    11.7988,
-    188.2658
-   ],
-   "z_navd88_ft": 617.67,
-   "material_id": "ada_landing",
-   "validation_state": "landing_concept",
-   "provisional": false,
-   "note": "rise-interval"
-  },
-  {
-   "actor_name": "ADANode_route_arrival_to_floor_landing_8",
-   "actor_class": "point",
-   "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_arrival_to_floor_landing_8",
-   "anchor_epsg6494_ft": [
-    19533158.11,
-    750813.8
-   ],
-   "anchor_local_m": [
-    27.557,
-    4.4501,
-    186.4553
-   ],
-   "z_navd88_ft": 611.73,
-   "material_id": "ada_landing",
-   "validation_state": "landing_concept",
-   "provisional": false,
-   "note": "rise-interval"
-  },
-  {
-   "actor_name": "ADANode_route_arrival_to_floor_landing_9",
-   "actor_class": "point",
-   "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_arrival_to_floor_landing_9",
-   "anchor_epsg6494_ft": [
-    19533144.59,
-    750786.12
-   ],
-   "anchor_local_m": [
-    23.4361,
-    -3.9868,
-    185.9585
-   ],
-   "z_navd88_ft": 610.1,
-   "material_id": "ada_landing",
-   "validation_state": "landing_concept",
-   "provisional": false,
-   "note": "rise-interval"
-  },
-  {
-   "actor_name": "ADANode_route_arrival_to_floor_landing_10",
-   "actor_class": "point",
-   "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_arrival_to_floor_landing_10",
-   "anchor_epsg6494_ft": [
-    19533220.2,
-    750888.15
-   ],
-   "anchor_local_m": [
-    46.482,
-    27.112,
-    192.1855
-   ],
-   "z_navd88_ft": 630.53,
+   "z_navd88_ft": 630.98,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
    "note": "turn-pad"
   },
   {
-   "actor_name": "ADANode_route_arrival_to_floor_landing_11",
+   "actor_name": "ADANode_route_arrival_to_floor_landing_2",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_arrival_to_floor_landing_11",
+   "source_sha256_12": "b7ce7f2d719f",
+   "source_feature_id": "ada_route_arrival_to_floor_landing_2",
    "anchor_epsg6494_ft": [
-    19533144.2,
-    750799.15
+    19533035.2,
+    750676.15
    ],
    "anchor_local_m": [
-    23.3172,
-    -0.0152,
-    185.8
+    -9.906,
+    -37.5056,
+    190.4055
    ],
-   "z_navd88_ft": 609.58,
+   "z_navd88_ft": 624.69,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1562,7 +1394,7 @@
    "actor_name": "ADANode_route_cross_aisle_to_egress_landing_1",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_cross_aisle_to_egress_landing_1",
    "anchor_epsg6494_ft": [
     19532942.2,
@@ -1583,18 +1415,18 @@
    "actor_name": "ADANode_route_floor_to_egress_landing_1",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_egress_landing_1",
    "anchor_epsg6494_ft": [
-    19533146.8,
-    750795.75
+    19533106.32,
+    750748.71
    ],
    "anchor_local_m": [
-    24.1097,
-    -1.0516,
-    185.8762
+    11.7714,
+    -15.3894,
+    185.8335
    ],
-   "z_navd88_ft": 609.83,
+   "z_navd88_ft": 609.69,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1604,18 +1436,18 @@
    "actor_name": "ADANode_route_floor_to_egress_landing_2",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_egress_landing_2",
    "anchor_epsg6494_ft": [
-    19533181.01,
-    750806.05
+    19533074.69,
+    750732.9
    ],
    "anchor_local_m": [
-    34.5369,
-    2.0879,
-    188.2445
+    2.1306,
+    -20.2082,
+    185.9219
    ],
-   "z_navd88_ft": 617.6,
+   "z_navd88_ft": 609.98,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1625,18 +1457,18 @@
    "actor_name": "ADANode_route_floor_to_egress_landing_3",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_egress_landing_3",
    "anchor_epsg6494_ft": [
-    19533208.76,
-    750830.46
+    19533048.97,
+    750710.31
    ],
    "anchor_local_m": [
-    42.9951,
-    9.528,
-    191.0182
+    -5.7089,
+    -27.0937,
+    186.8546
    ],
-   "z_navd88_ft": 626.7,
+   "z_navd88_ft": 613.04,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1646,18 +1478,18 @@
    "actor_name": "ADANode_route_floor_to_egress_landing_4",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_egress_landing_4",
    "anchor_epsg6494_ft": [
-    19533224.71,
-    750867.63
+    19533025.14,
+    750684.44
    ],
    "anchor_local_m": [
-    47.8566,
-    20.8575,
-    192.341
+    -12.9723,
+    -34.9788,
+    189.5216
    ],
-   "z_navd88_ft": 631.04,
+   "z_navd88_ft": 621.79,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1667,18 +1499,18 @@
    "actor_name": "ADANode_route_floor_to_egress_landing_5",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_egress_landing_5",
    "anchor_epsg6494_ft": [
-    19533229.2,
-    750838.21
+    19532998.11,
+    750661.64
    ],
    "anchor_local_m": [
-    49.2252,
-    11.8902,
-    192.9597
+    -21.211,
+    -41.9283,
+    191.9539
    ],
-   "z_navd88_ft": 633.07,
+   "z_navd88_ft": 629.77,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1688,18 +1520,18 @@
    "actor_name": "ADANode_route_floor_to_egress_landing_6",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_egress_landing_6",
    "anchor_epsg6494_ft": [
-    19533229.2,
-    750797.77
+    19532992.67,
+    750644.29
    ],
    "anchor_local_m": [
-    49.2252,
-    -0.4359,
-    193.6212
+    -22.8691,
+    -47.2166,
+    193.2981
    ],
-   "z_navd88_ft": 635.24,
+   "z_navd88_ft": 634.18,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1709,18 +1541,18 @@
    "actor_name": "ADANode_route_floor_to_egress_landing_7",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_egress_landing_7",
    "anchor_epsg6494_ft": [
-    19533229.2,
-    750757.32
+    19533027.94,
+    750646.74
    ],
    "anchor_local_m": [
-    49.2252,
-    -12.765,
-    194.307
+    -12.1188,
+    -46.4698,
+    193.4261
    ],
-   "z_navd88_ft": 637.49,
+   "z_navd88_ft": 634.6,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1730,18 +1562,18 @@
    "actor_name": "ADANode_route_floor_to_egress_landing_8",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_egress_landing_8",
    "anchor_epsg6494_ft": [
-    19533223.95,
-    750717.68
+    19533063.25,
+    750648.15
    ],
    "anchor_local_m": [
-    47.625,
-    -24.8473,
-    194.566
+    -1.3564,
+    -46.04,
+    193.8467
    ],
-   "z_navd88_ft": 638.34,
+   "z_navd88_ft": 635.98,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1751,18 +1583,18 @@
    "actor_name": "ADANode_route_floor_to_egress_landing_9",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_egress_landing_9",
    "anchor_epsg6494_ft": [
-    19533205.88,
-    750681.5
+    19533098.61,
+    750648.15
    ],
    "anchor_local_m": [
-    42.1173,
-    -35.875,
-    194.0601
+    9.4214,
+    -46.04,
+    194.1942
    ],
-   "z_navd88_ft": 636.68,
+   "z_navd88_ft": 637.12,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1772,18 +1604,18 @@
    "actor_name": "ADANode_route_floor_to_egress_landing_10",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_egress_landing_10",
    "anchor_epsg6494_ft": [
-    19533175.89,
-    750656.21
+    19533133.97,
+    750648.15
    ],
    "anchor_local_m": [
-    32.9763,
-    -43.5834,
-    194.4319
+    20.1991,
+    -46.04,
+    194.4837
    ],
-   "z_navd88_ft": 637.9,
+   "z_navd88_ft": 638.07,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1793,60 +1625,18 @@
    "actor_name": "ADANode_route_floor_to_egress_landing_11",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_floor_to_egress_landing_11",
    "anchor_epsg6494_ft": [
-    19533147.2,
-    750802.15
+    19532976.2,
+    750643.15
    ],
    "anchor_local_m": [
-    24.2316,
-    0.8992,
-    185.8945
+    -27.8892,
+    -47.564,
+    193.1731
    ],
-   "z_navd88_ft": 609.89,
-   "material_id": "ada_landing",
-   "validation_state": "landing_concept",
-   "provisional": false,
-   "note": "turn-pad"
-  },
-  {
-   "actor_name": "ADANode_route_floor_to_egress_landing_12",
-   "actor_class": "point",
-   "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_floor_to_egress_landing_12",
-   "anchor_epsg6494_ft": [
-    19533199.2,
-    750808.15
-   ],
-   "anchor_local_m": [
-    40.0812,
-    2.728,
-    190.122
-   ],
-   "z_navd88_ft": 623.76,
-   "material_id": "ada_landing",
-   "validation_state": "landing_concept",
-   "provisional": false,
-   "note": "turn-pad"
-  },
-  {
-   "actor_name": "ADANode_route_floor_to_egress_landing_13",
-   "actor_class": "point",
-   "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_floor_to_egress_landing_13",
-   "anchor_epsg6494_ft": [
-    19533229.2,
-    750878.15
-   ],
-   "anchor_local_m": [
-    49.2252,
-    24.064,
-    192.6336
-   ],
-   "z_navd88_ft": 632.0,
+   "z_navd88_ft": 633.77,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1856,7 +1646,7 @@
    "actor_name": "ADANode_route_park_to_floor_landing_1",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_park_to_floor_landing_1",
    "anchor_epsg6494_ft": [
     19533056.2,
@@ -1865,9 +1655,9 @@
    "anchor_local_m": [
     -3.5052,
     -28.9712,
-    187.5434
+    187.5556
    ],
-   "z_navd88_ft": 615.3,
+   "z_navd88_ft": 615.34,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
@@ -1877,39 +1667,18 @@
    "actor_name": "ADANode_route_park_to_floor_landing_2",
    "actor_class": "point",
    "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
+   "source_sha256_12": "b7ce7f2d719f",
    "source_feature_id": "ada_route_park_to_floor_landing_2",
    "anchor_epsg6494_ft": [
-    19533115.2,
-    750795.15
+    19533053.2,
+    750708.15
    ],
    "anchor_local_m": [
-    14.478,
-    -1.2344,
-    185.7543
+    -4.4196,
+    -27.752,
+    187.0862
    ],
-   "z_navd88_ft": 609.43,
-   "material_id": "ada_landing",
-   "validation_state": "landing_concept",
-   "provisional": false,
-   "note": "turn-pad"
-  },
-  {
-   "actor_name": "ADANode_route_park_to_floor_landing_3",
-   "actor_class": "point",
-   "source_file": "vectors_geojson/ada_route.geojson",
-   "source_sha256_12": "1b591af7b9a7",
-   "source_feature_id": "ada_route_park_to_floor_landing_3",
-   "anchor_epsg6494_ft": [
-    19533145.2,
-    750771.15
-   ],
-   "anchor_local_m": [
-    23.622,
-    -8.5496,
-    186.0255
-   ],
-   "z_navd88_ft": 610.32,
+   "z_navd88_ft": 613.8,
    "material_id": "ada_landing",
    "validation_state": "landing_concept",
    "provisional": false,
