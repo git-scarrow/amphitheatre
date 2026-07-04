@@ -106,14 +106,19 @@ def _drop_slivers(geom, min_sf):
     return unary_union(keep) if keep else geom
 
 
-def _adopted_stage_footprint(roles):
-    """Adopted P_opt stage footprint (deck + translated lateral shoulders), or
-    None if the adoption artifact is absent. Used to re-emit the schematic
-    orchestra floor against the adopted deck edge (Rule 9 stage-footprint
-    cleanup, STAGE_CONSTRUCTION_METHOD_DECISION / RULE9_DECISION_RECORD). The
-    floor is concept-tier, so subtracting this changes NO quantity (0 CY /
-    0 seats / 0 drainage; ADA uses only the floor centroid). Mirrors
-    stage_current_geometry_gate.py's footprint reconstruction."""
+def _adopted_stage_components(roles):
+    """Adopted P_opt stage geometry decomposed for zone emission, or None if the
+    adoption artifact is absent. Returns a dict:
+      core      P_opt-translated 70x34 performance core (OCCUPIED)
+      apron     five-facet apron = deck - core (OCCUPIED, governing deck edge)
+      deck      core ∪ apron (the occupied stage)
+      shoulders list of (side, geom) translated lateral shoulders (NON-governing)
+      full      deck ∪ shoulders (physical footprint)
+    Source: analysis/in_situ_normalization/adopted_stage_footprint.geojson (emitted
+    by stage_shape_study.py) + the inherited scenarioE stage_surface, translated by
+    the recorded P_opt offset for the core/shoulder split. Construction is Method B
+    (deck over compacted base) per STAGE_CONSTRUCTION_METHOD_DECISION.md. Concept-
+    tier schematic: emitting these changes NO quantity (0 CY / 0 seats / 0 drainage)."""
     adf_path = os.path.join(C.REPO, "analysis", "in_situ_normalization",
                             "adopted_stage_footprint.geojson")
     if not os.path.exists(adf_path):
@@ -122,10 +127,20 @@ def _adopted_stage_footprint(roles):
     adf = json.load(open(adf_path))["features"][0]
     off = adf["properties"]["lateral_offset_from_inherited_ft"]
     deck = shape(adf["geometry"])
-    inh = sorted((shape(f["geometry"]) for f in roles["stage_surface"]),
-                 key=lambda g: g.area, reverse=True)
-    shoulders = [translate(g, xoff=off[0], yoff=off[1]) for g in inh[1:]]
-    return unary_union([deck] + shoulders)
+    inh = {f["properties"]["name"]: shape(f["geometry"]) for f in roles["stage_surface"]}
+    core = translate(inh["stage"], xoff=off[0], yoff=off[1])
+    apron = deck.difference(core).buffer(0)
+    shoulders = [(side, translate(inh[f"stage_shoulder_{side}"], xoff=off[0], yoff=off[1]))
+                 for side in ("left", "right") if f"stage_shoulder_{side}" in inh]
+    full = unary_union([deck] + [g for _, g in shoulders])
+    return dict(core=core, apron=apron, deck=deck, shoulders=shoulders, full=full)
+
+
+def _adopted_stage_footprint(roles):
+    """Adopted footprint (deck ∪ shoulders) or None. Thin wrapper over
+    _adopted_stage_components for callers that only need the union."""
+    c = _adopted_stage_components(roles)
+    return c["full"] if c else None
 
 
 def main():
@@ -207,44 +222,88 @@ def main():
         enclosure="none", upstage_shell=False, back_wall=False, fly_tower=False,
         open_to_bay_side=True, blocks_bay_view=False,
         rule9_status=C.STAGE_RULE9_STATUS,
-        rule9_note=("inherited design_open_low stage reused by Scenario E; "
-                    "axis refit OPEN per DESIGN_CANON Rule 9 — no fan is "
-                    "declared by this package"),
     )
-    add_zone("stage_core", stage_polys["stage"]["geometry"],
-             elev_navd88=C.FOCUS_ELEV, surface="hardscape deck",
-             max_structure_height_ft=4.0,
-             geometry_source="scenarioE stage_surface (inherited)",
-             **open_stage_flags)
-    for side in ("left", "right"):
-        add_zone(f"stage_shoulder_{side}",
-                 stage_polys[f"stage_shoulder_{side}"]["geometry"],
+    # Phase-B stage-zone re-emission: emit the ADOPTED P_opt stage (70x34 core +
+    # five-facet apron + non-governing lateral shoulders, construction Method B)
+    # when the adoption artifact exists; otherwise fall back to the inherited
+    # Rule-9-OPEN placeholder. Edge taxonomy is encoded per zone.
+    adopted_stage = _adopted_stage_components(roles)
+    if adopted_stage is not None:
+        adopted_flags = dict(
+            placement="P_opt (Rule 9 path-3 + path-4 wide-fan)",
+            construction_method="Method B — deck over compacted base",
+            rule9_note=("adopted P_opt stage: 70x34 core + five-facet apron at the "
+                        "bay-preserving placement; construction Method B (deck over "
+                        "compacted base). See STAGE_CONSTRUCTION_METHOD_DECISION.md."),
+            **open_stage_flags)
+        add_zone("stage_core", rounded(adopted_stage["core"]),
+                 elev_navd88=C.FOCUS_ELEV,
+                 surface="hardwood/composite deck over compacted base",
+                 max_structure_height_ft=4.0, edge_class="performance_core",
+                 occupied=True, governs_row1_pocket=False,
+                 geometry_source="adopted_stage_footprint.geojson (P_opt 70x34 core)",
+                 **adopted_flags)
+        add_zone("stage_apron", rounded(adopted_stage["apron"]),
+                 elev_navd88=C.FOCUS_ELEV,
+                 surface="hardwood/composite deck over compacted base",
+                 max_structure_height_ft=4.0, edge_class="occupied_deck_apron",
+                 occupied=True, governs_row1_pocket=True,
+                 geometry_source="adopted_stage_footprint.geojson (five_facet_apron)",
+                 note="apron-inclusive deck front is the governed ≥12 ft row-1 "
+                      "pocket edge (occupied deck)",
+                 **adopted_flags)
+        for side, g in adopted_stage["shoulders"]:
+            add_zone(f"stage_shoulder_{side}", rounded(g),
+                     elev_navd88=C.FOCUS_ELEV,
+                     surface="flat landscape shoulder (not occupied deck)",
+                     max_structure_height_ft=4.0, edge_class="lateral_nonoccupied",
+                     occupied=False, governs_row1_pocket=False,
+                     geometry_source="adopted_stage_footprint.geojson (translated shoulder)",
+                     note="non-governing visual/landscape shoulder — not an enclosing "
+                          "wall and not occupied deck unless explicitly adopted",
+                     **adopted_flags)
+    else:
+        inherited_flags = dict(
+            rule9_note=("inherited design_open_low stage reused by Scenario E; "
+                        "axis refit OPEN per DESIGN_CANON Rule 9 — no fan is "
+                        "declared by this package"),
+            **open_stage_flags)
+        add_zone("stage_core", stage_polys["stage"]["geometry"],
                  elev_navd88=C.FOCUS_ELEV, surface="hardscape deck",
                  max_structure_height_ft=4.0,
                  geometry_source="scenarioE stage_surface (inherited)",
-                 note="lateral floor-level shoulder — not an enclosing wall",
-                 **open_stage_flags)
+                 **inherited_flags)
+        for side in ("left", "right"):
+            add_zone(f"stage_shoulder_{side}",
+                     stage_polys[f"stage_shoulder_{side}"]["geometry"],
+                     elev_navd88=C.FOCUS_ELEV, surface="hardscape deck",
+                     max_structure_height_ft=4.0,
+                     geometry_source="scenarioE stage_surface (inherited)",
+                     note="lateral floor-level shoulder — not an enclosing wall",
+                     **inherited_flags)
 
-    # orchestra event floor — derived: hull(stage + row-1 bands) minus both
+    # orchestra event floor — the flat floor between the stage and the row-1 bands.
     row1 = [s for f, s in zip(treads, tread_shapes) if f["properties"]["row"] == 1]
-    stage_shape = unary_union([shape(f["geometry"]) for f in roles["stage_surface"]])
-    hull = unary_union([stage_shape] + row1).convex_hull
-    orchestra = hull.difference(stage_shape.buffer(0.1)).difference(
-        unary_union(tread_shapes).buffer(0.1)).simplify(0.25)
-    # Re-emit against the ADOPTED P_opt deck edge (Rule 9 stage-footprint
-    # cleanup): the hull above uses the INHERITED stage; subtract the adopted
-    # footprint so the derived floor does not sit under the adopted deck /
-    # shoulders (overlap → 0). Minimal subtraction, NOT a hull rebuild. Schematic
-    # floor → no quantity change (see _adopted_stage_footprint). Falls back to
-    # the inherited-only floor if the adoption artifact is absent.
-    o_src = "derived: convex_hull(stage, row-1 bands) minus both"
-    o_extra = {}
-    adopted_fp = _adopted_stage_footprint(roles)
-    if adopted_fp is not None:
-        orchestra = orchestra.difference(adopted_fp.buffer(0.1)).simplify(0.05).buffer(0)
-        orchestra = _drop_slivers(orchestra, 5.0)
-        o_src += "; re-emitted against adopted P_opt footprint (deck + shoulders)"
-        o_extra["reemitted_against_adopted_deck"] = "adopted_stage_footprint.geojson (P_opt)"
+    all_treads = unary_union(tread_shapes)
+    if adopted_stage is not None:
+        # Adopted derivation: hull spanning the OCCUPIED deck to row 1, minus the
+        # full adopted footprint (deck + shoulders) and the treads. The floor begins
+        # at the adopted deck edge (overlap → 0) and reclaims the ground the inherited
+        # stage vacated. Schematic / concept-tier → no quantity change.
+        deck, full = adopted_stage["deck"], adopted_stage["full"]
+        hull = unary_union([deck] + row1).convex_hull
+        orchestra = _drop_slivers(hull.difference(full.buffer(0.1)).difference(
+            all_treads.buffer(0.1)).simplify(0.25), 5.0)
+        o_src = ("derived: hull(adopted P_opt deck, row-1 bands) minus adopted "
+                 "footprint (deck + shoulders) + treads")
+        o_extra = {"reemitted_against_adopted_deck": "adopted_stage_footprint.geojson (P_opt)"}
+    else:
+        stage_shape = unary_union([shape(f["geometry"]) for f in roles["stage_surface"]])
+        hull = unary_union([stage_shape] + row1).convex_hull
+        orchestra = hull.difference(stage_shape.buffer(0.1)).difference(
+            all_treads.buffer(0.1)).simplify(0.25)
+        o_src = "derived: convex_hull(inherited stage, row-1 bands) minus both"
+        o_extra = {}
     add_zone("orchestra_event_floor", rounded(orchestra),
              grade_elev_navd88=C.FOCUS_ELEV,
              surface="stabilized turf / accessible event floor",
@@ -323,12 +382,14 @@ def main():
              gross_cy=env["properties"].get("gross_cy"),
              note="union grading footprint (priceable)")
 
+    stage_fp = (adopted_stage["full"] if adopted_stage is not None
+                else unary_union([shape(f["geometry"]) for f in roles["stage_surface"]]))
     footprints = unary_union(
         tread_shapes + prom_shapes
         + [shape(f["geometry"]) for f in
            roles["cross_aisle"] + roles["ada_ramp"] + roles["landing"]
-           + roles["drainage_swale"] + roles["stage_surface"]]
-        + [shape(cell["geometry"]), orchestra])
+           + roles["drainage_swale"]]
+        + [stage_fp, shape(cell["geometry"]), orchestra])
     from shapely import make_valid
     from shapely.geometry import MultiPolygon
 

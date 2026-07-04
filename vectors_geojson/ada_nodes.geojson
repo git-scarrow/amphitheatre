@@ -50,7 +50,7 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533119.7,
+     19533118.7,
      750701.65
     ]
    },
@@ -58,8 +58,8 @@
     "name": "park_arrival_west",
     "class": "public",
     "note": "ON the rim_arrival_edge (site_context, non-schematic, ~618.6 ft) at its southwest end \u2014 the WEST park-edge low arrival. The floor sits ~6 ft below, approached through the gap between the stage-left shoulder and the south row-ends (the floor's only open low-side edge; the NW is correctly blocked by the treatment cell).",
-    "ground_elev_navd88_proposed": 617.89,
-    "design_elev_navd88": 617.89,
+    "ground_elev_navd88_proposed": 617.88,
+    "design_elev_navd88": 617.88,
     "design_elev_source": "proposed grade raster",
     "source": "scripts/rebuild_ada_routes.py \u2014 anchored to canonical zones / site_context rim_arrival_edge (read-only)"
    }
@@ -145,15 +145,15 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533130.51,
-     750760.41
+     19533136.93,
+     750780.28
     ]
    },
    "properties": {
     "name": "service_stage_access",
     "class": "service",
     "note": "OPTIONAL performer/service access at the stage right shoulder edge \u2014 classified service, NOT part of the public network",
-    "ground_elev_navd88_proposed": 609.59,
+    "ground_elev_navd88_proposed": 609.92,
     "design_elev_navd88": 612.5,
     "design_elev_source": "canonical event-floor/cross-aisle datum",
     "source": "scripts/rebuild_ada_routes.py \u2014 anchored to canonical zones / site_context rim_arrival_edge (read-only)"

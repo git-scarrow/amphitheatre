@@ -139,80 +139,160 @@
       750714.15
      ],
      [
-      19533227.2,
-      750754.15
+      19533207.228698127,
+      750686.0455126141
      ],
      [
-      19533229.2,
-      750790.15
+      19533205.018982664,
+      750681.8568719791
      ],
      [
-      19533223.046371773,
-      750877.1798849286
+      19533202.41279476,
+      750678.0073601643
      ],
      [
-      19533222.739488326,
-      750879.832473059
+      19533199.410134427,
+      750674.4969771706
      ],
      [
-      19533222.242023867,
-      750881.8051799138
+      19533196.011001665,
+      750671.3257229975
      ],
      [
-      19533221.553978402,
-      750883.0980054934
+      19533192.215396468,
+      750668.4935976453
      ],
      [
-      19533220.675351925,
-      750883.7109497979
+      19533173.18460353,
+      750655.8064023547
      ],
      [
-      19533219.606144443,
-      750883.6440128272
+      19533169.110314142,
+      750653.3974035358
      ],
      [
-      19533218.346355945,
-      750882.8971945811
+      19533164.87512879,
+      750651.4955289621
      ],
      [
-      19533216.89598644,
-      750881.4704950597
+      19533160.47904749,
+      750650.100778634
      ],
      [
-      19533215.25503593,
-      750879.3639142632
+      19533155.922070228,
+      750649.2131525516
      ],
      [
-      19533200.2,
-      750858.15
+      19533151.20419701,
+      750648.8326507146
      ],
      [
-      19533144.2,
-      750799.15
+      19532986.19580299,
+      750644.4673492855
      ],
      [
-      19533145.06454291,
-      750770.6200840458
+      19532981.45644396,
+      750644.5839031963
      ],
      [
-      19533145.033307463,
-      750768.8508537895
+      19532976.83500925,
+      750645.1874443563
      ],
      [
-      19533144.831235446,
-      750767.1192302565
+      19532972.331498872,
+      750646.2779727662
      ],
      [
-      19533144.45832686,
-      750765.4252134473
+      19532967.945912823,
+      750647.8554884256
      ],
      [
-      19533143.914581716,
-      750763.7688033619
+      19532963.678251095,
+      750649.9199913346
      ],
      [
-      19533143.2,
-      750762.15
+      19532953.721748903,
+      750655.3800086655
+     ],
+     [
+      19532951.440770444,
+      750656.7625226299
+     ],
+     [
+      19532949.858709514,
+      750658.0250688563
+     ],
+     [
+      19532948.975566115,
+      750659.1676473443
+     ],
+     [
+      19532948.791340247,
+      750660.1902580941
+     ],
+     [
+      19532949.306031913,
+      750661.0929011058
+     ],
+     [
+      19532950.51964111,
+      750661.875576379
+     ],
+     [
+      19532952.432167836,
+      750662.5382839141
+     ],
+     [
+      19532955.043612093,
+      750663.081023711
+     ],
+     [
+      19533026.83461197,
+      750674.7860780387
+     ],
+     [
+      19533028.83899979,
+      750675.2307472484
+     ],
+     [
+      19533030.669469234,
+      750675.8827938968
+     ],
+     [
+      19533032.3260203,
+      750676.7422179839
+     ],
+     [
+      19533033.808652993,
+      750677.8090195097
+     ],
+     [
+      19533035.11736731,
+      750679.0831984743
+     ],
+     [
+      19533036.252163246,
+      750680.5647548775
+     ],
+     [
+      19533037.213040814,
+      750682.2536887194
+     ],
+     [
+      19533038.0,
+      750684.15
+     ],
+     [
+      19533042.2,
+      750696.15
+     ],
+     [
+      19533049.2,
+      750714.15
+     ],
+     [
+      19533059.2,
+      750725.15
      ],
      [
       19533140.2,
@@ -231,37 +311,37 @@
     "alternatives": [
      "A_east_primary"
     ],
-    "length_ft": 329.8,
+    "length_ft": 536.5,
     "drop_ft": 24.8,
-    "design_grade_pct": 7.53,
-    "profile": "ramp_runs(5-8.33%)",
-    "landings_marked": 11,
+    "design_grade_pct": 4.63,
+    "profile": "sloped_walk(<=5%)",
+    "landings_marked": 2,
     "smoothness_before": {
-     "total_ft": 456.3,
-     "n_segments": 385,
+     "total_ft": 616.3,
+     "n_segments": 458,
      "min_seg_ft": 1.0,
-     "mean_seg_ft": 1.2,
-     "turn_count_gt20deg": 77,
-     "angle_changes_gt5deg": 80
+     "mean_seg_ft": 1.3,
+     "turn_count_gt20deg": 53,
+     "angle_changes_gt5deg": 56
     },
     "smoothness_after": {
-     "total_ft": 339.5,
-     "n_segments": 7,
-     "min_seg_ft": 11.2,
-     "mean_seg_ft": 48.5,
-     "turn_count_gt20deg": 3,
-     "angle_changes_gt5deg": 6
+     "total_ft": 549.6,
+     "n_segments": 9,
+     "min_seg_ft": 14.9,
+     "mean_seg_ft": 61.1,
+     "turn_count_gt20deg": 7,
+     "angle_changes_gt5deg": 7
     },
     "grading_required": {
-     "max_cut_ft": 6.07,
-     "max_fill_ft": 7.25,
-     "mean_abs_ft": 3.71,
+     "max_cut_ft": 9.06,
+     "max_fill_ft": 7.63,
+     "mean_abs_ft": 5.63,
      "note": "linear design profile between node datums vs raw proposed grade \u2014 pending civil detailing"
     },
     "source": "scripts/design_ada_routes.py (LOS-rationalized from stage-1 solver corridor)",
     "crossing": {
-     "crossing_type": "culvert crossing (engineered, pending civil detailing)",
-     "length_ft": 4.0,
+     "crossing_type": "boardwalk crossing (engineered span over the swale mouth, pending civil detailing)",
+     "length_ft": 14.0,
      "ok": true
     }
    }
@@ -547,176 +627,120 @@
       750756.15
      ],
      [
-      19533143.518318016,
-      750765.441290442
+      19533128.8,
+      750756.15
      ],
      [
-      19533144.13619919,
-      750767.3360363988
+      19533125.79209414,
+      750756.014047067
      ],
      [
-      19533144.644497115,
-      750769.2533066219
+      19533122.848376535,
+      750755.6061882679
      ],
      [
-      19533145.043211795,
-      750771.193101112
+      19533119.968847204,
+      750754.9264236027
      ],
      [
-      19533145.332343236,
-      750773.1554198689
+      19533117.153506145,
+      750753.9747530716
      ],
      [
-      19533145.51189143,
-      750775.1402628925
+      19533114.402353346,
+      750752.7511766743
      ],
      [
-      19533147.2,
-      750802.15
+      19533059.705964424,
+      750725.4029822128
      ],
      [
-      19533187.27909277,
-      750806.7745107042
+      19533059.507817235,
+      750725.2959086164
      ],
      [
-      19533190.14691527,
-      750807.2692307011
+      19533059.318147194,
+      750725.1770735965
      ],
      [
-      19533192.789929155,
-      750808.0656460436
+      19533059.136954308,
+      750725.0464771541
      ],
      [
-      19533195.208134428,
-      750809.163756732
+      19533058.964238577,
+      750724.9041192885
      ],
      [
-      19533197.401531085,
-      750810.5635627662
+      19533058.8,
+      750724.75
      ],
      [
-      19533199.370119132,
-      750812.2650641459
+      19533058.2,
+      750724.15
      ],
      [
-      19533201.11389856,
-      750814.2682608716
+      19533046.856402352,
+      750707.134603532
      ],
      [
-      19533202.632869378,
-      750816.573152943
+      19533044.093237594,
+      750703.2306082097
      ],
      [
-      19533203.92703158,
-      750819.1797403602
+      19533041.128865197,
+      750699.5063050681
      ],
      [
-      19533224.47296842,
-      750867.1202596398
+      19533037.963285167,
+      750695.9616941077
      ],
      [
-      19533225.580866445,
-      750869.5178550368
+      19533034.5964975,
+      750692.5967753283
      ],
      [
-      19533226.541044734,
-      750871.1957710475
+      19533031.028502196,
+      750689.4115487295
      ],
      [
-      19533227.353503287,
-      750872.1540076718
+      19532985.371497802,
+      750650.8884512705
      ],
      [
-      19533228.018242106,
-      750872.3925649099
+      19532983.40897752,
+      750649.0877413037
      ],
      [
-      19533228.535261184,
-      750871.9114427618
+      19532982.10716558,
+      750647.5548370387
      ],
      [
-      19533228.904560525,
-      750870.7106412275
+      19532981.466061976,
+      750646.2897384753
      ],
      [
-      19533229.126140133,
-      750868.790160307
+      19532981.485666715,
+      750645.2924456137
      ],
      [
-      19533229.2,
-      750866.15
+      19532982.165979788,
+      750644.5629584538
      ],
      [
-      19533229.2,
-      750740.15
+      19532983.507001203,
+      750644.1012769956
      ],
      [
-      19533228.98533748,
-      750735.4006749485
+      19532985.508730955,
+      750643.907401239
      ],
      [
-      19533228.341349896,
-      750730.7526997933
+      19532988.17116905,
+      750643.9813311842
      ],
      [
-      19533227.268037267,
-      750726.2060745349
-     ],
-     [
-      19533225.76539959,
-      750721.7607991731
-     ],
-     [
-      19533223.833436854,
-      750717.416873708
-     ],
-     [
-      19533205.488768768,
-      750680.7275375332
-     ],
-     [
-      19533204.096812014,
-      750678.1516240215
-     ],
-     [
-      19533202.551956754,
-      750675.6859135119
-     ],
-     [
-      19533200.854203,
-      750673.3304060054
-     ],
-     [
-      19533199.003550753,
-      750671.0851015014
-     ],
-     [
-      19533197.0,
-      750668.9500000001
-     ],
-     [
-      19533194.4,
-      750666.35
-     ],
-     [
-      19533192.25225034,
-      750664.3755786967
-     ],
-     [
-      19533189.96900135,
-      750662.6123147865
-     ],
-     [
-      19533187.550253034,
-      750661.0602082696
-     ],
-     [
-      19533184.996005394,
-      750659.719259146
-     ],
-     [
-      19533182.306258425,
-      750658.5894674156
+      19533048.2,
+      750648.15
      ],
      [
       19533154.2,
@@ -736,37 +760,37 @@
      "B_south_perimeter",
      "C_hybrid"
     ],
-    "length_ft": 427.6,
+    "length_ft": 373.8,
     "drop_ft": -26.4,
-    "design_grade_pct": 6.18,
+    "design_grade_pct": 7.07,
     "profile": "ramp_runs(5-8.33%)",
-    "landings_marked": 13,
+    "landings_marked": 11,
     "smoothness_before": {
-     "total_ft": 555.0,
-     "n_segments": 440,
+     "total_ft": 516.3,
+     "n_segments": 403,
      "min_seg_ft": 1.0,
      "mean_seg_ft": 1.3,
-     "turn_count_gt20deg": 61,
-     "angle_changes_gt5deg": 65
+     "turn_count_gt20deg": 48,
+     "angle_changes_gt5deg": 52
     },
     "smoothness_after": {
-     "total_ft": 441.5,
-     "n_segments": 8,
-     "min_seg_ft": 14.9,
-     "mean_seg_ft": 55.2,
-     "turn_count_gt20deg": 5,
-     "angle_changes_gt5deg": 7
+     "total_ft": 384.1,
+     "n_segments": 7,
+     "min_seg_ft": 1.4,
+     "mean_seg_ft": 54.9,
+     "turn_count_gt20deg": 2,
+     "angle_changes_gt5deg": 5
     },
     "grading_required": {
-     "max_cut_ft": 9.13,
-     "max_fill_ft": 6.67,
-     "mean_abs_ft": 5.2,
+     "max_cut_ft": 7.12,
+     "max_fill_ft": 9.89,
+     "mean_abs_ft": 4.36,
      "note": "linear design profile between node datums vs raw proposed grade \u2014 pending civil detailing"
     },
     "source": "scripts/design_ada_routes.py (LOS-rationalized from stage-1 solver corridor)",
     "crossing": {
-     "crossing_type": "culvert crossing (engineered, pending civil detailing)",
-     "length_ft": 4.1,
+     "crossing_type": "boardwalk crossing (engineered span over the swale mouth, pending civil detailing)",
+     "length_ft": 19.2,
      "ok": true
     }
    }
@@ -781,8 +805,8 @@
       750756.15
      ],
      [
-      19533130.2,
-      750760.15
+      19533137.2,
+      750780.15
      ]
     ]
    },
@@ -795,31 +819,31 @@
     "status": "ADA-compliant route concept pending civil/code detailing",
     "preferred": false,
     "alternatives": [],
-    "length_ft": 10.8,
+    "length_ft": 24.2,
     "drop_ft": 0.0,
     "design_grade_pct": 0.0,
     "profile": "sloped_walk(<=5%)",
     "landings_marked": 0,
     "smoothness_before": {
-     "total_ft": 10.9,
-     "n_segments": 6,
+     "total_ft": 24.7,
+     "n_segments": 21,
      "min_seg_ft": 1.0,
-     "mean_seg_ft": 1.8,
+     "mean_seg_ft": 1.2,
      "turn_count_gt20deg": 1,
      "angle_changes_gt5deg": 1
     },
     "smoothness_after": {
-     "total_ft": 10.8,
+     "total_ft": 24.2,
      "n_segments": 1,
-     "min_seg_ft": 10.8,
-     "mean_seg_ft": 10.8,
+     "min_seg_ft": 24.2,
+     "mean_seg_ft": 24.2,
      "turn_count_gt20deg": 0,
      "angle_changes_gt5deg": 0
     },
     "grading_required": {
-     "max_cut_ft": -2.85,
-     "max_fill_ft": 2.96,
-     "mean_abs_ft": 2.91,
+     "max_cut_ft": -2.55,
+     "max_fill_ft": 2.85,
+     "mean_abs_ft": 2.7,
      "note": "linear design profile between node datums vs raw proposed grade \u2014 pending civil detailing"
     },
     "source": "scripts/design_ada_routes.py (LOS-rationalized from stage-1 solver corridor)"
@@ -831,64 +855,108 @@
     "type": "LineString",
     "coordinates": [
      [
-      19533118.2,
+      19533117.2,
       750703.15
      ],
      [
-      19533056.2,
-      750704.15
+      19533058.19973131,
+      750704.1172175196
      ],
      [
-      19533049.2,
-      750715.15
+      19533057.712294284,
+      750704.1499009135
      ],
      [
-      19533048.361348238,
-      750739.4709010755
+      19533057.24984886,
+      750704.2315598547
      ],
      [
-      19533048.367262874,
-      750741.3313766886
+      19533056.812395044,
+      750704.3621943436
      ],
      [
-      19533048.514085367,
-      750743.1695243872
+      19533056.399932828,
+      750704.5418043799
      ],
      [
-      19533048.80181572,
-      750744.9853441721
+      19533056.012462214,
+      750704.7703899636
      ],
      [
-      19533049.23045393,
-      750746.7788360431
+      19533055.649983205,
+      750705.047951095
      ],
      [
-      19533049.8,
-      750748.55
+      19533055.3124958,
+      750705.3744877737
      ],
      [
-      19533052.2,
-      750755.15
+      19533055.0,
+      750705.75
      ],
      [
-      19533096.2,
-      750791.15
+      19533054.4,
+      750706.55
      ],
      [
-      19533115.2,
-      750795.15
+      19533054.128071092,
+      750706.9548274993
      ],
      [
-      19533132.2,
-      750783.15
+      19533053.91228437,
+      750707.3693099973
      ],
      [
-      19533142.2,
-      750774.15
+      19533053.75263984,
+      750707.7934474938
      ],
      [
-      19533145.2,
-      750771.15
+      19533053.649137497,
+      750708.227239989
+     ],
+     [
+      19533053.601777337,
+      750708.6706874828
+     ],
+     [
+      19533053.610559367,
+      750709.1237899753
+     ],
+     [
+      19533053.675483584,
+      750709.5865474663
+     ],
+     [
+      19533053.796549987,
+      750710.058959956
+     ],
+     [
+      19533058.031270184,
+      750723.610064588
+     ],
+     [
+      19533058.108012922,
+      750723.8204413365
+     ],
+     [
+      19533058.203257263,
+      750724.0196232517
+     ],
+     [
+      19533058.317003228,
+      750724.207610334
+     ],
+     [
+      19533058.449250806,
+      750724.3844025836
+     ],
+     [
+      19533058.599999998,
+      750724.55
+     ],
+     [
+      19533059.2,
+      750725.15
      ],
      [
       19533140.2,
@@ -907,39 +975,34 @@
     "alternatives": [
      "C_hybrid"
     ],
-    "length_ft": 246.2,
+    "length_ft": 170.3,
     "drop_ft": 5.4,
-    "design_grade_pct": 2.19,
+    "design_grade_pct": 3.16,
     "profile": "sloped_walk(<=5%)",
-    "landings_marked": 3,
+    "landings_marked": 2,
     "smoothness_before": {
-     "total_ft": 255.0,
-     "n_segments": 196,
+     "total_ft": 175.3,
+     "n_segments": 125,
      "min_seg_ft": 1.0,
-     "mean_seg_ft": 1.3,
-     "turn_count_gt20deg": 22,
-     "angle_changes_gt5deg": 32
+     "mean_seg_ft": 1.4,
+     "turn_count_gt20deg": 12,
+     "angle_changes_gt5deg": 14
     },
     "smoothness_after": {
-     "total_ft": 246.4,
-     "n_segments": 10,
-     "min_seg_ft": 4.2,
-     "mean_seg_ft": 24.6,
-     "turn_count_gt20deg": 7,
-     "angle_changes_gt5deg": 8
+     "total_ft": 170.9,
+     "n_segments": 5,
+     "min_seg_ft": 1.4,
+     "mean_seg_ft": 34.2,
+     "turn_count_gt20deg": 4,
+     "angle_changes_gt5deg": 4
     },
     "grading_required": {
-     "max_cut_ft": -0.5,
-     "max_fill_ft": 6.07,
-     "mean_abs_ft": 3.59,
+     "max_cut_ft": -0.2,
+     "max_fill_ft": 5.1,
+     "mean_abs_ft": 2.8,
      "note": "linear design profile between node datums vs raw proposed grade \u2014 pending civil detailing"
     },
-    "source": "scripts/design_ada_routes.py (LOS-rationalized from stage-1 solver corridor)",
-    "crossing": {
-     "crossing_type": "boardwalk crossing (engineered span over the swale mouth, pending civil detailing)",
-     "length_ft": 17.7,
-     "ok": true
-    }
+    "source": "scripts/design_ada_routes.py (LOS-rationalized from stage-1 solver corridor)"
    }
   },
   {
@@ -1001,16 +1064,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533225.92,
-     750746.85
+     19532943.2,
+     750661.15
     ]
    },
    "properties": {
     "name": "route_arrival_to_floor_landing_1",
     "route": "route_arrival_to_floor",
     "role": "landing",
-    "kind": "rise-interval",
-    "elev_navd88": 637.18,
+    "kind": "turn-pad",
+    "elev_navd88": 630.98,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1019,178 +1082,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533228.63,
-     750779.91
+     19533035.2,
+     750676.15
     ]
    },
    "properties": {
     "name": "route_arrival_to_floor_landing_2",
     "route": "route_arrival_to_floor",
     "role": "landing",
-    "kind": "rise-interval",
-    "elev_navd88": 635.95,
-    "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19533227.58,
-     750813.04
-    ]
-   },
-   "properties": {
-    "name": "route_arrival_to_floor_landing_3",
-    "route": "route_arrival_to_floor",
-    "role": "landing",
-    "kind": "rise-interval",
-    "elev_navd88": 633.64,
-    "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19533225.24,
-     750846.15
-    ]
-   },
-   "properties": {
-    "name": "route_arrival_to_floor_landing_4",
-    "route": "route_arrival_to_floor",
-    "role": "landing",
-    "kind": "rise-interval",
-    "elev_navd88": 631.5,
-    "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19533222.81,
-     750879.26
-    ]
-   },
-   "properties": {
-    "name": "route_arrival_to_floor_landing_5",
-    "route": "route_arrival_to_floor",
-    "role": "landing",
-    "kind": "rise-interval",
-    "elev_navd88": 630.7,
-    "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19533203.21,
-     750862.39
-    ]
-   },
-   "properties": {
-    "name": "route_arrival_to_floor_landing_6",
-    "route": "route_arrival_to_floor",
-    "role": "landing",
-    "kind": "rise-interval",
-    "elev_navd88": 624.82,
-    "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19533180.92,
-     750837.84
-    ]
-   },
-   "properties": {
-    "name": "route_arrival_to_floor_landing_7",
-    "route": "route_arrival_to_floor",
-    "role": "landing",
-    "kind": "rise-interval",
-    "elev_navd88": 617.67,
-    "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19533158.06,
-     750813.75
-    ]
-   },
-   "properties": {
-    "name": "route_arrival_to_floor_landing_8",
-    "route": "route_arrival_to_floor",
-    "role": "landing",
-    "kind": "rise-interval",
-    "elev_navd88": 611.73,
-    "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19533144.6,
-     750786.09
-    ]
-   },
-   "properties": {
-    "name": "route_arrival_to_floor_landing_9",
-    "route": "route_arrival_to_floor",
-    "role": "landing",
-    "kind": "rise-interval",
-    "elev_navd88": 610.1,
-    "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19533222.2,
-     750889.15
-    ]
-   },
-   "properties": {
-    "name": "route_arrival_to_floor_landing_10",
-    "route": "route_arrival_to_floor",
-    "role": "landing",
     "kind": "turn-pad",
-    "elev_navd88": 630.94,
-    "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19533144.2,
-     750799.15
-    ]
-   },
-   "properties": {
-    "name": "route_arrival_to_floor_landing_11",
-    "route": "route_arrival_to_floor",
-    "role": "landing",
-    "kind": "turn-pad",
-    "elev_navd88": 609.58,
+    "elev_navd88": 624.69,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1217,8 +1118,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533146.8,
-     750795.75
+     19533106.32,
+     750748.71
     ]
    },
    "properties": {
@@ -1226,7 +1127,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 609.83,
+    "elev_navd88": 609.69,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1235,8 +1136,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533181.01,
-     750806.05
+     19533074.69,
+     750732.9
     ]
    },
    "properties": {
@@ -1244,7 +1145,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 617.6,
+    "elev_navd88": 609.98,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1253,8 +1154,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533208.76,
-     750830.46
+     19533048.97,
+     750710.31
     ]
    },
    "properties": {
@@ -1262,7 +1163,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 626.7,
+    "elev_navd88": 613.04,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1271,8 +1172,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533224.71,
-     750867.63
+     19533025.14,
+     750684.44
     ]
    },
    "properties": {
@@ -1280,7 +1181,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 631.04,
+    "elev_navd88": 621.79,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1289,8 +1190,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533229.2,
-     750838.21
+     19532998.11,
+     750661.64
     ]
    },
    "properties": {
@@ -1298,7 +1199,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 633.07,
+    "elev_navd88": 629.77,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1307,8 +1208,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533229.2,
-     750797.77
+     19532992.67,
+     750644.29
     ]
    },
    "properties": {
@@ -1316,7 +1217,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 635.23,
+    "elev_navd88": 634.18,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1325,8 +1226,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533229.2,
-     750757.32
+     19533027.94,
+     750646.74
     ]
    },
    "properties": {
@@ -1334,7 +1235,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 637.48,
+    "elev_navd88": 634.6,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1343,8 +1244,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533223.95,
-     750717.68
+     19533063.25,
+     750648.15
     ]
    },
    "properties": {
@@ -1352,7 +1253,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 638.34,
+    "elev_navd88": 635.98,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1361,8 +1262,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533205.88,
-     750681.5
+     19533098.61,
+     750648.15
     ]
    },
    "properties": {
@@ -1370,7 +1271,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 636.68,
+    "elev_navd88": 637.12,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1379,8 +1280,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533175.89,
-     750656.21
+     19533133.97,
+     750648.15
     ]
    },
    "properties": {
@@ -1388,7 +1289,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "rise-interval",
-    "elev_navd88": 637.9,
+    "elev_navd88": 638.07,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1397,8 +1298,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533147.2,
-     750802.15
+     19532976.2,
+     750643.15
     ]
    },
    "properties": {
@@ -1406,43 +1307,7 @@
     "route": "route_floor_to_egress",
     "role": "landing",
     "kind": "turn-pad",
-    "elev_navd88": 609.89,
-    "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19533199.2,
-     750808.15
-    ]
-   },
-   "properties": {
-    "name": "route_floor_to_egress_landing_12",
-    "route": "route_floor_to_egress",
-    "role": "landing",
-    "kind": "turn-pad",
-    "elev_navd88": 623.76,
-    "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19533229.2,
-     750878.15
-    ]
-   },
-   "properties": {
-    "name": "route_floor_to_egress_landing_13",
-    "route": "route_floor_to_egress",
-    "role": "landing",
-    "kind": "turn-pad",
-    "elev_navd88": 632.0,
+    "elev_navd88": 633.77,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   },
@@ -1469,8 +1334,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533115.2,
-     750795.15
+     19533053.2,
+     750708.15
     ]
    },
    "properties": {
@@ -1478,25 +1343,7 @@
     "route": "route_park_to_floor",
     "role": "landing",
     "kind": "turn-pad",
-    "elev_navd88": 609.43,
-    "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19533145.2,
-     750771.15
-    ]
-   },
-   "properties": {
-    "name": "route_park_to_floor_landing_3",
-    "route": "route_park_to_floor",
-    "role": "landing",
-    "kind": "turn-pad",
-    "elev_navd88": 610.33,
+    "elev_navd88": 613.8,
     "note": "graded level pad >=5x5 ft, <=2% \u2014 pending civil detailing"
    }
   }

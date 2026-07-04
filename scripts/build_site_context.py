@@ -52,9 +52,13 @@ def main():
     rim_line = LineString(basin_poly.exterior.coords)
     pour_pt = shape(pour["geometry"])
     tread_union = unary_union([shape(f["geometry"]) for f in treads])
+    # stage_apron is present once the adopted P_opt deck is emitted (Phase-B);
+    # tolerate its absence for the inherited-stage fallback.
+    stage_zone_names = [z for z in ("stage_core", "stage_apron",
+                                    "stage_shoulder_left", "stage_shoulder_right")
+                        if z in zones]
     stage_union = unary_union([shape(zones[z][0]["geometry"])
-                               for z in ("stage_core", "stage_shoulder_left",
-                                         "stage_shoulder_right")])
+                               for z in stage_zone_names])
     stage_c = stage_union.centroid
 
     ctx = []

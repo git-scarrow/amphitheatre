@@ -76,7 +76,7 @@ C_BAR_MM = 90.0  # civic sightline bar (formal-seat threshold), from canon
 SRC = {
     "treads": "vectors_geojson/terrace_treads.geojson",
     "zones": "vectors_geojson/bowl_zones.geojson",
-    "stage_lineage": "design_open_low/stage_floor.geojson",
+    "adopted_stage": "analysis/in_situ_normalization/adopted_stage_footprint.geojson",
     "ada_route": "vectors_geojson/ada_route.geojson",
     "human_scale": "vectors_geojson/human_scale_refs.geojson",
     "viewpoints": "vectors_geojson/in_situ_viewpoints.geojson",
@@ -357,6 +357,7 @@ def build_seating(validation):
 # ── 2. stage floor complex (from bowl_zones + stage lineage) ────────────────
 STAGE_ZONES = {
     "stage_core": ("stage", True),
+    "stage_apron": ("stage_apron", True),
     "stage_shoulder_left": ("stage_shoulder", True),
     "stage_shoulder_right": ("stage_shoulder", True),
     "orchestra_event_floor": ("forecourt_event_floor", False),
@@ -366,7 +367,6 @@ STAGE_ZONES = {
 
 def build_stage():
     zones = jload(SRC["zones"])
-    lineage = jload(SRC["stage_lineage"])
     feats = []
 
     for i, f in enumerate(zones["features"]):
@@ -404,6 +404,11 @@ def build_stage():
             "surface": pr.get("surface"),
             "material_id": material_id,
             "note": pr.get("note") or pr.get("rule9_note") or "",
+            "edge_class": pr.get("edge_class"),
+            "occupied": pr.get("occupied"),
+            "governs_row1_pocket": pr.get("governs_row1_pocket"),
+            "construction_method": pr.get("construction_method"),
+            "placement": pr.get("placement"),
             "unreal_anchor_local_m": to_local_m(cen[0], cen[1], elev or 0.0),
             "provenance": "derived from bowl_zones.geojson (read-only)",
         }
@@ -423,38 +428,46 @@ def build_stage():
                   "concept-tier illustrative" if concept else ""),
         )
 
-    # bay-view axis + focal point from the inherited stage lineage
-    for i, f in enumerate(lineage["features"]):
-        pr = f["properties"]
-        nm = pr.get("name", "")
-        if nm not in ("bay_view_axis", "focal_point_stage_front"):
-            continue
-        fid = f"lineage_{nm}"
-        ring = outer_ring(f["geometry"])
-        cen = ring_centroid(ring) if len(ring) > 2 else ring[0]
+    # bay-view axis + focal point — RE-EMITTED from the ADOPTED P_opt deck.
+    # The design_open_low/stage_floor.geojson lineage refs are QUARANTINED: they
+    # were anchored to the superseded inherited stage. The adopted stage is now the
+    # source of truth; the 330° bay azimuth is canon and preserved. Emitted into a
+    # Reference/BayAxis layer (review overlay, not stage geometry).
+    adf = jload(SRC["adopted_stage"])["features"][0]
+    focal = ring_centroid(outer_ring(adf["geometry"]))   # adopted deck focal point
+    az = math.radians(BAY_VIEW_AZ)                        # 330° bearing from north
+    ux, uy = math.sin(az), math.cos(az)                  # unit vector toward the bay
+    p_back = [round(focal[0] - 60.0 * ux, 3), round(focal[1] - 60.0 * uy, 3)]
+    p_bay = [round(focal[0] + 200.0 * ux, 3), round(focal[1] + 200.0 * uy, 3)]
+    focal_pt = [round(focal[0], 3), round(focal[1], 3)]
+    for nm, geom, cls in (
+            ("focal_point_stage_front", {"type": "Point", "coordinates": focal_pt}, "point"),
+            ("bay_view_axis", {"type": "LineString", "coordinates": [p_back, p_bay]}, "spline")):
+        fid = f"adopted_{nm}"
         props = {
             "feature_id": fid,
-            "source_file": SRC["stage_lineage"],
-            "source_index": i,
+            "source_file": SRC["adopted_stage"],
             "role": nm,
             "name": nm,
-            "az_deg": pr.get("az_deg", BAY_VIEW_AZ if nm == "bay_view_axis" else None),
-            "note": pr.get("note", ""),
+            "az_deg": BAY_VIEW_AZ,
             "material_id": "bay_view_axis",
-            "lineage": "inherited design_open_low stage lineage",
-            "provenance": "derived from design_open_low/stage_floor.geojson (read-only)",
+            "layer": "Reference/BayAxis",
+            "lineage": "re-emitted from adopted P_opt deck "
+                       "(design_open_low lineage quarantined)",
+            "provenance": "derived from adopted_stage_footprint.geojson + canonical "
+                          f"bay azimuth {BAY_VIEW_AZ} deg",
         }
-        feats.append({"type": "Feature", "geometry": f["geometry"], "properties": props})
+        feats.append({"type": "Feature", "geometry": geom, "properties": props})
         register_actor(
-            name="BayViewAxis" if nm == "bay_view_axis" else "FocalPointStageFront",
-            actor_class="spline" if f["geometry"]["type"] == "LineString" else "point",
-            source_file=SRC["stage_lineage"],
+            name="FocalPointStageFront" if nm == "focal_point_stage_front" else "BayViewAxis",
+            actor_class=cls,
+            source_file=SRC["adopted_stage"],
             source_feature_id=fid,
-            anchor_xyz_epsg6494_ft=cen,
+            anchor_xyz_epsg6494_ft=focal_pt,
             z_navd88_ft=None,
             material_id="bay_view_axis",
             validation_state="reference_axis",
-            note=f"bay-view azimuth {BAY_VIEW_AZ} deg",
+            note=f"bay-view azimuth {BAY_VIEW_AZ} deg (re-emitted from adopted deck)",
         )
 
     fc = {"type": "FeatureCollection", "crs": CRS6494,
@@ -1085,7 +1098,7 @@ def main():
     args = ap.parse_args()
 
     missing = [k for k in ("treads", "zones", "ada_route", "validation",
-                           "viewpoints", "stage_lineage", "design_state")
+                           "viewpoints", "adopted_stage", "design_state")
                if not os.path.exists(p(SRC[k]))]
     if missing:
         print("FATAL: missing authoritative sources:",

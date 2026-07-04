@@ -1,6 +1,6 @@
 {
  "schema": "truthful-terrain/evaluation-report/0.1",
- "generated": "2026-07-03T09:26:26-04:00",
+ "generated": "2026-07-04T11:40:46-04:00",
  "generator": "scripts/build_truth_package.py",
  "design_state_ref": "truth_package/design_state.current.json",
  "summary": {
@@ -45,7 +45,7 @@
    "id": "ada_concepts",
    "name": "ADA Concept C vs D (naturalistic vs constructed)",
    "status": "pass",
-   "value": "governing: C_naturalistic_promenade; preferred D: D2_diagonal_terrace_cut (dignity 79.0, seats -121.0)",
+   "value": "governing: C_naturalistic_promenade; preferred D: D2_diagonal_terrace_cut (dignity 88.0, seats -121.0)",
    "source": "analysis/ada_rebuild/ada_validation.json",
    "note": "constructed-concept costs (cut/fill, seats displaced, severed rows) are reported, never hidden; terrain bounds detour at ~4-5x regardless of construction"
   },
@@ -319,17 +319,17 @@
   },
   "ada_nodes": {
    "path": "vectors_geojson/ada_nodes.geojson",
-   "sha256_12": "fd747705c6c0",
+   "sha256_12": "04109f4562f5",
    "present": true
   },
   "ada_route": {
    "path": "vectors_geojson/ada_route.geojson",
-   "sha256_12": "c99cd7678085",
+   "sha256_12": "b7ce7f2d719f",
    "present": true
   },
   "ada_validation": {
    "path": "analysis/ada_rebuild/ada_validation.json",
-   "sha256_12": "7b03045860a9",
+   "sha256_12": "59a16f74f542",
    "present": true
   },
   "canon": {
@@ -339,7 +339,7 @@
   },
   "corridors_C": {
    "path": "vectors_geojson/route_corridors_C.geojson",
-   "sha256_12": "2ab7c1c86ec9",
+   "sha256_12": "94a23a081cc8",
    "present": true
   },
   "corridors_D": {
@@ -399,12 +399,12 @@
   },
   "material_zones": {
    "path": "vectors_geojson/material_zones.geojson",
-   "sha256_12": "6cbab76d91e1",
+   "sha256_12": "9399c1256b77",
    "present": true
   },
   "site_context": {
    "path": "vectors_geojson/site_context.geojson",
-   "sha256_12": "3de2f02d3125",
+   "sha256_12": "e0a144207f3f",
    "present": true
   },
   "stage_lineage": {
@@ -434,7 +434,7 @@
   },
   "zones": {
    "path": "vectors_geojson/bowl_zones.geojson",
-   "sha256_12": "e5926b93d006",
+   "sha256_12": "f899b090449d",
    "present": true
   }
  }

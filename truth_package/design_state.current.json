@@ -1,6 +1,6 @@
 {
  "schema": "truthful-terrain/design-state/0.1",
- "generated": "2026-07-03T09:26:26-04:00",
+ "generated": "2026-07-04T11:40:46-04:00",
  "generator": "scripts/build_truth_package.py",
  "project": "Petoskey Pit amphitheatre \u2014 Open Civic Bowl (in-situ package)",
  "design_of_record": {
@@ -264,8 +264,8 @@
      "option": "D2_diagonal_terrace_cut",
      "label": "preferred constructed alternative \u2014 carried, NOT adopted; adoption path: fix 2 row severances + causeway C-value sightline study, then re-run the documented decision rule",
      "seats_displaced": 121.0,
-     "worst_detour_ratio": 5.79,
-     "dignity_score": 79.0
+     "worst_detour_ratio": 5.04,
+     "dignity_score": 88.0
     }
    ],
    "decision_rule": "D governs if dignity advantage >=20 pts AND seats displaced <60 (<5% of 1,283) AND no rows severed mid-tread; otherwise C governs and the preferred D is carried as the design-development alternative",
@@ -306,17 +306,17 @@
   },
   "ada_nodes": {
    "path": "vectors_geojson/ada_nodes.geojson",
-   "sha256_12": "fd747705c6c0",
+   "sha256_12": "04109f4562f5",
    "present": true
   },
   "ada_route": {
    "path": "vectors_geojson/ada_route.geojson",
-   "sha256_12": "c99cd7678085",
+   "sha256_12": "b7ce7f2d719f",
    "present": true
   },
   "ada_validation": {
    "path": "analysis/ada_rebuild/ada_validation.json",
-   "sha256_12": "7b03045860a9",
+   "sha256_12": "59a16f74f542",
    "present": true
   },
   "canon": {
@@ -326,7 +326,7 @@
   },
   "corridors_C": {
    "path": "vectors_geojson/route_corridors_C.geojson",
-   "sha256_12": "2ab7c1c86ec9",
+   "sha256_12": "94a23a081cc8",
    "present": true
   },
   "corridors_D": {
@@ -386,12 +386,12 @@
   },
   "material_zones": {
    "path": "vectors_geojson/material_zones.geojson",
-   "sha256_12": "6cbab76d91e1",
+   "sha256_12": "9399c1256b77",
    "present": true
   },
   "site_context": {
    "path": "vectors_geojson/site_context.geojson",
-   "sha256_12": "3de2f02d3125",
+   "sha256_12": "e0a144207f3f",
    "present": true
   },
   "stage_lineage": {
@@ -421,7 +421,7 @@
   },
   "zones": {
    "path": "vectors_geojson/bowl_zones.geojson",
-   "sha256_12": "e5926b93d006",
+   "sha256_12": "f899b090449d",
    "present": true
   }
  }

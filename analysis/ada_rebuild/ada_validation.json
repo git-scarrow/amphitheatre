@@ -44,9 +44,9 @@
     "from": "public_arrival_rim",
     "to": "floor_arrival",
     "class": "public_secondary",
-    "length_ft": 329.8,
-    "design_grade_pct": 7.53,
-    "profile": "ramp_runs(5-8.33%)",
+    "length_ft": 536.5,
+    "design_grade_pct": 4.63,
+    "profile": "sloped_walk(<=5%)",
     "preferred": false,
     "alternatives": [
      "A_east_primary"
@@ -98,8 +98,8 @@
     "from": "floor_arrival",
     "to": "egress_rim_south",
     "class": "public_secondary",
-    "length_ft": 427.6,
-    "design_grade_pct": 6.18,
+    "length_ft": 373.8,
+    "design_grade_pct": 7.07,
     "profile": "ramp_runs(5-8.33%)",
     "preferred": true,
     "alternatives": [
@@ -111,7 +111,7 @@
     "from": "floor_arrival",
     "to": "service_stage_access",
     "class": "service",
-    "length_ft": 10.8,
+    "length_ft": 24.2,
     "design_grade_pct": 0.0,
     "profile": "sloped_walk(<=5%)",
     "preferred": false,
@@ -121,8 +121,8 @@
     "from": "park_arrival_west",
     "to": "floor_arrival",
     "class": "public_primary",
-    "length_ft": 246.2,
-    "design_grade_pct": 2.19,
+    "length_ft": 170.3,
+    "design_grade_pct": 3.16,
     "profile": "sloped_walk(<=5%)",
     "preferred": true,
     "alternatives": [
@@ -146,13 +146,13 @@
    },
    "route_arrival_to_floor": {
     "treatment_cell_ft": 0.0,
-    "swale_ft": 4.03,
+    "swale_ft": 14.01,
     "swale_crossing_declared": true,
     "swale_crossing_ok": true,
     "stage_zone_ft": 0.0,
     "stage_ok": true,
     "seating_wedge_ft": 0.0,
-    "gateway_transition_ft": 0.0,
+    "gateway_transition_ft": 50.0,
     "ok": true
    },
    "route_cross_aisle_to_wc_cluster": {
@@ -190,13 +190,13 @@
    },
    "route_floor_to_egress": {
     "treatment_cell_ft": 0.0,
-    "swale_ft": 4.1,
+    "swale_ft": 19.19,
     "swale_crossing_declared": true,
     "swale_crossing_ok": true,
     "stage_zone_ft": 0.0,
     "stage_ok": true,
     "seating_wedge_ft": 0.0,
-    "gateway_transition_ft": 41.9,
+    "gateway_transition_ft": 36.2,
     "ok": true
    },
    "route_service_to_stage": {
@@ -212,8 +212,8 @@
    },
    "route_park_to_floor": {
     "treatment_cell_ft": 0.0,
-    "swale_ft": 17.7,
-    "swale_crossing_declared": true,
+    "swale_ft": 0.0,
+    "swale_crossing_declared": false,
     "swale_crossing_ok": true,
     "stage_zone_ft": 0.0,
     "stage_ok": true,
@@ -234,10 +234,10 @@
     "landings_marked": 3
    },
    "route_arrival_to_floor": {
-    "design_grade_pct": 7.53,
-    "profile": "ramp_runs(5-8.33%)",
+    "design_grade_pct": 4.63,
+    "profile": "sloped_walk(<=5%)",
     "within_8_33": true,
-    "landings_marked": 11
+    "landings_marked": 2
    },
    "route_cross_aisle_to_wc_cluster": {
     "design_grade_pct": 0.0,
@@ -258,10 +258,10 @@
     "landings_marked": 1
    },
    "route_floor_to_egress": {
-    "design_grade_pct": 6.18,
+    "design_grade_pct": 7.07,
     "profile": "ramp_runs(5-8.33%)",
     "within_8_33": true,
-    "landings_marked": 13
+    "landings_marked": 11
    },
    "route_service_to_stage": {
     "design_grade_pct": 0.0,
@@ -270,10 +270,10 @@
     "landings_marked": 0
    },
    "route_park_to_floor": {
-    "design_grade_pct": 2.19,
+    "design_grade_pct": 3.16,
     "profile": "sloped_walk(<=5%)",
     "within_8_33": true,
-    "landings_marked": 3
+    "landings_marked": 2
    }
   },
   "ok": true,
@@ -305,22 +305,22 @@
    },
    "route_arrival_to_floor": {
     "before": {
-     "total_ft": 456.3,
-     "n_segments": 385,
+     "total_ft": 616.3,
+     "n_segments": 458,
      "min_seg_ft": 1.0,
-     "mean_seg_ft": 1.2,
-     "turn_count_gt20deg": 77,
-     "angle_changes_gt5deg": 80
+     "mean_seg_ft": 1.3,
+     "turn_count_gt20deg": 53,
+     "angle_changes_gt5deg": 56
     },
     "after": {
-     "total_ft": 339.5,
-     "n_segments": 7,
-     "min_seg_ft": 11.2,
-     "mean_seg_ft": 48.5,
-     "turn_count_gt20deg": 3,
-     "angle_changes_gt5deg": 6
+     "total_ft": 549.6,
+     "n_segments": 9,
+     "min_seg_ft": 14.9,
+     "mean_seg_ft": 61.1,
+     "turn_count_gt20deg": 7,
+     "angle_changes_gt5deg": 7
     },
-    "interior_min_seg_ft": 1.1,
+    "interior_min_seg_ft": 1.0,
     "threshold_pad_jogs": 2,
     "chamfer_segments": 0,
     "ok": true
@@ -393,40 +393,40 @@
    },
    "route_floor_to_egress": {
     "before": {
-     "total_ft": 555.0,
-     "n_segments": 440,
+     "total_ft": 516.3,
+     "n_segments": 403,
      "min_seg_ft": 1.0,
      "mean_seg_ft": 1.3,
-     "turn_count_gt20deg": 61,
-     "angle_changes_gt5deg": 65
+     "turn_count_gt20deg": 48,
+     "angle_changes_gt5deg": 52
     },
     "after": {
-     "total_ft": 441.5,
-     "n_segments": 8,
-     "min_seg_ft": 14.9,
-     "mean_seg_ft": 55.2,
-     "turn_count_gt20deg": 5,
-     "angle_changes_gt5deg": 7
+     "total_ft": 384.1,
+     "n_segments": 7,
+     "min_seg_ft": 1.4,
+     "mean_seg_ft": 54.9,
+     "turn_count_gt20deg": 2,
+     "angle_changes_gt5deg": 5
     },
-    "interior_min_seg_ft": 0.7,
+    "interior_min_seg_ft": 1.0,
     "threshold_pad_jogs": 2,
     "chamfer_segments": 0,
     "ok": true
    },
    "route_service_to_stage": {
     "before": {
-     "total_ft": 10.9,
-     "n_segments": 6,
+     "total_ft": 24.7,
+     "n_segments": 21,
      "min_seg_ft": 1.0,
-     "mean_seg_ft": 1.8,
+     "mean_seg_ft": 1.2,
      "turn_count_gt20deg": 1,
      "angle_changes_gt5deg": 1
     },
     "after": {
-     "total_ft": 10.8,
+     "total_ft": 24.2,
      "n_segments": 1,
-     "min_seg_ft": 10.8,
-     "mean_seg_ft": 10.8,
+     "min_seg_ft": 24.2,
+     "mean_seg_ft": 24.2,
      "turn_count_gt20deg": 0,
      "angle_changes_gt5deg": 0
     },
@@ -437,22 +437,22 @@
    },
    "route_park_to_floor": {
     "before": {
-     "total_ft": 255.0,
-     "n_segments": 196,
+     "total_ft": 175.3,
+     "n_segments": 125,
      "min_seg_ft": 1.0,
-     "mean_seg_ft": 1.3,
-     "turn_count_gt20deg": 22,
-     "angle_changes_gt5deg": 32
+     "mean_seg_ft": 1.4,
+     "turn_count_gt20deg": 12,
+     "angle_changes_gt5deg": 14
     },
     "after": {
-     "total_ft": 246.4,
-     "n_segments": 10,
-     "min_seg_ft": 4.2,
-     "mean_seg_ft": 24.6,
-     "turn_count_gt20deg": 7,
-     "angle_changes_gt5deg": 8
+     "total_ft": 170.9,
+     "n_segments": 5,
+     "min_seg_ft": 1.4,
+     "mean_seg_ft": 34.2,
+     "turn_count_gt20deg": 4,
+     "angle_changes_gt5deg": 4
     },
-    "interior_min_seg_ft": 13.0,
+    "interior_min_seg_ft": 9999,
     "threshold_pad_jogs": 0,
     "chamfer_segments": 0,
     "ok": true
@@ -475,8 +475,8 @@
     },
     "public_arrival_rim->floor_arrival": {
      "desire_line_ft": 90.0,
-     "accessible_route_ft": 329.8,
-     "detour_ratio": 3.66,
+     "accessible_route_ft": 536.5,
+     "detour_ratio": 5.96,
      "flag_socially_inferior": true
     },
     "public_arrival_rim->wc_cluster_cross_aisle": {
@@ -487,8 +487,8 @@
     },
     "public_arrival_rim->wc_cluster_floor": {
      "desire_line_ft": 86.2,
-     "accessible_route_ft": 343.8,
-     "detour_ratio": 3.99,
+     "accessible_route_ft": 550.5,
+     "detour_ratio": 6.39,
      "flag_socially_inferior": true
     }
    },
@@ -501,8 +501,8 @@
     },
     "egress_rim_south->floor_arrival": {
      "desire_line_ft": 109.2,
-     "accessible_route_ft": 427.6,
-     "detour_ratio": 3.91,
+     "accessible_route_ft": 373.8,
+     "detour_ratio": 3.42,
      "flag_socially_inferior": true
     },
     "egress_rim_south->wc_cluster_cross_aisle": {
@@ -513,8 +513,8 @@
     },
     "egress_rim_south->wc_cluster_floor": {
      "desire_line_ft": 95.7,
-     "accessible_route_ft": 441.6,
-     "detour_ratio": 4.61,
+     "accessible_route_ft": 387.8,
+     "detour_ratio": 4.05,
      "flag_socially_inferior": true
     }
    },
@@ -526,10 +526,10 @@
      "flag_socially_inferior": true
     },
     "park_arrival_west->floor_arrival": {
-     "desire_line_ft": 58.5,
-     "accessible_route_ft": 246.2,
-     "detour_ratio": 4.21,
-     "flag_socially_inferior": true
+     "desire_line_ft": 58.9,
+     "accessible_route_ft": 170.3,
+     "detour_ratio": 2.89,
+     "flag_socially_inferior": false
     },
     "public_arrival_rim->wc_cluster_cross_aisle": {
      "desire_line_ft": 42.5,
@@ -538,9 +538,9 @@
      "flag_socially_inferior": true
     },
     "park_arrival_west->wc_cluster_floor": {
-     "desire_line_ft": 45.0,
-     "accessible_route_ft": 260.2,
-     "detour_ratio": 5.79,
+     "desire_line_ft": 45.4,
+     "accessible_route_ft": 184.3,
+     "detour_ratio": 4.06,
      "flag_socially_inferior": true
     }
    }
@@ -574,18 +574,18 @@
    "route_arrival_to_floor": {
     "class": "public_secondary",
     "width_ft": 6.0,
-    "area_sqft": 1978.0,
+    "area_sqft": 3218.0,
     "terrain_cross_slope_pct": {
-     "median": 26.0,
-     "p90": 32.1,
-     "max": 32.8
+     "median": 25.8,
+     "p90": 34.1,
+     "max": 37.4
     },
     "bench_cut_est_ft": {
-     "median": 0.78,
-     "max": 0.98
+     "median": 0.77,
+     "max": 1.12
     },
     "flags": {
-     "handrails_guards": true,
+     "handrails_guards": false,
      "edge_protection": true,
      "retaining_likely": true,
      "benching_required": true
@@ -654,15 +654,15 @@
    "route_floor_to_egress": {
     "class": "public_secondary",
     "width_ft": 6.0,
-    "area_sqft": 2556.0,
+    "area_sqft": 2242.0,
     "terrain_cross_slope_pct": {
-     "median": 28.1,
-     "p90": 32.2,
-     "max": 33.5
+     "median": 23.9,
+     "p90": 33.3,
+     "max": 34.0
     },
     "bench_cut_est_ft": {
-     "median": 0.84,
-     "max": 1.0
+     "median": 0.72,
+     "max": 1.02
     },
     "flags": {
      "handrails_guards": true,
@@ -674,34 +674,34 @@
    "route_service_to_stage": {
     "class": "service",
     "width_ft": 12.0,
-    "area_sqft": 129.0,
+    "area_sqft": 290.0,
     "terrain_cross_slope_pct": {
-     "median": 1.7,
-     "p90": 1.7,
-     "max": 1.7
+     "median": 4.3,
+     "p90": 4.9,
+     "max": 5.0
     },
     "bench_cut_est_ft": {
-     "median": 0.1,
-     "max": 0.1
+     "median": 0.26,
+     "max": 0.3
     },
     "flags": {
      "handrails_guards": false,
      "edge_protection": false,
      "retaining_likely": false,
-     "benching_required": false
+     "benching_required": true
     }
    },
    "route_park_to_floor": {
     "class": "public_primary",
     "width_ft": 8.0,
-    "area_sqft": 1967.0,
+    "area_sqft": 1362.0,
     "terrain_cross_slope_pct": {
-     "median": 3.8,
-     "p90": 36.4,
+     "median": 6.2,
+     "p90": 37.2,
      "max": 39.0
     },
     "bench_cut_est_ft": {
-     "median": 0.15,
+     "median": 0.25,
      "max": 1.56
     },
     "flags": {
@@ -738,11 +738,11 @@
     "route_floor_to_wc_cluster",
     "route_cross_aisle_to_egress"
    ],
-   "total_length_ft": 1164.0,
-   "max_design_grade_pct": 7.53,
-   "landings_total": 15,
-   "turns_total": 8,
-   "disturbance_area_sqft_est": 7730.0,
+   "total_length_ft": 1371.0,
+   "max_design_grade_pct": 4.63,
+   "landings_total": 6,
+   "turns_total": 12,
+   "disturbance_area_sqft_est": 8970.0,
    "swale_crossings": 3,
    "treatment_conflicts_ft": 0.0,
    "worst_detour_ratio": 8.95,
@@ -756,11 +756,11 @@
     "route_cross_aisle_to_wc_cluster",
     "route_floor_to_wc_cluster"
    ],
-   "total_length_ft": 896.0,
-   "max_design_grade_pct": 6.18,
-   "landings_total": 14,
-   "turns_total": 7,
-   "disturbance_area_sqft_est": 5427.0,
+   "total_length_ft": 843.0,
+   "max_design_grade_pct": 7.07,
+   "landings_total": 12,
+   "turns_total": 4,
+   "disturbance_area_sqft_est": 5113.0,
    "swale_crossings": 2,
    "treatment_conflicts_ft": 0.0,
    "worst_detour_ratio": 7.08,
@@ -776,12 +776,12 @@
     "route_cross_aisle_to_egress",
     "route_floor_to_egress"
    ],
-   "total_length_ft": 1508.0,
-   "max_design_grade_pct": 6.18,
-   "landings_total": 20,
-   "turns_total": 17,
-   "disturbance_area_sqft_est": 10275.0,
-   "swale_crossings": 4,
+   "total_length_ft": 1378.0,
+   "max_design_grade_pct": 7.07,
+   "landings_total": 17,
+   "turns_total": 11,
+   "disturbance_area_sqft_est": 9356.0,
+   "swale_crossings": 3,
    "treatment_conflicts_ft": 0.0,
    "worst_detour_ratio": 8.95,
    "relation_to_seating": "perimeter alignments outside the seating wedge; enter only via aisle/promenade gateways"
@@ -1171,7 +1171,7 @@
      "reused_from_C": true
     },
     "route_floor_to_egress": {
-     "length_ft": 427.6,
+     "length_ft": 373.8,
      "from": "floor_arrival",
      "to": "egress_rim_south",
      "reused_from_C": true
@@ -1179,7 +1179,7 @@
    },
    "totals": {
     "constructed_length_ft": 504.0,
-    "network_length_ft": 1400.0,
+    "network_length_ft": 1346.0,
     "ramp_runs": 11,
     "landings": 9,
     "cut_cy": 131.2,
@@ -1336,7 +1336,7 @@
    },
    "reused_concept_C_legs": {
     "route_park_to_floor": {
-     "length_ft": 246.2,
+     "length_ft": 170.3,
      "from": "park_arrival_west",
      "to": "floor_arrival",
      "reused_from_C": true
@@ -1360,7 +1360,7 @@
      "reused_from_C": true
     },
     "route_floor_to_egress": {
-     "length_ft": 427.6,
+     "length_ft": 373.8,
      "from": "floor_arrival",
      "to": "egress_rim_south",
      "reused_from_C": true
@@ -1368,7 +1368,7 @@
    },
    "totals": {
     "constructed_length_ft": 214.0,
-    "network_length_ft": 1357.0,
+    "network_length_ft": 1227.0,
     "ramp_runs": 2,
     "landings": 1,
     "cut_cy": 63.0,
@@ -1392,10 +1392,10 @@
      "flag_socially_inferior": true
     },
     "park_arrival_west->floor_arrival": {
-     "desire_line_ft": 58.5,
-     "route_ft": 246.2,
-     "detour_ratio": 4.21,
-     "flag_socially_inferior": true
+     "desire_line_ft": 58.9,
+     "route_ft": 170.3,
+     "detour_ratio": 2.89,
+     "flag_socially_inferior": false
     },
     "public_arrival_rim->wc_cluster_cross_aisle": {
      "desire_line_ft": 42.5,
@@ -1404,15 +1404,15 @@
      "flag_socially_inferior": true
     },
     "park_arrival_west->wc_cluster_floor": {
-     "desire_line_ft": 45.0,
-     "route_ft": 260.2,
-     "detour_ratio": 5.79,
+     "desire_line_ft": 45.4,
+     "route_ft": 184.3,
+     "detour_ratio": 4.06,
      "flag_socially_inferior": true
     }
    },
-   "worst_served_detour_ratio": 5.79,
+   "worst_served_detour_ratio": 5.04,
    "constructed_grades_compliant": true,
-   "dignity_directness_score": 79.0,
+   "dignity_directness_score": 88.0,
    "valid": true
   },
   "D3_hybrid_short_ramp": {
@@ -1647,7 +1647,7 @@
    },
    "reused_concept_C_legs": {
     "route_park_to_floor": {
-     "length_ft": 246.2,
+     "length_ft": 170.3,
      "from": "park_arrival_west",
      "to": "floor_arrival",
      "reused_from_C": true
@@ -1671,7 +1671,7 @@
      "reused_from_C": true
     },
     "route_floor_to_egress": {
-     "length_ft": 427.6,
+     "length_ft": 373.8,
      "from": "floor_arrival",
      "to": "egress_rim_south",
      "reused_from_C": true
@@ -1679,7 +1679,7 @@
    },
    "totals": {
     "constructed_length_ft": 317.0,
-    "network_length_ft": 1460.0,
+    "network_length_ft": 1330.0,
     "ramp_runs": 7,
     "landings": 6,
     "cut_cy": 91.7,
@@ -1700,10 +1700,10 @@
      "flag_socially_inferior": true
     },
     "park_arrival_west->floor_arrival": {
-     "desire_line_ft": 58.5,
-     "route_ft": 246.2,
-     "detour_ratio": 4.21,
-     "flag_socially_inferior": true
+     "desire_line_ft": 58.9,
+     "route_ft": 170.3,
+     "detour_ratio": 2.89,
+     "flag_socially_inferior": false
     },
     "public_arrival_rim->wc_cluster_cross_aisle": {
      "desire_line_ft": 42.5,
@@ -1712,9 +1712,9 @@
      "flag_socially_inferior": true
     },
     "park_arrival_west->wc_cluster_floor": {
-     "desire_line_ft": 45.0,
-     "route_ft": 260.2,
-     "detour_ratio": 5.79,
+     "desire_line_ft": 45.4,
+     "route_ft": 184.3,
+     "detour_ratio": 4.06,
      "flag_socially_inferior": true
     }
    },
@@ -1726,7 +1726,7 @@
   "C_naturalistic_promenade": {
    "label": "Concept C \u2014 naturalistic promenade / low-ramp classification (Stage 2, preserved)",
    "totals": {
-    "network_length_ft": 1508.0,
+    "network_length_ft": 1378.0,
     "cut_cy": 0,
     "fill_cy": 0,
     "seats_displaced": 0,
@@ -1740,10 +1740,10 @@
      "flag_socially_inferior": true
     },
     "park_arrival_west->floor_arrival": {
-     "desire_line_ft": 58.5,
-     "accessible_route_ft": 246.2,
-     "detour_ratio": 4.21,
-     "flag_socially_inferior": true
+     "desire_line_ft": 58.9,
+     "accessible_route_ft": 170.3,
+     "detour_ratio": 2.89,
+     "flag_socially_inferior": false
     },
     "public_arrival_rim->wc_cluster_cross_aisle": {
      "desire_line_ft": 42.5,
@@ -1752,9 +1752,9 @@
      "flag_socially_inferior": true
     },
     "park_arrival_west->wc_cluster_floor": {
-     "desire_line_ft": 45.0,
-     "accessible_route_ft": 260.2,
-     "detour_ratio": 5.79,
+     "desire_line_ft": 45.4,
+     "accessible_route_ft": 184.3,
+     "detour_ratio": 4.06,
      "flag_socially_inferior": true
     }
    },
@@ -1775,7 +1775,7 @@
  "recommendation_c_vs_d": {
   "preferred_D": "D2_diagonal_terrace_cut",
   "governing_recommendation": "C_naturalistic_promenade",
-  "tradeoff": "D2_diagonal_terrace_cut: dignity 79 vs C 16; seats displaced 121 vs 0; constructed cut 63.0 CY + fill 159.7 CY vs C bench 0+0 CY",
+  "tradeoff": "D2_diagonal_terrace_cut: dignity 88 vs C 16; seats displaced 121 vs 0; constructed cut 63.0 CY + fill 159.7 CY vs C bench 0+0 CY",
   "terrain_bound_detour": {
    "pairs": {
     "cross_aisle_mid": {

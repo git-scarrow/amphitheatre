@@ -53,22 +53,22 @@
     "from": "public_arrival_rim",
     "to": "floor_arrival",
     "class": "public",
-    "length_ft": 456.3,
-    "max_step_slope_pct": 8.63,
-    "landings_marked": 13,
+    "length_ft": 616.3,
+    "max_step_slope_pct": 8.54,
+    "landings_marked": 14,
     "crossing": {
      "crossing_type": "culvert crossing (engineered, pending civil detailing)",
-     "length_ft": 4.1,
+     "length_ft": 5.6,
      "ok": true
     },
     "grading_required": {
-     "max_cut_ft": 0.63,
-     "max_fill_ft": 1.13,
-     "mean_abs_ft": 0.17,
+     "max_cut_ft": 0.74,
+     "max_fill_ft": 1.44,
+     "mean_abs_ft": 0.16,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
-    "outside_legacy_envelope_ft": 421.8,
-    "gateway_transition_ft": 56.0
+    "outside_legacy_envelope_ft": 507.4,
+    "gateway_transition_ft": 64.5
    },
    "route_cross_aisle_to_wc_cluster": {
     "status": "OK",
@@ -133,39 +133,39 @@
     "from": "floor_arrival",
     "to": "egress_rim_south",
     "class": "public",
-    "length_ft": 555.0,
-    "max_step_slope_pct": 8.62,
-    "landings_marked": 15,
+    "length_ft": 516.3,
+    "max_step_slope_pct": 8.61,
+    "landings_marked": 12,
     "crossing": {
      "crossing_type": "culvert crossing (engineered, pending civil detailing)",
-     "length_ft": 4.1,
+     "length_ft": 5.6,
      "ok": true
     },
     "grading_required": {
-     "max_cut_ft": 0.63,
-     "max_fill_ft": 1.2,
-     "mean_abs_ft": 0.16,
+     "max_cut_ft": 0.64,
+     "max_fill_ft": 1.08,
+     "mean_abs_ft": 0.15,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
-    "outside_legacy_envelope_ft": 498.8,
-    "gateway_transition_ft": 56.0
+    "outside_legacy_envelope_ft": 443.1,
+    "gateway_transition_ft": 64.5
    },
    "route_service_to_stage": {
     "status": "OK",
     "from": "floor_arrival",
     "to": "service_stage_access",
     "class": "service",
-    "length_ft": 10.9,
-    "max_step_slope_pct": 5.82,
+    "length_ft": 24.7,
+    "max_step_slope_pct": 1.21,
     "landings_marked": 0,
     "crossing": null,
     "grading_required": {
-     "max_cut_ft": -0.02,
+     "max_cut_ft": 0.03,
      "max_fill_ft": 0.16,
      "mean_abs_ft": 0.08,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
-    "outside_legacy_envelope_ft": 10.9,
+    "outside_legacy_envelope_ft": 24.7,
     "gateway_transition_ft": 0.0
    },
    "route_park_to_floor": {
@@ -173,22 +173,18 @@
     "from": "park_arrival_west",
     "to": "floor_arrival",
     "class": "public",
-    "length_ft": 255.0,
-    "max_step_slope_pct": 8.37,
+    "length_ft": 175.3,
+    "max_step_slope_pct": 6.05,
     "landings_marked": 3,
-    "crossing": {
-     "crossing_type": "culvert crossing (engineered, pending civil detailing)",
-     "length_ft": 9.0,
-     "ok": true
-    },
+    "crossing": null,
     "grading_required": {
-     "max_cut_ft": 0.55,
-     "max_fill_ft": 1.3,
-     "mean_abs_ft": 0.19,
+     "max_cut_ft": 0.53,
+     "max_fill_ft": 1.53,
+     "mean_abs_ft": 0.17,
      "note": "design surface (5 ft smoothed) vs raw proposed grade along alignment \u2014 bench/ramp grading pending civil detailing"
     },
-    "outside_legacy_envelope_ft": 139.0,
-    "gateway_transition_ft": 86.6
+    "outside_legacy_envelope_ft": 72.8,
+    "gateway_transition_ft": 85.5
    }
   }
  },
@@ -206,13 +202,13 @@
    },
    "route_arrival_to_floor": {
     "treatment_cell_ft": 0.0,
-    "swale_ft": 4.13,
+    "swale_ft": 5.58,
     "swale_crossing_declared": true,
     "swale_crossing_ok": true,
     "stage_zone_ft": 0.0,
     "stage_ok": true,
-    "seating_wedge_ft": 0.0,
-    "ok": true
+    "seating_wedge_ft": 12.31,
+    "ok": false
    },
    "route_cross_aisle_to_wc_cluster": {
     "treatment_cell_ft": 0.0,
@@ -246,7 +242,7 @@
    },
    "route_floor_to_egress": {
     "treatment_cell_ft": 0.0,
-    "swale_ft": 4.12,
+    "swale_ft": 5.58,
     "swale_crossing_declared": true,
     "swale_crossing_ok": true,
     "stage_zone_ft": 0.0,
@@ -266,16 +262,16 @@
    },
    "route_park_to_floor": {
     "treatment_cell_ft": 0.0,
-    "swale_ft": 8.97,
-    "swale_crossing_declared": true,
+    "swale_ft": 0.0,
+    "swale_crossing_declared": false,
     "swale_crossing_ok": true,
     "stage_zone_ft": 0.0,
     "stage_ok": true,
-    "seating_wedge_ft": 0.0,
-    "ok": true
+    "seating_wedge_ft": 12.31,
+    "ok": false
    }
   },
-  "ok": true,
+  "ok": false,
   "policy": "treatment cell: forbidden, no crossing type exists for it; swale: only an engineered crossing <= 16.0 ft, declared on the route; stage zones: service class only; seating wedge: forbidden outside cross-aisle/promenade corridors"
  },
  "slopes": {
@@ -287,10 +283,10 @@
     "landings_marked": 11
    },
    "route_arrival_to_floor": {
-    "max_step_slope_pct": 8.63,
+    "max_step_slope_pct": 8.54,
     "within_8_33": false,
     "within_tolerance_band": true,
-    "landings_marked": 13
+    "landings_marked": 14
    },
    "route_cross_aisle_to_wc_cluster": {
     "max_step_slope_pct": 0.0,
@@ -311,20 +307,20 @@
     "landings_marked": 11
    },
    "route_floor_to_egress": {
-    "max_step_slope_pct": 8.62,
+    "max_step_slope_pct": 8.61,
     "within_8_33": false,
     "within_tolerance_band": true,
-    "landings_marked": 15
+    "landings_marked": 12
    },
    "route_service_to_stage": {
-    "max_step_slope_pct": 5.82,
+    "max_step_slope_pct": 1.21,
     "within_8_33": true,
     "within_tolerance_band": true,
     "landings_marked": 0
    },
    "route_park_to_floor": {
-    "max_step_slope_pct": 8.37,
-    "within_8_33": false,
+    "max_step_slope_pct": 6.05,
+    "within_8_33": true,
     "within_tolerance_band": true,
     "landings_marked": 3
    }
@@ -356,8 +352,8 @@
  ],
  "hard": {
   "topology_ok": true,
-  "conflicts_ok": true,
+  "conflicts_ok": false,
   "slopes_ok": true,
-  "network_ok": true
+  "network_ok": false
  }
 }
