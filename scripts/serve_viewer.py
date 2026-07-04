@@ -35,6 +35,7 @@ from __future__ import annotations
 
 import argparse
 import functools
+import hashlib
 import os
 import subprocess
 import sys
@@ -91,6 +92,29 @@ def _bump_version() -> None:
     with _version_lock:
         _version += 1
         _version_lock.notify_all()
+
+
+def _asset_version(root: str, rel: str) -> str | None:
+    """Short content hash of a served asset, for a cache-busting ``?v=`` query.
+
+    Returns None when the file is absent so the caller leaves the reference
+    unversioned rather than emitting a broken query.
+    """
+    try:
+        h = hashlib.sha256()
+        with open(os.path.join(root, rel), "rb") as fh:
+            for chunk in iter(lambda: fh.read(65536), b""):
+                h.update(chunk)
+        return h.hexdigest()[:12]
+    except OSError:
+        return None
+
+
+# Data payloads referenced by index.html that Cloudflare would otherwise edge-
+# cache under its default multi-hour TTL. Each <script src> is rewritten to carry
+# a ?v=<content-hash> so a rebuilt payload gets a fresh edge cache key at once
+# (no API purge), and /data/* is served with a revalidate directive.
+VERSIONED_DATA_ASSETS = ("data/site_data.js", "data/renders_manifest.js")
 
 
 def _iter_files(root: str):
@@ -251,6 +275,15 @@ class Handler(SimpleHTTPRequestHandler):
         except OSError:
             self.send_error(404, "File not found")
             return None
+        # Cache-bust the data payloads: give each <script src="data/…"> a
+        # ?v=<content-hash> query so Cloudflare's edge fetches the rebuilt file
+        # rather than a stale copy. The HTML itself is served no-store (below),
+        # so the freshly-hashed references reach the browser on every load.
+        for rel in VERSIONED_DATA_ASSETS:
+            ver = _asset_version(self.directory, rel)
+            if ver:
+                token = ('src="%s"' % rel).encode()
+                body = body.replace(token, ('src="%s?v=%s"' % (rel, ver)).encode())
         marker = b"</body>"
         idx = body.rfind(marker)
         if idx == -1:
@@ -265,6 +298,20 @@ class Handler(SimpleHTTPRequestHandler):
         if self.command != "HEAD":
             self.wfile.write(body)
         return None
+
+    def end_headers(self):
+        # Public site is fronted by Cloudflare, which applies a multi-hour default
+        # TTL to .js/.json under /data/ absent an explicit directive — so a rebuilt
+        # site_data.js would go live only once the edge entry expired. Ask the edge
+        # to revalidate these on every hit. (HTML is served no-store above and never
+        # reaches here with an unset Cache-Control; the ?v=<hash> query on the data
+        # <script>s is what busts any pre-existing edge entry.)
+        if (self.command in ("GET", "HEAD")
+                and (self.path or "").startswith("/data/")
+                and not any(b"cache-control" in h.lower()
+                            for h in getattr(self, "_headers_buffer", []))):
+            self.send_header("Cache-Control", "no-cache, must-revalidate")
+        super().end_headers()
 
 
 def main() -> int:
