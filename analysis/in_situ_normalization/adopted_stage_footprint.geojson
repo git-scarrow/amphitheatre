@@ -12,69 +12,75 @@
    "properties": {
     "name": "adopted_stage_deck",
     "role": "stage_surface_adopted",
-    "placement": "P_opt",
+    "placement": "P_opt + upstage_pullback",
     "apron": "five_facet_apron",
     "axis_az": 150.0,
     "rule9_path": "path3_compromise (P_opt) + path4_wide_fan",
     "lateral_offset_from_inherited_ft": [
-     6.4234,
-     19.8744
+     -1.4551,
+     21.2636
     ],
     "front_to_row1_ft": {
-     "east": 12.0,
-     "bend": 32.7,
-     "south": 21.9
+     "east": 20.0,
+     "bend": 36.2,
+     "south": 20.3
     },
+    "corner_standoff_ft": 20.0,
+    "upstage_pullback_ft": 8.0,
+    "pullback_vector_en_ft": [
+     -7.8785,
+     1.3892
+    ],
     "deck_elev_navd88": 612.5,
     "structure_band_ft": 1.0,
     "core_area_sf": 2380.0,
     "apron_area_sf": 319.0,
     "total_area_sf": 2699.0,
-    "note": "P_opt-placed 70x34 core unioned with the five-facet apron; identical to the measured study footprint. Shoulders: translate inherited stage_surface by lateral_offset_from_inherited_ft downstream."
+    "note": "P_opt 70x34 core + five-facet apron, then rigidly pulled upstage 8.0 ft so every fan corner clears >= 20 ft off row 1 (was 12 ft east). Deck shape UNCHANGED; only the placement moved (focal point shifts by the pullback; bay azimuth 330 preserved). Shoulders: translate inherited stage_surface by lateral_offset_from_inherited_ft downstream."
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       19533059.313,
-       750774.719
+       19533051.434,
+       750776.108
       ],
       [
-       19533119.934,
-       750809.719
+       19533112.056,
+       750811.108
       ],
       [
-       19533136.934,
-       750780.274
+       19533129.056,
+       750781.664
       ],
       [
-       19533126.799,
-       750769.829
+       19533118.921,
+       750771.218
       ],
       [
-       19533115.449,
-       750761.488
+       19533107.571,
+       750762.877
       ],
       [
-       19533103.561,
-       750754.078
+       19533095.683,
+       750755.467
       ],
       [
-       19533091.174,
-       750747.533
+       19533083.296,
+       750748.922
       ],
       [
-       19533078.101,
-       750742.177
+       19533070.222,
+       750743.566
       ],
       [
-       19533076.313,
-       750745.274
+       19533068.434,
+       750746.664
       ],
       [
-       19533059.313,
-       750774.719
+       19533051.434,
+       750776.108
       ]
      ]
     ]

@@ -576,24 +576,57 @@ def main():
     _ff_world = [to_world(w, u) for w, u in _ff_front]
     _ff_apron = Polygon([to_world(_ff_front[0][0], 0.0)] + _ff_world
                         + [to_world(_ff_front[-1][0], 0.0)]).buffer(0)
-    _deck_total = core_deck.union(_ff_apron)
+    _deck_full = core_deck.union(_ff_apron)
+    # ── audience-clearance UPSTAGE PULLBACK (2026-07-04 design review) ──────────
+    # The P_opt corners are too close on the fan ends (east 12 ft). Rigidly move
+    # the WHOLE adopted stage back so every corner clears >= STANDOFF ft from the
+    # wrapping row 1. A rigid translation preserves the deck SHAPE and the ADA
+    # stage-mask shape (unlike a chamfer), so downstream (orchestra, ADA solver)
+    # re-solves cleanly. The bay azimuth (330) is a direction — unchanged by a
+    # translation; only the focal point moves (by |T|). Minimal-norm T is solved
+    # against the emitted row 1 so the disturbance is as small as possible.
+    STAGE_ROW1_STANDOFF_FT = 20.0
+
+    def _gmin(g):
+        return min(g.distance(row1[s]) for s in C.SECTIONS)
+    # Minimal-norm pullback: the least stage movement (any direction) that clears
+    # the standoff at every corner. Solved against the emitted row 1.
+    _best = None
+    for _ang in range(0, 360, 2):
+        _a = math.radians(_ang)
+        _d = 0.0
+        while (_gmin(affinity.translate(_deck_full, xoff=math.cos(_a) * _d,
+                                        yoff=math.sin(_a) * _d)) < STAGE_ROW1_STANDOFF_FT
+               and _d < 80.0):
+            _d += 0.25
+        if _d < 80.0 and (_best is None or _d < _best[0]):
+            _best = (_d, math.cos(_a) * _d, math.sin(_a) * _d)
+    _T = (round(_best[1], 4), round(_best[2], 4)) if _best else (0.0, 0.0)
+    _deck_total = affinity.translate(_deck_full, xoff=_T[0], yoff=_T[1])
+    _gaps_pb = {s: round(_deck_total.distance(row1[s]), 1) for s in C.SECTIONS}
     _P_inh = placements["P_inherited"]["P"]
-    _off = [round(P_s[0] - _P_inh[0], 4), round(P_s[1] - _P_inh[1], 4)]
+    _off = [round(P_s[0] - _P_inh[0] + _T[0], 4), round(P_s[1] - _P_inh[1] + _T[1], 4)]
     C.dump(C.fc([
         C.feat(dict(name="adopted_stage_deck", role="stage_surface_adopted",
-                    placement=sel_name, apron="five_facet_apron",
-                    axis_az=sel["az"],
+                    placement=sel_name + " + upstage_pullback",
+                    apron="five_facet_apron", axis_az=sel["az"],
                     rule9_path="path3_compromise (P_opt) + path4_wide_fan",
                     lateral_offset_from_inherited_ft=_off,
-                    front_to_row1_ft=axis_table[sel_name]["front_to_row1_ft"],
+                    front_to_row1_ft=_gaps_pb,
+                    corner_standoff_ft=STAGE_ROW1_STANDOFF_FT,
+                    upstage_pullback_ft=round((_T[0] ** 2 + _T[1] ** 2) ** 0.5, 2),
+                    pullback_vector_en_ft=list(_T),
                     deck_elev_navd88=C.FOCUS_ELEV, structure_band_ft=1.0,
                     core_area_sf=round(core_deck.area, 0),
                     apron_area_sf=round(_ff_apron.area, 0),
                     total_area_sf=round(_deck_total.area, 0),
-                    note="P_opt-placed 70x34 core unioned with the five-facet "
-                         "apron; identical to the measured study footprint. "
-                         "Shoulders: translate inherited stage_surface by "
-                         "lateral_offset_from_inherited_ft downstream."),
+                    note=f"P_opt 70x34 core + five-facet apron, then rigidly pulled "
+                         f"upstage {round((_T[0] ** 2 + _T[1] ** 2) ** 0.5, 1)} ft so "
+                         f"every fan corner clears >= {STAGE_ROW1_STANDOFF_FT:.0f} ft "
+                         f"off row 1 (was 12 ft east). Deck shape UNCHANGED; only the "
+                         f"placement moved (focal point shifts by the pullback; bay "
+                         f"azimuth 330 preserved). Shoulders: translate inherited "
+                         f"stage_surface by lateral_offset_from_inherited_ft downstream."),
                dict(type="Polygon",
                     coordinates=[[[round(x, 3), round(y, 3)]
                                   for x, y in _deck_total.exterior.coords]])),

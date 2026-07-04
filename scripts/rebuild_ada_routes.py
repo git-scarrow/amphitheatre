@@ -297,14 +297,14 @@ def build_masks(zg, dem, tf, shp):
                   ((m_wedge == 0) | (m_corridor == 1))
     allowed_svc = m_radius & (m_tc == 0) & \
                   ((m_wedge == 0) | (m_corridor == 1))
-    return allowed_pub, allowed_svc, m_swale, m_gateway, {
+    return allowed_pub, allowed_svc, m_swale, m_gateway, m_wedge, {
         "treatment_cell": tc[0], "swales": unary_union(swales),
         "stage": unary_union(stage), "seating_wedge": seating_wedge,
         "gateways": unary_union(gateway_geoms),
         "envelope": shape(zg["construction_envelope"][0]["geometry"])}
 
 
-def dijkstra(dem, allowed, m_swale, m_gateway, tf, start_xy, goal_xy,
+def dijkstra(dem, allowed, m_swale, m_gateway, m_wedge, tf, start_xy, goal_xy,
              max_slope=MAX_RUN_SLOPE + SLOPE_TOL):
     rows, cols = dem.shape
     sr, sc = rasterio.transform.rowcol(tf, *start_xy)
@@ -364,7 +364,12 @@ def dijkstra(dem, allowed, m_swale, m_gateway, tf, start_xy, goal_xy,
                 else max_slope     # gateway = engineered graded transition
             if abs(z1 - z0) / w > cap:
                 continue
-            cost = w * (30.0 if m_swale[r2, c2] else 1.0)
+            # prefer the open forecourt / proper aisles over cutting through the
+            # seating wedge: penalise wedge cells (aisles are subtracted from the
+            # wedge, so legit aisle routes are unaffected) so floor routes hug the
+            # forecourt (widened by the stage pullback) instead of clipping seats.
+            cost = w * (30.0 if m_swale[r2, c2]
+                        else 20.0 if m_wedge[r2, c2] else 1.0)
             nd = d + cost
             if nd < dist[r2, c2]:
                 dist[r2, c2] = nd
@@ -425,7 +430,7 @@ def main():
     nodes = build_nodes(zg, dem, tf)
     print(f"emitted {len(nodes)} nodes -> vectors_geojson/ada_nodes.geojson")
 
-    (allowed_pub, allowed_svc, m_swale, m_gateway,
+    (allowed_pub, allowed_svc, m_swale, m_gateway, m_wedge,
      polys) = build_masks(zg, dem, tf, dem.shape)
     ROUTES = [
         ("route_arrival_to_cross_aisle", "public_arrival_rim",
@@ -448,7 +453,7 @@ def main():
     feats, landings, route_info = [], [], {}
     for name, a, b, klass in ROUTES:
         allowed = allowed_pub if klass == "public" else allowed_svc
-        path = dijkstra(dem, allowed, m_swale, m_gateway, tf,
+        path = dijkstra(dem, allowed, m_swale, m_gateway, m_wedge, tf,
                         nodes[a][:2], nodes[b][:2])
         if path is None:
             route_info[name] = {"status": "NO_PATH", "from": a, "to": b}

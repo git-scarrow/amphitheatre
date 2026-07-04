@@ -1,4 +1,4 @@
 section,core_to_row1_ft,occupied_deck_to_row1_ft,full_footprint_to_row1_ft,shoulder_to_row1_ft,shoulder_row1_overlap_sf,orchestra_overlap_sf,row1_seats,gate_pass_governed
-east,12.02,12.02,0.0,0.0,0.4,0.0,16,True
-bend,32.71,29.61,29.61,,0.0,,19,True
-south,21.9,18.78,15.91,15.91,0.0,,22,True
+east,20.01,20.0,7.22,7.22,0.0,0.0,16,True
+bend,37.85,36.21,36.21,,0.0,,19,True
+south,23.51,20.32,19.2,19.2,0.0,,22,True

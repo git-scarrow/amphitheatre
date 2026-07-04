@@ -145,15 +145,15 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19533136.93,
-     750780.28
+     19533129.05,
+     750781.67
     ]
    },
    "properties": {
     "name": "service_stage_access",
     "class": "service",
     "note": "OPTIONAL performer/service access at the stage right shoulder edge \u2014 classified service, NOT part of the public network",
-    "ground_elev_navd88_proposed": 609.92,
+    "ground_elev_navd88_proposed": 609.81,
     "design_elev_navd88": 612.5,
     "design_elev_source": "canonical event-floor/cross-aisle datum",
     "source": "scripts/rebuild_ada_routes.py \u2014 anchored to canonical zones / site_context rim_arrival_edge (read-only)"

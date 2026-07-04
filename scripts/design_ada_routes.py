@@ -461,7 +461,7 @@ def main():
                    gaussian_filter(np.where(void, 0, dem_raw), sigma=5.0,
                                    mode="nearest") / np.maximum(w, 1e-6),
                    -9999.0).astype("float32")
-    (allowed_pub, allowed_svc, m_swale, m_gateway,
+    (allowed_pub, allowed_svc, m_swale, m_gateway, _m_wedge,
      polys) = build_masks(zg, dem, tf, dem.shape)
 
     nodes = {}
