@@ -403,6 +403,10 @@ scene.fog = new THREE.Fog(0xdfe4dc, 1600, 4200);
 const camera = new THREE.PerspectiveCamera(46, 1, 1, 12000);
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.9;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 view.appendChild(renderer.domElement);
 
@@ -411,10 +415,14 @@ controls.enableDamping = true; controls.dampingFactor = 0.08;
 controls.maxPolarAngle = Math.PI * 0.495;
 controls.screenSpacePanning = false;
 
-scene.add(new THREE.HemisphereLight(0xf2f4ee, 0x9b9484, 0.62));
-const sun = new THREE.DirectionalLight(0xfff3df, 0.48);
-sun.position.set(-600, 900, 500);   // afternoon sun from WSW-ish
-scene.add(sun);
+const hemi = new THREE.HemisphereLight(0xbfd4ff, 0x8f8877, 0.55);
+scene.add(hemi);
+const sun = new THREE.DirectionalLight(0xfff3df, 1.0);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.bias = -0.0004;
+sun.shadow.normalBias = 1.2;
+scene.add(sun, sun.target);   // sun-path module (below) drives position/colour/sky
 
 /* ── terrain meshes ────────────────────────────────────────────── */
 function elevColor(z, lo, hi) { // restrained earth ramp
@@ -1134,6 +1142,145 @@ function resize() {
   renderer.setSize(w, h);
 }
 addEventListener("resize", resize); resize();
+
+/* ── sun path + advanced lighting ──────────────────────────────────
+   A physically-placed sun for the site (45.3746°N, -84.9581°W): the
+   directional light is positioned from a solar azimuth/elevation computed
+   for a chosen day-of-year + solar time, casts shadows so the bowl
+   self-shadows (the real value for a venue), and drives sky/ambient colour
+   by elevation. Viewer axes: +X=East, +Y=Up, -Z=North.                     */
+(function sunPath() {
+  const SITE_LAT = 45.37455, D2R = Math.PI / 180;
+
+  // shadow frustum + sun distance from the DESIGN terrain bounds (tight on the bowl)
+  terrainProposed.geometry.computeBoundingBox();
+  const bb = terrainProposed.geometry.boundingBox;
+  const center = new THREE.Vector3(); bb.getCenter(center);
+  const size = new THREE.Vector3(); bb.getSize(size);
+  const half = Math.min(1600, Math.max(320, Math.max(size.x, size.z) * 0.6));
+  const R = half * 4;
+  Object.assign(sun.shadow.camera, { left: -half, right: half, top: half, bottom: -half, near: 1, far: R + half * 2 });
+  sun.shadow.camera.updateProjectionMatrix();
+
+  // shadow participation: the proposed bowl casts + receives (the study);
+  // other opaque meshes receive; transparent overlays / sprites / lines skip.
+  scene.traverse(o => {
+    if (!o.isMesh) return;
+    const tr = o.material && o.material.transparent;
+    o.receiveShadow = true;
+    o.castShadow = !tr;
+  });
+  terrainProposed.castShadow = true; terrainProposed.receiveShadow = true;
+
+  // ── solar geometry ──
+  const decl = d => 23.44 * Math.sin((2 * Math.PI / 365) * (d - 81));   // deg
+  function azEl(day, hour) {                         // -> {az,el} degrees, az from N clockwise
+    const dc = decl(day) * D2R, la = SITE_LAT * D2R, H = 15 * (hour - 12) * D2R;
+    const sinEl = Math.sin(la) * Math.sin(dc) + Math.cos(la) * Math.cos(dc) * Math.cos(H);
+    const el = Math.asin(Math.max(-1, Math.min(1, sinEl)));
+    let c = (Math.sin(dc) - Math.sin(el) * Math.sin(la)) / (Math.cos(el) * Math.cos(la));
+    const az0 = Math.acos(Math.max(-1, Math.min(1, c))) / D2R;
+    return { az: H <= 0 ? az0 : 360 - az0, el: el / D2R };
+  }
+  function riseSet(day) {                            // solar hours of sunrise/sunset
+    const dc = decl(day) * D2R, la = SITE_LAT * D2R;
+    let c = -Math.tan(la) * Math.tan(dc);
+    if (c <= -1) return { rise: 0, set: 24 };        // polar day
+    if (c >= 1) return { rise: 12, set: 12 };         // polar night
+    const H0 = Math.acos(c) / D2R / 15;
+    return { rise: 12 - H0, set: 12 + H0 };
+  }
+
+  // ── colour ramps by elevation ──
+  const lerp = (a, b, t) => a + (b - a) * t;
+  function ramp(el, stops, key) {                    // stops: [{e,...}] ascending in e
+    if (el <= stops[0].e) return stops[0][key];
+    for (let i = 1; i < stops.length; i++)
+      if (el <= stops[i].e) {
+        const t = (el - stops[i - 1].e) / (stops[i].e - stops[i - 1].e);
+        if (key === "c") return new THREE.Color(stops[i - 1].c).lerp(new THREE.Color(stops[i].c), t);
+        return lerp(stops[i - 1][key], stops[i][key], t);
+      }
+    return stops[stops.length - 1][key];
+  }
+  const SUNC = [{ e: -6, c: 0x000000 }, { e: 0, c: 0xff5a1e }, { e: 6, c: 0xffb060 }, { e: 18, c: 0xffe6c2 }, { e: 60, c: 0xfff4e2 }];
+  const SUNI = [{ e: -6, i: 0 }, { e: 0, i: 0.12 }, { e: 6, i: 0.45 }, { e: 20, i: 0.72 }, { e: 60, i: 0.85 }];
+  const SKYC = [{ e: -12, c: 0x090d1c }, { e: -3, c: 0x2a2440 }, { e: 2, c: 0xc76a3a }, { e: 10, c: 0x9db9d6 }, { e: 30, c: 0xa6c6e2 }];
+  const HEMI = [{ e: -6, i: 0.1 }, { e: 4, i: 0.28 }, { e: 20, i: 0.42 }];
+
+  let curDay = 172, curHour = 17.0;                  // default: summer, golden afternoon
+  function setSun(day, hour) {
+    curDay = day; curHour = hour;
+    const { az, el } = azEl(day, hour);
+    const azr = az * D2R, elr = el * D2R;
+    const dir = new THREE.Vector3(Math.cos(elr) * Math.sin(azr), Math.sin(elr), -Math.cos(elr) * Math.cos(azr));
+    sun.position.copy(center).addScaledVector(dir, R);
+    sun.target.position.copy(center); sun.target.updateMatrixWorld();
+    sun.color.copy(ramp(el, SUNC, "c"));
+    sun.intensity = ramp(el, SUNI, "i");
+    sun.visible = el > -1;
+    const sky = ramp(el, SKYC, "c");
+    scene.background = sky; scene.fog.color.copy(sky);
+    hemi.intensity = ramp(el, HEMI, "i");
+    hemi.color.copy(sky);
+    // readout
+    const rs = riseSet(day), hh = h => String(Math.floor(h)).padStart(2, "0") + ":" + String(Math.round((h % 1) * 60)).padStart(2, "0");
+    ro.textContent = `az ${az.toFixed(0)}° · el ${el >= 0 ? "+" : ""}${el.toFixed(0)}° · solar ${hh(hour)} · ${dayLabel(day)}` +
+      (el < 0 ? " · below horizon" : "") + `   (rise ${hh(rs.rise)} · set ${hh(rs.set)})`;
+  }
+  const MON = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+  const MN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function dayLabel(d) { let m = 11; for (let i = 0; i < 12; i++) if (d <= MON[i] + [31,28,31,30,31,30,31,31,30,31,30,31][i]) { m = i; break; } return `${MN[m]} ${d - MON[m]}`; }
+
+  // ── UI: inject a "Sun & lighting" section after the Camera section ──
+  const panel = document.getElementById("panel");
+  const sec = document.createElement("details");
+  sec.className = "sec"; sec.open = true;
+  sec.innerHTML = `<summary>Sun &amp; lighting</summary><div class="body" style="font-size:11.5px">
+    <div id="sunReadout" style="color:var(--accent);margin:2px 0 7px;font-variant-numeric:tabular-nums"></div>
+    <label style="display:block;margin:4px 0 1px;color:var(--ink-soft)">Time of day (solar) <b id="sunHourL"></b></label>
+    <input id="sunHour" type="range" min="0" max="24" step="0.1" style="width:100%">
+    <div style="display:flex;gap:4px;flex-wrap:wrap;margin:5px 0">
+      <button data-p="rise" class="sunp">Sunrise</button><button data-p="gAM" class="sunp">Golden AM</button>
+      <button data-p="noon" class="sunp">Noon</button><button data-p="gPM" class="sunp">Golden PM</button>
+      <button data-p="set" class="sunp">Sunset</button></div>
+    <label style="display:block;margin:8px 0 1px;color:var(--ink-soft)">Date <b id="sunDayL"></b></label>
+    <input id="sunDay" type="range" min="1" max="365" step="1" style="width:100%">
+    <div style="display:flex;gap:4px;flex-wrap:wrap;margin:5px 0">
+      <button data-d="355" class="sunp">Dec solstice</button><button data-d="80" class="sunp">Mar equinox</button>
+      <button data-d="172" class="sunp">Jun solstice</button><button data-d="265" class="sunp">Sep equinox</button></div>
+    <label style="display:flex;align-items:center;gap:6px;margin-top:8px;color:var(--ink-soft)">
+      <input id="sunShadows" type="checkbox" checked> cast shadows (bowl self-shadowing)</label>
+  </div>`;
+  const style = document.createElement("style");
+  style.textContent = `.sunp{font-size:10.5px;padding:3px 7px;background:var(--paper-2);color:var(--ink);border:1px solid var(--line);border-radius:4px;cursor:pointer}.sunp:hover{border-color:var(--accent);color:var(--accent)}`;
+  document.head.appendChild(style);
+  panel.querySelector("details.sec").after(sec);
+
+  const ro = sec.querySelector("#sunReadout");
+  const hourEl = sec.querySelector("#sunHour"), dayEl = sec.querySelector("#sunDay");
+  const hourL = sec.querySelector("#sunHourL"), dayL = sec.querySelector("#sunDayL");
+  function refresh() {
+    hourEl.value = curHour; dayEl.value = curDay;
+    const hh = h => String(Math.floor(h)).padStart(2, "0") + ":" + String(Math.round((h % 1) * 60)).padStart(2, "0");
+    hourL.textContent = hh(curHour); dayL.textContent = dayLabel(curDay);
+    setSun(curDay, curHour);
+  }
+  hourEl.addEventListener("input", () => { curHour = +hourEl.value; refresh(); });
+  dayEl.addEventListener("input", () => { curDay = +dayEl.value; refresh(); });
+  sec.querySelectorAll("[data-d]").forEach(b => b.onclick = () => { curDay = +b.dataset.d; refresh(); });
+  sec.querySelectorAll("[data-p]").forEach(b => b.onclick = () => {
+    const rs = riseSet(curDay), p = b.dataset.p;
+    curHour = p === "rise" ? rs.rise : p === "set" ? rs.set : p === "noon" ? 12 :
+      p === "gAM" ? Math.min(12, rs.rise + 0.8) : Math.max(12, rs.set - 0.8);
+    refresh();
+  });
+  sec.querySelector("#sunShadows").addEventListener("change", e => {
+    renderer.shadowMap.enabled = e.target.checked;
+    scene.traverse(o => { if (o.isMesh && o.material) o.material.needsUpdate = true; });
+  });
+  refresh();
+})();
 
 const needle = document.getElementById("needle");
 (function loop(now) {
