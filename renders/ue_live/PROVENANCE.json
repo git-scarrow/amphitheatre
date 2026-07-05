@@ -3,14 +3,23 @@
   "scene_state": "GIS-first nested context build: full OSM+Microsoft city massing with 99% LiDAR-measured (3DEP) building heights, width-graded draped streets, foreground 3DEP terrain, accepted bowl design untouched; crude bay/horizon proxies hidden.",
   "umap_sha256": "26a0bd4275d90ffa83f43ae5367ea8ba23adbcf7c5c944c1faa315b4d250aff8",
   "captured": "2026-06-25",
-  "note": "Real perspective renders of the live editor scene, persisted so the web viewer can show the latest rendered scene. Refresh by re-capturing from the editor and re-running scripts/build_viewer_renders.py. NOTE: this gallery now spans TWO capture sessions — frames 01-07 are the 2026-06-25 nested-context study (umap_sha256 above); frames 08-10 are the 2026-07-04 adopted-P_opt-deck stage-audit re-import (see sessions[]).",
+  "note": "Real perspective renders of the live editor scene, persisted so the web viewer can show the latest rendered scene. Refresh by re-capturing from the editor and re-running scripts/build_viewer_renders.py. NOTE: this gallery spans capture sessions — frames 01-07 are the 2026-06-25 nested-context study (umap_sha256 above); frames 08-10 are the 2026-07-04 PULLED-BACK stage re-capture (≥20 ft fan corners), which supersede the earlier pre-pullback adopted-P_opt-deck frames of the same slots (see sessions[]).",
   "sessions": [
     {
       "frames": ["08_adopted_deck_overhead_plan.png", "09_adopted_deck_3quarter_sunset.png", "10_adopted_deck_audience_to_bay.png"],
       "captured": "2026-07-04",
+      "superseded_by": "2026-07-04 pulled-back re-capture (08_pulled_stage_* / 09_ / 10_); these pre-pullback PNGs removed from the gallery",
       "repo_commit": "b0b0e38 (branch stage-pad-audit-deck-method)",
       "scene_state": "Phase-B adopted P_opt stage deck re-imported from the artifact pipeline (Method B deck-over-compacted-base): 70x34 core + five-facet apron + non-governing shoulders at the P_opt position; orchestra re-emitted (overlap 0); inherited placeholder removed. Read-only capture — no UE geometry hand-edited.",
       "note": "Captured via EditorAppToolset.CaptureViewport under the graded golden-hour review lighting; verified 0 Stage_zone* placeholders / 4 Stage_adopted* actors."
+    },
+    {
+      "frames": ["08_pulled_stage_overhead_plan.png", "09_pulled_stage_3quarter_sunset.png", "10_pulled_stage_audience_to_bay.png"],
+      "captured": "2026-07-04",
+      "repo_commit": "185da54 (branch stage-pad-audit-deck-method)",
+      "umap_sha256": "3dcca17ca0d2d45444c2f574dda080259995baac5e2227dc5f4a6eeff2289469",
+      "scene_state": "Pulled-back stage: fan corners opened to >=20 ft via upstage pullback + ADA forecourt re-route (geometry committed f2cf2b9, re-imported into UE at ab3ddd0). Four Stage_pulled_* deck actors (core + five-facet apron + two non-governing shoulders) at the upstage position; orchestra/seating/ADA re-emitted from the artifact pipeline. Read-only capture — no UE geometry hand-edited (camera poses only).",
+      "note": "Captured via EditorAppToolset.CaptureViewport (bShowUI:false, annotations off) under the saved graded golden-hour WNW-bay-sunset review lighting. Free viewpoints composed on the pulled-back stage centroid (~-722,858,18661 cm; bay axis yaw -30). Small floating white marker in some frames = a review CineCameraActor billboard, not design geometry."
     }
   ],
   "frames": {
@@ -21,8 +30,8 @@
     "05_bowl_and_bay_edge.png": "Bowl and bay edge",
     "06_near_plan_streets_parks.png": "Near-plan — streets and parks",
     "07_harbor_breakwaters_in_water.png": "Harbor — breakwaters + piers now surrounded by water (coast clipped to OSM shoreline; long breakwater carries the pierhead light)",
-    "08_adopted_deck_overhead_plan.png": "Adopted P_opt deck — overhead plan (deck at bowl focus, orchestra + seating + context) · 2026-07-04",
-    "09_adopted_deck_3quarter_sunset.png": "Adopted P_opt deck — 3/4 aerial, golden hour (deck + orchestra floor + bay) · 2026-07-04",
-    "10_adopted_deck_audience_to_bay.png": "Adopted P_opt deck — audience → stage → bay (low open-air deck, no upstage wall) · 2026-07-04"
+    "08_pulled_stage_overhead_plan.png": "Pulled-back stage — overhead plan (deck at fan throat, ≥20 ft-open corners, orchestra + seating fan + city context) · 2026-07-04",
+    "09_pulled_stage_3quarter_sunset.png": "Pulled-back stage — 3/4 aerial, golden hour (deck + upstage forecourt + Little Traverse Bay backdrop) · 2026-07-04",
+    "10_pulled_stage_audience_to_bay.png": "Pulled-back stage — audience → stage → bay (low open-air deck, no upstage wall, open bay+sky backdrop) · 2026-07-04"
   }
 }
