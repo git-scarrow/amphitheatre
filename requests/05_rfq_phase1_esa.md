@@ -1,6 +1,13 @@
 # Request for Qualifications / Scope Letter — Phase I Environmental Site Assessment
 **Dossier ref: D-1 (Phase I ESA), D-2 (Phase II — contingent)**
 
+> **⛔ BLOCKED (2026-07-06): records first.** The site is EGLE Part 201 site "Petoskey
+> Ford/Former Petoskey Pointe" (SiteID 24000048) with UST history and a 2006 brownfield
+> award — Phase I/II/BEA documents from the 2005–2007 era almost certainly exist. Obtain
+> them via the EGLE FOIA (request 07) before commissioning new work; a new Phase I would
+> then be an update, not a from-scratch assessment. Site access also requires owner
+> permission (Petoskey Grand LLC).**
+
 ---
 
 **[DATE]**
@@ -13,21 +20,20 @@ Bayfront Park, Petoskey, MI**
 
 Dear [CONTACT NAME / Environmental Department],
 
-We are preparing a planning-grade design for an outdoor amphitheater and civic event garden at **Bayfront Park, City of Petoskey, Emmet County, Michigan**. In advance of earthwork that may involve excavation, fill reuse, dewatering, and discharge to Little Traverse Bay / Bear River (a designated coldwater fishery), we require a **Phase I Environmental Site Assessment (ESA)** per ASTM E1527 (current edition).
+We are preparing a planning-grade design for an outdoor amphitheater and civic event garden at the **former Petoskey Pointe block, downtown Petoskey, Emmet County, Michigan** (parcel 52-19-06-227-016). In advance of earthwork that may involve excavation, fill reuse, dewatering, and discharge to the municipal storm system, we require a **Phase I Environmental Site Assessment (ESA)** per ASTM E1527 (current edition), building on the existing Part 201 record for the block.
 
 ---
 
 ## Site description
 
-- **Location:** Bayfront Park, City of Petoskey, Emmet County, Michigan. The primary work area is a closed bowl depression (approximately 0.93 acres, floor ~609 ft NAVD88) in the western portion of the park, adjacent to the Bear River mouth and approximately 600 ft from Little Traverse Bay.
-- **Parcel(s):** [PIN TO BE CONFIRMED — see concurrent Register of Deeds research]; City of Petoskey ownership.
-- **Site history:** The Bayfront Park area has documented associations with:
-  - Grist/sawmill operations on the Bear River
-  - 19th-century dam and millpond activity
-  - Limestone quarrying (Petoskey stone / reef limestone)
-  - Former railroad depot / rail operations
-  - Possible historic fill of the pit depression
-- These associations constitute potential Recognized Environmental Conditions (RECs) under ASTM E1527 and are the primary driver for this assessment.
+- **Location:** the block bounded by E Lake Street, E Mitchell Street, Petoskey Street, and US-31, downtown Petoskey. The work area is the 2007 construction excavation occupying most of the block (closed bowl ~0.93 acres at floor ~609 ft NAVD88).
+- **Parcel:** 52-19-06-227-016 (~2.01 ac), Petoskey Grand LLC; formerly ~11 parcels assembled for the Petoskey Pointe project.
+- **Known environmental record:**
+  - EGLE Part 201 site **"Petoskey Ford/Former Petoskey Pointe," SiteID 24000048**
+  - UST facility records at 200 E Mitchell St (former Petoskey Ford)
+  - 2006 brownfield award "Petoskey Pointe Project" (11 parcels)
+  - Downtown-commercial neighbors include dry-cleaner, auto-service, and UST sites
+- The primary drivers for this assessment are the existing Part 201 record, the former dealership use, and any post-2007 fill or debris in the open excavation.
 
 ---
 
@@ -44,11 +50,11 @@ Standard Phase I scope, with the following site-specific emphases:
 3. **Interviews** — City of Petoskey Parks & DPW staff, historical society contacts as available, any current site users with knowledge of past activities.
 
 4. **Evaluation of RECs**, including:
-   - Former mill/dam operations on Bear River (sediment / industrial process chemicals)
-   - Rail depot / maintenance yard (petroleum, lead paint, tie preservatives)
-   - Limestone quarrying (blasting residues, hydraulic oils)
-   - Unknown fill in the bowl depression (debris, ash, contaminated soil)
-   - Any LUST/underground storage tank registrations adjacent to the park
+   - The existing Part 201 listing and its basis (former Petoskey Ford dealership: petroleum, solvents, hydraulic systems)
+   - UST registrations/releases on the block and adjoining parcels
+   - Neighboring downtown sources (dry cleaners, auto service, USTs)
+   - Post-2007 fill or debris placed in the open excavation
+   - Status/effect of the 2006 brownfield work and any due-care obligations attaching to the block
 
 5. **Phase I report** per ASTM E1527, including:
    - REC identification and classification (REC / CREC / HREC / de minimis)
@@ -61,7 +67,7 @@ Standard Phase I scope, with the following site-specific emphases:
 
 - **Phase II ESA (D-2):** If the Phase I identifies RECs requiring characterization, we anticipate proceeding directly to a Phase II investigation. Please indicate in your proposal whether Phase II characterization (soil/groundwater sampling) can be scoped as an add-service under the same contract, and provide a conditional budget range.
 - **Geotechnical borings (concurrent):** We are simultaneously scoping a geotechnical investigation (C-1 through C-5). Where practicable, geotechnical borings may be used to collect environmental screening samples — please indicate your willingness to coordinate with the geotechnical team on dual-purpose borings.
-- **Discharge sensitivity:** Any outfall from this site will discharge to or near Little Traverse Bay and/or the Bear River (EGLE-designated coldwater fishery). Contamination findings carry elevated regulatory scrutiny.
+- **Discharge sensitivity:** site stormwater would reach the municipal system that outfalls to Little Traverse Bay / the Bear River (coldwater fishery). Contamination findings carry elevated regulatory scrutiny.
 
 ---
 
@@ -79,9 +85,8 @@ Please provide:
 
 ## Contact and submission
 
-**[REQUESTER NAME]**
-**[ORGANIZATION]**
-**[EMAIL ADDRESS]**
-**[PHONE NUMBER]**
+**Sam Scarrow**
+**sscarrow@gmail.com**
+**[PHONE — fill before sending]**
 
-Proposals due: **[DATE]**
+Proposals due: **[DATE — suggest 3–4 weeks from send]**

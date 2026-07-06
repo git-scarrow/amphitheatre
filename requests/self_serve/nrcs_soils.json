@@ -1,0 +1,304 @@
+{
+ "Table": [
+  [
+   "mukey",
+   "musym",
+   "muname",
+   "compname",
+   "comppct_r",
+   "hydgrp",
+   "drainagecl",
+   "majcompflag"
+  ],
+  [
+   "189305",
+   "AgB",
+   "Alpena gravelly loamy sand, sandy variant, 0 to 6 percent slopes",
+   "Alpena",
+   "90",
+   "A",
+   "Excessively drained",
+   "Yes"
+  ],
+  [
+   "189305",
+   "AgB",
+   "Alpena gravelly loamy sand, sandy variant, 0 to 6 percent slopes",
+   "Roscommon",
+   "5",
+   "A/D",
+   "Poorly drained",
+   "No "
+  ],
+  [
+   "189305",
+   "AgB",
+   "Alpena gravelly loamy sand, sandy variant, 0 to 6 percent slopes",
+   "East Lake",
+   "5",
+   "A",
+   "Somewhat excessively drained",
+   "No "
+  ],
+  [
+   "202283",
+   "Bp",
+   "Borrow pits",
+   "Borrow pits",
+   "100",
+   null,
+   null,
+   "Yes"
+  ],
+  [
+   "189326",
+   "EaB",
+   "East Lake loamy sand, 0 to 6 percent slopes",
+   "East Lake",
+   "90",
+   "A",
+   "Somewhat excessively drained",
+   "Yes"
+  ],
+  [
+   "189326",
+   "EaB",
+   "East Lake loamy sand, 0 to 6 percent slopes",
+   "Mancelona",
+   "4",
+   "A",
+   "Somewhat excessively drained",
+   "No "
+  ],
+  [
+   "189326",
+   "EaB",
+   "East Lake loamy sand, 0 to 6 percent slopes",
+   "Au Gres",
+   "3",
+   "A/D",
+   "Somewhat poorly drained",
+   "No "
+  ],
+  [
+   "189326",
+   "EaB",
+   "East Lake loamy sand, 0 to 6 percent slopes",
+   "Kalkaska",
+   "3",
+   "A",
+   "Somewhat excessively drained",
+   "No "
+  ],
+  [
+   "189329",
+   "EaF",
+   "East Lake loamy sand, 18 to 45 percent slopes",
+   "East Lake",
+   "90",
+   "A",
+   "Somewhat excessively drained",
+   "Yes"
+  ],
+  [
+   "189329",
+   "EaF",
+   "East Lake loamy sand, 18 to 45 percent slopes",
+   "Mancelona",
+   "5",
+   "A",
+   "Somewhat excessively drained",
+   "No "
+  ],
+  [
+   "189329",
+   "EaF",
+   "East Lake loamy sand, 18 to 45 percent slopes",
+   "Kalkaska",
+   "5",
+   "A",
+   "Somewhat excessively drained",
+   "No "
+  ],
+  [
+   "189334",
+   "EmB",
+   "Emmet sandy loam, 2 to 6 percent slopes",
+   "Emmet",
+   "90",
+   "B",
+   "Well drained",
+   "Yes"
+  ],
+  [
+   "189334",
+   "EmB",
+   "Emmet sandy loam, 2 to 6 percent slopes",
+   "Charlevoix",
+   "4",
+   "A/D",
+   "Somewhat poorly drained",
+   "No "
+  ],
+  [
+   "189334",
+   "EmB",
+   "Emmet sandy loam, 2 to 6 percent slopes",
+   "Leelanau",
+   "3",
+   "A",
+   "Well drained",
+   "No "
+  ],
+  [
+   "189334",
+   "EmB",
+   "Emmet sandy loam, 2 to 6 percent slopes",
+   "Blue Lake",
+   "3",
+   "A",
+   "Well drained",
+   "No "
+  ],
+  [
+   "189335",
+   "EmC",
+   "Emmet sandy loam, 6 to 12 percent slopes",
+   "Emmet",
+   "90",
+   "B",
+   "Well drained",
+   "Yes"
+  ],
+  [
+   "189335",
+   "EmC",
+   "Emmet sandy loam, 6 to 12 percent slopes",
+   "Leelanau",
+   "5",
+   "A",
+   "Well drained",
+   "No "
+  ],
+  [
+   "189335",
+   "EmC",
+   "Emmet sandy loam, 6 to 12 percent slopes",
+   "Blue Lake",
+   "5",
+   "A",
+   "Well drained",
+   "No "
+  ],
+  [
+   "189336",
+   "EmD",
+   "Emmet sandy loam, 12 to 18 percent slopes",
+   "Emmet",
+   "90",
+   "B",
+   "Well drained",
+   "Yes"
+  ],
+  [
+   "189336",
+   "EmD",
+   "Emmet sandy loam, 12 to 18 percent slopes",
+   "Kalkaska",
+   "5",
+   "A",
+   "Somewhat excessively drained",
+   "No "
+  ],
+  [
+   "189336",
+   "EmD",
+   "Emmet sandy loam, 12 to 18 percent slopes",
+   "Leelanau",
+   "5",
+   "A",
+   "Well drained",
+   "No "
+  ],
+  [
+   "189337",
+   "EsE",
+   "Emmet soils, 18 to 25 percent slopes",
+   "Emmet",
+   "90",
+   "B",
+   "Well drained",
+   "Yes"
+  ],
+  [
+   "189337",
+   "EsE",
+   "Emmet soils, 18 to 25 percent slopes",
+   "Leelanau",
+   "5",
+   "A",
+   "Well drained",
+   "No "
+  ],
+  [
+   "189337",
+   "EsE",
+   "Emmet soils, 18 to 25 percent slopes",
+   "Blue Lake",
+   "5",
+   "A",
+   "Well drained",
+   "No "
+  ],
+  [
+   "189343",
+   "KaB",
+   "Kalkaska sand, 0 to 6 percent slopes",
+   "Kalkaska",
+   "95",
+   "A",
+   "Somewhat excessively drained",
+   "Yes"
+  ],
+  [
+   "189343",
+   "KaB",
+   "Kalkaska sand, 0 to 6 percent slopes",
+   "Blue Lake",
+   "3",
+   "A",
+   "Well drained",
+   "No "
+  ],
+  [
+   "189343",
+   "KaB",
+   "Kalkaska sand, 0 to 6 percent slopes",
+   "Halfaday",
+   "1",
+   "A/D",
+   "Moderately well drained",
+   "No "
+  ],
+  [
+   "189343",
+   "KaB",
+   "Kalkaska sand, 0 to 6 percent slopes",
+   "Au Gres",
+   "1",
+   "A/D",
+   "Somewhat poorly drained",
+   "No "
+  ],
+  [
+   "189357",
+   "Ma",
+   "Made land",
+   "Made land",
+   "100",
+   null,
+   null,
+   "Yes"
+  ]
+ ]
+}

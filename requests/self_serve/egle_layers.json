@@ -1,0 +1,2020 @@
+{
+ "part201_sites": {
+  "displayFieldName": "SITENAME",
+  "fieldAliases": {
+   "OBJECTID": "OBJECTID",
+   "SiteName": "SITENAME",
+   "Address": "ADDRESS",
+   "City": "CITY",
+   "ZipCode": "ZIPCODE",
+   "County": "COUNTY",
+   "Latitude": "LATITUDE",
+   "Longitude": "LONGITUDE",
+   "SiteID": "SiteID",
+   "BusinessType": "BusinessType",
+   "HorizontalReferenceDatum": "HorizontalReferenceDatum",
+   "HorizontalCollectionMethod": "HorizontalCollectionMethod",
+   "HorizontalAccuracy": "HorizontalAccuracy",
+   "ReferencePoint": "ReferencePoint",
+   "SourceMapScale": "SourceMapScale",
+   "RiskCondition": "RiskCondition",
+   "Contaminants": "Contaminants",
+   "HasBeaOrNom": "HasBeaOrNom",
+   "LastUpdated": "LastUpdated",
+   "ProjectManaager": "ProjectManaager"
+  },
+  "fields": [
+   {
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID",
+    "alias": "OBJECTID"
+   },
+   {
+    "name": "SiteName",
+    "type": "esriFieldTypeString",
+    "alias": "SITENAME",
+    "length": 80
+   },
+   {
+    "name": "Address",
+    "type": "esriFieldTypeString",
+    "alias": "ADDRESS",
+    "length": 81
+   },
+   {
+    "name": "City",
+    "type": "esriFieldTypeString",
+    "alias": "CITY",
+    "length": 100
+   },
+   {
+    "name": "ZipCode",
+    "type": "esriFieldTypeString",
+    "alias": "ZIPCODE",
+    "length": 10
+   },
+   {
+    "name": "County",
+    "type": "esriFieldTypeString",
+    "alias": "COUNTY",
+    "length": 40
+   },
+   {
+    "name": "Latitude",
+    "type": "esriFieldTypeDouble",
+    "alias": "LATITUDE"
+   },
+   {
+    "name": "Longitude",
+    "type": "esriFieldTypeDouble",
+    "alias": "LONGITUDE"
+   },
+   {
+    "name": "SiteID",
+    "type": "esriFieldTypeString",
+    "alias": "SiteID",
+    "length": 16
+   },
+   {
+    "name": "BusinessType",
+    "type": "esriFieldTypeString",
+    "alias": "BusinessType",
+    "length": 100
+   },
+   {
+    "name": "HorizontalReferenceDatum",
+    "type": "esriFieldTypeString",
+    "alias": "HorizontalReferenceDatum",
+    "length": 50
+   },
+   {
+    "name": "HorizontalCollectionMethod",
+    "type": "esriFieldTypeString",
+    "alias": "HorizontalCollectionMethod",
+    "length": 150
+   },
+   {
+    "name": "HorizontalAccuracy",
+    "type": "esriFieldTypeDouble",
+    "alias": "HorizontalAccuracy"
+   },
+   {
+    "name": "ReferencePoint",
+    "type": "esriFieldTypeString",
+    "alias": "ReferencePoint",
+    "length": 150
+   },
+   {
+    "name": "SourceMapScale",
+    "type": "esriFieldTypeInteger",
+    "alias": "SourceMapScale"
+   },
+   {
+    "name": "RiskCondition",
+    "type": "esriFieldTypeString",
+    "alias": "RiskCondition",
+    "length": 1073741822
+   },
+   {
+    "name": "Contaminants",
+    "type": "esriFieldTypeString",
+    "alias": "Contaminants",
+    "length": 250
+   },
+   {
+    "name": "HasBeaOrNom",
+    "type": "esriFieldTypeString",
+    "alias": "HasBeaOrNom",
+    "length": 10
+   },
+   {
+    "name": "LastUpdated",
+    "type": "esriFieldTypeDate",
+    "alias": "LastUpdated",
+    "length": 8
+   },
+   {
+    "name": "ProjectManaager",
+    "type": "esriFieldTypeString",
+    "alias": "ProjectManaager",
+    "length": 255
+   }
+  ],
+  "features": [
+   {
+    "attributes": {
+     "OBJECTID": 2585,
+     "SiteName": "Petoskey Municipal Well Field",
+     "Address": "200 West Lake Street",
+     "City": "Petoskey",
+     "ZipCode": "49770",
+     "County": "Emmet",
+     "Latitude": 45.37518735,
+     "Longitude": -84.96315117,
+     "SiteID": "24000011",
+     "BusinessType": null,
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-photo.",
+     "HorizontalAccuracy": 20.0,
+     "ReferencePoint": "Center of a facility or station",
+     "SourceMapScale": 24000,
+     "RiskCondition": "Risks Present and Require Action in Short-term",
+     "Contaminants": "Chlorinated Volatile and Semi Volatile Organic Compounds, Elements/Metals/Other Inorganics, Lead, Mercury",
+     "HasBeaOrNom": "YES",
+     "LastUpdated": 1743638400000,
+     "ProjectManaager": "Mead-O'Brien, Elizabeth"
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 2631,
+     "SiteName": "900 Emmet Street ",
+     "Address": "900 Emmet Street",
+     "City": "Petoskey",
+     "ZipCode": "49770",
+     "County": "Emmet",
+     "Latitude": 45.36930807,
+     "Longitude": -84.95954584,
+     "SiteID": "24000135",
+     "BusinessType": "Commercial and Retail, Transportation",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-photo.",
+     "HorizontalAccuracy": 20.0,
+     "ReferencePoint": "Center of a facility or station",
+     "SourceMapScale": 24000,
+     "RiskCondition": "Risks Present and Require Action in Long-term",
+     "Contaminants": "Carcinogenic PAHs, Elements/Metals/Other Inorganics",
+     "HasBeaOrNom": "YES",
+     "LastUpdated": 1749600000000,
+     "ProjectManaager": "Streich, Kelly"
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 2588,
+     "SiteName": "Petoskey Ford/Former Petoskey Pointe",
+     "Address": "201-215 East Mitchell Street",
+     "City": "Petoskey",
+     "ZipCode": "49770",
+     "County": "Emmet",
+     "Latitude": 45.37426969,
+     "Longitude": -84.95826067,
+     "SiteID": "24000048",
+     "BusinessType": null,
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-photo.",
+     "HorizontalAccuracy": 20.0,
+     "ReferencePoint": "Center of a facility or station",
+     "SourceMapScale": 24000,
+     "RiskCondition": "Risks Present and Require Action in Short-term",
+     "Contaminants": "Chlorinated Volatile and Semi Volatile Organic Compounds, Petroleum Volatile and Semi Volatile Organic Compounds",
+     "HasBeaOrNom": "YES",
+     "LastUpdated": 1732147200000,
+     "ProjectManaager": "Streich, Kelly"
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 2640,
+     "SiteName": "MDOT Railroad Parcels 2A & 5B",
+     "Address": "Rush Street & Washington Street",
+     "City": "Petoskey",
+     "ZipCode": "49770",
+     "County": "Emmet",
+     "Latitude": 45.36910359,
+     "Longitude": -84.95979552,
+     "SiteID": "24000144",
+     "BusinessType": "Transportation",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-photo.",
+     "HorizontalAccuracy": 20.0,
+     "ReferencePoint": "Center of a facility or station",
+     "SourceMapScale": 24000,
+     "RiskCondition": "Risks Present and Require Action in Long-term",
+     "Contaminants": "Carcinogenic PAHs, Elements/Metals/Other Inorganics, Mercury",
+     "HasBeaOrNom": "YES",
+     "LastUpdated": 1696291200000,
+     "ProjectManaager": "Streich, Kelly"
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 2597,
+     "SiteName": "Fochtman Motor Site",
+     "Address": "417 Michigan Street",
+     "City": "Petoskey",
+     "ZipCode": "49770",
+     "County": "Emmet",
+     "Latitude": 45.37322,
+     "Longitude": -84.95447,
+     "SiteID": "24000085",
+     "BusinessType": "Auto Repair and Salvage",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-map",
+     "HorizontalAccuracy": 15.0,
+     "ReferencePoint": "Center of a facility or station",
+     "SourceMapScale": 24000,
+     "RiskCondition": "Risks Present and Require Action in Short-term",
+     "Contaminants": "Elements/Metals/Other Inorganics, Lead, Mercury",
+     "HasBeaOrNom": "YES",
+     "LastUpdated": 1691366400000,
+     "ProjectManaager": "Streich, Kelly"
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 2641,
+     "SiteName": "Former Petoskey Railroad",
+     "Address": "319 State Street",
+     "City": "Petoskey",
+     "ZipCode": "49770",
+     "County": "Emmet",
+     "Latitude": 45.3723965,
+     "Longitude": -84.95618149,
+     "SiteID": "24000145",
+     "BusinessType": "Dry Cleaner, Foundry, Gas Station, Manufacturing, Transportation",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-photo.",
+     "HorizontalAccuracy": 20.0,
+     "ReferencePoint": "Center of a facility or station",
+     "SourceMapScale": 24000,
+     "RiskCondition": "Risks Present and Require Action in Long-term",
+     "Contaminants": "Chlorinated Volatile and Semi Volatile Organic Compounds, Elements/Metals/Other Inorganics, Mercury, Petroleum Volatile and Semi Volatile Organic Compounds",
+     "HasBeaOrNom": "YES",
+     "LastUpdated": 1695340800000,
+     "ProjectManaager": "Streich, Kelly"
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 2592,
+     "SiteName": "Lake St WF Dev",
+     "Address": "200 West Lake Street",
+     "City": "Petoskey",
+     "ZipCode": "49770",
+     "County": "Emmet",
+     "Latitude": 45.37526,
+     "Longitude": -84.9629,
+     "SiteID": "24000077",
+     "BusinessType": null,
+     "HorizontalReferenceDatum": null,
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-map",
+     "HorizontalAccuracy": null,
+     "ReferencePoint": "Center of a facility or station",
+     "SourceMapScale": null,
+     "RiskCondition": "Risks Present and Require Action in Short-term",
+     "Contaminants": "Chlorinated Volatile and Semi Volatile Organic Compounds, Elements/Metals/Other Inorganics",
+     "HasBeaOrNom": "NO",
+     "LastUpdated": 1643760000000,
+     "ProjectManaager": "Streich, Kelly"
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 2607,
+     "SiteName": "Hookers Cleaners - Former",
+     "Address": "302 Michigan Street",
+     "City": "Petoskey",
+     "ZipCode": "49770",
+     "County": "Emmet",
+     "Latitude": 45.37266541,
+     "Longitude": -84.95699471,
+     "SiteID": "24000108",
+     "BusinessType": "Dry Cleaner",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-photo.",
+     "HorizontalAccuracy": 20.0,
+     "ReferencePoint": "Center of a facility or station",
+     "SourceMapScale": 24000,
+     "RiskCondition": "Risks Present and Require Action in Short-term",
+     "Contaminants": "Chlorinated Volatile and Semi Volatile Organic Compounds",
+     "HasBeaOrNom": "YES",
+     "LastUpdated": 1718582400000,
+     "ProjectManaager": "Pixley, Heidi"
+    }
+   }
+  ]
+ },
+ "underground_storage_tanks": {
+  "displayFieldName": "SiteName",
+  "fieldAliases": {
+   "OBJECTID": "OBJECTID",
+   "Address": "ADDRESS",
+   "City": "CITY",
+   "ZipCode": "ZIPCODE",
+   "Latitude": "LATITUDE",
+   "Longitude": "LONGITUDE",
+   "FacilityID": "FacilityID",
+   "ProjectManager": "ProjectManager",
+   "FacilityName": "FacilityName",
+   "County": "County",
+   "WorkUnit": "WorkUnit",
+   "HorizontalReferenceDatum": "HorizontalReferenceDatum",
+   "HorizontalCollectionMethod": "HorizontalCollectionMethod",
+   "HorizontalAccuracy": "HorizontalAccuracy",
+   "ReferencePoint": "ReferencePoint",
+   "SourceMapScale": "SourceMapScale",
+   "Total_Tank": "TotalTank",
+   "Active_Tank": "ActiveTank",
+   "Total_Release": "TotalRelease",
+   "Open_Release": "OpenRelease",
+   "Closed_Release": "ClosedRelease",
+   "ReleaseStatus": "ReleaseStatus",
+   "RegulatoryProgram": "RegulatoryProgram",
+   "CurrentClassification": "CurrentClassification",
+   "PreviousClassification": "PreviousClassification",
+   "HighestClassification": "HighestClassification",
+   "RiskCondition": "RiskCondition",
+   "Restrictions": "Restrictions",
+   "HasBEA": "HasBEA",
+   "LastUpdated": "LastUpdated"
+  },
+  "fields": [
+   {
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID",
+    "alias": "OBJECTID"
+   },
+   {
+    "name": "Address",
+    "type": "esriFieldTypeString",
+    "alias": "ADDRESS",
+    "length": 81
+   },
+   {
+    "name": "City",
+    "type": "esriFieldTypeString",
+    "alias": "CITY",
+    "length": 100
+   },
+   {
+    "name": "ZipCode",
+    "type": "esriFieldTypeString",
+    "alias": "ZIPCODE",
+    "length": 5
+   },
+   {
+    "name": "Latitude",
+    "type": "esriFieldTypeDouble",
+    "alias": "LATITUDE"
+   },
+   {
+    "name": "Longitude",
+    "type": "esriFieldTypeDouble",
+    "alias": "LONGITUDE"
+   },
+   {
+    "name": "FacilityID",
+    "type": "esriFieldTypeString",
+    "alias": "FacilityID",
+    "length": 16
+   },
+   {
+    "name": "ProjectManager",
+    "type": "esriFieldTypeString",
+    "alias": "ProjectManager",
+    "length": 255
+   },
+   {
+    "name": "FacilityName",
+    "type": "esriFieldTypeString",
+    "alias": "FacilityName",
+    "length": 80
+   },
+   {
+    "name": "County",
+    "type": "esriFieldTypeString",
+    "alias": "County",
+    "length": 40
+   },
+   {
+    "name": "WorkUnit",
+    "type": "esriFieldTypeString",
+    "alias": "WorkUnit",
+    "length": 255
+   },
+   {
+    "name": "HorizontalReferenceDatum",
+    "type": "esriFieldTypeString",
+    "alias": "HorizontalReferenceDatum",
+    "length": 50
+   },
+   {
+    "name": "HorizontalCollectionMethod",
+    "type": "esriFieldTypeString",
+    "alias": "HorizontalCollectionMethod",
+    "length": 150
+   },
+   {
+    "name": "HorizontalAccuracy",
+    "type": "esriFieldTypeSingle",
+    "alias": "HorizontalAccuracy"
+   },
+   {
+    "name": "ReferencePoint",
+    "type": "esriFieldTypeString",
+    "alias": "ReferencePoint",
+    "length": 150
+   },
+   {
+    "name": "SourceMapScale",
+    "type": "esriFieldTypeInteger",
+    "alias": "SourceMapScale"
+   },
+   {
+    "name": "Total_Tank",
+    "type": "esriFieldTypeInteger",
+    "alias": "TotalTank"
+   },
+   {
+    "name": "Active_Tank",
+    "type": "esriFieldTypeInteger",
+    "alias": "ActiveTank"
+   },
+   {
+    "name": "Total_Release",
+    "type": "esriFieldTypeInteger",
+    "alias": "TotalRelease"
+   },
+   {
+    "name": "Open_Release",
+    "type": "esriFieldTypeInteger",
+    "alias": "OpenRelease"
+   },
+   {
+    "name": "Closed_Release",
+    "type": "esriFieldTypeInteger",
+    "alias": "ClosedRelease"
+   },
+   {
+    "name": "ReleaseStatus",
+    "type": "esriFieldTypeString",
+    "alias": "ReleaseStatus",
+    "length": 50
+   },
+   {
+    "name": "RegulatoryProgram",
+    "type": "esriFieldTypeInteger",
+    "alias": "RegulatoryProgram"
+   },
+   {
+    "name": "CurrentClassification",
+    "type": "esriFieldTypeString",
+    "alias": "CurrentClassification",
+    "length": 255
+   },
+   {
+    "name": "PreviousClassification",
+    "type": "esriFieldTypeString",
+    "alias": "PreviousClassification",
+    "length": 255
+   },
+   {
+    "name": "HighestClassification",
+    "type": "esriFieldTypeString",
+    "alias": "HighestClassification",
+    "length": 255
+   },
+   {
+    "name": "RiskCondition",
+    "type": "esriFieldTypeString",
+    "alias": "RiskCondition",
+    "length": 255
+   },
+   {
+    "name": "Restrictions",
+    "type": "esriFieldTypeString",
+    "alias": "Restrictions",
+    "length": 3
+   },
+   {
+    "name": "HasBEA",
+    "type": "esriFieldTypeString",
+    "alias": "HasBEA",
+    "length": 3
+   },
+   {
+    "name": "LastUpdated",
+    "type": "esriFieldTypeDate",
+    "alias": "LastUpdated",
+    "length": 8
+   }
+  ],
+  "features": [
+   {
+    "attributes": {
+     "OBJECTID": 24904,
+     "Address": "207 E MITCHELL ST",
+     "City": "PETOSKEY",
+     "ZipCode": "49770",
+     "Latitude": 45.37402,
+     "Longitude": -84.95367,
+     "FacilityID": "00038614",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "East Mitchell St",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-map",
+     "HorizontalAccuracy": 100.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": null,
+     "Total_Tank": 5,
+     "Active_Tank": 0,
+     "Total_Release": 1,
+     "Open_Release": 1,
+     "Closed_Release": 0,
+     "ReleaseStatus": "Open",
+     "RegulatoryProgram": 213,
+     "CurrentClassification": "Class 3",
+     "PreviousClassification": null,
+     "HighestClassification": "Class 3",
+     "RiskCondition": "Risks Present and Require Action in Long-term",
+     "Restrictions": "NO",
+     "HasBEA": "NO",
+     "LastUpdated": 1701648000000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 19903,
+     "Address": "114 Rush St",
+     "City": "Petoskey",
+     "ZipCode": "49770",
+     "Latitude": 45.370179,
+     "Longitude": -84.959933,
+     "FacilityID": "00032946",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Petoskey Beverage Co",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on address matching-house number.",
+     "HorizontalAccuracy": 100.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": null,
+     "Total_Tank": 2,
+     "Active_Tank": 0,
+     "Total_Release": 1,
+     "Open_Release": 0,
+     "Closed_Release": 1,
+     "ReleaseStatus": "Closed",
+     "RegulatoryProgram": 213,
+     "CurrentClassification": "No Longer A Facility",
+     "PreviousClassification": "Class 4",
+     "HighestClassification": "Class 3",
+     "RiskCondition": "No Longer A Facility",
+     "Restrictions": "NO",
+     "HasBEA": "NO",
+     "LastUpdated": 1714089600000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 21778,
+     "Address": "200 E MITCHELL ST",
+     "City": "PETOSKEY",
+     "ZipCode": "49770",
+     "Latitude": 45.373898,
+     "Longitude": -84.958534,
+     "FacilityID": "00035252",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Petoskey Ford Building",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on GPS code measurements (pseudo range) standard positioning service (SA Off).",
+     "HorizontalAccuracy": 10.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": null,
+     "Total_Tank": 4,
+     "Active_Tank": 0,
+     "Total_Release": 1,
+     "Open_Release": 0,
+     "Closed_Release": 1,
+     "ReleaseStatus": "Closed",
+     "RegulatoryProgram": 213,
+     "CurrentClassification": "Class 5",
+     "PreviousClassification": "Class 4",
+     "HighestClassification": "Class 4",
+     "RiskCondition": "Risk Controlled",
+     "Restrictions": "YES",
+     "HasBEA": "NO",
+     "LastUpdated": 1687824000000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 10325,
+     "Address": "260 W MITCHELL ST",
+     "City": "PETOSKEY",
+     "ZipCode": "49770",
+     "Latitude": 45.37420215,
+     "Longitude": -84.96359856,
+     "FacilityID": "00011149",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Petoskey Donuts Inc",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-photo.",
+     "HorizontalAccuracy": 20.0,
+     "ReferencePoint": "Center of a facility or station",
+     "SourceMapScale": 24000,
+     "Total_Tank": 6,
+     "Active_Tank": 0,
+     "Total_Release": 1,
+     "Open_Release": 1,
+     "Closed_Release": 0,
+     "ReleaseStatus": "Open",
+     "RegulatoryProgram": 213,
+     "CurrentClassification": "Class 4",
+     "PreviousClassification": null,
+     "HighestClassification": "Class 4",
+     "RiskCondition": "Risks Controlled-Interim",
+     "Restrictions": "NO",
+     "HasBEA": "YES",
+     "LastUpdated": 1701648000000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 14570,
+     "Address": "MICHIGAN & HOWARD ST",
+     "City": "PETOSKEY",
+     "ZipCode": "49770",
+     "Latitude": 45.373009,
+     "Longitude": -84.955538,
+     "FacilityID": "00015759",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Bills Midtown Mobil & Car Wash",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on address matching-house number.",
+     "HorizontalAccuracy": 100.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": null,
+     "Total_Tank": 4,
+     "Active_Tank": 0,
+     "Total_Release": 0,
+     "Open_Release": 0,
+     "Closed_Release": 0,
+     "ReleaseStatus": "No Release",
+     "RegulatoryProgram": 211,
+     "CurrentClassification": null,
+     "PreviousClassification": null,
+     "HighestClassification": null,
+     "RiskCondition": "No Known Risks",
+     "Restrictions": "NO",
+     "HasBEA": "NO",
+     "LastUpdated": 1701648000000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 14571,
+     "Address": "109 W MITCHELL ST",
+     "City": "PETOSKEY",
+     "ZipCode": "49770",
+     "Latitude": 45.373911,
+     "Longitude": -84.961187,
+     "FacilityID": "00015760",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Bay Buick",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on address matching-house number.",
+     "HorizontalAccuracy": 100.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": null,
+     "Total_Tank": 5,
+     "Active_Tank": 0,
+     "Total_Release": 1,
+     "Open_Release": 0,
+     "Closed_Release": 1,
+     "ReleaseStatus": "Closed",
+     "RegulatoryProgram": 213,
+     "CurrentClassification": "Class 5",
+     "PreviousClassification": "Class 4",
+     "HighestClassification": "Class 3",
+     "RiskCondition": "Risk Controlled",
+     "Restrictions": "YES",
+     "HasBEA": "YES",
+     "LastUpdated": 1701648000000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 18332,
+     "Address": "126 Fulton St",
+     "City": "Petoskey",
+     "ZipCode": "49770",
+     "Latitude": 45.369315,
+     "Longitude": -84.961149,
+     "FacilityID": "00019797",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Demmer Corp",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on address matching-house number.",
+     "HorizontalAccuracy": 100.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": null,
+     "Total_Tank": 1,
+     "Active_Tank": 0,
+     "Total_Release": 0,
+     "Open_Release": 0,
+     "Closed_Release": 0,
+     "ReleaseStatus": "No Release",
+     "RegulatoryProgram": 211,
+     "CurrentClassification": null,
+     "PreviousClassification": null,
+     "HighestClassification": null,
+     "RiskCondition": "No Known Risks",
+     "Restrictions": "NO",
+     "HasBEA": "NO",
+     "LastUpdated": 1701648000000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 25016,
+     "Address": "302 MICHIGAN ST",
+     "City": "PETOSKEY",
+     "ZipCode": "49770",
+     "Latitude": 45.37270404,
+     "Longitude": -84.95704786,
+     "FacilityID": "00038736",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Michigan St. Right-of-way",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-photo.",
+     "HorizontalAccuracy": 20.0,
+     "ReferencePoint": "Center of a facility or station",
+     "SourceMapScale": 24000,
+     "Total_Tank": 2,
+     "Active_Tank": 0,
+     "Total_Release": 0,
+     "Open_Release": 0,
+     "Closed_Release": 0,
+     "ReleaseStatus": "Cancelled",
+     "RegulatoryProgram": 211,
+     "CurrentClassification": null,
+     "PreviousClassification": null,
+     "HighestClassification": null,
+     "RiskCondition": "No Known Risks",
+     "Restrictions": "NO",
+     "HasBEA": "NO",
+     "LastUpdated": 1718582400000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 23367,
+     "Address": "300 PARK AVE",
+     "City": "BAY VIEW",
+     "ZipCode": "49770",
+     "Latitude": 45.374762,
+     "Longitude": -84.955238,
+     "FacilityID": "00036960",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Craft House @ Recreation Program",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-map",
+     "HorizontalAccuracy": 15.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": 14,
+     "Total_Tank": 1,
+     "Active_Tank": 0,
+     "Total_Release": 0,
+     "Open_Release": 0,
+     "Closed_Release": 0,
+     "ReleaseStatus": "No Release",
+     "RegulatoryProgram": 211,
+     "CurrentClassification": null,
+     "PreviousClassification": null,
+     "HighestClassification": null,
+     "RiskCondition": "No Known Risks",
+     "Restrictions": "NO",
+     "HasBEA": "NO",
+     "LastUpdated": 1687824000000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 4575,
+     "Address": "415 State St",
+     "City": "Petoskey",
+     "ZipCode": "49770",
+     "Latitude": 45.372066,
+     "Longitude": -84.955321,
+     "FacilityID": "00005009",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "St. Francis Xavier Parrish",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on address matching-house number.",
+     "HorizontalAccuracy": 100.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": null,
+     "Total_Tank": 1,
+     "Active_Tank": 0,
+     "Total_Release": 0,
+     "Open_Release": 0,
+     "Closed_Release": 0,
+     "ReleaseStatus": "No Release",
+     "RegulatoryProgram": 211,
+     "CurrentClassification": null,
+     "PreviousClassification": null,
+     "HighestClassification": null,
+     "RiskCondition": "No Known Risks",
+     "Restrictions": "NO",
+     "HasBEA": "NO",
+     "LastUpdated": 1701648000000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 1287,
+     "Address": "CORNER GROVE & WAUKAZOO STS",
+     "City": "PETOSKEY",
+     "ZipCode": "49770",
+     "Latitude": 45.370831,
+     "Longitude": -84.95307,
+     "FacilityID": "00001391",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Agriculture Building",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on address matching-house number.",
+     "HorizontalAccuracy": 100.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": null,
+     "Total_Tank": 1,
+     "Active_Tank": 0,
+     "Total_Release": 0,
+     "Open_Release": 0,
+     "Closed_Release": 0,
+     "ReleaseStatus": "No Release",
+     "RegulatoryProgram": 211,
+     "CurrentClassification": null,
+     "PreviousClassification": null,
+     "HighestClassification": null,
+     "RiskCondition": "No Known Risks",
+     "Restrictions": "NO",
+     "HasBEA": "NO",
+     "LastUpdated": 1701648000000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 20365,
+     "Address": "308 STATE ST",
+     "City": "PETOSKEY",
+     "ZipCode": "49770",
+     "Latitude": 45.371794,
+     "Longitude": -84.956983,
+     "FacilityID": "00033499",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Sysco-frost Pack",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on address matching-house number.",
+     "HorizontalAccuracy": 100.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": null,
+     "Total_Tank": 1,
+     "Active_Tank": 0,
+     "Total_Release": 0,
+     "Open_Release": 0,
+     "Closed_Release": 0,
+     "ReleaseStatus": "No Release",
+     "RegulatoryProgram": 211,
+     "CurrentClassification": null,
+     "PreviousClassification": null,
+     "HighestClassification": null,
+     "RiskCondition": "No Known Risks",
+     "Restrictions": "NO",
+     "HasBEA": "NO",
+     "LastUpdated": 1701648000000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 11827,
+     "Address": "611 HOWARD ST",
+     "City": "PETOSKEY",
+     "ZipCode": "49770",
+     "Latitude": 45.371712,
+     "Longitude": -84.955858,
+     "FacilityID": "00012754",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Petoskey Middle School",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on address matching-house number.",
+     "HorizontalAccuracy": 100.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": null,
+     "Total_Tank": 1,
+     "Active_Tank": 0,
+     "Total_Release": 0,
+     "Open_Release": 0,
+     "Closed_Release": 0,
+     "ReleaseStatus": "No Release",
+     "RegulatoryProgram": 211,
+     "CurrentClassification": null,
+     "PreviousClassification": null,
+     "HighestClassification": null,
+     "RiskCondition": "No Known Risks",
+     "Restrictions": "NO",
+     "HasBEA": "NO",
+     "LastUpdated": 1701648000000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 28123,
+     "Address": "446 E MITCHELL ST",
+     "City": "PETOSKEY",
+     "ZipCode": "49770",
+     "Latitude": 45.37368225,
+     "Longitude": -84.95338493,
+     "FacilityID": "00042072",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Colwell Corporation",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on interpolation-photo.",
+     "HorizontalAccuracy": 10.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": 14,
+     "Total_Tank": 4,
+     "Active_Tank": 0,
+     "Total_Release": 1,
+     "Open_Release": 1,
+     "Closed_Release": 0,
+     "ReleaseStatus": "Open",
+     "RegulatoryProgram": 213,
+     "CurrentClassification": "Unknown",
+     "PreviousClassification": null,
+     "HighestClassification": "Unknown",
+     "RiskCondition": "Risks Not Determined",
+     "Restrictions": "NO",
+     "HasBEA": "YES",
+     "LastUpdated": 1687824000000
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 2427,
+     "Address": "124 E MITCHELL ST",
+     "City": "PETOSKEY",
+     "ZipCode": "49770",
+     "Latitude": 45.373909,
+     "Longitude": -84.959696,
+     "FacilityID": "00002629",
+     "ProjectManager": "Sheehan, Meg",
+     "FacilityName": "Downtown Std.",
+     "County": "Emmet",
+     "WorkUnit": "Gaylord",
+     "HorizontalReferenceDatum": "North American Datum of 1983",
+     "HorizontalCollectionMethod": "The geographic coordinate determination method based on address matching-house number.",
+     "HorizontalAccuracy": 100.0,
+     "ReferencePoint": "Unknown",
+     "SourceMapScale": null,
+     "Total_Tank": 4,
+     "Active_Tank": 0,
+     "Total_Release": 0,
+     "Open_Release": 0,
+     "Closed_Release": 0,
+     "ReleaseStatus": "No Release",
+     "RegulatoryProgram": 211,
+     "CurrentClassification": null,
+     "PreviousClassification": null,
+     "HighestClassification": null,
+     "RiskCondition": "No Known Risks",
+     "Restrictions": "NO",
+     "HasBEA": "NO",
+     "LastUpdated": 1701648000000
+    }
+   }
+  ]
+ },
+ "brownfields": {
+  "displayFieldName": "ProjectName",
+  "fieldAliases": {
+   "OBJECTID_1": "OBJECTID_1",
+   "UniqueID": "UniqueID",
+   "ProjectName": "ProjectName",
+   "AwardDateYearFunded": "AwardDateYearFunded",
+   "City": "City",
+   "SiteAddress": "SiteAddress",
+   "County": "County",
+   "ParcelTaxID": "ParcelTaxID",
+   "Latitude": "Latitude",
+   "Longitude": "Longitude",
+   "FundingSource": "FundingSource",
+   "TotalBrownfieldIncentives": "TotalBrownfieldIncentives",
+   "F381ApprovedAmount": "F381ApprovedAmount",
+   "GrantAwardAmount": "GrantAwardAmount",
+   "LoanAwardAmount": "LoanAwardAmount",
+   "WaterfrontAwardAmount": "WaterfrontAwardAmount",
+   "BrownfieldSiteAssessment": "BrownfieldSiteAssessment",
+   "StateFundedCleanupAmountSpent": "StateFundedCleanupAmountSpent",
+   "Acreage": "Acreage",
+   "DevelopmentType": "DevelopmentType"
+  },
+  "fields": [
+   {
+    "name": "OBJECTID_1",
+    "type": "esriFieldTypeOID",
+    "alias": "OBJECTID_1"
+   },
+   {
+    "name": "UniqueID",
+    "type": "esriFieldTypeDouble",
+    "alias": "UniqueID"
+   },
+   {
+    "name": "ProjectName",
+    "type": "esriFieldTypeString",
+    "alias": "ProjectName",
+    "length": 1073741822
+   },
+   {
+    "name": "AwardDateYearFunded",
+    "type": "esriFieldTypeDate",
+    "alias": "AwardDateYearFunded",
+    "length": 8
+   },
+   {
+    "name": "City",
+    "type": "esriFieldTypeString",
+    "alias": "City",
+    "length": 1073741822
+   },
+   {
+    "name": "SiteAddress",
+    "type": "esriFieldTypeString",
+    "alias": "SiteAddress",
+    "length": 1073741822
+   },
+   {
+    "name": "County",
+    "type": "esriFieldTypeString",
+    "alias": "County",
+    "length": 1073741822
+   },
+   {
+    "name": "ParcelTaxID",
+    "type": "esriFieldTypeString",
+    "alias": "ParcelTaxID",
+    "length": 1073741822
+   },
+   {
+    "name": "Latitude",
+    "type": "esriFieldTypeDouble",
+    "alias": "Latitude"
+   },
+   {
+    "name": "Longitude",
+    "type": "esriFieldTypeDouble",
+    "alias": "Longitude"
+   },
+   {
+    "name": "FundingSource",
+    "type": "esriFieldTypeString",
+    "alias": "FundingSource",
+    "length": 1073741822
+   },
+   {
+    "name": "TotalBrownfieldIncentives",
+    "type": "esriFieldTypeDouble",
+    "alias": "TotalBrownfieldIncentives"
+   },
+   {
+    "name": "F381ApprovedAmount",
+    "type": "esriFieldTypeString",
+    "alias": "F381ApprovedAmount",
+    "length": 1073741822
+   },
+   {
+    "name": "GrantAwardAmount",
+    "type": "esriFieldTypeString",
+    "alias": "GrantAwardAmount",
+    "length": 1073741822
+   },
+   {
+    "name": "LoanAwardAmount",
+    "type": "esriFieldTypeString",
+    "alias": "LoanAwardAmount",
+    "length": 1073741822
+   },
+   {
+    "name": "WaterfrontAwardAmount",
+    "type": "esriFieldTypeDouble",
+    "alias": "WaterfrontAwardAmount"
+   },
+   {
+    "name": "BrownfieldSiteAssessment",
+    "type": "esriFieldTypeString",
+    "alias": "BrownfieldSiteAssessment",
+    "length": 1073741822
+   },
+   {
+    "name": "StateFundedCleanupAmountSpent",
+    "type": "esriFieldTypeDouble",
+    "alias": "StateFundedCleanupAmountSpent"
+   },
+   {
+    "name": "Acreage",
+    "type": "esriFieldTypeDouble",
+    "alias": "Acreage"
+   },
+   {
+    "name": "DevelopmentType",
+    "type": "esriFieldTypeString",
+    "alias": "DevelopmentType",
+    "length": 1073741822
+   }
+  ],
+  "features": [
+   {
+    "attributes": {
+     "OBJECTID_1": 504,
+     "UniqueID": 2200004013.0,
+     "ProjectName": "Lake Street WF Development",
+     "AwardDateYearFunded": 955584000000,
+     "City": "Petoskey",
+     "SiteAddress": "200 W Lake St",
+     "County": "EMMET",
+     "ParcelTaxID": "<null> ",
+     "Latitude": 45.375186,
+     "Longitude": -84.963091,
+     "FundingSource": "WRG",
+     "TotalBrownfieldIncentives": 597500.0,
+     "F381ApprovedAmount": null,
+     "GrantAwardAmount": null,
+     "LoanAwardAmount": null,
+     "WaterfrontAwardAmount": 597500.0,
+     "BrownfieldSiteAssessment": null,
+     "StateFundedCleanupAmountSpent": null,
+     "Acreage": null,
+     "DevelopmentType": "Commercial"
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID_1": 1267,
+     "UniqueID": null,
+     "ProjectName": "Lofts at Lumber Square",
+     "AwardDateYearFunded": 1723248000000,
+     "City": "Petoskey",
+     "SiteAddress": "900, 920 Emmet Street",
+     "County": "Emmet",
+     "ParcelTaxID": "52-19-06-402-016, 52-19-06-402-034, 52-19-06-402-3, 52-19-06-402-052",
+     "Latitude": 45.36927,
+     "Longitude": -84.95929,
+     "FundingSource": "RMG, 381",
+     "TotalBrownfieldIncentives": 1137706.0,
+     "F381ApprovedAmount": "812,706",
+     "GrantAwardAmount": "325000",
+     "LoanAwardAmount": null,
+     "WaterfrontAwardAmount": null,
+     "BrownfieldSiteAssessment": null,
+     "StateFundedCleanupAmountSpent": null,
+     "Acreage": 1.5,
+     "DevelopmentType": "Residential"
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID_1": 678,
+     "UniqueID": 2200608025.0,
+     "ProjectName": "Petoskey Pointe Project",
+     "AwardDateYearFunded": 1156204800000,
+     "City": "Petoskey",
+     "SiteAddress": "NW Corner of Mitchell & Petoskey Streets (11 parcels)",
+     "County": "Emmet",
+     "ParcelTaxID": "52-19-06-227-005, 52-19-06-227-006, 52-19-06-227-007, 52-19-06-227-009, 52-19-06-227-010, 52-19-06-227-011, 52-19-06-227-014, 52-19-06-228-001, 52-19-06-228-003, 52-19-06-229-102, 52-19-06-229-104",
+     "Latitude": 45.374538,
+     "Longitude": -84.958044,
+     "FundingSource": "381",
+     "TotalBrownfieldIncentives": 25296.0,
+     "F381ApprovedAmount": "25,296",
+     "GrantAwardAmount": null,
+     "LoanAwardAmount": null,
+     "WaterfrontAwardAmount": null,
+     "BrownfieldSiteAssessment": null,
+     "StateFundedCleanupAmountSpent": null,
+     "Acreage": null,
+     "DevelopmentType": "Planned Unit Development"
+    }
+   }
+  ]
+ },
+ "use_restriction_points": {
+  "displayFieldName": "FacilityName",
+  "fieldAliases": {
+   "OBJECTID": "OBJECTID",
+   "Acres": "Acres",
+   "SquareMiles": "SquareMiles",
+   "KermitId": "KermitId",
+   "RestrictionType": "RestrictionType",
+   "LandUseRestrictionType": "Land Use Restriction Type Description",
+   "RestrictionStatus": "RestrictionStatus",
+   "FacilityName": "FacilityName",
+   "Address": "Address",
+   "City": "City",
+   "ZipCode": "ZipCode",
+   "EgleReferenceNumber": "EgleReferenceNumber",
+   "MgEntityCd": "MG Entity Cd",
+   "ProgramType": "Program Type",
+   "DeedDate": "Deed Date",
+   "LocationId": "Location ID",
+   "CreatedUser": "CreatedUser",
+   "CreatedDate": "CreatedDate",
+   "LastEditedUser": "LastEditedUser",
+   "LastEditedDate": "LastEditedDate"
+  },
+  "fields": [
+   {
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID",
+    "alias": "OBJECTID"
+   },
+   {
+    "name": "Acres",
+    "type": "esriFieldTypeDouble",
+    "alias": "Acres"
+   },
+   {
+    "name": "SquareMiles",
+    "type": "esriFieldTypeDouble",
+    "alias": "SquareMiles"
+   },
+   {
+    "name": "KermitId",
+    "type": "esriFieldTypeDouble",
+    "alias": "KermitId"
+   },
+   {
+    "name": "RestrictionType",
+    "type": "esriFieldTypeSmallInteger",
+    "alias": "RestrictionType"
+   },
+   {
+    "name": "LandUseRestrictionType",
+    "type": "esriFieldTypeString",
+    "alias": "Land Use Restriction Type Description",
+    "length": 100
+   },
+   {
+    "name": "RestrictionStatus",
+    "type": "esriFieldTypeInteger",
+    "alias": "RestrictionStatus"
+   },
+   {
+    "name": "FacilityName",
+    "type": "esriFieldTypeString",
+    "alias": "FacilityName",
+    "length": 100
+   },
+   {
+    "name": "Address",
+    "type": "esriFieldTypeString",
+    "alias": "Address",
+    "length": 50
+   },
+   {
+    "name": "City",
+    "type": "esriFieldTypeString",
+    "alias": "City",
+    "length": 50
+   },
+   {
+    "name": "ZipCode",
+    "type": "esriFieldTypeInteger",
+    "alias": "ZipCode"
+   },
+   {
+    "name": "EgleReferenceNumber",
+    "type": "esriFieldTypeString",
+    "alias": "EgleReferenceNumber",
+    "length": 50
+   },
+   {
+    "name": "MgEntityCd",
+    "type": "esriFieldTypeString",
+    "alias": "MG Entity Cd",
+    "length": 100
+   },
+   {
+    "name": "ProgramType",
+    "type": "esriFieldTypeString",
+    "alias": "Program Type",
+    "length": 50
+   },
+   {
+    "name": "DeedDate",
+    "type": "esriFieldTypeDate",
+    "alias": "Deed Date",
+    "length": 8
+   },
+   {
+    "name": "LocationId",
+    "type": "esriFieldTypeString",
+    "alias": "Location ID",
+    "length": 50
+   },
+   {
+    "name": "CreatedUser",
+    "type": "esriFieldTypeString",
+    "alias": "CreatedUser",
+    "length": 50
+   },
+   {
+    "name": "CreatedDate",
+    "type": "esriFieldTypeDate",
+    "alias": "CreatedDate",
+    "length": 8
+   },
+   {
+    "name": "LastEditedUser",
+    "type": "esriFieldTypeString",
+    "alias": "LastEditedUser",
+    "length": 50
+   },
+   {
+    "name": "LastEditedDate",
+    "type": "esriFieldTypeDate",
+    "alias": "LastEditedDate",
+    "length": 8
+   }
+  ],
+  "features": []
+ },
+ "use_restriction_polygons": {
+  "displayFieldName": "FacilityName",
+  "fieldAliases": {
+   "OBJECTID": "OBJECTID",
+   "Acres": "Acres",
+   "SquareMiles": "SquareMiles",
+   "KermitId": "KermitId",
+   "RestrictionType": "RestrictionType",
+   "LandUseRestrictionType": "Land Use Restriction Type Description",
+   "RestrictionStatus": "RestrictionStatus",
+   "FacilityName": "FacilityName",
+   "Address": "Address",
+   "City": "City",
+   "ZipCode": "ZipCode",
+   "EgleReferenceNumber": "EgleReferenceNumber",
+   "MgEntityCd": "MG Entity Cd",
+   "ProgramType": "Program Type",
+   "DeedDate": "Deed Date",
+   "LocationId": "Location ID",
+   "CreatedUser": "CreatedUser",
+   "CreatedDate": "CreatedDate",
+   "LastEditedUser": "LastEditedUser",
+   "LastEditedDate": "LastEditedDate",
+   "Shape.STArea()": "Shape.STArea()",
+   "Shape.STLength()": "Shape.STLength()"
+  },
+  "fields": [
+   {
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID",
+    "alias": "OBJECTID"
+   },
+   {
+    "name": "Acres",
+    "type": "esriFieldTypeDouble",
+    "alias": "Acres"
+   },
+   {
+    "name": "SquareMiles",
+    "type": "esriFieldTypeDouble",
+    "alias": "SquareMiles"
+   },
+   {
+    "name": "KermitId",
+    "type": "esriFieldTypeDouble",
+    "alias": "KermitId"
+   },
+   {
+    "name": "RestrictionType",
+    "type": "esriFieldTypeSmallInteger",
+    "alias": "RestrictionType"
+   },
+   {
+    "name": "LandUseRestrictionType",
+    "type": "esriFieldTypeString",
+    "alias": "Land Use Restriction Type Description",
+    "length": 100
+   },
+   {
+    "name": "RestrictionStatus",
+    "type": "esriFieldTypeInteger",
+    "alias": "RestrictionStatus"
+   },
+   {
+    "name": "FacilityName",
+    "type": "esriFieldTypeString",
+    "alias": "FacilityName",
+    "length": 100
+   },
+   {
+    "name": "Address",
+    "type": "esriFieldTypeString",
+    "alias": "Address",
+    "length": 50
+   },
+   {
+    "name": "City",
+    "type": "esriFieldTypeString",
+    "alias": "City",
+    "length": 50
+   },
+   {
+    "name": "ZipCode",
+    "type": "esriFieldTypeInteger",
+    "alias": "ZipCode"
+   },
+   {
+    "name": "EgleReferenceNumber",
+    "type": "esriFieldTypeString",
+    "alias": "EgleReferenceNumber",
+    "length": 50
+   },
+   {
+    "name": "MgEntityCd",
+    "type": "esriFieldTypeString",
+    "alias": "MG Entity Cd",
+    "length": 100
+   },
+   {
+    "name": "ProgramType",
+    "type": "esriFieldTypeString",
+    "alias": "Program Type",
+    "length": 50
+   },
+   {
+    "name": "DeedDate",
+    "type": "esriFieldTypeDate",
+    "alias": "Deed Date",
+    "length": 8
+   },
+   {
+    "name": "LocationId",
+    "type": "esriFieldTypeString",
+    "alias": "Location ID",
+    "length": 50
+   },
+   {
+    "name": "CreatedUser",
+    "type": "esriFieldTypeString",
+    "alias": "CreatedUser",
+    "length": 50
+   },
+   {
+    "name": "CreatedDate",
+    "type": "esriFieldTypeDate",
+    "alias": "CreatedDate",
+    "length": 8
+   },
+   {
+    "name": "LastEditedUser",
+    "type": "esriFieldTypeString",
+    "alias": "LastEditedUser",
+    "length": 50
+   },
+   {
+    "name": "LastEditedDate",
+    "type": "esriFieldTypeDate",
+    "alias": "LastEditedDate",
+    "length": 8
+   },
+   {
+    "name": "Shape.STArea()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STArea()"
+   },
+   {
+    "name": "Shape.STLength()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STLength()"
+   }
+  ],
+  "features": [
+   {
+    "attributes": {
+     "OBJECTID": 4096,
+     "Acres": 0.78642972,
+     "SquareMiles": 0.0012288,
+     "KermitId": 11121399007.0,
+     "RestrictionType": 1,
+     "LandUseRestrictionType": "RC",
+     "RestrictionStatus": 2,
+     "FacilityName": "Bay Buick",
+     "Address": "109 West Mitchell Street",
+     "City": "Petoskey",
+     "ZipCode": 49770,
+     "EgleReferenceNumber": "RC-RRD-213-99-007",
+     "MgEntityCd": "RRD",
+     "ProgramType": "Part 213",
+     "DeedDate": 927763200000,
+     "LocationId": "00015760",
+     "CreatedUser": null,
+     "CreatedDate": null,
+     "LastEditedUser": null,
+     "LastEditedDate": null,
+     "Shape.STArea()": 3182.568534695,
+     "Shape.STLength()": 250.51218864410393
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 1740,
+     "Acres": 0.79688097,
+     "SquareMiles": 0.00124512,
+     "KermitId": 11120105020.0,
+     "RestrictionType": 1,
+     "LandUseRestrictionType": "RC",
+     "RestrictionStatus": 2,
+     "FacilityName": "Petoskey Manufacturing",
+     "Address": "200 West Lake Street",
+     "City": "Petoskey",
+     "ZipCode": 49770,
+     "EgleReferenceNumber": "RC-RRD-201-05-020",
+     "MgEntityCd": "ERD",
+     "ProgramType": "Part 201",
+     "DeedDate": 1115856000000,
+     "LocationId": "24000011",
+     "CreatedUser": null,
+     "CreatedDate": null,
+     "LastEditedUser": null,
+     "LastEditedDate": null,
+     "Shape.STArea()": 3224.86383915,
+     "Shape.STLength()": 237.16149563618285
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 5021,
+     "Acres": 0.36644566,
+     "SquareMiles": 0.00057257,
+     "KermitId": 11121323103.0,
+     "RestrictionType": 1,
+     "LandUseRestrictionType": "RC",
+     "RestrictionStatus": 2,
+     "FacilityName": "Petoskey E-Z Mart",
+     "Address": "302 West Mitchell Street",
+     "City": "Petoskey",
+     "ZipCode": 49770,
+     "EgleReferenceNumber": "RC-RRD-213-23-103",
+     "MgEntityCd": "RRD",
+     "ProgramType": "Part 213",
+     "DeedDate": 1705968000000,
+     "LocationId": "00015757",
+     "CreatedUser": "WARNERM1",
+     "CreatedDate": 1718714971000,
+     "LastEditedUser": "WARNERM1",
+     "LastEditedDate": 1718714971000,
+     "Shape.STArea()": 1482.95890327,
+     "Shape.STLength()": 167.7147183219876
+    }
+   }
+  ]
+ },
+ "environmental_areas": {
+  "displayFieldName": "EnvironmentalAreaName",
+  "fieldAliases": {
+   "OBJECTID": "OBJECTID",
+   "County": "County",
+   "EgleSde.EGLESDEADMIN.EnvironmentalAreas.Area": "Area",
+   "Perimeter": "Perimeter",
+   "Acres": "Acres",
+   "EnvironmentalAreaNumber": "EnvironmentalAreaNumber",
+   "Comments": "Comments",
+   "Town": "Town",
+   "Range": "Range",
+   "Section": "Section",
+   "Township": "Township",
+   "EnvironmentalAreaName": "EnvironmentalAreaName",
+   "Shape.STLength()": "Shape.STLength()"
+  },
+  "fields": [
+   {
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID",
+    "alias": "OBJECTID"
+   },
+   {
+    "name": "County",
+    "type": "esriFieldTypeString",
+    "alias": "County",
+    "length": 30
+   },
+   {
+    "name": "EgleSde.EGLESDEADMIN.EnvironmentalAreas.Area",
+    "type": "esriFieldTypeDouble",
+    "alias": "Area"
+   },
+   {
+    "name": "Perimeter",
+    "type": "esriFieldTypeDouble",
+    "alias": "Perimeter"
+   },
+   {
+    "name": "Acres",
+    "type": "esriFieldTypeDouble",
+    "alias": "Acres"
+   },
+   {
+    "name": "EnvironmentalAreaNumber",
+    "type": "esriFieldTypeString",
+    "alias": "EnvironmentalAreaNumber",
+    "length": 10
+   },
+   {
+    "name": "Comments",
+    "type": "esriFieldTypeString",
+    "alias": "Comments",
+    "length": 50
+   },
+   {
+    "name": "Town",
+    "type": "esriFieldTypeString",
+    "alias": "Town",
+    "length": 10
+   },
+   {
+    "name": "Range",
+    "type": "esriFieldTypeString",
+    "alias": "Range",
+    "length": 10
+   },
+   {
+    "name": "Section",
+    "type": "esriFieldTypeString",
+    "alias": "Section",
+    "length": 254
+   },
+   {
+    "name": "Township",
+    "type": "esriFieldTypeString",
+    "alias": "Township",
+    "length": 20
+   },
+   {
+    "name": "EnvironmentalAreaName",
+    "type": "esriFieldTypeString",
+    "alias": "EnvironmentalAreaName",
+    "length": 254
+   },
+   {
+    "name": "Shape.STLength()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STLength()"
+   }
+  ],
+  "features": []
+ },
+ "critical_dune_areas": {
+  "displayFieldName": "PlantCommunityName",
+  "fieldAliases": {
+   "OBJECTID": "OBJECTID",
+   "Acres": "Acres",
+   "DuneType": "DuneType",
+   "PlantCommunityCode": "PlantCommunityCode",
+   "PlantCommunityName": "PlantCommunityName",
+   "Shape.STArea()": "Shape.STArea()",
+   "Shape.STLength()": "Shape.STLength()"
+  },
+  "fields": [
+   {
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID",
+    "alias": "OBJECTID"
+   },
+   {
+    "name": "Acres",
+    "type": "esriFieldTypeDouble",
+    "alias": "Acres"
+   },
+   {
+    "name": "DuneType",
+    "type": "esriFieldTypeString",
+    "alias": "DuneType",
+    "length": 50
+   },
+   {
+    "name": "PlantCommunityCode",
+    "type": "esriFieldTypeString",
+    "alias": "PlantCommunityCode",
+    "length": 6
+   },
+   {
+    "name": "PlantCommunityName",
+    "type": "esriFieldTypeString",
+    "alias": "PlantCommunityName",
+    "length": 100
+   },
+   {
+    "name": "Shape.STArea()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STArea()"
+   },
+   {
+    "name": "Shape.STLength()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STLength()"
+   }
+  ],
+  "features": []
+ },
+ "high_risk_erosion_zones": {
+  "displayFieldName": "PRD30",
+  "fieldAliases": {
+   "OBJECTID": "OBJECTID",
+   "PRD30": "PRD30",
+   "PRD60": "PRD60",
+   "HighRiskAreas": "HighRiskAreas",
+   "County": "County",
+   "Township": "Township",
+   "StudyDate": "StudyDate",
+   "Shape.STArea()": "Shape.STArea()",
+   "Shape.STLength()": "Shape.STLength()"
+  },
+  "fields": [
+   {
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID",
+    "alias": "OBJECTID"
+   },
+   {
+    "name": "PRD30",
+    "type": "esriFieldTypeString",
+    "alias": "PRD30",
+    "length": 10
+   },
+   {
+    "name": "PRD60",
+    "type": "esriFieldTypeString",
+    "alias": "PRD60",
+    "length": 10
+   },
+   {
+    "name": "HighRiskAreas",
+    "type": "esriFieldTypeString",
+    "alias": "HighRiskAreas",
+    "length": 20
+   },
+   {
+    "name": "County",
+    "type": "esriFieldTypeString",
+    "alias": "County",
+    "length": 50
+   },
+   {
+    "name": "Township",
+    "type": "esriFieldTypeString",
+    "alias": "Township",
+    "length": 50
+   },
+   {
+    "name": "StudyDate",
+    "type": "esriFieldTypeDate",
+    "alias": "StudyDate",
+    "length": 8
+   },
+   {
+    "name": "Shape.STArea()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STArea()"
+   },
+   {
+    "name": "Shape.STLength()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STLength()"
+   }
+  ],
+  "features": []
+ },
+ "local_wetland_ordinances": {
+  "displayFieldName": "Name",
+  "fieldAliases": {
+   "OBJECTID": "OBJECTID",
+   "FMCD": "FMCD",
+   "Name": "Name",
+   "Shape.STArea()": "Shape.STArea()",
+   "Shape.STLength()": "Shape.STLength()"
+  },
+  "fields": [
+   {
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID",
+    "alias": "OBJECTID"
+   },
+   {
+    "name": "FMCD",
+    "type": "esriFieldTypeInteger",
+    "alias": "FMCD"
+   },
+   {
+    "name": "Name",
+    "type": "esriFieldTypeString",
+    "alias": "Name",
+    "length": 36
+   },
+   {
+    "name": "Shape.STArea()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STArea()"
+   },
+   {
+    "name": "Shape.STLength()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STLength()"
+   }
+  ],
+  "features": []
+ },
+ "nwi_2005": {
+  "displayFieldName": "NWICode",
+  "fieldAliases": {
+   "OBJECTID": "OBJECTID",
+   "NWICode": "NWICode",
+   "Acres": "Acres",
+   "Shape.STArea()": "Shape.STArea()",
+   "Shape.STLength()": "Shape.STLength()",
+   "WetlandType": "WETLAND_TYPE"
+  },
+  "fields": [
+   {
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID",
+    "alias": "OBJECTID"
+   },
+   {
+    "name": "NWICode",
+    "type": "esriFieldTypeString",
+    "alias": "NWICode",
+    "length": 15
+   },
+   {
+    "name": "Acres",
+    "type": "esriFieldTypeDouble",
+    "alias": "Acres"
+   },
+   {
+    "name": "Shape.STArea()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STArea()"
+   },
+   {
+    "name": "Shape.STLength()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STLength()"
+   },
+   {
+    "name": "WetlandType",
+    "type": "esriFieldTypeString",
+    "alias": "WETLAND_TYPE",
+    "length": 50
+   }
+  ],
+  "features": [
+   {
+    "attributes": {
+     "OBJECTID": 901093,
+     "NWICode": "L1UBH",
+     "Acres": 14517104.31119398,
+     "Shape.STArea()": 58732062443.90077,
+     "Shape.STLength()": 5328259.159682408,
+     "WetlandType": "Lake"
+    }
+   },
+   {
+    "attributes": {
+     "OBJECTID": 845216,
+     "NWICode": "R5UBH",
+     "Acres": 1.67489172,
+     "Shape.STArea()": 6773.32720311,
+     "Shape.STLength()": 1707.811112407108,
+     "WetlandType": "Riverine"
+    }
+   }
+  ]
+ },
+ "part303_state_wetland_inventory": {
+  "displayFieldName": "SymbologyDescription",
+  "fieldAliases": {
+   "GlobalID": "GlobalID",
+   "Symbology": "Symbology",
+   "SymbologyDescription": "SymbologyDescription",
+   "OBJECTID": "OBJECTID",
+   "Shape.STArea()": "Shape.STArea()",
+   "Shape.STLength()": "Shape.STLength()"
+  },
+  "fields": [
+   {
+    "name": "GlobalID",
+    "type": "esriFieldTypeGlobalID",
+    "alias": "GlobalID",
+    "length": 38
+   },
+   {
+    "name": "Symbology",
+    "type": "esriFieldTypeInteger",
+    "alias": "Symbology"
+   },
+   {
+    "name": "SymbologyDescription",
+    "type": "esriFieldTypeString",
+    "alias": "SymbologyDescription",
+    "length": 50
+   },
+   {
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID",
+    "alias": "OBJECTID"
+   },
+   {
+    "name": "Shape.STArea()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STArea()"
+   },
+   {
+    "name": "Shape.STLength()",
+    "type": "esriFieldTypeDouble",
+    "alias": "Shape.STLength()"
+   }
+  ],
+  "features": [
+   {
+    "attributes": {
+     "GlobalID": "{F64D2428-BD59-4AA0-BF6E-A6099D8AB983}",
+     "Symbology": 1,
+     "SymbologyDescription": "Hydric Soils only",
+     "OBJECTID": 2881890,
+     "Shape.STArea()": 11124.66234334,
+     "Shape.STLength()": 401.8858948021294
+    }
+   }
+  ]
+ }
+}

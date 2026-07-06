@@ -1,0 +1,74 @@
+{
+ "bowl_centre": {
+  "lonlat": [
+   -84.9582,
+   45.3746
+  ],
+  "result": [
+   [
+    "mukey",
+    "musym",
+    "muname",
+    "compname",
+    "comppct_r",
+    "hydgrp"
+   ],
+   [
+    "189326",
+    "EaB",
+    "East Lake loamy sand, 0 to 6 percent slopes",
+    "East Lake",
+    "90",
+    "A"
+   ]
+  ]
+ },
+ "nw_589ft_low": {
+  "lonlat": [
+   -84.95951645778966,
+   45.375391449618554
+  ],
+  "result": [
+   [
+    "mukey",
+    "musym",
+    "muname",
+    "compname",
+    "comppct_r",
+    "hydgrp"
+   ],
+   [
+    "189335",
+    "EmC",
+    "Emmet sandy loam, 6 to 12 percent slopes",
+    "Emmet",
+    "90",
+    "B"
+   ]
+  ]
+ },
+ "north_rim_pour_point": {
+  "lonlat": [
+   -84.95844662796628,
+   45.374838451177645
+  ],
+  "result": [
+   [
+    "mukey",
+    "musym",
+    "muname",
+    "compname",
+    "comppct_r",
+    "hydgrp"
+   ],
+   [
+    "189326",
+    "EaB",
+    "East Lake loamy sand, 0 to 6 percent slopes",
+    "East Lake",
+    "90",
+    "A"
+   ]
+  ]
+ }
+}

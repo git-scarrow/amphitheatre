@@ -3,6 +3,36 @@
 Planning-grade project. Field values are NOT fabricated. Each gap below must be filled
 before the corresponding decision is made. Items are tagged by the stage that needs them.
 
+## ⛔ 2026-07-06 — SITE IDENTITY CORRECTION + public-data pulls (see requests/self_serve/FINDINGS.md)
+
+- **⛔ The site is NOT Bayfront Park and NOT City-owned.** The design footprint
+  (`basin_footprint.geojson`) is the downtown block at 200 E Lake St (E Lake / E Mitchell /
+  Petoskey St / US-31): **PID 52-19-06-227-016, 2.01 ac, owner PETOSKEY GRAND LLC, class 202
+  (commercial vacant), zoning COP B-2** (Emmet Co. parcel service). The "Bayfront Park …
+  Bear River mouth … City ownership" framing in `executive_summary.md` and `requests/` is
+  **wrong** and must not be propagated. (Sam clarification: the geography was always known —
+  downtown pit across US-31 from Bayfront Park; "bay" = the upper rows' view the design
+  maximizes. Only the letters' text was wrong.) The `requests/` package was rewritten around
+  the true site same day: records requests (01/02/07) and a City Planning inquiry (08) are
+  sendable; field-work RFQs (03–06) are blocked on owner access / records-first.
+- **✅ Depression origin (dossier C-5) answered at desktop level:** the bowl is the 2007
+  **Petoskey Pointe** construction excavation (block demolished 2006, excavated 2007,
+  financing collapsed; owner chain → Petoskey Grand LLC 2018). Not natural, not a quarry,
+  not historic fill. Field characterization of pit-floor debris/fill still needed.
+- **⚠ The block is an EGLE Part 201 site** ("Petoskey Ford/Former Petoskey Pointe,"
+  SiteID 24000048) with UST facility 00035252 and a 2006 brownfield award. Prior Phase I/II /
+  BEA documents almost certainly exist — request before commissioning a new ESA.
+- **✅ Flood elevations (Stage 2 gap) closed at mapped level:** 2022 countywide FIRM — coastal
+  VE/AE **BFE 589.0 ft** at the bay frontage; Zone A (no BFE) on the Bear River; the site
+  blocks are Zone X. Pit floor 609 is ~20 ft above the coastal BFE.
+- **◐ HSG / land cover (Stage 2/3 parametric gaps) narrowed at mapped level:** bowl maps as
+  East Lake loamy sand **HSG A** (SSURGO; mapping predates the excavation); NLCD 2021 wide-AOI
+  impervious ≈ **63%**. Field infiltration tests remain the gate for the 0.0-in/hr case.
+- **✅ Dossier F-5 closed:** no critical-dune, high-risk-erosion, or environmental-area layers
+  intersect the AOI; bowl is outside the Petoskey WHPA.
+- **✅ Part 303 mapped baseline:** no state wetland-inventory polygon over the bowl (nearest
+  "hydric soils only" polygon ~600 m SW near the Bear River). Field delineation still decides.
+
 ## Datums / georeferencing
 - **[Stage 1] ✅ CLOSED. NAVD88↔IGLD85 offset confirmed via NOAA VDatum (2026-06-06).**
   At site coordinates 45.3746°N, 84.9582°W: **NAVD88 = IGLD85 + 0.162 ft**.

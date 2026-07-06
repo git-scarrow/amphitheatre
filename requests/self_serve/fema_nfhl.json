@@ -1,0 +1,206 @@
+{
+ "flood_hazard_zones": {
+  "displayFieldName": "FLD_AR_ID",
+  "fieldAliases": {
+   "FLD_ZONE": "FLD_ZONE",
+   "ZONE_SUBTY": "ZONE_SUBTY",
+   "STATIC_BFE": "STATIC_BFE",
+   "SFHA_TF": "SFHA_TF",
+   "FLD_AR_ID": "FLD_AR_ID"
+  },
+  "fields": [
+   {
+    "name": "FLD_ZONE",
+    "type": "esriFieldTypeString",
+    "alias": "FLD_ZONE",
+    "length": 17
+   },
+   {
+    "name": "ZONE_SUBTY",
+    "type": "esriFieldTypeString",
+    "alias": "ZONE_SUBTY",
+    "length": 76
+   },
+   {
+    "name": "STATIC_BFE",
+    "type": "esriFieldTypeDouble",
+    "alias": "STATIC_BFE"
+   },
+   {
+    "name": "SFHA_TF",
+    "type": "esriFieldTypeString",
+    "alias": "SFHA_TF",
+    "length": 1
+   },
+   {
+    "name": "FLD_AR_ID",
+    "type": "esriFieldTypeString",
+    "alias": "FLD_AR_ID",
+    "length": 32
+   }
+  ],
+  "features": [
+   {
+    "attributes": {
+     "FLD_ZONE": "VE",
+     "ZONE_SUBTY": "COASTAL FLOODPLAIN",
+     "STATIC_BFE": 589.0,
+     "SFHA_TF": "T",
+     "FLD_AR_ID": "26047C_119"
+    }
+   },
+   {
+    "attributes": {
+     "FLD_ZONE": "AE",
+     "ZONE_SUBTY": "COASTAL FLOODPLAIN",
+     "STATIC_BFE": 589.0,
+     "SFHA_TF": "T",
+     "FLD_AR_ID": "26047C_123"
+    }
+   },
+   {
+    "attributes": {
+     "FLD_ZONE": "A",
+     "ZONE_SUBTY": null,
+     "STATIC_BFE": -9999.0,
+     "SFHA_TF": "T",
+     "FLD_AR_ID": "26047C_271"
+    }
+   },
+   {
+    "attributes": {
+     "FLD_ZONE": "X",
+     "ZONE_SUBTY": "0.2 PCT ANNUAL CHANCE FLOOD HAZARD",
+     "STATIC_BFE": -9999.0,
+     "SFHA_TF": "F",
+     "FLD_AR_ID": "26047C_124"
+    }
+   },
+   {
+    "attributes": {
+     "FLD_ZONE": "X",
+     "ZONE_SUBTY": "0.2 PCT ANNUAL CHANCE FLOOD HAZARD",
+     "STATIC_BFE": -9999.0,
+     "SFHA_TF": "F",
+     "FLD_AR_ID": "26047C_125"
+    }
+   },
+   {
+    "attributes": {
+     "FLD_ZONE": "X",
+     "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+     "STATIC_BFE": -9999.0,
+     "SFHA_TF": "F",
+     "FLD_AR_ID": "26047C_204"
+    }
+   },
+   {
+    "attributes": {
+     "FLD_ZONE": "X",
+     "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+     "STATIC_BFE": -9999.0,
+     "SFHA_TF": "F",
+     "FLD_AR_ID": "26047C_215"
+    }
+   },
+   {
+    "attributes": {
+     "FLD_ZONE": "X",
+     "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+     "STATIC_BFE": -9999.0,
+     "SFHA_TF": "F",
+     "FLD_AR_ID": "26047C_277"
+    }
+   }
+  ]
+ },
+ "base_flood_elevations": {
+  "displayFieldName": "ELEV",
+  "fieldAliases": {
+   "ELEV": "ELEV",
+   "LEN_UNIT": "LEN_UNIT",
+   "BFE_LN_ID": "BFE_LN_ID"
+  },
+  "fields": [
+   {
+    "name": "ELEV",
+    "type": "esriFieldTypeDouble",
+    "alias": "ELEV"
+   },
+   {
+    "name": "LEN_UNIT",
+    "type": "esriFieldTypeString",
+    "alias": "LEN_UNIT",
+    "length": 16
+   },
+   {
+    "name": "BFE_LN_ID",
+    "type": "esriFieldTypeString",
+    "alias": "BFE_LN_ID",
+    "length": 32
+   }
+  ],
+  "features": []
+ },
+ "firm_panels": {
+  "displayFieldName": "DFIRM_ID",
+  "fieldAliases": {
+   "FIRM_PAN": "FIRM_PAN",
+   "PANEL": "PANEL",
+   "EFF_DATE": "EFF_DATE",
+   "PANEL_TYP": "PANEL_TYP"
+  },
+  "fields": [
+   {
+    "name": "FIRM_PAN",
+    "type": "esriFieldTypeString",
+    "alias": "FIRM_PAN",
+    "length": 11
+   },
+   {
+    "name": "PANEL",
+    "type": "esriFieldTypeString",
+    "alias": "PANEL",
+    "length": 4
+   },
+   {
+    "name": "EFF_DATE",
+    "type": "esriFieldTypeDate",
+    "alias": "EFF_DATE",
+    "length": 8
+   },
+   {
+    "name": "PANEL_TYP",
+    "type": "esriFieldTypeString",
+    "alias": "PANEL_TYP",
+    "length": 30
+   }
+  ],
+  "features": [
+   {
+    "attributes": {
+     "FIRM_PAN": "26047C0427D",
+     "PANEL": "0427",
+     "EFF_DATE": 1654041600000,
+     "PANEL_TYP": "Countywide, Panel Printed"
+    }
+   },
+   {
+    "attributes": {
+     "FIRM_PAN": "26029C0400C",
+     "PANEL": "0400",
+     "EFF_DATE": 1557964800000,
+     "PANEL_TYP": "Countywide, Not Printed"
+    }
+   },
+   {
+    "attributes": {
+     "FIRM_PAN": "26047C0339D",
+     "PANEL": "0339",
+     "EFF_DATE": 1654041600000,
+     "PANEL_TYP": "Countywide, Panel Printed"
+    }
+   }
+  ]
+ }
+}

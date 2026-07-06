@@ -1,6 +1,16 @@
 # Request for Qualifications / Scope Letter — Wetland Delineation
 **Dossier ref: F-3 (NREPA Part 303 wetland)**
 
+> **⛔ BLOCKED + LIKELY UNNECESSARY (2026-07-06):** the site is the private former Petoskey
+> Pointe block (owner permission required), and the mapped baseline changed: no Part 303
+> inventory polygon covers the bowl, and the basin is an isolated ~0.93-ac 2007 construction
+> excavation in a downtown block — not adjacent to any lake, stream, or the bay. Under Part
+> 303, isolated wetlands under 5 acres are generally non-jurisdictional (absent rare-species
+> or local-ordinance triggers), and Emmet County has no local wetland ordinance per EGLE's
+> layer. Confirm jurisdiction (e.g., an EGLE pre-application or WIP inquiry) before ever
+> commissioning this scope. Template retained in case ponding vegetation on the pit floor
+> raises the question.
+
 > **Growing-season window:** Wetland delineation must be conducted during the growing season (May–September). This window closes in September — schedule immediately if proceeding this year.
 
 ---
@@ -15,7 +25,7 @@ Bayfront Park, Petoskey, MI**
 
 Dear [CONTACT NAME],
 
-We are preparing a planning-grade design for an outdoor amphitheater and stormwater treatment facility at **Bayfront Park, City of Petoskey, Emmet County, Michigan**. The project includes a stormwater bioretention / wet treatment cell at the bottom of a closed bowl depression (~0.93 acres, floor ~609 ft NAVD88) adjacent to the Bear River mouth.
+We are preparing a planning-grade design for an outdoor amphitheater and stormwater treatment facility at the **former Petoskey Pointe block, downtown Petoskey, Emmet County, Michigan** (parcel 52-19-06-227-016). The project includes a stormwater bioretention / wet treatment cell at the bottom of a closed bowl (~0.93 acres, floor ~609 ft NAVD88) — the 2007 construction excavation occupying the block.
 
 Before any grading of the bowl bottom is authorized, we require a **wetland delineation** to determine whether Part 303 (Michigan Wetlands Protection Act) or federal Section 404 jurisdiction applies to the bowl bottom or adjacent areas.
 
@@ -23,10 +33,10 @@ Before any grading of the bowl bottom is authorized, we require a **wetland deli
 
 ## Site description
 
-- **Location:** Western portion of Bayfront Park, Petoskey, Emmet County, Michigan; approximately 600 ft inland from Little Traverse Bay; immediately east of the Bear River mouth.
-- **Study area:** The primary area of concern is the closed bowl depression (approximately 0.93 acres, floor ~609 ft NAVD88, rim ~618 ft) and a 100-ft buffer around its perimeter. Secondary area: any low, wet, or vegetated areas along the Bear River corridor within the park boundary.
-- **Hydrology indicators:** The bowl is a closed surface-drainage depression that likely holds water seasonally; LiDAR data shows a floor elevation below the bowl's spill point by ~9 ft. No field confirmation of hydrology, hydric soils, or wetland vegetation has been conducted.
-- **Regulatory context:** The site is within 500 ft of Little Traverse Bay and adjacent to the Bear River — a regulated water under Michigan Part 303 and a potential Section 404/10 jurisdictional water. EGLE Part 303 applies to wetlands of any size adjacent to regulated waters. Part 303 delineation and permit review are required **before grading the bowl bottom** per the project's permitting plan.
+- **Location:** the block bounded by E Lake Street, E Mitchell Street, Petoskey Street, and US-31, downtown Petoskey; roughly 1,200 ft inland from Little Traverse Bay across US-31 and the bayfront corridor.
+- **Study area:** the closed excavation bowl (approximately 0.93 acres, floor ~609 ft NAVD88, rim ~618 ft) and its immediate perimeter within the parcel.
+- **Hydrology indicators:** the bowl is a closed depression (2007 construction excavation) that may pond seasonally and has been open to colonizing vegetation for ~19 years; no field confirmation of hydrology, hydric soils, or wetland vegetation has been conducted.
+- **Regulatory context:** the basin is isolated — not contiguous with any lake, stream, or the bay. Under Part 303, isolated wetlands smaller than 5 acres are generally outside EGLE jurisdiction; the purpose of this scope is a defensible determination of whether any regulated wetland exists at all, so grading of the bowl bottom can proceed on a documented basis.
 
 ---
 
@@ -34,7 +44,7 @@ Before any grading of the bowl bottom is authorized, we require a **wetland deli
 
 ### 1. Field wetland delineation
 
-- Conduct a routine wetland determination per the **1987 ACOE Wetland Delineation Manual** and applicable **Regional Supplement (Midwest or Great Plains)** across the study area (approximately 2 acres).
+- Conduct a routine wetland determination per the **1987 ACOE Wetland Delineation Manual** and the applicable **Northcentral and Northeast Regional Supplement** (the supplement governing northern Michigan; Michigan Part 303 rules require the 1987 manual plus the modern regional supplements) across the study area (approximately 2 acres).
 - Document all three wetland criteria (hydric soils, wetland hydrology, hydrophytic vegetation) at a sufficient number of sample points to support a jurisdictional determination.
 - Flag the wetland boundary (if any) in the field using survey stakes or flagging; photograph all data points.
 
@@ -65,7 +75,7 @@ The proposed stormwater treatment cell is designed to occupy the existing bowl b
 Please provide:
 
 1. Qualifications of the lead delineator (certifications, Michigan Part 303 and ACOE 404 experience, Great Lakes shoreline/tributary sites).
-2. Scope narrative confirming coverage of items 1 and 2 above; indicate availability for the current growing season (target: delineation complete by **[TARGET DATE, e.g., August 31, 2026]**).
+2. Scope narrative confirming coverage of items 1 and 2 above; indicate availability for the current growing season (target: delineation complete by **August 31, 2026**).
 3. Lump-sum fee for delineation and report; conditional range for item 3 (EGLE pre-application) if triggered.
 4. Estimated schedule from notice-to-proceed to draft report.
 
@@ -73,11 +83,10 @@ Please provide:
 
 ## Contact and submission
 
-**[REQUESTER NAME]**
-**[ORGANIZATION]**
-**[EMAIL ADDRESS]**
-**[PHONE NUMBER]**
+**Sam Scarrow**
+**sscarrow@gmail.com**
+**[PHONE — fill before sending]**
 
-Proposals due: **[DATE]**
+Proposals due: **[DATE — suggest 2–3 weeks from send; growing season closes ~Sept 30]**
 
 > **Schedule note:** Growing-season delineation window closes approximately September 30. If you cannot mobilize this season, please advise so we can plan for a spring 2027 delineation and adjust the project schedule accordingly.
