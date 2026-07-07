@@ -45,11 +45,15 @@ CRS = "EPSG:6494"
 ACRE = 43560.0
 CELL = 1.0  # ft^2 per cell (1 ft DEM)
 
-# Datum reconciliation (see docs/datum_note.md). Δ is now CONFIRMED +0.162 ft (2026-06-06
-# NOAA VDatum, gating_dossier A-1). The constant below stays at the as-run 0.40 until the
-# authorized stage_storage regen flips it to 0.162 and refreshes the CSV/summary together.
+# Datum reconciliation (see docs/datum_note.md).
+#   Accepted PROJECT datum delta: NAVD88 = IGLD85 + 0.162 ft — CONFIRMED 2026-06-06
+#   (NOAA VDatum, gating_dossier A-1); the prior +0.40 ft assumption is superseded.
+#   This script deliberately still uses the HISTORICAL / as-run delta +0.40 below, so the
+#   constant matches its already-generated outputs — this is NOT a live +0.162 computation.
+#   Flipping DELTA_NAVD to 0.162 REQUIRES regenerating the paired stage_storage outputs
+#   (stage_storage.csv, summary, curve) in the SAME authorized item-5 refresh.
 BAY_IGLD85 = 581.0          # ft IGLD85, Little Traverse Bay nominal
-DELTA_NAVD = 0.40           # ft, NAVD88 = IGLD85 + DELTA (as-run; CONFIRMED value +0.162 pending regen)
+DELTA_NAVD = 0.40           # ft — HISTORICAL as-run (accepted project value +0.162 pending item-5 regen)
 BAY_NAVD88 = BAY_IGLD85 + DELTA_NAVD
 
 # Requested floor-candidate range, plus an extension to the spill so the full bowl
