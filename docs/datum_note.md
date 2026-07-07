@@ -39,16 +39,17 @@ height system used to turn geopotential into an elevation:
 
 The resulting difference is **location-dependent and sub-foot** across the Great Lakes.
 
-**Working value used downstream (LABELLED ASSUMPTION):**
+**Working value used downstream (CONFIRMED — `gating_dossier.md` gate A-1):**
 ```
-NAVD88_elev  =  IGLD85_elev  +  Δ      Δ = +0.40 ft   (assumed; NAVD88 ≳ IGLD85 here)
-bay surface  ≈  581 ft IGLD85  ≈  581.4 ft NAVD88   (±0.3 ft planning band)
+NAVD88_elev  =  IGLD85_elev  +  Δ      Δ = +0.162 ft  (CONFIRMED 2026-06-06, NOAA VDatum)
+bay surface  ≈  581 ft IGLD85  ≈  581.16 ft NAVD88  (Δ now exact; residual band is the
+                                                     ≈581 ft IGLD85 bay-stage estimate itself)
 ```
 - Δ is carried as an explicit parameter, **not** baked into rasters. The DEM stays pure NAVD88.
-- The **sign and exact magnitude must be confirmed** for this specific site before any
-  flood-elevation, freeboard, or groundwater-separation decision — see DATA_GAPS.md.
-  Authoritative source = **NOAA VDatum** and/or **NGS** IGLD85↔NAVD88 conversion for the
-  Petoskey / Little Traverse Bay location (no value was pulled from the web in this stage).
+- **CLOSED 2026-06-06 (gate A-1).** The sign and magnitude are now confirmed via **NOAA VDatum**
+  at the site (45.3746°N, 84.9582°W): **NAVD88 = IGLD85 + 0.162 ft**. The prior **+0.40 ft was a
+  labelled assumption** (within the ±0.3 ft band but ~0.24 ft high) and is **superseded**; use
+  +0.162 ft for all future bay/IGLD85 tie-ins. No design decisions change (see DATA_GAPS.md).
 
 ## Implication for stage goals
 Stage/event-floor elevation is to be set by stormwater **and groundwater** strategy.

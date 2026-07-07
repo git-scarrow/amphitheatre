@@ -1,8 +1,10 @@
 # Executive Summary — Petoskey Pit Amphitheater & Civic Event Garden
 
-**Bayfront Park, Petoskey, Emmet County, Michigan** — a partial-fan outdoor amphitheater and
-civic event garden set into the "Petoskey Pit," a closed-surface depression beside Little
-Traverse Bay and the Bear River mouth.
+**Downtown Petoskey, Emmet County, Michigan** — an outdoor amphitheater and civic event garden
+set into the "Petoskey Pit," a closed-surface depression (the 2007 Petoskey Pointe excavation)
+in the downtown block at 200 E Lake St, across US-31 from Bayfront Park. The site is privately
+owned (not Bayfront Park, not City-owned) and is not on Little Traverse Bay or the Bear River
+mouth; "bay" throughout means the view the upper rows maximize toward Little Traverse Bay.
 
 > **PLANNING-GRADE — NOT STAMPED ENGINEERING.** Every figure below is a planning estimate
 > from public LiDAR plus labelled assumptions. No soil, groundwater, contamination, or
@@ -102,9 +104,10 @@ indexed in **`00_START_HERE.md`**, with project state controlled by
 ## Datum note
 
 All elevations are **NAVD88 (Geoid12A), international feet** (the brief's "US survey feet" is
-corrected — Michigan uses international feet). Bay level (~581 ft IGLD85) was reconciled to
-**~581.4 ft NAVD88** using an assumed **+0.40 ft** offset that is **unconfirmed** and must be
-verified via NOAA VDatum/NGS before any flood-elevation decision.
+corrected — Michigan uses international feet). Bay level (~581 ft IGLD85) reconciles to
+**~581.16 ft NAVD88** using the **+0.162 ft** offset **confirmed 2026-06-06 via NOAA VDatum**
+(`gating_dossier.md` gate A-1; the prior assumed +0.40 ft is superseded — ~0.24 ft high, no
+design decisions change).
 
 ---
 

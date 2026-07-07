@@ -15,7 +15,7 @@ The core principle: every cost-bearing design move must emit real geometry and p
 | Scenario D — formal seating baseline (1 452 seats, +26 CY restoration) | ACCEPTED |
 | Scenario E — seating + aisles + ADA + drainage (500.8 CY) | ACCEPTED (seating/ADA/drainage) — **remains the validated control** |
 | Intervention tiers — emission validation (2026-06-11) | **VALIDATED**: modest +114 seats / 25.3 CY; ambitious seating scope +262 / 47.3 CY; **N1 east extension REJECTED (0 of +149 seats survive emission)**. Adoption decision **OPEN** — see `docs/POST_EMISSION_DECISION_MEMO.md` |
-| Scenario E — stage configuration | **OPEN** — Rule 9 unresolved; P_opt/apron/typologies are candidates only. Closure path: `analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md`. Claude Design handoff PAUSED |
+| Scenario E — stage configuration | **CARRIED_PROVISIONAL** (WARN) — Rule 9 not resolved, but a bundle was adopted 2026-07-02: P_opt path-3 + path-4 wide-fan + five_facet_apron + T1_deck_only; construction Method B selected 2026-07-03. Stage geometry deliberately not re-emitted (still `rule9_status: open`); resolution pending package re-emit + audit. Claude Design handoff **RESUMED**, stage flagged provisional (`docs/claude_design_handoff.md`, 2026-07-02) |
 
 **The two live decisions** (controlling doc: `docs/POST_EMISSION_DECISION_MEMO.md`):
 (1) advance Scenario E baseline, validated modest_normalization (+114), or validated
