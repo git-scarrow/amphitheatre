@@ -424,7 +424,8 @@ def build_stage():
             validation_state=("provisional" if provisional else
                               "concept" if concept else "source_of_truth"),
             provisional=provisional,
-            note=("Rule 9 OPEN - stage deck PROVISIONAL" if provisional else
+            note=("Rule 9 carried_provisional (geometry not re-emitted) - stage deck "
+                  "PROVISIONAL" if provisional else
                   "concept-tier illustrative" if concept else ""),
         )
 
@@ -955,7 +956,7 @@ def build_material_manifest():
         "stage": {"label": "Stage deck", "color": "#37474f",
                   "keyed_to": "zone=stage_core/shoulder"},
         "stage_provisional": {
-            "label": "Stage deck - PROVISIONAL (DESIGN_CANON Rule 9 OPEN)",
+            "label": "Stage deck - PROVISIONAL (DESIGN_CANON Rule 9 carried_provisional)",
             "color": "#c62828", "hatch": "diagonal",
             "keyed_to": "rule9_status=open", "must_label": True},
         "event_floor_concept": {"label": "Orchestra / event floor - concept tier",

@@ -181,7 +181,7 @@ def main():
         "low hardwood/composite deck over compacted base at event-floor grade",
         color_hint="#b9a48a", open_structure=True,
         rule9_status=C.STAGE_RULE9_STATUS,
-        note="no enclosing shell — lateral shoulders only; refit OPEN (Rule 9)")
+        note="no enclosing shell — lateral shoulders only. " + C.STAGE_RULE9_NOTE)
     # NOTE: the scenarioE ada_ramp/ada_landing zones were REMOVED from bowl_zones
     # by the 2026-06-12 ADA rebuild (build_in_situ_geometry.py no longer emits
     # them; see its "NOT imported" note). The live accessible-route surfaces now

@@ -9,7 +9,8 @@ GOVERNING GEOMETRY — the three-section naturalistic civic bowl:
       rows 1-4 forecourt + 6-8, 11-18 civic), the rows-9/10 cross-aisle with
       row_reclassification provenance, switchback ADA ramps + landings,
       drainage swales, row-end shoulders, construction envelope, and the
-      inherited stage (Rule 9 refit OPEN).
+      inherited stage (Rule 9 refit carried_provisional — bundle adopted
+      2026-07-02; geometry NOT re-emitted, so its machine flag stays "open").
   design_extended_bays/composition_table.csv   per-(row, section) elevation,
       zone (forecourt / promenade / civic), axis radius, seats, residuals.
   design_extended_bays/seating_bays.geojson    bay centrelines incl. the
@@ -58,10 +59,22 @@ EYE_STANDING_FT = 5.2
 BAY_VIEW_AZ = 330.0                         # measured EPT view corridor
 BAY_PLANE = 579.45                          # measured bay water plane
 
-# Rule 9: the stage is INHERITED (design_open_low geometry reused by Scenario E)
-# and its refit is an OPEN canon item. This package must surface that status
-# and must never declare a resolved fan for it.
-STAGE_RULE9_STATUS = "open"
+# Rule 9: the stage is INHERITED (design_open_low geometry reused by Scenario E).
+# TWO status layers, kept deliberately distinct:
+#   * geometry — the stage was NOT re-emitted, so its machine flag stays "open"
+#     (audit_in_situ_package.py enforces stage_rule9_status == "open" on the
+#     board manifest, and bowl_zones carries rule9_status="open").
+#   * decision — carried_provisional as of 2026-07-02 (bundle adopted; Method B
+#     selected 2026-07-03); NOT resolved (package re-emit + audit still pending).
+# Surface BOTH. Never declare a resolved fan, and never claim nothing is adopted.
+STAGE_RULE9_STATUS = "open"                 # geometry-level machine flag (audited)
+STAGE_RULE9_DECISION = "carried_provisional"  # decision-level (2026-07-02 bundle)
+STAGE_RULE9_NOTE = (
+    "Rule 9 carried_provisional (WARN): bundle adopted 2026-07-02 — P_opt path-3 "
+    "+ path-4 wide-fan + five_facet_apron + T1_deck_only; construction Method B "
+    "selected 2026-07-03. Stage geometry deliberately NOT re-emitted, so it still "
+    "carries rule9_status=open; not yet resolved (package re-emit + audit pending)."
+)
 STAGE_AX_AZ = 150.0                         # inherited stage axis
 
 DEM_DESIGN = os.path.join(REPO, "dem", "dem_design_1ft.tif")
@@ -251,4 +264,5 @@ if __name__ == "__main__":
     print(f"OK — governing scheme {GOVERNING_SCHEME}: {n} tread bands in "
           f"{len(SECTIONS)} terrain-fitted sections (east/bend/south), "
           f"{seats} Band-A seats, cross-aisle provenance honest, "
-          f"stage Rule 9 status: {STAGE_RULE9_STATUS}")
+          f"stage Rule 9: geometry {STAGE_RULE9_STATUS} / decision "
+          f"{STAGE_RULE9_DECISION}")

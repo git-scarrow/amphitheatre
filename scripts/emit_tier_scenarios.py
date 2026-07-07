@@ -15,9 +15,10 @@ STAGE DECOUPLING (deliberate scope cut)
 ---------------------------------------
 ambitious_shaped_bowl's refit_stage (P_opt) and faceted_apron ops are NOT
 emitted here. They carry zero seats in the tier decomposition and are gated
-behind DESIGN_CANON Rule 9, which is OPEN. This script validates the SEATING
+behind DESIGN_CANON Rule 9, which is carried_provisional (bundle adopted
+2026-07-02, geometry NOT re-emitted). This script validates the SEATING
 claims only; the emitted scenario is "ambitious_shaped_bowl (seating scope,
-inherited stage)". Stage candidates re-enter when Rule 9 closes.
+inherited stage)". Stage candidates re-enter when Rule 9 resolves (re-emit + audit).
 
 METHOD NOTES (calibration decisions, made explicit)
 ---------------------------------------------------
@@ -104,7 +105,7 @@ SPLAY_GATE_DEG = 45.0          # the study's gate (declared "generous")
 SPLAY_STRICT_DEG = 28.0        # civic_bowl composition gate (strict bound)
 MIN_WALL_SLOPE = 0.15; STREET_SETBACK = 15.0
 Y_LAKE, Y_MITCHELL, X_PETOSKEY = 750943.1, 750593.6, 19533270.8
-SF_X, SF_Y = 19533100.2, 750742.9       # inherited stage front centre (Rule 9 OPEN)
+SF_X, SF_Y = 19533100.2, 750742.9       # inherited stage front centre (Rule 9 carried_provisional; geometry not re-emitted)
 
 # ── locked inputs ────────────────────────────────────────────────────────────────
 BAYS = json.load(open(ROOT / "design_extended_bays/seating_bays.geojson"))

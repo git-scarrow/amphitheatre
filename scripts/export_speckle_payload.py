@@ -183,8 +183,9 @@ def build_stage(export: dict, materials: dict, base_elev_ft: float = 0.0) -> dic
             "az_deg": pr.get("az_deg"),
             "ada_status": None,
             # stage footprints are concept/provisional: cut/fill not sampled
-            "cutfill_note": "not sampled — stage deck is provisional (Rule 9 OPEN); "
-                            "event floor / treatment cell are concept-tier",
+            "cutfill_note": "not sampled — stage deck is provisional (Rule 9 "
+                            "carried_provisional; geometry not re-emitted, still "
+                            "flagged open); event floor / treatment cell are concept-tier",
             "material_id": pr.get("material_id"),
             "lineage": pr.get("lineage"),
             "note": pr.get("note"),
@@ -197,8 +198,10 @@ def build_stage(export: dict, materials: dict, base_elev_ft: float = 0.0) -> dic
                "crs": "EPSG:6494 intl ft; z=NAVD88 ft"}
         elements.append(S.review_object(geom, pr.get("name") or fid, review, geo))
     return S.collection("Stage", elements,
-                        caveat="Stage deck PROVISIONAL (DESIGN_CANON Rule 9 OPEN); "
-                               "event floor + treatment cell are concept-tier")
+                        caveat="Stage deck PROVISIONAL (DESIGN_CANON Rule 9 "
+                               "carried_provisional — bundle adopted 2026-07-02, "
+                               "geometry not re-emitted); event floor + treatment "
+                               "cell are concept-tier")
 
 
 def build_ada(export: dict, base_elev_ft: float = 0.0) -> dict:
@@ -353,7 +356,7 @@ def build_payload(export: dict, state: str, topic: str | None,
     ]
     # Layer selection. ``layers=None`` keeps every collection (used by the tests
     # so the fixture still documents every object schema). The accepted bundle
-    # excludes the Rule-9-OPEN "Stage" — it ships as a labelled proposal instead,
+    # excludes the Rule-9 carried_provisional "Stage" — it ships as a labelled proposal instead,
     # so the accepted review surface shows only accepted-context geometry.
     if layers is not None:
         elements = [c for c in elements if c["name"] in layers]
@@ -442,8 +445,9 @@ def minimal_fixture(payload: dict) -> dict:
 def _acceptance_rationale(state: str) -> str:
     if state == S.STATE_ACCEPTED:
         return ("Scenario E three-section seating / ADA topology / drainage is the "
-                "validated control (ACCEPTED). The Rule-9-OPEN stage is NOT in this "
-                "bundle — it ships separately as proposal/stage-rule9-open so the "
+                "validated control (ACCEPTED). The Rule-9 carried_provisional stage "
+                "(geometry not re-emitted) is NOT in this accepted bundle — it ships "
+                "separately as proposal/stage-rule9-open so the "
                 "accepted surface shows only accepted-context geometry. The ADA route "
                 "concept rides inside individually flagged proposal/provisional and is "
                 "not promoted by inclusion.")
@@ -463,7 +467,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--layers", default=None,
                     help="comma-separated collections to include "
                          "(Seating,Stage,ADA,Reference). Default: accepted excludes "
-                         "the Rule-9-OPEN Stage; other states include all.")
+                         "the Rule-9 carried_provisional Stage; other states include all.")
     ap.add_argument("--export-dir", default=S.EXPORT_DIR)
     ap.add_argument("--out-dir", default=S.OUT_DIR)
     ap.add_argument("--emit-fixture", metavar="PATH", default=None,
@@ -488,7 +492,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.layers:
         layers = {s.strip() for s in args.layers.split(",") if s.strip()}
     elif args.state == S.STATE_ACCEPTED:
-        layers = {"Seating", "ADA", "Reference"}  # Rule-9-OPEN stage ships as a proposal
+        layers = {"Seating", "ADA", "Reference"}  # Rule-9 carried_provisional stage ships as a proposal
     else:
         layers = None
     payload = build_payload(export, args.state, args.topic, layers)

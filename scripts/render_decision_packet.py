@@ -16,8 +16,10 @@ This script runs NO new sweeps — it reads the validation artifacts on disk
 and asserts the memo's headline numbers before drawing anything.
 
 Guardrails enforced here:
-  * stage = inherited az-150 object, PROVISIONAL — Rule 9 OPEN: drawn
-    dashed-outline-only in every panel, never as an adopted element
+  * stage = inherited az-150 object, PROVISIONAL — Rule 9 carried_provisional
+    (bundle adopted 2026-07-02, geometry NOT re-emitted): drawn
+    dashed-outline-only in every panel, still the inherited object and not the
+    adopted geometry
   * N1 east contour extension REJECTED on emission (0 of +149) — never drawn
   * the 1,665-seat figure is NOT validated — ambitious is quoted
     1,505 validated / +262
@@ -54,8 +56,10 @@ FOOT = ("PLANNING-GRADE / SCHEMATIC — not stamped engineering · EPSG:6494 · 
         "(commit f6b1d96) · scripts/render_decision_packet.py")
 
 GUARD = ("GUARDRAILS — dashed stage outline = INHERITED az-150 stage, PROVISIONAL: "
-         "Rule 9 OPEN, no stage candidate adopted (closure: analysis/stage_adoption/"
-         "STAGE_RULE9_DECISION_TEMPLATE.md) · N1 east contour extension REJECTED on "
+         "Rule 9 carried_provisional — bundle adopted 2026-07-02 (P_opt path-3 + "
+         "path-4 wide-fan + five_facet_apron + T1_deck_only; Method B 2026-07-03), "
+         "geometry NOT re-emitted so the drawn stage is still the inherited object, "
+         "not resolved (re-emit + audit pending) · N1 east contour extension REJECTED on "
          "emission (0 of +149 seats survive) and is NOT drawn · 1,665 is NOT a "
          "validated seat count — ambitious is quoted 1,505 validated / +262 · "
          "increments are measured against the re-emitted baseline under the same "
@@ -211,7 +215,7 @@ def tier_panel(ax, geom, zones, D, bnds):
     for f in zones.get("hinge_ray", []):
         draw_lines(ax, [f], color=STAGE_COLOR, lw=0.8, ls=(0, (4, 3)),
                    alpha=0.8, zorder=5)
-    # stage: INHERITED object, dashed outline only — PROVISIONAL, Rule 9 OPEN
+    # stage: INHERITED object, dashed outline only — PROVISIONAL, Rule 9 carried_provisional (geometry not re-emitted)
     for z in ("stage_core", "stage_shoulder_left", "stage_shoulder_right"):
         draw_polys(ax, zones.get(z, []), facecolor="none",
                    edgecolor=STAGE_COLOR, lw=1.4, ls=(0, (5, 3)), zorder=6)
@@ -261,7 +265,7 @@ def board_04(tiers, H, zones, D):
             sc = next(f for f in zones["stage_core"])
             sx = np.mean([c[0] for c in sc["geometry"]["coordinates"][0]])
             sy = np.mean([c[1] for c in sc["geometry"]["coordinates"][0]])
-            ax.annotate("stage: PROVISIONAL\n(inherited az-150 — Rule 9 OPEN)",
+            ax.annotate("stage: PROVISIONAL\n(inherited az-150 — Rule 9 carried_provisional)",
                         (sx, sy), textcoords="offset points", xytext=(-8, 34),
                         fontsize=7, color=STAGE_COLOR, fontweight="bold",
                         ha="center", zorder=10)
@@ -289,7 +293,7 @@ def board_04(tiers, H, zones, D):
         Line2D([], [], marker="s", ls="", ms=8, color="#9aa9b5", label="ADA ramps"),
         Line2D([], [], color="#2e86ab", ls=":", label="drainage swales"),
         Line2D([], [], color=STAGE_COLOR, ls=(0, (5, 3)),
-               label="inherited stage — PROVISIONAL (Rule 9 OPEN)"),
+               label="inherited stage — PROVISIONAL (Rule 9 carried_provisional)"),
         Line2D([], [], color=STAGE_COLOR, ls=(0, (4, 3)), lw=0.8,
                label="hinge ray (section transition — no single fan)"),
     ]
@@ -363,7 +367,7 @@ def board_05(tiers, H, D):
             label=f"row 20 promoted — AMBITIOUS scope (+{H['amb_d']} validated, "
                   "incl. comfort regrades)")
     ax.plot([16, 50], [C.FOCUS_ELEV] * 2, color=STAGE_COLOR, lw=2.6, ls=(0, (5, 3)),
-            label="inherited stage deck 612.5 — PROVISIONAL (Rule 9 OPEN)")
+            label="inherited stage deck 612.5 — PROVISIONAL (Rule 9 carried_provisional)")
     ax.axhline(618.5, color="#1f77b4", lw=0.7, ls="--", alpha=0.7,
                label="flat NW rim silhouette 618.5 (bay-view check datum)")
     # human-scale figures from the source layer, drawn 1:1 (audited)
@@ -446,8 +450,10 @@ def board_05(tiers, H, D):
 
 # ── decision table + provenance ──────────────────────────────────────────────
 
-STAGE_STATUS = ("Rule 9 OPEN — inherited az-150 stage carried PROVISIONAL; "
-                "P_opt/apron/typologies are candidates only, none adopted")
+STAGE_STATUS = ("Rule 9 carried_provisional — inherited az-150 stage drawn "
+                "PROVISIONAL (geometry NOT re-emitted); bundle adopted 2026-07-02 "
+                "(P_opt path-3 + path-4 wide-fan + five_facet_apron + T1_deck_only; "
+                "Method B 2026-07-03), not resolved (re-emit + audit pending)")
 
 
 def decision_table(H):
@@ -508,7 +514,11 @@ def provenance(H, hs_records=None):
                                "design_extended_bays/composition_table.csv",
                                "dem/dem_design_1ft.tif"],
             "headline_numbers_asserted": H,
-            "stage_rule9_status": "open — stage drawn PROVISIONAL in all visuals",
+            "stage_rule9_status": ("open (geometry — drawn PROVISIONAL in all "
+                                   "visuals); decision carried_provisional 2026-07-02 "
+                                   "(bundle P_opt path-3 + path-4 wide-fan + "
+                                   "five_facet_apron + T1_deck_only; Method B "
+                                   "2026-07-03) — not resolved (re-emit + audit pending)"),
             "n1_east_extension": "REJECTED on emission (0 of +149) — never drawn",
             "claim_1665": "not live — ambitious quoted 1,505 validated / +262",
             "outputs": ["docs/HUMAN_DECISION_BRIEF.md",
