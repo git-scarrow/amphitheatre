@@ -88,7 +88,8 @@ not lose the ~19.5 million-foot easting. The **actor manifest carries both
 anchors** and is the bridge between them.
 
 > Datum caveat (carried from `design_state`): bay level is quoted IGLD85; the
-> working Δ = +0.40 ft to NAVD88 is a **labelled assumption, unconfirmed**.
+> Δ = +0.162 ft to NAVD88 is **confirmed** (2026-06-06, NOAA VDatum — `gating_dossier.md`
+> gate A-1; the prior +0.40 ft assumption is superseded).
 
 ---
 

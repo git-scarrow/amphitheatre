@@ -45,9 +45,11 @@ CRS = "EPSG:6494"
 ACRE = 43560.0
 CELL = 1.0  # ft^2 per cell (1 ft DEM)
 
-# Datum reconciliation (see docs/datum_note.md) — labelled assumption, NOT field-confirmed
+# Datum reconciliation (see docs/datum_note.md). Δ is now CONFIRMED +0.162 ft (2026-06-06
+# NOAA VDatum, gating_dossier A-1). The constant below stays at the as-run 0.40 until the
+# authorized stage_storage regen flips it to 0.162 and refreshes the CSV/summary together.
 BAY_IGLD85 = 581.0          # ft IGLD85, Little Traverse Bay nominal
-DELTA_NAVD = 0.40           # ft, NAVD88 = IGLD85 + DELTA (assumed; sign/mag UNCONFIRMED)
+DELTA_NAVD = 0.40           # ft, NAVD88 = IGLD85 + DELTA (as-run; CONFIRMED value +0.162 pending regen)
 BAY_NAVD88 = BAY_IGLD85 + DELTA_NAVD
 
 # Requested floor-candidate range, plus an extension to the spill so the full bowl

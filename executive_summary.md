@@ -14,8 +14,8 @@ mouth; "bay" throughout means the view the upper rows maximize toward Little Tra
 > **Design state (2026-07-02).** This summary reflects the **Scenario E civic-bowl** generation
 > and its emission-validated seating tiers. It **supersedes the 2026-06-04 `package/` deliverable**
 > (the original narrow-fan, 30-row, retaining-wall generation), which is retired. The controlling
-> statement of project state is **`POST_EMISSION_DECISION_MEMO.md`**; the full document map is
-> **`00_START_HERE.md`**.
+> statement of project state is **`POST_EMISSION_DECISION_MEMO.md`**; the document map is the
+> **Key documents** section of **`README.md`**.
 
 ---
 
@@ -98,7 +98,7 @@ Four field unknowns dominate, in priority order:
 
 All field, permitting, and approval prerequisites — each with an owner and purpose — are in
 **`gating_dossier.md`**. The current design map, decision state, and full document set are
-indexed in **`00_START_HERE.md`**, with project state controlled by
+indexed in the **Key documents** section of **`README.md`**, with project state controlled by
 **`POST_EMISSION_DECISION_MEMO.md`**.
 
 ## Datum note
