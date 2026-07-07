@@ -1,11 +1,11 @@
 {
  "schema": "truthful-terrain/design-state/0.1",
- "generated": "2026-07-04T18:32:23-04:00",
+ "generated": "2026-07-07T13:25:39-04:00",
  "generator": "scripts/build_truth_package.py",
  "project": "Petoskey Pit amphitheatre \u2014 Open Civic Bowl (in-situ package)",
  "design_of_record": {
   "scenario": "Scenario E three-section civic bowl (east/bend/south) on the Scenario D restored baseline",
-  "status": "seating / ADA / drainage cost-proxy ACCEPTED \u00b7 stage refit OPEN (Rule 9)",
+  "status": "seating / ADA / drainage cost-proxy ACCEPTED \u00b7 stage refit CARRIED_PROVISIONAL (Rule 9, 2026-07-02)",
   "authority": [
    "docs/DESIGN_CANON.md",
    "INEVITABILITY.md",
@@ -21,9 +21,9 @@
    750799.2
   ],
   "igld85_delta_ft": {
-   "value": 0.4,
-   "status": "ASSUMED \u2014 unconfirmed",
-   "source": "docs/datum_note.md"
+   "value": 0.162,
+   "status": "CONFIRMED 2026-06-06 (NOAA VDatum) \u2014 gating_dossier.md gate A-1",
+   "source": "gating_dossier.md"
   }
  },
  "elements": {
@@ -113,7 +113,7 @@
    "kind": "low hardscape deck + shoulders (open to bay side, no upstage wall \u2014 landscape venue)",
    "elev_navd88": 612.5,
    "geometry_source": "scenarioE stage_surface (inherited from design_open_low, az 150)",
-   "status": "PROVISIONAL \u2014 Rule 9 OPEN; no adoption path declared",
+   "status": "CARRIED_PROVISIONAL \u2014 Rule 9 bundle adopted 2026-07-02 (P_opt path-3 + path-4 wide-fan + five_facet_apron + T1_deck_only; Method B 2026-07-03); not yet resolved",
    "source": [
     "vectors_geojson/bowl_zones.geojson",
     "design_open_low/stage_floor.geojson",
@@ -279,7 +279,7 @@
  ],
  "warnings": [
   "PLANNING-GRADE ONLY \u2014 derived from 2015 USGS LiDAR + supplement; not a stamped engineering design and not a field survey.",
-  "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is OPEN (inherited az-150 stage; +25.6\u00b0 audience-axis mismatch on record).",
+  "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is CARRIED_PROVISIONAL (bundle adopted 2026-07-02, not yet resolved; inherited az-150 stage; +25.6\u00b0 audience-axis mismatch on record).",
   "Coordinates are EPSG:6494 INTERNATIONAL feet \u2014 misreading as US survey feet shifts absolute easting ~39 ft (docs/datum_note.md).",
   "Component CY totals are validated proxies that understate mobilization-level earthwork (analysis/tier_emission/TIER_EMISSION_VALIDATION.md).",
   "Seating scope Decision 1 is pending; this package shows the Scenario E baseline (option A).",
@@ -288,7 +288,6 @@
  "missing_data": [
   "Seasonal high groundwater",
   "Geotechnical / bearing",
-  "IGLD85\u2194NAVD88 \u0394 confirmation (working +0.40 ft assumed)",
   "Full ADA/code compliance (built cross-slopes, handrails, clearances)",
   "Egress / life-safety capacity",
   "Stage acoustics (blocked on Rule 9)",
@@ -372,6 +371,11 @@
   "earthwork_csv": {
    "path": "analysis/scenarioE_civic/earthwork.csv",
    "sha256_12": "c10559504559",
+   "present": true
+  },
+  "gating_dossier": {
+   "path": "gating_dossier.md",
+   "sha256_12": "748823685756",
    "present": true
   },
   "grading_manifest": {

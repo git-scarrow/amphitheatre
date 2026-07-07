@@ -17,7 +17,8 @@ Rules honoured (see truth_package/data_inventory.md):
     vectors_geojson/*, dem/in_situ_grading_manifest.json,
     analysis/decision_packet/decision_table.csv)
   - checks that cannot be computed from repo data are emitted as UNKNOWN
-  - the stage deck is carried PROVISIONAL (DESIGN_CANON.md Rule 9 OPEN)
+  - the stage deck is carried PROVISIONAL (DESIGN_CANON.md Rule 9
+    carried_provisional 2026-07-02; bundle adopted, not yet resolved)
 
 Degrades gracefully when DEM rasters are absent (fresh checkout): the viewer
 payload then carries a flat, clearly-labelled PLACEHOLDER surface and the
@@ -72,6 +73,7 @@ SRC = {
     "dem_context": "dem/dem_context_2p5ft.tif",
     "canon": "docs/DESIGN_CANON.md",
     "datum_note": "docs/datum_note.md",
+    "gating_dossier": "gating_dossier.md",
     "decision_brief": "docs/HUMAN_DECISION_BRIEF.md",
     "tier_validation_memo": "analysis/tier_emission/TIER_EMISSION_VALIDATION.md",
 }
@@ -594,11 +596,15 @@ checks = [
              "be understated vs raster truth — see "
              + SRC["tier_validation_memo"]},
     {"id": "stage_rule9", "name": "Stage geometry / fan declaration (Rule 9)",
-     "status": "fail",
-     "value": "OPEN — inherited az-150 stage carried PROVISIONAL",
+     "status": "warn",
+     "value": "CARRIED_PROVISIONAL (2026-07-02) — bundle adopted, not yet resolved",
      "source": SRC["canon"],
-     "note": "no adoption path (A/B/C/wide-fan) declared; stage shown for "
-             "massing only; every stage-derived artifact re-emits on adoption"},
+     "note": "provisional bundle: P_opt (path-3; az150, bay Δ 0°) + path-4 "
+             "wide-fan (formal_fan_half_deg 75) + five_facet_apron front + "
+             "T1_deck_only; construction Method B (deck over compacted base) "
+             "selected 2026-07-03. NOT resolved — package audit + EarthworkEngine "
+             "CY + Decision-1 tier gap re-confirm pending (resolved blocked on "
+             "Decision 1)"},
     {"id": "treatment_cell", "name": "Treatment cell preserved (dry bioretention)",
      "status": "pass" if hard.get("treatment_cell_preserved") else "unknown",
      "value": "never impounds permanent water",
@@ -625,7 +631,6 @@ checks = [
 for uid, uname in [
     ("groundwater", "Seasonal high groundwater"),
     ("geotech", "Geotechnical / bearing"),
-    ("datum_delta", "IGLD85↔NAVD88 Δ confirmation (working +0.40 ft assumed)"),
     ("ada_full", "Full ADA/code compliance (built cross-slopes, handrails, clearances)"),
     ("egress", "Egress / life-safety capacity"),
     ("acoustics", "Stage acoustics (blocked on Rule 9)"),
@@ -642,8 +647,9 @@ for uid, uname in [
 WARNINGS = [
     "PLANNING-GRADE ONLY — derived from 2015 USGS LiDAR + supplement; "
     "not a stamped engineering design and not a field survey.",
-    "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is OPEN (inherited "
-    "az-150 stage; +25.6° audience-axis mismatch on record).",
+    "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is CARRIED_PROVISIONAL "
+    "(bundle adopted 2026-07-02, not yet resolved; inherited az-150 stage; "
+    "+25.6° audience-axis mismatch on record).",
     "Coordinates are EPSG:6494 INTERNATIONAL feet — misreading as US survey "
     "feet shifts absolute easting ~39 ft (docs/datum_note.md).",
     "Component CY totals are validated proxies that understate "
@@ -681,7 +687,7 @@ design_state = {
     "design_of_record": {
         "scenario": "Scenario E three-section civic bowl (east/bend/south) "
                     "on the Scenario D restored baseline",
-        "status": "seating / ADA / drainage cost-proxy ACCEPTED · stage refit OPEN (Rule 9)",
+        "status": "seating / ADA / drainage cost-proxy ACCEPTED · stage refit CARRIED_PROVISIONAL (Rule 9, 2026-07-02)",
         "authority": [SRC["canon"], "INEVITABILITY.md", "SCENARIO_E_CIVIC.md"],
         "constants_source": _CONST_SOURCE,
     },
@@ -689,8 +695,10 @@ design_state = {
         "horizontal": "EPSG:6494 NAD83(2011) / Michigan Central, INTERNATIONAL feet",
         "vertical": "NAVD88 (Geoid12A), international feet",
         "local_origin_epsg6494_ft": [ORIGIN_X, ORIGIN_Y],
-        "igld85_delta_ft": {"value": 0.40, "status": "ASSUMED — unconfirmed",
-                            "source": SRC["datum_note"]},
+        "igld85_delta_ft": {"value": 0.162,
+                            "status": "CONFIRMED 2026-06-06 (NOAA VDatum) — "
+                                      "gating_dossier.md gate A-1",
+                            "source": SRC["gating_dossier"]},
     },
     "elements": {
         "seating": {
@@ -712,7 +720,9 @@ design_state = {
                                  if z["zone"] == "stage_core"), None),
             "geometry_source": "scenarioE stage_surface (inherited from "
                                "design_open_low, az 150)",
-            "status": "PROVISIONAL — Rule 9 OPEN; no adoption path declared",
+            "status": "CARRIED_PROVISIONAL — Rule 9 bundle adopted 2026-07-02 "
+                      "(P_opt path-3 + path-4 wide-fan + five_facet_apron + "
+                      "T1_deck_only; Method B 2026-07-03); not yet resolved",
             "source": [SRC["zones"], SRC["stage_lineage"], SRC["canon"]],
             "truth_tier": "provisional",
         },
@@ -826,7 +836,7 @@ evaluation_report = {
         "seats_band_a_validated": round(band_a_total),
         "tread_status_counts": status_counts,
         "earthwork_gross_cy_component_proxy": vols.get("gross_cy"),
-        "stage": "Rule 9 OPEN (provisional)",
+        "stage": "Rule 9 carried_provisional (bundle adopted 2026-07-02, not resolved)",
         "decision_1": "PENDING (viewer shows option A)",
     },
     "checks": checks,
@@ -936,7 +946,8 @@ site_data = {
              "source": SRC["ada_legacy"] + " — REJECTED 2026-06-12, shown "
                        "only as quarantined history"},
             {"layer": "Stage deck", "tier": "provisional",
-             "source": "inherited az-150 stage — Rule 9 OPEN"},
+             "source": "inherited az-150 stage — Rule 9 carried_provisional "
+                       "(2026-07-02, not resolved)"},
             {"layer": "Treatment cell, event floor", "tier": "concept",
              "source": SRC["zones"]},
             {"layer": "Bay-view axis", "tier": "source_of_truth",
