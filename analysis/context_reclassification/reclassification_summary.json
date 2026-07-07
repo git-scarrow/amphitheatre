@@ -1,0 +1,191 @@
+{
+ "generated_by": "scripts/unreal/reclassify_context_massing.py",
+ "rule": "Buildings require explicit footprint support (OSM/MS-ML/manual). Height-only vertical clusters -> tree_canopy or unknown_vertical_obstruction, never building blocks.",
+ "total_objects_audited": 907,
+ "class_counts": {
+  "verified_building": 890,
+  "tree_canopy": 2,
+  "unknown_vertical_obstruction": 0,
+  "ground_or_backdrop_context": 15
+ },
+ "visible_diagnostic_classes": {
+  "verified_building": 890,
+  "tree_canopy": 2,
+  "unknown_vertical_obstruction": 0
+ },
+ "confidence_breakdown": {
+  "Low": 871,
+  "Medium-High": 18,
+  "Medium": 1,
+  "Indeterminate": 2
+ },
+ "former_building_reclassified_to_tree": 0,
+ "former_building_reclassified_to_unknown": 0,
+ "remained_verified_building": 890,
+ "reclassified_to_tree_ids": [],
+ "reclassified_to_unknown_ids": [],
+ "bay_view_occluders_before": [
+  465785898,
+  510276684,
+  510276685,
+  510501792,
+  546399785,
+  557735218,
+  558923134,
+  558923135,
+  558923136,
+  559216671,
+  559216672,
+  559216673,
+  559216674,
+  576959319,
+  576959323,
+  580285467,
+  580285468,
+  619258609
+ ],
+ "bay_view_occluders_after": [
+  465785898,
+  510276684,
+  510276685,
+  510501792,
+  546399785,
+  557735218,
+  558923134,
+  558923135,
+  558923136,
+  559216671,
+  559216672,
+  559216673,
+  559216674,
+  576959319,
+  576959323,
+  580285467,
+  580285468,
+  619258609
+ ],
+ "obstruction_occluder_set_identical": true,
+ "obstruction_factor_changed": false,
+ "ground_or_backdrop_layers": [
+  {
+   "layer": "bay_water_plane",
+   "category": "Backdrop",
+   "source_type": "inferred",
+   "obstruction_role": "backdrop",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "bay_shoreline_ref",
+   "category": "Backdrop",
+   "source_type": "OSM",
+   "obstruction_role": "backdrop",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "distant_horizon_band",
+   "category": "Backdrop",
+   "source_type": "atmospheric",
+   "obstruction_role": "backdrop",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "city_roads",
+   "category": "City_LoFi",
+   "source_type": "OSM",
+   "obstruction_role": "none",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "city_parks",
+   "category": "City_LoFi",
+   "source_type": "OSM",
+   "obstruction_role": "none",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "city_ground",
+   "category": "City_LoFi",
+   "source_type": "LiDAR-derived",
+   "obstruction_role": "none",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "city_labels",
+   "category": "City_LoFi",
+   "source_type": "OSM",
+   "obstruction_role": "none",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "bay_edge_cartographic",
+   "category": "City_LoFi",
+   "source_type": "OSM",
+   "obstruction_role": "backdrop",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "harbor_structures",
+   "category": "City_LoFi",
+   "source_type": "OSM",
+   "obstruction_role": "backdrop",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "fg_terrain",
+   "category": "Foreground_HiFi",
+   "source_type": "LiDAR-derived",
+   "obstruction_role": "none",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "fg_paths",
+   "category": "Foreground_HiFi",
+   "source_type": "OSM",
+   "obstruction_role": "none",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "fg_waterfront_edge",
+   "category": "Foreground_HiFi",
+   "source_type": "OSM",
+   "obstruction_role": "backdrop",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "fg_treatment_cell_edge",
+   "category": "Foreground_HiFi",
+   "source_type": "derived",
+   "obstruction_role": "none",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "sun_sky_sunset",
+   "category": "Lighting",
+   "source_type": "measured",
+   "obstruction_role": "none",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  },
+  {
+   "layer": "sunset_review_camera",
+   "category": "Review",
+   "source_type": "derived",
+   "obstruction_role": "none",
+   "classification": "ground_or_backdrop_context",
+   "used_for_obstruction": false
+  }
+ ]
+}
