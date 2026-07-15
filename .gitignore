@@ -101,6 +101,10 @@ deploy/speckle/.env
 # Holds per-session settings and a full nested git worktree; never commit it.
 .claude/
 
+# ── local agent workspaces and design-session state ──────────────────────────
+.worktrees/
+.superpowers/
+
 # ── generated build outputs (regenerable) ────────────────────────────────────
 # scripts/unreal/gen_review_meshes.py writes meshes + scene_plan.json here.
 build/
