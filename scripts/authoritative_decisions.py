@@ -57,47 +57,155 @@ def _replace_check(checks: list[dict], check_id: str, **values) -> None:
     target.update(values)
 
 
+def _display_label(decision: dict) -> str:
+    """Return the record-owned label in human-readable form."""
+    return str(decision["selected_label"]).replace("_", " ")
+
+
+def _option_display(decision: dict, *, stage: bool = False) -> str:
+    """Format an option without baking a particular adopted option into code."""
+    option = str(decision["selected_option"]).replace("_", " ")
+    if stage and option in {"A", "B", "C"}:
+        return f"Path {option}"
+    return option
+
+
+def _replace_legacy_decision_text(value: object, stage_status: str) -> object:
+    """Replace stale pre-adoption wording at every generated-output layer."""
+    if isinstance(value, dict):
+        return {key: _replace_legacy_decision_text(item, stage_status)
+                for key, item in value.items()}
+    if isinstance(value, list):
+        return [_replace_legacy_decision_text(item, stage_status) for item in value]
+    if not isinstance(value, str):
+        return value
+    replacements = (
+        ("DESIGN_CANON.md Rule 9 is OPEN (inherited az-150 stage; "
+         "+25.6° audience-axis mismatch on record).", stage_status),
+        ("DESIGN_CANON Rule 9 OPEN", stage_status),
+        ("Rule 9 is OPEN", stage_status),
+        ("Rule 9 OPEN (provisional)", stage_status),
+        ("Rule 9 OPEN", stage_status),
+        ("no adoption path (A/B/C/wide-fan) declared; stage shown for "
+         "massing only; every stage-derived artifact re-emits on adoption",
+         "exact footprint, apron, typology, fan declaration and validation "
+         "remain incomplete"),
+        ("no adoption path declared",
+         "geometry emission and validation pending"),
+        ("Seating scope Decision 1 is pending; this package shows the "
+         "Scenario E baseline (option A).",
+         "Seating scope adoption is recorded in adopted_decisions; current "
+         "geometry remains pending package propagation."),
+        ("ADA-compliant route concept pending civil/code detailing",
+         "Planning/concept-grade accessible-route direction pending civil/code "
+         "determination"),
+    )
+    for stale, replacement in replacements:
+        value = value.replace(stale, replacement)
+    return value
+
+
+def _is_decision_projection_warning(warning: object) -> bool:
+    """Identify warning variants superseded by the authoritative record."""
+    if not isinstance(warning, str):
+        return False
+    return (
+        warning.startswith("Stage deck is PROVISIONAL:")
+        or warning.startswith("Seating scope adoption is recorded")
+        or (warning.startswith("Seating ") and " is adopted with " in warning)
+        or (warning.startswith("Rule 9 ")
+            and " is adopted; the inherited az-150 stage" in warning)
+        or (warning.startswith("ADA Concept ") and " is adopted at " in warning)
+        or "Decision 1 is pending" in warning
+        or "no adoption path" in warning
+    )
+
+
 def apply_decisions(record: dict, design_state: dict, evaluation_report: dict,
                     site_data: dict) -> tuple[dict, dict, dict]:
     state = copy.deepcopy(design_state)
     report = copy.deepcopy(evaluation_report)
     site = copy.deepcopy(site_data)
-    index_decisions(record)
+    decisions = index_decisions(record)
     adopted = copy.deepcopy(record["decisions"])
+    seating = decisions["seating_scope"]
+    stage = decisions["stage_rule9"]
+    ada = decisions["ada_concept"]
+    seating_option = _option_display(seating)
+    seating_fallback = str(seating["fallback_option"]).replace("_", " ")
+    stage_option = _option_display(stage, stage=True)
+    ada_option = _option_display(ada)
+    seating_label = _display_label(seating)
+    seating_fallback_label = str(seating["fallback_label"]).replace("_", " ")
+    stage_label = _display_label(stage)
+    ada_label = _display_label(ada)
+    stage_status = (
+        f"Rule 9 {stage_option} — {stage_label} is adopted; the inherited "
+        "az-150 stage remains PROVISIONAL pending geometry emission and validation"
+    )
 
+    state = _replace_legacy_decision_text(state, stage_status)
+    report = _replace_legacy_decision_text(report, stage_status)
+    site = _replace_legacy_decision_text(site, stage_status)
     state["adopted_decisions"] = adopted
     state.pop("pending_decisions", None)
     state.setdefault("warnings", [])
     state["warnings"] = [
         warning for warning in state["warnings"]
-        if "Decision 1 is pending" not in warning and "no adoption path" not in warning
+        if not _is_decision_projection_warning(warning)
     ]
     state["warnings"].extend([
-        "Seating C is adopted with A as fallback; the current package still shows A pending package propagation.",
-        "Rule 9 Path A is adopted; the inherited az-150 stage remains PROVISIONAL pending geometry emission and validation.",
-        "ADA Concept C is adopted at planning grade and remains pending civil/code detailing.",
+        f"Seating {seating_option} — {seating_label} is adopted with "
+        f"{seating_fallback} — {seating_fallback_label} as fallback; the "
+        "current package remains pending package propagation.",
+        stage_status + ".",
+        f"ADA Concept {ada_option} — {ada_label} is adopted at "
+        "planning/concept grade; civil/code determination remains pending.",
     ])
+    state.setdefault("design_of_record", {})["status"] = (
+        "seating / ADA / drainage cost-proxy ACCEPTED · "
+        f"Rule 9 {stage_option} — {stage_label} ADOPTED; geometry validation pending"
+    )
     state["elements"]["stage"]["status"] = (
-        "PROVISIONAL — Rule 9 Path A adopted; current inherited az-150 geometry "
-        "pending replacement and validation"
+        "PROVISIONAL — " + stage_status
+    )
+    state["elements"].setdefault("ada_route", {})["status"] = (
+        "Planning/concept-grade accessible-route direction pending civil/code "
+        "determination — topology, conflicts and slopes validated; code details "
+        "explicitly unchecked"
     )
 
-    report["summary"]["seating_decision"] = "ADOPTED C; fallback A"
-    report["summary"]["stage_decision"] = "ADOPTED Path A; geometry validation pending"
-    report["summary"]["ada_decision"] = "ADOPTED Concept C; civil/code detailing pending"
+    report.setdefault("summary", {})["seating_decision"] = (
+        f"ADOPTED {seating_option} — {seating_label}; fallback "
+        f"{seating_fallback} — {seating_fallback_label}"
+    )
+    report["summary"]["stage"] = (
+        f"ADOPTED {stage_option} — {stage_label}; geometry validation pending"
+    )
+    report["summary"]["stage_decision"] = report["summary"]["stage"]
+    report["summary"]["ada_decision"] = (
+        f"ADOPTED Concept {ada_option} — {ada_label}; civil/code determination pending"
+    )
     report["summary"].pop("decision_1", None)
     _replace_check(report["checks"], "seating_scope", status="warn",
-                   value="ADOPTED C — ambitious shaped bowl; fallback A",
-                   note="current package still shows A pending propagation")
+                   value=(f"ADOPTED {seating_option} — {seating_label}; fallback "
+                          f"{seating_fallback} — {seating_fallback_label}"),
+                   note="current package remains pending propagation")
     _replace_check(report["checks"], "stage_rule9", status="fail",
-                   value="DIRECTION ADOPTED — Path A; inherited az-150 stage still PROVISIONAL",
+                   value=(f"DIRECTION ADOPTED — {stage_option} — {stage_label}; "
+                          "inherited az-150 stage still PROVISIONAL"),
                    note="exact footprint, apron, typology, fan declaration and validation remain incomplete")
     _replace_check(report["checks"], "ada_concepts", status="pass",
-                   value="ADOPTED C — naturalistic promenade",
-                   note="planning direction adopted; civil/code detailing remains incomplete")
+                   value=f"ADOPTED Concept {ada_option} — {ada_label}",
+                   note=("planning/concept-grade direction adopted; civil/code "
+                         "determination remains incomplete"))
 
     site["meta"]["warnings"] = copy.deepcopy(state["warnings"])
     site["audit"]["checks"] = copy.deepcopy(report["checks"])
+    for layer in site["audit"].get("layer_truth", []):
+        if layer.get("layer") == "Stage deck":
+            layer["tier"] = "provisional"
+            layer["source"] = "inherited az-150 stage — " + stage_status
     site["audit"]["adopted_decisions"] = adopted
     site["audit"].pop("pending", None)
     return state, report, site

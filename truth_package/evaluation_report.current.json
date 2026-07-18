@@ -13,10 +13,10 @@
    "unknown": 0
   },
   "earthwork_gross_cy_component_proxy": 500.8,
-  "stage": "Rule 9 OPEN (provisional)",
-  "seating_decision": "ADOPTED C; fallback A",
-  "stage_decision": "ADOPTED Path A; geometry validation pending",
-  "ada_decision": "ADOPTED Concept C; civil/code detailing pending"
+  "stage": "ADOPTED Path A \u2014 audience-axis alignment; geometry validation pending",
+  "seating_decision": "ADOPTED C \u2014 ambitious shaped bowl (seating scope); fallback A \u2014 Scenario E baseline",
+  "stage_decision": "ADOPTED Path A \u2014 audience-axis alignment; geometry validation pending",
+  "ada_decision": "ADOPTED Concept C \u2014 naturalistic promenade; civil/code determination pending"
  },
  "checks": [
   {
@@ -47,9 +47,9 @@
    "id": "ada_concepts",
    "name": "ADA Concept C vs D (naturalistic vs constructed)",
    "status": "pass",
-   "value": "ADOPTED C \u2014 naturalistic promenade",
+   "value": "ADOPTED Concept C \u2014 naturalistic promenade",
    "source": "analysis/ada_rebuild/ada_validation.json",
-   "note": "planning direction adopted; civil/code detailing remains incomplete"
+   "note": "planning/concept-grade direction adopted; civil/code determination remains incomplete"
   },
   {
    "id": "ada_network",
@@ -95,7 +95,7 @@
    "id": "stage_rule9",
    "name": "Stage geometry / fan declaration (Rule 9)",
    "status": "fail",
-   "value": "DIRECTION ADOPTED \u2014 Path A; inherited az-150 stage still PROVISIONAL",
+   "value": "DIRECTION ADOPTED \u2014 Path A \u2014 audience-axis alignment; inherited az-150 stage still PROVISIONAL",
    "source": "docs/DESIGN_CANON.md",
    "note": "exact footprint, apron, typology, fan declaration and validation remain incomplete"
   },
@@ -119,9 +119,9 @@
    "id": "seating_scope",
    "name": "Seating scope decision (Decision 1)",
    "status": "warn",
-   "value": "ADOPTED C \u2014 ambitious shaped bowl; fallback A",
+   "value": "ADOPTED C \u2014 ambitious shaped bowl (seating scope); fallback A \u2014 Scenario E baseline",
    "source": "analysis/decision_packet/decision_table.csv",
-   "note": "current package still shows A pending propagation"
+   "note": "current package remains pending propagation"
   },
   {
    "id": "groundwater",
@@ -294,10 +294,10 @@
  },
  "warnings": [
   "PLANNING-GRADE ONLY \u2014 derived from 2015 USGS LiDAR + supplement; not a stamped engineering design and not a field survey.",
-  "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is OPEN (inherited az-150 stage; +25.6\u00b0 audience-axis mismatch on record).",
+  "Stage deck is PROVISIONAL: Rule 9 Path A \u2014 audience-axis alignment is adopted; the inherited az-150 stage remains PROVISIONAL pending geometry emission and validation",
   "Coordinates are EPSG:6494 INTERNATIONAL feet \u2014 misreading as US survey feet shifts absolute easting ~39 ft (docs/datum_note.md).",
   "Component CY totals are validated proxies that understate mobilization-level earthwork (analysis/tier_emission/TIER_EMISSION_VALIDATION.md).",
-  "Seating scope Decision 1 is pending; this package shows the Scenario E baseline (option A).",
+  "Seating scope adoption is recorded in adopted_decisions; current geometry remains pending package propagation.",
   "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed."
  ],
  "unknowns": [

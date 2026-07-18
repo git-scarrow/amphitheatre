@@ -17,7 +17,8 @@ Rules honoured (see truth_package/data_inventory.md):
     vectors_geojson/*, dem/in_situ_grading_manifest.json,
     analysis/decision_packet/decision_table.csv)
   - checks that cannot be computed from repo data are emitted as UNKNOWN
-  - the stage deck is carried PROVISIONAL (DESIGN_CANON.md Rule 9 OPEN)
+  - the stage deck is carried PROVISIONAL pending Rule 9 geometry emission and
+    validation
 
 Degrades gracefully when DEM rasters are absent (fresh checkout): the viewer
 payload then carries a flat, clearly-labelled PLACEHOLDER surface and the
@@ -298,8 +299,8 @@ for f in site_fc["features"]:
 ada_rebuild = {"label": "ADA route network — designed alignments "
                         "(stage 2, preferred concept C: east street "
                         "arrival + west park-edge low arrival)",
-               "status": "ADA-compliant route concept pending civil/code "
-                         "detailing",
+               "status": "planning/concept-grade accessible-route direction "
+                         "pending civil/code determination",
                "routes": [], "landings": [], "nodes": [], "legacy": []}
 if os.path.exists(p(SRC["ada_route"])):
     for f in jload(SRC["ada_route"])["features"]:
@@ -599,10 +600,10 @@ checks = [
              + SRC["tier_validation_memo"]},
     {"id": "stage_rule9", "name": "Stage geometry / fan declaration (Rule 9)",
      "status": "fail",
-     "value": "OPEN — inherited az-150 stage carried PROVISIONAL",
+     "value": "PROVISIONAL — inherited az-150 stage pending geometry validation",
      "source": SRC["canon"],
-     "note": "no adoption path (A/B/C/wide-fan) declared; stage shown for "
-             "massing only; every stage-derived artifact re-emits on adoption"},
+     "note": "exact footprint, apron, typology, fan declaration and validation "
+             "remain incomplete"},
     {"id": "treatment_cell", "name": "Treatment cell preserved (dry bioretention)",
      "status": "pass" if hard.get("treatment_cell_preserved") else "unknown",
      "value": "never impounds permanent water",
@@ -646,14 +647,14 @@ for uid, uname in [
 WARNINGS = [
     "PLANNING-GRADE ONLY — derived from 2015 USGS LiDAR + supplement; "
     "not a stamped engineering design and not a field survey.",
-    "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is OPEN (inherited "
-    "az-150 stage; +25.6° audience-axis mismatch on record).",
+    "Stage deck is PROVISIONAL pending authoritative Rule 9 projection, "
+    "geometry emission and validation.",
     "Coordinates are EPSG:6494 INTERNATIONAL feet — misreading as US survey "
     "feet shifts absolute easting ~39 ft (docs/datum_note.md).",
     "Component CY totals are validated proxies that understate "
     "mobilization-level earthwork (analysis/tier_emission/TIER_EMISSION_VALIDATION.md).",
-    "Seating scope Decision 1 is pending; this package shows the Scenario E "
-    "baseline (option A).",
+    "Seating scope adoption is applied from the authoritative decision record; "
+    "current geometry remains pending package propagation.",
     "Treatment-cell shaping and orchestra/event floor are concept-tier "
     "(illustrative), not geometry-backed.",
 ]
@@ -685,7 +686,8 @@ design_state = {
     "design_of_record": {
         "scenario": "Scenario E three-section civic bowl (east/bend/south) "
                     "on the Scenario D restored baseline",
-        "status": "seating / ADA / drainage cost-proxy ACCEPTED · stage refit OPEN (Rule 9)",
+        "status": "seating / ADA / drainage cost-proxy ACCEPTED · stage refit "
+                  "PROVISIONAL pending authoritative Rule 9 projection",
         "authority": [SRC["canon"], "INEVITABILITY.md", "SCENARIO_E_CIVIC.md"],
         "constants_source": _CONST_SOURCE,
     },
@@ -716,7 +718,8 @@ design_state = {
                                  if z["zone"] == "stage_core"), None),
             "geometry_source": "scenarioE stage_surface (inherited from "
                                "design_open_low, az 150)",
-            "status": "PROVISIONAL — Rule 9 OPEN; no adoption path declared",
+            "status": "PROVISIONAL — pending authoritative Rule 9 projection, "
+                      "geometry emission and validation",
             "source": [SRC["zones"], SRC["stage_lineage"], SRC["canon"]],
             "truth_tier": "provisional",
         },
@@ -724,8 +727,8 @@ design_state = {
             "kind": "REBUILT node-to-node accessible network: rim arrival + "
                     "south egress + cross-aisle + floor + wheelchair "
                     "clusters + classified service spur",
-            "status": "ADA-compliant route concept pending civil/code "
-                      "detailing — topology, conflicts and slopes validated; "
+            "status": "Planning/concept-grade accessible-route direction pending "
+                      "civil/code determination — topology, conflicts and slopes validated; "
                       "code details explicitly unchecked",
             "legacy": "2026-06-12: legacy scenarioE ada_ramp/landing REJECTED "
                       "(disconnected fragments; route A 63% in treatment "
@@ -830,8 +833,8 @@ evaluation_report = {
         "seats_band_a_validated": round(band_a_total),
         "tread_status_counts": status_counts,
         "earthwork_gross_cy_component_proxy": vols.get("gross_cy"),
-        "stage": "Rule 9 OPEN (provisional)",
-        "decision_1": "PENDING (viewer shows option A)",
+        "stage": "PROVISIONAL — pending authoritative Rule 9 projection and geometry validation",
+        "decision_1": "ADOPTION RECORD APPLIED DURING PROJECTION",
     },
     "checks": checks,
     "per_row_c_mm": validation.get("c_rows"),
@@ -933,7 +936,8 @@ site_data = {
              "source": SRC["ada_legacy"] + " — REJECTED 2026-06-12, shown "
                        "only as quarantined history"},
             {"layer": "Stage deck", "tier": "provisional",
-             "source": "inherited az-150 stage — Rule 9 OPEN"},
+             "source": "inherited az-150 stage — pending authoritative Rule 9 "
+                       "projection and geometry validation"},
             {"layer": "Treatment cell, event floor", "tier": "concept",
              "source": SRC["zones"]},
             {"layer": "Bay-view axis", "tier": "source_of_truth",

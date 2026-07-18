@@ -5,7 +5,7 @@
  "project": "Petoskey Pit amphitheatre \u2014 Open Civic Bowl (in-situ package)",
  "design_of_record": {
   "scenario": "Scenario E three-section civic bowl (east/bend/south) on the Scenario D restored baseline",
-  "status": "seating / ADA / drainage cost-proxy ACCEPTED \u00b7 stage refit OPEN (Rule 9)",
+  "status": "seating / ADA / drainage cost-proxy ACCEPTED \u00b7 Rule 9 Path A \u2014 audience-axis alignment ADOPTED; geometry validation pending",
   "authority": [
    "docs/DESIGN_CANON.md",
    "INEVITABILITY.md",
@@ -113,7 +113,7 @@
    "kind": "low hardscape deck + shoulders (open to bay side, no upstage wall \u2014 landscape venue)",
    "elev_navd88": 612.5,
    "geometry_source": "scenarioE stage_surface (inherited from design_open_low, az 150)",
-   "status": "PROVISIONAL \u2014 Rule 9 Path A adopted; current inherited az-150 geometry pending replacement and validation",
+   "status": "PROVISIONAL \u2014 Rule 9 Path A \u2014 audience-axis alignment is adopted; the inherited az-150 stage remains PROVISIONAL pending geometry emission and validation",
    "source": [
     "vectors_geojson/bowl_zones.geojson",
     "design_open_low/stage_floor.geojson",
@@ -123,7 +123,7 @@
   },
   "ada_route": {
    "kind": "REBUILT node-to-node accessible network: rim arrival + south egress + cross-aisle + floor + wheelchair clusters + classified service spur",
-   "status": "ADA-compliant route concept pending civil/code detailing \u2014 topology, conflicts and slopes validated; code details explicitly unchecked",
+   "status": "Planning/concept-grade accessible-route direction pending civil/code determination \u2014 topology, conflicts and slopes validated; code details explicitly unchecked",
    "legacy": "2026-06-12: legacy scenarioE ada_ramp/landing REJECTED (disconnected fragments; route A 63% in treatment cell; route B crossed swale short of the cross-aisle) \u2014 quarantined in vectors_geojson/legacy_ada_rejected.geojson",
    "validation": {
     "topology_ok": true,
@@ -207,13 +207,12 @@
  },
  "warnings": [
   "PLANNING-GRADE ONLY \u2014 derived from 2015 USGS LiDAR + supplement; not a stamped engineering design and not a field survey.",
-  "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is OPEN (inherited az-150 stage; +25.6\u00b0 audience-axis mismatch on record).",
   "Coordinates are EPSG:6494 INTERNATIONAL feet \u2014 misreading as US survey feet shifts absolute easting ~39 ft (docs/datum_note.md).",
   "Component CY totals are validated proxies that understate mobilization-level earthwork (analysis/tier_emission/TIER_EMISSION_VALIDATION.md).",
   "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed.",
-  "Seating C is adopted with A as fallback; the current package still shows A pending package propagation.",
-  "Rule 9 Path A is adopted; the inherited az-150 stage remains PROVISIONAL pending geometry emission and validation.",
-  "ADA Concept C is adopted at planning grade and remains pending civil/code detailing."
+  "Seating C \u2014 ambitious shaped bowl (seating scope) is adopted with A \u2014 Scenario E baseline as fallback; the current package remains pending package propagation.",
+  "Rule 9 Path A \u2014 audience-axis alignment is adopted; the inherited az-150 stage remains PROVISIONAL pending geometry emission and validation.",
+  "ADA Concept C \u2014 naturalistic promenade is adopted at planning/concept grade; civil/code determination remains pending."
  ],
  "missing_data": [
   "Seasonal high groundwater",
