@@ -335,17 +335,18 @@ const TIER_BADGE = {
   for (const m of D.audit.missing) {
     const li = document.createElement("li"); li.textContent = m; M.appendChild(li);
   }
-  const P = document.getElementById("pending"), pd = D.audit.pending;
-  if (pd) {
-    P.innerHTML = `<b>Decision 1 — seating scope</b> (human decision, not yet made).
-      Viewer shows <b>${pd.shown_in_viewer}</b>.
-      <table><tr><th></th><th>option</th><th>Band-A</th><th>Δ seats</th><th>+CY</th></tr>
-      ${pd.options.map(o => `<tr class="${pd.shown_in_viewer.startsWith("option " + o.option) ? "shown" : ""}">
-        <td><b>${o.option}</b></td><td>${o.label}</td>
-        <td>${o.band_a_validated_seats}</td><td>${o.delta_seats_vs_baseline >= 0 ? "+" : ""}${o.delta_seats_vs_baseline}</td>
-        <td>${o.incremental_earthwork_cy}</td></tr>`).join("")}
+  const P = document.getElementById("pending");
+  const adopted = D.audit.adopted_decisions ?? [];
+  if (adopted.length) {
+    const byId = Object.fromEntries(adopted.map(d => [d.id, d]));
+    const seating = byId.seating_scope, stage = byId.stage_rule9, ada = byId.ada_concept;
+    P.innerHTML = `<b>Owner decisions — adopted 2026-07-18</b>
+      <table><tr><th>decision</th><th>adopted direction</th><th>implementation</th></tr>
+        <tr><td>Seating</td><td>${seating.selected_option} — ${seating.selected_label}; fallback ${seating.fallback_option}</td><td>${seating.implementation_status}</td></tr>
+        <tr><td>Stage · Rule 9</td><td>Path ${stage.selected_option} — ${stage.selected_label}</td><td>${stage.implementation_status}</td></tr>
+        <tr><td>Accessible route</td><td>${ada.selected_option} — ${ada.selected_label}</td><td>${ada.implementation_status}</td></tr>
       </table>
-      <div style="margin-top:6px;color:#8e887a;font-size:11.5px">Earthwork CY are component-sum proxies — known understated ~2–2.6× vs raster truth. Sources: ${pd.source.join(" · ")}</div>`;
+      <div style="margin-top:6px;color:#8e887a;font-size:11.5px"><b>Implementation remains pending:</b> the current model retains baseline seating and the inherited provisional stage until package propagation and validation are complete.</div>`;
   }
   document.getElementById("subtitle").textContent =
     `${D.meta.crs} · generated ${D.meta.generated.slice(0, 10)} by scripts/build_truth_package.py`;

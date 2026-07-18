@@ -142,4 +142,9 @@ stage_layer = next(
 assert "adopted" in stage_layer["source"].lower()
 assert "provisional" in stage_layer["tier"]
 
+viewer_html = (ROOT / "web_viewer/index.html").read_text()
+assert "D.audit.adopted_decisions" in viewer_html
+assert "human decision, not yet made" not in viewer_html
+assert "Implementation remains pending" in viewer_html
+
 print("PASS — authoritative decision artifact and validation boundary")
