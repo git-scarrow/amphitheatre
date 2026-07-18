@@ -1,9 +1,9 @@
-# Rule 9 closure — stage adoption decision record (TEMPLATE)
+# Rule 9 — adopted stage direction record
 
-_Fill this in to close `DESIGN_CANON` Rule 9. Until every section is complete and the
-follow-ups are done, `rule9_status` stays `open` and Claude Design stays paused
-(`docs/claude_design_handoff.md`). See `docs/POST_EMISSION_DECISION_MEMO.md` for why
-this decision is independent of the seating-tier decision._
+_This records the owner-selected human direction for `DESIGN_CANON` Rule 9. Its
+geometry-dependent closure gate remains non-passing until the chosen geometry is emitted
+and validated. See `docs/POST_EMISSION_DECISION_MEMO.md` for the distinction from the
+seating-tier decision._
 
 ## What Rule 9 requires (facts on file)
 
@@ -25,7 +25,7 @@ accepting the mismatch with reasons.
    stage must justify itself (`analysis/stage_seating_decoupling/CIRCULARITY_AUDIT.md`).
 3. **Open-air canon.** No view-blocking upstage wall; backdrop stays bay + sky.
 
-## Candidates on file (tested, none adopted)
+## Candidates on file
 
 | Candidate | Mismatch (sweep sign) | Lateral ft | Row-1 gap E/B/S ft | Bay obstr % | Foreground obstr % | Earthwork CY | Source |
 |---|--:|--:|---|--:|--:|--:|---|
@@ -34,24 +34,31 @@ accepting the mismatch with reasons.
 | + five-facet apron (319 sf, 6.0 ft projection) | — | — | 12.0 / 29.6 / 18.8 | 0.0 | 1.1 | ~8.9 | STAGE_SHAPE_STUDY §A2 |
 | Typology shortlist (incl. roofed band-shell options) | per option | — | — | per option | per option | — | stage_typology_scores.json |
 
-## Decision record (FILL IN)
+## Decision record
 
-- **Chosen candidate:** ______ (one of the above, or "accept inherited with reasons")
-- **Axis az / placement:** ______
-- **Apron:** none / faceted (which front): ______
-- **Typology / roof:** ______ (cite its obstruction clearance)
-- **rule9_status →** `resolved` | `carried_provisional` (provisional = Claude Design
-  may resume with the stage flagged provisional in every artifact)
-- **Reasons (site / performance / civic — the inevitability standard):**
-  - ______
-- **Decided by / date:** ______
+**Owner decision recorded 2026-07-18.**
 
-## Required follow-ups before Rule 9 is marked closed
+- Chosen path: **A — audience-axis alignment**.
+- **Target axis / audience facing:** approximately az 124° / 304°.
+- **Exact footprint:** not selected by this direction-level decision; pending emission
+  study.
+- **Apron:** not selected by this direction-level decision.
+- **Typology / roof:** not selected by this direction-level decision.
+- **Decision status:** adopted.
+- **Implementation status:** pending geometry emission and validation; the inherited
+  az-150 stage remains provisional.
+- **Rationale:** owner selection; no additional rationale recorded.
+
+## Required follow-ups before Rule 9 geometry validation can close
+
+Rule 9's human direction is settled, but its geometry-dependent closure gate remains
+non-passing until these follow-ups are complete.
 
 - [ ] Emit the chosen stage geometry into the adopted scenario package and re-run
       `scripts/stage_refit_sweep.py` + `scripts/audit_in_situ_package.py` (green).
 - [ ] Update the fan declaration to match emitted seating (≈130° effective span).
 - [ ] Update `docs/DESIGN_CANON.md` Rule 9 + ledger row; update README status table.
-- [ ] Un-pause or provisionally annotate `docs/claude_design_handoff.md`.
-- [ ] If a tier was adopted in Decision 1, confirm stage row-1 gaps against that
-      tier's emitted geometry (gaps above were measured at the 1,283-seat frame).
+- [ ] Provisionally annotate `docs/claude_design_handoff.md` while the geometry gate is
+      non-passing.
+- [ ] Confirm stage row-1 gaps against the adopted tier's emitted geometry (gaps above
+      were measured at the 1,283-seat frame).

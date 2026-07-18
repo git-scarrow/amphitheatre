@@ -67,6 +67,12 @@ whose built elements exceed 8.33%, so that class of error fails loudly.
 **Concept C governs the amphitheater plan.** Preferred D = **D2**, carried
 as the design-development alternative — not adopted.
 
+### Owner adoption
+
+Owner adoption: **Concept C** — naturalistic promenade, recorded 2026-07-18.
+Decision status is adopted. Implementation remains planning-grade pending civil/code
+detailing; this record does not assert ADA compliance.
+
 Decision rule (documented in `ada_validation.json`): D governs only if it
 beats C on dignity by ≥20 points AND displaces <60 seats (<5%) AND severs
 no row mid-tread. D2 beats C on dignity by 63 points **but** displaces 121

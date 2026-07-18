@@ -147,4 +147,28 @@ assert "D.audit.adopted_decisions" in viewer_html
 assert "human decision, not yet made" not in viewer_html
 assert "Implementation remains pending" in viewer_html
 
+# Governing human-readable documents must record the owner selections without
+# promoting pending implementation work into completed validation.
+docs = {
+    path: (ROOT / path).read_text()
+    for path in [
+        "docs/POST_EMISSION_DECISION_MEMO.md",
+        "docs/HUMAN_DECISION_BRIEF.md",
+        "analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md",
+        "docs/ADA_CONCEPT_C_VS_D.md",
+        "docs/DESIGN_CANON.md",
+        "README.md",
+    ]
+}
+combined = "\n".join(docs.values())
+assert "Owner decision recorded 2026-07-18" in docs["docs/POST_EMISSION_DECISION_MEMO.md"]
+assert "Chosen scope: **C**" in docs["docs/HUMAN_DECISION_BRIEF.md"]
+assert "Fallback scope: **A**" in docs["docs/HUMAN_DECISION_BRIEF.md"]
+assert "Chosen path: **A — audience-axis alignment**" in docs["analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md"]
+assert "Owner adoption: **Concept C**" in docs["docs/ADA_CONCEPT_C_VS_D.md"]
+assert "owner-selected Path A" in docs["docs/DESIGN_CANON.md"]
+assert "Seating scope C adopted" in docs["README.md"]
+for stale in ["Adoption decision **OPEN**", "human decision, not yet made", "no adoption path declared"]:
+    assert stale not in combined, stale
+
 print("PASS — authoritative decision artifact and validation boundary")

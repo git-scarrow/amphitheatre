@@ -1,4 +1,4 @@
-# Post-emission decision memo — what is decided, what is live
+# Post-emission decision memo — adopted directions and implementation status
 
 _2026-06-11. **This memo is the controlling statement of project state.** Where it
 disagrees with `analysis/intervention_tiers/INTERVENTION_TIER_REPORT.md`, this memo and
@@ -31,26 +31,27 @@ only the inherited stage object and the treatment cell).
 - `idealized_reference_geometry`: dominated reference ceiling only.
 - Scenario B: diagnostic only (canon Rule 1).
 
-## The two live decisions
+## Owner decisions and implementation follow-ups
 
-### Decision 1 — which seating scope to advance
+**Owner decision recorded 2026-07-18.** The human selections are settled;
+geometry-dependent implementation and validation remain separate.
 
-Choose one of: **(A) Scenario E baseline** (1,243/1,283; no further work),
-**(B) modest_normalization** (+114 for 25.3 CY — the cheapest validated step), or
-**(C) ambitious seating scope** (+262 for 47.3 CY — the validated Pareto knee).
-All three are emission-validated; this is now a civic/budget choice, not an open
-engineering question. Adoption of B or C means: update the `DESIGN_CANON` ledger,
-point the in-situ package at the chosen tier's emitted geometry
-(`analysis/tier_emission/<tier>/geometry.geojson`), and re-run the package audit.
+1. **Seating scope C — ambitious shaped bowl is adopted.** Quote 1,505 Band-A /
+   1,516 nominal, +262 seats and 47.3 CY versus the validated control. **A — Scenario
+   E baseline remains the fallback.** The current in-situ package still points at A
+   until package propagation and re-audit are complete.
+2. **Rule 9 Path A — audience-axis alignment is adopted as the stage direction.**
+   Target approximately az 124° / audience facing 304°. The exact footprint, apron,
+   typology, fan declaration, and stage-derived artifacts remain pending; the inherited
+   az-150 stage stays provisional and Rule 9's geometry-validation gate remains
+   non-passing.
+3. **ADA Concept C — naturalistic promenade is adopted at planning grade.** It
+   preserves seating and remains pending civil/code detailing. This adoption does not
+   assert ADA compliance.
 
-### Decision 2 — close Rule 9 (stage)
-
-**Nothing about the stage was adopted by the emission validation.** P_opt, the faceted
-aprons, and any roofed/utilitarian typology remain *tested candidates*; the emitted
-tiers all carry the inherited az-150 stage with Rule 9 OPEN. Decision 1 is deliberately
-independent of Decision 2 (stage–seating decoupling,
-`analysis/stage_seating_decoupling/`). Close Rule 9 via
-`analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md`.
+The machine-readable authority is `analysis/decision_packet/adopted_decisions.json`.
+No downstream artifact may promote `decision_status: adopted` into completed
+implementation without the required re-emission and validation.
 
 ## Standing guardrails
 

@@ -1,4 +1,4 @@
-# Human decision brief — seating scope (Decision 1)
+# Human decision brief — seating scope
 
 _2026-06-11. One page. Source of truth: `docs/POST_EMISSION_DECISION_MEMO.md` (controlling)
 and the emission validation behind it (`analysis/tier_emission/TIER_EMISSION_VALIDATION.md`,
@@ -6,10 +6,10 @@ commit `f6b1d96`). Visuals: `boards/04_seating_options_comparison.png` (plan, sa
 `boards/05_seating_options_section.png` (true-scale section). Table:
 `analysis/decision_packet/decision_table.csv`._
 
-## What you are deciding
+## Adopted scope
 
-Which seating scope to advance. **All three options are emission-validated on the real
-surface** — this is a civic/budget choice, not an open engineering question.
+All three options are emission-validated on the real surface. The owner has selected
+scope C; implementation package propagation and re-audit remain pending.
 
 | | Option | Band-A validated | Δ seats | Incr. earthwork | Status |
 |---|---|--:|--:|--:|---|
@@ -43,14 +43,13 @@ costs. The Pareto ordering is unchanged**: C remains the validated knee.
   of C); `idealized_reference_geometry` is a dominated reference ceiling; Scenario B is
   diagnostic only.
 
-## The stage is NOT part of this decision
+## Stage direction remains a separate implementation follow-up
 
-Rule 9 remains **OPEN**. Every option carries the inherited az-150 stage as
-**provisional** — drawn dashed in all visuals. P_opt, the faceted aprons, and the roofed
-typologies are tested candidates only; none is adopted. Close Rule 9 separately via
-`analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md` (Decision 2 — deliberately
-independent, per the stage–seating decoupling study). Claude Design stays paused until
-Rule 9 closes or the stage is explicitly carried provisional in the handoff.
+Rule 9 Path A — audience-axis alignment — is adopted as the human direction. Every
+option still carries the inherited az-150 stage as **provisional** — drawn dashed in all
+visuals — until the chosen geometry is emitted and validated. The exact footprint,
+apron, typology, and fan declaration remain pending; the geometry-validation gate is
+non-passing. See `analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md`.
 
 ## Recommended posture
 
@@ -58,13 +57,17 @@ If any expansion is funded, **C (ambitious seating scope) is the validated Paret
 most seats per validated CY. **B** is the cheapest validated step if budget is capped.
 **A** costs nothing further and remains the fallback in all cases.
 
-## Decision record (FILL IN)
+## Decision record
 
-- **Chosen scope:** A / B / C: ______
-- **Reasons (civic / budget):** ______
-- **Decided by / date:** ______
+**Owner decision recorded 2026-07-18.**
 
-**Follow-ups on adopting B or C:** update the `DESIGN_CANON` ledger; point the in-situ
-package at `analysis/tier_emission/<tier>/geometry.geojson`; re-run the package audit.
+- Chosen scope: **C** — ambitious shaped bowl, 1,505 Band-A / 1,516 nominal.
+- Fallback scope: **A** — Scenario E baseline.
+- **Decision status:** adopted.
+- **Implementation status:** pending package propagation and package re-audit.
+- **Rationale:** owner selection; no additional rationale recorded.
+
+**Follow-ups on adopted C:** update the `DESIGN_CANON` ledger; point the in-situ package
+at `analysis/tier_emission/<tier>/geometry.geojson`; re-run the package audit.
 Seat or stage claims beyond the table above require re-emission + re-validation
 (canon Rules 3/5) before they may be quoted.

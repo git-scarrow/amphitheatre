@@ -12,7 +12,7 @@ individual scenario memo.
 |---|---|---|
 | **Scenario B** — 0.5 ft fill-clip, "self-balancing" | **REJECTED** as formal seating baseline | `SCENARIO_B_VALIDATION.md` §§1–7; `INEVITABILITY.md` worked proof |
 | **Scenario D** — B + selective tread restoration (+26 CY) | **ACCEPTED** as designed baseline for formal terraced seating | `INEVITABILITY.md` worked proof; `score_inevitability.py` → 10/10 ACCEPTED |
-| **Scenario E** — D + aisles + ADA + drainage (500.8 CY total) | Seating / ADA / drainage cost-proxy **ACCEPTED** where geometry is emitted and validated · **Stage refit OPEN**: inherited az150 stage carries +25.6° audience-axis mismatch, −22.5 ft lateral offset; east section outside declared ±55° fan; fan declaration (110°/±55°) does not match emitted three-section geometry (~130° effective span). Status: **ACCEPTED (seating/ADA/drainage) · stage refit open** | `SCENARIO_E_CIVIC.md`; `analysis/stage_refit/STAGE_REFIT_SWEEP.md`; Rule 9; `INEVITABILITY.md` §concept→cost-proxy |
+| **Scenario E** — D + aisles + ADA + drainage (500.8 CY total) | Seating / ADA / drainage cost-proxy **ACCEPTED** where geometry is emitted and validated · **Stage direction adopted, geometry validation non-passing**: inherited az150 stage remains provisional with +25.6° audience-axis mismatch, −22.5 ft lateral offset; east section outside declared ±55° fan; fan declaration (110°/±55°) does not match emitted three-section geometry (~130° effective span). | `SCENARIO_E_CIVIC.md`; `analysis/stage_refit/STAGE_REFIT_SWEEP.md`; Rule 9; `INEVITABILITY.md` §concept→cost-proxy |
 
 ---
 
@@ -107,10 +107,12 @@ the drawing.
 
 ### Rule 9 — Stage geometry and fan declaration must match the emitted seating
 
-> **Closure path:** fill in `analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md`.
-> Status 2026-06-11: OPEN. P_opt / faceted aprons / typology shortlist are tested
-> candidates, none adopted; the emission-validated seating tiers all carry the
-> inherited az-150 stage. See `docs/POST_EMISSION_DECISION_MEMO.md`.
+> **Owner direction recorded 2026-07-18:** owner-selected Path A — audience-axis
+> alignment, target approximately az 124° / audience facing 304°. The human direction is
+> adopted; exact footprint, apron, typology, fan declaration, re-emission, and validation
+> remain incomplete. The inherited az-150 stage is still PROVISIONAL and does not
+> represent Path A. Rule 9's geometry-validation gate therefore remains non-passing.
+> Authority: `analysis/decision_packet/adopted_decisions.json`.
 
 The Scenario E seating (rows 1-18, 1 283 Band-A seats across east / bend / south sections)
 produces a seat-weighted audience centroid at bearing **124.4°** from the current focal point,
@@ -200,5 +202,5 @@ then re-emitting every stage-derived artifact from the adopted footprint
 | Is the 26 CY restoration optional? | No — it is the minimum effective intervention that makes terraces read as terraces. |
 | Can I call a desire-line the cross-aisle? | No — the aisle is built from row-9/10 geometry. Any other generator must be named. |
 | Can Scenario E's ADA cost appear in a project budget? | Only if the ADA switchback geometry is emitted and validated. |
-| Is Scenario E's stage configuration accepted? | No — stage refit is open. Inherited az150 stage has +25.6° mismatch; east section outside ±55° fan. Must explicitly adopt Path A / B / C / wide-fan before stage is settled. |
-| Can I quote Scenario E as "10/10 ACCEPTED"? | Seating, ADA, and drainage: yes. Stage/fan: no — unresolved. Full 10/10 requires Rule 9 to be satisfied. |
+| Is Scenario E's stage configuration accepted? | No — Path A is adopted as a human direction, but the inherited az150 stage remains provisional and does not represent it. Geometry emission and validation remain non-passing. |
+| Can I quote Scenario E as "10/10 ACCEPTED"? | Seating, ADA, and drainage: yes. Stage/fan implementation: no — it remains pending geometry emission and validation. |

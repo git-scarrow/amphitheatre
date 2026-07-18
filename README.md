@@ -14,16 +14,18 @@ The core principle: every cost-bearing design move must emit real geometry and p
 |---|---|
 | Scenario D — formal seating baseline (1 452 seats, +26 CY restoration) | ACCEPTED |
 | Scenario E — seating + aisles + ADA + drainage (500.8 CY) | ACCEPTED (seating/ADA/drainage) — **remains the validated control** |
-| Intervention tiers — emission validation (2026-06-11) | **VALIDATED**: modest +114 seats / 25.3 CY; ambitious seating scope +262 / 47.3 CY; **N1 east extension REJECTED (0 of +149 seats survive emission)**. Adoption decision **OPEN** — see `docs/POST_EMISSION_DECISION_MEMO.md` |
-| Scenario E — stage configuration | **OPEN** — Rule 9 unresolved; P_opt/apron/typologies are candidates only. Closure path: `analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md`. Claude Design handoff PAUSED |
+| Intervention tiers — emission validation (2026-06-11) | **Seating scope C adopted**: ambitious shaped bowl, 1,505 Band-A / 1,516 nominal, +262 seats / 47.3 CY. **A remains the fallback.** Package propagation and re-audit are pending. |
+| Scenario E — stage configuration | **Rule 9 Path A adopted as owner direction** — audience-axis alignment, approximately az 124°. Current inherited az-150 stage remains PROVISIONAL pending geometry emission and validation. |
+| Accessible route | **Concept C adopted at planning grade** — naturalistic promenade; civil/code detailing remains pending and no ADA-compliance claim is made. |
 
-**The two live decisions** (controlling doc: `docs/POST_EMISSION_DECISION_MEMO.md`):
-(1) advance Scenario E baseline, validated modest_normalization (+114), or validated
-ambitious seating scope (+262); (2) close Rule 9 for the stage.
+**The three owner selections** are recorded in
+`analysis/decision_packet/adopted_decisions.json`: seating C with A fallback, Rule 9
+Path A, and ADA Concept C. Adoption settles direction; the status table above names the
+implementation work still pending.
 
 ## Key documents
 
-- `docs/POST_EMISSION_DECISION_MEMO.md` — **controlling statement of project state + the two live decisions**
+- `docs/POST_EMISSION_DECISION_MEMO.md` — **controlling statement of project state + adopted owner directions**
 - `docs/DESIGN_CANON.md` — governing invariant rules (all scenarios)
 - `docs/in_situ_design_brief.md` — three-section civic bowl in-situ package: three boards, layer inventory, assumptions, audit gate
 - `INEVITABILITY.md` — narrative rationale and the "inevitable" design standard
