@@ -16,6 +16,12 @@ EXPECTED_IMPLEMENTATION = {
     "stage_rule9": "pending_geometry_and_validation",
     "ada_concept": "planning_grade_pending_civil_detailing",
 }
+DECISION_AUTHORITY_PATH = "analysis/decision_packet/adopted_decisions.json"
+DECISION_SOURCE_PATHS = {
+    "adopted_decisions": DECISION_AUTHORITY_PATH,
+    "canon": "docs/DESIGN_CANON.md",
+    "decision_brief": "docs/HUMAN_DECISION_BRIEF.md",
+}
 
 
 def index_decisions(record: dict) -> dict[str, dict]:
@@ -55,6 +61,25 @@ def _replace_check(checks: list[dict], check_id: str, **values) -> None:
     if target is None:
         raise ValueError(f"missing generated check: {check_id}")
     target.update(values)
+
+
+def _source_entry(repo: Path, rel: str, *, presence_key: str) -> dict:
+    path = repo / rel
+    present = path.is_file()
+    return {
+        "path": rel,
+        "sha256_12": hashlib.sha256(path.read_bytes()).hexdigest()[:12]
+        if present else None,
+        presence_key: present,
+    }
+
+
+def _refresh_decision_sources(repo: Path, sources: dict,
+                              *, presence_key: str = "present") -> dict:
+    refreshed = copy.deepcopy(sources)
+    for key, rel in DECISION_SOURCE_PATHS.items():
+        refreshed[key] = _source_entry(repo, rel, presence_key=presence_key)
+    return refreshed
 
 
 def _display_label(decision: dict) -> str:
@@ -162,6 +187,12 @@ def apply_decisions(record: dict, design_state: dict, evaluation_report: dict,
         f"ADA Concept {ada_option} — {ada_label} is adopted at "
         "planning/concept grade; civil/code determination remains pending.",
     ])
+    report["warnings"] = copy.deepcopy(state["warnings"])
+    site["meta"]["warnings"] = copy.deepcopy(state["warnings"])
+    canonical_sources = state.get("sources")
+    if canonical_sources is not None:
+        report["sources"] = copy.deepcopy(canonical_sources)
+        site["audit"]["sources"] = copy.deepcopy(canonical_sources)
     state.setdefault("design_of_record", {})["status"] = (
         "seating / ADA / drainage cost-proxy ACCEPTED · "
         f"Rule 9 {stage_option} — {stage_label} ADOPTED; geometry validation pending"
@@ -190,23 +221,29 @@ def apply_decisions(record: dict, design_state: dict, evaluation_report: dict,
     _replace_check(report["checks"], "seating_scope", status="warn",
                    value=(f"ADOPTED {seating_option} — {seating_label}; fallback "
                           f"{seating_fallback} — {seating_fallback_label}"),
-                   note="current package remains pending propagation")
+                   note="current package remains pending propagation",
+                   source=DECISION_AUTHORITY_PATH)
     _replace_check(report["checks"], "stage_rule9", status="fail",
                    value=(f"DIRECTION ADOPTED — {stage_option} — {stage_label}; "
                           "inherited az-150 stage still PROVISIONAL"),
-                   note="exact footprint, apron, typology, fan declaration and validation remain incomplete")
+                   note="exact footprint, apron, typology, fan declaration and validation remain incomplete",
+                   source=DECISION_AUTHORITY_PATH)
     _replace_check(report["checks"], "ada_concepts", status="pass",
                    value=f"ADOPTED Concept {ada_option} — {ada_label}",
                    note=("planning/concept-grade direction adopted; civil/code "
-                         "determination remains incomplete"))
+                         "determination remains incomplete"),
+                   source=DECISION_AUTHORITY_PATH)
 
-    site["meta"]["warnings"] = copy.deepcopy(state["warnings"])
     site["audit"]["checks"] = copy.deepcopy(report["checks"])
     for layer in site["audit"].get("layer_truth", []):
         if layer.get("layer") == "Stage deck":
             layer["tier"] = "provisional"
             layer["source"] = "inherited az-150 stage — " + stage_status
     site["audit"]["adopted_decisions"] = adopted
+    site["audit"]["decision_record"] = {
+        "decided_on": record["decided_on"],
+        "authority": record["authority"],
+    }
     site["audit"].pop("pending", None)
     return state, report, site
 
@@ -246,9 +283,13 @@ def sync_existing_outputs(repo: Path) -> None:
     state_path = repo / "truth_package/design_state.current.json"
     report_path = repo / "truth_package/evaluation_report.current.json"
     site_path = repo / "web_viewer/data/site_data.js"
+    provenance_path = repo / "unreal_export/manifests/provenance.json"
     state = json.loads(state_path.read_text())
     report = json.loads(report_path.read_text())
     site = load_site_data_js(site_path)
+    provenance = json.loads(provenance_path.read_text())
+    state["sources"] = _refresh_decision_sources(
+        repo, state.get("sources", {}))
     terrain_before = _json_hash(site["terrain"])
     state, report, site = apply_decisions(record, state, report, site)
     terrain_after = _json_hash(site["terrain"])
@@ -257,9 +298,23 @@ def sync_existing_outputs(repo: Path) -> None:
     state_path.write_text(json.dumps(state, indent=1) + "\n")
     report_path.write_text(json.dumps(report, indent=1) + "\n")
     write_site_data_js(site_path, site)
+    provenance["warnings"] = copy.deepcopy(state["warnings"])
+    provenance["warnings_source"] = "truth_package/design_state.current.json"
+    provenance["sources"] = _refresh_decision_sources(
+        repo, provenance.get("sources", {}), presence_key="exists")
+    provenance["sources"]["design_state"] = _source_entry(
+        repo, "truth_package/design_state.current.json", presence_key="exists")
+    provenance["decision_projection"] = {
+        "decided_on": record["decided_on"],
+        "authority": record["authority"],
+        "stage_geometry": "historical_inherited_az_150_snapshot",
+        "implements_stage_rule9_path_a": False,
+    }
+    provenance_path.write_text(json.dumps(provenance, indent=1) + "\n")
     print(f"updated {state_path.relative_to(repo)}")
     print(f"updated {report_path.relative_to(repo)}")
     print(f"updated {site_path.relative_to(repo)}")
+    print(f"updated {provenance_path.relative_to(repo)} (metadata only)")
     print("terrain payload preserved")
 
 

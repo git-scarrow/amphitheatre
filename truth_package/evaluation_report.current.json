@@ -48,7 +48,7 @@
    "name": "ADA Concept C vs D (naturalistic vs constructed)",
    "status": "pass",
    "value": "ADOPTED Concept C \u2014 naturalistic promenade",
-   "source": "analysis/ada_rebuild/ada_validation.json",
+   "source": "analysis/decision_packet/adopted_decisions.json",
    "note": "planning/concept-grade direction adopted; civil/code determination remains incomplete"
   },
   {
@@ -96,7 +96,7 @@
    "name": "Stage geometry / fan declaration (Rule 9)",
    "status": "fail",
    "value": "DIRECTION ADOPTED \u2014 Path A \u2014 audience-axis alignment; inherited az-150 stage still PROVISIONAL",
-   "source": "docs/DESIGN_CANON.md",
+   "source": "analysis/decision_packet/adopted_decisions.json",
    "note": "exact footprint, apron, typology, fan declaration and validation remain incomplete"
   },
   {
@@ -120,7 +120,7 @@
    "name": "Seating scope decision (Decision 1)",
    "status": "warn",
    "value": "ADOPTED C \u2014 ambitious shaped bowl (seating scope); fallback A \u2014 Scenario E baseline",
-   "source": "analysis/decision_packet/decision_table.csv",
+   "source": "analysis/decision_packet/adopted_decisions.json",
    "note": "current package remains pending propagation"
   },
   {
@@ -294,11 +294,12 @@
  },
  "warnings": [
   "PLANNING-GRADE ONLY \u2014 derived from 2015 USGS LiDAR + supplement; not a stamped engineering design and not a field survey.",
-  "Stage deck is PROVISIONAL: Rule 9 Path A \u2014 audience-axis alignment is adopted; the inherited az-150 stage remains PROVISIONAL pending geometry emission and validation",
   "Coordinates are EPSG:6494 INTERNATIONAL feet \u2014 misreading as US survey feet shifts absolute easting ~39 ft (docs/datum_note.md).",
   "Component CY totals are validated proxies that understate mobilization-level earthwork (analysis/tier_emission/TIER_EMISSION_VALIDATION.md).",
-  "Seating scope adoption is recorded in adopted_decisions; current geometry remains pending package propagation.",
-  "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed."
+  "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed.",
+  "Seating C \u2014 ambitious shaped bowl (seating scope) is adopted with A \u2014 Scenario E baseline as fallback; the current package remains pending package propagation.",
+  "Rule 9 Path A \u2014 audience-axis alignment is adopted; the inherited az-150 stage remains PROVISIONAL pending geometry emission and validation.",
+  "ADA Concept C \u2014 naturalistic promenade is adopted at planning/concept grade; civil/code determination remains pending."
  ],
  "unknowns": [
   "Seasonal high groundwater",
@@ -336,7 +337,7 @@
   },
   "canon": {
    "path": "docs/DESIGN_CANON.md",
-   "sha256_12": "60328eb434c7",
+   "sha256_12": "1394df51718d",
    "present": true
   },
   "corridors_C": {
@@ -356,7 +357,7 @@
   },
   "decision_brief": {
    "path": "docs/HUMAN_DECISION_BRIEF.md",
-   "sha256_12": "e269d86adcfd",
+   "sha256_12": "ae46edfa15b2",
    "present": true
   },
   "decision_table": {
@@ -437,6 +438,11 @@
   "zones": {
    "path": "vectors_geojson/bowl_zones.geojson",
    "sha256_12": "3228c4b2ff70",
+   "present": true
+  },
+  "adopted_decisions": {
+   "path": "analysis/decision_packet/adopted_decisions.json",
+   "sha256_12": "025227f9be8c",
    "present": true
   }
  }

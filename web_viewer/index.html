@@ -338,9 +338,12 @@ const TIER_BADGE = {
   const P = document.getElementById("pending");
   const adopted = D.audit.adopted_decisions ?? [];
   if (adopted.length) {
+    const decisionRecord = D.audit.decision_record ?? {};
+    const decidedOn = decisionRecord.decided_on ?? "date unavailable";
+    const authority = (decisionRecord.authority ?? "authority unavailable").replaceAll("_", " ");
     const byId = Object.fromEntries(adopted.map(d => [d.id, d]));
     const seating = byId.seating_scope, stage = byId.stage_rule9, ada = byId.ada_concept;
-    P.innerHTML = `<b>Owner decisions — adopted 2026-07-18</b>
+    P.innerHTML = `<b>Owner decisions — adopted ${decidedOn} by ${authority}</b>
       <table><tr><th>decision</th><th>adopted direction</th><th>implementation</th></tr>
         <tr><td>Seating</td><td>${seating.selected_option} — ${seating.selected_label}; fallback ${seating.fallback_option}</td><td>${seating.implementation_status}</td></tr>
         <tr><td>Stage · Rule 9</td><td>Path ${stage.selected_option} — ${stage.selected_label}</td><td>${stage.implementation_status}</td></tr>

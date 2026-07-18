@@ -19,12 +19,13 @@
  "bay_view_az_deg": 330.0,
  "bay_plane_navd88_ft": 579.45,
  "warnings": [
-  "PLANNING-GRADE ONLY — derived from 2015 USGS LiDAR + supplement; not a stamped engineering design and not a field survey.",
-  "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is OPEN (inherited az-150 stage; +25.6° audience-axis mismatch on record).",
-  "Coordinates are EPSG:6494 INTERNATIONAL feet — misreading as US survey feet shifts absolute easting ~39 ft (docs/datum_note.md).",
+  "PLANNING-GRADE ONLY \u2014 derived from 2015 USGS LiDAR + supplement; not a stamped engineering design and not a field survey.",
+  "Coordinates are EPSG:6494 INTERNATIONAL feet \u2014 misreading as US survey feet shifts absolute easting ~39 ft (docs/datum_note.md).",
   "Component CY totals are validated proxies that understate mobilization-level earthwork (analysis/tier_emission/TIER_EMISSION_VALIDATION.md).",
-  "Seating scope Decision 1 is pending; this package shows the Scenario E baseline (option A).",
-  "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed."
+  "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed.",
+  "Seating C \u2014 ambitious shaped bowl (seating scope) is adopted with A \u2014 Scenario E baseline as fallback; the current package remains pending package propagation.",
+  "Rule 9 Path A \u2014 audience-axis alignment is adopted; the inherited az-150 stage remains PROVISIONAL pending geometry emission and validation.",
+  "ADA Concept C \u2014 naturalistic promenade is adopted at planning/concept grade; civil/code determination remains pending."
  ],
  "warnings_source": "truth_package/design_state.current.json",
  "sources": {
@@ -65,7 +66,7 @@
   },
   "design_state": {
    "path": "truth_package/design_state.current.json",
-   "sha256_12": "c305a211b590",
+   "sha256_12": "4044b10b2fa5",
    "exists": true
   },
   "dem_existing": {
@@ -86,6 +87,21 @@
   "data_inventory": {
    "path": "truth_package/data_inventory.md",
    "sha256_12": "bc1bca2d2863",
+   "exists": true
+  },
+  "adopted_decisions": {
+   "path": "analysis/decision_packet/adopted_decisions.json",
+   "sha256_12": "025227f9be8c",
+   "exists": true
+  },
+  "canon": {
+   "path": "docs/DESIGN_CANON.md",
+   "sha256_12": "1394df51718d",
+   "exists": true
+  },
+  "decision_brief": {
+   "path": "docs/HUMAN_DECISION_BRIEF.md",
+   "sha256_12": "ae46edfa15b2",
    "exists": true
   }
  },
@@ -270,5 +286,11 @@
   }
  },
  "regenerate": "python scripts/build_unreal_export.py",
- "verify": "python scripts/verify_unreal_export.py"
+ "verify": "python scripts/verify_unreal_export.py",
+ "decision_projection": {
+  "decided_on": "2026-07-18",
+  "authority": "project_owner",
+  "stage_geometry": "historical_inherited_az_150_snapshot",
+  "implements_stage_rule9_path_a": false
+ }
 }

@@ -250,7 +250,7 @@
   },
   "canon": {
    "path": "docs/DESIGN_CANON.md",
-   "sha256_12": "60328eb434c7",
+   "sha256_12": "1394df51718d",
    "present": true
   },
   "corridors_C": {
@@ -270,7 +270,7 @@
   },
   "decision_brief": {
    "path": "docs/HUMAN_DECISION_BRIEF.md",
-   "sha256_12": "e269d86adcfd",
+   "sha256_12": "ae46edfa15b2",
    "present": true
   },
   "decision_table": {
@@ -351,6 +351,11 @@
   "zones": {
    "path": "vectors_geojson/bowl_zones.geojson",
    "sha256_12": "3228c4b2ff70",
+   "present": true
+  },
+  "adopted_decisions": {
+   "path": "analysis/decision_packet/adopted_decisions.json",
+   "sha256_12": "025227f9be8c",
    "present": true
   }
  },
