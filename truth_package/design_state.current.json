@@ -113,7 +113,7 @@
    "kind": "low hardscape deck + shoulders (open to bay side, no upstage wall \u2014 landscape venue)",
    "elev_navd88": 612.5,
    "geometry_source": "scenarioE stage_surface (inherited from design_open_low, az 150)",
-   "status": "PROVISIONAL \u2014 Rule 9 OPEN; no adoption path declared",
+   "status": "PROVISIONAL \u2014 Rule 9 Path A adopted; current inherited az-150 geometry pending replacement and validation",
    "source": [
     "vectors_geojson/bowl_zones.geojson",
     "design_open_low/stage_floor.geojson",
@@ -205,85 +205,15 @@
    ]
   }
  },
- "pending_decisions": [
-  {
-   "id": "decision_1_seating_scope",
-   "options": [
-    {
-     "option": "A",
-     "label": "Scenario E baseline",
-     "band_a_validated_seats": "1243",
-     "nominal_seats": "1283",
-     "delta_seats_vs_baseline": "0",
-     "incremental_earthwork_cy": "0.0",
-     "validation_status": "ACCEPTED control (seating/ADA/drainage); re-emits at 500.8 CY, drift +0.0 vs locked earthwork.csv",
-     "stage_status": "Rule 9 OPEN \u2014 inherited az-150 stage carried PROVISIONAL; P_opt/apron/typologies are candidates only, none adopted",
-     "recommended_posture": "Fallback regardless of the decision; choose if no further earthwork is wanted"
-    },
-    {
-     "option": "B",
-     "label": "modest_normalization (seating)",
-     "band_a_validated_seats": "1357",
-     "nominal_seats": "1397",
-     "delta_seats_vs_baseline": "114",
-     "incremental_earthwork_cy": "25.3",
-     "validation_status": "EMITTED + VALIDATED 2026-06-11, all hard gates pass (recipe cut cap 1.25 ft with provenance); +114 claim validated in full",
-     "stage_status": "Rule 9 OPEN \u2014 inherited az-150 stage carried PROVISIONAL; P_opt/apron/typologies are candidates only, none adopted",
-     "recommended_posture": "Cheapest validated step if any expansion is funded"
-    },
-    {
-     "option": "C",
-     "label": "ambitious_shaped_bowl (seating scope)",
-     "band_a_validated_seats": "1505",
-     "nominal_seats": "1516",
-     "delta_seats_vs_baseline": "262",
-     "incremental_earthwork_cy": "47.3",
-     "validation_status": "EMITTED + VALIDATED 2026-06-11, all hard gates pass; quote +262/1,505 (NOT 1,665 \u2014 N1 east extension REJECTED on emission, 0 of +149 survive)",
-     "stage_status": "Rule 9 OPEN \u2014 inherited az-150 stage carried PROVISIONAL; P_opt/apron/typologies are candidates only, none adopted",
-     "recommended_posture": "Validated Pareto knee \u2014 recommended scope if budget allows; Pareto ordering unchanged by the CY restatement"
-    }
-   ],
-   "source": [
-    "analysis/decision_packet/decision_table.csv",
-    "docs/HUMAN_DECISION_BRIEF.md"
-   ],
-   "shown_in_viewer": "option A (Scenario E baseline)"
-  },
-  {
-   "id": "decision_2_ada_concept_adoption",
-   "question": "Adopt an ADA route concept (triggers construction-envelope re-emission and locks the circulation plan)",
-   "options": [
-    {
-     "option": "C",
-     "label": "Concept C \u2014 naturalistic promenade (RECOMMENDED, currently governs at planning grade)",
-     "seats_displaced": 0,
-     "worst_detour_ratio": 8.95,
-     "dignity_score": 16.0
-    },
-    {
-     "option": "D2_diagonal_terrace_cut",
-     "label": "preferred constructed alternative \u2014 carried, NOT adopted; adoption path: fix 2 row severances + causeway C-value sightline study, then re-run the documented decision rule",
-     "seats_displaced": 121.0,
-     "worst_detour_ratio": 5.79,
-     "dignity_score": 79.0
-    }
-   ],
-   "decision_rule": "D governs if dignity advantage >=20 pts AND seats displaced <60 (<5% of 1,283) AND no rows severed mid-tread; otherwise C governs and the preferred D is carried as the design-development alternative",
-   "terrain_bound_note": "every compliant route is floored at ~4-5x the desire line by the bowl itself",
-   "source": [
-    "analysis/ada_rebuild/ada_validation.json",
-    "docs/ADA_CONCEPT_C_VS_D.md"
-   ],
-   "shown_in_viewer": "Concept C network (D corridors toggleable)"
-  }
- ],
  "warnings": [
   "PLANNING-GRADE ONLY \u2014 derived from 2015 USGS LiDAR + supplement; not a stamped engineering design and not a field survey.",
   "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is OPEN (inherited az-150 stage; +25.6\u00b0 audience-axis mismatch on record).",
   "Coordinates are EPSG:6494 INTERNATIONAL feet \u2014 misreading as US survey feet shifts absolute easting ~39 ft (docs/datum_note.md).",
   "Component CY totals are validated proxies that understate mobilization-level earthwork (analysis/tier_emission/TIER_EMISSION_VALIDATION.md).",
-  "Seating scope Decision 1 is pending; this package shows the Scenario E baseline (option A).",
-  "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed."
+  "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed.",
+  "Seating C is adopted with A as fallback; the current package still shows A pending package propagation.",
+  "Rule 9 Path A is adopted; the inherited az-150 stage remains PROVISIONAL pending geometry emission and validation.",
+  "ADA Concept C is adopted at planning grade and remains pending civil/code detailing."
  ],
  "missing_data": [
   "Seasonal high groundwater",
@@ -424,5 +354,69 @@
    "sha256_12": "3228c4b2ff70",
    "present": true
   }
- }
+ },
+ "adopted_decisions": [
+  {
+   "id": "seating_scope",
+   "selected_option": "C",
+   "selected_label": "ambitious_shaped_bowl (seating scope)",
+   "fallback_option": "A",
+   "fallback_label": "Scenario E baseline",
+   "decision_status": "adopted",
+   "implementation_status": "pending_package_propagation",
+   "validated_metrics": {
+    "band_a_seats": 1505,
+    "nominal_seats": 1516,
+    "delta_seats_vs_baseline": 262,
+    "incremental_earthwork_cy": 47.3
+   },
+   "rationale": "owner_selection_no_additional_rationale_recorded",
+   "required_follow_ups": [
+    "point the in-situ package at the emitted ambitious geometry",
+    "rerun the in-situ package audit"
+   ],
+   "sources": [
+    "analysis/decision_packet/decision_table.csv",
+    "docs/HUMAN_DECISION_BRIEF.md"
+   ]
+  },
+  {
+   "id": "stage_rule9",
+   "selected_option": "A",
+   "selected_label": "audience-axis alignment",
+   "decision_status": "adopted",
+   "implementation_status": "pending_geometry_and_validation",
+   "target_axis_az_deg": 124.0,
+   "target_audience_facing_az_deg": 304.0,
+   "rationale": "owner_selection_no_additional_rationale_recorded",
+   "required_follow_ups": [
+    "select and emit the exact stage footprint",
+    "select the stage-front geometry and typology",
+    "update the fan declaration",
+    "rerun Rule 9 geometry and package validation"
+   ],
+   "sources": [
+    "docs/DESIGN_CANON.md",
+    "analysis/stage_refit/STAGE_REFIT_SWEEP.md",
+    "analysis/stage_adoption/STAGE_RULE9_DECISION_TEMPLATE.md"
+   ]
+  },
+  {
+   "id": "ada_concept",
+   "selected_option": "C",
+   "selected_label": "naturalistic promenade",
+   "decision_status": "adopted",
+   "implementation_status": "planning_grade_pending_civil_detailing",
+   "seats_displaced": 0,
+   "rationale": "owner_selection_no_additional_rationale_recorded",
+   "required_follow_ups": [
+    "resolve corridor benching sections",
+    "complete civil and code detailing"
+   ],
+   "sources": [
+    "analysis/ada_rebuild/ada_validation.json",
+    "docs/ADA_CONCEPT_C_VS_D.md"
+   ]
+  }
+ ]
 }

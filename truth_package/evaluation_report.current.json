@@ -14,7 +14,9 @@
   },
   "earthwork_gross_cy_component_proxy": 500.8,
   "stage": "Rule 9 OPEN (provisional)",
-  "decision_1": "PENDING (viewer shows option A)"
+  "seating_decision": "ADOPTED C; fallback A",
+  "stage_decision": "ADOPTED Path A; geometry validation pending",
+  "ada_decision": "ADOPTED Concept C; civil/code detailing pending"
  },
  "checks": [
   {
@@ -45,9 +47,9 @@
    "id": "ada_concepts",
    "name": "ADA Concept C vs D (naturalistic vs constructed)",
    "status": "pass",
-   "value": "governing: C_naturalistic_promenade; preferred D: D2_diagonal_terrace_cut (dignity 79.0, seats -121.0)",
+   "value": "ADOPTED C \u2014 naturalistic promenade",
    "source": "analysis/ada_rebuild/ada_validation.json",
-   "note": "constructed-concept costs (cut/fill, seats displaced, severed rows) are reported, never hidden; terrain bounds detour at ~4-5x regardless of construction"
+   "note": "planning direction adopted; civil/code detailing remains incomplete"
   },
   {
    "id": "ada_network",
@@ -93,9 +95,9 @@
    "id": "stage_rule9",
    "name": "Stage geometry / fan declaration (Rule 9)",
    "status": "fail",
-   "value": "OPEN \u2014 inherited az-150 stage carried PROVISIONAL",
+   "value": "DIRECTION ADOPTED \u2014 Path A; inherited az-150 stage still PROVISIONAL",
    "source": "docs/DESIGN_CANON.md",
-   "note": "no adoption path (A/B/C/wide-fan) declared; stage shown for massing only; every stage-derived artifact re-emits on adoption"
+   "note": "exact footprint, apron, typology, fan declaration and validation remain incomplete"
   },
   {
    "id": "treatment_cell",
@@ -117,9 +119,9 @@
    "id": "seating_scope",
    "name": "Seating scope decision (Decision 1)",
    "status": "warn",
-   "value": "PENDING \u2014 A: Scenario E baseline (1243 Band-A) | B: modest_normalization (seating) (1357 Band-A) | C: ambitious_shaped_bowl (seating scope) (1505 Band-A)",
+   "value": "ADOPTED C \u2014 ambitious shaped bowl; fallback A",
    "source": "analysis/decision_packet/decision_table.csv",
-   "note": "viewer shows option A (Scenario E baseline); B/C are emitted+validated alternatives awaiting the human decision"
+   "note": "current package still shows A pending propagation"
   },
   {
    "id": "groundwater",
