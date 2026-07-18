@@ -127,8 +127,9 @@ The inherited stage configuration (`design_open_low`, axis 150°) does not match
 | East section bearing from SF | −74.6° — outside declared ±55° fan gate (by 20°) |
 | Effective seating span | ≈130°, not 110° / ±55° as declared in `harness_config.yaml` |
 
-A stage configuration is accepted for Scenario E only when **one** of the following paths is
-explicitly declared and wired:
+A stage configuration can pass Rule 9 only after the owner-selected Path A direction is
+emitted and validated. The following alternatives are retained as historical study context;
+they are not open owner choices:
 
 1. **Audience-axis path** — stage axis corrected to ≈124° (audience faces ≈304°);
    bay-view deviation (26° off 330°) acknowledged and justified.
@@ -142,10 +143,9 @@ explicitly declared and wired:
    `formal_fan_half_deg: 75`, `formal_fan_angle_deg: 150`, `scenarioE_fan_type: wide_three_section_civic_bowl`;
    acoustic consequences of the wide-fan coverage noted.
 
-Until one path is adopted, Scenario E carries status:
-**"seating / ADA / drainage cost-proxy ACCEPTED · stage refit open"**
-
-The engine must not report 10/10 ACCEPTED while this item is unresolved.
+Path A is the adopted owner direction. The inherited az-150 stage remains provisional and
+does not implement it, so Rule 9's geometry-validation gate remains non-passing. The engine
+must not report 10/10 ACCEPTED until the Path A geometry has been emitted and validated.
 See `analysis/stage_refit/STAGE_REFIT_SWEEP.md` for the full sweep and top candidates
 (best feasible candidate: `az150_lat-20`, +3.0° mismatch, −2.5 ft lateral offset, 37.8 CY delta).
 
@@ -167,8 +167,8 @@ variable:
   justify stage placement (the march's focal point descends from the stage
   lineage); the southern pan-toe zone band is independently re-derived.
 
-Adopting a path now means: placement + stage-front geometry + element bundle,
-then re-emitting every stage-derived artifact from the adopted footprint
+Remaining work is to emit and validate the Path A geometry: placement, stage-front geometry,
+and element bundle; then re-emit every stage-derived artifact from the adopted footprint
 (see `rule9_implications.adoption_requires` in
 `analysis/in_situ_normalization/stage_typology_scores.json`).
 

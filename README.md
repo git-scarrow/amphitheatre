@@ -83,7 +83,7 @@ and a branch a *model*; one project per venue, `petoskey-pit-civic-bowl`):
 
 | State | Branch / model name | Meaning |
 |---|---|---|
-| **accepted** | `accepted/scenario-e-baseline` | the validated control. Provisional/concept elements (stage Rule 9 OPEN, ADA concept, treatment cell) ride inside it **individually flagged** `must_label` — inclusion never promotes them |
+| **accepted** | `accepted/scenario-e-baseline` | the validated control. Provisional/concept elements (the inherited stage geometry, ADA implementation, treatment cell) ride inside it **individually flagged** `must_label` — inclusion never promotes them. Rule 9's owner direction is adopted, while its legacy geometry-validation gate remains non-passing. |
 | **proposal** | `proposal/<topic>-<yyyymmdd>` | a not-yet-accepted bundle for review/comparison (e.g. `proposal/ambitious-seating-20260611`, `proposal/ada-concept-c-hybrid-20260612`) |
 | **reference** | `reference/<topic>` | non-decision context (`reference/terrain-existing`, `reference/cameras-human-scale`) |
 
@@ -100,17 +100,18 @@ content hash still matches the payload it published, derived from a gated,
 committed repo state. The lifecycle is **scratch → proposal → accepted**:
 
 - **`scripts/speckle_ledger.py`** — the repo-side ledger: data model, payload
-  content hash, git/working-tree helpers, decision-flag scanners, and the
+  content hash, git/working-tree helpers, legacy decision/validation-flag scanners, and the
   read-side reports (`--accepted-only`, hash verification, webhook lookup).
 - **the `publish_speckle.py` guard** — per-channel discipline: `scratch/*` is
-  permissive (render/debug, excluded from accepted reports); `proposal/*` must
-  carry `open_decisions` metadata; `accepted/*` is refused unless the repo is
+  permissive (render/debug, excluded from accepted reports); legacy proposal-payload
+  validation requires `open_decisions` metadata; `accepted/*` is refused unless the repo is
   clean (or `--allow-dirty`), the verify + boundary gates are green, and **no
-  object carries an unresolved decision flag** such as `RULE-9-OPEN`. A real
+  object carries a legacy unresolved-decision flag** such as `RULE-9-OPEN`. Rule 9's
+  owner direction is adopted; its geometry-validation gate remains non-passing. A real
   `--publish` appends a ledger entry; a dry run previews it.
 - **`scripts/speckle_compare.py`** — diffs an accepted bundle against a proposal:
   added/removed objects by class, changed row / ADA-route / stage ids, validation
-  deltas, and the unresolved decisions on each side.
+  deltas, and the legacy decision flags or payload-validation state on each side.
 - **`scripts/speckle_webhook.py`** — a tailnet-local "version created" handshake
   receiver (never pulls geometry) that **flags any `accepted/*` version lacking a
   valid repo ledger entry**.

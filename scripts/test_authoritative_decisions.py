@@ -171,4 +171,19 @@ assert "Seating scope C adopted" in docs["README.md"]
 for stale in ["Adoption decision **OPEN**", "human decision, not yet made", "no adoption path declared"]:
     assert stale not in combined, stale
 
+# The Rule 9 governing passages must distinguish the settled human direction
+# from the inherited, non-passing geometry-validation work.  In particular,
+# do not reintroduce language that treats Path A itself as undecided.
+canon = docs["docs/DESIGN_CANON.md"]
+readme = docs["README.md"]
+assert "Path A is the adopted owner direction" in canon
+assert "Remaining work is to emit and validate the Path A geometry" in canon
+assert "Until one path is adopted" not in canon
+assert "stage refit open" not in canon
+assert "Adopting a path now means:" not in canon
+assert "Rule 9's owner direction is adopted" in readme
+assert "legacy geometry-validation gate remains non-passing" in readme
+assert "stage Rule 9 OPEN" not in readme
+assert "unresolved decision flag** such as `RULE-9-OPEN`" not in readme
+
 print("PASS — authoritative decision artifact and validation boundary")
