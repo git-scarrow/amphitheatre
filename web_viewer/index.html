@@ -175,7 +175,8 @@
   </header>
   <div class="grade-banner">PLANNING-GRADE VISUALIZATION
     <span class="more">Derived from 2015 USGS LiDAR + repo design files. Not a field
-    survey. Not stamped engineering. Stage geometry is provisional (Rule 9 open).</span>
+    survey. Not stamped engineering. Rule 9 Path A is adopted; inherited az-150 geometry is provisional;
+    Path A emission and validation are pending.</span>
   </div>
 
   <details class="sec" open>
@@ -216,7 +217,7 @@
   </details>
 
   <details class="sec">
-    <summary>Pending decision</summary>
+    <summary>Adopted direction — implementation pending</summary>
     <div class="body pending" id="pending"></div>
   </details>
 
@@ -225,7 +226,7 @@
 
 <main id="view">
   <div id="topBanner">PLANNING-GRADE — 2015 LiDAR · EPSG:6494 intl ft · NAVD88</div>
-  <div id="stageFlag">STAGE PROVISIONAL — Rule 9 open, no adoption path declared</div>
+  <div id="stageFlag">STAGE — RULE 9 PATH A ADOPTED · inherited az-150 geometry provisional · emission / validation pending</div>
   <div id="compass"><div class="needle" id="needle"></div><div class="n">N</div></div>
   <div id="infoCard"><span class="close" onclick="this.parentElement.style.display='none'">×</span><div id="infoBody"></div></div>
   <div id="hint">drag orbit · right-drag pan · wheel zoom · keys 1–7 presets, 0 reset<br>click a tread for its audit record</div>
@@ -580,7 +581,7 @@ for (const g of Object.values(zoneGroups)) scene.add(g);
 /* provisional stage marker */
 if (zoneGroups.stage) {
   const f = D.layers.focal;
-  const stageSpr = textSprite("STAGE — PROVISIONAL (Rule 9 open)", {
+  const stageSpr = textSprite("STAGE — PATH A ADOPTED · inherited az-150 geometry provisional", {
     x: f.xy[0], y: f.xy[1], z: (f.elev ?? 612.5) + 9, scl: 11, fg: "#5b4a86" });
   zoneGroups.stage.add(stageSpr);
   fadeSprites.push({ spr: stageSpr, min: 300 });  // top banner carries the flag up close

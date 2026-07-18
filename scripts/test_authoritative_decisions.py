@@ -5,6 +5,8 @@ import json
 import tempfile
 import base64
 import hashlib
+import subprocess
+import sys
 from pathlib import Path
 
 from authoritative_decisions import (
@@ -289,5 +291,47 @@ assert "Rule 9's owner direction is adopted" in readme
 assert "legacy geometry-validation gate remains non-passing" in readme
 assert "stage Rule 9 OPEN" not in readme
 assert "unresolved decision flag** such as `RULE-9-OPEN`" not in readme
+
+# Final-review regression boundary: every viewer-owned current-state label must
+# present the adopted direction separately from the provisional inherited
+# geometry, the governing ADA note must avoid a compliance claim, and the
+# deterministic handoff manifest must exactly match its current inputs.
+final_review_failures = []
+viewer_lower = viewer_html.lower()
+for stale in ("rule 9 open", "pending decision", "no adoption path declared"):
+    if stale in viewer_lower:
+        final_review_failures.append(f"viewer contains stale current-state copy: {stale!r}")
+for required in (
+    "Adopted direction — implementation pending",
+    "Rule 9 Path A is adopted",
+    "inherited az-150 geometry is provisional",
+    "Path A emission and validation are pending",
+):
+    if required not in viewer_html:
+        final_review_failures.append(f"viewer is missing adopted-stage copy: {required!r}")
+
+ada_doc = docs["docs/ADA_CONCEPT_C_VS_D.md"]
+if "ADA-compliant" in ada_doc:
+    final_review_failures.append("governing ADA document contains prohibited 'ADA-compliant' claim")
+required_ada_label = (
+    "planning/concept-grade accessible route pending civil/code determination"
+)
+if required_ada_label not in ada_doc:
+    final_review_failures.append(
+        f"governing ADA document is missing label: {required_ada_label!r}")
+
+manifest_check = subprocess.run(
+    [sys.executable, "scripts/build_unreal_handoff_manifest.py", "--check"],
+    cwd=ROOT,
+    text=True,
+    capture_output=True,
+)
+if manifest_check.returncode:
+    final_review_failures.append(
+        "handoff manifest drift check failed: "
+        + (manifest_check.stdout + manifest_check.stderr).strip()
+    )
+
+assert not final_review_failures, "\n".join(final_review_failures)
 
 print("PASS — authoritative decision artifact and validation boundary")

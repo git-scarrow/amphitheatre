@@ -7,8 +7,8 @@
 (both are SURFACES — centerline + width + station profile + grading; a
 centerline is not an ADA route). **Grade delta raster:**
 `dem/proposed_ada_grade_delta_D.tif` (preferred D).
-**Label everywhere:** *ADA-compliant route concept pending civil/code
-detailing* — no concept is called compliant.
+**Label everywhere:** *planning/concept-grade accessible route pending civil/code determination*
+— no concept is called compliant.
 
 ## The question
 

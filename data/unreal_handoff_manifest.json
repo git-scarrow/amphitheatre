@@ -8,8 +8,8 @@
   "purpose": "repo truth -> Speckle review -> Unreal scene import -> MCP-controlled visual/proposal edits -> repo validation -> ledgered acceptance",
   "built_from": {
     "provenance": "unreal_export/manifests/provenance.json",
-    "provenance_git_commit": "84aa207",
-    "provenance_generated": "2026-06-17T18:26:42-04:00",
+    "provenance_git_commit": "6ea2e23",
+    "provenance_generated": "2026-06-22T22:39:27-04:00",
     "export_generator": "scripts/build_unreal_export.py",
     "export_verifier": "scripts/verify_unreal_export.py"
   },
@@ -31,7 +31,7 @@
     "ft_to_m": 0.3048,
     "vertical_datum": "NAVD88 (Geoid12A), international feet"
   },
-  "package_fingerprint_sha256": "4280f54f5cef25769005ef969ff6355da1993d95ff6988265d2eb04724fa0bea",
+  "package_fingerprint_sha256": "0204c553af8e0c87c34e6ac5cb0972fb3611a6e8db1e11f071f4bce7a8b35f37",
   "committed_package_file_count": 12,
   "layers": [
     {
@@ -247,13 +247,13 @@
       "package_files": [
         {
           "path": "unreal_export/manifests/actor_manifest.json",
-          "sha256": "9e2e50dd3ff425e235375b63bd7ad2fd56630fbe4bfb89c1b1b18c02ca572d70",
-          "bytes": 48052
+          "sha256": "917426d91590e3f051f82029fb0463b380b60d085ae5edd271c852f307aa4569",
+          "bytes": 58232
         },
         {
           "path": "unreal_export/manifests/actor_manifest.csv",
-          "sha256": "ae2ad89acc401ff3cfe39d54aa95a3125f6e4d5ac0d5281a3fa24696740c40c0",
-          "bytes": 20013
+          "sha256": "08fb9e79354ce40da81deb9cf4490843c396ac7bb67ed7e18fbda37c2d5cf219",
+          "bytes": 24378
         }
       ]
     },
@@ -276,8 +276,8 @@
       "package_files": [
         {
           "path": "unreal_export/manifests/material_manifest.json",
-          "sha256": "866b1896fa6d17742b046bf09e6b300c887df3c82d01d3c0cf1ceb9377e000a4",
-          "bytes": 2696
+          "sha256": "124cff981d800fea8d15530ada2bbe177e49b56e881373432739e38afe44a805",
+          "bytes": 3368
         }
       ]
     },
@@ -324,8 +324,8 @@
       "package_files": [
         {
           "path": "unreal_export/manifests/provenance.json",
-          "sha256": "a78215732aeb3c0f5565d610f1bb6177de813a48cd3b44cdcd07114d63c23d33",
-          "bytes": 7544
+          "sha256": "d9a3e59598834452ad5ed3e950a3a7c4930dbc4ca0ec9e9646723927ffbf8db0",
+          "bytes": 8572
         }
       ]
     }
@@ -351,6 +351,11 @@
       "sha256_12": "1b591af7b9a7",
       "exists": true
     },
+    "human_scale": {
+      "path": "vectors_geojson/human_scale_refs.geojson",
+      "sha256_12": "a4dd4301f3aa",
+      "exists": true
+    },
     "viewpoints": {
       "path": "vectors_geojson/in_situ_viewpoints.geojson",
       "sha256_12": "82c0bfb6babf",
@@ -363,7 +368,7 @@
     },
     "design_state": {
       "path": "truth_package/design_state.current.json",
-      "sha256_12": "c305a211b590",
+      "sha256_12": "4044b10b2fa5",
       "exists": true
     },
     "dem_existing": {
@@ -385,6 +390,21 @@
       "path": "truth_package/data_inventory.md",
       "sha256_12": "bc1bca2d2863",
       "exists": true
+    },
+    "adopted_decisions": {
+      "path": "analysis/decision_packet/adopted_decisions.json",
+      "sha256_12": "025227f9be8c",
+      "exists": true
+    },
+    "canon": {
+      "path": "docs/DESIGN_CANON.md",
+      "sha256_12": "1394df51718d",
+      "exists": true
+    },
+    "decision_brief": {
+      "path": "docs/HUMAN_DECISION_BRIEF.md",
+      "sha256_12": "ae46edfa15b2",
+      "exists": true
     }
   },
   "acceptance": {
@@ -398,11 +418,12 @@
     ],
     "warnings": [
       "PLANNING-GRADE ONLY — derived from 2015 USGS LiDAR + supplement; not a stamped engineering design and not a field survey.",
-      "Stage deck is PROVISIONAL: DESIGN_CANON.md Rule 9 is OPEN (inherited az-150 stage; +25.6° audience-axis mismatch on record).",
       "Coordinates are EPSG:6494 INTERNATIONAL feet — misreading as US survey feet shifts absolute easting ~39 ft (docs/datum_note.md).",
       "Component CY totals are validated proxies that understate mobilization-level earthwork (analysis/tier_emission/TIER_EMISSION_VALIDATION.md).",
-      "Seating scope Decision 1 is pending; this package shows the Scenario E baseline (option A).",
-      "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed."
+      "Treatment-cell shaping and orchestra/event floor are concept-tier (illustrative), not geometry-backed.",
+      "Seating C — ambitious shaped bowl (seating scope) is adopted with A — Scenario E baseline as fallback; the current package remains pending package propagation.",
+      "Rule 9 Path A — audience-axis alignment is adopted; the inherited az-150 stage remains PROVISIONAL pending geometry emission and validation.",
+      "ADA Concept C — naturalistic promenade is adopted at planning/concept grade; civil/code determination remains pending."
     ],
     "warnings_source": "truth_package/design_state.current.json",
     "ledger_entry": {
