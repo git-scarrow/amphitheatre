@@ -9,7 +9,6 @@
   "built_from": {
     "provenance": "unreal_export/manifests/provenance.json",
     "provenance_git_commit": "6ea2e23",
-    "provenance_generated": "2026-06-22T22:39:27-04:00",
     "export_generator": "scripts/build_unreal_export.py",
     "export_verifier": "scripts/verify_unreal_export.py"
   },
@@ -31,7 +30,7 @@
     "ft_to_m": 0.3048,
     "vertical_datum": "NAVD88 (Geoid12A), international feet"
   },
-  "package_fingerprint_sha256": "0204c553af8e0c87c34e6ac5cb0972fb3611a6e8db1e11f071f4bce7a8b35f37",
+  "package_fingerprint_sha256": "abf8d032e76a21fdc56d4774fc016450196a68ba547e8cd25b5f146f5fccf679",
   "committed_package_file_count": 12,
   "layers": [
     {
@@ -324,8 +323,9 @@
       "package_files": [
         {
           "path": "unreal_export/manifests/provenance.json",
-          "sha256": "d9a3e59598834452ad5ed3e950a3a7c4930dbc4ca0ec9e9646723927ffbf8db0",
-          "bytes": 8572
+          "sha256": "c039acab2f9210c734a64092036992e2a0020f5a09da5dce3d1f5e518a9765fb",
+          "bytes": 6945,
+          "sha256_basis": "stable content — canonical JSON minus volatile build keys ['generated']; sha256 and bytes describe that stable basis, not the raw file"
         }
       ]
     }

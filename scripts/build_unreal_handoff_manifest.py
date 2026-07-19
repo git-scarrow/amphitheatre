@@ -38,6 +38,16 @@ MANIFEST = os.path.join(REPO, "data", "unreal_handoff_manifest.json")
 
 SCHEMA = "unreal-handoff/manifest/1.0"
 
+# provenance.json intentionally carries a wall-clock build timestamp: the Speckle
+# publish ledger pins each build BY that timestamp (speckle_ledger.payload_hash
+# hashes it deliberately). This handoff manifest has the OPPOSITE contract — it
+# must regenerate byte-identically so `--check` is a true drift gate — so it
+# hashes provenance's STABLE content only, excluding these build-only keys.
+# Everything else in provenance (git_commit, sources, crs, warnings) is genuine
+# content and stays in the fingerprint.
+PROVENANCE_REL = "unreal_export/manifests/provenance.json"
+VOLATILE_PROVENANCE_KEYS = ("generated",)
+
 # ── Layer table: the handoff semantics. Hashes are filled in from the tree, so
 #    this static map is the only place the accepted/proposed roles are declared,
 #    and verify_unreal_export.py independently proves the export honours them. ──
@@ -241,6 +251,19 @@ def jload(path: str) -> dict:
         return json.load(fh)
 
 
+def stable_provenance_canon(ap: str) -> bytes:
+    """Canonical bytes of provenance.json with the volatile build-only keys
+    removed. Both the manifest's provenance sha256 AND its reported byte count
+    are taken from this stable basis, so a rebuild that only re-timestamps
+    provenance (any value, any length) does NOT churn the manifest — the
+    ``--check`` drift gate stays true. It follows that neither field matches a
+    raw ``sha256sum``/size of the file (flagged in ``sha256_basis``)."""
+    prov = jload(ap)
+    stable = {k: v for k, v in prov.items() if k not in VOLATILE_PROVENANCE_KEYS}
+    return json.dumps(stable, sort_keys=True, separators=(",", ":"),
+                      ensure_ascii=False).encode("utf-8")
+
+
 def accepted_ledger_entry(ledger: dict) -> dict | None:
     entries = ledger.get("entries", [])
     for e in entries:
@@ -263,8 +286,18 @@ def build() -> dict:
             ap = os.path.join(REPO, rel)
             if not os.path.exists(ap):
                 sys.exit(f"FATAL: package file missing: {rel}")
-            digest = sha256_of(ap)
-            pkg.append({"path": rel, "sha256": digest, "bytes": os.path.getsize(ap)})
+            if rel == PROVENANCE_REL:
+                canon = stable_provenance_canon(ap)
+                digest = hashlib.sha256(canon).hexdigest()
+                file_rec = {"path": rel, "sha256": digest, "bytes": len(canon),
+                            "sha256_basis": (
+                                "stable content — canonical JSON minus volatile build "
+                                f"keys {list(VOLATILE_PROVENANCE_KEYS)}; sha256 and bytes "
+                                "describe that stable basis, not the raw file")}
+            else:
+                digest = sha256_of(ap)
+                file_rec = {"path": rel, "sha256": digest, "bytes": os.path.getsize(ap)}
+            pkg.append(file_rec)
             fingerprint_pairs.append((rel, digest))
         entry = {k: v for k, v in spec.items() if k not in ("files", "regenerable_binaries")}
         entry["package_files"] = pkg
@@ -334,7 +367,9 @@ def build() -> dict:
         "built_from": {
             "provenance": "unreal_export/manifests/provenance.json",
             "provenance_git_commit": prov.get("git_commit"),
-            "provenance_generated": prov.get("generated"),
+            # provenance's wall-clock 'generated' is deliberately NOT copied here:
+            # this manifest must regenerate byte-identically (see --check). The
+            # build timestamp lives in provenance.json and the Speckle ledger.
             "export_generator": "scripts/build_unreal_export.py",
             "export_verifier": "scripts/verify_unreal_export.py",
         },
