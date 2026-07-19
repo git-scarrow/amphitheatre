@@ -62,6 +62,19 @@ def ft_z_to_m(navd88_ft: float) -> float:
     return navd88_ft * FT_TO_M
 
 
+def enu_to_ft(e: float, n: float) -> tuple[float, float]:
+    """Local ENU metres (x=east, y=north) -> EPSG:6494 international feet.
+
+    Exact inverse of ``ft_xy_to_enu`` — the return path a proposal captured from
+    Unreal takes back to the authoritative CRS."""
+    return (e / FT_TO_M + ORIGIN_X_FT, n / FT_TO_M + ORIGIN_Y_FT)
+
+
+def m_z_to_ft(z_m: float) -> float:
+    """Local metres (z-up) -> NAVD88 international feet. Inverse of ``ft_z_to_m``."""
+    return z_m / FT_TO_M
+
+
 # ── ENU (right-handed) -> Unreal (left-handed) frame mapping ─────────────────
 # ENU is right-handed: x=East, y=North, z=Up. Unreal world is LEFT-handed, Z-up.
 # Mapping a right-handed coordinate component-wise into a left-handed frame
@@ -85,6 +98,14 @@ ENU_TO_UE_LINEAR = (
 def enu_to_ue(e: float, n: float, u: float) -> tuple[float, float, float]:
     """ENU metres (East, North, Up) -> Unreal-frame metres (X=North, Y=East, Z=Up)."""
     return (n, e, u)
+
+
+def ue_to_enu(ue_x: float, ue_y: float, ue_z: float) -> tuple[float, float, float]:
+    """Unreal-frame metres (X=North, Y=East, Z=Up) -> ENU metres (East, North, Up).
+
+    The East<->North swap is its own inverse (det -1), so this simply un-swaps —
+    the reverse half of the coordinate contract for capturing an Unreal edit."""
+    return (ue_y, ue_x, ue_z)
 
 
 def det3(m=ENU_TO_UE_LINEAR) -> float:
