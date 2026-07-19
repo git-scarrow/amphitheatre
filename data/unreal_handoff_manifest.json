@@ -467,14 +467,15 @@
       "spawn labels / text / decals from sightline_table.csv and feature properties",
       "toggle cut/fill overlay, validation tints, provisional hatching",
       "import the generated terrain / heightfield / GeoJSON / DataTable",
-      "measure, annotate, place reference splines that are NOT exported back as design"
+      "measure, annotate, place reference splines that are NOT exported back as design",
+      "place / move / remove catalog site furniture (bench/tree/planter) under the Authoring_Furniture root, captured to a requests/ proposal and gated by scripts/validate_site_furniture.py — additive, never design geometry"
     ],
     "disallowed": [
       "move / rescale / rotate / re-loft seating, stage, treatment cell, ADA, or terrain and call the result the design",
       "edit elevations (tread proposed_elev_navd88_ft, stage deck, ADA landings)",
       "change seat counts, C-values, ADA slopes/landings, or earthwork quantities",
       "recolour a provisional/concept element to read as accepted, or drop the Rule-9 / planning-grade labels",
-      "export Unreal geometry directly into vectors_geojson/, dem/, truth_package/, or analysis/ validation outputs",
+      "export Unreal geometry directly into vectors_geojson/, dem/, truth_package/, or analysis/ validation outputs (site furniture included — it returns only as a requests/ proposal through the gate, never written to vectors_geojson/ direct)",
       "write back in Unreal units (cm, Y-up, local frame) without reversing the coordinate contract to EPSG:6494 intl ft / NAVD88"
     ],
     "edit_return_path": "Unreal edit -> proposal GeoJSON in EPSG:6494 intl ft / NAVD88 (keep feature_id) under requests/ -> run the owning gate(s) -> only on PASS does a maintainer fold it into the authoritative sources, then rebuild this package. See docs/unreal_handoff_v1.md."

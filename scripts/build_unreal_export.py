@@ -82,6 +82,10 @@ SRC = {
     "viewpoints": "vectors_geojson/in_situ_viewpoints.geojson",
     "validation": "analysis/tier_emission/Scenario_E_baseline_reemit/validation.json",
     "design_state": "truth_package/design_state.current.json",
+    # Additive site furniture, folded in by a maintainer from a gate-passed
+    # capture proposal (scripts/validate_site_furniture.py). Optional: absent on
+    # a checkout with no accepted furniture, and the export simply omits the layer.
+    "furniture": "vectors_geojson/site_furniture.geojson",
     "dem_existing": "dem/dem_design_1ft.tif",
     "dem_proposed": "dem/proposed_grade_1ft.tif",
     "dem_cutfill": "dem/cut_fill_1ft.tif",
@@ -1075,6 +1079,52 @@ def write_provenance(stats):
     return {"n_warnings": len(warnings)}
 
 
+# ── site furniture (additive; folded in from a gate-passed capture proposal) ─
+# The promoted layer vectors_geojson/site_furniture.geojson is written by a
+# MAINTAINER from a validate_site_furniture.py-PASSED requests/proposal_furniture_
+# *.geojson (see docs/superpowers/plans/2026-07-19-prop-placement-phase1.md). This
+# build never writes it — it only indexes it into the export WHEN present. Absent
+# -> the layer is omitted, so every existing checkout still builds unchanged.
+def furniture_rows_and_geojson(features, source_rel):
+    """Pure: promoted furniture point features -> (register_actor kwargs, geojson).
+
+    Each prop becomes an additive actor (object_class as actor_class,
+    validation_state 'additive', not provisional) plus a passthrough point
+    feature. No design geometry is created or recomputed."""
+    rows, out = [], []
+    for f in features:
+        pr = f.get("properties") or {}
+        fid = pr.get("feature_id")
+        oc = pr.get("object_class")
+        x, y = f["geometry"]["coordinates"]
+        z = pr.get("anchor_navd88_ft")
+        rows.append(dict(
+            name=fid, actor_class=oc, source_file=source_rel, source_feature_id=fid,
+            anchor_xyz_epsg6494_ft=(x, y), z_navd88_ft=z,
+            material_id=f"furniture_{oc}", validation_state="additive",
+            provisional=False, note=(pr.get("variant") or "")))
+        out.append({
+            "type": "Feature", "id": fid,
+            "geometry": {"type": "Point", "coordinates": [x, y]},
+            "properties": {"feature_id": fid, "object_class": oc,
+                           "variant": pr.get("variant"), "yaw_deg": pr.get("yaw_deg", 0.0),
+                           "validation_state": "additive", "provisional": False},
+        })
+    return rows, {"type": "FeatureCollection", "crs": CRS6494, "features": out}
+
+
+def build_furniture():
+    src = SRC.get("furniture")
+    if not src or not os.path.exists(p(src)):
+        return {"skipped": "absent"}
+    features = jload(src).get("features", [])
+    rows, fc = furniture_rows_and_geojson(features, src)
+    for r in rows:
+        register_actor(**r)
+    jwrite("geo/site_furniture.geojson", fc)
+    return {"n_furniture": len(rows)}
+
+
 # ── orchestration ───────────────────────────────────────────────────────────
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
@@ -1111,6 +1161,10 @@ def main():
     print("[3b/8] human-scale references ...")
     stats["human_scale"] = build_human_scale()
     print("      ", stats["human_scale"])
+
+    print("[3c/8] site furniture (additive, when present) ...")
+    stats["furniture"] = build_furniture()
+    print("      ", stats["furniture"])
 
     print("[4/8] sightline_table.csv ...")
     stats["sightline"] = build_sightline_table(validation)

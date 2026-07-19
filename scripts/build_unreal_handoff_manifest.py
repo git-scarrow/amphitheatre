@@ -202,6 +202,23 @@ LAYERS = [
         "editable_in_unreal": False,
         "files": ["unreal_export/manifests/provenance.json"],
     },
+    {
+        "name": "site_furniture",
+        "title": "Site furniture — additive props (bench/tree/planter), placement-only",
+        "role": "additive-furniture",
+        "speckle_collection": None,
+        "speckle_acceptance": "proposal",
+        "unreal": {"folder": "Authoring_Furniture", "actor_prefix": "Furn_",
+                   "import_as": "GeoJSON points / placement actors"},
+        "authoritative_source": ["vectors_geojson/site_furniture.geojson"],
+        "validation_read_from":
+            ["scripts/validate_site_furniture.py (B1-B5 placement gate)"],
+        "editable_in_unreal": "placement-only (place/move/remove via a requests/ proposal)",
+        # Optional: present only after a maintainer folds in a gate-passed capture
+        # proposal. Absent -> the layer is skipped and the manifest is unchanged.
+        "optional": True,
+        "files": ["unreal_export/geo/site_furniture.geojson"],
+    },
 ]
 
 # Allowed / disallowed MCP operations (mirrors README_UNREAL.md §6/§7; the doc is
@@ -213,6 +230,9 @@ MCP_ALLOWED = [
     "toggle cut/fill overlay, validation tints, provisional hatching",
     "import the generated terrain / heightfield / GeoJSON / DataTable",
     "measure, annotate, place reference splines that are NOT exported back as design",
+    "place / move / remove catalog site furniture (bench/tree/planter) under the "
+    "Authoring_Furniture root, captured to a requests/ proposal and gated by "
+    "scripts/validate_site_furniture.py — additive, never design geometry",
 ]
 MCP_DISALLOWED = [
     "move / rescale / rotate / re-loft seating, stage, treatment cell, ADA, or terrain "
@@ -222,7 +242,8 @@ MCP_DISALLOWED = [
     "recolour a provisional/concept element to read as accepted, or drop the "
     "Rule-9 / planning-grade labels",
     "export Unreal geometry directly into vectors_geojson/, dem/, truth_package/, "
-    "or analysis/ validation outputs",
+    "or analysis/ validation outputs (site furniture included — it returns only as "
+    "a requests/ proposal through the gate, never written to vectors_geojson/ direct)",
     "write back in Unreal units (cm, Y-up, local frame) without reversing the "
     "coordinate contract to EPSG:6494 intl ft / NAVD88",
 ]
@@ -258,6 +279,12 @@ def build() -> dict:
     layers = []
     fingerprint_pairs: list[tuple[str, str]] = []
     for spec in LAYERS:
+        # An optional layer (e.g. additive site_furniture) is included only when
+        # its package file exists — absent, it is skipped and the manifest is
+        # byte-unchanged. Required layers still fail loud if a file is missing.
+        if spec.get("optional") and not all(
+                os.path.exists(os.path.join(REPO, rel)) for rel in spec["files"]):
+            continue
         pkg = []
         for rel in spec["files"]:
             ap = os.path.join(REPO, rel)
@@ -418,8 +445,9 @@ def main() -> int:
 
     with open(MANIFEST, "w") as fh:
         fh.write(text)
+    mani = json.loads(text)
     print(f"wrote {os.path.relpath(MANIFEST, REPO)}  "
-          f"({len(LAYERS)} layers, fingerprint {json.loads(text)['package_fingerprint_sha256'][:12]})")
+          f"({len(mani['layers'])} layers, fingerprint {mani['package_fingerprint_sha256'][:12]})")
     return 0
 
 
