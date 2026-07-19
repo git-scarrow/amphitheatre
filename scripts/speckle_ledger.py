@@ -23,12 +23,19 @@ Stdlib only. No network. Ledger file: ``data/speckle_publish_ledger.json``.
 """
 from __future__ import annotations
 
+import contextlib
 import hashlib
 import json
 import os
 import subprocess
+import tempfile
 from datetime import datetime, timezone
 from typing import Any
+
+try:  # POSIX advisory locking (Gentoo + macOS hosts). Absent on non-POSIX.
+    import fcntl
+except ImportError:  # pragma: no cover - non-POSIX fallback
+    fcntl = None
 
 import sys
 
@@ -279,23 +286,67 @@ def load_ledger(path: str = LEDGER_PATH) -> dict:
     return d
 
 
-def _atomic_write(path: str, ledger: dict) -> None:
+@contextlib.contextmanager
+def _ledger_lock(path: str):
+    """Exclusive advisory lock spanning a whole read-modify-write of the ledger.
+
+    Two concurrent ``publish_speckle.py --publish`` runs must not interleave
+    (both reading the same base list and each writing back only its own new
+    entry loses the other's — a silent dropped acceptance record). The lock is a
+    sibling ``.lock`` file so the ledger itself is never opened for the lock. On
+    a non-POSIX host (no ``fcntl``) this degrades to a no-op guard; the unique
+    temp path in ``_atomic_write`` still prevents ``.tmp`` corruption there.
+    """
+    if fcntl is None:  # pragma: no cover - non-POSIX fallback
+        yield
+        return
+    lock_path = path + ".lock"
     os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
-    tmp = path + ".tmp"
-    with open(tmp, "w") as fh:
-        json.dump(ledger, fh, indent=2, ensure_ascii=False)
-        fh.write("\n")
-    os.replace(tmp, path)
+    fd = os.open(lock_path, os.O_CREAT | os.O_RDWR, 0o644)
+    try:
+        fcntl.flock(fd, fcntl.LOCK_EX)
+        yield
+    finally:
+        fcntl.flock(fd, fcntl.LOCK_UN)
+        os.close(fd)
+
+
+def _atomic_write(path: str, ledger: dict) -> None:
+    """Crash-atomic write via a UNIQUE temp file + ``os.replace``.
+
+    The temp path is per-writer (``mkstemp``), never the shared ``path+'.tmp'``,
+    so concurrent writers cannot scribble into each other's half-written file.
+    ``fsync`` before the rename makes the swapped-in bytes durable on crash.
+    """
+    d = os.path.dirname(os.path.abspath(path))
+    os.makedirs(d, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(dir=d, prefix=os.path.basename(path) + ".", suffix=".tmp")
+    try:
+        with os.fdopen(fd, "w") as fh:
+            json.dump(ledger, fh, indent=2, ensure_ascii=False)
+            fh.write("\n")
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(tmp, path)
+    except BaseException:
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(tmp)
+        raise
 
 
 def append_entry(entry: dict, path: str = LEDGER_PATH) -> dict:
-    """Append ``entry`` and persist. Returns the updated ledger."""
-    ledger = load_ledger(path)
-    ledger.setdefault("schema", LEDGER_SCHEMA)
-    ledger.setdefault("note", LEDGER_NOTE)
-    ledger["entries"].append(entry)
-    ledger["updated"] = entry.get("timestamp")
-    _atomic_write(path, ledger)
+    """Append ``entry`` and persist atomically under an exclusive lock.
+
+    Returns the updated ledger. The read (``load_ledger``) happens *inside* the
+    lock so a concurrent publisher's already-appended entry is never lost.
+    """
+    with _ledger_lock(path):
+        ledger = load_ledger(path)
+        ledger.setdefault("schema", LEDGER_SCHEMA)
+        ledger.setdefault("note", LEDGER_NOTE)
+        ledger["entries"].append(entry)
+        ledger["updated"] = entry.get("timestamp")
+        _atomic_write(path, ledger)
     return ledger
 
 

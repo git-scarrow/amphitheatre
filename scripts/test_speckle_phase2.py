@@ -23,6 +23,7 @@ import json
 import os
 import sys
 import tempfile
+import threading
 from contextlib import redirect_stdout
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -232,6 +233,56 @@ def main() -> int:
     # confirm the dry run did NOT append to the ledger (still 2 entries from step 4)
     check(len(L.load_ledger(tmp_ledger)["entries"]) == 2,
           "dry-run did not write to the ledger")
+
+    # ── 3b. channel vs self-declared acceptance.state mismatch ────────────────
+    # An 'accepted' payload published on a lesser channel records a
+    # self-inconsistent ledger row and drops out of accepted-only reports —
+    # blocked unless deliberately re-channelled with --allow-state-mismatch.
+    ok_ref_m, why_ref_m = P.guard(acc, L.DS_REFERENCE, gates(), allow_state_mismatch=False)
+    check((not ok_ref_m) and any("acceptance.state" in r for r in why_ref_m),
+          "accepted payload BLOCKED on the reference channel (state mismatch)")
+    ok_ref_ovr, _ = P.guard(acc, L.DS_REFERENCE, gates(), allow_state_mismatch=True)
+    check(ok_ref_ovr,
+          "accepted payload on reference channel ALLOWED with --allow-state-mismatch")
+    ok_prop_m, why_prop_m = P.guard(acc, L.DS_PROPOSAL, gates(), allow_state_mismatch=False)
+    check((not ok_prop_m) and any("acceptance.state" in r for r in why_prop_m),
+          "accepted payload BLOCKED on the proposal channel (state mismatch)")
+    ref_payload = X.build_payload(export, S.STATE_REFERENCE, None, layers={"Reference"})
+    ok_ref_ok, why_ref_ok = P.guard(ref_payload, L.DS_REFERENCE, gates())
+    check(ok_ref_ok,
+          f"reference payload ALLOWED on the reference channel — no false mismatch ({why_ref_ok})")
+
+    # ── #2. concurrent ledger appends must not lose an entry ───────────────────
+    # Old bug: load-modify-write with no lock + a shared '.tmp' path → two
+    # concurrent publishers each write back only their own entry (lost update)
+    # or corrupt the shared temp. The lock + unique mkstemp temp fix it.
+    conc_ledger = os.path.join(tempfile.mkdtemp(), "concurrent.json")
+    N = 16
+    start = threading.Barrier(N)
+    conc_errors: list[Exception] = []
+
+    def _appender(i: int) -> None:
+        try:
+            e = L.build_entry(prop, design_state=L.DS_SCRATCH, gates=gates(),
+                              publish_result={"version_id": f"v{i:02d}",
+                                              "project_id": "p", "model_id": "m"},
+                              timestamp=f"2026-06-18T00:00:{i:02d}+00:00")
+            start.wait()  # maximise contention: all threads append at once
+            L.append_entry(e, conc_ledger)
+        except Exception as ex:  # noqa: BLE001 - surfaced via conc_errors
+            conc_errors.append(ex)
+
+    threads = [threading.Thread(target=_appender, args=(i,)) for i in range(N)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    final = L.load_ledger(conc_ledger)
+    vids = sorted(e.get("version_id") for e in final["entries"])
+    check(not conc_errors and len(final["entries"]) == N
+          and vids == sorted(f"v{i:02d}" for i in range(N)),
+          f"{N} concurrent append_entry calls all persist — no lost update / no "
+          f"tmp corruption (got {len(final['entries'])}/{N}, errors={len(conc_errors)})")
 
     # ── report ────────────────────────────────────────────────────────────────
     n_pass = sum(1 for ok, _ in RESULTS if ok)

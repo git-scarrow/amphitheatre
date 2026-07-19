@@ -106,7 +106,8 @@ def resolve_design_state(payload: dict, explicit: str | None = None) -> str:
 
 
 def guard(payload: dict, design_state: str, gates: dict, *,
-          allow_dirty: bool = False, open_decisions: list[str] | None = None
+          allow_dirty: bool = False, open_decisions: list[str] | None = None,
+          allow_state_mismatch: bool = False
           ) -> tuple[bool, list[str]]:
     """The acceptance-discipline guard. Returns (allowed, reasons_if_blocked).
 
@@ -121,6 +122,15 @@ def guard(payload: dict, design_state: str, gates: dict, *,
       * reference/* — non-decision context: verify green + boundary clean.
       * scratch/*  — render/debug: permissive, nothing blocks; excluded from the
         accepted ledger reports.
+
+    Channel/self-declaration agreement: on every real channel the payload's own
+    ``acceptance.state`` must match the channel. The accepted channel enforces
+    this as a hard, non-overridable gate (never let non-accepted content ride an
+    accepted publish). proposal/reference enforce it too but honour
+    ``allow_state_mismatch`` for a deliberate re-channel — without this, an
+    ``accepted`` payload published on ``--design-state reference`` records a
+    self-inconsistent ledger row and is silently dropped from accepted-only
+    reports.
     """
     reasons: list[str] = []
     if design_state not in L.LEDGER_STATES:
@@ -165,6 +175,17 @@ def guard(payload: dict, design_state: str, gates: dict, *,
                 "proposal publish must carry open_decisions metadata (none found in "
                 "the payload and none provided via --open-decision). A proposal that "
                 "resolves every decision should be published as 'accepted' instead.")
+
+    if design_state in (L.DS_PROPOSAL, L.DS_REFERENCE):
+        pstate = (payload.get("acceptance") or {}).get("state")
+        if pstate and pstate != design_state and not allow_state_mismatch:
+            reasons.append(
+                f"design_state is {design_state!r} but the payload declares "
+                f"acceptance.state {pstate!r} — publishing it on the {design_state!r} "
+                f"channel records self-inconsistent provenance (e.g. an 'accepted' "
+                f"payload published as {design_state!r} is silently excluded from "
+                f"accepted-only ledger reports). Publish on the matching channel, or "
+                f"pass --allow-state-mismatch to re-channel deliberately.")
 
     return (not reasons), reasons
 
@@ -339,7 +360,8 @@ def main(argv: list[str] | None = None) -> int:
     print(f"  {'repo_clean':18} {gates['repo_clean']}")
 
     ok, reasons = guard(payload, design_state, gates,
-                        allow_dirty=args.allow_dirty, open_decisions=open_decisions)
+                        allow_dirty=args.allow_dirty, open_decisions=open_decisions,
+                        allow_state_mismatch=args.allow_state_mismatch)
 
     # The ledger entry this publish would create / will create. Built before the
     # send so a dry run can show it; rebuilt with the real ids after a send.

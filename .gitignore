@@ -108,3 +108,8 @@ deploy/speckle/.env
 # ── generated build outputs (regenerable) ────────────────────────────────────
 # scripts/unreal/gen_review_meshes.py writes meshes + scene_plan.json here.
 build/
+
+# ── ledger concurrency artifacts (speckle_ledger.py) ─────────────────────────
+# Advisory lock + crash-safe temp files created around ledger writes; transient.
+data/speckle_publish_ledger.json.lock
+data/speckle_publish_ledger.json.*.tmp
