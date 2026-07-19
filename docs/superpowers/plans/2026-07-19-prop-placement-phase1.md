@@ -1,8 +1,8 @@
 # Prop-Placement Phase 1 Implementation Plan
 
 > **For agentic workers:** implement task-by-task; steps use checkbox (`- [ ]`) syntax for
-> tracking. Each task carries a `→ verify:` success criterion. Do **not** start a task whose
-> "Decisions needed" inputs (below) are still unconfirmed — they shape the schema.
+> tracking. Each task carries a `→ verify:` success criterion. The three schema-shaping decisions
+> (D1–D3 below) are **confirmed (2026-07-19)** — Task 1 may start.
 
 **Goal:** Make the read-only Unreal scene *editable for additive site furniture* (benches,
 trees, planters, bins, bollards) end to end — placed in the editor, captured to an EPSG:6494
@@ -24,19 +24,18 @@ distance are implemented directly, matching the repo's stdlib-gate convention); 
 plain-script repo tests (`scripts/test_*.py`, exit 0/1); Markdown. UE-side capture is a small
 Python MCP/editor utility.
 
-## Decisions needed (proposed defaults — confirm before Task 1)
+## Decisions (confirmed 2026-07-19)
 
-These are the three open questions from `docs/unreal_editable_scene_v0.md` §9. Proposed answers,
-each marked so a reviewer can override:
+The three open questions from `docs/unreal_editable_scene_v0.md` §9, settled by the owner:
 
-- **D1 — Catalog ownership.** *Proposed:* `assets/props/catalog.json` is **repo-tracked metadata**
+- **D1 — Catalog ownership.** *Confirmed:* `assets/props/catalog.json` is **repo-tracked metadata**
   and the single authority for what is placeable + its rules; UE **mesh binaries are NOT committed**
   (heavy, like `unreal_export/terrain/*.glb`), referenced by a stable `mesh_id` resolved UE-side.
   Adding a prop class = a catalog PR reviewed by a maintainer.
-- **D2 — Authoring root.** *Proposed:* the capture tool reads **only** actors under a dedicated
+- **D2 — Authoring root.** *Confirmed:* the capture tool reads **only** actors under a dedicated
   Outliner root **`Authoring_Furniture`** (parallel to PR #2's `TerrainOps_OpenCivicBowl`), so
   imported design geometry is never scooped. Actors outside it are ignored and reported.
-- **D3 — `feature_id` minting.** *Proposed:* a newly placed prop gets a **readable deterministic
+- **D3 — `feature_id` minting.** *Confirmed:* a newly placed prop gets a **readable deterministic
   id** `furn_<object_class>_<nnnn>` (zero-padded, monotonic per class), minted at capture, written
   into the proposal, and stored back as a UE actor tag so it **survives re-import** and diffs
   human-readably (matching the repo's `feature_id` / `op_id` style). Rejected alt: opaque UUID.
