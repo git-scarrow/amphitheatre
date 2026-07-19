@@ -1,0 +1,70 @@
+{
+  "schema": "prop-catalog/0.1",
+  "version": 1,
+  "note": "Placement authority for additive site furniture (Phase 1). Metadata only: UE mesh binaries are NOT committed here; each class references a UE asset by bare mesh_id (D1). Footprints are plan-view offsets in LOCAL METRES about the actor anchor; the capture tool reverses these to EPSG:6494 (see docs/superpowers/plans/2026-07-19-prop-placement-phase1.md).",
+  "surface_classes": [
+    "context_ground",
+    "terrace_tread",
+    "stage_floor"
+  ],
+  "constraint_classes": [
+    "ada_route",
+    "egress",
+    "seating_tread",
+    "stage_deck"
+  ],
+  "classes": [
+    {
+      "object_class": "bench",
+      "mesh_id": "SM_Bench_Slat",
+      "footprint": [
+        [-0.9, -0.25],
+        [0.9, -0.25],
+        [0.9, 0.25],
+        [-0.9, 0.25]
+      ],
+      "default_variant": "slat_1800",
+      "variants": ["slat_1800", "slat_2400"],
+      "place_on": ["context_ground", "terrace_tread"],
+      "keep_clear_of": ["ada_route", "egress", "seating_tread", "stage_deck"],
+      "min_spacing_m": 1.2,
+      "max_count": null
+    },
+    {
+      "object_class": "tree_deciduous",
+      "mesh_id": "SM_Tree_Deciduous",
+      "footprint": [
+        [-1.5, -0.62],
+        [-0.62, -1.5],
+        [0.62, -1.5],
+        [1.5, -0.62],
+        [1.5, 0.62],
+        [0.62, 1.5],
+        [-0.62, 1.5],
+        [-1.5, 0.62]
+      ],
+      "default_variant": "canopy_medium",
+      "variants": ["canopy_small", "canopy_medium", "canopy_large"],
+      "place_on": ["context_ground"],
+      "keep_clear_of": ["ada_route", "egress", "seating_tread", "stage_deck"],
+      "min_spacing_m": 4.0,
+      "max_count": null
+    },
+    {
+      "object_class": "planter",
+      "mesh_id": "SM_Planter_Square",
+      "footprint": [
+        [-0.6, -0.6],
+        [0.6, -0.6],
+        [0.6, 0.6],
+        [-0.6, 0.6]
+      ],
+      "default_variant": "square_1200",
+      "variants": ["square_1200"],
+      "place_on": ["context_ground", "terrace_tread", "stage_floor"],
+      "keep_clear_of": ["ada_route", "egress", "seating_tread", "stage_deck"],
+      "min_spacing_m": 0.8,
+      "max_count": null
+    }
+  ]
+}
