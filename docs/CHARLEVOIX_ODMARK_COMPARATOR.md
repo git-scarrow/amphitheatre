@@ -136,18 +136,48 @@ labelled carefully.
   count, type, circuiting, control position, or dimming capability is
   documented anywhere.
 
-**The unresolved conflict.** A permanent ceiling rig and "users must provide
-their own equipment" are both credible. The likeliest reconciliation is that
-the **city owns the lighting** while performers supply **PA and backline** —
-the "natural acoustics" framing points the same way. But the policy text does
-not distinguish lighting from sound, and no source enumerates what is
-installed. **Treat the lighting/sound package as UNRESOLVED.** One phone call
-to the Charlevoix Recreation Department (**231-547-3253**) would close it.
+**Counter-evidence found on the second search pass (2026-07-21).** The APA
+write-up states: *"Both the Harbormaster's Building and Odmark performing arts
+pavilion are heated and cooled with geothermal energy; **motion sensors
+control building lighting**."* Motion-sensor switching describes an automatic
+**architectural/service** lighting system — nobody puts a theatrical rig on
+occupancy sensors. That is a real counter-indication to reading the observed
+ceiling array as stage lighting.
+
+**The unresolved question, stated precisely.** Three readings remain open:
+(a) a theatrical rig, (b) motion-sensored *building* lighting mounted on a
+grid, (c) both. The balance of *published* evidence — "users must provide
+their own equipment" plus "motion sensors control building lighting" — now
+leans toward **(b)**. **Do not credit this venue with performance lighting or
+a house PA in any comparison.** One phone call to the Charlevoix Recreation
+Department (**231-547-3253**) would settle it.
+
+**What the pavilion demonstrably is**, from the second pass: a *serviced,
+conditioned building*, not an open shelter — geothermal heating and cooling,
+a keyed lockable room, and a **$1,490,642** construction line item (2005 DDA
+ledger) for a "pavilion/performance building, **with amphitheater seating**".
+That last phrase is useful independently: the hillside terraces this memo
+measured are **designed, constructed seating**, not incidental lawn. An
+**acoustical consultant** (Wallmark Consulting) was engaged, which supports
+"natural acoustics" as a designed property rather than marketing copy.
 
 **Not found anywhere** (full list in `SOURCES.md`): capacity/occupant load,
 stage dimensions, sound-system spec, lighting schedule, electrical service
-(amps/circuits/shore power), any technical rider, dB limits, load-in or
-dressing-room detail, and the architect of the 2007 rebuild.
+capacity, any technical rider, dB limits, and load-in or dressing-room detail.
+
+**Capacity is confirmed absent, not merely unfound.** A second, targeted
+search pass went after the document classes most likely to carry a number —
+the City's DNR-required Parks & Recreation Master Plan facility inventory
+(two editions, full PDF text), MNRTF and State Waterways Commission grant
+records, Michigan Municipal League placemaking material, DDA and council
+ledgers, county building-safety occupancy records, regional press coverage of
+Venetian Festival and Live on the Lake, the design firm, and Wikidata — and
+found nothing. The Recreation Plan inventory lists East Park's amenities
+(band shell, seating areas, interactive fountain) with no numeric capacity.
+This is the expected outcome for a municipal park facility with no fixed
+seats whose booking form pushes the attendance estimate onto the applicant.
+`capacity` stays `null`. It was **not** back-computed from bowl area, and the
+Petoskey↔Charlevoix comparison remains a geometry-and-operations comparison.
 
 ## Data limits — read before using these numbers
 

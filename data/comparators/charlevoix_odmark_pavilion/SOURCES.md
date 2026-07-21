@@ -93,6 +93,11 @@ infrastructure, not seat count.
 | attendance field | request form asks "expected number of attendees" — applicant-supplied, **no city cap stated** | DocumentCenter/View/407 |
 | programming | ~50 performances annually in East Park; city "Live on the Lake" series | https://visitmichiganupnorth.com/stories/summer_concert_series_charlevoix_michigan_east_park · https://charlevoixmi.gov/533/Live-on-the-Lake-Concert-Series |
 | dedication | "Clarence 'Odie' Odmark / Charlevoix Band Director / 1946 - 1975" | https://www.hmdb.org/m.asp?m=98090 |
+| **pavilion cost** | "Removal of Existing Band Shell, Fish Pond, and Restroom Building - Construction of a new pavilion/performance building, **with amphitheater seating** ($1,490,642)", listed under 2005 | https://www.charlevoixmi.gov/315/Accomplishments (verified verbatim 2026-07-21) |
+| park / marina cost | East Park Construction $2,610,597; Marina Construction $4,829,500 | same |
+| **building services** | "Both the Harbormaster's Building and Odmark performing arts pavilion are **heated and cooled with geothermal energy; motion sensors control building lighting**" | https://www.planning.org/greatplaces/spaces/2009/eastpark.htm (verified verbatim 2026-07-21) |
+| design team | pavilion architect **Mark Buday Architect PLLC** (Harbor Springs MI); acoustical consultant **Wallmark Consulting** (Traverse City); civil/structural Performance Engineers Inc.; M/E Peter Basso and Associates; marina designer United Design Associates | 2005-07 "East Park & Marina Improvements" project plan sheet — **partially corroborated only** (Buday confirmed as a Harbor Springs architect, now Buday+Kruzel; no independent source ties the firm to this building) |
+| funding | Michigan State Waterways Commission grant assistance (marina); **no** MNRTF grant for the pavilion | plan sheet credit block; cross-checked vs "Previous DNR Grants" table, https://www.charlevoixmi.gov/DocumentCenter/View/131 |
 
 ## Field observation (a basis class of its own — NOT published, NOT measured)
 
@@ -117,29 +122,64 @@ infrastructure, not seat count.
 Every item below was searched for and **not found**. None of these may be
 inferred or estimated downstream.
 
-- **Capacity / occupant load** — no figure for the pavilion or the East Park
-  hillside exists in the facility page, the Use Request Form, the Use Policy,
-  visitcharlevoix.com, michigan.org, or the APA write-up. The facility page's
-  "Feature Overview" block is empty. Capacity is recorded as `null` with an
-  explicit `capacity_basis` explaining the absence — **not** back-computed
-  from bowl area.
+- **Capacity / occupant load — CONFIRMED ABSENT after two independent search
+  passes.** Pass 1 (2026-07-21) checked the facility page (its "Feature
+  Overview" block is empty), the Use Request Form, the Use Policy,
+  visitcharlevoix.com, michigan.org and the APA write-up. Pass 2 (2026-07-21,
+  ~32 tool calls) went after the document classes most likely to carry a
+  number and also came back empty:
+  - **City Parks & Recreation Master Plan facility inventory** — the strongest
+    lead, since Michigan DNR requires these for grant eligibility. Full PDF
+    text of **two** editions read (2017–21 draft Recreation Inventory Table 4
+    via charlevoix.recdesk.com, and Chapter 4 at
+    charlevoixmi.gov/DocumentCenter/View/131). East Park entries list
+    amenities only — band shell, seating areas, interactive fountain — with
+    **no numeric capacity**.
+  - **MNRTF / State Waterways Commission grant records** — no capacity stated;
+    the "Previous DNR Grants" table (1972–2010) shows no grant tied to the
+    pavilion.
+  - **Michigan Municipal League** placemaking material (mml.org,
+    mmlfoundation.org) — Charlevoix coverage exists, no capacity figure.
+  - **DDA / council accomplishment ledger** — yielded cost, not capacity.
+  - **Charlevoix County building-safety / fire-code occupant load** — no
+    published document found.
+  - **Regional press** (Charlevoix Courier, Petoskey News-Review) on Venetian
+    Festival and Live on the Lake — venue use confirmed, **no crowd-size
+    figures reported**.
+  - **Design firm portfolio**, **Wikidata Q34871967**, **RecDesk facility page**
+    (returns "Organization Not Found") — nothing.
+  Capacity is recorded as `null` with an explicit `capacity_basis` explaining
+  the absence — **not** back-computed from bowl area. Treat the absence as a
+  finding: this is a municipal park facility with no fixed seats, and the city
+  pushes the attendance estimate onto the applicant.
 - **Stage dimensions** — no width, depth, height, or shell aperture published
   anywhere.
 - **Sound system** — no house PA is documented. The only published signal is
   "users must provide their own equipment."
 - **Stage lighting specification** — no fixture schedule, circuit count, or
-  control description, despite the field observation above that a rig exists.
+  control description. NOTE the second pass turned up *counter*-evidence
+  rather than confirmation: the APA page states "motion sensors control
+  building lighting", which describes architectural/service lighting, not a
+  theatrical rig. See the field-observation section above — the question is
+  now sharper but still open.
 - **Electrical service** — no amperage, circuit count, outlet, or shore-power
-  detail.
+  detail. (Geothermal HVAC is published, so substantial service exists; its
+  capacity remains undocumented.)
 - **Technical rider / tech-spec sheet** — none published; the venue is a
   municipal park facility administered by the Recreation Department, not a
   presenting house, and appears never to have produced one.
 - **Decibel limits / noise-ordinance cross-reference** — only the subjective
   standard quoted above.
 - **Load-in access, dressing rooms, restrooms at the pavilion itself.**
-- **Designer / architect of the 2007 rebuild** — the APA page names no firm.
+- ~~**Designer / architect of the 2007 rebuild**~~ — **RESOLVED (partially) in
+  pass 2**: a 2005–07 project plan sheet names Mark Buday Architect PLLC with
+  Wallmark Consulting as acoustical consultant. Moved to the published-facts
+  table above; still only partially corroborated.
 - **Pavilion construction or dedication date** — the HMDB marker honours
   Odmark's 1946–1975 tenure as band director; it carries no structure date.
+  (The DDA ledger lists the build under **2005**, while the APA write-up says
+  the park reopened **2008** — consistent with a multi-year project, but no
+  single source states a pavilion completion date.)
 - DocumentCenter search (`?searchPhrase=pavilion`, 46 results) surfaced no
   further Odmark documents. IDs 2568 / 3543 / 3816 are the **beach** pavilions
   (Ferry, Depot, Lake Michigan Beach) — a different facility class; ID 2338 is

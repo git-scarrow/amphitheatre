@@ -519,7 +519,7 @@
    "value": null,
    "basis": "published",
    "source": "no published capacity found for the pavilion or the East Park lawn \u2014 see SOURCES.md failed-search log; capacity stays UNKNOWN, not estimated",
-   "capacity_basis": "UNKNOWN \u2014 no capacity or occupant-load figure is published by the City of Charlevoix for this pavilion or the East Park lawn. The city's Use Request Form asks the applicant to state an 'expected number of attendees' and sets no cap; neither the facility page nor the Use Policy states one. Deliberately left null rather than estimated from bowl area (see SOURCES.md failed-search log)."
+   "capacity_basis": "UNKNOWN \u2014 CONFIRMED ABSENT after two independent search passes (2026-07-21). No design capacity, fire-code occupant load, press crowd estimate, or venue marketing claim exists in any publicly indexed source. The second pass specifically checked the document classes most likely to carry one: the City's DNR-required Parks & Recreation Master Plan facility inventory (two editions, full PDF text \u2014 East Park lists amenities only), Michigan Natural Resources Trust Fund and State Waterways Commission grant records, Michigan Municipal League placemaking material, DDA/council accomplishment ledgers, county building-safety occupancy documents, regional press coverage of Venetian Festival and Live on the Lake, the design firm, and Wikidata Q34871967. The city's Use Request Form asks the applicant to state an 'expected number of attendees' and sets no cap. Deliberately left null rather than estimated from bowl area \u2014 see SOURCES.md failed-search log."
   },
   "dem_type": {
    "value": "bare-earth DTM (USGS 3DEP 1 m standard product)",

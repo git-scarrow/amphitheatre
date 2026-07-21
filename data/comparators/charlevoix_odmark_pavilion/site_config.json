@@ -57,10 +57,31 @@
    "_note": "circular roof reads clearly in imagery and as a ~6-7 ft mound in the bare-earth DEM; no audience cover anywhere in the seating sector"
   },
   "stage_lighting": {
-   "value": "permanently mounted light fixtures on metal arrays (pipe grid / truss) fixed to the underside of the pavilion roof",
+   "value": "UNRESOLVED — permanently mounted light fixtures on metal arrays are present on the roof underside, but whether they are THEATRICAL or ARCHITECTURAL lighting is not established",
    "basis": "field_observation",
-   "_basis": "OBSERVED by the project owner from a passing vehicle, ~July 2026, undated and unmeasured. NOT published anywhere: no fixture count, type, circuiting, control position, or dimming capability is documented in any city source. Counts as evidence that a permanent lighting rig EXISTS; does not establish what it is or who may use it. VERIFY by site visit or by calling Charlevoix Rec Dept 231-547-3253.",
-   "_conflict": "The City's Performance Pavilion Use Policy (DocumentCenter/View/408, rev. 2025-11-20) states 'Users must provide their own equipment.' The most likely reconciliation is that the city-owned rig covers LIGHTING while performers supply PA/backline, but the policy text does not distinguish them. Treat as UNRESOLVED."
+   "_basis": "OBSERVED by the project owner from a passing vehicle, ~July 2026, undated and unmeasured. Establishes that a permanent ceiling-mounted fixture array EXISTS; does NOT establish its type, count, circuiting, control position, dimming, or who may use it. VERIFY by site visit or by calling Charlevoix Rec Dept 231-547-3253.",
+   "_counter_evidence": "IMPORTANT (added 2026-07-21, second search pass): the APA Great Public Spaces write-up states 'Both the Harbormaster's Building and Odmark performing arts pavilion are heated and cooled with geothermal energy; MOTION SENSORS CONTROL BUILDING LIGHTING' (https://www.planning.org/greatplaces/spaces/2009/eastpark.htm). Motion-sensor control describes an automatic ARCHITECTURAL/service lighting system — a theatrical rig would never be switched that way. This is a genuine counter-indication to reading the observed array as stage lighting. Three readings remain open: (a) theatrical rig, (b) motion-sensored building lighting mounted on a grid, (c) both present.",
+   "_conflict": "The City's Performance Pavilion Use Policy (DocumentCenter/View/408, rev. 2025-11-20) states 'Users must provide their own equipment.' Combined with the motion-sensor evidence, the balance of PUBLISHED evidence now leans toward the pavilion providing building/service lighting rather than a performance lighting rig. Treat as UNRESOLVED and do NOT credit this venue with stage lighting in any comparison."
+  },
+  "building_services": {
+   "value": "heated and cooled with geothermal energy; motion sensors control building lighting",
+   "basis": "published",
+   "_basis": "APA Great Public Spaces 2009 write-up (https://www.planning.org/greatplaces/spaces/2009/eastpark.htm), verbatim. Establishes that the pavilion is a serviced, conditioned BUILDING — not an open shelter — which implies substantial electrical service exists even though its capacity is undocumented. Consistent with the keyed lockable room in the use policy."
+  },
+  "construction_cost": {
+   "value": "$1,490,642 for the pavilion/performance building; $2,610,597 East Park construction; $4,829,500 marina construction",
+   "basis": "published",
+   "_basis": "City of Charlevoix DDA accomplishments ledger, listed under 2005 (https://www.charlevoixmi.gov/315/Accomplishments), verbatim: 'Removal of Existing Band Shell, Fish Pond, and Restroom Building - Construction of a new pavilion/performance building, with amphitheater seating ($1,490,642)'. NOTE the phrase 'with amphitheater seating' — the hillside terraces are DESIGNED, CONSTRUCTED seating, not incidental lawn. Verified directly 2026-07-21."
+  },
+  "design_team": {
+   "value": "pavilion architect Mark Buday Architect PLLC (Harbor Springs MI); acoustical consultant Wallmark Consulting (Traverse City); civil/structural Performance Engineers Inc. (Charlevoix); mechanical/electrical Peter Basso and Associates (Troy); marina designer United Design Associates (Cheboygan)",
+   "basis": "published",
+   "_basis": "Read from the 2005-07 'East Park & Marina Improvements' project plan sheet during the 2026-07-21 capacity search. PARTIALLY CORROBORATED ONLY: Mark Buday is confirmed independently as a principal architect in Harbor Springs MI (now Buday+Kruzel Architects), but no independent source ties the firm to this building. Treat the roster as plan-sheet-sourced, not independently confirmed. Relevant because an ACOUSTICAL CONSULTANT was engaged, supporting 'natural acoustics' as a designed property rather than marketing copy."
+  },
+  "funding": {
+   "value": "Michigan State Waterways Commission grant assistance (marina); no Michigan Natural Resources Trust Fund grant tied to the pavilion",
+   "basis": "published",
+   "_basis": "2005-07 project plan sheet credit block; cross-checked against the 'Previous DNR Grants' table in the city's Recreation Plan Chapter 4 (charlevoixmi.gov/DocumentCenter/View/131), which lists no MNRTF grant for this project."
   },
   "sound_system": {
    "value": "UNKNOWN — no house PA confirmed",
@@ -95,7 +116,7 @@
  },
  "ada_circulation_note": "level paved plaza wraps the pavilion at the 586.6 ft apron; a paved promenade runs along the 597.6-598.0 ft rim above the seating; imagery shows paved walks flanking the terraces on both sides connecting the two levels. Whether any of these meets running-slope/cross-slope code is UNVERIFIED — no as-built or civil drawing was found.",
  "backdrop_note": "audience faces ~SE (az 130) across the pavilion; Round Lake and the municipal marina lie immediately beyond and to the left of the stage (flat water return at 579.4 ft NAVD88 begins ~25-30 m out on az 30-140), so the water reads as the stage backdrop from the seating. UNLIKE Petoskey, the band shell is a closed stone structure — it occludes the water directly behind the stage; the lake is seen past the shell's flanks, not through the stage opening.",
- "capacity_basis": "UNKNOWN — no capacity or occupant-load figure is published by the City of Charlevoix for this pavilion or the East Park lawn. The city's Use Request Form asks the applicant to state an 'expected number of attendees' and sets no cap; neither the facility page nor the Use Policy states one. Deliberately left null rather than estimated from bowl area (see SOURCES.md failed-search log).",
+ "capacity_basis": "UNKNOWN — CONFIRMED ABSENT after two independent search passes (2026-07-21). No design capacity, fire-code occupant load, press crowd estimate, or venue marketing claim exists in any publicly indexed source. The second pass specifically checked the document classes most likely to carry one: the City's DNR-required Parks & Recreation Master Plan facility inventory (two editions, full PDF text — East Park lists amenities only), Michigan Natural Resources Trust Fund and State Waterways Commission grant records, Michigan Municipal League placemaking material, DDA/council accomplishment ledgers, county building-safety occupancy documents, regional press coverage of Venetian Festival and Live on the Lake, the design firm, and Wikidata Q34871967. The city's Use Request Form asks the applicant to state an 'expected number of attendees' and sets no cap. Deliberately left null rather than estimated from bowl area — see SOURCES.md failed-search log.",
  "dem_verification": {
   "dem_type": "bare-earth DTM (USGS 3DEP 1 m standard product)",
   "terrace_preservation": "PARTIALLY VERIFIED — the DEM cleanly resolves the overall bowl (continuous 11.3 ft rise, hillshade fall line matches the imagery terrace sector), but it does NOT resolve the individual terrace risers that imagery shows; terrace COUNT therefore stays inferred_imagery while rake/rise stay measured_dem.",
