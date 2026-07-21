@@ -74,6 +74,7 @@ adoption there.
 | `scripts/stage_shape_study.py` | the shape-study harness |
 | `analysis/stage_adoption/RULE9_DECISION_RECORD.md` | the adopted az-150 P_opt bundle + why |
 | `analysis/stage_adoption/RULE9_PATH1_AUDIENCE_AXIS_DISPATCH.md` | the 124.4° rotation script + verification checksums |
+| `analysis/bay_view_obstruction/DISPATCH_EFFECTIVE_SILHOUETTE_AND_NEIGHBOR_GATE.md` | bay-band v2 work order (owner-directed 2026-07-21): effective-silhouette definition, canopy layer, far-shore band top, neighbor hard gate — re-verdicts the roof/element menu that bounds any shape+typology proposal |
 
 ## Files a shape change would touch
 
