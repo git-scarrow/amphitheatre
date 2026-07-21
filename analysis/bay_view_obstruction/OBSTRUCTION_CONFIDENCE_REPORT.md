@@ -1,5 +1,19 @@
 # Bay-View Obstruction — Confidence-Banded Validation Report
 
+> **REVISION 3 (2026-07-21, bay-band v2 — canopy MEASURED).** Closes the
+> long-standing canopy gap (claim 4b). A first-return canopy-top layer was built
+> from the USGS 3DEP EPT (`USGS_LPC_MI_13Co_Emmett_2015`) — acquisition
+> **2015-05-02, LEAF-OFF** (northern Michigan deciduous leaf-out is mid-to-late
+> May). Canopy silhouette is now a **measurement**, promoted into the effective
+> silhouette per the owner's 2026-07-21 directive (`bay_band_v2.py`,
+> `neighbor_ceiling.py`, `element_verdicts_v2.py`). Headline: **the foreground
+> tree line, not terrain or the stage, is the binding bay-view occluder for the
+> seated bowl — no seated row is acceptable (>=80% clear) through the canopy in
+> either leaf state** (`rn_rm_table.md`, r_m = none). Leaf-on is a labeled
+> crown-opacity assumption, not a measurement; summer is the operating season.
+> The band top was also corrected to the far-shore waterline (`band_top_farshore.csv`,
+> T2). Read-only: no geometry moved; adopts nothing (owner sign-off pending).
+
 > **REVISION 2 (2026-06-27, scene-level evidence).** Adds the stage-polygon
 > raycast, the live UE actor audit, the layered terrain/stage/city deltas, and
 > a two-source (Python DEM+OSM ↔ live UE `trace_world`) cross-check. The
@@ -32,7 +46,7 @@ az 322° → clear). Evidence: `layered_obstruction.csv`,
 | 2 | Stage does not obstruct the bay view | Medium → **High (scoped)** | Stage polygons added to raycast → **Δ = 0.0 % every band**; UE audit confirms exactly 3 flat stage actors, Z 612.0–612.5 ft, **no vertical shell** | Nothing for the current deck | Yes — current flat/open stage only | **High** (achieved, for current deck) |
 | 3 | Live UE scene not contaminated by stale/provisional stage | Low → **Medium** | Full stage-like enumeration: 1 current stage system, **no** shell/provisional/rule9/duplicate; raycast cross-check matches | Editor visibility (`bHiddenEd`) of bay-water/horizon proxies not readable via API; runtime `bHidden=false` unreconciled with memory's `bVisible=false` | Yes (review renders) | **Medium-High** (needs component visibility read or visual confirm) |
 | 4a | City massing **materially obstructs** the bay corridor (east section) | Indeterminate → **Medium-High** | Layered raycast: east upper rows 100 %→46–62 % clear; **confirmed by live UE trace @ 73–77 m** | Beards Brewery roof height is LiDAR DSM−DTM (10.4 m), not surveyed | Yes — supersedes terrain-only "row 11 acceptable" for east | **High** (needs roof survey) |
-| 4b | Tree / canopy obstruction contribution | Indeterminate → **Indeterminate** | — (confirmed **no tree/canopy actors exist** in the scene) | Everything — foreground tree band (az 315–320) has no geometry to test | Must not be relied on for rows 6–10 | **Indeterminate until a canopy layer exists** |
+| 4b | Tree / canopy obstruction contribution | Indeterminate → **Medium (measured, leaf-off)** | Rev-3: first-return canopy-top layer from 3DEP EPT (2015-05-02 **leaf-off**); silhouette per (row, az) both leaf states; the canopy **tops the band bottom (binding occluder) for every seated row** — no row acceptable through the trees, r_m = none (`rn_rm_table.md`, `canopy_silhouette.csv`) | Leaf-ON is an assumption (crown-opacity closing, heights not raised); within-crown porosity (winter see-through) not measurable from first returns; canopy is mutable/3rd-party (Bayfront Park City land / MDOT ROW) | **Governs** the seated bay view — supersedes terrain/city "acceptable upper rows"; must carry leaf-state + occluder-set (S0/S1/S2) labels; never pass a stage element on S2 (canopy) leeway alone | **Medium-High** (leaf-off measured; leaf-on needs summer LiDAR or field survey) |
 | 4c | Harbor obstruction | Indeterminate → **Low (does not obstruct)** | Harbor structures sit at/below the bay water plane (579.45 ft) | No per-structure raycast | Minor | **Medium** |
 | 5 | Suspicious W/NW building is real & correctly placed | Medium → **Medium** | Two distinct things separated: (a) *visual "domination"* = Police Dept cluster + **hidden bay-water plane** (representation artifact); (b) *measured obstructor* = **Beards Brewery**, a named OSM building, base−terrain ≈ −0.09 m (on grade) | No field/photogrammetric survey; LiDAR-derived heights | Low (visual), but its height drives Claim 4a magnitude | **High** (needs survey) |
 
@@ -53,9 +67,13 @@ az 322° → clear). Evidence: `layered_obstruction.csv`,
 > **but** the editor-visibility of the bay-water/horizon proxies is unconfirmed
 > via the API, so "render is proxy-clean" is not yet High.
 
-> **Indeterminate: canopy obstruction** — no tree/canopy actors exist to test;
-> the foreground tree band (az 315–320) remains unmodelled. Rows 6–10 "bay
-> acceptable" must stay qualified.
+> **Medium (Rev-3): canopy obstruction is now MEASURED (leaf-off) and GOVERNS the
+> seated bay view.** The 3DEP first-return canopy layer (2015-05-02 leaf-off; densest
+> az 312–321 as the old finding predicted) tops the band bottom for every seated row:
+> no row reaches acceptable (>=80% clear) through the tree line in either leaf state
+> (best case ~54% clear at the top of the bend, leaf-off). The "acceptable upper rows"
+> from terrain/city analysis is therefore contingent on trimming/removing third-party
+> trees. Leaf-on (summer, operating season) is a labeled assumption, slightly worse.
 
 ## What changed for design reliance
 
@@ -133,10 +151,15 @@ Everything involving the live UE scene, context layers, or canopy is Low or Inde
 
 ## What design decisions MUST NOT rely on current evidence
 
-- **"Bay view acceptable" for rows 6–10** must not be stated without qualification
-  until the foreground tree band (az 315–320) is separately modelled. Those rows
-  are in the DEM-marginal zone (south r6 = 90% clear DEM-only; east r8 = 18% clear)
-  where moderate canopy could push blocked-% substantially higher.
+- **"Bay view acceptable" for ANY seated row** must not be stated as if the bay is
+  actually visible: Rev-3 measures the foreground canopy (leaf-off) as the binding
+  occluder — **no seated row is acceptable through the current tree line** in either
+  leaf state (`rn_rm_table.md`, r_m = none). A clean seated bay view is contingent on
+  trimming/removing the Bayfront Park (City) / US-31 (MDOT ROW) trees — third-party,
+  mutable land the owner does not control.
+- **Canopy (S2) leeway must never pass a stage element.** An element that "clears"
+  only because the canopy already blocks the bay is `contingent_on_canopy` — charge it
+  under S1 (durable) too.
 - **Stage non-obstruction cannot be carried forward for any Rule-9 refit** that adds
   vertical elements without re-running the stage-inclusive raycast.
 - **UE review renders must not be presented as evidence of an unobstructed bay view**

@@ -1,0 +1,25 @@
+{
+ "S1": {
+  "cells_constrained": 2881,
+  "cells_total": 2907,
+  "ceiling_min_navd88": 626.37,
+  "ceiling_median_navd88": 639.28,
+  "ceiling_over_stage_min": 635.4,
+  "ceiling_over_stage_median": 637.06,
+  "headroom_over_deck_min_ft": 22.9
+ },
+ "S2": {
+  "cells_constrained": 2733,
+  "cells_total": 2907,
+  "ceiling_min_navd88": 630.48,
+  "ceiling_median_navd88": 649.29,
+  "ceiling_over_stage_min": 638.31,
+  "ceiling_over_stage_median": 642.49,
+  "headroom_over_deck_min_ft": 25.81
+ },
+ "note_reading_B": "\"no owner loses any bay view\" (NOT \"no visible skyline change\"); skyline change above rim 618.04 is accepted+reported, not gated.",
+ "S1_is": "durable (terrain+city); S2 headroom is contingent on 3rd-party canopy",
+ "receptors_total": 184,
+ "receptors_with_water_band_S1": 178,
+ "receptors_with_water_band_S2_leafon": 72
+}

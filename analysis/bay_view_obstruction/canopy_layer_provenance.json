@@ -1,0 +1,26 @@
+{
+ "generated_by": "scripts/build_canopy_layer.py",
+ "ept": "USGS_LPC_MI_13Co_Emmett_2015_LAS_2017 (usgs-lidar-public S3 EPT)",
+ "acquisition_date": "2015-05-02",
+ "leaf_state": "leaf-off",
+ "leaf_state_basis": "GpsTime decode of extracted points -> 2015-05-02; northern Michigan (45.37N) deciduous leaf-out is mid-to-late May, so this is a LEAF-OFF (winter-screen) collection. Operating season is summer.",
+ "classification_note": "delivery has NO ASPRS veg(3/4/5) or building(6) classes; canopy derived from CHM=DSM-DTM with OSM footprints subtracted",
+ "chm_band_ft": [
+  6.0,
+  90.0
+ ],
+ "canopy_cells_leafoff": 255549,
+ "canopy_cells_leafon": 282357,
+ "chm_stats_ft": {
+  "mean": 30.4,
+  "p50": 26.0,
+  "p90": 58.7,
+  "max": 90.0
+ },
+ "leafon_variant": "crown-opacity inflation: binary_closing(iter=2) of the leaf-off canopy mask, gaps filled to local 9x9 canopy-top envelope; heights NOT raised. ASSUMPTION, not measurement.",
+ "rasters": [
+  "canopy_top_leafoff_3ft.tif",
+  "canopy_top_leafon_3ft.tif"
+ ],
+ "grid": "EPSG:6494 intl ft, 3 ft, NAVD88 ft elevation of canopy top"
+}

@@ -1,0 +1,3875 @@
+{
+ "type": "FeatureCollection",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::6494"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532691.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 602.25,
+    "eye_elev_navd88": 607.25,
+    "clear_pct_S1": 84.6,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532691.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 602.25,
+    "eye_elev_navd88": 619.25,
+    "clear_pct_S1": 84.6,
+    "clear_pct_S2_leafon": 46.2,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532716.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 603.96,
+    "eye_elev_navd88": 608.96,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 7.7,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532716.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 603.96,
+    "eye_elev_navd88": 620.96,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 46.2,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532741.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 605.7,
+    "eye_elev_navd88": 610.7,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532741.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 605.7,
+    "eye_elev_navd88": 622.7,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532766.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 607.72,
+    "eye_elev_navd88": 612.72,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532766.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 607.72,
+    "eye_elev_navd88": 624.72,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532791.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 609.91,
+    "eye_elev_navd88": 614.91,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532791.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 609.91,
+    "eye_elev_navd88": 626.91,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532816.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 612.11,
+    "eye_elev_navd88": 617.11,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532816.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 612.11,
+    "eye_elev_navd88": 629.11,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 23.1,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532841.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 614.07,
+    "eye_elev_navd88": 619.07,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532841.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 614.07,
+    "eye_elev_navd88": 631.07,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 15.4,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532866.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 616.41,
+    "eye_elev_navd88": 621.41,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532866.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 616.41,
+    "eye_elev_navd88": 633.41,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532891.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 617.89,
+    "eye_elev_navd88": 622.89,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532891.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 617.89,
+    "eye_elev_navd88": 634.89,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532916.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 618.25,
+    "eye_elev_navd88": 623.25,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532916.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 618.25,
+    "eye_elev_navd88": 635.25,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532941.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 618.12,
+    "eye_elev_navd88": 623.12,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532941.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 618.12,
+    "eye_elev_navd88": 635.12,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 7.7,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532966.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 618.08,
+    "eye_elev_navd88": 623.08,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 38.5,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532966.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 618.08,
+    "eye_elev_navd88": 635.08,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 61.5,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532991.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 618.46,
+    "eye_elev_navd88": 623.46,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 69.2,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532991.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 618.46,
+    "eye_elev_navd88": 635.46,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 92.3,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533016.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 619.51,
+    "eye_elev_navd88": 624.51,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 84.6,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533016.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 619.51,
+    "eye_elev_navd88": 636.51,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533041.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 620.66,
+    "eye_elev_navd88": 625.66,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 76.9,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533041.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 620.66,
+    "eye_elev_navd88": 637.66,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533066.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 621.79,
+    "eye_elev_navd88": 626.79,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533066.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 621.79,
+    "eye_elev_navd88": 638.79,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 46.2,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533091.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 623.01,
+    "eye_elev_navd88": 628.01,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533091.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 623.01,
+    "eye_elev_navd88": 640.01,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533116.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 624.08,
+    "eye_elev_navd88": 629.08,
+    "clear_pct_S1": 15.4,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533116.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 624.08,
+    "eye_elev_navd88": 641.08,
+    "clear_pct_S1": 15.4,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533141.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 625.4,
+    "eye_elev_navd88": 630.4,
+    "clear_pct_S1": 0.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": false,
+    "has_bay_band_S2": false,
+    "note": "empty band => imposes no ceiling constraint"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533141.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 625.4,
+    "eye_elev_navd88": 642.4,
+    "clear_pct_S1": 0.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": false,
+    "has_bay_band_S2": false,
+    "note": "empty band => imposes no ceiling constraint"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533166.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 626.39,
+    "eye_elev_navd88": 631.39,
+    "clear_pct_S1": 0.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": false,
+    "has_bay_band_S2": false,
+    "note": "empty band => imposes no ceiling constraint"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533166.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 626.39,
+    "eye_elev_navd88": 643.39,
+    "clear_pct_S1": 0.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": false,
+    "has_bay_band_S2": false,
+    "note": "empty band => imposes no ceiling constraint"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533191.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 627.73,
+    "eye_elev_navd88": 632.73,
+    "clear_pct_S1": 0.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": false,
+    "has_bay_band_S2": false,
+    "note": "empty band => imposes no ceiling constraint"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533191.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 627.73,
+    "eye_elev_navd88": 644.73,
+    "clear_pct_S1": 0.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": false,
+    "has_bay_band_S2": false,
+    "note": "empty band => imposes no ceiling constraint"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533216.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 628.92,
+    "eye_elev_navd88": 633.92,
+    "clear_pct_S1": 7.7,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533216.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 628.92,
+    "eye_elev_navd88": 645.92,
+    "clear_pct_S1": 7.7,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533241.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 630.0,
+    "eye_elev_navd88": 635.0,
+    "clear_pct_S1": 38.5,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533241.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 630.0,
+    "eye_elev_navd88": 647.0,
+    "clear_pct_S1": 38.5,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533266.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 631.0,
+    "eye_elev_navd88": 636.0,
+    "clear_pct_S1": 69.2,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533266.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 631.0,
+    "eye_elev_navd88": 648.0,
+    "clear_pct_S1": 69.2,
+    "clear_pct_S2_leafon": 30.8,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533291.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 632.01,
+    "eye_elev_navd88": 637.01,
+    "clear_pct_S1": 92.3,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533291.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 632.01,
+    "eye_elev_navd88": 649.01,
+    "clear_pct_S1": 92.3,
+    "clear_pct_S2_leafon": 53.8,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533316.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 633.06,
+    "eye_elev_navd88": 638.06,
+    "clear_pct_S1": 92.3,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533316.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 633.06,
+    "eye_elev_navd88": 650.06,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 53.8,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533341.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 634.01,
+    "eye_elev_navd88": 639.01,
+    "clear_pct_S1": 76.9,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533341.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 634.01,
+    "eye_elev_navd88": 651.01,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533366.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 635.04,
+    "eye_elev_navd88": 640.04,
+    "clear_pct_S1": 69.2,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533366.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 635.04,
+    "eye_elev_navd88": 652.04,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533391.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 636.0,
+    "eye_elev_navd88": 641.0,
+    "clear_pct_S1": 61.5,
+    "clear_pct_S2_leafon": 7.7,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533391.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 636.0,
+    "eye_elev_navd88": 653.0,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 92.3,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533416.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 636.7,
+    "eye_elev_navd88": 641.7,
+    "clear_pct_S1": 53.8,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533416.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 636.7,
+    "eye_elev_navd88": 653.7,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 15.4,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533441.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 637.6,
+    "eye_elev_navd88": 642.6,
+    "clear_pct_S1": 61.5,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533441.7,
+     750943.1
+    ]
+   },
+   "properties": {
+    "frontage": "E Lake Street (N boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 637.6,
+    "eye_elev_navd88": 654.6,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 53.8,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532691.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 626.95,
+    "eye_elev_navd88": 631.95,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532691.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 626.95,
+    "eye_elev_navd88": 643.95,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532716.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 629.14,
+    "eye_elev_navd88": 634.14,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532716.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 629.14,
+    "eye_elev_navd88": 646.14,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532741.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 629.49,
+    "eye_elev_navd88": 634.49,
+    "clear_pct_S1": 92.3,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532741.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 629.49,
+    "eye_elev_navd88": 646.49,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532766.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 629.91,
+    "eye_elev_navd88": 634.91,
+    "clear_pct_S1": 76.9,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532766.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 629.91,
+    "eye_elev_navd88": 646.91,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532791.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 630.84,
+    "eye_elev_navd88": 635.84,
+    "clear_pct_S1": 61.5,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532791.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 630.84,
+    "eye_elev_navd88": 647.84,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532816.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 630.25,
+    "eye_elev_navd88": 635.25,
+    "clear_pct_S1": 46.2,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532816.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 630.25,
+    "eye_elev_navd88": 647.25,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532841.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 630.85,
+    "eye_elev_navd88": 635.85,
+    "clear_pct_S1": 30.8,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532841.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 630.85,
+    "eye_elev_navd88": 647.85,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532866.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 631.36,
+    "eye_elev_navd88": 636.36,
+    "clear_pct_S1": 15.4,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532866.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 631.36,
+    "eye_elev_navd88": 648.36,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532891.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 632.08,
+    "eye_elev_navd88": 637.08,
+    "clear_pct_S1": 53.8,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532891.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 632.08,
+    "eye_elev_navd88": 649.08,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532916.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 632.88,
+    "eye_elev_navd88": 637.88,
+    "clear_pct_S1": 46.2,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532916.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 632.88,
+    "eye_elev_navd88": 649.88,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532941.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 633.95,
+    "eye_elev_navd88": 638.95,
+    "clear_pct_S1": 53.8,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532941.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 633.95,
+    "eye_elev_navd88": 650.95,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 15.4,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532966.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 634.99,
+    "eye_elev_navd88": 639.99,
+    "clear_pct_S1": 46.2,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532966.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 634.99,
+    "eye_elev_navd88": 651.99,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 15.4,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532991.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 636.34,
+    "eye_elev_navd88": 641.34,
+    "clear_pct_S1": 53.8,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19532991.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 636.34,
+    "eye_elev_navd88": 653.34,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 30.8,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533016.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 637.38,
+    "eye_elev_navd88": 642.38,
+    "clear_pct_S1": 61.5,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533016.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 637.38,
+    "eye_elev_navd88": 654.38,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 53.8,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533041.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 638.46,
+    "eye_elev_navd88": 643.46,
+    "clear_pct_S1": 69.2,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533041.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 638.46,
+    "eye_elev_navd88": 655.46,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 61.5,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533066.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 639.85,
+    "eye_elev_navd88": 644.85,
+    "clear_pct_S1": 84.6,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533066.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 639.85,
+    "eye_elev_navd88": 656.85,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 84.6,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533091.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 641.04,
+    "eye_elev_navd88": 646.04,
+    "clear_pct_S1": 92.3,
+    "clear_pct_S2_leafon": 23.1,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533091.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 641.04,
+    "eye_elev_navd88": 658.04,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 92.3,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533116.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 642.2,
+    "eye_elev_navd88": 647.2,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 30.8,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533116.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 642.2,
+    "eye_elev_navd88": 659.2,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533141.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 643.29,
+    "eye_elev_navd88": 648.29,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 61.5,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533141.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 643.29,
+    "eye_elev_navd88": 660.29,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533166.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 644.2,
+    "eye_elev_navd88": 649.2,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533166.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 644.2,
+    "eye_elev_navd88": 661.2,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533191.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 645.16,
+    "eye_elev_navd88": 650.16,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 30.8,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533191.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 645.16,
+    "eye_elev_navd88": 662.16,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533216.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 646.39,
+    "eye_elev_navd88": 651.39,
+    "clear_pct_S1": 92.3,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533216.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 646.39,
+    "eye_elev_navd88": 663.39,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533241.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 647.31,
+    "eye_elev_navd88": 652.31,
+    "clear_pct_S1": 76.9,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533241.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 647.31,
+    "eye_elev_navd88": 664.31,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 23.1,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533266.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 648.22,
+    "eye_elev_navd88": 653.22,
+    "clear_pct_S1": 69.2,
+    "clear_pct_S2_leafon": 30.8,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533266.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 648.22,
+    "eye_elev_navd88": 665.22,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533291.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 648.69,
+    "eye_elev_navd88": 653.69,
+    "clear_pct_S1": 53.8,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533291.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 648.69,
+    "eye_elev_navd88": 665.69,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533316.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 649.4,
+    "eye_elev_navd88": 654.4,
+    "clear_pct_S1": 46.2,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533316.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 649.4,
+    "eye_elev_navd88": 666.4,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533341.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 650.16,
+    "eye_elev_navd88": 655.16,
+    "clear_pct_S1": 84.6,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533341.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 650.16,
+    "eye_elev_navd88": 667.16,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533366.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 651.24,
+    "eye_elev_navd88": 656.24,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533366.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 651.24,
+    "eye_elev_navd88": 668.24,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533391.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 652.14,
+    "eye_elev_navd88": 657.14,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533391.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 652.14,
+    "eye_elev_navd88": 669.14,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 84.6,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533416.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 653.15,
+    "eye_elev_navd88": 658.15,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533416.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 653.15,
+    "eye_elev_navd88": 670.15,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533441.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 654.17,
+    "eye_elev_navd88": 659.17,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533441.7,
+     750593.6
+    ]
+   },
+   "properties": {
+    "frontage": "E Mitchell Street (S boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 654.17,
+    "eye_elev_navd88": 671.17,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750432.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 655.89,
+    "eye_elev_navd88": 660.89,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 53.8,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750432.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 655.89,
+    "eye_elev_navd88": 672.89,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 76.9,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750457.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 654.5,
+    "eye_elev_navd88": 659.5,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 23.1,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750457.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 654.5,
+    "eye_elev_navd88": 671.5,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 38.5,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750482.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 652.95,
+    "eye_elev_navd88": 657.95,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750482.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 652.95,
+    "eye_elev_navd88": 669.95,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750507.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 651.86,
+    "eye_elev_navd88": 656.86,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750507.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 651.86,
+    "eye_elev_navd88": 668.86,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750532.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 650.71,
+    "eye_elev_navd88": 655.71,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750532.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 650.71,
+    "eye_elev_navd88": 667.71,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 23.1,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750557.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 649.73,
+    "eye_elev_navd88": 654.73,
+    "clear_pct_S1": 76.9,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750557.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 649.73,
+    "eye_elev_navd88": 666.73,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750582.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 648.83,
+    "eye_elev_navd88": 653.83,
+    "clear_pct_S1": 69.2,
+    "clear_pct_S2_leafon": 15.4,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750582.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 648.83,
+    "eye_elev_navd88": 665.83,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750607.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 647.67,
+    "eye_elev_navd88": 652.67,
+    "clear_pct_S1": 61.5,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750607.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 647.67,
+    "eye_elev_navd88": 664.67,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750632.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 646.84,
+    "eye_elev_navd88": 651.84,
+    "clear_pct_S1": 53.8,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750632.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 646.84,
+    "eye_elev_navd88": 663.84,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750657.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 645.58,
+    "eye_elev_navd88": 650.58,
+    "clear_pct_S1": 53.8,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750657.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 645.58,
+    "eye_elev_navd88": 662.58,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750682.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 644.5,
+    "eye_elev_navd88": 649.5,
+    "clear_pct_S1": 46.2,
+    "clear_pct_S2_leafon": 23.1,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750682.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 644.5,
+    "eye_elev_navd88": 661.5,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750707.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 643.27,
+    "eye_elev_navd88": 648.27,
+    "clear_pct_S1": 30.8,
+    "clear_pct_S2_leafon": 23.1,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750707.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 643.27,
+    "eye_elev_navd88": 660.27,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750732.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 641.97,
+    "eye_elev_navd88": 646.97,
+    "clear_pct_S1": 23.1,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750732.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 641.97,
+    "eye_elev_navd88": 658.97,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750757.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 640.68,
+    "eye_elev_navd88": 645.68,
+    "clear_pct_S1": 15.4,
+    "clear_pct_S2_leafon": 15.4,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750757.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 640.68,
+    "eye_elev_navd88": 657.68,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750782.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 639.38,
+    "eye_elev_navd88": 644.38,
+    "clear_pct_S1": 7.7,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750782.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 639.38,
+    "eye_elev_navd88": 656.38,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 100.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750807.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 638.04,
+    "eye_elev_navd88": 643.04,
+    "clear_pct_S1": 15.4,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750807.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 638.04,
+    "eye_elev_navd88": 655.04,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 92.3,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750832.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 636.74,
+    "eye_elev_navd88": 641.74,
+    "clear_pct_S1": 23.1,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750832.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 636.74,
+    "eye_elev_navd88": 653.74,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 76.9,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750857.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 635.51,
+    "eye_elev_navd88": 640.51,
+    "clear_pct_S1": 30.8,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750857.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 635.51,
+    "eye_elev_navd88": 652.51,
+    "clear_pct_S1": 30.8,
+    "clear_pct_S2_leafon": 23.1,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750882.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 634.09,
+    "eye_elev_navd88": 639.09,
+    "clear_pct_S1": 38.5,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750882.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 634.09,
+    "eye_elev_navd88": 651.09,
+    "clear_pct_S1": 38.5,
+    "clear_pct_S2_leafon": 15.4,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750907.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 632.81,
+    "eye_elev_navd88": 637.81,
+    "clear_pct_S1": 53.8,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750907.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 632.81,
+    "eye_elev_navd88": 649.81,
+    "clear_pct_S1": 53.8,
+    "clear_pct_S2_leafon": 23.1,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750932.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 631.68,
+    "eye_elev_navd88": 636.68,
+    "clear_pct_S1": 69.2,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750932.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 631.68,
+    "eye_elev_navd88": 648.68,
+    "clear_pct_S1": 69.2,
+    "clear_pct_S2_leafon": 30.8,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750957.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 630.42,
+    "eye_elev_navd88": 635.42,
+    "clear_pct_S1": 84.6,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750957.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 630.42,
+    "eye_elev_navd88": 647.42,
+    "clear_pct_S1": 84.6,
+    "clear_pct_S2_leafon": 38.5,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750982.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 629.04,
+    "eye_elev_navd88": 634.04,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     750982.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 629.04,
+    "eye_elev_navd88": 646.04,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751007.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 626.73,
+    "eye_elev_navd88": 631.73,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751007.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 626.73,
+    "eye_elev_navd88": 643.73,
+    "clear_pct_S1": 100.0,
+    "clear_pct_S2_leafon": 15.4,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751032.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 623.97,
+    "eye_elev_navd88": 628.97,
+    "clear_pct_S1": 92.3,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751032.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 623.97,
+    "eye_elev_navd88": 640.97,
+    "clear_pct_S1": 92.3,
+    "clear_pct_S2_leafon": 7.7,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751057.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 621.04,
+    "eye_elev_navd88": 626.04,
+    "clear_pct_S1": 92.3,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751057.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 621.04,
+    "eye_elev_navd88": 638.04,
+    "clear_pct_S1": 92.3,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751082.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 618.41,
+    "eye_elev_navd88": 623.41,
+    "clear_pct_S1": 84.6,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751082.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 618.41,
+    "eye_elev_navd88": 635.41,
+    "clear_pct_S1": 84.6,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751107.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 615.94,
+    "eye_elev_navd88": 620.94,
+    "clear_pct_S1": 84.6,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751107.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 615.94,
+    "eye_elev_navd88": 632.94,
+    "clear_pct_S1": 84.6,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751132.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 614.18,
+    "eye_elev_navd88": 619.18,
+    "clear_pct_S1": 76.9,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751132.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 614.18,
+    "eye_elev_navd88": 631.18,
+    "clear_pct_S1": 76.9,
+    "clear_pct_S2_leafon": 23.1,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751157.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "ground_+5ft",
+    "ground_elev_navd88": 612.44,
+    "eye_elev_navd88": 617.44,
+    "clear_pct_S1": 69.2,
+    "clear_pct_S2_leafon": 0.0,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": false,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19533270.8,
+     751157.65
+    ]
+   },
+   "properties": {
+    "frontage": "Petoskey Street (E boundary)",
+    "eye": "second_story_+17ft",
+    "ground_elev_navd88": 612.44,
+    "eye_elev_navd88": 629.44,
+    "clear_pct_S1": 69.2,
+    "clear_pct_S2_leafon": 30.8,
+    "has_bay_band_S1": true,
+    "has_bay_band_S2": true,
+    "note": "protected water view => contributes to neighbor ceiling"
+   }
+  }
+ ]
+}

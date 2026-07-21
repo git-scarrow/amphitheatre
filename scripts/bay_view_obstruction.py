@@ -19,9 +19,16 @@ Obstruction classification (applied per ray):
   clear         — horizon visible above DEM silhouette
 
 Geometry that is NOT modelled here (stated caveats):
-  stage_massing  — stage is at az ~150° (SSE), bay is at 330° (NNW); the
-                   stage is geometrically behind the viewer when looking at
-                   the bay.  blocks_bay_view=False confirmed in scene canon.
+  stage_massing  — the STAGE AXIS is 150° (SSE) but the stage MASS sits
+                   UPSTAGE of the deck, i.e. toward the bay (330°/NNW) — the
+                   bay is the backdrop the audience faces, so the stage is in
+                   FRONT of the seated viewer looking at the bay, not behind.
+                   The current FLAT deck still adds Δ0.0% (verified by the
+                   layered raycast: it sits below the terrain silhouette behind
+                   it), so blocks_bay_view=False holds FOR THE FLAT DECK ONLY.
+                   Any Rule-9 vertical element upstage DOES rise into the bay
+                   foreground (see bay_band_v2 / element_verdicts_v2). The
+                   earlier "geometrically behind the viewer" wording was wrong.
   foreground_trees — densest at az 315-320, documented separate lever (not
                    in bare-earth DEM)
   city_massing  — no OSM building heights available in GIS layer; city

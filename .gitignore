@@ -116,3 +116,6 @@ data/context/
 # Source frames live under renders/ue_live/ and ARE committed.
 web_viewer/data/renders/
 web_viewer/data/renders_manifest.js
+
+# bay-band v2 EPT extraction intermediates (regenerable via scripts/build_canopy_layer.py)
+analysis/bay_view_obstruction/canopy_work/
