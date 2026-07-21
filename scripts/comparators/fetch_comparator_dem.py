@@ -65,7 +65,7 @@ def fetch_site(slug, site):
         "source_url": url,
         "dem_product": site["dem_product"],
         "access_method": "GDAL /vsicurl/ windowed read (this script)",
-        "fetched_on": "2026-06-12",
+        "fetched_on": site.get("fetched_on", "2026-06-12"),
         "native_crs": crs_str,
         "native_resolution_m": [res[0], res[1]],
         "vertical": "NAVD88 meters (USGS 3DEP standard for 1 m DEM products)",

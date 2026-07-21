@@ -1,0 +1,43 @@
+{
+ "site": "Clarence Odmark Performance Pavilion (East Park)",
+ "slug": "charlevoix_odmark_pavilion",
+ "source_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/MI_CharlevoixCounty_2018_A18/TIFF/USGS_1M_16_x63y502_MI_CharlevoixCounty_2018_A18.tif",
+ "dem_product": {
+  "title": "USGS 1 Meter 16 x63y502 MI_CharlevoixCounty_2018_A18",
+  "project": "MI_CharlevoixCounty_2018_A18",
+  "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/MI_CharlevoixCounty_2018_A18/TIFF/USGS_1M_16_x63y502_MI_CharlevoixCounty_2018_A18.tif",
+  "publication_date": "2024-05-22",
+  "lidar_acquisition": "2018 (MI Charlevoix County A18 collection)",
+  "resolution_m": 1.0
+ },
+ "access_method": "GDAL /vsicurl/ windowed read (this script)",
+ "fetched_on": "2026-07-21",
+ "native_crs": "EPSG:26916",
+ "native_resolution_m": [
+  1.0,
+  1.0
+ ],
+ "vertical": "NAVD88 meters (USGS 3DEP standard for 1 m DEM products)",
+ "center_lonlat_wgs84": [
+  -85.25832,
+  45.3156
+ ],
+ "center_native_xy": [
+  636515.1478028188,
+  5019485.9930813685
+ ],
+ "clip_bounds_native": [
+  636215.1478028188,
+  5019185.9930813685,
+  636815.1478028188,
+  5019785.9930813685
+ ],
+ "clip_shape_px": [
+  600,
+  600
+ ],
+ "elev_min_m": 176.59197998046875,
+ "elev_max_m": 194.65725708007812,
+ "nodata": -999999.0,
+ "units_policy": "clip kept in native meters; all derived metrics convert to feet explicitly (suffix _ft)"
+}

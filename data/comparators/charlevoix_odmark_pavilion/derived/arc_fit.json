@@ -1,0 +1,46 @@
+{
+ "center_xy": [
+  636508.69,
+  5019491.68
+ ],
+ "center_basis": "CONSTRAINED to stage-front anchor (inferred); unconstrained fit rejected \u2014 see script comment",
+ "unconstrained_fit_center_xy": [
+  636520.6521503812,
+  5019496.215112789
+ ],
+ "unconstrained_fit_rmse_m": 0.36023026391882484,
+ "mid_contour_radial_rmse_m": 2.9359069365640784,
+ "fan_angle_measured_deg": 75.1,
+ "fan_basis": "angular extent (2-98 pct) of mid-bowl contour about stage-front anchor",
+ "contour_levels_ft": {
+  "row1": 589.0,
+  "mid": 592.5,
+  "top": 596.0
+ },
+ "radii_ft": {
+  "row1": {
+   "median": 22.1,
+   "p10_p90": [
+    15.6,
+    28.4
+   ],
+   "n_pts": 11
+  },
+  "mid": {
+   "median": 39.5,
+   "p10_p90": [
+    29.3,
+    55.5
+   ],
+   "n_pts": 24
+  },
+  "top": {
+   "median": 61.5,
+   "p10_p90": [
+    45.4,
+    84.6
+   ],
+   "n_pts": 34
+  }
+ }
+}

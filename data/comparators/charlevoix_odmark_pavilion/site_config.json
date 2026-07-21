@@ -1,0 +1,126 @@
+{
+ "_provenance": "Digitized 2026-07-21 from OSM pavilion footprint (way 1112264619) + Esri World Imagery + USGS 3DEP 1 m DEM (MI_CharlevoixCounty_2018_A18). All anchor values INFERRED (imagery/OSM-derived), not surveyed. Bowl rake/rise/extent are MEASURED from the DEM.",
+ "crs": "EPSG:26916",
+ "stage_centroid_xy": [
+  636514.63,
+  5019486.7
+ ],
+ "stage_rect_long_ft": 51,
+ "stage_rect_short_ft": 51,
+ "stage_rect_note": "OSM footprint is a CIRCLE (22 nodes, all radii 7.0-8.3 m; mean 7.75 m -> 15.5 m / 51 ft diameter). Unlike the Meijer lens-canopy there is no long axis, so the audience azimuth CANNOT be derived from the footprint orientation — it was taken from the DEM seating fall line instead.",
+ "stage_long_axis_az_deg": null,
+ "stage_long_axis_note": "circular roof — no long axis exists; field kept null rather than fabricated",
+ "audience_facing_azimuth_deg": 130.0,
+ "audience_facing_basis": "MEASURED from DEM: the only monotonic rising sector around the pavilion is az 275-345 (seating side), centred az 310; audience therefore faces the reciprocal, az 130. Cross-checked against Esri imagery, which shows ~5-6 concentric turf terrace bands in exactly that sector. +/-10 deg.",
+ "arc_center_xy": [
+  636508.69,
+  5019491.68
+ ],
+ "arc_center_note": "stage-front center = pavilion centroid moved 7.75 m (the circular footprint radius) along az 310, i.e. the shell edge facing the seating",
+ "profile_back_m": 35,
+ "profile_out_m": 110,
+ "fan_scan_r_m": [
+  12,
+  35
+ ],
+ "breaks_ft": {
+  "row1_s": 10,
+  "seating_top_s": 74,
+  "rim_crest_s": 74,
+  "_basis": "measured 2026-07-21 from the DEM centerline profile along az 310: flat apron 586.6-586.7 ft holds to s=8-10 ft (row 1 / front of seating), continuous rise to 597.6-598.0 ft at s=66-74 ft, then a flat promenade plateau (597.4-598.1 ft) all the way out to s=164 ft. Top of seating and rim crest coincide — there is no separate rim berm."
+ },
+ "fan_deg": {
+  "start_az": 275,
+  "end_az": 345,
+  "_basis": "inferred from the DEM radial sweep (sector with short, steep, monotonic rise) cross-checked against the imagery terrace bands; beyond az 345 and below az 275 the ground still rises but as long shallow topography toward Bridge St (rake ~6-10%), which is street grade, not seating. +/-10 deg."
+ },
+ "stage_frontage_ft": {
+  "value": 40,
+  "range": [
+   30,
+   51
+  ],
+  "_basis": "INFERRED and weakly constrained: the pavilion roof fully occludes the performance deck in every available overhead image, so no deck edge can be digitized. Bounded ABOVE by the OSM roof circle (51 ft diameter, independent contributor digitization) and BELOW by assuming a ~5 ft roof overhang each side. NO published stage dimension exists for this venue (see SOURCES.md failed-search log) — there is no independent cross-check, and this number must not be treated as measured."
+ },
+ "stage_depth_ft": {
+  "value": 40,
+  "range": [
+   30,
+   51
+  ],
+  "_basis": "INFERRED: circular structure, so depth and frontage share the same bound (the roof diameter, 51 ft). Same occlusion limit and same absence of any published spec as stage_frontage_ft; cross-check is the OSM circle only."
+ },
+ "stage_infrastructure": {
+  "roof": {
+   "value": "permanent roof over the STAGE ONLY; audience is open-air on the hillside terraces",
+   "basis": "inferred_imagery",
+   "_note": "circular roof reads clearly in imagery and as a ~6-7 ft mound in the bare-earth DEM; no audience cover anywhere in the seating sector"
+  },
+  "stage_lighting": {
+   "value": "permanently mounted light fixtures on metal arrays (pipe grid / truss) fixed to the underside of the pavilion roof",
+   "basis": "field_observation",
+   "_basis": "OBSERVED by the project owner from a passing vehicle, ~July 2026, undated and unmeasured. NOT published anywhere: no fixture count, type, circuiting, control position, or dimming capability is documented in any city source. Counts as evidence that a permanent lighting rig EXISTS; does not establish what it is or who may use it. VERIFY by site visit or by calling Charlevoix Rec Dept 231-547-3253.",
+   "_conflict": "The City's Performance Pavilion Use Policy (DocumentCenter/View/408, rev. 2025-11-20) states 'Users must provide their own equipment.' The most likely reconciliation is that the city-owned rig covers LIGHTING while performers supply PA/backline, but the policy text does not distinguish them. Treat as UNRESOLVED."
+  },
+  "sound_system": {
+   "value": "UNKNOWN — no house PA confirmed",
+   "basis": "published",
+   "_basis": "City Use Policy: 'Users must provide their own equipment.' The venue is described in city/visitor copy as a 'stone band shell with natural acoustics', which implies acoustic reinforcement by shell geometry rather than an installed PA. No sound-system spec found in any source."
+  },
+  "electrical_service": {
+   "value": "UNKNOWN",
+   "basis": "published",
+   "_basis": "no amperage, circuit count, outlet, or shore-power detail published in the facility page, Use Request Form, or Use Policy. A permanent lighting rig implies service exists, but its capacity is undocumented."
+  },
+  "enclosed_room": {
+   "value": "the pavilion contains a keyed, lockable room",
+   "basis": "published",
+   "_basis": "Use Policy requires users to 'return all keys to the Recreation Department located in City Hall' and refers to 'this room'; consistent with a control/storage space in the shell, but its size and function are not stated."
+  },
+  "operating_limits": {
+   "value": "use limited to 2 hours, must end by 9:30 p.m.; max 2 uses per calendar month, not sequential days; fee $120 resident / $200 non-resident; no admission charge without City Clerk business licensing",
+   "basis": "published",
+   "_basis": "City of Charlevoix Performance Pavilion Use Policy, rev. 2025-11-20 (DocumentCenter/View/408) + Use Request Form (DocumentCenter/View/407)"
+  },
+  "noise_standard": {
+   "value": "discretionary, no dB limit — Rec Dept weighs whether an event is 'likely to generate noise that would adversely affect people who are not attending the event'",
+   "basis": "published",
+   "_basis": "Use Policy DocumentCenter/View/408"
+  }
+ },
+ "row_count_note": "turf/stone terrace bands on the hillside, no fixed seats found in any source",
+ "row_count_inferred": {
+  "value": "~5-6 terrace bands between r=12 m and r=25 m, plus open lawn and a flat promenade above; no fixed seating",
+  "_basis": "inferred: counted as concentric light/dark turf bands in Esri World Imagery in the az 275-345 sector; the 1 m DEM smooths them into a continuous ramp and CANNOT resolve individual risers"
+ },
+ "ada_circulation_note": "level paved plaza wraps the pavilion at the 586.6 ft apron; a paved promenade runs along the 597.6-598.0 ft rim above the seating; imagery shows paved walks flanking the terraces on both sides connecting the two levels. Whether any of these meets running-slope/cross-slope code is UNVERIFIED — no as-built or civil drawing was found.",
+ "backdrop_note": "audience faces ~SE (az 130) across the pavilion; Round Lake and the municipal marina lie immediately beyond and to the left of the stage (flat water return at 579.4 ft NAVD88 begins ~25-30 m out on az 30-140), so the water reads as the stage backdrop from the seating. UNLIKE Petoskey, the band shell is a closed stone structure — it occludes the water directly behind the stage; the lake is seen past the shell's flanks, not through the stage opening.",
+ "capacity_basis": "UNKNOWN — no capacity or occupant-load figure is published by the City of Charlevoix for this pavilion or the East Park lawn. The city's Use Request Form asks the applicant to state an 'expected number of attendees' and sets no cap; neither the facility page nor the Use Policy states one. Deliberately left null rather than estimated from bowl area (see SOURCES.md failed-search log).",
+ "dem_verification": {
+  "dem_type": "bare-earth DTM (USGS 3DEP 1 m standard product)",
+  "terrace_preservation": "PARTIALLY VERIFIED — the DEM cleanly resolves the overall bowl (continuous 11.3 ft rise, hillshade fall line matches the imagery terrace sector), but it does NOT resolve the individual terrace risers that imagery shows; terrace COUNT therefore stays inferred_imagery while rake/rise stay measured_dem.",
+  "known_voids": "(1) Round Lake is a flattened water return at 579.4 ft NAVD88. (2) CRITICAL: the pavilion structure is NOT removed from this 'bare-earth' surface — it reads as a ~6-7 ft mound (593.3 ft at the roof apex vs a 586.6 ft surrounding apron), so NO ground elevation, stage-deck height, or deck geometry under the shell may be taken from this DEM. This is the same covered-structure limitation that disqualified the Vail comparator, but here it affects only the stage footprint, not the seating."
+ },
+ "ada_detail": {
+  "route_concept": {
+   "value": "level paved apron plaza at stage level (586.6 ft) and a level paved promenade at the rim (597.6-598.0 ft), linked by paved walks flanking the terraces — both ends of the bowl reachable on paved park circulation without a dedicated ramp structure",
+   "basis": "inferred_imagery"
+  },
+  "vertical_drop_ft": {
+   "value": "11.3 ft measured rise from row 1 (586.7 ft) to top of seating (598.0 ft) on the az 310 centerline",
+   "basis": "measured_dem"
+  },
+  "dispersion": {
+   "value": "plausibly the stage-level apron and the rim promenade (two elevations); no accessible-seating locations are designated in any public source found",
+   "basis": "inferred_imagery"
+  },
+  "redundancy": {
+   "value": "paved walks appear on both flanks of the terrace sector",
+   "basis": "inferred_imagery"
+  },
+  "sightline_preservation": {
+   "value": "unverified; lawn/terrace venue with no fixed seats and no published accessible-seating plan",
+   "basis": "inferred_imagery"
+  }
+ }
+}

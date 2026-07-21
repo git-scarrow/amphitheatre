@@ -504,6 +504,169 @@
    "basis": "inferred_imagery"
   }
  },
+ "charlevoix_odmark_pavilion": {
+  "site": "Clarence Odmark Performance Pavilion (East Park)",
+  "slug": "charlevoix_odmark_pavilion",
+  "location": "400 Bridge St, East Park, Charlevoix, MI",
+  "crs": "EPSG:26916 (m), vertical NAVD88 m -> reported ft",
+  "dem": {
+   "value": "USGS 1 Meter 16 x63y502 MI_CharlevoixCounty_2018_A18 (1.0 m)",
+   "basis": "published",
+   "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/MI_CharlevoixCounty_2018_A18/TIFF/USGS_1M_16_x63y502_MI_CharlevoixCounty_2018_A18.tif",
+   "acquisition": "2018 (MI Charlevoix County A18 collection)"
+  },
+  "capacity": {
+   "value": null,
+   "basis": "published",
+   "source": "no published capacity found for the pavilion or the East Park lawn \u2014 see SOURCES.md failed-search log; capacity stays UNKNOWN, not estimated",
+   "capacity_basis": "UNKNOWN \u2014 no capacity or occupant-load figure is published by the City of Charlevoix for this pavilion or the East Park lawn. The city's Use Request Form asks the applicant to state an 'expected number of attendees' and sets no cap; neither the facility page nor the Use Policy states one. Deliberately left null rather than estimated from bowl area (see SOURCES.md failed-search log)."
+  },
+  "dem_type": {
+   "value": "bare-earth DTM (USGS 3DEP 1 m standard product)",
+   "basis": "published",
+   "note": "PARTIALLY VERIFIED \u2014 the DEM cleanly resolves the overall bowl (continuous 11.3 ft rise, hillshade fall line matches the imagery terrace sector), but it does NOT resolve the individual terrace risers that imagery shows; terrace COUNT therefore stays inferred_imagery while rake/rise stay measured_dem.",
+   "known_voids": "(1) Round Lake is a flattened water return at 579.4 ft NAVD88. (2) CRITICAL: the pavilion structure is NOT removed from this 'bare-earth' surface \u2014 it reads as a ~6-7 ft mound (593.3 ft at the roof apex vs a 586.6 ft surrounding apron), so NO ground elevation, stage-deck height, or deck geometry under the shell may be taken from this DEM. This is the same covered-structure limitation that disqualified the Vail comparator, but here it affects only the stage footprint, not the seating."
+  },
+  "audience_facing_az_deg": {
+   "value": 130.0,
+   "basis": "inferred_imagery",
+   "note": "from OSM stage rectangle orientation + seating side; consistent w/ DEM fall line"
+  },
+  "stage_frontage_ft": {
+   "value": 40,
+   "basis": "inferred_imagery",
+   "note": "INFERRED and weakly constrained: the pavilion roof fully occludes the performance deck in every available overhead image, so no deck edge can be digitized. Bounded ABOVE by the OSM roof circle (51 ft diameter, independent contributor digitization) and BELOW by assuming a ~5 ft roof overhang each side. NO published stage dimension exists for this venue (see SOURCES.md failed-search log) \u2014 there is no independent cross-check, and this number must not be treated as measured.",
+   "range": [
+    30,
+    51
+   ]
+  },
+  "stage_core_width_ft": {
+   "value": 40,
+   "basis": "inferred_imagery",
+   "note": "single deck; no core/shoulder distinction",
+   "range": [
+    30,
+    51
+   ]
+  },
+  "stage_effective_frontage_ft": {
+   "value": 40,
+   "basis": "inferred_imagery",
+   "note": "single deck; no core/shoulder distinction",
+   "range": [
+    30,
+    51
+   ]
+  },
+  "stage_depth_ft": {
+   "value": 40,
+   "basis": "inferred_imagery",
+   "note": "INFERRED: circular structure, so depth and frontage share the same bound (the roof diameter, 51 ft). Same occlusion limit and same absence of any published spec as stage_frontage_ft; cross-check is the OSM circle only.",
+   "range": [
+    30,
+    51
+   ]
+  },
+  "stage_front_to_row1_ft": {
+   "value": 10,
+   "basis": "measured_dem",
+   "note": "measured 2026-07-21 from the DEM centerline profile along az 310: flat apron 586.6-586.7 ft holds to s=8-10 ft (row 1 / front of seating), continuous rise to 597.6-598.0 ft at s=66-74 ft, then a flat promenade plateau (597.4-598.1 ft) all the way out to s=164 ft. Top of seating and rim crest coincide \u2014 there is no separate rim berm."
+  },
+  "floor_elev_ft": {
+   "value": 586.7,
+   "basis": "measured_dem"
+  },
+  "row1_elev_ft": {
+   "value": 587.0,
+   "basis": "measured_dem"
+  },
+  "top_row_elev_ft": {
+   "value": 598.0,
+   "basis": "measured_dem"
+  },
+  "rise_row1_to_top_ft": {
+   "value": 10.9,
+   "basis": "measured_dem"
+  },
+  "avg_rake_pct": {
+   "value": 17.1,
+   "basis": "measured_dem"
+  },
+  "local_rake_range_pct": {
+   "value": [
+    16.8,
+    20.9
+   ],
+   "basis": "measured_dem",
+   "note": "20-ft windows on centerline"
+  },
+  "fan_angle_deg": {
+   "value": 75.1,
+   "basis": "measured_dem",
+   "note": "angular extent (2-98 pct) of mid-bowl contour about stage-front anchor (anchor center inferred); imagery read was 70 deg"
+  },
+  "inner_radius_ft": {
+   "value": 10,
+   "basis": "measured_dem",
+   "note": "row-1 distance from stage-front arc center; contour check r(row1+2ft) = 22.1 ft"
+  },
+  "outer_radius_ft": {
+   "value": 74,
+   "basis": "measured_dem",
+   "note": "top-of-seating distance on centerline; contour check r(top-2ft) = 61.5 ft"
+  },
+  "upper_row_distance_ft": {
+   "value": 74,
+   "basis": "measured_dem",
+   "note": "stage front -> top seating row, on axis"
+  },
+  "row1_arc_length_ft": {
+   "value": 13.1,
+   "basis": "measured_dem",
+   "note": "measured fan x row-1 radius (anchor center inferred)"
+  },
+  "frontage_to_row1_arc": {
+   "value": 3.05,
+   "basis": "inferred_imagery",
+   "note": "frontage is the inferred quantity"
+  },
+  "row_count_est": {
+   "value": "~5-6 terrace bands between r=12 m and r=25 m, plus open lawn and a flat promenade above; no fixed seating",
+   "basis": "inferred_imagery",
+   "note": "inferred: counted as concentric light/dark turf bands in Esri World Imagery in the az 275-345 sector; the 1 m DEM smooths them into a continuous ramp and CANNOT resolve individual risers"
+  },
+  "ada": {
+   "value": "level paved plaza wraps the pavilion at the 586.6 ft apron; a paved promenade runs along the 597.6-598.0 ft rim above the seating; imagery shows paved walks flanking the terraces on both sides connecting the two levels. Whether any of these meets running-slope/cross-slope code is UNVERIFIED \u2014 no as-built or civil drawing was found.",
+   "basis": "inferred_imagery"
+  },
+  "ada_detail": {
+   "route_concept": {
+    "value": "level paved apron plaza at stage level (586.6 ft) and a level paved promenade at the rim (597.6-598.0 ft), linked by paved walks flanking the terraces \u2014 both ends of the bowl reachable on paved park circulation without a dedicated ramp structure",
+    "basis": "inferred_imagery"
+   },
+   "vertical_drop_ft": {
+    "value": "11.3 ft measured rise from row 1 (586.7 ft) to top of seating (598.0 ft) on the az 310 centerline",
+    "basis": "measured_dem"
+   },
+   "dispersion": {
+    "value": "plausibly the stage-level apron and the rim promenade (two elevations); no accessible-seating locations are designated in any public source found",
+    "basis": "inferred_imagery"
+   },
+   "redundancy": {
+    "value": "paved walks appear on both flanks of the terrace sector",
+    "basis": "inferred_imagery"
+   },
+   "sightline_preservation": {
+    "value": "unverified; lawn/terrace venue with no fixed seats and no published accessible-seating plan",
+    "basis": "inferred_imagery"
+   }
+  },
+  "backdrop": {
+   "value": "audience faces ~SE (az 130) across the pavilion; Round Lake and the municipal marina lie immediately beyond and to the left of the stage (flat water return at 579.4 ft NAVD88 begins ~25-30 m out on az 30-140), so the water reads as the stage backdrop from the seating. UNLIKE Petoskey, the band shell is a closed stone structure \u2014 it occludes the water directly behind the stage; the lake is seen past the shell's flanks, not through the stage opening.",
+   "basis": "inferred_imagery"
+  }
+ },
  "generated": "scripts/comparators/extract_metrics.py",
  "units": "all *_ft values international feet; *_pct percent"
 }

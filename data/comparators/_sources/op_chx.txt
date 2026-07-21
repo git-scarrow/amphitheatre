@@ -1,0 +1,9 @@
+[out:json][timeout:180];
+nwr(around:400,45.3156041,-85.2583200)["name"];
+out geom tags;
+nwr(around:400,45.3156041,-85.2583200)["building"];
+out geom tags;
+nwr(around:400,45.3156041,-85.2583200)["leisure"];
+out geom tags;
+nwr(around:400,45.3156041,-85.2583200)["highway"~"footway|path|pedestrian|steps"];
+out geom tags;

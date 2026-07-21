@@ -1,6 +1,15 @@
-# Amphitheatre comparator benchmark — Petoskey civic bowl vs two in-use bowls
+# Amphitheatre comparator benchmark — Petoskey civic bowl vs in-use bowls
 
 **Date:** 2026-06-12 · **Status:** complete (planning-grade)
+
+> **Addendum 2026-07-21 — a third comparator was added.** The Clarence Odmark
+> Performance Pavilion (East Park, Charlevoix MI) joins the set as the nearest
+> *program* match to Petoskey. Its data, measured geometry, covered-stage
+> findings and limits live in **`docs/CHARLEVOIX_ODMARK_COMPARATOR.md`**; its
+> metrics are in `data/comparators/comparison.json` alongside the other two.
+> Everything below this line is the original two-comparator benchmark and is
+> **unchanged** — no result, verdict, or Petoskey canon value in this document
+> was revised by the addition.
 **Board:** `boards/comparator_side_by_side.png`
 **Data:** `data/comparators/` (per-site SOURCES.md, DEM clips, configs,
 derived metrics) · combined `data/comparators/comparison.json`
@@ -32,6 +41,7 @@ not against generic best-practice claims.
 | **Santa Barbara Bowl** (Santa Barbara CA, 1936/rebuilt 2002) | USGS 1 m, CA_Montecito_2018 (acq. 2018) | **ACCEPTED** — larger (4,562) terraced canyon bowl; stress-tests rake/rise/distance at scale |
 | Gerald R. Ford Amphitheater (Vail CO) | covered (CO Central Western 2016) | **REJECTED** — roofed pavilion over most seating: not an open bowl typology, and bare-earth under the roof is unreliable for row-level rake |
 | Red Rocks Amphitheatre (Morrison CO) | covered (CO 3DEP 1 m) | **REJECTED** — ~9,500-seat rock-landform outlier; geometry driven by the monoliths, not by civic-bowl design choices |
+| **Clarence Odmark Performance Pavilion** (East Park, Charlevoix MI, rebuilt 2007) | USGS 1 m, MI_CharlevoixCounty_2018_A18 (acq. 2018) | **ACCEPTED 2026-07-21** — nearest *program* match: small-city municipal northern-Michigan waterfront venue, covered stage over open-air hillside seating, water backdrop, free civic programming. Half Petoskey's scale and **no published capacity**, so it constrains geometry/typology/operations only. See `docs/CHARLEVOIX_ODMARK_COMPARATOR.md` |
 
 Both accepted DEMs post-date the venues' current geometry (SB stage rebuilt
 2002, LiDAR 2018; Meijer built 2003, LiDAR 2016). Raw TNM/Nominatim/Overpass

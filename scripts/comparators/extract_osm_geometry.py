@@ -26,7 +26,8 @@ SRC = os.path.join(ROOT, "data", "comparators", "_sources")
 
 def load_elements():
     els = {}
-    for fn in ("overpass_sites.json", "overpass_detail.json"):
+    for fn in ("overpass_sites.json", "overpass_detail.json",
+               "overpass_charlevoix.json"):
         with open(os.path.join(SRC, fn)) as f:
             for e in json.load(f)["elements"]:
                 els[(e["type"], e["id"])] = e

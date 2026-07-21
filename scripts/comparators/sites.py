@@ -3,8 +3,8 @@
 
 Each site entry records WHERE the venue is (WGS84 center from OSM), WHICH
 USGS 3DEP 1 m DEM product covers it (verified via TNM Access API on
-2026-06-12; raw responses archived in data/comparators/_sources/), and how
-large a clip to take.
+2026-06-12, and 2026-07-21 for Charlevoix; raw responses archived in
+data/comparators/_sources/), and how large a clip to take.
 
 Units policy (audit-critical):
   * USGS 1 m DEM tiles are in a projected METER CRS (UTM) with NAVD88
@@ -71,6 +71,43 @@ SITES = {
                                 "there, but the 1,900 figure is used venue-wide in press)"),
             "built": 2003,
             "stage_note": "covered stage (canopy), open-air tiered lawn bowl",
+        },
+    },
+    "charlevoix_odmark_pavilion": {
+        "name": "Clarence Odmark Performance Pavilion (East Park)",
+        "location": "400 Bridge St, East Park, Charlevoix, MI",
+        "center_lonlat": (-85.25832, 45.31560),  # OSM way 1112264619 (band shell)
+        "osm_stage_way": 1112264619,
+        "clip_half_m": 300.0,
+        "fetched_on": "2026-07-21",
+        "dem_product": {
+            "title": "USGS 1 Meter 16 x63y502 MI_CharlevoixCounty_2018_A18",
+            "project": "MI_CharlevoixCounty_2018_A18",
+            "url": ("https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/"
+                    "1m/Projects/MI_CharlevoixCounty_2018_A18/TIFF/"
+                    "USGS_1M_16_x63y502_MI_CharlevoixCounty_2018_A18.tif"),
+            "publication_date": "2024-05-22",
+            "lidar_acquisition": "2018 (MI Charlevoix County A18 collection)",
+            "resolution_m": 1.0,
+        },
+        "facts_published": {
+            "capacity": None,
+            "capacity_source": ("no published capacity found for the pavilion or "
+                                "the East Park lawn — see SOURCES.md failed-search "
+                                "log; capacity stays UNKNOWN, not estimated"),
+            "built": "reconstructed as part of the East Park redesign "
+                     "(APA Great Public Spaces designation 2009)",
+            "stage_note": ("covered stone band shell — roof covers the STAGE ONLY; "
+                           "audience is open-air on built-in hillside seating. "
+                           "Same covered-stage/open-bowl typology as Meijer "
+                           "Gardens, NOT the Vail roofed-seating typology that "
+                           "was rejected."),
+            "programming": ("~50 performances annually in East Park (visitor-bureau "
+                            "figure, press-circulated); city 'Live on the Lake' "
+                            "concert series"),
+            "dedication": ('Clarence "Odie" Odmark, Charlevoix Band Director '
+                           "1946-1975 (OSM description, sourced to HMDB marker "
+                           "98090)"),
         },
     },
 }
