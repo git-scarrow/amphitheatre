@@ -1,0 +1,26 @@
+{
+ "role": "REFERENCE ONLY \u2014 existing/natural terrain screen. NOT design canon; NOT a substitute for dem/dem_design_1ft.tif (EPSG:6494).",
+ "source_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/MI_13County_2015_C16/TIFF/USGS_1M_16_x65y503_MI_13County_2015_C16.tif",
+ "project": "MI_13County_2015_C16",
+ "lidar_acquisition": "2015 (same project family as Petoskey canon)",
+ "publication_date": "2022-11-13",
+ "native_crs": "EPSG:26916",
+ "native_resolution_m": [
+  1.0,
+  1.0
+ ],
+ "vertical": "NAVD88 meters",
+ "center_lonlat_wgs84": [
+  -84.95774992514721,
+  45.37431854383076
+ ],
+ "clip_bounds_native": [
+  659658.6625483904,
+  5026312.543174272,
+  660158.6625483904,
+  5026812.543174272
+ ],
+ "fetched_on": "2026-07-21",
+ "elev_min_m": 176.3877716064453,
+ "elev_max_m": 207.4516143798828
+}

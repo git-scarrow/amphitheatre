@@ -1,0 +1,109 @@
+{
+ "_role": "landform screen only \u2014 emits no seating geometry, revalidates no C-values, not costable",
+ "terrain_basis": "USGS 3DEP 1 m MI_13County_2015_C16 (reference clip)",
+ "bowl_centre_6494": [
+  19533078.119030748,
+  750802.4564712099
+ ],
+ "centre_fit_rmse_ft": 7.55,
+ "seating_fan_az": [
+  92,
+  193
+ ],
+ "identity": "riser_ft = natural_slope * tread_depth_ft",
+ "target_riser_ft": 2.0,
+ "zones": {
+  "flat event floor  <2%": {
+   "radius_ft": [
+    25,
+    72
+   ],
+   "plan_area_sf": 4020,
+   "natural_slope_pct_median": 1.1,
+   "natural_slope_pct_range": [
+    0.6,
+    1.8
+   ],
+   "max_tread_ft_at_target_riser": [
+    112.7,
+    191.8
+   ],
+   "riser_ft_if_charlevoix_depth": [
+    0.06,
+    0.19
+   ]
+  },
+  "FORECOURT BAND  5-31%": {
+   "radius_ft": [
+    72,
+    95
+   ],
+   "plan_area_sf": 3387,
+   "natural_slope_pct_median": 20.3,
+   "natural_slope_pct_range": [
+    2.4,
+    30.9
+   ],
+   "max_tread_ft_at_target_riser": [
+    6.5,
+    83.4
+   ],
+   "riser_ft_if_charlevoix_depth": [
+    0.26,
+    3.3
+   ]
+  },
+  "CIVIC CORE  31-38%": {
+   "radius_ft": [
+    95,
+    157
+   ],
+   "plan_area_sf": 13778,
+   "natural_slope_pct_median": 36.2,
+   "natural_slope_pct_range": [
+    30.9,
+    38.0
+   ],
+   "max_tread_ft_at_target_riser": [
+    5.3,
+    6.5
+   ],
+   "riser_ft_if_charlevoix_depth": [
+    3.3,
+    4.07
+   ]
+  },
+  "above seating": {
+   "radius_ft": [
+    157,
+    180
+   ],
+   "plan_area_sf": 6835,
+   "natural_slope_pct_median": 23.2,
+   "natural_slope_pct_range": [
+    6.6,
+    33.1
+   ],
+   "max_tread_ft_at_target_riser": [
+    6.0,
+    30.5
+   ],
+   "riser_ft_if_charlevoix_depth": [
+    0.7,
+    3.54
+   ]
+  }
+ },
+ "canon_crosscheck_ft": {
+  "row1_tread_elev": {
+   "existing_reference": 611.25,
+   "canon": 610.83,
+   "diff": 0.42
+  },
+  "top_of_seating_elev": {
+   "existing_reference": 636.16,
+   "canon": 633.7,
+   "diff": 2.46
+  }
+ }
+}
