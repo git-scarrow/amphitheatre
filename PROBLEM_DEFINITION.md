@@ -275,6 +275,13 @@ acoustic/noise proxy* · view-obstruction (`bay_view_score`) · solar (upper-cre
 - Bay view: the flat ~618 ft rim does **not** block the bay for mid/upper rows; front/floor
   rows lose it inherently; 330° vs 315° turns on a *foreground tree screen* (densest
   az 315–320), so 330° wins under current trees and equalizes if trimmed. Water plane 579.45.
+  **[2026-07-21 quantification — bay-band v2, commit `4e6d03a`:** through today's canopy
+  **no row reaches an acceptable water band** in either leaf state (best ~54%, bend r18);
+  rim thresholds r_n = east r8 / bend r6 / south r6; screen re-measured densest az 312–321
+  (2015 leaf-off LiDAR, crowns opaque). Canopy-free (S1), the east still caps at ~54–62% on
+  **durable city massing** — the restorable bay view is structurally a **bend/south asset**.
+  See `analysis/bay_view_obstruction/rn_rm_table.md` and
+  `analysis/stage_adoption/BAY_BAND_V2_DECISION_ADDENDUM.md`.]
 - Stormwater treatment cell: bottom 609.1, pool 611.3, 100-yr WSEL 611.3, event-floor
   min 612.5 (⇒ 1.2 ft freeboard at the configured floor).
 

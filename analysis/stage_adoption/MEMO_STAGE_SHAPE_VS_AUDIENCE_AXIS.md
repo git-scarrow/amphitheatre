@@ -50,6 +50,14 @@ to row 1 on every edge? Candidate moves, cheapest first:
 
 ## Constraints that must hold
 
+**Typology price (bay-band v2, adopted 2026-07-21 — `BAY_BAND_V2_DECISION_ADDENDUM.md` DP3):**
+any shape+typology proposal that includes the **T2 roof** carries its repriced option cost —
+**38.5% of the restored (S1) bay view** (the old 8.6% was terrain-only and is superseded) — and
+must spec the roof top **≤ 634.0 ft NAVD88** (the S1 neighbor-gate pass margin is ~0.9 ft,
+inside construction tolerance). The typology decision must weigh the identity tension
+explicitly: the roof takes the largest single bite of exactly the asset a civic de-treeing
+effort would restore.
+
 - **Row-1 clearance ≥ 12.0 ft** on the *governed* measure (occupied deck incl. shoulders).
   This is the gate that rejected 124.4°.
 - **Rule 9 fan declaration must match the emitted seating.** path-4 wide-fan

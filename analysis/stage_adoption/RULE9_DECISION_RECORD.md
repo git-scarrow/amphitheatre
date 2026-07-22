@@ -8,6 +8,13 @@ _Instance of `STAGE_RULE9_DECISION_TEMPLATE.md`. Closes (provisionally) `DESIGN_
   `resolved` is an *audit* state, reached only when the package audit is green **and** the row-1
   gaps are re-confirmed against the adopted Decision-1 seating tier (see "Path to resolved").
 - **Decided by / date:** user instruction, 2026-07-02.
+- **2026-07-21 addendum (adopted):** the bay-view constraint regime this record's obstruction
+  figures rely on was redefined by `BAY_BAND_V2_DECISION_ADDENDUM.md` (effective silhouette,
+  occluder sets S0/S1/S2, far-shore band top, Reading-B neighbor gate). The T1/T2 bay/foreground
+  percentages quoted below are **terrain-only basis, superseded-in-definition** — quote them only
+  with that label. The adopted bundle itself (placement/front/fan/T1) is unchanged. Notably, any
+  future T2 (roof) adoption inherits the addendum's DP3 conditions: charge **38.5% of the
+  restored (S1) view** and roof top **≤ 634.0 ft NAVD88**.
 
 ---
 

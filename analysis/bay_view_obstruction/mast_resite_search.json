@@ -1,0 +1,23 @@
+{
+  "purpose": "DP2(c) mast re-site search — can the 26-ft masts stand anywhere in the stage/event zone under the DURABLE (S1) neighbor ceiling?",
+  "decided_under": "BAY_BAND_V2_DECISION_ADDENDUM.md DP2 (owner instruction 2026-07-21)",
+  "method": "rasterio scan of committed neighbor_ceiling_S1.tif (commit 4e6d03a): count valid cells whose ceiling >= mast top 638.5 ft NAVD88 (deck 612.5 + 26.0); executed on gentoo 2026-07-21 via .venv python; inline one-off (this file records inputs+outputs; regenerate against the committed raster to verify)",
+  "inputs": {
+    "raster": "analysis/bay_view_obstruction/neighbor_ceiling_S1.tif",
+    "deck_navd88_ft": 612.5,
+    "mast_top_navd88_ft": 638.5,
+    "stage_front_centre_e6494": [19533106.6, 750762.8]
+  },
+  "results": {
+    "cells_valid": 2881,
+    "ceiling_max_navd88": 656.76,
+    "ceiling_p90_navd88": 647.37,
+    "ceiling_median_navd88": 639.28,
+    "cells_allowing_26ft_mast": 1575,
+    "share_of_zone": 0.547,
+    "max_mast_height_anywhere_ft": 44.26,
+    "qualifying_centroid_offset_from_stage_front_ft_EN": [46.1, -61.3],
+    "qualifying_bbox_e6494": [19532969.7, 750614.0, 19533249.7, 750864.0]
+  },
+  "interpretation": "55% of the zone admits the full 26-ft mast under the durable ceiling; qualifying cells span the zone and concentrate toward the receptor (downstage/SE) side, where the descending street-eye rays are still high. Re-siting is FEASIBLE: the DP2(a) seasonal exemption is belt-and-suspenders, not load-bearing. Final mast siting to be selected from qualifying cells at element-adoption time, jointly with screen-geometry needs."
+}

@@ -235,6 +235,13 @@ before the corresponding decision is made. Items are tagged by the stage that ne
   outlet invert (carried from Stage 1/3).
 
 ## Stage 7 — Sun-path / view-glare study (added 2026-06-04)
+- **✅ NNW foreground canopy screen MEASURED (2026-07-21, bay-band v2, commit `4e6d03a`):**
+  3DEP EPT first returns (Emmet 2015, **2015-05-02 leaf-off**), CHM with OSM footprints
+  subtracted; densest az 312–321 (confirms the prior 315–320 estimate). Result: **no seated
+  row reaches an acceptable water band through today's canopy** (r_m does not exist) — see
+  `analysis/bay_view_obstruction/rn_rm_table.md`. **Remaining gaps:** field verification of
+  **2015→2026 canopy growth** (measurement is 10 yrs old, biased thin); **leaf-on opacity is
+  a labeled assumption**, not measured (no leaf-on LiDAR).
 - **Tree/canopy species & mature form** for the WNW glare grove (az 280–308°):
   need salt/bay-edge-tolerant native deciduous, ~18–26 ft mature canopy, limbed-up
   habit (block low sun, pass the under-canopy view). Growth time to effective
