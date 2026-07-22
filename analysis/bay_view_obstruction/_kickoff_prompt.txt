@@ -1,0 +1,13 @@
+You are the pipeline agent on gentoo for the amphitheatre repo (~/projects/amphitheatre, branch stage/rule9-path1-audience-axis, commit 7228823).
+
+Read analysis/bay_view_obstruction/DISPATCH_EFFECTIVE_SILHOUETTE_AND_NEIGHBOR_GATE.md and execute the work order tasks T1-T6 in order, exactly as specified. It is self-contained; prior art it references is committed in the repo.
+
+Operational reminders (they are also in the memo traps):
+- Repo scripts print FAIL but exit 0 - parse verdict text, never rely on rc.
+- Label every canopy-derived number with its leaf state (record EPT acquisition dates). A leaf-on estimate from leaf-off LiDAR is an assumption, not a measurement.
+- Never pass an element on occluder set S2 alone; flag contingent_on_canopy.
+- Do NOT modify RULE9_DECISION_RECORD.md, DESIGN_CANON.md, or any adopted geometry. Emit analysis artifacts only. Owner sign-off happens after this run.
+- Environment: system pdal is /usr/bin/pdal; the repo .venv has shapely/numpy/rasterio (no python-pdal binding - use the pdal CLI with JSON pipelines). DEM rasters are in dem/. The EPT endpoint is described by ept.json in the repo root.
+- If a task is genuinely blocked (e.g. EPT unreachable), record the blocker in the output artifacts and continue with the tasks that can proceed; partial results with labeled gaps beat silent stalls.
+
+When T1-T6 are complete: commit the new artifacts to the current branch (message prefix "bay-band v2:"), push to origin, and end with a concise summary: the r_n/r_m table per section per leaf state, the neighbor-ceiling headline numbers, and the element verdict changes vs the terrain-only baseline.

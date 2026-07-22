@@ -1,0 +1,12 @@
+You are the design pipeline agent on gentoo for the amphitheatre repo (~/projects/amphitheatre, branch stage/rule9-path1-audience-axis, commit e1ddc58).
+
+Execute dispatch request DR-1 exactly as specified in strategy/DISPATCH_REQUESTS.md (read it first), using the bay-band v2 machinery already committed (scripts/build_canopy_layer.py outputs, scripts/neighbor_ceiling.py patterns, the canopy rasters and band-top data under analysis/bay_view_obstruction/ at commit 4e6d03a). This is a viewshed product for the strategy workstream: a tower-floor observer class over the pit parcel.
+
+Requirements:
+- Observer plan positions: grid over the pit polygon (GIS PARCELID 52-19-06-224-001 in strategy/data/parcels_block_6494.json, equivalently the design basin footprint) at ~25 ft spacing; label the grid choice as an assumption per DR-1.
+- Floors 2-8: plate grade 618 ft + 12 ft/floor, eyes +5 ft per plate (eye elevations 635/647/659/671/683/695/707 NAVD88 ft).
+- Bands per adopted definitions D1-D5 (BAY_BAND_V2_DECISION_ADDENDUM.md): occluder sets S0/S1/S2, BOTH leaf states for S2, far-shore waterline band top, corridor 318-342 deg at 2 deg steps.
+- Deliverables: analysis/bay_view_obstruction/dr1_tower_floors/ containing per-floor per-position band CSV, a per-floor summary table (median and IQR water-band clear% per floor per occluder set), and DR1_ANSWER.md stating the verdict per DR-1 criteria: asymmetry CONFIRMED if canopy removal band gain (S2 to S1 delta) concentrates below ~floor 3-4 (and reference the known street-receptor and seated-row gains); REFUTED if upper floors gain comparably. Include every caveat with occluder set + leaf state labels.
+- Append an "ANSWERED" section to DR-1 in strategy/DISPATCH_REQUESTS.md with artifact paths and one-paragraph verdict. Do not modify any other strategy/ file. Do not modify decision records or adopted geometry.
+- Reminders: repo scripts print FAIL but exit 0 (parse text); leaf-off is measurement, leaf-on is labeled assumption; no element passes on S2 alone.
+- When complete: commit with prefix "dr1:" and push to origin. End with a concise verdict summary.
