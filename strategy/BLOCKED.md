@@ -9,3 +9,8 @@
   gentoo). STRAT does not compute viewsheds (P-1).
 - **T-8 per-floor view pricing**: blocked on DR-1 return; bracket work can proceed on
   labeled assumptions meanwhile.
+- **T-5/T-4 records (drafted-only, sends ON HOLD):** City of Petoskey current 5-yr
+  recreation plan grant inventory; DNR Grants Management 6(f)/MNRTF project-boundary
+  maps for city waterfront grants; city TIF/DDA plan docs covering Bayfront; **Emmet
+  57th Circuit records** for the Apr-2021 park-resolution ruling (corroborates F5);
+  LARA/COFS entity detail for Petoskey Grand LLC (web app, may need manual pull).

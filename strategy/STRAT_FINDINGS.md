@@ -75,6 +75,58 @@ anchors 1–2. Not yet: T-3 comps, T-4–T-8.
 
 ---
 
+## F5 · Owner profile (T-4): identified principal, adversarial history, and a decisive litigation fact
+
+- [fact] Petoskey Grand LLC finalized purchase of 200 E Lake St on **2018-10-31** from
+  **LCA Enterprises** (upnorthlive.com); the sale extinguished the Petoskey Pointe
+  entitlement ("no longer have the right to build the proposed Petoskey Pointe project").
+- [fact] The principal is **Robert "Bob" Berg, Key Largo, Florida** (upnorthlive political-signs
+  article names "Florida businessman Bob Berg" as owner; local tracking site adds
+  business partner/daughter Katie). Prior owner chain: Elias Amash (Grand Rapids) 2013–2018.
+- [inference — single-source (northernmichmashpreserve.weebly.com tracking page), needs
+  corroboration via PNR archive + court records:] behavioral timeline: Jan 2019 city
+  restored pre-2006 zoning (eliminating the Pointe PUD — the **by-right envelope shrank**);
+  Mar 2019 Berg PUD presentation; Jul 2019 Planning Commission declined after an
+  "all-or-nothing, no negotiating" developer ultimatum; Oct 2019 ultimatum to the mayor +
+  threatened defamation suit against a council member; **Apr 2021 a judge ruled the
+  city's park resolution for the site "illegal and void"**; 2022–2025 no development
+  activity.
+- [inference] Model-relevant reads (evidence line only, no strategy calls): (i) the
+  **city already attempted the unilateral park move and lost in court** — any civic path
+  runs through arms-length purchase, not designation; (ii) counterparty is litigious and
+  ultimatum-prone → `T` (Coasean transaction costs) materially above baseline;
+  (iii) 7+ years of carry (~$58–64k/yr property tax at ~45–50 mills on $1.28M taxable
+  [assumption: millage pending T-6]) absorbed without income or sale suggests high `Π`
+  expectations and/or non-economic holdout premium.
+
+## F6 · Park encumbrance check (T-5, preliminary): no state-grant encumbrance surfaced on the canopy band
+
+- [fact] The adopted **2023–2027 Emmet County Parks & Recreation Plan** Table 5-2
+  ("Status Report on Grant-Assisted Recreation Acquisitions & Development", doc p.37,
+  DNR Grants Management data) lists **no City of Petoskey Bayfront Park grants** — all
+  entries are county properties (Cecil Bay, Camp Petosega, Headlands, rail-trail, Resort
+  Bluffs, Little Traverse Bay View Park).
+- [inference] A planning-consultant project page (bria2.com) describes Bayfront Park
+  improvements as funded **primarily by the Petoskey TIF Authority** with State
+  participation via **DNR Waterways and Recreation Services** (up to ~$5M program) —
+  Waterways money attaches to marina/pier facilities, not the upland tree band.
+- [inference] Direction of evidence: the canopy screen is likely encumbered by **no
+  MNRTF/LWCF conversion regime**, leaving vista management a **municipal instrument**
+  (city council resolution / parks vegetation policy) plus **MDOT roadside vegetation
+  permit** for trees in US-31 ROW. NOT yet confirmed — the City's own five-year
+  recreation plan grant inventory is the definitive source and has not been obtained.
+- **DP4 instrument implication:** the concrete trigger's path (i) — "city resolution on
+  vista/canopy policy" — is legally available but politically scarred: the city's last
+  unilateral resolution touching this site was voided in court (F5). Any de-treeing
+  instrument robust enough for DP4 likely couples a council resolution with owner/civic
+  agreement rather than standing alone.
+- **Records to request (drafted-only; sends ON HOLD):** City of Petoskey current 5-yr
+  recreation plan (grant inventory section); DNR Grants Management project-boundary maps
+  (6(f)/MNRTF) for any city waterfront grants; city TIF/DDA plan documents covering
+  Bayfront; Emmet 57th Circuit case records for the 2021 park-resolution ruling.
+
+---
+
 ## Gap-movement table
 
 | gap | before session 1 | after session 1 |
