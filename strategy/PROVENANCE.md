@@ -29,6 +29,7 @@ status. Consequences for STRAT:
 | `analysis/bay_view_obstruction/element_verdicts_v2.md` | `4e6d03a` | dispatch T5 | D1–D5 | T-8 (T2 roof price via DP3) |
 | `analysis/bay_view_obstruction/mast_resite_search.json` | `ecbd758` | DP2(c) one-off | D1–D5 | context only |
 | `analysis/stage_adoption/BAY_BAND_V2_DECISION_ADDENDUM.md` | `ecbd758` (adopted) | owner sign-off | defines D1–D5 | vocabulary lock (P-2); DP3/DP4 inputs |
+| `analysis/bay_view_obstruction/dr1_tower_floors/` (ANSWER, per-floor summary, 966-row per-position CSV) | `388a9fa` | DR-1 (`scripts/dr1_tower_floors.py`) | D1–D5 | T-1 CONFIRMED; T-8 per-floor view pricing |
 | `requests/self_serve/emmet_parcels_park.json` | repo (pull 2026-07-06) | self-serve pulls | pre-v2 (non-viewshed) | T-2 attrs; T-3 SEV/taxable anchors |
 | `requests/self_serve/FINDINGS.md` | repo | self-serve pulls | pre-v2 | site identity; T-4 leads |
 
