@@ -4,8 +4,8 @@ Discipline: every line [fact] / [inference] / [assumption]. Units NAVD88 intl ft
 EPSG:6494. Viewshed figures carry occluder set + leaf state (P-2). Provenance per
 `PROVENANCE.md`; assumptions tracked in `ASSUMPTION_LEDGER.md`.
 
-**Session 1 — 2026-07-21.** Scope executed: scaffolding, DR-1 filed, T-2 join, T-3
-anchors 1–2. Not yet: T-3 comps, T-4–T-8.
+**Session 1 — 2026-07-21.** Scaffolding, DR-1 filed, T-2 join, T-3 anchors 1–2.
+**Session 2 — 2026-07-22.** DR-1 answered (T-1 CONFIRMED); T-4/T-5 desk findings (F5–F6); T-6 arithmetic (F7); T-7 bounds (F8); T-8 bracket (F9). Open: T-3 comps, records list.
 
 ---
 
@@ -124,6 +124,50 @@ anchors 1–2. Not yet: T-3 comps, T-4–T-8.
   recreation plan (grant inventory section); DNR Grants Management project-boundary maps
   (6(f)/MNRTF) for any city waterfront grants; city TIF/DDA plan documents covering
   Bayfront; Emmet 57th Circuit case records for the 2021 park-resolution ruling.
+
+---
+
+## F7 · TIF arithmetic (T-6): the frontage frame alone cannot carry the amphitheater's fiscal case
+
+- [fact] Frame taxable values (24 attributed parcels): **$4,809,575**; pit taxable
+  $1,280,700 → pit tax ≈ **$61.5k/yr @48 mills** [millage swept 45/48/52,
+  apportionment report queued].
+- [fact, arithmetic] Amphitheater scenario (pit → public, taxable 0): breakeven
+  frontage uplift = **26.6%** — implausible on the narrow frame; at a generous 10%
+  uplift the district runs **−$38k/yr** vs status quo. Tower scenario at $8M new
+  taxable: **+$323k/yr** increment. (`tif_arithmetic.csv`, all scenarios swept.)
+- [inference] The amphitheater's economic case therefore lives in channels this
+  arithmetic does not capture: sales-channel spillover `S` (F8), the wider-than-frame
+  downtown premium, and avoided `E` — matching the model's structure.
+- **Capture-destination caveat:** Petoskey has an existing DDA (1994) and a
+  waterfront/Bear River **TIFA**; whether the block sits inside either boundary is
+  unverified — increments may already be committed to existing plans. Boundary maps
+  queued (records list).
+
+## F8 · Venue economics (T-7): S bracketed from the Levitt anchor
+
+- [fact, cited] Levitt Dayton 2024: 72,450 attendance / 44 free concerts; ~1/3 of
+  visitors spend ~$60 downtown → ≈$1.5M/yr (≈$33k/event).
+- [assumption, scaled] Petoskey bowl (1,243 seats, downtown-adjacent):
+  **S ≈ $0.3–1.0M/yr** downtown spend at 20–40 events. `V_amph` operating: free model
+  ≈ $0.5–1.5M/yr funded budget [assumption]. Details + leads:
+  `VENUE_COMPARATORS_STRAT.md`.
+
+## F9 · V_up bracket (T-8): the by-right building owns no unconditional bay view
+
+- [fact] Zoning B-2: **3 stories, 40–45 ft** (§1600 pin queued); restored Jan 2019.
+  By-right roof ≈ 658–663 ft; top plate eye ≈ 647 ft = **DR-1 floor 3**.
+- [fact, DR-1 cross] Floors 2–3 are canopy-blocked/marginal (7.7% / 53.8% leaf-on);
+  the unconditional-view floors (4+) are **not by-right** — the vertical option is
+  substantially an **entitlement option**, its view component controlled by the
+  city's two levers (trees + zoning).
+- [assumption, swept] By-right pro forma bracket: 131–210k gsf, margin before
+  land/soft/Part-201 ≈ $10–53M — can pencil **without any view premium**; `L`
+  unpriced and could consume the low bracket. `VUP_BRACKET.md` for the full table.
+- [inference, valuation mirror of DP4] De-treeing **before** site control gifts the
+  by-right scheme its floor-2/3 views (+53.8/+23.1 pts), raising `V_up` and `R` at
+  zero cost to the owner; the same act after site control accrues to the venue and
+  neighbors. Measured magnitudes now attach to the sequencing clause.
 
 ---
 

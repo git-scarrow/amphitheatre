@@ -14,3 +14,7 @@
   maps for city waterfront grants; city TIF/DDA plan docs covering Bayfront; **Emmet
   57th Circuit records** for the Apr-2021 park-resolution ruling (corroborates F5);
   LARA/COFS entity detail for Petoskey Grand LLC (web app, may need manual pull).
+- **T-6/T-8 records (drafted-only):** Emmet County apportionment report (exact
+  millages); **DDA + waterfront/Bear River TIFA boundary maps + TIF plans** (is the
+  block inside a capture district?); municode §1600 Schedule of Regulations current
+  table (pin B-2 height 40 vs 45 ft); Levitt venue 990s / Meijer Gardens 990 (T-7).
