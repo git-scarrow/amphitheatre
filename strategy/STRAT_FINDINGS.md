@@ -110,6 +110,9 @@ EPSG:6494. Viewshed figures carry occluder set + leaf state (P-2). Provenance pe
   improvements as funded **primarily by the Petoskey TIF Authority** with State
   participation via **DNR Waterways and Recreation Services** (up to ~$5M program) —
   Waterways money attaches to marina/pier facilities, not the upland tree band.
+- [fact, self-serve §7 (2026-07-06)] The MNRTF county-list search already found City of
+  Petoskey awards only for **Skyline Recreation Area and Winter Sports Park — no
+  Bayfront/downtown hit** (county PDF bot-blocked; search-result level).
 - [inference] Direction of evidence: the canopy screen is likely encumbered by **no
   MNRTF/LWCF conversion regime**, leaving vista management a **municipal instrument**
   (city council resolution / parks vegetation policy) plus **MDOT roadside vegetation

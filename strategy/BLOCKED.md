@@ -49,3 +49,30 @@ draft — discard that one); needs the city FOIA form attached before sending.
 (3) Sam's RoD email cites predecessor parcels 52-19-06-227-005/-006 (~11 total) —
 consistent with F2's block-assembly inference; the 227 tax lineage predates the
 consolidation.
+
+## Reconciliation vs requests/self_serve/ (2026-07-22 — much of the RoD scope is already in hand)
+
+Already secured (self-serve pulls, 2026-07-06 — `requests/self_serve/FINDINGS.md`):
+- **Current vesting/ownership** [fact]: Petoskey Grand LLC, PID 227-016, class 202, COP B-2
+  (county parcel service) — RoD confirmation not needed for the fact itself.
+- **Conveyance chain outline** [fact, press]: Northwestern Bank → Amash 2013 → Petoskey
+  Grand 2018.
+- **Environmental instruments at mapped level** [fact]: block is Part 201 SiteID 24000048 +
+  UST 00035252 + 2006 brownfield award; EGLE's restrictive-covenant layer shows **no RC
+  polygon on the block** (the 3 nearby RCs are other sites).
+- **Land-use history path** [fact]: 9 LOC Sanborn volumes indexed (1885–1950, sheets not yet
+  pulled) + EGLE "Petoskey Ford" identity — exactly the material Karen notes RoD won't hold.
+- **MNRTF county search** [fact, §7]: known City of Petoskey awards = Skyline Recreation
+  Area + Winter Sports Park; **no Bayfront/downtown hit** — strengthens F6's
+  no-encumbrance direction (LWCF federal list still unchecked; DNR draft covers it).
+
+True RoD-portal residue (the 20-minute session, via BS&A Liber/Page cross-ref):
+1. **Vesting deed + legal description** — resolves F2's dual parcel-ID.
+2. **Recorded easements** on the block (utility/drainage/access/party-wall) — in no layer pulled.
+3. **Development agreements / reversionary clauses**, if any recorded.
+4. **Predecessor-parcel consolidation instruments** (~11 lots, 227-005/-006 et al.).
+5. Spot-check: any deed-recorded Part 201 covenant post-dating the EGLE layer.
+
+Draft-narrowing note: the DNR draft can cite §7's known awards (Skyline, Winter Sports
+Park) and ask only to confirm completeness + any LWCF 6(f) items for Bayfront — Sam may
+add one line before sending; substance already covered.
