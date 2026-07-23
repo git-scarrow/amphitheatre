@@ -76,3 +76,16 @@ True RoD-portal residue (the 20-minute session, via BS&A Liber/Page cross-ref):
 Draft-narrowing note: the DNR draft can cite §7's known awards (Skyline, Winter Sports
 Park) and ask only to confirm completeness + any LWCF 6(f) items for Bayfront — Sam may
 add one line before sending; substance already covered.
+
+## 2026-07-23 — browser-agent BS&A session (rod_portal_session.md)
+
+- BS&A tasks complete without login: legal descriptions, 11/07/2018 combination, the
+  29-item Liber/Page instrument index, F2 resolved. **No payments, no form fields
+  touched.**
+- RoD registration NOT performed (agent safety rules bar account creation; no
+  credential-prompt tool in its session). **Sam:** rod.emmetcounty.org → Register tab
+  (left open in Chrome) → then either run the six index searches himself or hand the
+  session back for a follow-up agent run with the login.
+- Then: Tier-1 purchases (~9 instruments, $1.05/page) per `rod_portal_session.md` §4 —
+  they decide the recorded-environmental-control question (F10) and the predecessor-lot
+  list (e).

@@ -5,7 +5,8 @@ EPSG:6494. Viewshed figures carry occluder set + leaf state (P-2). Provenance pe
 `PROVENANCE.md`; assumptions tracked in `ASSUMPTION_LEDGER.md`.
 
 **Session 1 — 2026-07-21.** Scaffolding, DR-1 filed, T-2 join, T-3 anchors 1–2.
-**Session 2 — 2026-07-22.** DR-1 answered (T-1 CONFIRMED); T-4/T-5 desk findings (F5–F6); T-6 arithmetic (F7); T-7 bounds (F8); T-8 bracket (F9). Open: T-3 comps, records list.
+**Session 2 — 2026-07-22.** DR-1 answered (T-1 CONFIRMED); T-4/T-5 desk findings (F5–F6); T-6 arithmetic (F7); T-7 bounds (F8); T-8 bracket (F9).
+**Session 3 — 2026-07-23.** Browser-agent BS&A session (F2 resolved; F10 instrument index). Open: T-3 comps, RoD registration + Tier-1 pulls, records list.
 
 ---
 
@@ -38,10 +39,14 @@ EPSG:6494. Viewshed figures carry occluder set + leaf state (P-2). Provenance pe
 - [inference] Same land, two identifier domains (plausibly the 2006–2007 block assembly:
   ~11 platted lots consolidated; assessor issued a new tax PID while GIS retained the
   plat-block-coded polygon). The bridge is the acreage + centroid + owner-class congruence.
-- **Action implication:** any records request, RoD title search, EGLE correspondence, or
-  option instrument must carry **both IDs** until the legal description is confirmed (RoD
-  = Sam's manual step, see `BLOCKED.md`). Recommended DATA_GAPS entry for the design
-  workstream (STRAT does not write design-canon files).
+- **RESOLVED 2026-07-23 (assessor level — `rod_portal_session.md`):** [fact] BS&A carries
+  both IDs for the same ~2.1-ac metes-and-bounds footprint. **224-001** is the zeroed-out
+  condo-era record, legal description ending "**PETOSKEY POINTE CONDO GROUNDS**" ($0 tax
+  all years shown; Key Largo FL mail address). **227-016** is the active parcel, **created
+  by combination 11/07/2018** (Split #99) — one week after Berg's 10/31/2018 closing.
+  Full verbatim legal description captured (Ignatius & Lewis Petoskey's Addition lots;
+  deed acreage 2.10 vs assessor 2.01 — rounding-level, noted). GIS simply was never
+  re-keyed after the combination. Deed-level confirmation = Tier-1 pull L1232 P646.
 
 ## F3 · The externality frame is now one list: 29 parcels, ~$8.1M SEV, same frame as the gate
 
@@ -171,6 +176,31 @@ EPSG:6494. Viewshed figures carry occluder set + leaf state (P-2). Provenance pe
   by-right scheme its floor-2/3 views (+53.8/+23.1 pts), raising `V_up` and `R` at
   zero cost to the owner; the same act after site control accrues to the venue and
   neighbors. Measured magnitudes now attach to the sequencing clause.
+
+
+## F10 · Recorded-instrument index (browser-agent session 2026-07-23): distress chain confirmed; possible recorded Part 201 control
+
+- [fact] BS&A's assessor Comments field carries a ~29-item Liber/Page instrument index
+  for the block (verbatim in `rod_portal_session.md` §1): early-2000s deed cluster
+  (L571), condo-regime creation (L1083: two Condo Master Deeds, Restrictions, **Option
+  Agreement**), distress/litigation run (lis pendens, court order, **sheriff's deed**,
+  **notice of bankruptcy**, covenant deed), final judgment + **two condo terminations**
+  (L1207), and a closing "CO" (L1232 P646, plausibly the combination order).
+- [fact] **L571 P82 "DEQ NOTICE"** + two "RESTRICTIONS" (L1083 P979, L1096 P261) +
+  "COV DEED" (L1129 P785) are recorded against the block.
+- [inference] That combination is strongly consistent with a **recorded Part 201
+  institutional control** — which would bear directly on `L` in the model and on any
+  option instrument. This *revises* the earlier mapped-level read ("no EGLE RC polygon
+  on the block"): the mapped layer may lag or the instruments may be notices short of a
+  covenant. **Decided by the Tier-1 document pulls** (L571 P82, L1083 P979, L1096 P261,
+  L1129 P785; ~$1.05/page) or an EGLE RC-registry check.
+- [inference] The sheriff's-deed/bankruptcy chapter documents the 2009–2013 distress
+  chain (Northwestern Bank era) at recorded-instrument level — corroborates the press
+  chain in F5 from an independent source class.
+- [fact] BS&A's Sale History grid is empty (no digitized prices/parties); exact dates,
+  parties, and page counts need the RoD index — **registration remains Sam's step**
+  (agent's safety rules bar account creation; the registration tab is left open in
+  Chrome). Prioritized purchase list: `rod_portal_session.md` §4.
 
 ---
 
