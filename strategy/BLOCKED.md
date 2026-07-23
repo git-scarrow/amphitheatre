@@ -31,3 +31,21 @@
 Court draft carries BOTH parcel IDs per F2. Not drafted (lookups, not requests):
 municode §1600 pin, LARA/COFS entity detail, Levitt/Meijer 990s (ProPublica), RoD
 chain-of-title (Sam's manual portal step).
+
+## Outreach ledger (discovered via inbox sweep 2026-07-22 — sent by Sam 2026-07-20, pre-STRAT)
+
+| thread | to | status |
+|---|---|---|
+| FOIA — storm drainage records, Pointe block | sbek@petoskey.us (City Clerk; **email FOIA channel confirmed**, form attached) | sent 07-20; statutory 5-business-day response due **~07-27** |
+| Planning questions — resident study of the block | jiacoangeli@petoskey.us (cc sbek) | sent 07-20; no reply yet |
+| RoD records search — parcel 227-016 chain | registerofdeeds@emmetcounty.org | **REPLIED 07-20** (Karen Cosens): no staff searches; self-serve at emmetcounty.org/rod (simple registration), $1.05/page; recipe: BS&A Property Search by parcel → sales history + Liber/Page → RoD search by owner names. Env/land-use history NOT in RoD records. |
+
+Consequences: (1) RoD chain-of-title remains Sam's manual step but is now a **recipe,
+not a blocker** — owner-name searches: Lake Street Petoskey Associates, Petoskey Pointe
+entities, Northwestern Bank, 2013 grantee (Amash entity/LCA), Petoskey Grand LLC. It
+also resolves F2's dual-ID question via the vesting deed's legal description.
+(2) City records draft re-addressed to sbek@petoskey.us (supersedes the self-addressed
+draft — discard that one); needs the city FOIA form attached before sending.
+(3) Sam's RoD email cites predecessor parcels 52-19-06-227-005/-006 (~11 total) —
+consistent with F2's block-assembly inference; the 227 tax lineage predates the
+consolidation.
